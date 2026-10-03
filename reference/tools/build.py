@@ -842,17 +842,23 @@ main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,
 @media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
 table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
 code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
-#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}\n.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}\n.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}\n.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}\n.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
-code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}'''
-JS = '''let idx=null;const q=document.getElementById('q'),res=document.getElementById('res');
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}'''
+JS = '''let idx=null;const q=document.getElementById('q'),res=document.getElementById('res'),nav=q.parentNode;let sel=-1;
+function mark(el,text,w){const lo=text.toLowerCase();let at=-1,len=0;for(const x of w){const k=lo.indexOf(x);if(k>=0){at=k;len=x.length;break}}
+if(at<0){el.appendChild(document.createTextNode(text));return}el.appendChild(document.createTextNode(text.slice(0,at)));const m=document.createElement('mark');m.textContent=text.slice(at,at+len);el.appendChild(m);el.appendChild(document.createTextNode(text.slice(at+len)))}
+function setSel(i){const a=res.querySelectorAll('a');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach((x,k)=>x.classList.toggle('sel',k===sel));a[sel].scrollIntoView({block:'nearest'})}
+q.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1)}else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1)}else if(e.key==='Enter'){const a=res.querySelectorAll('a');if(a.length)location.href=a[Math.max(sel,0)].href}else if(e.key==='Escape'){q.value='';q.dispatchEvent(new Event('input'))}});
+document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==q&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||'')){e.preventDefault();q.focus()}});
 q.addEventListener('input',async()=>{if(!idx){idx=await (await fetch(ROOT+'search.json')).json()}
-const w=q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);res.innerHTML='';if(!w.length||q.value.trim().length<2)return;
-const hits=[];for(const e of idx){const h=((e.s||'')+'.'+e.t+' '+e.t+' '+(e.s||'')).toLowerCase();if(!w.every(x=>h.includes(x)&&true)&&!w.every(x=>e.k&&e.k.includes(x)))continue;
+const w=q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);res.innerHTML='';sel=-1;
+if(!w.length||q.value.trim().length<2){nav.classList.remove('searching');return}nav.classList.add('searching');
+const hits=[];for(const e of idx){const h=((e.s||'')+'.'+e.t+' '+e.t+' '+(e.s||'')).toLowerCase();if(!w.every(x=>h.includes(x))&&!w.every(x=>e.k&&e.k.includes(x)))continue;
 const t=e.t.toLowerCase(),f=w.join(' ');let r=t===f?0:(t.startsWith(f)||((e.s||'')+'.'+e.t).toLowerCase().startsWith(f))?1:t.endsWith('.'+f)||t.endsWith('::'+f)?2:t.includes(f)?3:w.every(x=>h.includes(x))?4:5;if(e.s&&r<5)r+=0.5;hits.push([r,e])}
 hits.sort((a,b)=>a[0]-b[0]);const n=hits.length;
-hits.slice(0,60).forEach(([r,e])=>{const a=document.createElement('a');a.href=ROOT+e.u;a.textContent=e.t;if(e.s){const s=document.createElement('small');s.textContent=' - '+e.s;a.appendChild(s)}res.appendChild(a)});
-if(n>60){const m=document.createElement('div');m.textContent=(n-60)+' more, refine the search';m.style.fontSize='12px';res.appendChild(m)}if(!n){res.textContent='No match. For engine functions try All functions (search).'}});
+const c=document.createElement('div');c.className='cnt';c.textContent=n?(n>60?'Showing 60 of '+n+' matches':n+(n==1?' match':' matches')):'No match. For engine functions try All functions (search).';res.appendChild(c);
+hits.slice(0,60).forEach(([r,e])=>{const a=document.createElement('a');a.href=ROOT+e.u;mark(a,e.t,w);if(e.s){const s=document.createElement('small');s.textContent=e.s;a.appendChild(s)}res.appendChild(a)});if(n)setSel(0)});
 (function(){const f=new URLSearchParams(location.search).get('find');if(!f)return;const h=f.toLowerCase();
 for(const td of document.querySelectorAll('main td:first-child')){if(td.textContent.trim().toLowerCase()===h){td.scrollIntoView({block:'center'});td.parentElement.style.outline='2px solid #d9922b';break}}})();'''
 shutil.rmtree(B('site'), ignore_errors=True)
@@ -874,7 +880,7 @@ for p, (t, text) in pages.items():
            + grp('g-devce', 'Experimental', (('devce/index.html', 'Dev CE Lua API'),))
            + grp('g-engine', 'Engine internals', (('native/index.html', 'Native functions'), ('native/all.html', 'All functions (search)'))))
     page = ('<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>%s</title>'
-            '<style>%s</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search>'
+            '<style>%s</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search>'
             '<div id=res></div>%s</nav><main>%s</main><script>const ROOT="%s";</script><script src="%ssearch.js"></script>') % (
             html.escape(t), CSS, nav, body, root, root)
     fp = B('site', p[:-3] + '.html'); os.makedirs(os.path.dirname(fp), exist_ok=True)
