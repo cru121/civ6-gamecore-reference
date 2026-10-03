@@ -1,0 +1,41 @@
+operation	hash_u32	case_old	case_new	instrs	parameters_used	events_sent	named_callees(old build, first 12)
+INVALID	0xffffffff						
+RESEARCH	0x6e273371	0x30da1e	0x30ec2e	38	PARAM_TECH_TYPE		Queue<GameCore::CivicTypes,4>; Techs::SetResearchingTech
+DECLARE_WAR	0xb6e469af	0x30cb50	0x30dd60	63	PARAM_PLAYER_ONE, PARAM_PLAYER_TWO		Manager::Edit; Globals::EditPlayer; Diplomacy::DeclareWarOn
+MAKE_PEACE	0x19a71b70	0x30d204	0x30e414	60	PARAM_PLAYER_ONE, PARAM_PLAYER_TWO		Manager::Edit; Globals::EditPlayer; Diplomacy::MakePeaceWith
+PROGRESS_CIVIC	0x9fa5c528	0x30c72f	0x30d93f	30	PARAM_CIVIC_TYPE		Queue<GameCore::CivicTypes,4>; Culture::SetProgressingCivic; operator_delete
+FOUND_PANTHEON	0x9671c7d1	0x30c304	0x30d514	24	PARAM_BELIEF_TYPE		Religion::Get; Religion::FoundPantheon
+FOUND_RELIGION	0xa4daffb5	0x30c86a	0x30da7a	39	PARAM_RELIGION_CUSTOM_NAME, PARAM_RELIGION_TYPE		Types::GetIndex; Religion::Get; Religion::FoundReligion
+ADD_BELIEF	0xf8828e24	0x30cfa6	0x30e1b6	24	PARAM_BELIEF_TYPE		Religion::Get; Religion::AddBelief
+GIVE_INFLUENCE_TOKEN	0x99ec0bce	0x30c29b	0x30d4ab	28	PARAM_PLAYER_ONE		Manager::Edit; Influence::GiveTokenToPlayer
+RECRUIT_GREAT_PERSON	0xe8e854ba	0x30cd77	0x30df87	24	PARAM_GREAT_PERSON_INDIVIDUAL_TYPE		GreatPeople::Get; GreatPeople::RecruitPerson
+REJECT_GREAT_PERSON	0x05ace248	0x30ce72	0x30e082	24	PARAM_GREAT_PERSON_INDIVIDUAL_TYPE		GreatPeople::Get; GreatPeople::RejectPerson
+PATRONIZE_GREAT_PERSON	0xebdeb9f6	0x30cceb	0x30defb	42	PARAM_GREAT_PERSON_INDIVIDUAL_TYPE, PARAM_YIELD_TYPE		GreatPeople::Get; GreatPeople::PatronizePerson
+UNLOCK_POLICIES	0xbd51f5f4	0x30caea	0x30dcfa	15			Culture::GetCostToUnlockPolicies; Religion::ChangeFaithBalance; Culture::SetCivicCompletedThisTurn
+LEVY_MILITARY	0xe6e2dbb2	0x30cdca	0x30dfda	28	PARAM_PLAYER_ONE		Manager::Edit; Influence::LevyMilitary
+RETURN_LEVIED_MILITARY	0x61aee7dd	0x30d8d3	0x30eae3	28	PARAM_PLAYER_ONE		Manager::Edit; Influence::ReturnLeviedMilitary
+SET_ESCAPE_ROUTE	0x63737dc4	0x30dab3	0x30ecc3	78	PARAM_DISTRICT_TYPE, PARAM_UNIT_ID	PLAYER_OPERATION_COMPLETE	Espionage::GetNextEscapingSpy; Districts::Find; Instance>::edit; Espionage::Get; Instance::ResolveEscape; Event::Send; Processor::UpdateEndTurnBlockingState
+CHOOSE_ARTIFACT_PLAYER	0x07247e03	0x30cff9	0x30e209	106	PARAM_PLAYER_ONE	UNIT_ARTIFACT_CHANGED, UNIT_VISIBILITY_CHANGED	Units::GetNextExtractingArchaeologistID; Districts::Find; Culture::Get; Culture::SetGreatWorkPlayer; Instance>::edit; Culture::AddArtifactToBuilding; Event::Send; Buildings::GetFreeSlot; Units::DelayedDestroy
+MOVE_GREAT_WORK	0x291d387e	0x30d4dd	0x30e6ed	263	PARAM_BUILDING_DEST, PARAM_BUILDING_SRC, PARAM_CITY_DEST, PARAM_CITY_SRC, PARAM_GREAT_WORK_INDEX, PARAM_PLAYER_ONE, PARAM_SLOT	GREAT_WORK_MOVED	Globals::EditPlayer; Districts::Find; Buildings::GetGreatWorkInSlot; Instance>::edit; Buildings::RemoveGreatWork; Culture::Get; CollectorDefault<void>_>::Dispatch; Buildings::AddGreatWorkToSlot; Event::Send
+EXECUTE_SCRIPT	0xc665ad08	class ExecuteScript Start 0x5b1f0					
+START_OBSERVER_MODE	0xdaa47655	class StartObserverMode Start 0x5b370	0x5c020				
+NAME_CORPORATION	0x14180186	0x30d2e2	0x30e4f2	41	PARAM_CORPORATION_CUSTOM_NAME, PARAM_RESOURCE_TYPE		BasicT<Platform::StaticHeapAllocator<5,0>,1>; Manager::Get; Manager::SetCorporationName
+APPOINT_GOVERNOR	0xa68659ab	0x30c7fb	0x30da0b	32	PARAM_GOVERNOR_TYPE		Governors::Get; Governors::CanAppointGovernor; Governors::AppointGovernor
+ASSIGN_GOVERNOR	0xf97c278b	0x30cec5	0x30e0d5	66	PARAM_CITY_DEST, PARAM_GOVERNOR_TYPE, PARAM_PLAYER_ONE		Governors::Get; Governors::AssignGovernor
+PROMOTE_GOVERNOR	0x7d3da99d	0x30d95d	0x30eb6d	57	PARAM_GOVERNOR_PROMOTION_TYPE, PARAM_GOVERNOR_TYPE		Governors::Get; Governors::GetGovernor; Governors::CanEarnPromotion; Governors::PromoteGovernor
+COMMEMORATE	0x9e4ddfd9	0x30c248	0x30d458	24	PARAM_COMMEMORATION_TYPE		Eras::Edit; Eras::Commemorate
+COMPLIMENT_PRIDE_MOMENT	0x9fc14f7a	0x30c8ef	0x30daff	24	PARAM_MOMENT_ID		Eras::Edit; Eras::ComplimentPrideMoment
+REJECT_EMERGENCY	0xd57e9eb6	0x30cac5	0x30dcd5	9	PARAM_EMERGENCY_TYPE, PARAM_OTHER_PLAYER		
+ACCEPT_EMERGENCY	0xedbb0064	0x30cac5	0x30dcd5	9	PARAM_EMERGENCY_TYPE, PARAM_OTHER_PLAYER		
+WORLD_CONGRESS_RESOLUTION_VOTE	0xb0cfd998	0x30c942	0x30db52	98	PARAM_RESOLUTION_OPTION, PARAM_RESOLUTION_SELECTION, PARAM_RESOLUTION_TYPE, PARAM_WORLD_CONGRESS_VOTES		Manager::Edit; Manager::SubmitResolutionVotes; Definitions::GetResolutionDefinitions; Government>::Find; SubmitResolutionDecisionFromUi<GameCore::YieldTypes>
+WORLD_CONGRESS_RESOLUTION_BID	0x4f830671						
+WORLD_CONGRESS_RESOLUTION_SELECTION	0x89885d57	0x30c357	0x30d567	77	PARAM_RESOLUTION_OPTION, PARAM_RESOLUTION_SELECTION, PARAM_RESOLUTION_TYPE		Definitions::GetResolutionDefinitions; Government>::Find; Manager::Edit; SubmitResolutionDecisionFromUi<GameCore::ReligionTypes>
+WORLD_CONGRESS_DISCUSSION_VOTE	0x456ca949	0x30d3d9	0x30e5e9	67	PARAM_PLAYER_ONE, PARAM_PLAYER_TWO, PARAM_WORLD_CONGRESS_VOTES		Manager::Edit; Manager::FindDiscussion; Manager::SubmitVotes
+WORLD_CONGRESS_DISCUSSION_SELECTION	0xe4d75de3	0x30cc3e	0x30de4e	42	PARAM_DISCUSSION_TYPE, PARAM_OTHER_PLAYER		Manager::Edit; Manager::SubmitDiscussionDecision
+WORLD_CONGRESS_INDICATE_DESIRE	0x20260530	0x30d370	0x30e580	13	PARAM_FLAGS		TypedVariant::operator_bool; Congress::Get; Congress::ChangeWantsCongressToMeet
+WORLD_CONGRESS_LOOKED_AT_AVAILABLE	0x1b75025a	0x30d1e0	0x30e3f0	6			Congress::Get
+WORLD_CONGRESS_SUBMIT_TURN	0x35239b93	0x30d4b9	0x30e6c9	6			Congress::Get
+HIRE_CLAN	0x93d53977	class HireClan Start 0x648340	0x648a90				
+BRIBE_CLAN	0x5229c613	class BribeClan Start 0x647980	0x648230				
+RANSOM_CLAN	0x3bcabf44	class RansomClan Start 0x649160	0x649850				
+INCITE_CLAN	0xd2a827ab	class InciteClan Start 0x648ba0	0x6492f0				

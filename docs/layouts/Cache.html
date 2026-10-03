@@ -1,0 +1,1335 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Cache</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Class layouts</a> › Cache</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Cache</h1>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Size</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Cache/AI.CityBuild.html">Cache::AI::CityBuild</a></td>
+<td>184 (0xb8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/AI.CityBuild.Values.html">Cache::AI::CityBuild::Values</a></td>
+<td>176 (0xb0)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/AI.Diplomatic.html">Cache::AI::Diplomatic</a></td>
+<td>1032 (0x408)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/AI.Diplomatic.Values.html">Cache::AI::Diplomatic::Values</a></td>
+<td>1024 (0x400)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/AI.GrandStrategic.html">Cache::AI::GrandStrategic</a></td>
+<td>152 (0x98)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/AI.GrandStrategic.Values.html">Cache::AI::GrandStrategic::Values</a></td>
+<td>144 (0x90)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/AI.InfluenceMap.html">Cache::AI::InfluenceMap</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/AiGrandStrategic.EventStream.Entry.html">Cache::AiGrandStrategic::EventStream::Entry</a></td>
+<td>152 (0x98)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Barbarian.Manager.html">Cache::Barbarian::Manager</a></td>
+<td>1 (0x1)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/City.BuildQueue.html">Cache::City::BuildQueue</a></td>
+<td>880 (0x370)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.BuildQueue.Values.html">Cache::City::BuildQueue::Values</a></td>
+<td>872 (0x368)</td>
+<td>26</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Buildings.html">Cache::City::Buildings</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Buildings.Values.html">Cache::City::Buildings::Values</a></td>
+<td>56 (0x38)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Citizens.html">Cache::City::Citizens</a></td>
+<td>104 (0x68)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Citizens.Values.html">Cache::City::Citizens::Values</a></td>
+<td>96 (0x60)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Cache/City.CulturalIdentity.html">Cache::City::CulturalIdentity</a></td>
+<td>232 (0xe8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.CulturalIdentity.Values.html">Cache::City::CulturalIdentity::Values</a></td>
+<td>224 (0xe0)</td>
+<td>28</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Culture.html">Cache::City::Culture</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Culture.Values.html">Cache::City::Culture::Values</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Districts.html">Cache::City::Districts</a></td>
+<td>40 (0x28)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Districts.Values.html">Cache::City::Districts::Values</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.html">Cache::City::EventStream::Entry</a></td>
+<td>1328 (0x530)</td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.CityAi.html">Cache::City::EventStream::Entry::CityAi</a></td>
+<td>184 (0xb8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Common.html">Cache::City::EventStream::Entry::Common</a></td>
+<td>160 (0xa0)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.CulturalIdentity.html">Cache::City::EventStream::Entry::CulturalIdentity</a></td>
+<td>232 (0xe8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Culture.html">Cache::City::EventStream::Entry::Culture</a></td>
+<td>28 (0x1c)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Districts.html">Cache::City::EventStream::Entry::Districts</a></td>
+<td>12 (0xc)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Gold.html">Cache::City::EventStream::Entry::Gold</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Growth.html">Cache::City::EventStream::Entry::Growth</a></td>
+<td>160 (0xa0)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Power.html">Cache::City::EventStream::Entry::Power</a></td>
+<td>152 (0x98)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Religion.html">Cache::City::EventStream::Entry::Religion</a></td>
+<td>96 (0x60)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.EventStream.Entry.Trade.html">Cache::City::EventStream::Entry::Trade</a></td>
+<td>200 (0xc8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Gold.html">Cache::City::Gold</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Gold.Values.html">Cache::City::Gold::Values</a></td>
+<td>1 (0x1)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Growth.html">Cache::City::Growth</a></td>
+<td>168 (0xa8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Growth.Values.html">Cache::City::Growth::Values</a></td>
+<td>156 (0x9c)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Instance.html">Cache::City::Instance</a></td>
+<td>2408 (0x968)</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Instance.Values.html">Cache::City::Instance::Values</a></td>
+<td>152 (0x98)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Power.html">Cache::City::Power</a></td>
+<td>152 (0x98)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Power.Values.html">Cache::City::Power::Values</a></td>
+<td>144 (0x90)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Religion.html">Cache::City::Religion</a></td>
+<td>96 (0x60)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Religion.Values.html">Cache::City::Religion::Values</a></td>
+<td>88 (0x58)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Trade.html">Cache::City::Trade</a></td>
+<td>200 (0xc8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/City.Trade.Values.html">Cache::City::Trade::Values</a></td>
+<td>192 (0xc0)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/CityBuildQueue.EventStream.Entry.html">Cache::CityBuildQueue::EventStream::Entry</a></td>
+<td>880 (0x370)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/CityBuildings.EventStream.Entry.html">Cache::CityBuildings::EventStream::Entry</a></td>
+<td>64 (0x40)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/CityCitizens.EventStream.Entry.html">Cache::CityCitizens::EventStream::Entry</a></td>
+<td>104 (0x68)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Congress.Manager.html">Cache::Congress::Manager</a></td>
+<td>56 (0x38)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Congress.Manager.ReviewItemReturn.html">Cache::Congress::Manager::ReviewItemReturn</a></td>
+<td>168 (0xa8)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Cache/Congress.Manager.Values.html">Cache::Congress::Manager::Values</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Congress.Manager.WorldCongressInfoCache.html">Cache::Congress::Manager::WorldCongressInfoCache</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Context.Instance.html">Cache::Context::Instance</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/District.EventStream.Entry.html">Cache::District::EventStream::Entry</a></td>
+<td>88 (0x58)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/District.Instance.html">Cache::District::Instance</a></td>
+<td>88 (0x58)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Emergency.EventStream.ManagerEntry.html">Cache::Emergency::EventStream::ManagerEntry</a></td>
+<td>48 (0x30)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Emergency.Manager.html">Cache::Emergency::Manager</a></td>
+<td>48 (0x30)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Emergency.Manager.EmergencyInfoCache.html">Cache::Emergency::Manager::EmergencyInfoCache</a></td>
+<td>472 (0x1d8)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Emergency.Manager.Values.html">Cache::Emergency::Manager::Values</a></td>
+<td>48 (0x30)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Entry.html">Cache::Entry</a></td>
+<td>48 (0x30)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.ClimateEventUpdateData.html">Cache::Game::Climate::ClimateEventUpdateData</a></td>
+<td>52 (0x34)</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.DroughtUpdateData.html">Cache::Game::Climate::DroughtUpdateData</a></td>
+<td>80 (0x50)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.EventStream.CarbonSequesteredEntry.html">Cache::Game::Climate::EventStream::CarbonSequesteredEntry</a></td>
+<td>12 (0xc)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.EventStream.ClimateEventEntry.html">Cache::Game::Climate::EventStream::ClimateEventEntry</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.EventStream.DroughtEntry.html">Cache::Game::Climate::EventStream::DroughtEntry</a></td>
+<td>88 (0x58)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.EventStream.OneOffEntry.html">Cache::Game::Climate::EventStream::OneOffEntry</a></td>
+<td>72 (0x48)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.EventStream.ResourceConsumedEntry.html">Cache::Game::Climate::EventStream::ResourceConsumedEntry</a></td>
+<td>28 (0x1c)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.EventStream.StormEntry.html">Cache::Game::Climate::EventStream::StormEntry</a></td>
+<td>120 (0x78)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.Manager.html">Cache::Game::Climate::Manager</a></td>
+<td>960 (0x3c0)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Climate.StormUpdateData.html">Cache::Game::Climate::StormUpdateData</a></td>
+<td>112 (0x70)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Culture.html">Cache::Game::Culture</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Culture.Values.html">Cache::Game::Culture::Values</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.DiplomaticRelations.html">Cache::Game::DiplomaticRelations</a></td>
+<td>40 (0x28)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.DiplomaticRelations.Values.html">Cache::Game::DiplomaticRelations::Values</a></td>
+<td>40 (0x28)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Economic.EventStream.Entry.html">Cache::Game::Economic::EventStream::Entry</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Economic.Manager.html">Cache::Game::Economic::Manager</a></td>
+<td>168 (0xa8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Economic.Manager.Values.html">Cache::Game::Economic::Manager::Values</a></td>
+<td>160 (0xa0)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Eras.html">Cache::Game::Eras</a></td>
+<td>37152 (0x9120)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Eras.Values.html">Cache::Game::Eras::Values</a></td>
+<td>37152 (0x9120)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.EventStream.GameEntry.html">Cache::Game::EventStream::GameEntry</a></td>
+<td>104 (0x68)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.EventStream.GamePauseEntry.html">Cache::Game::EventStream::GamePauseEntry</a></td>
+<td>1 (0x1)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Fallout.EventStream.FalloutEntry.html">Cache::Game::Fallout::EventStream::FalloutEntry</a></td>
+<td>12 (0xc)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Fallout.EventStream.ReactorEntry.html">Cache::Game::Fallout::EventStream::ReactorEntry</a></td>
+<td>4 (0x4)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Fallout.Manager.html">Cache::Game::Fallout::Manager</a></td>
+<td>80 (0x50)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Fallout.Manager.Values.html">Cache::Game::Fallout::Manager::Values</a></td>
+<td>72 (0x48)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Gossip.Manager.html">Cache::Game::Gossip::Manager</a></td>
+<td>104 (0x68)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Gossip.OccurenceString.html">Cache::Game::Gossip::OccurenceString</a></td>
+<td>144 (0x90)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Gossip.OccurrenceStringList.html">Cache::Game::Gossip::OccurrenceStringList</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Gossip.VisibleOccurrencEntry.html">Cache::Game::Gossip::VisibleOccurrencEntry</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.GreatPeople.html">Cache::Game::GreatPeople</a></td>
+<td>64 (0x40)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.GreatPeople.Values.html">Cache::Game::GreatPeople::Values</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.HeroesManager.html">Cache::Game::HeroesManager</a></td>
+<td>72 (0x48)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.HeroesManager.HeroCacheData.html">Cache::Game::HeroesManager::HeroCacheData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.HeroesManager.PlayerHeroesCacheData.html">Cache::Game::HeroesManager::PlayerHeroesCacheData</a></td>
+<td>48 (0x30)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.HeroesManager.Values.html">Cache::Game::HeroesManager::Values</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.History.Manager.html">Cache::Game::History::Manager</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.History.Manager.Values.html">Cache::Game::History::Manager::Values</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Instance.html">Cache::Game::Instance</a></td>
+<td>44024 (0xabf8)</td>
+<td>24</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Instance.ComponentEntry.html">Cache::Game::Instance::ComponentEntry</a></td>
+<td>64 (0x40)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Instance.Values.html">Cache::Game::Instance::Values</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.NationalParks.html">Cache::Game::NationalParks</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.NationalParks.Values.html">Cache::Game::NationalParks::Values</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Religion.html">Cache::Game::Religion</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Religion.Values.html">Cache::Game::Religion::Values</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Techs.html">Cache::Game::Techs</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.Techs.Values.html">Cache::Game::Techs::Values</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.VictoryManager.html">Cache::Game::VictoryManager</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Game.VictoryManager.Values.html">Cache::Game::VictoryManager::Values</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameEras.EventStream.Entry.html">Cache::GameEras::EventStream::Entry</a></td>
+<td>37152 (0x9120)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameGreatPeople.EventStream.Entry.html">Cache::GameGreatPeople::EventStream::Entry</a></td>
+<td>64 (0x40)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameHeroesManager.EventStream.Entry.html">Cache::GameHeroesManager::EventStream::Entry</a></td>
+<td>64 (0x40)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameHistoryManager.EventStream.MomentEntry.html">Cache::GameHistoryManager::EventStream::MomentEntry</a></td>
+<td>80 (0x50)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameHistoryManager.EventStream.RebuildEntry.html">Cache::GameHistoryManager::EventStream::RebuildEntry</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameNationalParks.EventStream.Entry.html">Cache::GameNationalParks::EventStream::Entry</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameReligion.EventStream.Entry.html">Cache::GameReligion::EventStream::Entry</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/GameVictory.EventStream.Entry.html">Cache::GameVictory::EventStream::Entry</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Governor.Instance.html">Cache::Governor::Instance</a></td>
+<td>88 (0x58)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IAiCityBuild.html">Cache::Lua::IAiCityBuild</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IAiDiplomacy.html">Cache::Lua::IAiDiplomacy</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IAiGrandStrategic.html">Cache::Lua::IAiGrandStrategic</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IBarbarians.html">Cache::Lua::IBarbarians</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICities.html">Cache::Lua::ICities</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICity.html">Cache::Lua::ICity</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityBuildQueue.html">Cache::Lua::ICityBuildQueue</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityBuildings.html">Cache::Lua::ICityBuildings</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityCitizens.html">Cache::Lua::ICityCitizens</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityCulturalIdentity.html">Cache::Lua::ICityCulturalIdentity</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityCulture.html">Cache::Lua::ICityCulture</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityDistricts.html">Cache::Lua::ICityDistricts</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityGold.html">Cache::Lua::ICityGold</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityGrowth.html">Cache::Lua::ICityGrowth</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityManager.html">Cache::Lua::ICityManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityReligion.html">Cache::Lua::ICityReligion</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ICityTrade.html">Cache::Lua::ICityTrade</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IDealManager.html">Cache::Lua::IDealManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IDiplomacyManager.html">Cache::Lua::IDiplomacyManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IDistrict.html">Cache::Lua::IDistrict</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGame.html">Cache::Lua::IGame</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameDiplomacy.html">Cache::Lua::IGameDiplomacy</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameEconomicManager.html">Cache::Lua::IGameEconomicManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameFalloutManager.html">Cache::Lua::IGameFalloutManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameGossipManager.html">Cache::Lua::IGameGossipManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameGreatPeople.html">Cache::Lua::IGameGreatPeople</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameHeroesManager.html">Cache::Lua::IGameHeroesManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameHistoryManager.html">Cache::Lua::IGameHistoryManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameNationalParks.html">Cache::Lua::IGameNationalParks</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGameReligion.html">Cache::Lua::IGameReligion</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IGovernor.html">Cache::Lua::IGovernor</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IInfluenceMap.html">Cache::Lua::IInfluenceMap</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IMap.html">Cache::Lua::IMap</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IMapCityPlots.html">Cache::Lua::IMapCityPlots</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IMapPlotUnitList.html">Cache::Lua::IMapPlotUnitList</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayer.html">Cache::Lua::IPlayer</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerCities.html">Cache::Lua::IPlayerCities</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerCulture.html">Cache::Lua::IPlayerCulture</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerDiplomacy.html">Cache::Lua::IPlayerDiplomacy</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerDistricts.html">Cache::Lua::IPlayerDistricts</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerGovernors.html">Cache::Lua::IPlayerGovernors</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerGreatPeoplePoints.html">Cache::Lua::IPlayerGreatPeoplePoints</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerImprovements.html">Cache::Lua::IPlayerImprovements</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerInfluence.html">Cache::Lua::IPlayerInfluence</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerManager.html">Cache::Lua::IPlayerManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerReligion.html">Cache::Lua::IPlayerReligion</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerResources.html">Cache::Lua::IPlayerResources</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerStats.html">Cache::Lua::IPlayerStats</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerTechs.html">Cache::Lua::IPlayerTechs</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerTrade.html">Cache::Lua::IPlayerTrade</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerTreasury.html">Cache::Lua::IPlayerTreasury</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerUnits.html">Cache::Lua::IPlayerUnits</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerVisibility.html">Cache::Lua::IPlayerVisibility</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerVisibilityManager.html">Cache::Lua::IPlayerVisibilityManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IPlayerWMDs.html">Cache::Lua::IPlayerWMDs</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IQuestsManager.html">Cache::Lua::IQuestsManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.ITradeManager.html">Cache::Lua::ITradeManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnit.html">Cache::Lua::IUnit</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnitAbility.html">Cache::Lua::IUnitAbility</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnitArchaeology.html">Cache::Lua::IUnitArchaeology</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnitExperience.html">Cache::Lua::IUnitExperience</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnitGreatPerson.html">Cache::Lua::IUnitGreatPerson</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnitManager.html">Cache::Lua::IUnitManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnitTrade.html">Cache::Lua::IUnitTrade</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Lua.IUnits.html">Cache::Lua::IUnits</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.CityPlots.html">Cache::Map::CityPlots</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.EventStream.PlotAppealEntry.html">Cache::Map::EventStream::PlotAppealEntry</a></td>
+<td>12 (0xc)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.EventStream.PlotAppealEntryValue.html">Cache::Map::EventStream::PlotAppealEntryValue</a></td>
+<td>4 (0x4)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.EventStream.PlotEntry.html">Cache::Map::EventStream::PlotEntry</a></td>
+<td>72 (0x48)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.EventStream.PlotPropertiesEntry.html">Cache::Map::EventStream::PlotPropertiesEntry</a></td>
+<td>32 (0x20)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.EventStream.VisibilityEntry.html">Cache::Map::EventStream::VisibilityEntry</a></td>
+<td>24 (0x18)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.Instance.html">Cache::Map::Instance</a></td>
+<td>480 (0x1e0)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.Player.Visibility.Instance.html">Cache::Map::Player::Visibility::Instance</a></td>
+<td>264 (0x108)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.Player.Visibility.Instance.Layer.html">Cache::Map::Player::Visibility::Instance::Layer</a></td>
+<td>24 (0x18)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.Player.Visibility.Manager.html">Cache::Map::Player::Visibility::Manager</a></td>
+<td>80 (0x50)</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.Plot.Instance.html">Cache::Map::Plot::Instance</a></td>
+<td>96 (0x60)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.River.Manager.html">Cache::Map::River::Manager</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.Terrain.EventStream.CoastalLowLandEntry.html">Cache::Map::Terrain::EventStream::CoastalLowLandEntry</a></td>
+<td>36 (0x24)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Map.Terrain.Manager.html">Cache::Map::Terrain::Manager</a></td>
+<td>112 (0x70)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/ObjectPairing.EventStream.Entry.html">Cache::ObjectPairing::EventStream::Entry</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/ObjectPairing.Manager.html">Cache::ObjectPairing::Manager</a></td>
+<td>96 (0x60)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Cities.html">Cache::Player::Cities</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Culture.html">Cache::Player::Culture</a></td>
+<td>352 (0x160)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Culture.Values.html">Cache::Player::Culture::Values</a></td>
+<td>320 (0x140)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Diplomacy.html">Cache::Player::Diplomacy</a></td>
+<td>3416 (0xd58)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Districts.html">Cache::Player::Districts</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.EventStream.PlayerEntry.html">Cache::Player::EventStream::PlayerEntry</a></td>
+<td>168 (0xa8)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.EventStream.PlayerInitializationEntry.html">Cache::Player::EventStream::PlayerInitializationEntry</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.EventStream.PlayerManagerEntry.html">Cache::Player::EventStream::PlayerManagerEntry</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Governors.html">Cache::Player::Governors</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Governors.Values.html">Cache::Player::Governors::Values</a></td>
+<td>48 (0x30)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.GreatPeoplePoints.html">Cache::Player::GreatPeoplePoints</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Improvements.html">Cache::Player::Improvements</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Improvements.Values.html">Cache::Player::Improvements::Values</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Influence.html">Cache::Player::Influence</a></td>
+<td>376 (0x178)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Instance.html">Cache::Player::Instance</a></td>
+<td>184 (0xb8)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.InstanceValues.html">Cache::Player::InstanceValues</a></td>
+<td>6848 (0x1ac0)</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Manager.html">Cache::Player::Manager</a></td>
+<td>5832 (0x16c8)</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Religion.html">Cache::Player::Religion</a></td>
+<td>152 (0x98)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Resources.html">Cache::Player::Resources</a></td>
+<td>248 (0xf8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Resources.Values.html">Cache::Player::Resources::Values</a></td>
+<td>240 (0xf0)</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Stats.html">Cache::Player::Stats</a></td>
+<td>152 (0x98)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Techs.html">Cache::Player::Techs</a></td>
+<td>280 (0x118)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Techs.Values.html">Cache::Player::Techs::Values</a></td>
+<td>248 (0xf8)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Trade.html">Cache::Player::Trade</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Treasury.html">Cache::Player::Treasury</a></td>
+<td>224 (0xe0)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.Units.html">Cache::Player::Units</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.WMDs.html">Cache::Player::WMDs</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Player.WMDs.Values.html">Cache::Player::WMDs::Values</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerAi.EventStream.Entry.html">Cache::PlayerAi::EventStream::Entry</a></td>
+<td>200 (0xc8)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerCulture.EventStream.Entry.html">Cache::PlayerCulture::EventStream::Entry</a></td>
+<td>352 (0x160)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerDiplomacy.EventStream.Entry.html">Cache::PlayerDiplomacy::EventStream::Entry</a></td>
+<td>4432 (0x1150)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerGovernors.EventStream.Entry.html">Cache::PlayerGovernors::EventStream::Entry</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerGreatPeoplePoints.EventStream.Entry.html">Cache::PlayerGreatPeoplePoints::EventStream::Entry</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerImprovements.EventStream.Entry.html">Cache::PlayerImprovements::EventStream::Entry</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerInfluence.EventStream.Entry.html">Cache::PlayerInfluence::EventStream::Entry</a></td>
+<td>368 (0x170)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerInfluenceMap.EventStream.Entry.html">Cache::PlayerInfluenceMap::EventStream::Entry</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerReligion.EventStream.Entry.html">Cache::PlayerReligion::EventStream::Entry</a></td>
+<td>152 (0x98)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerResources.EventStream.Entry.html">Cache::PlayerResources::EventStream::Entry</a></td>
+<td>248 (0xf8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerStats.EventStream.Entry.html">Cache::PlayerStats::EventStream::Entry</a></td>
+<td>152 (0x98)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerTechs.EventStream.Entry.html">Cache::PlayerTechs::EventStream::Entry</a></td>
+<td>280 (0x118)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerTrade.EventStream.Entry.html">Cache::PlayerTrade::EventStream::Entry</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerTreasury.EventStream.Entry.html">Cache::PlayerTreasury::EventStream::Entry</a></td>
+<td>224 (0xe0)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Cache/PlayerWMDs.EventStream.Entry.html">Cache::PlayerWMDs::EventStream::Entry</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Quests.Manager.html">Cache::Quests::Manager</a></td>
+<td>2 (0x2)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/System.EventStream.EntryStatus.html">Cache::System::EventStream::EntryStatus</a></td>
+<td>24 (0x18)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Cache/System.EventStream.IComponentManager.html">Cache::System::EventStream::IComponentManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Trade.Manager.html">Cache::Trade::Manager</a></td>
+<td>2 (0x2)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Trade.MovementNode.html">Cache::Trade::MovementNode</a></td>
+<td>8 (0x8)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.Ability.html">Cache::Unit::Ability</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.Archaeology.html">Cache::Unit::Archaeology</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.EventStream.Entry.html">Cache::Unit::EventStream::Entry</a></td>
+<td>296 (0x128)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.Experience.html">Cache::Unit::Experience</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.Experience.Values.html">Cache::Unit::Experience::Values</a></td>
+<td>48 (0x30)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.GreatPerson.html">Cache::Unit::GreatPerson</a></td>
+<td>40 (0x28)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.Instance.html">Cache::Unit::Instance</a></td>
+<td>496 (0x1f0)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.MovementNode.html">Cache::Unit::MovementNode</a></td>
+<td>20 (0x14)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.MovementObstacles.html">Cache::Unit::MovementObstacles</a></td>
+<td>1064 (0x428)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.RockBand.html">Cache::Unit::RockBand</a></td>
+<td>24 (0x18)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/Unit.Trade.html">Cache::Unit::Trade</a></td>
+<td>24 (0x18)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Cache/UnitAbility.EventStream.Entry.html">Cache::UnitAbility::EventStream::Entry</a></td>
+<td>32 (0x20)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/UnitArchaeology.EventStream.Entry.html">Cache::UnitArchaeology::EventStream::Entry</a></td>
+<td>28 (0x1c)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/UnitExperience.EventStream.Entry.html">Cache::UnitExperience::EventStream::Entry</a></td>
+<td>56 (0x38)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/UnitGreatPerson.EventStream.Entry.html">Cache::UnitGreatPerson::EventStream::Entry</a></td>
+<td>40 (0x28)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/UnitRockBand.EventStream.Entry.html">Cache::UnitRockBand::EventStream::Entry</a></td>
+<td>20 (0x14)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Cache/UnitTrade.EventStream.Entry.html">Cache::UnitTrade::EventStream::Entry</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

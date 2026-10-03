@@ -1,0 +1,29 @@
+# Bulk checks the live Frida channel could do (written 2026-10-03)
+
+Systemic gaps in the reference that one scripted pass in a running game could close, roughly ordered by value for effort.
+Tooling: `frida/live` (daemon + `runlua.py`), Lua test scripts in `frida/live/luatests/`. Safety rules first: only run Lua in a long-lived UI state
+(`civ.py luastates` -> busiest -> `luaon`), never call a method with an argument list that is not known, never run in states known only from an old recording.
+
+| # | Gap in the reference | Test | Size | Needs |
+|---|---|---|---|---|
+| 1 | **Enums: which constants are really exposed to Lua.** The Companion lists only a subset of each engine enum (YieldTypes 6 of 14, DomainTypes 7 of 12 ...); the reference says "unlisted ones may not be exposed". | Enumerate the real Lua constant tables at runtime (`pairs(DomainTypes)` etc., all tables found in the global environment) and compare name+value with the DWARF enums (329 published members, 19 tables). Also finds tables we do not know. | ~1 call per table, minutes | UI state only |
+| 2 | **Events: which event names exist.** 256 Lua events come from the Companion; 352 engine ids are known; `Events`, `LuaEvents` (UI) and `GameEvents` (gameplay) tables are enumerable. | `pairs(Events)` / `pairs(LuaEvents)` / `pairs(GameEvents)`, compare with the Companion list and the engine ids; flags events nobody documented and Companion events that do not exist in this build. | minutes | gameplay state for GameEvents |
+| 3 | **Constant-stub wrappers.** The reference claims some Lua methods call a stub that returns a constant (IsCanyon, PlayerCulture.GetIncrementingBonus*, GetEnactPolicyCost, TradeManager gameplay Destination* yields). | Call each such method on several different instances/args and check the result never varies. | ~20 methods | instances |
+| 4 | **Which Lua state can call a method.** The "Where" column only says which registration table lists it; the docs admit this is not proof. | Reflection crawl in a UI state (done) and in a gameplay state (not done: needs a safe way to pick the main gameplay state, e.g. ask the VM `lua_pushthread` which state is the main thread, or capture it from our own gameplay mod). Mark each of the 1,920 methods UI / gameplay / both. | one crawl per state | gameplay state |
+| 5 | **Methods with parameters.** Only zero-parameter getters were called (453). 988 methods have parameters; 784 argument meanings are mined from the game's own scripts (583 verified). | Generate calls from the mined meanings (player 0, first city, plot index 0, a valid type index...) for read-only methods (Get/Is/Has/Can) and compare returns; wrong parameter order shows as errors or odd values. Known doc bugs from step 1: IsDefeatEnabled/IsVictoryEnabled/GetUnitNamePrefix/Suffix. | a few hundred calls | argument fixtures per type |
+| 6 | **Return-table shapes.** 94 array-returning and 7 record-returning methods were reconstructed by replaying wrapper code on a model stack. | Call them (zero-arg ones first), walk the returned table and compare field names and element types with `return_details`. | ~100 methods | fixtures |
+| 7 | **Wrapper reaches the intended C++ function (L1).** Callee names come from decompilation. | Hook the callee, call the Lua method, assert it was entered once with the arguments Lua passed (same harness the dev CE needs). | all 2,281 wrappers over time | arguments |
+| 8 | **Operation parameters.** 167 PARAM_* entities are described from game script usage. | Check that each `PlayerOperations.PARAM_*`/`UnitOperations.PARAM_*` constant exists in the runtime tables and has the documented numeric value (read-only). | one call per table | UI state |
+| 9 | **Hash function.** Type ids are ~crc32 of the upper-case name (351/352 events). | Compare `DB.MakeHash` / `GameInfo` hash values (or `Locale`-independent hashes) for a few thousand names against the formula. | trivial | UI state |
+| 10 | **Native object layouts.** Windows offsets are verified for 25 members only (Linux DWARF -8 rule elsewhere). | Read the field at the DWARF offset (minus 8 where applicable) on a live object (unit, city, player, plot) and compare it with the value the Lua getter for that field returns (Unit:GetExperience, City:GetPopulation, ...). One read per mapped getter-member pair; extends `_windows_offsets.yaml` automatically. | a few hundred pairs | Frida memory reads + Lua getter |
+| 11 | **Mapped function addresses.** 33k functions are mapped old -> new by byte matching. | Offline is enough (the DLL file is on disk): re-verify prologues without Frida. Live adds only: functions that are actually called during play (hook-count over a turn) can be ranked "hot", which helps picking safe test targets. | a few minutes | none / hooks |
+| 12 | **Gap-list functions that are reached indirectly.** The gap analysis lists 5,418 functions without a Lua wrapper; some are reached through other wrappers. | Hook candidate functions, run a script of ordinary Lua calls (and let the AI play a few turns), record which gap functions fire and from which Lua method: turns "no Lua route" into "indirect via X". Count-hooks on at most ~40 functions at a time and never detach (see safety). | batches of 40 | game turns |
+
+## Needed first
+* A reliable way to identify the main gameplay `lua_State` (items 2, 4, 7). Do NOT enumerate or classify states by calling into them (see safety: dead coroutine states).
+* A fixtures save with units, a city with buildings, a great work, a religion, trade routes, so the argument-taking tests (5, 6) have real instances.
+
+## Safety (all learned the hard way, 2026-10-03)
+* Never detach hot Frida hooks from the Frida thread (mass detach hung the game); disable by flag. Never detach a session while the game should live (crash).
+* Never run Lua in a lua_State that is not known alive and long-lived (heap corruption crash).
+* A method called with too few arguments can fault natively.

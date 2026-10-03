@@ -1,0 +1,271 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Map</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › Map</p>
+<div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
+
+<h1>Map</h1>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Signature (Linux)</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>From Lua</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="map__cityplots__setpurchasedbycity"></a>CityPlots::SetPurchasedByCity</td>
+<td><code>void Map::CityPlots::SetPurchasedByCity(Map::CityPlots* this, PlotCoord kLocation, PlayerTypes ePlayer, int idCity)</code> (+1 overload)</td>
+<td><code>0x4b620</code></td>
+<td><code>0x4c5f0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__cityplots__setvaliddomains"></a>CityPlots::SetValidDomains</td>
+<td><code>void Map::CityPlots::SetValidDomains(Map::CityPlots* this, Map::Plot::Instance* pkPlot)</code></td>
+<td><code>0x4b880</code></td>
+<td><code>0x4c850</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__cityplots__setworkingcity"></a>CityPlots::SetWorkingCity</td>
+<td><code>void Map::CityPlots::SetWorkingCity(Map::CityPlots* this, PlotCoord kLocation, PlayerTypes ePlayer, int idCity)</code> (+1 overload)</td>
+<td><code>0x4b930</code></td>
+<td><code>0x4c900</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__feature__manager__addnaturalwondervolcano"></a>Feature::Manager::AddNaturalWonderVolcano</td>
+<td><code>void Map::Feature::Manager::AddNaturalWonderVolcano(Map::Feature::Manager* this, const PlotIndexVector&amp; aPlotIndices, FeatureTypes eFeature)</code></td>
+<td><code>0x7205e0</code></td>
+<td><code>0x720ca0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="map__feature__manager__addplotyield"></a>Feature::Manager::AddPlotYield</td>
+<td><code>void Map::Feature::Manager::AddPlotYield(Map::Feature::Manager* this, int iPlotIndex, YieldTypes eYield, int iAmount)</code></td>
+<td><code>0x720820</code></td>
+<td><code>0x720ee0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Map.html#addplotyield">Map.AddPlotYield</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="map__feature__manager__setvolcanoactive"></a>Feature::Manager::SetVolcanoActive ★</td>
+<td><code>void Map::Feature::Manager::SetVolcanoActive(Map::Feature::Manager* this, bool bMustBeNamed)</code></td>
+<td><code>0x726950</code></td>
+<td><code>0x7271e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Map.html#setvolcanoactive">Map.SetVolcanoActive</a></td>
+<td>analysed, edit_call, event, notification, writes</td>
+</tr>
+<tr>
+<td><a id="map__feature__manager__setvolcanoinactive"></a>Feature::Manager::SetVolcanoInactive ★</td>
+<td><code>void Map::Feature::Manager::SetVolcanoInactive(Map::Feature::Manager* this, bool bMustBeNamed)</code></td>
+<td><code>0x726cb0</code></td>
+<td><code>0x727540</code></td>
+<td>Dev CE (experimental): <a href="../devce/Map.html#setvolcanoinactive">Map.SetVolcanoInactive</a></td>
+<td>analysed, edit_call, event, notification, writes</td>
+</tr>
+<tr>
+<td><a id="map__improvement__builder__setdistricttype"></a>Improvement::Builder::SetDistrictType</td>
+<td><code>bool Map::Improvement::Builder::SetDistrictType(Map::Improvement::Builder* this, int iX, int iY, DistrictTypes eNewValue, PlayerTypes eBuilder)</code> (+1 overload)</td>
+<td><code>0x25dbf0</code></td>
+<td><code>0x25cdd0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="map__instance__changenaturalwondercount"></a>Instance::ChangeNaturalWonderCount</td>
+<td><code>void Map::Instance::ChangeNaturalWonderCount(Map::Instance* this, int iChange)</code></td>
+<td><code>0x513f0</code></td>
+<td><code>0x52000</code></td>
+<td>Dev CE (experimental): <a href="../devce/Map.html#changenaturalwondercount">Map.ChangeNaturalWonderCount</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__landmass__instance__changecentroid"></a>Landmass::Instance::ChangeCentroid</td>
+<td><code>void Map::Landmass::Instance::ChangeCentroid(Map::Landmass::Instance* this, const PlotCoord&amp; kDelta)</code></td>
+<td><code>0x2a850</code></td>
+<td><code>0x2ae90</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__landmass__instance__changeplotcount"></a>Landmass::Instance::ChangePlotCount</td>
+<td><code>void Map::Landmass::Instance::ChangePlotCount(Map::Landmass::Instance* this, int iChange)</code></td>
+<td><code>0x2a880</code></td>
+<td><code>0x2aec0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__mapanalysis__removegraphcell"></a>MapAnalysis::RemoveGraphCell</td>
+<td><code>void Map::MapAnalysis::RemoveGraphCell(Map::MapAnalysis* this, int i)</code></td>
+<td><code>0x5cb580</code></td>
+<td><code>0x5cc210</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__player__visibility__builder__setrevealed"></a>Player::Visibility::Builder::SetRevealed</td>
+<td><code>void Map::Player::Visibility::Builder::SetRevealed(PlayerTypes ePlayer, int iPlot, bool bRevealed)</code></td>
+<td><code>0x2617b0</code></td>
+<td><code>0x260990</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="map__player__visibility__manager__setrevealedimprovementtype"></a>Player::Visibility::Manager::SetRevealedImprovementType</td>
+<td><code>bool Map::Player::Visibility::Manager::SetRevealedImprovementType(Map::Player::Visibility::Manager* this, PlayerTypes ePlayer, int iPlotIndex, ImprovementTypes eNewValue)</code></td>
+<td><code>0x35ba50</code></td>
+<td><code>0x35de10</code></td>
+<td>Dev CE (experimental): <a href="../devce/Map.html#setrevealedimprovementtype">Map.SetRevealedImprovementType</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="map__player__visibility__manager__setrevealedresourcetype"></a>Player::Visibility::Manager::SetRevealedResourceType</td>
+<td><code>bool Map::Player::Visibility::Manager::SetRevealedResourceType(Map::Player::Visibility::Manager* this, PlayerTypes ePlayer, int iPlotIndex, ResourceTypes eNewValue)</code></td>
+<td><code>0x35baf0</code></td>
+<td><code>0x35deb0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Map.html#setrevealedresourcetype">Map.SetRevealedResourceType</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="map__player__visibility__manager__setrevealedroutetype"></a>Player::Visibility::Manager::SetRevealedRouteType</td>
+<td><code>bool Map::Player::Visibility::Manager::SetRevealedRouteType(Map::Player::Visibility::Manager* this, PlayerTypes ePlayer, int iPlotIndex, RouteTypes eNewType)</code></td>
+<td><code>0x35bb90</code></td>
+<td><code>0x35df50</code></td>
+<td>Dev CE (experimental): <a href="../devce/Map.html#setrevealedroutetype">Map.SetRevealedRouteType</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="map__plot__instance__setappeal"></a>Plot::Instance::SetAppeal</td>
+<td><code>void Map::Plot::Instance::SetAppeal(Map::Plot::Instance* this, int iAppeal)</code></td>
+<td><code>0x60630</code></td>
+<td><code>0x61270</code></td>
+<td>via CE: <a href="../ce/Plot.html#setappeal">Plot.SetAppeal</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="map__region__regionsplitter__buildcontinentfrommark"></a>Region::RegionSplitter::BuildContinentFromMark</td>
+<td><code>void Map::Region::RegionSplitter::BuildContinentFromMark(Map::Region::RegionSplitter* this, ContinentList&amp; aOutContinentList, const Types::ArrayWrapper&lt;ContinentTypes&gt; aContinentIndices, const MarkGrid&amp; kGrid, uint8 mMark)</code></td>
+<td><code>0x5ceda0</code></td>
+<td><code>0x5cfae0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__route__manager__removeallportalsatplot"></a>Route::Manager::RemoveAllPortalsAtPlot</td>
+<td><code>void Map::Route::Manager::RemoveAllPortalsAtPlot(Map::Route::Manager* this, const PlotCoord&amp; kLocation)</code></td>
+<td><code>0x63b80</code></td>
+<td><code>0x64820</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__route__portal__areainstance__attachareas"></a>Route::Portal::AreaInstance::AttachAreas</td>
+<td><code>void Map::Route::Portal::AreaInstance::AttachAreas(Map::Route::Portal::AreaInstance* this)</code></td>
+<td><code>0x62830</code></td>
+<td><code>0x634d0</code></td>
+<td>Dev CE (experimental): <a href="../devce/MapAreaPortal.html#attachareas">MapAreaPortal.AttachAreas</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__startpositioner__setplotstartpositionstate"></a>StartPositioner::SetPlotStartPositionState</td>
+<td><code>void Map::StartPositioner::SetPlotStartPositionState(Map::StartPositioner* this, int iPlot, bool bIsStartPos)</code></td>
+<td><code>0x5d7580</code></td>
+<td><code>0x5d8020</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="map__terrain__coastallowlanddatahandler__setflooded"></a>Terrain::CoastalLowlandDataHandler::SetFlooded</td>
+<td><code>void Map::Terrain::CoastalLowlandDataHandler::SetFlooded(Map::Terrain::CoastalLowlandDataHandler* this, int iPlotIndex, bool bNewValue)</code></td>
+<td><code>0x738f50</code></td>
+<td><code>0x739890</code></td>
+<td>no</td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="map__terrain__coastallowlanddatahandler__setprotected"></a>Terrain::CoastalLowlandDataHandler::SetProtected</td>
+<td><code>void Map::Terrain::CoastalLowlandDataHandler::SetProtected(Map::Terrain::CoastalLowlandDataHandler* this, int iPlotIndex, bool bNewValue)</code></td>
+<td><code>0x739150</code></td>
+<td><code>0x739a90</code></td>
+<td>no</td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="map__territory__builder__addplottoterritory"></a>Territory::Builder::AddPlotToTerritory</td>
+<td><code>void Map::Territory::Builder::AddPlotToTerritory(const Map::Territory::Builder* this, Map::Territory::Container* pContainer, Map::Territory::Instance* pTerritory, PlotCoord kPlotCoord)</code></td>
+<td><code>0x2ee50</code></td>
+<td><code>0x2f390</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__territory__instance__setissea"></a>Territory::Instance::SetIsSea</td>
+<td><code>void Map::Territory::Instance::SetIsSea(Map::Territory::Instance* this, bool bIsSea)</code></td>
+<td><code>0x2c7f0</code></td>
+<td><code>0x2ce60</code></td>
+<td>Dev CE (experimental): <a href="../devce/Territory.html#setissea">Territory.SetIsSea</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__unitcontainer__addlayer"></a>UnitContainer::AddLayer</td>
+<td><code>Map::SparseComponentIDGrid* Map::UnitContainer::AddLayer(Map::UnitContainer* this, uint uiLayerID)</code></td>
+<td><code>0x55470</code></td>
+<td><code>0x560b0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="map__unitcontainer__destroylayers"></a>UnitContainer::DestroyLayers</td>
+<td><code>void Map::UnitContainer::DestroyLayers(Map::UnitContainer* this)</code></td>
+<td><code>0x559e0</code></td>
+<td><code>0x56620</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>Map::Feature::Manager::SetVolcanoActive</h3>
+<p>Randomly activates one dormant volcano, if fewer are active than intended. It does not take a target volcano.</p>
+<ul>
+<li>Rolls with the label 'Choose Active Volcano Roll' over the difference between the wanted and current active count.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Scans the volcano list (tracked list at this+0x110) for the Nth eligible entry; the bool restricts eligibility (entry[1] != -1 when true).
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Stores the current game turn (game+0xc0) in the volcano's state field (+0x14), then sends a Reporting event with plot coordinates and visibility (0/1/2 for the local observer) plus a localized notification.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The bool most likely limits selection to named / natural-wonder volcanoes. (Low: guessed from the condition.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>A wrapper would mean 'a random volcano wakes up', not 'wake this volcano'. The useful target is the per-volcano state change beneath it.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Behavior depends on the local observer for visibility and notification, which matters in multiplayer.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+</ul>
+<h3>Map::Feature::Manager::SetVolcanoInactive</h3>
+<p>Randomly deactivates one active volcano. Mirror of SetVolcanoActive.</p>
+<ul>
+<li>Same structure with roll label 'Choose Inactive Volcano Roll'; sets the state field to 0xFFFFFFFF instead of the current turn.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>none
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>See SetVolcanoActive.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

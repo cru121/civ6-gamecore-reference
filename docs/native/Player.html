@@ -1,0 +1,1341 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Player</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › Player</p>
+<div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
+
+<h1>Player</h1>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Signature (Linux)</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>From Lua</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="player__bonuses__changeflatbonus"></a>Bonuses::ChangeFlatBonus</td>
+<td><code>void Player::Bonuses::ChangeFlatBonus(Player::Bonuses* this, GovernmentBonusTypes eBonus, int iDelta)</code></td>
+<td><code>0x261d70</code></td>
+<td><code>0x261010</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changeflatbonus">Player.ChangeFlatBonus</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__addgreatwork"></a>Cities::AddGreatWork</td>
+<td><code>void Player::Cities::AddGreatWork(Player::Cities* this, GreatWorkListIndex iIndex)</code></td>
+<td><code>0x265090</code></td>
+<td><code>0x2643b0</code></td>
+<td>via CE: <a href="../ce/PlayerCities.html#addgreatwork">PlayerCities.AddGreatWork</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__addpalace"></a>Cities::AddPalace</td>
+<td><code>void Player::Cities::AddPalace(Player::Cities* this, City::Instance* pCity)</code></td>
+<td><code>0x265110</code></td>
+<td><code>0x264430</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__changeextrastartingpopulationoffhomecontinent"></a>Cities::ChangeExtraStartingPopulationOffHomeContinent</td>
+<td><code>void Player::Cities::ChangeExtraStartingPopulationOffHomeContinent(Player::Cities* this, int iChange)</code></td>
+<td><code>0x2651b0</code></td>
+<td><code>0x2644d0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__setcaneverconstruct"></a>Cities::SetCanEverConstruct</td>
+<td><code>void Player::Cities::SetCanEverConstruct(Player::Cities* this)</code></td>
+<td><code>0x2673f0</code></td>
+<td><code>0x266570</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__setcityproductionbanned"></a>Cities::SetCityProductionBanned</td>
+<td><code>void Player::Cities::SetCityProductionBanned(Player::Cities* this, BuildingTypes eBuilding, bool bBan)</code> (+2 overloads)</td>
+<td><code>0x267970</code></td>
+<td><code>0x266af0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__setcityproductionbanned_0x267af0"></a>Cities::SetCityProductionBanned@0x267af0</td>
+<td><code>void Player::Cities::SetCityProductionBanned(Player::Cities* this, BuildingTypes eBuilding, bool bBan)</code> (+2 overloads)</td>
+<td><code>0x267af0</code></td>
+<td><code>0x266c70</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__setcityproductionbanned_0x267c60"></a>Cities::SetCityProductionBanned@0x267c60</td>
+<td><code>void Player::Cities::SetCityProductionBanned(Player::Cities* this, BuildingTypes eBuilding, bool bBan)</code> (+2 overloads)</td>
+<td><code>0x267c60</code></td>
+<td><code>0x266de0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__setcityurbandefenses"></a>Cities::SetCityUrbanDefenses</td>
+<td><code>void Player::Cities::SetCityUrbanDefenses(Player::Cities* this, int iDefenseValue)</code></td>
+<td><code>0x267dd0</code></td>
+<td><code>0x266f50</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__setdistrictbuildingbanned"></a>Cities::SetDistrictBuildingBanned</td>
+<td><code>void Player::Cities::SetDistrictBuildingBanned(Player::Cities* this, DistrictTypes eDistrict, bool bBan)</code></td>
+<td><code>0x267e10</code></td>
+<td><code>0x266f90</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__cities__setpopulationafterconquest"></a>Cities::SetPopulationAfterConquest</td>
+<td><code>void Player::Cities::SetPopulationAfterConquest(Player::Cities* this, int iPercent)</code></td>
+<td><code>0x267f30</code></td>
+<td><code>0x2670b0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__congress__changeresolutioneffectrefundpercent"></a>Congress::ChangeResolutionEffectRefundPercent</td>
+<td><code>void Player::Congress::ChangeResolutionEffectRefundPercent(Player::Congress* this, ResolutionTypes eResolution, int iWhichEffect, int iChange)</code></td>
+<td><code>0x26d520</code></td>
+<td><code>0x26c4e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changeresolutioneffectrefundpercent">Player.ChangeResolutionEffectRefundPercent</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culturalidentity__changeidentityperturnfortraderouteorigin"></a>CulturalIdentity::ChangeIdentityPerTurnForTradeRouteOrigin</td>
+<td><code>void Player::CulturalIdentity::ChangeIdentityPerTurnForTradeRouteOrigin(Player::CulturalIdentity* this, FixedPoint xChange)</code></td>
+<td><code>0x26ff10</code></td>
+<td><code>0x26ef90</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changeidentityperturnfortraderouteorigin">Player.ChangeIdentityPerTurnForTradeRouteOrigin</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__addculturebombtrigger"></a>Culture::AddCultureBombTrigger</td>
+<td><code>void Player::Culture::AddCultureBombTrigger(Player::Culture* this, BuildingTypes eBuilding, bool bCapturesOwnedTiles)</code> (+2 overloads)</td>
+<td><code>0x27ac60</code></td>
+<td><code>0x279ca0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__addtourismatplot"></a>Culture::AddTourismAtPlot</td>
+<td><code>void Player::Culture::AddTourismAtPlot(Player::Culture* this, int iPlotIndex, int iTourism)</code></td>
+<td><code>0x27af20</code></td>
+<td><code>0x279f60</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#addtourismatplot">PlayerCulture.AddTourismAtPlot</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__changegreatworkobjecttourismmodifier"></a>Culture::ChangeGreatWorkObjectTourismModifier</td>
+<td><code>void Player::Culture::ChangeGreatWorkObjectTourismModifier(Player::Culture* this, GreatWorkObjectTypes eGreatWorkObjectType, int iModDelta)</code></td>
+<td><code>0x27d050</code></td>
+<td><code>0x27c0b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#changegreatworkobjecttourismmodifier">PlayerCulture.ChangeGreatWorkObjectTourismModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__changetourismon"></a>Culture::ChangeTourismOn</td>
+<td><code>void Player::Culture::ChangeTourismOn(Player::Culture* this, PlayerTypes ePlayer, FixedPoint xValue)</code></td>
+<td><code>0x27d0e0</code></td>
+<td><code>0x27c140</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#changetourismon">PlayerCulture.ChangeTourismOn</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__grantrandomboostgoodyhut"></a>Culture::GrantRandomBoostGoodyHut</td>
+<td><code>void Player::Culture::GrantRandomBoostGoodyHut(Player::Culture* this, int iNumFreeBoosts, BoostSource eSource)</code></td>
+<td><code>0x281670</code></td>
+<td><code>0x280860</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#grantrandomboostgoodyhut">PlayerCulture.GrantRandomBoostGoodyHut</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__grantrandomboostsbyera"></a>Culture::GrantRandomBoostsByEra</td>
+<td><code>void Player::Culture::GrantRandomBoostsByEra(Player::Culture* this, int iNumFreeBoosts, EraTypes eStartEra, EraTypes eEndEra)</code></td>
+<td><code>0x281a90</code></td>
+<td><code>0x280c80</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#grantrandomboostsbyera">PlayerCulture.GrantRandomBoostsByEra</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__receivegreatwork"></a>Culture::ReceiveGreatWork ★</td>
+<td><code>bool Player::Culture::ReceiveGreatWork(Player::Culture* this, GreatWorkListIndex iIndex)</code></td>
+<td><code>0x283ac0</code></td>
+<td><code>0x282c20</code></td>
+<td>no</td>
+<td>analysed</td>
+</tr>
+<tr>
+<td><a id="player__culture__recomputetourismon"></a>Culture::RecomputeTourismOn</td>
+<td><code>void Player::Culture::RecomputeTourismOn(Player::Culture* this, PlayerTypes ePlayer)</code></td>
+<td><code>0x283b50</code></td>
+<td><code>0x282cb0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#recomputetourismon">PlayerCulture.RecomputeTourismOn</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__setallcivicsbypreviousera"></a>Culture::SetAllCivicsByPreviousEra</td>
+<td><code>void Player::Culture::SetAllCivicsByPreviousEra(Player::Culture* this, EraTypes eEraType)</code></td>
+<td><code>0x284f30</code></td>
+<td><code>0x284060</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#setallcivicsbypreviousera">PlayerCulture.SetAllCivicsByPreviousEra</a></td>
+<td>edit_call, signal, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__setfavorperturnfrombuilding"></a>Culture::SetFavorPerTurnFromBuilding</td>
+<td><code>void Player::Culture::SetFavorPerTurnFromBuilding(Player::Culture* this, BuildingTypes eBuilding, int iFavor)</code></td>
+<td><code>0x285b70</code></td>
+<td><code>0x284ca0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#setfavorperturnfrombuilding">PlayerCulture.SetFavorPerTurnFromBuilding</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__setfavorperturnfrompolicy"></a>Culture::SetFavorPerTurnFromPolicy</td>
+<td><code>void Player::Culture::SetFavorPerTurnFromPolicy(Player::Culture* this, PolicyTypes ePolicy, int iFavor)</code></td>
+<td><code>0x285c30</code></td>
+<td><code>0x284d60</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#setfavorperturnfrompolicy">PlayerCulture.SetFavorPerTurnFromPolicy</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__setgreatworkobjectnotourism"></a>Culture::SetGreatWorkObjectNoTourism</td>
+<td><code>void Player::Culture::SetGreatWorkObjectNoTourism(Player::Culture* this, GreatWorkObjectTypes eGreatWorkObjectType, bool bNoTourism)</code></td>
+<td><code>0x285f00</code></td>
+<td><code>0x285030</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#setgreatworkobjectnotourism">PlayerCulture.SetGreatWorkObjectNoTourism</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__setnumfreecivicboostonnewera"></a>Culture::SetNumFreeCivicBoostOnNewEra</td>
+<td><code>void Player::Culture::SetNumFreeCivicBoostOnNewEra(Player::Culture* this, int numBoosts, bool applyImmediately)</code></td>
+<td><code>0x286060</code></td>
+<td><code>0x285190</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#setnumfreecivicboostonnewera">PlayerCulture.SetNumFreeCivicBoostOnNewEra</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__culture__setpolicybanned"></a>Culture::SetPolicyBanned</td>
+<td><code>void Player::Culture::SetPolicyBanned(Player::Culture* this, PolicyTypes ePolicy, bool bBanned)</code></td>
+<td><code>0x286100</code></td>
+<td><code>0x285230</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerCulture.html#setpolicybanned">PlayerCulture.SetPolicyBanned</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__addespionageincursion"></a>Diplomacy::AddEspionageIncursion</td>
+<td><code>void Player::Diplomacy::AddEspionageIncursion(Player::Diplomacy* this, PlayerTypes eOtherPlayer)</code></td>
+<td><code>0x29e5b0</code></td>
+<td><code>0x29e220</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#addespionageincursion">TeamDiplomacy.AddEspionageIncursion</a></td>
+<td>signal, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__addincursiondata"></a>Diplomacy::AddIncursionData</td>
+<td><code>void Player::Diplomacy::AddIncursionData(Player::Diplomacy* this, PlayerTypes eOtherPlayer, PromiseTypes ePromiseType, int iTurnMade)</code></td>
+<td><code>0x29e630</code></td>
+<td><code>0x29e2a0</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#addincursiondata">TeamDiplomacy.AddIncursionData</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__applygrievancesfromplayer"></a>Diplomacy::ApplyGrievancesFromPlayer</td>
+<td><code>void Player::Diplomacy::ApplyGrievancesFromPlayer(Player::Diplomacy* this, PlayerTypes ePlayer, int iDelta, const char* szDescriptionKey, const char* descriptArgKey, bool bAppend)</code></td>
+<td><code>0x29ed60</code></td>
+<td><code>0x29e9d0</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__changewarwearinessfrom"></a>Diplomacy::ChangeWarWearinessFrom</td>
+<td><code>void Player::Diplomacy::ChangeWarWearinessFrom(Player::Diplomacy* this, PlayerTypes ePlayer, int iDelta, const char* reason)</code></td>
+<td><code>0x2a1310</code></td>
+<td><code>0x2a0f80</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__changeyieldperdelegation"></a>Diplomacy::ChangeYieldPerDelegation</td>
+<td><code>void Player::Diplomacy::ChangeYieldPerDelegation(Player::Diplomacy* this, int iAmount, YieldTypes eYield)</code></td>
+<td><code>0x2a13f0</code></td>
+<td><code>0x2a1060</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#changeyieldperdelegation">TeamDiplomacy.ChangeYieldPerDelegation</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__changeyieldperembassy"></a>Diplomacy::ChangeYieldPerEmbassy</td>
+<td><code>void Player::Diplomacy::ChangeYieldPerEmbassy(Player::Diplomacy* this, int iAmount, YieldTypes eYield)</code></td>
+<td><code>0x2a1470</code></td>
+<td><code>0x2a10e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#changeyieldperembassy">TeamDiplomacy.ChangeYieldPerEmbassy</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__removependingnotificationsforaction"></a>Diplomacy::RemovePendingNotificationsForAction</td>
+<td><code>void Player::Diplomacy::RemovePendingNotificationsForAction(AI::DiplomaticActions action, PlayerTypes eThisPlayer, PlayerTypes eOtherPlayer, Player::NotificationID kNotificationID)</code> (+1 overload)</td>
+<td><code>0x2ae450</code></td>
+<td><code>0x2ae210</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__setblockedentry"></a>Diplomacy::SetBlockedEntry</td>
+<td><code>void Player::Diplomacy::SetBlockedEntry(Player::Diplomacy* this, UnitTypes eUnit, bool bNewValue)</code></td>
+<td><code>0x2afae0</code></td>
+<td><code>0x2af7e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#setblockedentry">TeamDiplomacy.SetBlockedEntry</a></td>
+<td>edit_call, notification, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__setcanenforceborders"></a>Diplomacy::SetCanEnforceBorders</td>
+<td><code>void Player::Diplomacy::SetCanEnforceBorders(Player::Diplomacy* this, bool bNewValue)</code></td>
+<td><code>0x2afcf0</code></td>
+<td><code>0x2af9f0</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#setcanenforceborders">TeamDiplomacy.SetCanEnforceBorders</a></td>
+<td>notification, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__setfightingjointwar"></a>Diplomacy::SetFightingJointWar</td>
+<td><code>void Player::Diplomacy::SetFightingJointWar(Player::Diplomacy* this, PlayerTypes target, PlayerTypes partner)</code></td>
+<td><code>0x2aff50</code></td>
+<td><code>0x2afc50</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#setfightingjointwar">TeamDiplomacy.SetFightingJointWar</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__sethasdefensivepact"></a>Diplomacy::SetHasDefensivePact</td>
+<td><code>void Player::Diplomacy::SetHasDefensivePact(Player::Diplomacy* this, PlayerTypes ePlayer, bool bNewValue)</code></td>
+<td><code>0x2b0230</code></td>
+<td><code>0x2aff30</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#sethasdefensivepact">TeamDiplomacy.SetHasDefensivePact</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__sethasopenbordersfrom"></a>Diplomacy::SetHasOpenBordersFrom ★</td>
+<td><code>void Player::Diplomacy::SetHasOpenBordersFrom(Player::Diplomacy* this, PlayerTypes ePlayer, bool bNewValue)</code></td>
+<td><code>0x2b0660</code></td>
+<td><code>0x2b0360</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#sethasopenbordersfrom">TeamDiplomacy.SetHasOpenBordersFrom</a></td>
+<td>analysed, edit_call, event, signal, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__setlastturnoffereddeal"></a>Diplomacy::SetLastTurnOfferedDeal</td>
+<td><code>void Player::Diplomacy::SetLastTurnOfferedDeal(Player::Diplomacy* this, PlayerTypes ePlayer, int iTurn)</code></td>
+<td><code>0x2b07b0</code></td>
+<td><code>0x2b04b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#setlastturnoffereddeal">TeamDiplomacy.SetLastTurnOfferedDeal</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__setoccupyingoriginalcity"></a>Diplomacy::SetOccupyingOriginalCity</td>
+<td><code>void Player::Diplomacy::SetOccupyingOriginalCity(Player::Diplomacy* this, PlayerTypes ePlayer, bool bNewValue)</code></td>
+<td><code>0x2b07e0</code></td>
+<td><code>0x2b04e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#setoccupyingoriginalcity">TeamDiplomacy.SetOccupyingOriginalCity</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__diplomacy__setresearchagreementtech"></a>Diplomacy::SetResearchAgreementTech</td>
+<td><code>void Player::Diplomacy::SetResearchAgreementTech(Player::Diplomacy* this, PlayerTypes ePlayer, TechTypes eTech)</code></td>
+<td><code>0x2b0860</code></td>
+<td><code>0x2b0560</code></td>
+<td>Dev CE (experimental): <a href="../devce/TeamDiplomacy.html#setresearchagreementtech">TeamDiplomacy.SetResearchAgreementTech</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__districts__createdistrictandbuildingscreateunitwithabilitybyclass"></a>Districts::CreateDistrictAndBuildingsCreateUnitWithAbilityByClass</td>
+<td><code>void Player::Districts::CreateDistrictAndBuildingsCreateUnitWithAbilityByClass(Player::Districts* this, DistrictTypes eDistrict, City::Instance* pCity)</code></td>
+<td><code>0x2c4570</code></td>
+<td><code>0x2c4220</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__districts__recomputecost"></a>Districts::RecomputeCost</td>
+<td><code>int Player::Districts::RecomputeCost(Player::Districts* this, DistrictTypes eDistrict)</code></td>
+<td><code>0x2c5210</code></td>
+<td><code>0x2c4f10</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#recomputecost">Player.RecomputeCost</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__espionage__addreturningspy"></a>Espionage::AddReturningSpy</td>
+<td><code>Unit::Instance* Player::Espionage::AddReturningSpy(Player::Espionage* this, Player::OffMapSpy* pkSpy)</code></td>
+<td><code>0x2cf220</code></td>
+<td><code>0x2cf460</code></td>
+<td>no</td>
+<td>edit_call, signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__espionage__addspymission"></a>Espionage::AddSpyMission</td>
+<td><code>void Player::Espionage::AddSpyMission(Player::Espionage* this, int iNameIndex, UnitOperationTypes eOperation, PlayerTypes eTarget, int iPlotIndex, uint cityID, Rules::EspionageResultTypes eInitialResult, int iNewLevel, int iLootInfo)</code></td>
+<td><code>0x2cf420</code></td>
+<td><code>0x2cf660</code></td>
+<td>no</td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__espionage__changespycapacity"></a>Espionage::ChangeSpyCapacity</td>
+<td><code>void Player::Espionage::ChangeSpyCapacity(Player::Espionage* this, int iDelta)</code></td>
+<td><code>0x2cf560</code></td>
+<td><code>0x2cf7a0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changespycapacity">Player.ChangeSpyCapacity</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__espionage__changetargetcityspyyieldpercent"></a>Espionage::ChangeTargetCitySpyYieldPercent</td>
+<td><code>void Player::Espionage::ChangeTargetCitySpyYieldPercent(Player::Espionage* this, YieldTypes eYield, int iPercent)</code></td>
+<td><code>0x2cf5c0</code></td>
+<td><code>0x2cf800</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changetargetcityspyyieldpercent">Player.ChangeTargetCitySpyYieldPercent</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__espionage__movespyoffmap"></a>Espionage::MoveSpyOffMap</td>
+<td><code>void Player::Espionage::MoveSpyOffMap(Player::Espionage* this, Unit::Instance* pkSpy, int iReturnTurn, PlotCoord kReturnLocation)</code></td>
+<td><code>0x2d1160</code></td>
+<td><code>0x2d13a0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__goody_hut__applygoodyhut"></a>Goody_Hut::ApplyGoodyHut</td>
+<td><code>void Player::Goody_Hut::ApplyGoodyHut(Player::Goody_Hut* this, Unit::Instance* pkUnit, const Map::Plot::Instance* pkPlot, ImprovementTypes goodyHutType)</code></td>
+<td><code>0x2d9fd0</code></td>
+<td><code>0x2da010</code></td>
+<td>no</td>
+<td>edit_call, signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__governors__changeneutralizedindefinitely"></a>Governors::ChangeNeutralizedIndefinitely</td>
+<td><code>void Player::Governors::ChangeNeutralizedIndefinitely(Player::Governors* this, int iDelta)</code></td>
+<td><code>0x2de360</code></td>
+<td><code>0x2de310</code></td>
+<td>via CE: <a href="../ce/PlayerGovernors.html#changeneutralizedindefinitely">PlayerGovernors.ChangeNeutralizedIndefinitely</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__governors__neutralizegovernor"></a>Governors::NeutralizeGovernor</td>
+<td><code>void Player::Governors::NeutralizeGovernor(Player::Governors* this, Governor::Instance* pkGovernor, int iTurnDuration)</code></td>
+<td><code>0x2df2c0</code></td>
+<td><code>0x2df270</code></td>
+<td>via CE: <a href="../ce/PlayerGovernors.html#neutralizegovernor">PlayerGovernors.NeutralizeGovernor</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="player__governors__promotegovernor"></a>Governors::PromoteGovernor</td>
+<td><code>bool Player::Governors::PromoteGovernor(Player::Governors* this, GovernorTypes eGovernor, GovernorPromotionTypes ePromotion)</code></td>
+<td><code>0x2df390</code></td>
+<td><code>0x2df340</code></td>
+<td>via CE: <a href="../ce/PlayerGovernors.html#promotegovernor">PlayerGovernors.PromoteGovernor</a></td>
+<td>signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__governors__unassigngovernor"></a>Governors::UnassignGovernor</td>
+<td><code>void Player::Governors::UnassignGovernor(Player::Governors* this, Governor::Instance* pkGovernor, bool bIsMove, bool bIsForced)</code></td>
+<td><code>0x2df850</code></td>
+<td><code>0x2df800</code></td>
+<td>via CE: <a href="../ce/PlayerGovernors.html#unassigngovernor">PlayerGovernors.UnassignGovernor</a></td>
+<td>signal, notification, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__changebonuspointsperturn"></a>GreatPeoplePoints::ChangeBonusPointsPerTurn</td>
+<td><code>void Player::GreatPeoplePoints::ChangeBonusPointsPerTurn(Player::GreatPeoplePoints* this, GreatPersonClassTypes eClass, FixedPoint xChange)</code></td>
+<td><code>0x2e2e70</code></td>
+<td><code>0x2e2e20</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#changebonuspointsperturn">PlayerGreatPeoplePoints.ChangeBonusPointsPerTurn</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__changebonuspointsperturnpercent"></a>GreatPeoplePoints::ChangeBonusPointsPerTurnPercent</td>
+<td><code>void Player::GreatPeoplePoints::ChangeBonusPointsPerTurnPercent(Player::GreatPeoplePoints* this, GreatPersonClassTypes eClass, int iChange)</code></td>
+<td><code>0x2e2ee0</code></td>
+<td><code>0x2e2e90</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#changebonuspointsperturnpercent">PlayerGreatPeoplePoints.ChangeBonusPointsPerTurnPercent</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__changefreegreatpersonpoints"></a>GreatPeoplePoints::ChangeFreeGreatPersonPoints</td>
+<td><code>void Player::GreatPeoplePoints::ChangeFreeGreatPersonPoints(Player::GreatPeoplePoints* this, int iChange)</code></td>
+<td><code>0x2e3100</code></td>
+<td><code>0x2e30b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#changefreegreatpersonpoints">PlayerGreatPeoplePoints.ChangeFreeGreatPersonPoints</a></td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__changepatronagediscountpercent"></a>GreatPeoplePoints::ChangePatronageDiscountPercent</td>
+<td><code>void Player::GreatPeoplePoints::ChangePatronageDiscountPercent(Player::GreatPeoplePoints* this, YieldTypes eYield, int iChange)</code></td>
+<td><code>0x2e3160</code></td>
+<td><code>0x2e3110</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#changepatronagediscountpercent">PlayerGreatPeoplePoints.ChangePatronageDiscountPercent</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__changepointsrefundpercent"></a>GreatPeoplePoints::ChangePointsRefundPercent</td>
+<td><code>void Player::GreatPeoplePoints::ChangePointsRefundPercent(Player::GreatPeoplePoints* this, int iChange)</code></td>
+<td><code>0x2e3210</code></td>
+<td><code>0x2e31c0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#changepointsrefundpercent">PlayerGreatPeoplePoints.ChangePointsRefundPercent</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__setgreatpersonclassnopoints"></a>GreatPeoplePoints::SetGreatPersonClassNoPoints</td>
+<td><code>void Player::GreatPeoplePoints::SetGreatPersonClassNoPoints(Player::GreatPeoplePoints* this, GreatPersonClassTypes eGPClass, bool bNoPoints)</code></td>
+<td><code>0x2e43c0</code></td>
+<td><code>0x2e4550</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#setgreatpersonclassnopoints">PlayerGreatPeoplePoints.SetGreatPersonClassNoPoints</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__setnopatronagewith"></a>GreatPeoplePoints::SetNoPatronageWith</td>
+<td><code>void Player::GreatPeoplePoints::SetNoPatronageWith(Player::GreatPeoplePoints* this, YieldTypes eYield, bool bNewValue)</code></td>
+<td><code>0x2e44b0</code></td>
+<td><code>0x2e4640</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#setnopatronagewith">PlayerGreatPeoplePoints.SetNoPatronageWith</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__greatpeoplepoints__setyieldmodifierperearnedgreatperson"></a>GreatPeoplePoints::SetYieldModifierPerEarnedGreatPerson</td>
+<td><code>void Player::GreatPeoplePoints::SetYieldModifierPerEarnedGreatPerson(Player::GreatPeoplePoints* this, YieldTypes eYield, FixedPoint xValue)</code></td>
+<td><code>0x2e4620</code></td>
+<td><code>0x2e47b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerGreatPeoplePoints.html#setyieldmodifierperearnedgreatperson">PlayerGreatPeoplePoints.SetYieldModifierPerEarnedGreatPerson</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__changebasepointsperturn"></a>Influence::ChangeBasePointsPerTurn</td>
+<td><code>void Player::Influence::ChangeBasePointsPerTurn(Player::Influence* this, FixedPoint change)</code> (+1 overload)</td>
+<td><code>0x2e9820</code></td>
+<td><code>0x2e92e0</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__changepointsthreshold"></a>Influence::ChangePointsThreshold</td>
+<td><code>void Player::Influence::ChangePointsThreshold(Player::Influence* this, int change)</code></td>
+<td><code>0x2e9890</code></td>
+<td><code>0x2e9350</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__changesuzerainuniquebonusdisabledcount"></a>Influence::ChangeSuzerainUniqueBonusDisabledCount</td>
+<td><code>void Player::Influence::ChangeSuzerainUniqueBonusDisabledCount(Player::Influence* this, int iChange)</code></td>
+<td><code>0x2e9900</code></td>
+<td><code>0x2e93c0</code></td>
+<td>no</td>
+<td>signal, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__changetokensperthreshold"></a>Influence::ChangeTokensPerThreshold</td>
+<td><code>void Player::Influence::ChangeTokensPerThreshold(Player::Influence* this, int change)</code></td>
+<td><code>0x2e9970</code></td>
+<td><code>0x2e9430</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__changetokensreceivedmodifier"></a>Influence::ChangeTokensReceivedModifier</td>
+<td><code>void Player::Influence::ChangeTokensReceivedModifier(Player::Influence* this, PlayerTypes fromPlayer, int iDelta)</code></td>
+<td><code>0x2e9a00</code></td>
+<td><code>0x2e94c0</code></td>
+<td>no</td>
+<td>edit_call, signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__clearalltokensreceived"></a>Influence::ClearAllTokensReceived</td>
+<td><code>void Player::Influence::ClearAllTokensReceived(Player::Influence* this)</code></td>
+<td><code>0x2e9c70</code></td>
+<td><code>0x2e9730</code></td>
+<td>no</td>
+<td>edit_call, signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__decrementopenborderscount"></a>Influence::DecrementOpenBordersCount</td>
+<td><code>void Player::Influence::DecrementOpenBordersCount(Player::Influence* this, PlayerTypes toPlayer)</code></td>
+<td><code>0x2ea260</code></td>
+<td><code>0x2e9d20</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__givetokentoplayer"></a>Influence::GiveTokenToPlayer</td>
+<td><code>bool Player::Influence::GiveTokenToPlayer(Player::Influence* this, PlayerTypes toPlayer)</code></td>
+<td><code>0x2eb610</code></td>
+<td><code>0x2ead90</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__incrementlevyturncounter"></a>Influence::IncrementLevyTurnCounter</td>
+<td><code>void Player::Influence::IncrementLevyTurnCounter(Player::Influence* this)</code></td>
+<td><code>0x2eb8c0</code></td>
+<td><code>0x2eb040</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setbasepointsperturn"></a>Influence::SetBasePointsPerTurn</td>
+<td><code>void Player::Influence::SetBasePointsPerTurn(Player::Influence* this, FixedPoint value)</code></td>
+<td><code>0x2edc10</code></td>
+<td><code>0x2ed390</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setduplicatefirsttokens"></a>Influence::SetDuplicateFirstTokens</td>
+<td><code>void Player::Influence::SetDuplicateFirstTokens(Player::Influence* this, int value)</code></td>
+<td><code>0x2edc70</code></td>
+<td><code>0x2ed3f0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setduplicatetokenswhenrivalgovernment"></a>Influence::SetDuplicateTokensWhenRivalGovernment</td>
+<td><code>void Player::Influence::SetDuplicateTokensWhenRivalGovernment(Player::Influence* this, int value)</code></td>
+<td><code>0x2edd00</code></td>
+<td><code>0x2ed480</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setduplicatetokenswhensamereligion"></a>Influence::SetDuplicateTokensWhenSameReligion</td>
+<td><code>void Player::Influence::SetDuplicateTokensWhenSameReligion(Player::Influence* this, int value)</code></td>
+<td><code>0x2edd90</code></td>
+<td><code>0x2ed510</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setduplicatetokenswhentraderouteto"></a>Influence::SetDuplicateTokensWhenTradeRouteTo</td>
+<td><code>void Player::Influence::SetDuplicateTokensWhenTradeRouteTo(Player::Influence* this, int value)</code></td>
+<td><code>0x2ede20</code></td>
+<td><code>0x2ed5a0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setpointsearned"></a>Influence::SetPointsEarned</td>
+<td><code>void Player::Influence::SetPointsEarned(Player::Influence* this, FixedPoint value)</code></td>
+<td><code>0x2edf10</code></td>
+<td><code>0x2ed690</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__settokensonfirsttomeet"></a>Influence::SetTokensOnFirstToMeet</td>
+<td><code>void Player::Influence::SetTokensOnFirstToMeet(Player::Influence* this, int value)</code></td>
+<td><code>0x2edfb0</code></td>
+<td><code>0x2ed730</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__settokensontraderoutestarted"></a>Influence::SetTokensOnTradeRouteStarted</td>
+<td><code>void Player::Influence::SetTokensOnTradeRouteStarted(Player::Influence* this, int value)</code></td>
+<td><code>0x2ee040</code></td>
+<td><code>0x2ed7c0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__settokenstogive"></a>Influence::SetTokensToGive</td>
+<td><code>void Player::Influence::SetTokensToGive(Player::Influence* this, int value)</code></td>
+<td><code>0x2ee370</code></td>
+<td><code>0x2edaf0</code></td>
+<td>via CE: <a href="../ce/PlayerInfluence.html#settokenstogive">PlayerInfluence.SetTokensToGive</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="player__influence__setyieldmodifierpertributary"></a>Influence::SetYieldModifierPerTributary</td>
+<td><code>void Player::Influence::SetYieldModifierPerTributary(Player::Influence* this, YieldTypes yield, FixedPoint value)</code></td>
+<td><code>0x2ee5c0</code></td>
+<td><code>0x2edd40</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setyieldpergiventoken"></a>Influence::SetYieldPerGivenToken</td>
+<td><code>void Player::Influence::SetYieldPerGivenToken(Player::Influence* this, YieldTypes yield, FixedPoint value)</code></td>
+<td><code>0x2ee610</code></td>
+<td><code>0x2edd90</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__setyieldpertributary"></a>Influence::SetYieldPerTributary</td>
+<td><code>void Player::Influence::SetYieldPerTributary(Player::Influence* this, YieldTypes yield, FixedPoint value)</code></td>
+<td><code>0x2ee660</code></td>
+<td><code>0x2edde0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__influence__updatesuzerain"></a>Influence::UpdateSuzerain</td>
+<td><code>void Player::Influence::UpdateSuzerain(Player::Influence* this)</code></td>
+<td><code>0x2ee790</code></td>
+<td><code>0x2edf10</code></td>
+<td>no</td>
+<td>edit_call, notification, writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__addagenda"></a>Instance::AddAgenda</td>
+<td><code>bool Player::Instance::AddAgenda(Player::Instance* this, AgendaTypes agenda, DiplomaticVisibilityTypes visibility)</code></td>
+<td><code>0x2f7390</code></td>
+<td><code>0x2f7400</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#addagenda">Player.AddAgenda</a></td>
+<td>edit_call, signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__addchopfeaturebehavior"></a>Instance::AddChopFeatureBehavior</td>
+<td><code>void Player::Instance::AddChopFeatureBehavior(Player::Instance* this, FeatureTypes eFeature, bool bBan, YieldTypes eYield, int iAmount)</code></td>
+<td><code>0x2f7500</code></td>
+<td><code>0x2f7570</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#addchopfeaturebehavior">Player.AddChopFeatureBehavior</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__changeco2generationreduction"></a>Instance::ChangeCO2GenerationReduction</td>
+<td><code>void Player::Instance::ChangeCO2GenerationReduction(Player::Instance* this, ResourceUsageType eUsageType, int iDiscount)</code></td>
+<td><code>0x2f76b0</code></td>
+<td><code>0x2f7720</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changeco2generationreduction">Player.ChangeCO2GenerationReduction</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__changerandomeventmodifieddamageopposingplayer"></a>Instance::ChangeRandomEventModifiedDamageOpposingPlayer</td>
+<td><code>void Player::Instance::ChangeRandomEventModifiedDamageOpposingPlayer(Player::Instance* this, int iDelta, RandomEventTypes eRandomEvent)</code></td>
+<td><code>0x2f76f0</code></td>
+<td><code>0x2f7760</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changerandomeventmodifieddamageopposingplayer">Player.ChangeRandomEventModifiedDamageOpposingPlayer</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__changerandomeventnounitdamage"></a>Instance::ChangeRandomEventNoUnitDamage</td>
+<td><code>void Player::Instance::ChangeRandomEventNoUnitDamage(Player::Instance* this, int iDelta, RandomEventTypes eRandomEvent)</code></td>
+<td><code>0x2f7740</code></td>
+<td><code>0x2f77b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changerandomeventnounitdamage">Player.ChangeRandomEventNoUnitDamage</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__changeyieldrate"></a>Instance::ChangeYieldRate</td>
+<td><code>void Player::Instance::ChangeYieldRate(Player::Instance* this, YieldTypes eYield, int iAmount)</code></td>
+<td><code>0x2f7790</code></td>
+<td><code>0x2f7800</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#changeyieldrate">Player.ChangeYieldRate</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__removechopfeaturebehavior"></a>Instance::RemoveChopFeatureBehavior</td>
+<td><code>void Player::Instance::RemoveChopFeatureBehavior(Player::Instance* this, FeatureTypes eFeature, bool bBan, YieldTypes eYield)</code></td>
+<td><code>0x2f9ff0</code></td>
+<td><code>0x2fa1e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#removechopfeaturebehavior">Player.RemoveChopFeatureBehavior</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__instance__setalive"></a>Instance::SetAlive</td>
+<td><code>void Player::Instance::SetAlive(Player::Instance* this, bool bIsAlive)</code></td>
+<td><code>0x2fa7b0</code></td>
+<td><code>0x2fa9a0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Player.html#setalive">Player.SetAlive</a></td>
+<td>signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__manager__clearlists"></a>Manager::ClearLists</td>
+<td><code>void Player::Manager::ClearLists(Player::Manager* this)</code></td>
+<td><code>0x3053a0</code></td>
+<td><code>0x3065e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Game.html#clearlists">Game.ClearLists</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__manager__setlocalplayerto"></a>Manager::SetLocalPlayerTo</td>
+<td><code>bool Player::Manager::SetLocalPlayerTo(Player::Manager* this, PlayerTypes ePlayer)</code></td>
+<td><code>0x307bf0</code></td>
+<td><code>0x308ca0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Game.html#setlocalplayerto">Game.SetLocalPlayerTo</a></td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__processor__doautomation"></a>Processor::DoAutomation</td>
+<td><code>void Player::Processor::DoAutomation(Player::Instance&amp; kPlayer)</code></td>
+<td><code>0x5b7f0</code></td>
+<td><code>0x5c4a0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__processor__setturnactive"></a>Processor::SetTurnActive</td>
+<td><code>void Player::Processor::SetTurnActive(Player::Instance&amp; kPlayer, bool bState)</code></td>
+<td><code>0x5d190</code></td>
+<td><code>0x5de40</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__religion__createrelic"></a>Religion::CreateRelic ★</td>
+<td><code>void Player::Religion::CreateRelic(Player::Religion* this, PlotCoord kLocation, RelicSource eRelicSource)</code></td>
+<td><code>0x313760</code></td>
+<td><code>0x314710</code></td>
+<td>no</td>
+<td>analysed, event, writes</td>
+</tr>
+<tr>
+<td><a id="player__religion__getnearestrelicslot"></a>Religion::GetNearestRelicSlot ★</td>
+<td><code>City::Instance* Player::Religion::GetNearestRelicSlot(const Player::Religion* this, PlotCoord kInputLocation, BuildingTypes&amp; eReturnedBuildingType, int&amp; iReturnedSlot)</code></td>
+<td><code>0x3140e0</code></td>
+<td><code>0x315270</code></td>
+<td>no</td>
+<td>analysed</td>
+</tr>
+<tr>
+<td><a id="player__religion__setspreadmodifier"></a>Religion::SetSpreadModifier</td>
+<td><code>void Player::Religion::SetSpreadModifier(Player::Religion* this, int iSpreadMultiplier, TechTypes eSpreadEnhancingTech, int iTechEnabledSpreadMultiplier)</code></td>
+<td><code>0x315120</code></td>
+<td><code>0x3162b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerReligion.html#setspreadmodifier">PlayerReligion.SetSpreadModifier</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changebannedresource"></a>Resources::ChangeBannedResource</td>
+<td><code>void Player::Resources::ChangeBannedResource(Player::Resources* this, ResourceTypes eResource, int iDelta)</code></td>
+<td><code>0x31db80</code></td>
+<td><code>0x31e700</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changebannedresource">PlayerResources.ChangeBannedResource</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changeextraaccumulationmodifier"></a>Resources::ChangeExtraAccumulationModifier</td>
+<td><code>void Player::Resources::ChangeExtraAccumulationModifier(Player::Resources* this, ResourceTypes eResource, int iDelta)</code></td>
+<td><code>0x31dbc0</code></td>
+<td><code>0x31e740</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changeextraaccumulationmodifier">PlayerResources.ChangeExtraAccumulationModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changeextraamenitiesperownedbonusresource"></a>Resources::ChangeExtraAmenitiesPerOwnedBonusResource</td>
+<td><code>void Player::Resources::ChangeExtraAmenitiesPerOwnedBonusResource(Player::Resources* this, int iChange)</code></td>
+<td><code>0x31dc00</code></td>
+<td><code>0x31e780</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changeextraamenitiesperownedbonusresource">PlayerResources.ChangeExtraAmenitiesPerOwnedBonusResource</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changeextraamenitiesperownedluxuryresource"></a>Resources::ChangeExtraAmenitiesPerOwnedLuxuryResource</td>
+<td><code>void Player::Resources::ChangeExtraAmenitiesPerOwnedLuxuryResource(Player::Resources* this, int iChange)</code></td>
+<td><code>0x31dc40</code></td>
+<td><code>0x31e7c0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changeextraamenitiesperownedluxuryresource">PlayerResources.ChangeExtraAmenitiesPerOwnedLuxuryResource</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changefreeresourcesextracted"></a>Resources::ChangeFreeResourcesExtracted</td>
+<td><code>void Player::Resources::ChangeFreeResourcesExtracted(Player::Resources* this, ResourceTypes resource, int amount)</code></td>
+<td><code>0x31dc90</code></td>
+<td><code>0x31e810</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changefreeresourcesextracted">PlayerResources.ChangeFreeResourcesExtracted</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changeimportresourceextracted"></a>Resources::ChangeImportResourceExtracted</td>
+<td><code>void Player::Resources::ChangeImportResourceExtracted(Player::Resources* this, ResourceTypes resource, int amount)</code></td>
+<td><code>0x31dcf0</code></td>
+<td><code>0x31e870</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changeimportresourceextracted">PlayerResources.ChangeImportResourceExtracted</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changenocapresource"></a>Resources::ChangeNoCapResource</td>
+<td><code>void Player::Resources::ChangeNoCapResource(Player::Resources* this, ResourceTypes eResource, int iDelta)</code></td>
+<td><code>0x31dd50</code></td>
+<td><code>0x31e8d0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changenocapresource">PlayerResources.ChangeNoCapResource</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changereservedresourceamount"></a>Resources::ChangeReservedResourceAmount</td>
+<td><code>void Player::Resources::ChangeReservedResourceAmount(Player::Resources* this, ResourceTypes eResource, int iDelta)</code></td>
+<td><code>0x31dde0</code></td>
+<td><code>0x31e960</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changereservedresourceamount">PlayerResources.ChangeReservedResourceAmount</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__changeresourcestockpilecapmodifier"></a>Resources::ChangeResourceStockpileCapModifier</td>
+<td><code>void Player::Resources::ChangeResourceStockpileCapModifier(Player::Resources* this, ResourceTypes eResource, int iDelta)</code></td>
+<td><code>0x31df90</code></td>
+<td><code>0x31eb10</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#changeresourcestockpilecapmodifier">PlayerResources.ChangeResourceStockpileCapModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__resources__revealresourceonvisibletiles"></a>Resources::RevealResourceOnVisibleTiles</td>
+<td><code>void Player::Resources::RevealResourceOnVisibleTiles(Player::Resources* this, ResourceTypes resource)</code></td>
+<td><code>0x322660</code></td>
+<td><code>0x322f00</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerResources.html#revealresourceonvisibletiles">PlayerResources.RevealResourceOnVisibleTiles</a></td>
+<td>signal, notification, writes</td>
+</tr>
+<tr>
+<td><a id="player__stats__changediplomaticvictorypointsbasedontooltip"></a>Stats::ChangeDiplomaticVictoryPointsBasedOnTooltip</td>
+<td><code>void Player::Stats::ChangeDiplomaticVictoryPointsBasedOnTooltip(Player::Stats* this, string sTooltip, int iChangeAmount)</code></td>
+<td><code>0x32a300</code></td>
+<td><code>0x32ac60</code></td>
+<td>no</td>
+<td>edit_call, signal, writes</td>
+</tr>
+<tr>
+<td><a id="player__stats__changesciencevictorypointsperturn"></a>Stats::ChangeScienceVictoryPointsPerTurn</td>
+<td><code>void Player::Stats::ChangeScienceVictoryPointsPerTurn(Player::Stats* this, FixedPoint xDelta)</code></td>
+<td><code>0x32a550</code></td>
+<td><code>0x32aeb0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerStats.html#changesciencevictorypointsperturn">PlayerStats.ChangeScienceVictoryPointsPerTurn</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__techs__grantrandomboostgoodyhut"></a>Techs::GrantRandomBoostGoodyHut</td>
+<td><code>void Player::Techs::GrantRandomBoostGoodyHut(Player::Techs* this, int iNumFreeBoosts, BoostSource eSource)</code></td>
+<td><code>0x333180</code></td>
+<td><code>0x3342e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTechs.html#grantrandomboostgoodyhut">PlayerTechs.GrantRandomBoostGoodyHut</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__techs__grantrandomboostsbyera"></a>Techs::GrantRandomBoostsByEra</td>
+<td><code>void Player::Techs::GrantRandomBoostsByEra(Player::Techs* this, int iNumFreeBoosts, EraTypes eStartEra, EraTypes eEndEra)</code></td>
+<td><code>0x333570</code></td>
+<td><code>0x3346d0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTechs.html#grantrandomboostsbyera">PlayerTechs.GrantRandomBoostsByEra</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__techs__setalltechsbypreviousera"></a>Techs::SetAllTechsByPreviousEra</td>
+<td><code>void Player::Techs::SetAllTechsByPreviousEra(Player::Techs* this, EraTypes eEraType)</code></td>
+<td><code>0x3346e0</code></td>
+<td><code>0x335a30</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTechs.html#setalltechsbypreviousera">PlayerTechs.SetAllTechsByPreviousEra</a></td>
+<td>edit_call, signal, writes</td>
+</tr>
+<tr>
+<td><a id="player__techs__setnumfreetechboostonnewera"></a>Techs::SetNumFreeTechBoostOnNewEra</td>
+<td><code>void Player::Techs::SetNumFreeTechBoostOnNewEra(Player::Techs* this, int numBoosts, bool applyImmediately)</code></td>
+<td><code>0x334830</code></td>
+<td><code>0x335b80</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTechs.html#setnumfreetechboostonnewera">PlayerTechs.SetNumFreeTechBoostOnNewEra</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changecitystatedistricttraderoutebonus"></a>Trade::ChangeCityStateDistrictTradeRouteBonus</td>
+<td><code>void Player::Trade::ChangeCityStateDistrictTradeRouteBonus(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33ae20</code></td>
+<td><code>0x33c180</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changecitystatedistricttraderoutebonus">PlayerTrade.ChangeCityStateDistrictTradeRouteBonus</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changedestinationyieldforallyroute"></a>Trade::ChangeDestinationYieldForAllyRoute</td>
+<td><code>void Player::Trade::ChangeDestinationYieldForAllyRoute(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33ae80</code></td>
+<td><code>0x33c1e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changedestinationyieldforallyroute">PlayerTrade.ChangeDestinationYieldForAllyRoute</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changedestinationyieldforsuzerainroute"></a>Trade::ChangeDestinationYieldForSuzerainRoute</td>
+<td><code>void Player::Trade::ChangeDestinationYieldForSuzerainRoute(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33aee0</code></td>
+<td><code>0x33c240</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changedestinationyieldforsuzerainroute">PlayerTrade.ChangeDestinationYieldForSuzerainRoute</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changedestinationyieldmodifier"></a>Trade::ChangeDestinationYieldModifier</td>
+<td><code>void Player::Trade::ChangeDestinationYieldModifier(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33af40</code></td>
+<td><code>0x33c2a0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changedestinationyieldmodifier">PlayerTrade.ChangeDestinationYieldModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changedestinationyieldperimprovementatdestination"></a>Trade::ChangeDestinationYieldPerImprovementAtDestination</td>
+<td><code>void Player::Trade::ChangeDestinationYieldPerImprovementAtDestination(Player::Trade* this, YieldTypes eYield, ImprovementTypes eImprovement, FixedPoint xChange)</code></td>
+<td><code>0x33afa0</code></td>
+<td><code>0x33c300</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changedestinationyieldperimprovementatdestination">PlayerTrade.ChangeDestinationYieldPerImprovementAtDestination</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changedestinationyieldperterrainfordomestic"></a>Trade::ChangeDestinationYieldPerTerrainForDomestic</td>
+<td><code>void Player::Trade::ChangeDestinationYieldPerTerrainForDomestic(Player::Trade* this, YieldTypes eYield, TerrainTypes eTerrain, FixedPoint xChange)</code></td>
+<td><code>0x33b030</code></td>
+<td><code>0x33c390</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changedestinationyieldperterrainfordomestic">PlayerTrade.ChangeDestinationYieldPerTerrainForDomestic</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changedestinationyieldperterrainforinternational"></a>Trade::ChangeDestinationYieldPerTerrainForInternational</td>
+<td><code>void Player::Trade::ChangeDestinationYieldPerTerrainForInternational(Player::Trade* this, YieldTypes eYield, TerrainTypes eTerrain, FixedPoint xChange)</code></td>
+<td><code>0x33b0c0</code></td>
+<td><code>0x33c420</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changedestinationyieldperterrainforinternational">PlayerTrade.ChangeDestinationYieldPerTerrainForInternational</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changedomestictradedisabledcount"></a>Trade::ChangeDomesticTradeDisabledCount</td>
+<td><code>void Player::Trade::ChangeDomesticTradeDisabledCount(Player::Trade* this, int iDelta)</code></td>
+<td><code>0x33b150</code></td>
+<td><code>0x33c4b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changedomestictradedisabledcount">PlayerTrade.ChangeDomesticTradeDisabledCount</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeflatyieldbonus"></a>Trade::ChangeFlatYieldBonus</td>
+<td><code>void Player::Trade::ChangeFlatYieldBonus(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b210</code></td>
+<td><code>0x33c570</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeflatyieldbonus">PlayerTrade.ChangeFlatYieldBonus</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeflatyieldbonusforcitystate"></a>Trade::ChangeFlatYieldBonusForCityState</td>
+<td><code>void Player::Trade::ChangeFlatYieldBonusForCityState(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b270</code></td>
+<td><code>0x33c5d0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeflatyieldbonusforcitystate">PlayerTrade.ChangeFlatYieldBonusForCityState</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeflatyieldbonusfordomestic"></a>Trade::ChangeFlatYieldBonusForDomestic</td>
+<td><code>void Player::Trade::ChangeFlatYieldBonusForDomestic(Player::Trade* this, YieldTypes eYield, bool bIntercontinental, FixedPoint xChange)</code></td>
+<td><code>0x33b2d0</code></td>
+<td><code>0x33c630</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeflatyieldbonusfordomestic">PlayerTrade.ChangeFlatYieldBonusForDomestic</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeflatyieldbonusforinternational"></a>Trade::ChangeFlatYieldBonusForInternational</td>
+<td><code>void Player::Trade::ChangeFlatYieldBonusForInternational(Player::Trade* this, YieldTypes eYield, bool bIntercontinental, FixedPoint xChange)</code></td>
+<td><code>0x33b360</code></td>
+<td><code>0x33c6c0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeflatyieldbonusforinternational">PlayerTrade.ChangeFlatYieldBonusForInternational</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeimprovedroutelevel"></a>Trade::ChangeImprovedRouteLevel</td>
+<td><code>void Player::Trade::ChangeImprovedRouteLevel(Player::Trade* this, int iChange)</code></td>
+<td><code>0x33b3f0</code></td>
+<td><code>0x33c750</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeimprovedroutelevel">PlayerTrade.ChangeImprovedRouteLevel</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeinternationalmajorstradedisabledcount"></a>Trade::ChangeInternationalMajorsTradeDisabledCount</td>
+<td><code>void Player::Trade::ChangeInternationalMajorsTradeDisabledCount(Player::Trade* this, int iDelta)</code></td>
+<td><code>0x33b420</code></td>
+<td><code>0x33c780</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeinternationalmajorstradedisabledcount">PlayerTrade.ChangeInternationalMajorsTradeDisabledCount</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeinternationalminorstradedisabledcount"></a>Trade::ChangeInternationalMinorsTradeDisabledCount</td>
+<td><code>void Player::Trade::ChangeInternationalMinorsTradeDisabledCount(Player::Trade* this, int iDelta)</code></td>
+<td><code>0x33b490</code></td>
+<td><code>0x33c7f0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeinternationalminorstradedisabledcount">PlayerTrade.ChangeInternationalMinorsTradeDisabledCount</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeinternationalyieldmodifier"></a>Trade::ChangeInternationalYieldModifier</td>
+<td><code>void Player::Trade::ChangeInternationalYieldModifier(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b500</code></td>
+<td><code>0x33c860</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeinternationalyieldmodifier">PlayerTrade.ChangeInternationalYieldModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeinternationalyieldperimprovementatorigin"></a>Trade::ChangeInternationalYieldPerImprovementAtOrigin</td>
+<td><code>void Player::Trade::ChangeInternationalYieldPerImprovementAtOrigin(Player::Trade* this, YieldTypes eYield, ImprovementTypes eImprovement, FixedPoint xChange)</code></td>
+<td><code>0x33b560</code></td>
+<td><code>0x33c8c0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeinternationalyieldperimprovementatorigin">PlayerTrade.ChangeInternationalYieldPerImprovementAtOrigin</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeoriginyieldforallyroute"></a>Trade::ChangeOriginYieldForAllyRoute</td>
+<td><code>void Player::Trade::ChangeOriginYieldForAllyRoute(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b5f0</code></td>
+<td><code>0x33c950</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeoriginyieldforallyroute">PlayerTrade.ChangeOriginYieldForAllyRoute</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeoriginyieldforsuzerainroute"></a>Trade::ChangeOriginYieldForSuzerainRoute</td>
+<td><code>void Player::Trade::ChangeOriginYieldForSuzerainRoute(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b650</code></td>
+<td><code>0x33c9b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeoriginyieldforsuzerainroute">PlayerTrade.ChangeOriginYieldForSuzerainRoute</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeoriginyieldmodifier"></a>Trade::ChangeOriginYieldModifier</td>
+<td><code>void Player::Trade::ChangeOriginYieldModifier(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b6b0</code></td>
+<td><code>0x33ca10</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeoriginyieldmodifier">PlayerTrade.ChangeOriginYieldModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeoriginyieldperimprovementatdestination"></a>Trade::ChangeOriginYieldPerImprovementAtDestination</td>
+<td><code>void Player::Trade::ChangeOriginYieldPerImprovementAtDestination(Player::Trade* this, YieldTypes eYield, ImprovementTypes eImprovement, FixedPoint xChange)</code></td>
+<td><code>0x33b710</code></td>
+<td><code>0x33ca70</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeoriginyieldperimprovementatdestination">PlayerTrade.ChangeOriginYieldPerImprovementAtDestination</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeoriginyieldperterrainfordomestic"></a>Trade::ChangeOriginYieldPerTerrainForDomestic</td>
+<td><code>void Player::Trade::ChangeOriginYieldPerTerrainForDomestic(Player::Trade* this, YieldTypes eYield, TerrainTypes eTerrain, FixedPoint xChange)</code></td>
+<td><code>0x33b7a0</code></td>
+<td><code>0x33cb00</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeoriginyieldperterrainfordomestic">PlayerTrade.ChangeOriginYieldPerTerrainForDomestic</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeoriginyieldperterrainforinternational"></a>Trade::ChangeOriginYieldPerTerrainForInternational</td>
+<td><code>void Player::Trade::ChangeOriginYieldPerTerrainForInternational(Player::Trade* this, YieldTypes eYield, TerrainTypes eTerrain, FixedPoint xChange)</code></td>
+<td><code>0x33b830</code></td>
+<td><code>0x33cb90</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeoriginyieldperterrainforinternational">PlayerTrade.ChangeOriginYieldPerTerrainForInternational</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeoutgoingroutecapacity"></a>Trade::ChangeOutgoingRouteCapacity</td>
+<td><code>void Player::Trade::ChangeOutgoingRouteCapacity(Player::Trade* this, int iChange)</code></td>
+<td><code>0x33b8c0</code></td>
+<td><code>0x33cc20</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeoutgoingroutecapacity">PlayerTrade.ChangeOutgoingRouteCapacity</a></td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeperspecialtydistrictyieldbonusfordomestic"></a>Trade::ChangePerSpecialtyDistrictYieldBonusForDomestic</td>
+<td><code>void Player::Trade::ChangePerSpecialtyDistrictYieldBonusForDomestic(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b920</code></td>
+<td><code>0x33cc80</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeperspecialtydistrictyieldbonusfordomestic">PlayerTrade.ChangePerSpecialtyDistrictYieldBonusForDomestic</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeperspecialtydistrictyieldbonusforinternational"></a>Trade::ChangePerSpecialtyDistrictYieldBonusForInternational</td>
+<td><code>void Player::Trade::ChangePerSpecialtyDistrictYieldBonusForInternational(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33b980</code></td>
+<td><code>0x33cce0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeperspecialtydistrictyieldbonusforinternational">PlayerTrade.ChangePerSpecialtyDistrictYieldBonusForInternational</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeyieldperfollower"></a>Trade::ChangeYieldPerFollower</td>
+<td><code>void Player::Trade::ChangeYieldPerFollower(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33ba10</code></td>
+<td><code>0x33cd70</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeyieldperfollower">PlayerTrade.ChangeYieldPerFollower</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeyieldperpathtile"></a>Trade::ChangeYieldPerPathTile</td>
+<td><code>void Player::Trade::ChangeYieldPerPathTile(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33ba60</code></td>
+<td><code>0x33cdc0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeyieldperpathtile">PlayerTrade.ChangeYieldPerPathTile</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeyieldpertradingpostinforeigncity"></a>Trade::ChangeYieldPerTradingPostInForeignCity</td>
+<td><code>void Player::Trade::ChangeYieldPerTradingPostInForeignCity(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33bab0</code></td>
+<td><code>0x33ce10</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeyieldpertradingpostinforeigncity">PlayerTrade.ChangeYieldPerTradingPostInForeignCity</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__trade__changeyieldpertradingpostinowncity"></a>Trade::ChangeYieldPerTradingPostInOwnCity</td>
+<td><code>void Player::Trade::ChangeYieldPerTradingPostInOwnCity(Player::Trade* this, YieldTypes eYield, FixedPoint xChange)</code></td>
+<td><code>0x33bb00</code></td>
+<td><code>0x33ce60</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTrade.html#changeyieldpertradingpostinowncity">PlayerTrade.ChangeYieldPerTradingPostInOwnCity</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__treasury__changegolddiplomaticdeal"></a>Treasury::ChangeGoldDiplomaticDeal</td>
+<td><code>void Player::Treasury::ChangeGoldDiplomaticDeal(Player::Treasury* this, uint dealId, uint dealItemId, bool addDeal)</code></td>
+<td><code>0x342000</code></td>
+<td><code>0x343360</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTreasury.html#changegolddiplomaticdeal">PlayerTreasury.ChangeGoldDiplomaticDeal</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__treasury__changegoldinterestpercent"></a>Treasury::ChangeGoldInterestPercent</td>
+<td><code>void Player::Treasury::ChangeGoldInterestPercent(Player::Treasury* this, FixedPoint xPercent)</code></td>
+<td><code>0x342150</code></td>
+<td><code>0x3434b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerTreasury.html#changegoldinterestpercent">PlayerTreasury.ChangeGoldInterestPercent</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__turnmanager__transfercitybyculturalidentity"></a>TurnManager::TransferCityByCulturalIdentity</td>
+<td><code>void Player::TurnManager::TransferCityByCulturalIdentity(Player::TurnManager* this, City::Instance* pCity, PlayerTypes eNewOwner)</code></td>
+<td><code>0x344390</code></td>
+<td><code>0x345020</code></td>
+<td>no</td>
+<td>signal, notification, writes</td>
+</tr>
+<tr>
+<td><a id="player__units__changeaddondistrictfounding"></a>Units::ChangeAddOnDistrictFounding</td>
+<td><code>void Player::Units::ChangeAddOnDistrictFounding(Player::Units* this, uint32 districtHash, uint32 unitHash, int iDelta)</code></td>
+<td><code>0x34bd70</code></td>
+<td><code>0x34cb20</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerUnits.html#changeaddondistrictfounding">PlayerUnits.ChangeAddOnDistrictFounding</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__units__changeextrabuildcharges"></a>Units::ChangeExtraBuildCharges</td>
+<td><code>void Player::Units::ChangeExtraBuildCharges(Player::Units* this, UnitTypes eUnit, int iChange)</code> (+1 overload)</td>
+<td><code>0x34bfe0</code></td>
+<td><code>0x34cd90</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerUnits.html#changeextrabuildcharges">PlayerUnits.ChangeExtraBuildCharges</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__units__changeextraunitcopytag"></a>Units::ChangeExtraUnitCopyTag</td>
+<td><code>void Player::Units::ChangeExtraUnitCopyTag(Player::Units* this, string sTag, int iChange)</code></td>
+<td><code>0x34c040</code></td>
+<td><code>0x34cdf0</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__units__changeproductionmodifier"></a>Units::ChangeProductionModifier</td>
+<td><code>void Player::Units::ChangeProductionModifier(Player::Units* this, UnitTypes eUnit, int iDelta)</code></td>
+<td><code>0x948fe0</code></td>
+<td><code>0x9497a0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerUnits.html#changeproductionmodifier">PlayerUnits.ChangeProductionModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__units__setbannedproductionyield"></a>Units::SetBannedProductionYield</td>
+<td><code>void Player::Units::SetBannedProductionYield(Player::Units* this, YieldTypes eNewYield)</code></td>
+<td><code>0x34fbe0</code></td>
+<td><code>0x350cf0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerUnits.html#setbannedproductionyield">PlayerUnits.SetBannedProductionYield</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__units__setcanevertrain"></a>Units::SetCanEverTrain</td>
+<td><code>void Player::Units::SetCanEverTrain(Player::Units* this)</code></td>
+<td><code>0x34fcb0</code></td>
+<td><code>0x350dc0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerUnits.html#setcanevertrain">PlayerUnits.SetCanEverTrain</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="player__units__setmodifiedarmycorpsstrength"></a>Units::SetModifiedArmyCorpsStrength</td>
+<td><code>void Player::Units::SetModifiedArmyCorpsStrength(Player::Units* this, bool bLand, bool bCorps, int iAmount)</code></td>
+<td><code>0x3501c0</code></td>
+<td><code>0x3512d0</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerUnits.html#setmodifiedarmycorpsstrength">PlayerUnits.SetModifiedArmyCorpsStrength</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="player__units__setpromotionselected"></a>Units::SetPromotionSelected</td>
+<td><code>void Player::Units::SetPromotionSelected(Player::Units* this, IDType iUnitID, UnitPromotionTypes ePromotion, bool bClearProposals)</code></td>
+<td><code>0x350220</code></td>
+<td><code>0x351330</code></td>
+<td>Dev CE (experimental): <a href="../devce/PlayerUnits.html#setpromotionselected">PlayerUnits.SetPromotionSelected</a></td>
+<td>edit_call, writes</td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>Player::Culture::ReceiveGreatWork</h3>
+<p>Gives a great work to a player by placing it in the first of their cities that can hold it. Returns false if no city has room.</p>
+<ul>
+<li>Iterates the player's cities (list from player+0x6d0 -&gt; +0xd0, next node at +0x10). For each: gets the city's Buildings via edit(city+0xca0), calls CanAddGreatWork, and stops at the first city that says yes.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Then calls Buildings::AddGreatWork on that city and returns true.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>none
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The placement half of a trade. A false return leaves the work unplaced; the deal code stores it and retries in PostEnact.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Creating a work (FindOrAddGreatWork + SetGreatWorkPlayer) and calling ReceiveGreatWork for the player placed it in the free Palace slot ("PLACED in a slot"); the capital then showed culture +2 and tourism +2 for a Writing work. Repeated on 2026-10-03 with the live channel.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-29 to 2026-10-03, single player, Frida live channel)]</em></li>
+</ul>
+<h3>Player::Diplomacy::SetHasOpenBordersFrom</h3>
+<p>Grants (+1) or revokes (-1) open borders from another player. It is a counter, not a flag.</p>
+<ul>
+<li>Per-player counter at Diplomacy+0x490 + player<em>4: new = old +/- 1, clamped at 0. Stored through edit().
+  </em>[verified; evidence: static-analysis — decompilation read in Ghidra]*</li>
+<li>When the counter reaches 0: records the current game turn (game+0xc0) in the per-player array <code>m_iOpenBordersEndedTurn</code> (tracked-variable wrapper at Diplomacy+0x590, so the array starts at +0x5a0; name from Linux debug info, see topics/linux-debug-symbols.md), indexed by player<em>4, calls ExpelFromTerritory, and dispatches an 'ended' signal.
+  </em>[verified; evidence: static-analysis — decompilation read in Ghidra]*</li>
+<li>On the 0 -&gt; 1 transition it dispatches a 'started' signal.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Multiple sources (deals, agreements) each add 1, so revoking one does not end open borders while another remains. (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Granting twice needs two revokes to end. A wrapper should expose the counter semantics clearly, or offer a 'set to exactly N' variant.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+</ul>
+<h3>Player::Religion::CreateRelic</h3>
+<p>Creates a relic near a plot and places it in the nearest relic slot.</p>
+<ul>
+<li>Calls GetNearestRelicSlot for the plot (returns a city plus building type and slot), then Game::Culture::AddRelic. If that returns a valid great work, it looks up the slot's work and sends a Reporting event (hash 0x1a71e9f0).
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li><strong>If <code>GetNearestRelicSlot</code> finds no free relic slot, the function does nothing at all</strong>: no relic is chosen, no record is created, no event is sent. (The relic is chosen inside <code>AddRelic</code>, which is only called when a slot exists.) This is the "relic lost when slots are full" behavior.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Direct callers (13): the combat resolvers (<code>ResolveMeleeUnitVsUnitCombat</code> and siblings, <code>AttackInto</code>), <code>Map::Player::Visibility::Manager::ViewPlotContents</code>, <code>Unit::Commands::SpreadDissent::Start</code>, and <code>GameEffects::Effects::GrantRelic::Apply</code> (a modifier effect). All relic sources funnel through this one function. Which caller is the goody hut, apostle death or city-state perk is inferred from the names, not verified.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Any notification or era score a player sees when the slots are full is produced by the caller or another system, not by this function or <code>AddRelic</code> (which only announce on success). (Medium; not traced.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Relics use the same slot machinery as other great works (AddRelic reaches AddGreatWorkToSlot). (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>A bridge between religion and the great work slot system; worth reading alongside the great works topic.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>With the stock DLL and every relic slot full, calling CreateRelic left the game-wide great work record count unchanged: the relic is never created (it stays in the pool), it is not created and thrown away.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-30, single player)]</em></li>
+<li>A hook that, for a human player with no free relic slot, calls AddRelic with an out-of-range slot instead creates the record and archives the relic: confirmed with the <code>hut xN</code> test command (the Palace holds one relic slot; relics were archived only once it was full).
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-30, single player)]</em></li>
+</ul>
+<h3>Player::Religion::GetNearestRelicSlot</h3>
+<p>Finds the player's city with a free relic slot that is nearest to a plot. Returns null when the player has no free relic slot anywhere.</p>
+<ul>
+<li>Looks up the great work object type <code>GREATWORKOBJECT_RELIC</code> and reads its list of building types that can hold relics (list at definition+0x40..+0x48).
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>For each of the player's cities (player+0x6d0 city list) that has such a building and a free slot (<code>Buildings::GetFreeSlot != -1</code>), it measures the plot distance to <code>plot</code> and keeps the nearest. If <code>plot</code> is not valid it returns the first city found.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The two output parameters (building type, slot index) are written <strong>only when a city was found</strong>.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Verified in game: when <code>plot</code> is invalid (the game's own "no plot" value), it returns the first city with room and <strong>does not write the output building/slot</strong>
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Verified in game: the Palace counts as a relic slot holder at the start of a game (relic-holding building types: 1, 12, 13, 62, 82, 87, 95, 109).
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>"No relic slot" means either no relic-holding building exists yet or all are full. Both return null here.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

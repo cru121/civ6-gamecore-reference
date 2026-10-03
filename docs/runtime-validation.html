@@ -1,0 +1,41 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Checking the reference against a running game</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Checking the reference against a running game</p>
+<h1>Checking the reference against a running game</h1>
+<p>The Lua signatures, return types and object method lists in this reference are recovered from the game code. To find out how accurate they are, they were compared with
+the real game: Lua was run inside a running Civilization VI (installed build 15038592, single player, disposable game, 2026-10-03) and the results were compared with this reference.
+A method row marked <strong>✓ called in the game</strong> was called once in the UI Lua state and returned the documented number of values; <strong>⚠ test call raised …</strong> means the call raised an error
+with the quoted message; <strong>✓ exists at runtime</strong> means the method is present on the live object but was not called.</p>
+<h2>What was checked</h2>
+<ul>
+<li><strong>Which methods exist.</strong> Every Lua object is a table whose metatable <code>__index</code> holds its methods, so the real API of an object can be listed at runtime:
+  <code>for name, f in pairs(getmetatable(obj).__index) do ... end</code> (the global <code>Game</code> is a plain table: iterate <code>Game</code> itself).
+  53 object classes reachable from <code>Players[0]</code>, <code>Game</code>, <code>Map</code>, a city, a unit and a plot were listed and matched against this reference. Methods that exist at runtime but are
+  missing here are helpers (<code>Members</code>, <code>__instances</code>, <code>TypeName</code>) and classes that are not part of GameCore (<code>Automation</code>, <code>GameConfiguration</code>, <code>MapConfiguration</code>).
+  Methods documented here but absent at runtime are registered only for the gameplay state, which a UI state cannot see.</li>
+<li><strong>What zero-parameter getters return.</strong> 453 methods documented with no parameters (<code>Get…</code>, <code>Is…</code>, <code>Has…</code>, <code>Can…</code>) were called: 439 returned the documented number of values,
+  8 returned nothing (a legitimate "no value" case, for example no winner yet), 6 raised errors. The errors show reference problems, each recorded on the method's own page:
+  <code>Game.IsDefeatEnabled</code>, <code>Game.IsVictoryEnabled</code> (need an argument), <code>Game.GetUnitNamePrefix</code>, <code>Game.GetUnitNameSuffix</code> (not callable without an instance or argument),
+  <code>Plot.IsNone</code>, <code>Area.IsNone</code> (only valid on a "none" instance). Documented return counts are therefore reliable for getters; documented parameter lists are the weaker part.</li>
+<li><strong>The engine functions behind some of this.</strong> Function pages marked with observed behavior (great-work removal, relic creation, the Palace) were exercised by calling the
+  native functions directly in the running game; see their "Observed in-game" notes.</li>
+</ul>
+<h2>Pitfalls found while testing</h2>
+<ul>
+<li><strong>Calling a method with the wrong number of arguments can fault natively, not just raise a Lua error.</strong> <code>DiplomacyManager.GetDiplomaticActionCost()</code> called with no arguments dereferenced
+  a null pointer inside the game. Only call methods whose parameter list is known.</li>
+<li><strong>Lua states are not all long-lived.</strong> The game creates hundreds of short-lived coroutine states per turn (the AI). Running code in a state that no longer exists corrupts the heap and
+  crashes the game later. Use a context that lives as long as the UI (for example the one that polls <code>GetProperty</code> continuously).</li>
+<li><strong>UI state versus gameplay state.</strong> Only the UI state was checked. "Where" in the method tables says which registration table lists a method, not which state can call it; checking the
+  gameplay state is open work.</li>
+</ul>
+<h2>Limits</h2>
+<p>One build, single player, getters only, zero-parameter methods only. Mutating methods, methods with arguments, the gameplay state and multiplayer are not covered by these checks.</p></main><script>const ROOT="";</script><script src="search.js"></script>

@@ -1,0 +1,197 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › Game</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>Game</h1>
+<p>6 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IGame</code> instance resolver (plain).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="buildcivics"></a>BuildCivics</td>
+<td><code>Game:BuildCivics()</code></td>
+<td>Builds the game's civic tree data: clears and repopulates the civic node list, choosing a random cost from the CivicRandomCost definitions where available.</td>
+<td>—</td>
+<td><a href="../native/Game.html#game__culture__buildcivics">Game::Culture::BuildCivics</a></td>
+<td><code>0x1c71c0</code></td>
+</tr>
+<tr>
+<td><a id="buildtechs"></a>BuildTechs</td>
+<td><code>Game:BuildTechs()</code></td>
+<td>Builds the tech tree data: clears and repopulates the tech node list, choosing a random cost from the TechnologyRandomCost definitions where available.</td>
+<td>—</td>
+<td><a href="../native/Game.html#game__techs__buildtechs">Game::Techs::BuildTechs</a></td>
+<td><code>0x2502e0</code></td>
+</tr>
+<tr>
+<td><a id="clearlists"></a>ClearLists</td>
+<td><code>Game:ClearLists()</code></td>
+<td>Empties the player manager's cached player lists by resetting the end pointer of about 23 vectors to their begin pointer, and frees the team-to-players hash table nodes.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__manager__clearlists">Player::Manager::ClearLists</a></td>
+<td><code>0x3065e0</code></td>
+</tr>
+<tr>
+<td><a id="decrementgamestatelock"></a>DecrementGameStateLock</td>
+<td><code>Game:DecrementGameStateLock() → number</code></td>
+<td>Decrements the game-state lock counter; when it reaches zero a signal with false is dispatched to say the state is unlocked.</td>
+<td>—</td>
+<td><a href="../native/Game.html#game__instance__decrementgamestatelock">Game::Instance::DecrementGameStateLock</a></td>
+<td><code>0x63cee0</code></td>
+</tr>
+<tr>
+<td><a id="incrementgamestatelock"></a>IncrementGameStateLock</td>
+<td><code>Game:IncrementGameStateLock() → number</code></td>
+<td>Increments a game-state lock counter; on the first increment (0 to 1) dispatches a signal with true to notify listeners that the game state is locked.</td>
+<td>—</td>
+<td><a href="../native/Game.html#game__instance__incrementgamestatelock">Game::Instance::IncrementGameStateLock</a></td>
+<td><code>0x63d1a0</code></td>
+</tr>
+<tr>
+<td><a id="setlocalplayerto"></a>SetLocalPlayerTo</td>
+<td><code>Game:SetLocalPlayerTo(ePlayer: integer) → boolean</code></td>
+<td>Sets which player is the local (viewing) player and the secondary observer slot, then refreshes visibility for the new player.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__manager__setlocalplayerto">Player::Manager::SetLocalPlayerTo</a></td>
+<td><code>0x308ca0</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>BuildCivics</h3>
+<p><strong>Writes</strong>
+- civic node vector at this+0xa8
+- second list at this+0xd8 reset</p>
+<p><strong>Side effects</strong>
+- uses seeded game random numbers ('Choosing a random cost for a civic to have')
+- allocates temporary arrays</p>
+<p><strong>Input checks:</strong> Does nothing beyond clearing if the current game is null; null definitions skipped.</p>
+<p><strong>Preconditions</strong>
+- game start / initialisation
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> medium (rebuilds core civic tree data; uses synced RNG). <strong>Confidence of the reading:</strong> low.</p>
+<p><strong>Verified from the code</strong>
+- clears the list at this+0xa8 and resets list at +0xd8
+- draws a random number labelled for civic cost choice
+- candidate costs capped by a count of 6 per base cost</p>
+<p><strong>Inferred</strong>
+- later part likely builds prerequisites (random label mentions prerequisites)</p>
+<p><strong>Open questions</strong>
+- decompilation truncated; prerequisite handling unseen</p>
+<h3>BuildTechs</h3>
+<p><strong>Writes</strong>
+- tech node vector at this+0xa8
+- second list at this+0xd8 reset</p>
+<p><strong>Side effects</strong>
+- uses seeded game random numbers ('Choosing a random cost for a tech to have')
+- allocates temporary arrays</p>
+<p><strong>Input checks:</strong> Does nothing beyond clearing if the current game is null; null definitions skipped.</p>
+<p><strong>Preconditions</strong>
+- game start / initialisation
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> medium (rebuilds core tech tree data; uses synced RNG). <strong>Confidence of the reading:</strong> low.</p>
+<p><strong>Verified from the code</strong>
+- clears the list at this+0xa8 and resets list at +0xd8
+- draws a random number labelled for tech cost choice
+- candidate costs capped by a count of 7 per base cost</p>
+<p><strong>Inferred</strong>
+- near-identical to BuildCivics, applied to techs</p>
+<p><strong>Open questions</strong>
+- decompilation truncated; prerequisite handling unseen</p>
+<h3>ClearLists</h3>
+<p><strong>Writes</strong>
+- vector end pointers at +0x58, +0x280, +0x4a8, +0x5d8, +0x800 and others (sets end = begin)
+- team hash table at this+0x2b20 (nodes freed, count at +0x2b34 set to 0)</p>
+<p><strong>Side effects</strong>
+- DoFreeNodes on the team-to-fixed-vector hashtable</p>
+<p><strong>Input checks:</strong> none</p>
+<p><strong>Preconditions</strong>
+- called during manager reset or setup</p>
+<p><strong>Multiplayer:</strong> may-desync: wipes shared player lists; must be called in sync on all clients. <strong>Risk:</strong> high (clears cached lists; calling at runtime leaves lists stale until rebuilt). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- each of ~23 vectors has its end pointer set to its begin pointer
+- hashtable nodes freed and count zeroed</p>
+<p><strong>Inferred</strong>
+- vectors are lists of players by category (alive, major, minor, human, per team etc.)
+- called before repopulating the lists</p>
+<p><strong>Open questions</strong>
+- which list is at which offset</p>
+<h3>DecrementGameStateLock</h3>
+<p><strong>Writes</strong>
+- game state lock counter at this+0x2a0</p>
+<p><strong>Side effects</strong>
+- dispatch signal (bool=false) at signal table +0x18f0 when count goes 1 to 0</p>
+<p><strong>Input checks:</strong> Does nothing if counter already 0 (no underflow).</p>
+<p><strong>Preconditions</strong>
+- game thread
+- must pair with an increment</p>
+<p><strong>Multiplayer:</strong> unknown. <strong>Risk:</strong> high (unbalanced lock calls can unfreeze state early). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- no underflow
+- signal dispatched only on 1 to 0 transition
+- returns the new value</p>
+<p><strong>Inferred</strong>
+- lock prevents game-state changes while held (name)</p>
+<p><strong>Open questions</strong>
+- what the lock actually blocks</p>
+<h3>IncrementGameStateLock</h3>
+<p><strong>Writes</strong>
+- lock counter at this+0x2a0</p>
+<p><strong>Side effects</strong>
+- dispatches a bool(true) signal on the object at +0x280 +0x18f0 when the count becomes 1</p>
+<p><strong>Input checks:</strong> none; no overflow check</p>
+<p><strong>Preconditions</strong>
+- must be paired with a decrement
+- game thread</p>
+<p><strong>Multiplayer:</strong> unknown. <strong>Risk:</strong> high (unbalanced use leaves the game state locked). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- increments int at +0x2a0
+- calls ProtoSignal Dispatch(true) only when value reaches 1
+- returns the new count</p>
+<p><strong>Inferred</strong>
+- signal is a game-state-locked notification (e.g. for UI/network)
+- a matching decrement dispatches false</p>
+<p><strong>Open questions</strong>
+- what listens to the signal and effects on multiplayer sync</p>
+<h3>SetLocalPlayerTo</h3>
+<p>Arguments: <code>ePlayer</code> — player id to become local player</p>
+<p><strong>Writes</strong>
+- local player id at this+0x2da8
+- observer player id at this+0x2dac (only when current local is not -1 and differs)</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send hash 0xc0372152 when visibility-manager flag +0x2b is 0
+- Game::Instance::RestoreVisibility recalculates visibility</p>
+<p><strong>Input checks:</strong> No range check on player id; returns true early only if it equals the previous local player and no other change needed.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- local/UI context (affects visibility only)</p>
+<p><strong>Multiplayer:</strong> may-desync: local player is per-client state; changing it in gameplay script is not synced. <strong>Risk:</strong> medium (changes viewing perspective and visibility, unvalidated id). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- writes this+0x2da8
+- conditionally writes this+0x2dac
+- calls RestoreVisibility
+- returns true in all visible paths</p>
+<p><strong>Inferred</strong>
+- 0x2dac is the observer/last-set slot
+- event likely notifies UI of local player change</p>
+<p><strong>Open questions</strong>
+- meaning of flag at visibility manager +0x2b
+- decompiler mangled the call args so the Game::Instance::Edit invocation is uncertain</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

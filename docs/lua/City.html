@@ -1,0 +1,447 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>City</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › City</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>City</h1>
+<p>52 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City/">City</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="attachmodifierbyid"></a>AttachModifierByID</td>
+<td><code>City:AttachModifierByID(arg1?: string) → number</code><br><small>args: <code>arg1</code> — A string.</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.AttachModifierByID/">yes ↗</a></td>
+<td><code>0x6c83c0</code></td>
+<td><code>0x6c8a80</code></td>
+</tr>
+<tr>
+<td><a id="canraze"></a>CanRaze</td>
+<td><code>City:CanRaze() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.CanRaze/">yes ↗</a></td>
+<td><code>0x68a060</code></td>
+<td><code>0x68a640</code></td>
+</tr>
+<tr>
+<td><a id="changeloyalty"></a>ChangeLoyalty</td>
+<td><code>City:ChangeLoyalty(arg1: integer) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.ChangeLoyalty/">yes ↗</a></td>
+<td><code>0x713590</code></td>
+<td><code>0x713e00</code></td>
+</tr>
+<tr>
+<td><a id="changepopulation"></a>ChangePopulation</td>
+<td><code>City:ChangePopulation(iChange: integer) (or nothing)</code><br><small>args: <code>iChange</code> — A number.</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.ChangePopulation/">yes ↗</a></td>
+<td><code>0x6c8640</code></td>
+<td><code>0x6c8d00</code></td>
+</tr>
+<tr>
+<td><a id="getallassignedgovernors"></a>GetAllAssignedGovernors</td>
+<td><code>City:GetAllAssignedGovernors() → Governor[] (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetAllAssignedGovernors/">yes ↗</a></td>
+<td><code>0x7105f0</code></td>
+<td><code>0x710e60</code></td>
+</tr>
+<tr>
+<td><a id="getamenityadvice"></a>GetAmenityAdvice</td>
+<td><code>City:GetAmenityAdvice() → string</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetAmenityAdvice/">yes ↗</a></td>
+<td><code>0x68a0b0</code></td>
+<td><code>0x68a690</code></td>
+</tr>
+<tr>
+<td><a id="getassignedgovernor"></a>GetAssignedGovernor</td>
+<td><code>City:GetAssignedGovernor() → Governor (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetAssignedGovernor/">yes ↗</a></td>
+<td><code>0x7106f0</code></td>
+<td><code>0x710f60</code></td>
+</tr>
+<tr>
+<td><a id="getbuildqueue"></a>GetBuildQueue</td>
+<td><code>City:GetBuildQueue() → CityBuildQueue</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetBuildQueue/">yes ↗</a></td>
+<td><code>0x68a180</code></td>
+<td><code>0x68a760</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingfaithpurchaseenabled"></a>GetBuildingFaithPurchaseEnabled</td>
+<td><code>City:GetBuildingFaithPurchaseEnabled(arg1?: number) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetBuildingFaithPurchaseEnabled/">yes ↗</a></td>
+<td><code>0x6c86d0</code></td>
+<td><code>0x6c8d90</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingpotentialyield"></a>GetBuildingPotentialYield</td>
+<td><code>City:GetBuildingPotentialYield(arg1: string/number, arg2: string/number) → number (or nothing)</code><br><small>args: <code>arg1</code> — A database row hash (named …Hash in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetBuildingPotentialYield/">yes ↗</a></td>
+<td><code>0x68a1b0</code></td>
+<td><code>0x68a790</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingyield"></a>GetBuildingYield</td>
+<td><code>City:GetBuildingYield(arg1: string/number, arg2: string/number) → number (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetBuildingYield/">yes ↗</a></td>
+<td><code>0x68a2b0</code></td>
+<td><code>0x68a890</code></td>
+</tr>
+<tr>
+<td><a id="getbuildings"></a>GetBuildings</td>
+<td><code>City:GetBuildings() → CityBuildings</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetBuildings/">yes ↗</a></td>
+<td><code>0x68a370</code></td>
+<td><code>0x68a950</code></td>
+</tr>
+<tr>
+<td><a id="getcitizens"></a>GetCitizens</td>
+<td><code>City:GetCitizens() → CityCitizens</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetCitizens/">yes ↗</a></td>
+<td><code>0x68a3a0</code></td>
+<td><code>0x68a980</code></td>
+</tr>
+<tr>
+<td><a id="getcityai"></a>GetCityAI</td>
+<td><code>City:GetCityAI() → AiCityBuild</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetCityAI/">yes ↗</a></td>
+<td><code>0x68a3d0</code></td>
+<td><code>0x68a9b0</code></td>
+</tr>
+<tr>
+<td><a id="getcomponentid"></a>GetComponentID</td>
+<td><code>City:GetComponentID() → 1 values ⚠</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetComponentID/">yes ↗</a></td>
+<td><code>0x68a400</code></td>
+<td><code>0x68a9e0</code></td>
+</tr>
+<tr>
+<td><a id="getculturalidentity"></a>GetCulturalIdentity</td>
+<td><code>City:GetCulturalIdentity() → CityCulturalIdentity</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetCulturalIdentity/">yes ↗</a></td>
+<td><code>0x710760</code></td>
+<td><code>0x710fd0</code></td>
+</tr>
+<tr>
+<td><a id="getculture"></a>GetCulture</td>
+<td><code>City:GetCulture() → CityCulture</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetCulture/">yes ↗</a></td>
+<td><code>0x68a450</code></td>
+<td><code>0x68aa30</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictid"></a>GetDistrictID</td>
+<td><code>City:GetDistrictID() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetDistrictID/">yes ↗</a></td>
+<td><code>0x68a480</code></td>
+<td><code>0x68aa60</code></td>
+</tr>
+<tr>
+<td><a id="getdistricts"></a>GetDistricts</td>
+<td><code>City:GetDistricts() → CityDistricts</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetDistricts/">yes ↗</a></td>
+<td><code>0x68a4d0</code></td>
+<td><code>0x68aab0</code></td>
+</tr>
+<tr>
+<td><a id="getgold"></a>GetGold</td>
+<td><code>City:GetGold() → CityGold</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetGold/">yes ↗</a></td>
+<td><code>0x68a500</code></td>
+<td><code>0x68aae0</code></td>
+</tr>
+<tr>
+<td><a id="getgrowth"></a>GetGrowth</td>
+<td><code>City:GetGrowth() → CityGrowth</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetGrowth/">yes ↗</a></td>
+<td><code>0x68a530</code></td>
+<td><code>0x68ab10</code></td>
+</tr>
+<tr>
+<td><a id="gethousingadvice"></a>GetHousingAdvice</td>
+<td><code>City:GetHousingAdvice() → string</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetHousingAdvice/">yes ↗</a></td>
+<td><code>0x68a560</code></td>
+<td><code>0x68ab40</code></td>
+</tr>
+<tr>
+<td><a id="getid"></a>GetID</td>
+<td><em>UI state:</em> <code>City:GetID() → number</code><br><em>gameplay state:</em> <code>City:GetID() → number (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Id of a player: the scripts use the result as Players[result]. (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetID/">yes ↗</a></td>
+<td><code>0x68a630</code></td>
+<td><code>0x68ac10</code></td>
+</tr>
+<tr>
+<td><a id="getjustconqueredfrom"></a>GetJustConqueredFrom</td>
+<td><code>City:GetJustConqueredFrom() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Id of a player: the scripts use the result as Players[result]. (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetJustConqueredFrom/">yes ↗</a></td>
+<td><code>0x68a670</code></td>
+<td><code>0x68ac50</code></td>
+</tr>
+<tr>
+<td><a id="getlasttransfertype"></a>GetLastTransferType</td>
+<td><code>City:GetLastTransferType() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetLastTransferType/">yes ↗</a></td>
+<td><code>0x68a6c0</code></td>
+<td><code>0x68aca0</code></td>
+</tr>
+<tr>
+<td><a id="getlocation"></a>GetLocation</td>
+<td><code>City:GetLocation() → 1 values ⚠</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetLocation/">yes ↗</a></td>
+<td><code>0x68a710</code></td>
+<td><code>0x68acf0</code></td>
+</tr>
+<tr>
+<td><a id="getloyaltyadvice"></a>GetLoyaltyAdvice</td>
+<td><code>City:GetLoyaltyAdvice() → string</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetLoyaltyAdvice/">yes ↗</a></td>
+<td><code>0x710790</code></td>
+<td><code>0x711000</code></td>
+</tr>
+<tr>
+<td><a id="getname"></a>GetName</td>
+<td><em>UI state:</em> <code>City:GetName() → nil/string</code><br><em>gameplay state:</em> <code>City:GetName() → string (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetName/">yes ↗</a></td>
+<td><code>0x68a750</code></td>
+<td><code>0x68ad30</code></td>
+</tr>
+<tr>
+<td><a id="getoriginalowner"></a>GetOriginalOwner</td>
+<td><em>UI state:</em> <code>City:GetOriginalOwner() → number</code><br><em>gameplay state:</em> <code>City:GetOriginalOwner() → number (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Id of a player: the scripts use the result as Players[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetOriginalOwner/">yes ↗</a></td>
+<td><code>0x68a7b0</code></td>
+<td><code>0x68ad90</code></td>
+</tr>
+<tr>
+<td><a id="getownedplots"></a>GetOwnedPlots</td>
+<td><code>City:GetOwnedPlots() → MapPlot</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetOwnedPlots/">yes ↗</a></td>
+<td><code>0x6c8990</code></td>
+<td><code>0x6c9050</code></td>
+</tr>
+<tr>
+<td><a id="getowner"></a>GetOwner</td>
+<td><em>UI state:</em> <code>City:GetOwner() → number</code><br><em>gameplay state:</em> <code>City:GetOwner() → number (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Id of a player: the scripts use the result as Players[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetOwner/">yes ↗</a></td>
+<td><code>0x68a800</code></td>
+<td><code>0x68ade0</code></td>
+</tr>
+<tr>
+<td><a id="getownerbeforeoccupation"></a>GetOwnerBeforeOccupation</td>
+<td><code>City:GetOwnerBeforeOccupation() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Id of a player: the scripts use the result as Players[result].</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetOwnerBeforeOccupation/">yes ↗</a></td>
+<td><code>0x68a850</code></td>
+<td><code>0x68ae30</code></td>
+</tr>
+<tr>
+<td><a id="getplot"></a>GetPlot</td>
+<td><code>City:GetPlot() → MapPlot (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetPlot/">yes ↗</a></td>
+<td><code>0x6c8ae0</code></td>
+<td><code>0x6c91a0</code></td>
+</tr>
+<tr>
+<td><a id="getpopulation"></a>GetPopulation</td>
+<td><code>City:GetPopulation() → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetPopulation/">yes ↗</a></td>
+<td><code>0x68a8a0</code></td>
+<td><code>0x68ae80</code></td>
+</tr>
+<tr>
+<td><a id="getpower"></a>GetPower</td>
+<td><code>City:GetPower() → CityPower</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetPower/">yes ↗</a></td>
+<td><code>0x73ce00</code></td>
+<td><code>0x73d740</code></td>
+</tr>
+<tr>
+<td><a id="getpoweradvice"></a>GetPowerAdvice</td>
+<td><code>City:GetPowerAdvice() → string</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetPowerAdvice/">yes ↗</a></td>
+<td><code>0x73ce30</code></td>
+<td><code>0x73d770</code></td>
+</tr>
+<tr>
+<td><a id="getproperties"></a>GetProperties</td>
+<td><code>City:GetProperties() → 1 values ⚠</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetProperties/">yes ↗</a></td>
+<td><code>0x68a8f0</code></td>
+<td><code>0x68aed0</code></td>
+</tr>
+<tr>
+<td><a id="getproperty"></a>GetProperty</td>
+<td><em>UI state:</em> <code>City:GetProperty(arg1?: number) → 1 values (or nothing) ⚠</code><br><em>gameplay state:</em> <code>City:GetProperty()</code><br><small>✓ called in the game: 0 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetProperty/">yes ↗</a></td>
+<td><code>0x68a930</code></td>
+<td><code>0x68af10</code></td>
+</tr>
+<tr>
+<td><a id="getreligion"></a>GetReligion</td>
+<td><code>City:GetReligion() → CityReligion</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetReligion/">yes ↗</a></td>
+<td><code>0x68aa60</code></td>
+<td><code>0x68b040</code></td>
+</tr>
+<tr>
+<td><a id="gettrade"></a>GetTrade</td>
+<td><code>City:GetTrade() → CityTrade</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetTrade/">yes ↗</a></td>
+<td><code>0x68aa90</code></td>
+<td><code>0x68b070</code></td>
+</tr>
+<tr>
+<td><a id="getunitfaithpurchaseenabled"></a>GetUnitFaithPurchaseEnabled</td>
+<td><code>City:GetUnitFaithPurchaseEnabled(arg1?: number) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetUnitFaithPurchaseEnabled/">yes ↗</a></td>
+<td><code>0x6c8c30</code></td>
+<td><code>0x6c92f0</code></td>
+</tr>
+<tr>
+<td><a id="getx"></a>GetX</td>
+<td><em>UI state:</em> <code>City:GetX() → number</code><br><em>gameplay state:</em> <code>City:GetX() → number (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: The scripts pass the result to <code>PlayerVisibility.IsVisible</code> (parameter <code>x</code>). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetX/">yes ↗</a></td>
+<td><code>0x68aac0</code></td>
+<td><code>0x68b0a0</code></td>
+</tr>
+<tr>
+<td><a id="gety"></a>GetY</td>
+<td><em>UI state:</em> <code>City:GetY() → number</code><br><em>gameplay state:</em> <code>City:GetY() → number (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: The scripts pass the result to <code>PlayerVisibility.IsVisible</code> (parameter <code>y</code>). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetY/">yes ↗</a></td>
+<td><code>0x68ab10</code></td>
+<td><code>0x68b0f0</code></td>
+</tr>
+<tr>
+<td><a id="getyield"></a>GetYield</td>
+<td><em>UI state:</em> <code>City:GetYield(arg1: string/number) → number</code><br><em>gameplay state:</em> <code>City:GetYield(eYield: number/string) → number (FixedPoint)</code><br><small>args: <code>arg1</code> — A constant from the Lua table YieldTypes.</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetYield/">yes ↗</a></td>
+<td><code>0x68ab60</code></td>
+<td><code>0x68b140</code></td>
+</tr>
+<tr>
+<td><a id="getyieldtooltip"></a>GetYieldToolTip</td>
+<td><code>City:GetYieldToolTip(eYieldType: string/number) → nil (or nothing)</code><br><small>args: <code>eYieldType</code> — A constant from the Lua table YieldTypes.</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.GetYieldToolTip/">yes ↗</a></td>
+<td><code>0x68abf0</code></td>
+<td><code>0x68b1d0</code></td>
+</tr>
+<tr>
+<td><a id="iscapital"></a>IsCapital</td>
+<td><code>City:IsCapital() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.IsCapital/">yes ↗</a></td>
+<td><code>0x68acf0</code></td>
+<td><code>0x68b2d0</code></td>
+</tr>
+<tr>
+<td><a id="isoccupied"></a>IsOccupied</td>
+<td><code>City:IsOccupied() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.IsOccupied/">yes ↗</a></td>
+<td><code>0x68ad30</code></td>
+<td><code>0x68b310</code></td>
+</tr>
+<tr>
+<td><a id="isoriginalcapital"></a>IsOriginalCapital</td>
+<td><code>City:IsOriginalCapital() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.IsOriginalCapital/">yes ↗</a></td>
+<td><code>0x68ad70</code></td>
+<td><code>0x68b350</code></td>
+</tr>
+<tr>
+<td><a id="setbuildingfaithpurchaseenabled"></a>SetBuildingFaithPurchaseEnabled</td>
+<td><code>City:SetBuildingFaithPurchaseEnabled(buildingType?: number, bNewValue?: boolean) (or nothing)</code><br><small>args: <code>bNewValue</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.SetBuildingFaithPurchaseEnabled/">yes ↗</a></td>
+<td><code>0x6c8df0</code></td>
+<td><code>0x6c94b0</code></td>
+</tr>
+<tr>
+<td><a id="setname"></a>SetName</td>
+<td><code>City:SetName(pszName: string[const char]) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.SetName/">yes ↗</a></td>
+<td><code>0x6c8ea0</code></td>
+<td><code>0x6c9560</code></td>
+</tr>
+<tr>
+<td><a id="setproperty"></a>SetProperty</td>
+<td><code>City:SetProperty() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.SetProperty/">yes ↗</a></td>
+<td><code>0x6c8ef0</code></td>
+<td><code>0x6c95b0</code></td>
+</tr>
+<tr>
+<td><a id="setunitfaithpurchaseenabled"></a>SetUnitFaithPurchaseEnabled</td>
+<td><code>City:SetUnitFaithPurchaseEnabled(unitType?: number, bNewValue?: boolean) (or nothing)</code><br><small>args: <code>bNewValue</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City.SetUnitFaithPurchaseEnabled/">yes ↗</a></td>
+<td><code>0x6c8f90</code></td>
+<td><code>0x6c9650</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

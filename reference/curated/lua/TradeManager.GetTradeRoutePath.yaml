@@ -1,0 +1,9 @@
+id: lua:TradeManager.GetTradeRoutePath
+summary: "Returns the plots of a trade route between two cities."
+notes:
+  - text: "TradeManager.GetTradeRoutePath is registered on the UI cache state only. Civ6-GCO reaches it through a UI-context wrapper (GCO.GetTradeManager) even though most of its logic runs in gameplay scripts, which fits."
+    status: verified
+    evidence: [{kind: dll-registration, note: "TradeManager.GetTradeRoutePath is in the ui-cache table only"}, {kind: community-reference, note: "Civ6-GCO Scripts/GCO_CityScript.lua:1835, 2277; InGame/GCO_ContextFunctions.lua ~178; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]
+  - text: "In GCO's calls the arguments are (originOwner, originCityID, destinationOwner, destinationCityID) and the result is a list of plots."
+    status: inferred
+    evidence: [{kind: community-reference, note: "Civ6-GCO Scripts/GCO_CityScript.lua:2303; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]

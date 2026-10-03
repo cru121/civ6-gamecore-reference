@@ -1,0 +1,158 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>WorldBuilderCityManager</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › WorldBuilderCityManager</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>WorldBuilderCityManager</h1>
+<p>15 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="create"></a>Create</td>
+<td><code>WorldBuilderCityManager:Create(arg1?: any[HksObject]) → number, number (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ee340</code></td>
+<td><code>0x5eee90</code></td>
+</tr>
+<tr>
+<td><a id="createbuilding"></a>CreateBuilding</td>
+<td><code>WorldBuilderCityManager:CreateBuilding(arg1?: any, eBuilding: number/string[BuildingTypes], arg3?: number) → boolean, RequirementsResults ⚠</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ee450</code></td>
+<td><code>0x5eefa0</code></td>
+</tr>
+<tr>
+<td><a id="createdistrict"></a>CreateDistrict</td>
+<td><code>WorldBuilderCityManager:CreateDistrict(arg1?: any, eDistrict: number/string[DistrictTypes], arg3?: number) → boolean, RequirementsResults ⚠</code><br><small>args: <code>eDistrict</code> — Index of a row of the Districts table (the value of GameInfo.Districts[...].Index).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ee610</code></td>
+<td><code>0x5ef160</code></td>
+</tr>
+<tr>
+<td><a id="getcity"></a>GetCity</td>
+<td><code>WorldBuilderCityManager.GetCity(arg1?: any, arg2?: any[HksObject], arg3?: number) → City (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ee7d0</code></td>
+<td><code>0x5ef320</code></td>
+</tr>
+<tr>
+<td><a id="getcityvalue"></a>GetCityValue</td>
+<td><code>WorldBuilderCityManager:GetCityValue(kCity?: any, uiType: number/string) → 1 values (or nothing) ⚠</code><br><small>args: <code>kCity</code> — A City object (the scripts pass a variable named pCity).; <code>uiType</code> — A string.</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ee8a0</code></td>
+<td><code>0x5ef3f0</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictvalue"></a>GetDistrictValue</td>
+<td><code>WorldBuilderCityManager:GetDistrictValue(kDistrict?: any, uiType: number/string) → 1 values (or nothing) ⚠</code><br><small>args: <code>kDistrict</code> — A District object (the scripts pass a variable named pDistrict). (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ee9c0</code></td>
+<td><code>0x5ef510</code></td>
+</tr>
+<tr>
+<td><a id="getplotowner"></a>GetPlotOwner</td>
+<td><code>WorldBuilderCityManager.GetPlotOwner() → table/nil</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5eeae0</code></td>
+<td><code>0x5ef630</code></td>
+</tr>
+<tr>
+<td><a id="remove"></a>Remove</td>
+<td><code>WorldBuilderCityManager:Remove() (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5eec60</code></td>
+<td><code>0x5ef7b0</code></td>
+</tr>
+<tr>
+<td><a id="removeall"></a>RemoveAll</td>
+<td><code>WorldBuilderCityManager:RemoveAll(ePlayer?: any[HksObject]) (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5eecd0</code></td>
+<td><code>0x5ef820</code></td>
+</tr>
+<tr>
+<td><a id="removeat"></a>RemoveAt</td>
+<td><code>WorldBuilderCityManager.RemoveAt() (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5eed40</code></td>
+<td><code>0x5ef890</code></td>
+</tr>
+<tr>
+<td><a id="removebuilding"></a>RemoveBuilding</td>
+<td><code>WorldBuilderCityManager:RemoveBuilding(kCity?: any, eBuilding: number/string[BuildingTypes]) → boolean ⚠</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5eede0</code></td>
+<td><code>0x5ef930</code></td>
+</tr>
+<tr>
+<td><a id="removedistrict"></a>RemoveDistrict</td>
+<td><code>WorldBuilderCityManager:RemoveDistrict(kCity: District, eDistrict: number/string[DistrictTypes]) → boolean</code><br><small>args: <code>eDistrict</code> — Index of a row of the Districts table (the value of GameInfo.Districts[...].Index).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5eee90</code></td>
+<td><code>0x5ef9e0</code></td>
+</tr>
+<tr>
+<td><a id="setcityvalue"></a>SetCityValue</td>
+<td><code>WorldBuilderCityManager:SetCityValue(arg1?: any, uiType: number/string, arg3?: number) (or nothing) ⚠</code><br><small>args: <code>uiType</code> — A string.</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ef010</code></td>
+<td><code>0x5efb60</code></td>
+</tr>
+<tr>
+<td><a id="setdistrictvalue"></a>SetDistrictValue</td>
+<td><code>WorldBuilderCityManager:SetDistrictValue(arg1?: any, uiType: number/string, arg3?: number[HksObject]) (or nothing) ⚠</code><br><small>args: <code>arg1</code> — A District object (the scripts pass a variable named pDistrict).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ef180</code></td>
+<td><code>0x5efcd0</code></td>
+</tr>
+<tr>
+<td><a id="setplotowner"></a>SetPlotOwner ★</td>
+<td><code>WorldBuilderCityManager:SetPlotOwner() (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x5ef340</code></td>
+<td><code>0x5efe90</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>SetPlotOwner</h3>
+<p>Sets or clears the owner of a plot through the WorldBuilder city manager.</p>
+<ul>
+<li>The recovered signature is empty or partial. Civ6-GCO calls two forms: SetPlotOwner(x, y, false) to clear ownership and SetPlotOwner(x, y, ownerID, cityID) to assign it, clearing first and then assigning. See Plot.SetOwner for the same two-step flip.
+  <em>[inferred; evidence: community-reference — Civ6-GCO Scripts/GCO_PlotScript.lua:404-430; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="Plot.html#setowner">Plot.SetOwner</a></p></main><script>const ROOT="../";</script><script src="../search.js"></script>

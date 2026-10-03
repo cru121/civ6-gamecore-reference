@@ -1,0 +1,542 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Configuration</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Globals</a> › Configuration</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Configuration</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+<th>Section</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="configuration__game__key_calendartype"></a>Game::Key_CalendarType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a430</code></td>
+<td><code>0xb8c430</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_enabledmods"></a>Game::Key_EnabledMods</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a468</code></td>
+<td><code>0xb8c468</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_game"></a>Game::Key_Game</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a400</code></td>
+<td><code>0xb8c400</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_gamehandicap"></a>Game::Key_GameHandicap</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a45c</code></td>
+<td><code>0xb8c45c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_gamemode"></a>Game::Key_GameMode</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a44c</code></td>
+<td><code>0xb8c44c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_gamerealism"></a>Game::Key_GameRealism</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4a8</code></td>
+<td><code>0xb8c4a8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_gamespeedtype"></a>Game::Key_GameSpeedType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a42c</code></td>
+<td><code>0xb8c42c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_lastturnphasetype"></a>Game::Key_LastTurnPhaseType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a424</code></td>
+<td><code>0xb8c424</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_maxturns"></a>Game::Key_MaxTurns</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a414</code></td>
+<td><code>0xb8c414</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_modid"></a>Game::Key_ModID</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a470</code></td>
+<td><code>0xb8c470</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_modtitle_loc"></a>Game::Key_ModTitle_Loc</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a474</code></td>
+<td><code>0xb8c474</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_quickmovement"></a>Game::Key_QuickMovement</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a438</code></td>
+<td><code>0xb8c438</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_requiredmods"></a>Game::Key_RequiredMods</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a46c</code></td>
+<td><code>0xb8c46c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_ruleset"></a>Game::Key_RuleSet</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a460</code></td>
+<td><code>0xb8c460</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_startera"></a>Game::Key_StartEra</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a434</code></td>
+<td><code>0xb8c434</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_startturn"></a>Game::Key_StartTurn</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a408</code></td>
+<td><code>0xb8c408</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_startyear"></a>Game::Key_StartYear</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a40c</code></td>
+<td><code>0xb8c40c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_syncrandomseed"></a>Game::Key_SyncRandomSeed</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a404</code></td>
+<td><code>0xb8c404</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_turnlimittype"></a>Game::Key_TurnLimitType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a410</code></td>
+<td><code>0xb8c410</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_turnphasetype"></a>Game::Key_TurnPhaseType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a420</code></td>
+<td><code>0xb8c420</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_turntimertype"></a>Game::Key_TurnTimerType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a418</code></td>
+<td><code>0xb8c418</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__game__key_worldbuilder"></a>Game::Key_WorldBuilder</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a478</code></td>
+<td><code>0xb8c478</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_isworldbuilder"></a>Map::Key_IsWorldBuilder</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4e4</code></td>
+<td><code>0xb8c4e4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_iswrapon"></a>Map::Key_IsWrapOn</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4bc</code></td>
+<td><code>0xb8c4bc</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_map"></a>Map::Key_Map</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4b0</code></td>
+<td><code>0xb8c4b0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_mapimportfilename"></a>Map::Key_MapImportFilename</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4b8</code></td>
+<td><code>0xb8c4b8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_mapscript"></a>Map::Key_MapScript</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4c8</code></td>
+<td><code>0xb8c4c8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_mapsize"></a>Map::Key_MapSize</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4c0</code></td>
+<td><code>0xb8c4c0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_maptemperaturetype"></a>Map::Key_MapTemperatureType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4e8</code></td>
+<td><code>0xb8c4e8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_randomseed"></a>Map::Key_RandomSeed</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4d0</code></td>
+<td><code>0xb8c4d0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__map__key_startingtemperatureaveragevalue"></a>Map::Key_StartingTemperatureAverageValue</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a4ec</code></td>
+<td><code>0xb8c4ec</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_agendatypeid"></a>Player::Key_AgendaTypeID</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b644</code></td>
+<td><code>0xb8d644</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_agendatypename"></a>Player::Key_AgendaTypeName</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b648</code></td>
+<td><code>0xb8d648</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_civilizationadjective"></a>Player::Key_CivilizationAdjective</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b614</code></td>
+<td><code>0xb8d614</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_civilizationdescription"></a>Player::Key_CivilizationDescription</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b60c</code></td>
+<td><code>0xb8d60c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_civilizationleveltypeid"></a>Player::Key_CivilizationLevelTypeID</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b61c</code></td>
+<td><code>0xb8d61c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_civilizationleveltypename"></a>Player::Key_CivilizationLevelTypeName</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b618</code></td>
+<td><code>0xb8d618</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_civilizationshortdescription"></a>Player::Key_CivilizationShortDescription</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b610</code></td>
+<td><code>0xb8d610</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_civilizationtypeid"></a>Player::Key_CivilizationTypeID</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b608</code></td>
+<td><code>0xb8d608</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_civilizationtypename"></a>Player::Key_CivilizationTypeName</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b604</code></td>
+<td><code>0xb8d604</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_handicaptypeid"></a>Player::Key_HandicapTypeID</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b650</code></td>
+<td><code>0xb8d650</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_humanrequired"></a>Player::Key_HumanRequired</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b67c</code></td>
+<td><code>0xb8d67c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_isalive"></a>Player::Key_IsAlive</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b688</code></td>
+<td><code>0xb8d688</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_ishidden"></a>Player::Key_IsHidden</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b684</code></td>
+<td><code>0xb8d684</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_leaderdescription"></a>Player::Key_LeaderDescription</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b628</code></td>
+<td><code>0xb8d628</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_leadername"></a>Player::Key_LeaderName</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b630</code></td>
+<td><code>0xb8d630</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_leaderrandompoolid"></a>Player::Key_LeaderRandomPoolID</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b634</code></td>
+<td><code>0xb8d634</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_leadershortdescription"></a>Player::Key_LeaderShortDescription</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b62c</code></td>
+<td><code>0xb8d62c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_leadertypeid"></a>Player::Key_LeaderTypeID</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b624</code></td>
+<td><code>0xb8d624</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_leadertypename"></a>Player::Key_LeaderTypeName</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b620</code></td>
+<td><code>0xb8d620</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_nickname"></a>Player::Key_NickName</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b640</code></td>
+<td><code>0xb8d640</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_playercolortype"></a>Player::Key_PlayerColorType</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b654</code></td>
+<td><code>0xb8d654</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_players"></a>Player::Key_Players</td>
+<td><code>const Data::VariantKeyPairArray&lt;64, 64&gt;</code></td>
+<td>4352</td>
+<td>.data</td>
+<td><code>0xb8a500</code></td>
+<td><code>0xb8c500</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_slotstatus"></a>Player::Key_SlotStatus</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b668</code></td>
+<td><code>0xb8d668</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_startingeratypename"></a>Player::Key_StartingEraTypeName</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b65c</code></td>
+<td><code>0xb8d65c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_startingposition"></a>Player::Key_StartingPosition</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b66c</code></td>
+<td><code>0xb8d66c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="configuration__player__key_team"></a>Player::Key_Team</td>
+<td><code>const VariantKey</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8b64c</code></td>
+<td><code>0xb8d64c</code></td>
+<td>verified</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

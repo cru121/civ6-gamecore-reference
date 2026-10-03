@@ -1,0 +1,493 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ComponentType</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Enums</a> › ComponentType</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>ComponentType</h1>
+<p>Lua constant table <code>ComponentType</code>. Engine enum: <code>GameCore::Player::ComponentID::Type</code>.</p>
+<p>The table name and the <strong>Lua key</strong> column come from the <a href="https://docs.google.com/spreadsheets/d/1EiCTOlPx3IkeAmU0xujGEp9k0v9VuCxe95OcrsyWOVs/edit?usp=sharing">Civilization VI Modding Companion</a> (ChimpanG, expanded and maintained by WildW). The engine names and values come from the game library's debug info. Every member the Companion lists has the same value in the engine enum, which is how the two were matched.</p>
+<p><strong>3 of 93</strong> engine members are listed by the Companion. The others exist in the engine, but we do not know whether Lua exposes them, so use the Lua key column as the safe set.</p>
+<table>
+<thead>
+<tr>
+<th>Lua key</th>
+<th>Engine name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>not listed</em></td>
+<td><code>UNDEFINED</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>UNIT</code></td>
+<td><code>UNIT</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>CITY</code></td>
+<td><code>CITY</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>DISTRICT</code></td>
+<td><code>DISTRICT</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_CULTURE</code></td>
+<td>5</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_DIPLOMACY</code></td>
+<td>6</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_GREATPEOPLE</code></td>
+<td>7</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_QUESTMANAGER</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_RELIGION</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_STATS</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_TRADEMANAGER</code></td>
+<td>11</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_TRADEGRAPH</code></td>
+<td>12</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_TRADEEDGE</code></td>
+<td>13</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_GOSSIP</code></td>
+<td>14</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_HISTORYMANAGER</code></td>
+<td>15</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>MAP_INSTANCE</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>OBJECTPAIRING_MANAGER</code></td>
+<td>17</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER</code></td>
+<td>18</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_BONUSES</code></td>
+<td>19</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_ERAS</code></td>
+<td>20</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_CITIES</code></td>
+<td>21</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_CITYNAMEMANAGER</code></td>
+<td>22</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_CULTURE</code></td>
+<td>23</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_DIPLOMACY</code></td>
+<td>24</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_DISTRICTS</code></td>
+<td>25</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_ESPIONAGE</code></td>
+<td>26</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_GOODYHUT</code></td>
+<td>27</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_GPPOINTS</code></td>
+<td>28</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_INFLUENCE</code></td>
+<td>29</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_QUESTS</code></td>
+<td>30</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_RELIGION</code></td>
+<td>31</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_RESOURCES</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_STATS</code></td>
+<td>33</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_TECHS</code></td>
+<td>34</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_TRADE</code></td>
+<td>35</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_TREASURY</code></td>
+<td>36</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_VISIBILITY</code></td>
+<td>37</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_NOTIFICATION</code></td>
+<td>38</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_NOTIFICATION_LIST</code></td>
+<td>39</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_UNITS</code></td>
+<td>40</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_WMDS</code></td>
+<td>41</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_IMPROVEMENTS</code></td>
+<td>42</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_CULTURALIDENTITY</code></td>
+<td>43</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>FORMATION</code></td>
+<td>44</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>DIPLOMACY</code></td>
+<td>45</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_GLOBALAI</code></td>
+<td>46</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_CULTURE</code></td>
+<td>47</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_DIPLOMACY</code></td>
+<td>48</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_ECONOMIC</code></td>
+<td>49</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_ESPIONAGE</code></td>
+<td>50</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_FLAVORMANAGER</code></td>
+<td>51</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_GOVERNORS</code></td>
+<td>52</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_GRANDSTRATEGIC</code></td>
+<td>53</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_HOMELAND</code></td>
+<td>54</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_MILITARY</code></td>
+<td>55</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_OPERATION</code></td>
+<td>56</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_RELIGION</code></td>
+<td>57</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_RESEARCH</code></td>
+<td>58</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_TACTICAL</code></td>
+<td>59</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_TARGETS</code></td>
+<td>60</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_UNIT_PLANNING_MANAGER</code></td>
+<td>61</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_BEHAVIORTREE_MANAGER</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_BEHAVIORTREE</code></td>
+<td>63</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_CONTROL_MANAGER</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_INFLUENCEMAP</code></td>
+<td>65</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_CONTRACT</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>AI_CITYBUILD</code></td>
+<td>67</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>BARBARIAN_MANAGER</code></td>
+<td>68</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>MODIFIER_DYNAMIC</code></td>
+<td>69</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>IMPROVEMENT</code></td>
+<td>70</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_NAMEMANAGER</code></td>
+<td>71</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_NATIONALPARKS</code></td>
+<td>72</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_MANAGER</code></td>
+<td>73</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_CONFIGURATION</code></td>
+<td>74</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>MAP_CONFIGURATION</code></td>
+<td>75</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_CONFIGURATION</code></td>
+<td>76</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GOVERNOR</code></td>
+<td>77</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>MAP_PLOT</code></td>
+<td>78</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_CLIMATE</code></td>
+<td>79</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_RANDOM_EVENTS</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_TECHS</code></td>
+<td>81</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_STORM</code></td>
+<td>82</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_DROUGHT</code></td>
+<td>83</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_CONGRESS</code></td>
+<td>84</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>WORLD_CONGRESS</code></td>
+<td>85</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_ECONOMIC</code></td>
+<td>86</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_FIRE</code></td>
+<td>87</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_ONEOFF_EVENT</code></td>
+<td>88</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_SECRETSOCIETIESMANAGER</code></td>
+<td>89</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>GAME_HEROESMANAGER</code></td>
+<td>90</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>PLAYER_HEROES</code></td>
+<td>91</td>
+</tr>
+<tr>
+<td><em>not listed</em></td>
+<td><code>BARBARIAN_CLANSMANAGER</code></td>
+<td>92</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

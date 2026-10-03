@@ -1,0 +1,530 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Map</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Class layouts</a> › Map</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Map</h1>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Size</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Map/Area.Boundaries.html">Map::Area::Boundaries</a></td>
+<td>16 (0x10)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Area.Builder.html">Map::Area::Builder</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Area.Container.html">Map::Area::Container</a></td>
+<td>80 (0x50)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Area.Instance.html">Map::Area::Instance</a></td>
+<td>3464 (0xd88)</td>
+<td>23</td>
+</tr>
+<tr>
+<td><a href="Map/CityContainer.html">Map::CityContainer</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/CityPlots.html">Map::CityPlots</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Continent.Instance.html">Map::Continent::Instance</a></td>
+<td>32 (0x20)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.Eruption.html">Map::Feature::Eruption</a></td>
+<td>12 (0xc)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.ExtraYield.html">Map::Feature::ExtraYield</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.FeatureYields.html">Map::Feature::FeatureYields</a></td>
+<td>40 (0x28)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.IManager.html">Map::Feature::IManager</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.IVolcano.html">Map::Feature::IVolcano</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.Ice.html">Map::Feature::Ice</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.Instance.html">Map::Feature::Instance</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.Manager.html">Map::Feature::Manager</a></td>
+<td>600 (0x258)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.NaturalWonderVolcano.html">Map::Feature::NaturalWonderVolcano</a></td>
+<td>80 (0x50)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Feature.Volcano.html">Map::Feature::Volcano</a></td>
+<td>160 (0xa0)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="Map/FeatureLayout.html">Map::FeatureLayout</a></td>
+<td>40 (0x28)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/FeaturePlots.html">Map::FeaturePlots</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Generator.html">Map::Generator</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/GetGameInitialItemsOverridesArgs.html">Map::GetGameInitialItemsOverridesArgs</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/GetMapInitDataArgs.html">Map::GetMapInitDataArgs</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/IInstance.html">Map::IInstance</a></td>
+<td>96 (0x60)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/IInstance.ComponentEntry.html">Map::IInstance::ComponentEntry</a></td>
+<td>64 (0x40)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Improvement.Instance.html">Map::Improvement::Instance</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Improvement.Yields.YieldContributions.html">Map::Improvement::Yields::YieldContributions</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/InitializationParameters.html">Map::InitializationParameters</a></td>
+<td>24 (0x18)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Map/Instance.html">Map::Instance</a></td>
+<td>656 (0x290)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="Map/InstanceValues.html">Map::InstanceValues</a></td>
+<td>960 (0x3c0)</td>
+<td>17</td>
+</tr>
+<tr>
+<td><a href="Map/Landmass.Builder.html">Map::Landmass::Builder</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Landmass.Container.html">Map::Landmass::Container</a></td>
+<td>80 (0x50)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Landmass.Instance.html">Map::Landmass::Instance</a></td>
+<td>28 (0x1c)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Map/MapAnalysis.html">Map::MapAnalysis</a></td>
+<td>200 (0xc8)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Map/MapAnalysis.ChokePointChain.html">Map::MapAnalysis::ChokePointChain</a></td>
+<td>40 (0x28)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/MapAnalysis.ChokePointLine.html">Map::MapAnalysis::ChokePointLine</a></td>
+<td>40 (0x28)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="Map/MergeRegion.html">Map::MergeRegion</a></td>
+<td>168 (0xa8)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Map/MergeRegion.Edge.html">Map::MergeRegion::Edge</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/MergeRegion.TempTri.html">Map::MergeRegion::TempTri</a></td>
+<td>20 (0x14)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/MergeRegion.Tri.html">Map::MergeRegion::Tri</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Player.Visibility.Instance.html">Map::Player::Visibility::Instance</a></td>
+<td>976 (0x3d0)</td>
+<td>17</td>
+</tr>
+<tr>
+<td><a href="Map/Player.Visibility.Instance.Layer.html">Map::Player::Visibility::Instance::Layer</a></td>
+<td>24 (0x18)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Map/Player.Visibility.Manager.html">Map::Player::Visibility::Manager</a></td>
+<td>88 (0x58)</td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="Map/Player.Visibility.PlayerTypeCount.html">Map::Player::Visibility::PlayerTypeCount</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.CityAttributes.html">Map::Plot::CityAttributes</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.ICityAttributes.html">Map::Plot::ICityAttributes</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.IInstance.html">Map::Plot::IInstance</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.Instance.html">Map::Plot::Instance</a></td>
+<td>80 (0x50)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.Reflection.CacheVariants1.html">Map::Plot::Reflection::CacheVariants1</a></td>
+<td>4 (0x4)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.Reflection.CityAttributes1.html">Map::Plot::Reflection::CityAttributes1</a></td>
+<td>24 (0x18)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.Reflection.Constants1.html">Map::Plot::Reflection::Constants1</a></td>
+<td>20 (0x14)</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.Reflection.TerrainVis1.html">Map::Plot::Reflection::TerrainVis1</a></td>
+<td>36 (0x24)</td>
+<td>33</td>
+</tr>
+<tr>
+<td><a href="Map/Plot.Reflection.Variants1.html">Map::Plot::Reflection::Variants1</a></td>
+<td>18 (0x12)</td>
+<td>17</td>
+</tr>
+<tr>
+<td><a href="Map/Reflection.CoastalLowLand1.html">Map::Reflection::CoastalLowLand1</a></td>
+<td>32 (0x20)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Map/Reflection.CoastalLowLandProtection1.html">Map::Reflection::CoastalLowLandProtection1</a></td>
+<td>32 (0x20)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Map/Reflection.Constants1.html">Map::Reflection::Constants1</a></td>
+<td>28 (0x1c)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="Map/Reflection.Counts1.html">Map::Reflection::Counts1</a></td>
+<td>12 (0xc)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Reflection.Resources1.html">Map::Reflection::Resources1</a></td>
+<td>64 (0x40)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Reflection.RiverFlood1.html">Map::Reflection::RiverFlood1</a></td>
+<td>16 (0x10)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Reflection.RiverInfo1.html">Map::Reflection::RiverInfo1</a></td>
+<td>14 (0xe)</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="Map/Region.AreaContinentPair.html">Map::Region::AreaContinentPair</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Region.Builder.html">Map::Region::Builder</a></td>
+<td>232 (0xe8)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Map/Region.Chokepoint.html">Map::Region::Chokepoint</a></td>
+<td>136 (0x88)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Map/Region.Container.html">Map::Region::Container</a></td>
+<td>152 (0x98)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Region.ContinentMarking.html">Map::Region::ContinentMarking</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Region.Instance.html">Map::Region::Instance</a></td>
+<td>48 (0x30)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Map/Region.RegionSplitter.html">Map::Region::RegionSplitter</a></td>
+<td>152 (0x98)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Map/Region.RegionSplitter.ContinentData.html">Map::Region::RegionSplitter::ContinentData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Region.RegionSplitter.MarkData.html">Map::Region::RegionSplitter::MarkData</a></td>
+<td>1 (0x1)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/RegionCell.html">Map::RegionCell</a></td>
+<td>120 (0x78)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="Map/River.IRiverDataModel.html">Map::River::IRiverDataModel</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/River.Instance.html">Map::River::Instance</a></td>
+<td>216 (0xd8)</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a href="Map/River.Manager.html">Map::River::Manager</a></td>
+<td>432 (0x1b0)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/River.RiverDataModel.html">Map::River::RiverDataModel</a></td>
+<td>256 (0x100)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Route.Connections.html">Map::Route::Connections</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Route.Instance.html">Map::Route::Instance</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Route.Manager.html">Map::Route::Manager</a></td>
+<td>96 (0x60)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Route.Portal.AreaInstance.html">Map::Route::Portal::AreaInstance</a></td>
+<td>216 (0xd8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Route.Portal.Instance.html">Map::Route::Portal::Instance</a></td>
+<td>152 (0x98)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/SparseComponentIDGrid.html">Map::SparseComponentIDGrid</a></td>
+<td>32 (0x20)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Map/SparseComponentIDGridEntry.html">Map::SparseComponentIDGridEntry</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/StartPosInfo.html">Map::StartPosInfo</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/StartPositioner.html">Map::StartPositioner</a></td>
+<td>192 (0xc0)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="Map/StartRegion.Instance.html">Map::StartRegion::Instance</a></td>
+<td>48 (0x30)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.Builder.FeatureCheckOptions.html">Map::Terrain::Builder::FeatureCheckOptions</a></td>
+<td>2 (0x2)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.Builder.FeatureCheckOptions.CheckMultiTiled.html">Map::Terrain::Builder::FeatureCheckOptions::CheckMultiTiled</a></td>
+<td>1 (0x1)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.Builder.FeatureCheckOptions.IgnoreExistingFeature.html">Map::Terrain::Builder::FeatureCheckOptions::IgnoreExistingFeature</a></td>
+<td>1 (0x1)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.Builder.FeatureParam.html">Map::Terrain::Builder::FeatureParam</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.CoastalLowlandDataModel.html">Map::Terrain::CoastalLowlandDataModel</a></td>
+<td>88 (0x58)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.Desert.html">Map::Terrain::Desert</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.LandmassContinentPair.html">Map::Terrain::LandmassContinentPair</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.Manager.html">Map::Terrain::Manager</a></td>
+<td>504 (0x1f8)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.MountainRange.html">Map::Terrain::MountainRange</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Terrain.NamedTerritory.html">Map::Terrain::NamedTerritory</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Territory.Boundaries.html">Map::Territory::Boundaries</a></td>
+<td>16 (0x10)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Map/Territory.Builder.html">Map::Territory::Builder</a></td>
+<td>56 (0x38)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Map/Territory.Container.html">Map::Territory::Container</a></td>
+<td>128 (0x80)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Territory.Instance.html">Map::Territory::Instance</a></td>
+<td>232 (0xe8)</td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="Map/Territory.OceanSplitter.html">Map::Territory::OceanSplitter</a></td>
+<td>184 (0xb8)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Map/Territory.OceanSplitter.FloodFillNode.html">Map::Territory::OceanSplitter::FloodFillNode</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Map/Territory.OceanSplitter.MarkData.html">Map::Territory::OceanSplitter::MarkData</a></td>
+<td>1 (0x1)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Map/UnitContainer.html">Map::UnitContainer</a></td>
+<td>168 (0xa8)</td>
+<td>5</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

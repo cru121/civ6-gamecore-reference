@@ -1,0 +1,221 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PlayerUnits</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › PlayerUnits</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>PlayerUnits</h1>
+<p>7 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerUnits</code> instance resolver (plain).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="changeaddondistrictfounding"></a>ChangeAddOnDistrictFounding</td>
+<td><code>PlayerUnits:ChangeAddOnDistrictFounding(districtHash: integer, unitHash: integer, iDelta: integer)</code></td>
+<td>Adds a delta to a counter keyed by district hash and unit hash, recording that a unit can found or add on to a district.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__units__changeaddondistrictfounding">Player::Units::ChangeAddOnDistrictFounding</a></td>
+<td><code>0x34cb20</code></td>
+</tr>
+<tr>
+<td><a id="changeextrabuildcharges"></a>ChangeExtraBuildCharges</td>
+<td><code>PlayerUnits:ChangeExtraBuildCharges(eUnit: integer, iChange: integer)</code></td>
+<td>Adds a delta to the extra build charges a player grants to a unit type, clamped at zero.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__units__changeextrabuildcharges">Player::Units::ChangeExtraBuildCharges</a></td>
+<td><code>0x34cd90</code></td>
+</tr>
+<tr>
+<td><a id="changeproductionmodifier"></a>ChangeProductionModifier</td>
+<td><code>PlayerUnits:ChangeProductionModifier(eUnit: integer, iDelta: integer)</code></td>
+<td>Adds a delta to a per-unit-type production modifier stored for the player. The delta is scaled by a constant and stored as a fixed-point value.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__units__changeproductionmodifier">Player::Units::ChangeProductionModifier</a></td>
+<td><code>0x9497a0</code></td>
+</tr>
+<tr>
+<td><a id="setbannedproductionyield"></a>SetBannedProductionYield</td>
+<td><code>PlayerUnits:SetBannedProductionYield(eNewYield: integer)</code></td>
+<td>Sets which yield type may not be used to produce units and, when a restriction is active, removes non-formation-class-2 units currently at the head of every city's build queue.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__units__setbannedproductionyield">Player::Units::SetBannedProductionYield</a></td>
+<td><code>0x350cf0</code></td>
+</tr>
+<tr>
+<td><a id="setcanevertrain"></a>SetCanEverTrain</td>
+<td><code>PlayerUnits:SetCanEverTrain()</code></td>
+<td>Rebuilds the player's table of unit types that can ever be trained, taking into account unlocked units, civ/leader/level traits, unit properties, and replacement relationships.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__units__setcanevertrain">Player::Units::SetCanEverTrain</a></td>
+<td><code>0x350dc0</code></td>
+</tr>
+<tr>
+<td><a id="setmodifiedarmycorpsstrength"></a>SetModifiedArmyCorpsStrength</td>
+<td><code>PlayerUnits:SetModifiedArmyCorpsStrength(bLand: boolean, bCorps: boolean, iAmount: integer)</code></td>
+<td>Adjusts one of four stored strength modifiers by an amount, chosen by whether the unit is land/sea and corps/army.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__units__setmodifiedarmycorpsstrength">Player::Units::SetModifiedArmyCorpsStrength</a></td>
+<td><code>0x3512d0</code></td>
+</tr>
+<tr>
+<td><a id="setpromotionselected"></a>SetPromotionSelected</td>
+<td><code>PlayerUnits:SetPromotionSelected(iUnitID: integer, ePromotion: integer, bClearProposals: boolean)</code></td>
+<td>Records that a promotion has been selected by incrementing its counter in a promotion list, and optionally rebuilds a pending proposals list excluding entries for the given unit id.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__units__setpromotionselected">Player::Units::SetPromotionSelected</a></td>
+<td><code>0x351330</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>ChangeAddOnDistrictFounding</h3>
+<p>Arguments: <code>districtHash</code> — hash of the district type; <code>unitHash</code> — hash of the unit type; <code>iDelta</code> — amount added to the counter</p>
+<p><strong>Writes</strong>
+- nested hash map (district hash to unit hash to count) in the variant map at this+0x2c8; creates entries on demand</p>
+<p><strong>Side effects</strong>
+- allocates new map entries when keys are missing</p>
+<p><strong>Input checks:</strong> No validation of the hashes; any value creates an entry. Counts can go negative or stay at zero without removal.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- must run on the game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: direct replicated state write; hash maps must stay identical on all clients. <strong>Risk:</strong> low (hash-keyed counter with auto-create). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- outer map lookup/insert by district hash, inner lookup/insert by unit hash with initial 0, then adds iDelta</p>
+<p><strong>Inferred</strong>
+- nonzero count enables the unit to found that district; semantic taken from the name</p>
+<p><strong>Open questions</strong>
+- where the counters are read and how zero or negative values are treated</p>
+<h3>ChangeExtraBuildCharges</h3>
+<p>Arguments: <code>eUnit</code> — unit type; <code>iChange</code> — delta to add</p>
+<p><strong>Writes</strong>
+- per-unit extra build charges array at this+0x318</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> silently ignores out-of-range or negative unit ids; result clamped to 0</p>
+<p><strong>Preconditions</strong>
+- gameplay thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (bounds checked and clamped). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check 0 &lt;= unit &lt; count at +0x338
+- clamps negative sum to 0</p>
+<p><strong>Inferred</strong>
+- applies to newly created units of that type (not confirmed)</p>
+<p><strong>Open questions</strong>
+- whether existing units are updated</p>
+<h3>ChangeProductionModifier</h3>
+<p>Arguments: <code>eUnit</code> — unit type index to modify; <code>iDelta</code> — amount to add (scaled by a small constant, then converted to a fixed-point int)</p>
+<p><strong>Writes</strong>
+- per-unit-type int array in a game variable at this+0x200 (production modifier, fixed point)</p>
+<p><strong>Side effects</strong>
+- marks the game variable as edited (FAutoVariable edit)</p>
+<p><strong>Input checks:</strong> Silently does nothing if the unit type is not below the array size; the unsigned compare also rejects negative ids.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change, must be applied identically on all clients. <strong>Risk:</strong> low (bounds-checked simple array add). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- bounds check against this+0x220
+- multiplies delta by a float constant then splits into integer and fractional parts packed as integer part shifted by 8 plus 8-bit fraction
+- adds the packed value into the array slot</p>
+<p><strong>Inferred</strong>
+- value is a percentage-like modifier in 8.8 style fixed point
+- constant is likely 0.01</p>
+<p><strong>Open questions</strong>
+- exact constant value and the modifier semantics</p>
+<h3>SetBannedProductionYield</h3>
+<p>Arguments: <code>eNewYield</code> — yield type that is banned for unit production</p>
+<p><strong>Writes</strong>
+- banned yield value in a tracked variable at this+0x568
+- city build queues (PopFront) in each city of the player</p>
+<p><strong>Side effects</strong>
+- pops the front item of the build queue of cities whose current production is a unit whose formation class is not 2</p>
+<p><strong>Input checks:</strong> Unit index is bounds checked against definition list (null definition otherwise, which would then be dereferenced - crash risk). No validation of the yield value.</p>
+<p><strong>Preconditions</strong>
+- gameplay state
+- player with a city list</p>
+<p><strong>Multiplayer:</strong> may-desync: edits city queues, must run identically everywhere. <strong>Risk:</strong> medium (mutates build queues; possible null deref on bad definition). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- assigns new yield into this+0x568 via CopyAssignmentDo
+- only loops when int at this+0x578 equals 1
+- loops over cities of player and pops queue front when current unit formation class != 2</p>
+<p><strong>Inferred</strong>
+- formation class 2 is probably a civilian or special class
+- this+0x578 is probably a flag that the ban is active</p>
+<p><strong>Open questions</strong>
+- meaning of the 0x578 field and formation class 2
+- helper template name suggests different type but writes a YieldTypes</p>
+<h3>SetCanEverTrain</h3>
+<p><strong>Writes</strong>
+- per-unit can-ever-train array at this+0x118 (reset to -1, then set to unit index when allowed)</p>
+<p><strong>Side effects</strong>
+- resizes and refills the table</p>
+<p><strong>Input checks:</strong> null definitions handled; per-unit pointers in the definition list assumed non-null</p>
+<p><strong>Preconditions</strong>
+- owning player set at this+0x90
+- definitions loaded</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> medium (bulk rebuild of cached table). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- array at +0x118 set to definition count entries of -1
+- units in list at +0x288 are marked allowed immediately
+- entries with +0x128 value -1 get checked further against level hash cases and properties
+- unit removed (set to -1) by flag bits at +0x1b8/+0x1b9 or when definition field +0x2d0 not in civ/leader lists
+- also marks replaced units from list at +0x2b0</p>
+<p><strong>Inferred</strong>
+- level hash constants select property hashes for civilization levels (e.g. city-state/free city)
+- list at +0x2b0 is unit replacement or upgrade targets</p>
+<p><strong>Open questions</strong>
+- meaning of the hash constants and flag bits
+- the function exits through the definition loop end; any additional state set is not seen</p>
+<h3>SetModifiedArmyCorpsStrength</h3>
+<p>Arguments: <code>bLand</code> — true selects land slots, false naval slots (inferred); <code>bCorps</code> — true selects corps, false army (inferred); <code>iAmount</code> — amount added to the current value</p>
+<p><strong>Writes</strong>
+- one of four tracked ints at this+0x4d8, 0x4f0, 0x508, 0x520 (value at +0x10 of each)</p>
+<p><strong>Side effects</strong>
+- tracked variable assignment, may notify variable system</p>
+<p><strong>Input checks:</strong> No validation; any int accepted.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change. <strong>Risk:</strong> low (simple add to fixed slot). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- four-way selection by two bools
+- new value is old value plus iAmount (despite the Set name it adds)</p>
+<p><strong>Inferred</strong>
+- bool meanings (land vs sea, corps vs army) are deduced from the name</p>
+<p><strong>Open questions</strong>
+- which bool order maps to which slot is deduced only from the name</p>
+<h3>SetPromotionSelected</h3>
+<p>Arguments: <code>iUnitID</code> — unit id whose pending proposals are dropped; <code>ePromotion</code> — promotion type to mark; <code>bClearProposals</code> — also remove proposals for this unit</p>
+<p><strong>Writes</strong>
+- promotion/count pair list at this+0x388 (count of matching entry incremented)
+- proposal vector at this+0x3b8 (cleared and refilled)</p>
+<p><strong>Side effects</strong>
+- allocates a temporary vector copy</p>
+<p><strong>Input checks:</strong> If promotion not found in the list nothing is incremented (silent). No unit validation.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change. <strong>Risk:</strong> low (simple list updates). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- linear search of 8-byte pairs for promotion
+- increments second element of found pair
+- if bClearProposals copies vector at +0x3c8, clears +0x3b8 and re-adds entries whose id field differs from iUnitID</p>
+<p><strong>Inferred</strong>
+- list is promotion with selection count
+- vector types in the symbol names look mismatched (symbol folding)</p>
+<p><strong>Open questions</strong>
+- real meaning of the vectors at 0x3b8 and 0x3c8</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

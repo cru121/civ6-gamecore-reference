@@ -1,0 +1,749 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Cache</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Globals</a> › Cache</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Cache</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+<th>Section</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="cache__aigrandstrategic__eventstream__ms_aeventinstances"></a>AiGrandStrategic::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb892b0</code></td>
+<td><code>0xb8b2b0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__city__eventstream__ms_aeventinstances"></a>City::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb893f0</code></td>
+<td><code>0xb8b3f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__city__ms_empty"></a>City::ms_empty</td>
+<td><code>CityAttributes</code></td>
+<td>—</td>
+<td>.data</td>
+<td><code>0xb5fc60</code></td>
+<td><code>0xb61c60</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="cache__citybuildqueue__eventstream__ms_aeventinstances"></a>CityBuildQueue::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89300</code></td>
+<td><code>0xb8b300</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__citybuildings__eventstream__ms_aeventinstances"></a>CityBuildings::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89350</code></td>
+<td><code>0xb8b350</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__citycitizens__eventstream__ms_aeventinstances"></a>CityCitizens::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb893a0</code></td>
+<td><code>0xb8b3a0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__congress__manager__ms_uicomponentid"></a>Congress::Manager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8a360</code></td>
+<td><code>0xb8c360</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="cache__congress__manager__ms_uicomponentindex"></a>Congress::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb609f0</code></td>
+<td><code>0xb629f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__context__ms_pkinstance"></a>Context::ms_pkInstance</td>
+<td><a href="../layouts/Cache/Context.Instance.html">Cache::Context::Instance*</a></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb88720</code></td>
+<td><code>0xb8a720</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__district__eventstream__ms_aeventinstances"></a>District::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb894a0</code></td>
+<td><code>0xb8b4a0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__emergency__eventstream__ms_ainstanceeventinstances"></a>Emergency::EventStream::ms_aInstanceEventInstances</td>
+<td><code>EventInstanceEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb894f0</code></td>
+<td><code>0xb8b4f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__emergency__eventstream__ms_amanagereventinstances"></a>Emergency::EventStream::ms_aManagerEventInstances</td>
+<td><code>EventManagerEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89540</code></td>
+<td><code>0xb8b540</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__eventstream__ms_acarbonsequesteredinstances"></a>Game::Climate::EventStream::ms_aCarbonSequesteredInstances</td>
+<td><code>EventCarbonSequesteredEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb896e0</code></td>
+<td><code>0xb8b6e0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__eventstream__ms_aclimateeventinstances"></a>Game::Climate::EventStream::ms_aClimateEventInstances</td>
+<td><code>EventClimateEventVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb895a0</code></td>
+<td><code>0xb8b5a0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__eventstream__ms_adroughtinstances"></a>Game::Climate::EventStream::ms_aDroughtInstances</td>
+<td><code>EventDroughtEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89690</code></td>
+<td><code>0xb8b690</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__eventstream__ms_aoneoffinstances"></a>Game::Climate::EventStream::ms_aOneOffInstances</td>
+<td><code>EventOneOffEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89730</code></td>
+<td><code>0xb8b730</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__eventstream__ms_aresourceconsumedinstances"></a>Game::Climate::EventStream::ms_aResourceConsumedInstances</td>
+<td><code>EventResourceConsumedEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb895f0</code></td>
+<td><code>0xb8b5f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__eventstream__ms_astorminstances"></a>Game::Climate::EventStream::ms_aStormInstances</td>
+<td><code>EventStormEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89640</code></td>
+<td><code>0xb8b640</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__manager__ms_uicomponentid"></a>Game::Climate::Manager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb89590</code></td>
+<td><code>0xb8b590</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="cache__game__climate__manager__ms_uicomponentindex"></a>Game::Climate::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5fe90</code></td>
+<td><code>0xb61e90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__economic__eventstream__ms_aeventinstances"></a>Game::Economic::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb88730</code></td>
+<td><code>0xb8a730</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__eventstream__ms_agameeventinstances"></a>Game::EventStream::ms_aGameEventInstances</td>
+<td><code>GameEventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb897d0</code></td>
+<td><code>0xb8b7d0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__eventstream__ms_agamepauseeventinstances"></a>Game::EventStream::ms_aGamePauseEventInstances</td>
+<td><code>GamePauseEventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89820</code></td>
+<td><code>0xb8b820</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__fallout__eventstream__ms_afallouteventinstances"></a>Game::Fallout::EventStream::ms_aFalloutEventInstances</td>
+<td><code>FalloutEventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89870</code></td>
+<td><code>0xb8b870</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__game__fallout__eventstream__ms_areactoreventinstances"></a>Game::Fallout::EventStream::ms_aReactorEventInstances</td>
+<td><code>ReactorEventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb898c0</code></td>
+<td><code>0xb8b8c0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gameeras__eventstream__ms_aeventinstances"></a>GameEras::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89780</code></td>
+<td><code>0xb8b780</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gamegreatpeople__eventstream__ms_aeventinstances"></a>GameGreatPeople::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89910</code></td>
+<td><code>0xb8b910</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gameheroesmanager__eventstream__ms_aeventinstances"></a>GameHeroesManager::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb88780</code></td>
+<td><code>0xb8a780</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gamehistorymanager__eventstream__ms_amomenteventinstances"></a>GameHistoryManager::EventStream::ms_aMomentEventInstances</td>
+<td><code>MomentEventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb899b0</code></td>
+<td><code>0xb8b9b0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gamehistorymanager__eventstream__ms_arebuildeventinstances"></a>GameHistoryManager::EventStream::ms_aRebuildEventInstances</td>
+<td><code>RebuildEventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89960</code></td>
+<td><code>0xb8b960</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gamenationalparks__eventstream__ms_aeventinstances"></a>GameNationalParks::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89a00</code></td>
+<td><code>0xb8ba00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gamereligion__eventstream__ms_aeventinstances"></a>GameReligion::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89a50</code></td>
+<td><code>0xb8ba50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__gamevictory__eventstream__ms_aeventinstances"></a>GameVictory::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89aa0</code></td>
+<td><code>0xb8baa0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__lua__ms_random"></a>Lua::ms_Random</td>
+<td><code>Math::RandomPCG32</code></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8dfa0</code></td>
+<td><code>0xb8ffa0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__lua__ms_kobserverreference"></a>Lua::ms_kObserverReference</td>
+<td><a href="../layouts/Lua/PlayerReference.html">Lua::PlayerReference</a></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb69aa0</code></td>
+<td><code>0xb6baa0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__eventstream__ms_aplotappealeventinstances"></a>Map::EventStream::ms_aPlotAppealEventInstances</td>
+<td><code>EventPlotAppealEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb888c0</code></td>
+<td><code>0xb8a8c0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__eventstream__ms_aploteventinstances"></a>Map::EventStream::ms_aPlotEventInstances</td>
+<td><code>EventPlotEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb887d0</code></td>
+<td><code>0xb8a7d0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__eventstream__ms_aplotpropertieseventinstances"></a>Map::EventStream::ms_aPlotPropertiesEventInstances</td>
+<td><code>EventPlotPropertiesEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb88870</code></td>
+<td><code>0xb8a870</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__eventstream__ms_avisibilityeventinstances"></a>Map::EventStream::ms_aVisibilityEventInstances</td>
+<td><code>EventVisibilityEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb88820</code></td>
+<td><code>0xb8a820</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__feature__manager__ms_uicomponentindex"></a>Map::Feature::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6ad20</code></td>
+<td><code>0xb6cd20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__player__visibility__ms_pkinstance"></a>Map::Player::Visibility::ms_pkInstance</td>
+<td><a href="../layouts/Cache/Map.Player.Visibility.Manager.html">Cache::Map::Player::Visibility::Manager*</a></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb8a0d0</code></td>
+<td><code>0xb8c0d0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__plot__ms_kemptyproperties"></a>Map::Plot::ms_kEmptyProperties</td>
+<td><code>Data::TypedVariantVectorMap</code></td>
+<td>—</td>
+<td>.data</td>
+<td><code>0xb88910</code></td>
+<td><code>0xb8a910</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__river__manager__ms_uicomponentindex"></a>Map::River::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6ad90</code></td>
+<td><code>0xb6cd90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__terrain__eventstream__ms_aploteventinstances"></a>Map::Terrain::EventStream::ms_aPlotEventInstances</td>
+<td><code>EventCoastalLowLandEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8e030</code></td>
+<td><code>0xb90030</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__terrain__manager__ms_uicomponentindex"></a>Map::Terrain::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6ae60</code></td>
+<td><code>0xb6ce60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__map__ms_kcityattributecache"></a>Map::ms_kCityAttributeCache</td>
+<td><code>CityAttributeCache</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb5e1f0</code></td>
+<td><code>0xb601f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__objectpairing__eventstream__ms_aeventinstances"></a>ObjectPairing::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89b20</code></td>
+<td><code>0xb8bb20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__objectpairing__ms_pkinstance"></a>ObjectPairing::ms_pkInstance</td>
+<td><a href="../layouts/Cache/ObjectPairing.Manager.html">Cache::ObjectPairing::Manager*</a></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb89af0</code></td>
+<td><code>0xb8baf0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__player__eventstream__ms_aplayereventinstances"></a>Player::EventStream::ms_aPlayerEventInstances</td>
+<td><code>EventPlayerEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89c60</code></td>
+<td><code>0xb8bc60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__player__eventstream__ms_aplayerinitializationeventinstances"></a>Player::EventStream::ms_aPlayerInitializationEventInstances</td>
+<td><code>EventPlayerInitializationEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89d00</code></td>
+<td><code>0xb8bd00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__player__eventstream__ms_aplayermanagereventinstances"></a>Player::EventStream::ms_aPlayerManagerEventInstances</td>
+<td><code>EventPlayerManagerEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89cb0</code></td>
+<td><code>0xb8bcb0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__player__ms_pkinstance"></a>Player::ms_pkInstance</td>
+<td><a href="../layouts/Cache/Player.Manager.html">Cache::Player::Manager*</a></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb89ee0</code></td>
+<td><code>0xb8bee0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerai__eventstream__ms_aeventinstances"></a>PlayerAi::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89b70</code></td>
+<td><code>0xb8bb70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerculture__eventstream__ms_aeventinstances"></a>PlayerCulture::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89bc0</code></td>
+<td><code>0xb8bbc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerdiplomacy__eventstream__ms_aeventinstances"></a>PlayerDiplomacy::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89c10</code></td>
+<td><code>0xb8bc10</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playergovernors__eventstream__ms_aeventinstances"></a>PlayerGovernors::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89d50</code></td>
+<td><code>0xb8bd50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playergreatpeoplepoints__eventstream__ms_aeventinstances"></a>PlayerGreatPeoplePoints::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89da0</code></td>
+<td><code>0xb8bda0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerimprovements__eventstream__ms_aeventinstances"></a>PlayerImprovements::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89df0</code></td>
+<td><code>0xb8bdf0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerinfluence__eventstream__ms_aeventinstances"></a>PlayerInfluence::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89e90</code></td>
+<td><code>0xb8be90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerinfluencemap__eventstream__ms_aeventinstances"></a>PlayerInfluenceMap::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89e40</code></td>
+<td><code>0xb8be40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerreligion__eventstream__ms_aeventinstances"></a>PlayerReligion::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89ef0</code></td>
+<td><code>0xb8bef0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerresources__eventstream__ms_aeventinstances"></a>PlayerResources::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89f40</code></td>
+<td><code>0xb8bf40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerstats__eventstream__ms_aeventinstances"></a>PlayerStats::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89f90</code></td>
+<td><code>0xb8bf90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playertechs__eventstream__ms_aeventinstances"></a>PlayerTechs::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb89fe0</code></td>
+<td><code>0xb8bfe0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playertrade__eventstream__ms_aeventinstances"></a>PlayerTrade::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a030</code></td>
+<td><code>0xb8c030</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playertreasury__eventstream__ms_aeventinstances"></a>PlayerTreasury::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a080</code></td>
+<td><code>0xb8c080</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__playerwmds__eventstream__ms_aeventinstances"></a>PlayerWMDs::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a0e0</code></td>
+<td><code>0xb8c0e0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__unit__eventstream__ms_aeventinstances"></a>Unit::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a1d0</code></td>
+<td><code>0xb8c1d0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__unitability__eventstream__ms_aeventinstances"></a>UnitAbility::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a130</code></td>
+<td><code>0xb8c130</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__unitarchaeology__eventstream__ms_aeventinstances"></a>UnitArchaeology::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a180</code></td>
+<td><code>0xb8c180</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__unitexperience__eventstream__ms_aeventinstances"></a>UnitExperience::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a220</code></td>
+<td><code>0xb8c220</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__unitgreatperson__eventstream__ms_aeventinstances"></a>UnitGreatPerson::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a270</code></td>
+<td><code>0xb8c270</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__unitrockband__eventstream__ms_aeventinstances"></a>UnitRockBand::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a2c0</code></td>
+<td><code>0xb8c2c0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__unittrade__eventstream__ms_aeventinstances"></a>UnitTrade::EventStream::ms_aEventInstances</td>
+<td><code>EventEntryVector</code></td>
+<td>80</td>
+<td>.data</td>
+<td><code>0xb8a310</code></td>
+<td><code>0xb8c310</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__ms_beventstreamcacheupdatesenabled"></a>ms_bEventStreamCacheUpdatesEnabled</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb5fe00</code></td>
+<td><code>0xb61e00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__ms_kcomponentmanagers"></a>ms_kComponentManagers</td>
+<td><code>ComponentManagerList</code></td>
+<td>24</td>
+<td>.data</td>
+<td><code>0xb89440</code></td>
+<td><code>0xb8b440</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__ms_knamebufferallocator"></a>ms_kNameBufferAllocator</td>
+<td><code>NameAllocator</code></td>
+<td>24</td>
+<td>.data</td>
+<td><code>0xb89480</code></td>
+<td><code>0xb8b480</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__ms_mhandlers"></a>ms_mHandlers</td>
+<td><code>HandlerMap</code></td>
+<td>40</td>
+<td>.data</td>
+<td><code>0xb5fe08</code></td>
+<td><code>0xb61e08</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__ms_mkeytoname"></a>ms_mKeyToName</td>
+<td><code>NameMap</code></td>
+<td>48</td>
+<td>.data</td>
+<td><code>0xb89450</code></td>
+<td><code>0xb8b450</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="cache__ms_uimaxidlereservebytes"></a>ms_uiMaxIdleReserveBytes</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5fe04</code></td>
+<td><code>0xb61e04</code></td>
+<td>inferred</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

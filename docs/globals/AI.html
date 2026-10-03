@@ -1,0 +1,5006 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Globals</a> › AI</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>AI</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+<th>Section</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ai__ai_addreligiousbuilding"></a>AI_AddReligiousBuilding</td>
+<td><code>AI::AddReligiousBuildingEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bf0</code></td>
+<td><code>0xb65bf0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_addreligiousbuildingmult"></a>AI_AddReligiousBuildingMult</td>
+<td><code>AI::AddReligiousBuildingMultEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bf8</code></td>
+<td><code>0xb65bf8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_addreligiousunit"></a>AI_AddReligiousUnit</td>
+<td><code>AI::AddReligiousUnitEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c00</code></td>
+<td><code>0xb65c00</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacentdistrict"></a>AI_AdjacentDistrict</td>
+<td><code>AI::PlotAdjacentToDistrictRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64478</code></td>
+<td><code>0xb66478</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacentfeature"></a>AI_AdjacentFeature</td>
+<td><code>AI::PlotAdjacentToFeatureRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64490</code></td>
+<td><code>0xb66490</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacentimprovement"></a>AI_AdjacentImprovement</td>
+<td><code>AI::PlotAdjacentToImprovementRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64498</code></td>
+<td><code>0xb66498</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacentowner"></a>AI_AdjacentOwner</td>
+<td><code>AI::PlotAdjacentToOwnerRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644a0</code></td>
+<td><code>0xb664a0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacentresource"></a>AI_AdjacentResource</td>
+<td><code>AI::PlotAdjacentToResourceRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644b0</code></td>
+<td><code>0xb664b0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacentriver"></a>AI_AdjacentRiver</td>
+<td><code>AI::PlotAdjacentToRiverRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644b8</code></td>
+<td><code>0xb664b8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacenttocoast"></a>AI_AdjacentToCoast</td>
+<td><code>AI::PlotAdjacentToCoastRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64480</code></td>
+<td><code>0xb66480</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacenttolake"></a>AI_AdjacentToLake</td>
+<td><code>AI::PlotAdjacentToLakeRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64488</code></td>
+<td><code>0xb66488</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjacentwonder"></a>AI_AdjacentWonder</td>
+<td><code>AI::PlotAdjacentToWonderRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644a8</code></td>
+<td><code>0xb664a8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjustcityentertainment"></a>AI_AdjustCityEntertainment</td>
+<td><code>AI::AdjustCityEntertainmentEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c78</code></td>
+<td><code>0xb65c78</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjustcityextraaccumulation"></a>AI_AdjustCityExtraAccumulation</td>
+<td><code>AI::AdjustCityExtraAccumulationEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c80</code></td>
+<td><code>0xb65c80</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjustcityextraamenityforluxurydiversity"></a>AI_AdjustCityExtraAmenityForLuxuryDiversity</td>
+<td><code>AI::AdjustCityExtraAmenityForLuxuryDiversityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c88</code></td>
+<td><code>0xb65c88</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjustcityspyyield"></a>AI_AdjustCitySpyYield</td>
+<td><code>AI::AdjustCitySpyYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64060</code></td>
+<td><code>0xb66060</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjustplotyield"></a>AI_AdjustPlotYield</td>
+<td><code>AI::AdjustPlotYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fd8</code></td>
+<td><code>0xb65fd8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjustprojectproduction"></a>AI_AdjustProjectProduction</td>
+<td><code>AI::AdjustProjectProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fe0</code></td>
+<td><code>0xb65fe0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_adjustresourcepowergovernor"></a>AI_AdjustResourcePowerGovernor</td>
+<td><code>AI::AdjustResourcePowerGovernorEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fe8</code></td>
+<td><code>0xb65fe8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allcapitalcities"></a>AI_AllCapitalCities</td>
+<td><code>AI::AllCapitalCitiesAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b10</code></td>
+<td><code>0xb65b10</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allcapitaldistricts"></a>AI_AllCapitalDistricts</td>
+<td><code>AI::AllCapitalDistrictsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b18</code></td>
+<td><code>0xb65b18</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allcities"></a>AI_AllCities</td>
+<td><code>AI::AllCitiesAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b20</code></td>
+<td><code>0xb65b20</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allplayers"></a>AI_AllPlayers</td>
+<td><code>AI::AllPlayersAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b30</code></td>
+<td><code>0xb65b30</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allunits"></a>AI_AllUnits</td>
+<td><code>AI::AllUnitsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b38</code></td>
+<td><code>0xb65b38</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alliancecities"></a>AI_AllianceCities</td>
+<td><code>AI::AllianceCitiesAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b40</code></td>
+<td><code>0xb65b40</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alliancecombats"></a>AI_AllianceCombats</td>
+<td><code>AI::AllianceCombatsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b48</code></td>
+<td><code>0xb65b48</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allianceenvoys"></a>AI_AllianceEnvoys</td>
+<td><code>AI::AdjustAllianceEnvoysEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f80</code></td>
+<td><code>0xb65f80</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allianceplayerstrength"></a>AI_AlliancePlayerStrength</td>
+<td><code>AI::AdjustAlliancePlayerStrengthEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f88</code></td>
+<td><code>0xb65f88</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allianceplayers"></a>AI_AlliancePlayers</td>
+<td><code>AI::AlliancePlayersAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b50</code></td>
+<td><code>0xb65b50</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allianceresearch"></a>AI_AllianceResearch</td>
+<td><code>AI::AdjustAllianceResearchAgreementEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f90</code></td>
+<td><code>0xb65f90</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alliancescience"></a>AI_AllianceScience</td>
+<td><code>AI::AdjustAllianceScienceEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f98</code></td>
+<td><code>0xb65f98</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alliancetourism"></a>AI_AllianceTourism</td>
+<td><code>AI::AdjustAllianceTourismEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fa0</code></td>
+<td><code>0xb65fa0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alliancetraderoute"></a>AI_AllianceTradeRoute</td>
+<td><code>AI::AllianceTradeRouteRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64540</code></td>
+<td><code>0xb66540</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alliancetraderoutes"></a>AI_AllianceTradeRoutes</td>
+<td><code>AI::AllianceTradeRoutesAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b60</code></td>
+<td><code>0xb65b60</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alliancetrainedunits"></a>AI_AllianceTrainedUnits</td>
+<td><code>AI::AllianceTrainedUnitsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b58</code></td>
+<td><code>0xb65b58</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allianceunits"></a>AI_AllianceUnits</td>
+<td><code>AI::AllianceUnitsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b68</code></td>
+<td><code>0xb65b68</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_allianceyieldfromreligion"></a>AI_AllianceYieldFromReligion</td>
+<td><code>AI::AdjustAllianceYieldFromReligionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fa8</code></td>
+<td><code>0xb65fa8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_alwaysmet"></a>AI_AlwaysMet</td>
+<td><code>AI::AlwaysMetRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64350</code></td>
+<td><code>0xb66350</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_attachmodifier"></a>AI_AttachModifier</td>
+<td><code>AI::AttachModifierEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64188</code></td>
+<td><code>0xb66188</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_bancityproduction"></a>AI_BanCityProduction</td>
+<td><code>AI::AdjustBanCityProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d98</code></td>
+<td><code>0xb65d98</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_banresource"></a>AI_BanResource</td>
+<td><code>AI::AdjustBanResourceEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63da0</code></td>
+<td><code>0xb65da0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_bordergrowth"></a>AI_BorderGrowth</td>
+<td><code>AI::AdjustCityBorderEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c70</code></td>
+<td><code>0xb65c70</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_buildinghousing"></a>AI_BuildingHousing</td>
+<td><code>AI::AdjustBuildingHousingEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c10</code></td>
+<td><code>0xb65c10</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_buildingproduction"></a>AI_BuildingProduction</td>
+<td><code>AI::AdjustBuildingProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c18</code></td>
+<td><code>0xb65c18</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_buildingyieldchange"></a>AI_BuildingYieldChange</td>
+<td><code>AI::AdjustBuildingYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c28</code></td>
+<td><code>0xb65c28</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_buildingyieldfordistrictmodifier"></a>AI_BuildingYieldForDistrictModifier</td>
+<td><code>AI::AdjustBuildingYieldForDistrictEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c38</code></td>
+<td><code>0xb65c38</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_buildingyieldmodifier"></a>AI_BuildingYieldModifier</td>
+<td><code>AI::AdjustBuildingYieldModifier</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c30</code></td>
+<td><code>0xb65c30</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityairdefense"></a>AI_CityAirDefense</td>
+<td><code>AI::AdjustCityAirDefenseEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c40</code></td>
+<td><code>0xb65c40</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityameneties"></a>AI_CityAmeneties</td>
+<td><code>AI::AdjustCityAmenetiesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c48</code></td>
+<td><code>0xb65c48</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityamenetiesgov"></a>AI_CityAmenetiesGov</td>
+<td><code>AI::AdjustCityAmenetiesGovEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c50</code></td>
+<td><code>0xb65c50</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityattacks"></a>AI_CityAttacks</td>
+<td><code>AI::AdjustCityAttacksEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c58</code></td>
+<td><code>0xb65c58</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citycombatbonus"></a>AI_CityCombatBonus</td>
+<td><code>AI::AdjustCityCombatBonusEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c60</code></td>
+<td><code>0xb65c60</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citycorpsarmyproduction"></a>AI_CityCorpsArmyProduction</td>
+<td><code>AI::AdjustCityCorpsArmyProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c68</code></td>
+<td><code>0xb65c68</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citydistrictproduction"></a>AI_CityDistrictProduction</td>
+<td><code>AI::CityDistrictProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64180</code></td>
+<td><code>0xb66180</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citydistrictyield"></a>AI_CityDistrictYield</td>
+<td><code>AI::AdjustCityDistrictYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ca0</code></td>
+<td><code>0xb65ca0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citydistricts"></a>AI_CityDistricts</td>
+<td><code>AI::CityDistrictsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b70</code></td>
+<td><code>0xb65b70</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityfreepower"></a>AI_CityFreePower</td>
+<td><code>AI::AdjustCityFreePowerEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c90</code></td>
+<td><code>0xb65c90</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citygreatpersonpoints"></a>AI_CityGreatPersonPoints</td>
+<td><code>AI::AdjustCityGreatPersonEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c98</code></td>
+<td><code>0xb65c98</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citygrowth"></a>AI_CityGrowth</td>
+<td><code>AI::AdjustCityGrowthEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cd8</code></td>
+<td><code>0xb65cd8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhasbuilding"></a>AI_CityHasBuilding</td>
+<td><code>AI::CityHasBuildingRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64378</code></td>
+<td><code>0xb66378</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhasdistrict"></a>AI_CityHasDistrict</td>
+<td><code>AI::CityHasDistrictRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64380</code></td>
+<td><code>0xb66380</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhasdistricts"></a>AI_CityHasDistricts</td>
+<td><code>AI::CityHasDistrictsRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64388</code></td>
+<td><code>0xb66388</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhasgarrison"></a>AI_CityHasGarrison</td>
+<td><code>AI::CityHasGarrisonRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64390</code></td>
+<td><code>0xb66390</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhasgooddistrict"></a>AI_CityHasGoodDistrict</td>
+<td><code>AI::CityHasGoodDistrictRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643a0</code></td>
+<td><code>0xb663a0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhasgovernor"></a>AI_CityHasGovernor</td>
+<td><code>AI::CityHasGovernorRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64398</code></td>
+<td><code>0xb66398</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhaspantheon"></a>AI_CityHasPantheon</td>
+<td><code>AI::CityHasPantheonRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643b0</code></td>
+<td><code>0xb663b0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhaspopulation"></a>AI_CityHasPopulation</td>
+<td><code>AI::CityHasPopulationRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643a8</code></td>
+<td><code>0xb663a8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityhasreligion"></a>AI_CityHasReligion</td>
+<td><code>AI::CityHasReligionRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643b8</code></td>
+<td><code>0xb663b8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityisownercapitalcontinent"></a>AI_CityIsOwnerCapitalContinent</td>
+<td><code>AI::CityIsOwnerCapitalContinentRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643c0</code></td>
+<td><code>0xb663c0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityplots"></a>AI_CityPlots</td>
+<td><code>AI::CityPlotYieldAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b78</code></td>
+<td><code>0xb65b78</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citypopulation"></a>AI_CityPopulation</td>
+<td><code>AI::AdjustCityPopulationEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cf8</code></td>
+<td><code>0xb65cf8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citypopulationgold"></a>AI_CityPopulationGold</td>
+<td><code>AI::AdjustCityPopulationGoldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cb0</code></td>
+<td><code>0xb65cb0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citypopulationyield"></a>AI_CityPopulationYield</td>
+<td><code>AI::AdjustCityPopulationYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ca8</code></td>
+<td><code>0xb65ca8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityproductionbuilding"></a>AI_CityProductionBuilding</td>
+<td><code>AI::AdjustCityProductionBuilding</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d00</code></td>
+<td><code>0xb65d00</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityproductiondistrict"></a>AI_CityProductionDistrict</td>
+<td><code>AI::AdjustCityProductionDistrict</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d08</code></td>
+<td><code>0xb65d08</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityproductionunit"></a>AI_CityProductionUnit</td>
+<td><code>AI::AdjustCityProductionUnit</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d10</code></td>
+<td><code>0xb65d10</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityproperty"></a>AI_CityProperty</td>
+<td><code>AI::AdjustCityPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d18</code></td>
+<td><code>0xb65d18</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityrangestrike"></a>AI_CityRangeStrike</td>
+<td><code>AI::AdjustCityRangeStrikeEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d20</code></td>
+<td><code>0xb65d20</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityreligiouspressure"></a>AI_CityReligiousPressure</td>
+<td><code>AI::AdjustCityReligiousPressureEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d28</code></td>
+<td><code>0xb65d28</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citysiegeprotection"></a>AI_CitySiegeProtection</td>
+<td><code>AI::AdjustCitySiegeProtectionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d30</code></td>
+<td><code>0xb65d30</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityspydefense"></a>AI_CitySpyDefense</td>
+<td><code>AI::AdjustCitySpyDefenseEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d38</code></td>
+<td><code>0xb65d38</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citytourism"></a>AI_CityTourism</td>
+<td><code>AI::AdjustCityTourismEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d40</code></td>
+<td><code>0xb65d40</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citytourismimprovement"></a>AI_CityTourismImprovement</td>
+<td><code>AI::AdjustCityTourismImprovementsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d48</code></td>
+<td><code>0xb65d48</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citytourisminera"></a>AI_CityTourismInEra</td>
+<td><code>AI::AdjustCityTourismInEraEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d50</code></td>
+<td><code>0xb65d50</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citytourismperfeature"></a>AI_CityTourismPerFeature</td>
+<td><code>AI::AdjustCityTourismPerFeatureEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d58</code></td>
+<td><code>0xb65d58</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citytradeyieldperdestluxuryinternational"></a>AI_CityTradeYieldPerDestLuxuryInternational</td>
+<td><code>AI::AdjustCityTradeYieldPerDestLuxuryInternational</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d60</code></td>
+<td><code>0xb65d60</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citytradeyieldperdeststrategicinternational"></a>AI_CityTradeYieldPerDestStrategicInternational</td>
+<td><code>AI::AdjustCityTradeYieldPerDestStrategicInternational</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d68</code></td>
+<td><code>0xb65d68</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_citytrainedunits"></a>AI_CityTrainedUnits</td>
+<td><code>AI::CityTrainedUnitsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b80</code></td>
+<td><code>0xb65b80</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityunitdomainproduction"></a>AI_CityUnitDomainProduction</td>
+<td><code>AI::AdjustCityUnitDomainProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d78</code></td>
+<td><code>0xb65d78</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityunitproduction"></a>AI_CityUnitProduction</td>
+<td><code>AI::AdjustCityUnitProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d70</code></td>
+<td><code>0xb65d70</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityyieldchange"></a>AI_CityYieldChange</td>
+<td><code>AI::AdjustCityYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d80</code></td>
+<td><code>0xb65d80</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityyieldmodifier"></a>AI_CityYieldModifier</td>
+<td><code>AI::AdjustCityYieldModifierEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d88</code></td>
+<td><code>0xb65d88</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_cityyieldperterrianclass"></a>AI_CityYieldPerTerrianClass</td>
+<td><code>AI::AdjustCityYieldPerTerrainClassEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cb8</code></td>
+<td><code>0xb65cb8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_civicboost"></a>AI_CivicBoost</td>
+<td><code>AI::AdjustCivicBoostEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cc0</code></td>
+<td><code>0xb65cc0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_combatadjustment"></a>AI_CombatAdjustment</td>
+<td><code>AI::AdjustBarbarianCombatEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63c08</code></td>
+<td><code>0xb65c08</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_combattype"></a>AI_CombatType</td>
+<td><code>AI::CombatTypeMatchesRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643c8</code></td>
+<td><code>0xb663c8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_declaredfriend"></a>AI_DeclaredFriend</td>
+<td><code>AI::DeclaredFriendRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643d0</code></td>
+<td><code>0xb663d0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_delegation"></a>AI_Delegation</td>
+<td><code>AI::HasDelegationRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643e8</code></td>
+<td><code>0xb663e8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_denounced"></a>AI_Denounced</td>
+<td><code>AI::HasDenouncedRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643f0</code></td>
+<td><code>0xb663f0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_diplomacy"></a>AI_Diplomacy</td>
+<td><code>AI::AdjustDiplomacyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63d90</code></td>
+<td><code>0xb65d90</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_diplomaticpoints"></a>AI_DiplomaticPoints</td>
+<td><code>AI::AdjustDiplomaticPointsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63dd0</code></td>
+<td><code>0xb65dd0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_disablegrievancedecay"></a>AI_DisableGrievanceDecay</td>
+<td><code>AI::DisableGrievanceDecayEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64178</code></td>
+<td><code>0xb66178</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtamenity"></a>AI_DistrictAmenity</td>
+<td><code>AI::AdjustDistrictAmenityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63dd8</code></td>
+<td><code>0xb65dd8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtbaseyieldchange"></a>AI_DistrictBaseYieldChange</td>
+<td><code>AI::AdjustDistrictBaseYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e10</code></td>
+<td><code>0xb65e10</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtcreationbonus"></a>AI_DistrictCreationBonus</td>
+<td><code>AI::AdjustDistrictCreationEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63db0</code></td>
+<td><code>0xb65db0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtfeatures"></a>AI_DistrictFeatures</td>
+<td><code>AI::AdjustDistrictFeaturesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63de0</code></td>
+<td><code>0xb65de0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtgreatpersonpoints"></a>AI_DistrictGreatPersonPoints</td>
+<td><code>AI::AdjustDistrictGreatPersonEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63de8</code></td>
+<td><code>0xb65de8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districthousing"></a>AI_DistrictHousing</td>
+<td><code>AI::AdjustDistrictHousingEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63df0</code></td>
+<td><code>0xb65df0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtmatches"></a>AI_DistrictMatches</td>
+<td><code>AI::DistrictMatchesRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643d8</code></td>
+<td><code>0xb663d8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtproduction"></a>AI_DistrictProduction</td>
+<td><code>AI::AdjustDistrictProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63df8</code></td>
+<td><code>0xb65df8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtproperty"></a>AI_DistrictProperty</td>
+<td><code>AI::AdjustDistrictPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e00</code></td>
+<td><code>0xb65e00</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtyieldappealchange"></a>AI_DistrictYieldAppealChange</td>
+<td><code>AI::AdjustDistrictYieldAppealEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e08</code></td>
+<td><code>0xb65e08</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtyieldchange"></a>AI_DistrictYieldChange</td>
+<td><code>AI::AdjustDistrictYieldChangeEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e18</code></td>
+<td><code>0xb65e18</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtyieldmodifier"></a>AI_DistrictYieldModifier</td>
+<td><code>AI::AdjustDistrictYieldModifierEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e20</code></td>
+<td><code>0xb65e20</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_districtsonrivers"></a>AI_DistrictsOnRivers</td>
+<td><code>AI::AdjustRiverDistrictEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64018</code></td>
+<td><code>0xb66018</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_duplicatefirstinfluencetoken"></a>AI_DuplicateFirstInfluenceToken</td>
+<td><code>AI::AdjustDuplicateFirstInfluenceTokenEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e28</code></td>
+<td><code>0xb65e28</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_duplicateinfluencetokenwhenrivalgovernment"></a>AI_DuplicateInfluenceTokenWhenRivalGovernment</td>
+<td><code>AI::AdjustDuplicateInfluenceTokenRivalEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e30</code></td>
+<td><code>0xb65e30</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_desire_settle"></a>AI_EVENT_DESIRE_SETTLE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c698</code></td>
+<td><code>0xb8e6d0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_founded_religion"></a>AI_EVENT_FOUNDED_RELIGION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6b0</code></td>
+<td><code>0xb8e6e8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_gain_civic"></a>AI_EVENT_GAIN_CIVIC</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c690</code></td>
+<td><code>0xb8e6c8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_gain_tech"></a>AI_EVENT_GAIN_TECH</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c68c</code></td>
+<td><code>0xb8e6c4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_manage_archaeologist"></a>AI_EVENT_MANAGE_ARCHAEOLOGIST</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6a4</code></td>
+<td><code>0xb8e6dc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_manage_great_person"></a>AI_EVENT_MANAGE_GREAT_PERSON</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c69c</code></td>
+<td><code>0xb8e6d4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_manage_spy"></a>AI_EVENT_MANAGE_SPY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6a0</code></td>
+<td><code>0xb8e6d8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_needs_railroad"></a>AI_EVENT_NEEDS_RAILROAD</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6a8</code></td>
+<td><code>0xb8e6e0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_religious_city_converted"></a>AI_EVENT_RELIGIOUS_CITY_CONVERTED</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6ac</code></td>
+<td><code>0xb8e6e4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_event_unit_captured"></a>AI_EVENT_UNIT_CAPTURED</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c694</code></td>
+<td><code>0xb8e6cc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ai_enableunitfaithpurchase"></a>AI_EnableUnitFaithPurchase</td>
+<td><code>AI::EnableUnitFaithPurchaseEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64190</code></td>
+<td><code>0xb66190</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_erascorepercivicboost"></a>AI_EraScorePerCivicBoost</td>
+<td><code>AI::AdjustEraScoreCivicBoostEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e48</code></td>
+<td><code>0xb65e48</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_erascorepertechboost"></a>AI_EraScorePerTechBoost</td>
+<td><code>AI::AdjustEraScoreTechBoostEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e50</code></td>
+<td><code>0xb65e50</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_exploremap"></a>AI_ExploreMap</td>
+<td><code>AI::ExploreMapEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64198</code></td>
+<td><code>0xb66198</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_extraunits"></a>AI_ExtraUnits</td>
+<td><code>AI::AdjustExtraUnitEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e68</code></td>
+<td><code>0xb65e68</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_faithdispersal"></a>AI_FaithDispersal</td>
+<td><code>AI::AdjustFaithDispersalEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e78</code></td>
+<td><code>0xb65e78</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_favorperturn"></a>AI_FavorPerTurn</td>
+<td><code>AI::AdjustDiplomaticFavorPerTurnEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63dc8</code></td>
+<td><code>0xb65dc8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_featureadjacency"></a>AI_FeatureAdjacency</td>
+<td><code>AI::FeatureAdjacencyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641a0</code></td>
+<td><code>0xb661a0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_friendlymeeting"></a>AI_FriendlyMeeting</td>
+<td><code>AI::HadFriendlyMeetingRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643e0</code></td>
+<td><code>0xb663e0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_fullaccessonestrategic"></a>AI_FullAccessOneStrategic</td>
+<td><code>AI::AdjustFullAccessStrategicEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e70</code></td>
+<td><code>0xb65e70</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_gameproperty"></a>AI_GameProperty</td>
+<td><code>AI::AdjustGamePropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e80</code></td>
+<td><code>0xb65e80</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_govcopyluxuries"></a>AI_GovCopyLuxuries</td>
+<td><code>AI::GovernorCopyLuxuriesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641a8</code></td>
+<td><code>0xb661a8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_govcopystrategics"></a>AI_GovCopyStrategics</td>
+<td><code>AI::GovernorCopyStrategicsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641b0</code></td>
+<td><code>0xb661b0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_govgrantenvoys"></a>AI_GovGrantEnvoys</td>
+<td><code>AI::GovernorGrantEnvoysEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641b8</code></td>
+<td><code>0xb661b8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_govincreaseenvoys"></a>AI_GovIncreaseEnvoys</td>
+<td><code>AI::GovernorIncreaseEnvoysEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641c0</code></td>
+<td><code>0xb661c0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_governmentslots"></a>AI_GovernmentSlots</td>
+<td><code>AI::AdjustGovernmentSlotsAllPlayersEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63eb8</code></td>
+<td><code>0xb65eb8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_governorpoints"></a>AI_GovernorPoints</td>
+<td><code>AI::AdjustGovernorPointsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e90</code></td>
+<td><code>0xb65e90</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_govtslot"></a>AI_GovtSlot</td>
+<td><code>AI::AdjustGovernmentSlotsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e88</code></td>
+<td><code>0xb65e88</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantability"></a>AI_GrantAbility</td>
+<td><code>AI::GrantAbilityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641c8</code></td>
+<td><code>0xb661c8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantalltechboost"></a>AI_GrantAllTechBoost</td>
+<td><code>AI::GrantAllTechBoostByEra</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641d0</code></td>
+<td><code>0xb661d0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantbuilding"></a>AI_GrantBuilding</td>
+<td><code>AI::GrantBuildingEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641d8</code></td>
+<td><code>0xb661d8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantcityproperty"></a>AI_GrantCityProperty</td>
+<td><code>AI::AssignCityPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64140</code></td>
+<td><code>0xb66140</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantcityyield"></a>AI_GrantCityYield</td>
+<td><code>AI::GrantCityYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641e8</code></td>
+<td><code>0xb661e8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantcivicboost"></a>AI_GrantCivicBoost</td>
+<td><code>AI::GrantRandomCivicBoostEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64228</code></td>
+<td><code>0xb66228</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantcombatadjacency"></a>AI_GrantCombatAdjacency</td>
+<td><code>AI::GrantCombatAdjacencyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641f0</code></td>
+<td><code>0xb661f0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantdistrictproperty"></a>AI_GrantDistrictProperty</td>
+<td><code>AI::AssignDistrictPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64148</code></td>
+<td><code>0xb66148</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantfaithfromfeature"></a>AI_GrantFaithFromFeature</td>
+<td><code>AI::GrantFaithFromFeature</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641f8</code></td>
+<td><code>0xb661f8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantfaithfromharvest"></a>AI_GrantFaithFromHarvest</td>
+<td><code>AI::GrantFaithFromHarvest</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64200</code></td>
+<td><code>0xb66200</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantfreeresourceextraction"></a>AI_GrantFreeResourceExtraction</td>
+<td><code>AI::GrantFreeResourceExtractionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64210</code></td>
+<td><code>0xb66210</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantfreeresourcevisibility"></a>AI_GrantFreeResourceVisibility</td>
+<td><code>AI::GrantFreeResourceVisibilityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64218</code></td>
+<td><code>0xb66218</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantgameproperty"></a>AI_GrantGameProperty</td>
+<td><code>AI::AssignGamePropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64150</code></td>
+<td><code>0xb66150</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantgreatperson"></a>AI_GrantGreatPerson</td>
+<td><code>AI::GrantGreatPersonEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64208</code></td>
+<td><code>0xb66208</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_granthero"></a>AI_GrantHero</td>
+<td><code>AI::GrantHeroEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64168</code></td>
+<td><code>0xb66168</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantinfluencetoken"></a>AI_GrantInfluenceToken</td>
+<td><code>AI::GrantInfluenceTokenEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64220</code></td>
+<td><code>0xb66220</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantinfluencewonder"></a>AI_GrantInfluenceWonder</td>
+<td><code>AI::GrantInfluenceWonderEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb641e0</code></td>
+<td><code>0xb661e0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantplayerproperty"></a>AI_GrantPlayerProperty</td>
+<td><code>AI::AssignPlayerPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64158</code></td>
+<td><code>0xb66158</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantspy"></a>AI_GrantSpy</td>
+<td><code>AI::GrantSpyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64238</code></td>
+<td><code>0xb66238</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_granttechboost"></a>AI_GrantTechBoost</td>
+<td><code>AI::GrantRandomTechBoostEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64230</code></td>
+<td><code>0xb66230</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantunit"></a>AI_GrantUnit</td>
+<td><code>AI::GrantUnitEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64240</code></td>
+<td><code>0xb66240</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantunitproperty"></a>AI_GrantUnitProperty</td>
+<td><code>AI::AssignUnitPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64160</code></td>
+<td><code>0xb66160</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantyield"></a>AI_GrantYield</td>
+<td><code>AI::GrantYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64248</code></td>
+<td><code>0xb66248</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grantyieldfromyieldrate"></a>AI_GrantYieldFromYieldRate</td>
+<td><code>AI::GrantYieldFromYieldRateEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64250</code></td>
+<td><code>0xb66250</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_greatpeoplepts"></a>AI_GreatPeoplePts</td>
+<td><code>AI::AdjustGreatPersonPtsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ea8</code></td>
+<td><code>0xb65ea8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_greatpeopleptspercent"></a>AI_GreatPeoplePtsPercent</td>
+<td><code>AI::AdjustGreatPersonPtsPercentEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63eb0</code></td>
+<td><code>0xb65eb0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_greatpersonbonus"></a>AI_GreatPersonBonus</td>
+<td><code>AI::AdjustGreatPersonBonusEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ea0</code></td>
+<td><code>0xb65ea0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_greatpersonpatronage"></a>AI_GreatPersonPatronage</td>
+<td><code>AI::AdjustGreatPersonPatronageEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e38</code></td>
+<td><code>0xb65e38</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_grievancegeneration"></a>AI_GrievanceGeneration</td>
+<td><code>AI::AdjustGrievanceGenerationEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e98</code></td>
+<td><code>0xb65e98</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_happiness"></a>AI_Happiness</td>
+<td><code>AI::AdjustHappinessEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ec8</code></td>
+<td><code>0xb65ec8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_healingfromdispersal"></a>AI_HealingFromDispersal</td>
+<td><code>AI::AdjustHealingFromDispersalEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ed0</code></td>
+<td><code>0xb65ed0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_ignorestrategics"></a>AI_IgnoreStrategics</td>
+<td><code>AI::AdjustCityIgnoreStrategicsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ce0</code></td>
+<td><code>0xb65ce0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_improvementamenity"></a>AI_ImprovementAmenity</td>
+<td><code>AI::AdjustImprovementAmenityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ec0</code></td>
+<td><code>0xb65ec0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_improvementhousing"></a>AI_ImprovementHousing</td>
+<td><code>AI::AdjustImprovementHousingEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ef8</code></td>
+<td><code>0xb65ef8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_improvementproperty"></a>AI_ImprovementProperty</td>
+<td><code>AI::AdjustImprovementPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ef0</code></td>
+<td><code>0xb65ef0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_influencepointsperturn"></a>AI_InfluencePointsPerTurn</td>
+<td><code>AI::AdjustInfluencePointsPerTurnEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f00</code></td>
+<td><code>0xb65f00</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_innerdefenses"></a>AI_InnerDefenses</td>
+<td><code>AI::AdjustCityInnerDefenseEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ce8</code></td>
+<td><code>0xb65ce8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_ismet"></a>AI_IsMet</td>
+<td><code>AI::IsMetRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64358</code></td>
+<td><code>0xb66358</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_isnotmet"></a>AI_IsNotMet</td>
+<td><code>AI::IsNotMetRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64360</code></td>
+<td><code>0xb66360</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_majorminorplayers"></a>AI_MajorMinorPlayers</td>
+<td><code>AI::MajorMinorPlayersAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b88</code></td>
+<td><code>0xb65b88</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_majorplayers"></a>AI_MajorPlayers</td>
+<td><code>AI::MajorPlayersAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b90</code></td>
+<td><code>0xb65b90</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_minorplayers"></a>AI_MinorPlayers</td>
+<td><code>AI::MinorPlayersAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63b98</code></td>
+<td><code>0xb65b98</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_mountaintunnel"></a>AI_MountainTunnel</td>
+<td><code>AI::MountainTunnelEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64278</code></td>
+<td><code>0xb66278</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_nearborder"></a>AI_NearBorder</td>
+<td><code>AI::NearCultureBorderRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb643f8</code></td>
+<td><code>0xb663f8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_nevermet"></a>AI_NeverMet</td>
+<td><code>AI::NeverMetRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64368</code></td>
+<td><code>0xb66368</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_nocapresource"></a>AI_NoCapResource</td>
+<td><code>AI::AdjustNoCapResourceEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ed8</code></td>
+<td><code>0xb65ed8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_nogreatpeoplepts"></a>AI_NoGreatPeoplePts</td>
+<td><code>AI::AdjustNoGreatPersonPtsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f08</code></td>
+<td><code>0xb65f08</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_openbordersfrominfluence"></a>AI_OpenBordersFromInfluence</td>
+<td><code>AI::AdjustOpenBordersInfluenceEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f28</code></td>
+<td><code>0xb65f28</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_opponentdomain"></a>AI_OpponentDomain</td>
+<td><code>AI::OpponentUnitDomainRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64428</code></td>
+<td><code>0xb66428</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_opponentisbarbarian"></a>AI_OpponentIsBarbarian</td>
+<td><code>AI::OpponentIsBarbarianRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64400</code></td>
+<td><code>0xb66400</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_opponentisdistrict"></a>AI_OpponentIsDistrict</td>
+<td><code>AI::OpponentIsDistrictRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64408</code></td>
+<td><code>0xb66408</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_opponentisfortified"></a>AI_OpponentIsFortified</td>
+<td><code>AI::OpponentIsFortifiedRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64410</code></td>
+<td><code>0xb66410</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_opponentpromotionclass"></a>AI_OpponentPromotionClass</td>
+<td><code>AI::OpponentPromotionClassRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64418</code></td>
+<td><code>0xb66418</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_opponentunit"></a>AI_OpponentUnit</td>
+<td><code>AI::OpponentUnitTypeRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64420</code></td>
+<td><code>0xb66420</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_outerdefenses"></a>AI_OuterDefenses</td>
+<td><code>AI::AdjustCityOuterDefenseEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cf0</code></td>
+<td><code>0xb65cf0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_owner"></a>AI_Owner</td>
+<td><code>AI::OwnerAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ba0</code></td>
+<td><code>0xb65ba0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_pillagedistrict"></a>AI_PillageDistrict</td>
+<td><code>AI::AdjustPlayerDistrictPilliageModEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f38</code></td>
+<td><code>0xb65f38</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playeratpeace"></a>AI_PlayerAtPeace</td>
+<td><code>AI::PlayerAtPeaceRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64438</code></td>
+<td><code>0xb66438</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerattacking"></a>AI_PlayerAttacking</td>
+<td><code>AI::PlayerAttackingRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64430</code></td>
+<td><code>0xb66430</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerblockunitentry"></a>AI_PlayerBlockUnitEntry</td>
+<td><code>AI::AdjustBlockUnitEntryEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63da8</code></td>
+<td><code>0xb65da8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerbuffunitproductionyield"></a>AI_PlayerBuffUnitProductionYield</td>
+<td><code>AI::AdjustPlayerBuffUnitProductionYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e40</code></td>
+<td><code>0xb65e40</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerbuildingfavor"></a>AI_PlayerBuildingFavor</td>
+<td><code>AI::AdjustDiplomaticBuildingFavorPerTurnEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63db8</code></td>
+<td><code>0xb65db8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playercapitalcity"></a>AI_PlayerCapitalCity</td>
+<td><code>AI::PlayerCapitalCityAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ba8</code></td>
+<td><code>0xb65ba8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playercapitaldistricts"></a>AI_PlayerCapitalDistricts</td>
+<td><code>AI::PlayerCapitalDistrictsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bb0</code></td>
+<td><code>0xb65bb0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playercities"></a>AI_PlayerCities</td>
+<td><code>AI::PlayerCitiesAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bb8</code></td>
+<td><code>0xb65bb8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerdistricts"></a>AI_PlayerDistricts</td>
+<td><code>AI::PlayerDistrictsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bc0</code></td>
+<td><code>0xb65bc0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerfavor"></a>AI_PlayerFavor</td>
+<td><code>AI::AdjustDiplomaticFavorEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63dc0</code></td>
+<td><code>0xb65dc0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerfoundedreligion"></a>AI_PlayerFoundedReligion</td>
+<td><code>AI::PlayerIsReligionFounderRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64450</code></td>
+<td><code>0xb66450</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerfullreligioustourism"></a>AI_PlayerFullReligiousTourism</td>
+<td><code>AI::AdjustPlayerReligiousTourismEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f50</code></td>
+<td><code>0xb65f50</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playergaveinfluence"></a>AI_PlayerGaveInfluence</td>
+<td><code>AI::PlayerGaveInfluenceRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64458</code></td>
+<td><code>0xb66458</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playergavemostinfluence"></a>AI_PlayerGaveMostInfluence</td>
+<td><code>AI::PlayerGaveMostInfluenceRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64460</code></td>
+<td><code>0xb66460</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerhaspantheon"></a>AI_PlayerHasPantheon</td>
+<td><code>AI::PlayerHasPantheonRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64470</code></td>
+<td><code>0xb66470</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playeringoldenage"></a>AI_PlayerInGoldenAge</td>
+<td><code>AI::PlayerInGoldenAgeRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64468</code></td>
+<td><code>0xb66468</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerisbarbarian"></a>AI_PlayerIsBarbarian</td>
+<td><code>AI::PlayerIsBarbarianRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64440</code></td>
+<td><code>0xb66440</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerisminorciv"></a>AI_PlayerIsMinorCiv</td>
+<td><code>AI::PlayerIsMinorCivRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64448</code></td>
+<td><code>0xb66448</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerpillageimprovement"></a>AI_PlayerPillageImprovement</td>
+<td><code>AI::AdjustPillageImprovementModEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f30</code></td>
+<td><code>0xb65f30</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerplotyields"></a>AI_PlayerPlotYields</td>
+<td><code>AI::PlayerPlotYieldsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bc8</code></td>
+<td><code>0xb65bc8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerproperty"></a>AI_PlayerProperty</td>
+<td><code>AI::AdjustPlayerPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f48</code></td>
+<td><code>0xb65f48</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerresourceaccumulation"></a>AI_PlayerResourceAccumulation</td>
+<td><code>AI::AdjustResourceAccumulationEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64008</code></td>
+<td><code>0xb66008</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerresourcestockpilecap"></a>AI_PlayerResourceStockpileCap</td>
+<td><code>AI::AdjustPlayerResourceStockpileCapEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e58</code></td>
+<td><code>0xb65e58</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playersciencevp"></a>AI_PlayerScienceVp</td>
+<td><code>AI::AdjustScienceVictoryPointsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64010</code></td>
+<td><code>0xb66010</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerspybonus"></a>AI_PlayerSpyBonus</td>
+<td><code>AI::AdjustSpyBonusEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64038</code></td>
+<td><code>0xb66038</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playersuzerainfavormultiplier"></a>AI_PlayerSuzerainFavorMultiplier</td>
+<td><code>AI::PlayerSuzerainFavorMultiplierEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64268</code></td>
+<td><code>0xb66268</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playertokenfortraderoute"></a>AI_PlayerTokenForTradeRoute</td>
+<td><code>AI::PlayerTokenForTradeRouteEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64270</code></td>
+<td><code>0xb66270</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playertourism"></a>AI_PlayerTourism</td>
+<td><code>AI::PlayerTourismEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64258</code></td>
+<td><code>0xb66258</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playertraderoutedestinationyieldforallyroute"></a>AI_PlayerTradeRouteDestinationYieldForAllyRoute</td>
+<td><code>AI::AdjustTradeRouteDestinationAllyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64050</code></td>
+<td><code>0xb66050</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playertraderouteoriginyieldforallyroute"></a>AI_PlayerTradeRouteOriginYieldForAllyRoute</td>
+<td><code>AI::AdjustTradeRouteOriginAllyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64058</code></td>
+<td><code>0xb66058</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playerunits"></a>AI_PlayerUnits</td>
+<td><code>AI::PlayerUnitsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bd0</code></td>
+<td><code>0xb65bd0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playervalidbuilding"></a>AI_PlayerValidBuilding</td>
+<td><code>AI::AdjustPlayerValidBuildingEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63e60</code></td>
+<td><code>0xb65e60</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playeryieldchange"></a>AI_PlayerYieldChange</td>
+<td><code>AI::AdjustPlayerYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fb0</code></td>
+<td><code>0xb65fb0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playeryieldchangepergreatperson"></a>AI_PlayerYieldChangePerGreatPerson</td>
+<td><code>AI::AdjustPlayerYieldPerGreatPersonEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fc0</code></td>
+<td><code>0xb65fc0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playeryieldchangeperinfluencetoken"></a>AI_PlayerYieldChangePerInfluenceToken</td>
+<td><code>AI::AdjustPlayerYieldPerToken</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fb8</code></td>
+<td><code>0xb65fb8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playeryieldchangepertributary"></a>AI_PlayerYieldChangePerTributary</td>
+<td><code>AI::AdjustPlayerYieldPerTributaryEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fc8</code></td>
+<td><code>0xb65fc8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_playeryieldmodifierpertributary"></a>AI_PlayerYieldModifierPerTributary</td>
+<td><code>AI::AdjustPlayerYieldPerTributaryModEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63fd0</code></td>
+<td><code>0xb65fd0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotappealbetween"></a>AI_PlotAppealBetween</td>
+<td><code>AI::PlotAppealBetween</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644f8</code></td>
+<td><code>0xb664f8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotdistrictexists"></a>AI_PlotDistrictExists</td>
+<td><code>AI::PlotHasDistrict</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644d8</code></td>
+<td><code>0xb664d8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotdistricttag"></a>AI_PlotDistrictTag</td>
+<td><code>AI::PlotDistrictTagRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644c0</code></td>
+<td><code>0xb664c0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotdistricttype"></a>AI_PlotDistrictType</td>
+<td><code>AI::PlotDistrictTypeRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644c8</code></td>
+<td><code>0xb664c8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotfeature"></a>AI_PlotFeature</td>
+<td><code>AI::PlotFeatureRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644d0</code></td>
+<td><code>0xb664d0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotimprovedresourceclass"></a>AI_PlotImprovedResourceClass</td>
+<td><code>AI::PlotImprovedResourceClassRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64518</code></td>
+<td><code>0xb66518</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotimprovementexists"></a>AI_PlotImprovementExists</td>
+<td><code>AI::PlotHasImprovement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644e0</code></td>
+<td><code>0xb664e0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotimprovementtag"></a>AI_PlotImprovementTag</td>
+<td><code>AI::PlotImprovementTagRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644e8</code></td>
+<td><code>0xb664e8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotimprovementtype"></a>AI_PlotImprovementType</td>
+<td><code>AI::PlotImprovementTypeRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb644f0</code></td>
+<td><code>0xb664f0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotiscoast"></a>AI_PlotIsCoast</td>
+<td><code>AI::PlotIsCoastRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64500</code></td>
+<td><code>0xb66500</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotishills"></a>AI_PlotIsHills</td>
+<td><code>AI::PlotIsHillsRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64508</code></td>
+<td><code>0xb66508</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotresourceclass"></a>AI_PlotResourceClass</td>
+<td><code>AI::PlotResourceClassRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64510</code></td>
+<td><code>0xb66510</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotresourcetag"></a>AI_PlotResourceTag</td>
+<td><code>AI::PlotResourceTagRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64520</code></td>
+<td><code>0xb66520</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotresourcetype"></a>AI_PlotResourceType</td>
+<td><code>AI::PlotResourceTypeRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64528</code></td>
+<td><code>0xb66528</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotresourcevisible"></a>AI_PlotResourceVisible</td>
+<td><code>AI::PlotResourceVisibleRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64530</code></td>
+<td><code>0xb66530</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_plotterrainmatch"></a>AI_PlotTerrainMatch</td>
+<td><code>AI::PlotTerrainMatchRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64538</code></td>
+<td><code>0xb66538</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_policyamenity"></a>AI_PolicyAmenity</td>
+<td><code>AI::AdjustPolicyAmenityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ff0</code></td>
+<td><code>0xb65ff0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_policyhousing"></a>AI_PolicyHousing</td>
+<td><code>AI::AdjustPolicyHousingEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ff8</code></td>
+<td><code>0xb65ff8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_purchaseplot"></a>AI_PurchasePlot</td>
+<td><code>AI::AdjustPurchasePlotEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64000</code></td>
+<td><code>0xb66000</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_recommissionreactor"></a>AI_RecommissionReactor</td>
+<td><code>AI::RecommissionReactorEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64170</code></td>
+<td><code>0xb66170</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_setmet"></a>AI_SetMet</td>
+<td><code>AI::SetIsMetRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64370</code></td>
+<td><code>0xb66370</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_singleplotyields"></a>AI_SinglePlotYields</td>
+<td><code>AI::SinglePlotYieldsAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63bd8</code></td>
+<td><code>0xb65bd8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_spaceraceproduction"></a>AI_SpaceRaceProduction</td>
+<td><code>AI::AdjustSpaceRaceProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64030</code></td>
+<td><code>0xb66030</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_stealtechboosts"></a>AI_StealTechBoosts</td>
+<td><code>AI::AdjustNumberStolenTechsEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f20</code></td>
+<td><code>0xb65f20</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_techboost"></a>AI_TechBoost</td>
+<td><code>AI::AdjustTechBoostEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cc8</code></td>
+<td><code>0xb65cc8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_terrainadjacency"></a>AI_TerrainAdjacency</td>
+<td><code>AI::TerrainAdjacencyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64280</code></td>
+<td><code>0xb66280</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderoutecapacity"></a>AI_TradeRouteCapacity</td>
+<td><code>AI::AdjustTradeRouteCapacityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64040</code></td>
+<td><code>0xb66040</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderoutefavor"></a>AI_TradeRouteFavor</td>
+<td><code>AI::AdjustPlayerTradeRouteFavorEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f58</code></td>
+<td><code>0xb65f58</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderouteimmunity"></a>AI_TradeRouteImmunity</td>
+<td><code>AI::AdjustTradeRouteImmunityEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64048</code></td>
+<td><code>0xb66048</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderouteplunderfavor"></a>AI_TradeRoutePlunderFavor</td>
+<td><code>AI::AdjustPlayerTradeRoutePlunderFavorEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f60</code></td>
+<td><code>0xb65f60</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderoutetourism"></a>AI_TradeRouteTourism</td>
+<td><code>AI::AdjustTradeRouteTourismEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64068</code></td>
+<td><code>0xb66068</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderouteyield"></a>AI_TradeRouteYield</td>
+<td><code>AI::AdjustTradeRouteYieldEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64070</code></td>
+<td><code>0xb66070</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderouteyieldfordomestic"></a>AI_TradeRouteYieldForDomestic</td>
+<td><code>AI::AdjustPlayerTradeRouteDomesticEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f68</code></td>
+<td><code>0xb65f68</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderouteyieldforinternational"></a>AI_TradeRouteYieldForInternational</td>
+<td><code>AI::AdjustPlayerTradeRouteForeignEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f70</code></td>
+<td><code>0xb65f70</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_traderouteyieldforothers"></a>AI_TradeRouteYieldForOthers</td>
+<td><code>AI::AdjustTradeRouteYieldOtherEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64078</code></td>
+<td><code>0xb66078</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitattackwallwholegamepromotionclass"></a>AI_UnitAttackWallWholeGamePromotionClass</td>
+<td><code>AI::AdjustUnitAttackWallWholeGamePromotionClassEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64088</code></td>
+<td><code>0xb66088</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitbypasswall"></a>AI_UnitBypassWall</td>
+<td><code>AI::AdjustUnitBypassWallEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64090</code></td>
+<td><code>0xb66090</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitcannotattack"></a>AI_UnitCannotAttack</td>
+<td><code>AI::AdjustUnitCannotAttackEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64098</code></td>
+<td><code>0xb66098</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitcharges"></a>AI_UnitCharges</td>
+<td><code>AI::AdjustUnitChargesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640a0</code></td>
+<td><code>0xb660a0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitcombat"></a>AI_UnitCombat</td>
+<td><code>AI::UnitCombatAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63be0</code></td>
+<td><code>0xb65be0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitcombatstrength"></a>AI_UnitCombatStrength</td>
+<td><code>AI::PlayerUnitStrengthEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64260</code></td>
+<td><code>0xb66260</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitextramoves"></a>AI_UnitExtraMoves</td>
+<td><code>AI::AdjustUnitExtraMovesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640a8</code></td>
+<td><code>0xb660a8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitfriendlyterritorymovement"></a>AI_UnitFriendlyTerritoryMovement</td>
+<td><code>AI::AdjustUnitExtraMovesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640b8</code></td>
+<td><code>0xb660b8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitgrantexperience"></a>AI_UnitGrantExperience</td>
+<td><code>AI::AdjustUnitGrantExperienceEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640c0</code></td>
+<td><code>0xb660c0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitignoreterrain"></a>AI_UnitIgnoreTerrain</td>
+<td><code>AI::AdjustUnitTerrainEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64118</code></td>
+<td><code>0xb66118</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitignorezoc"></a>AI_UnitIgnoreZoc</td>
+<td><code>AI::AdjustIgnoreZocEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ee0</code></td>
+<td><code>0xb65ee0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitloyaltydamage"></a>AI_UnitLoyaltyDamage</td>
+<td><code>AI::AdjustUnitLoyaltyDamageEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640b0</code></td>
+<td><code>0xb660b0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitmaintenancediscount"></a>AI_UnitMaintenanceDiscount</td>
+<td><code>AI::AdjustUnitMaintenanceDiscount</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640c8</code></td>
+<td><code>0xb660c8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitmoveandattack"></a>AI_UnitMoveAndAttack</td>
+<td><code>AI::AdjustMoveAndAttackEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f18</code></td>
+<td><code>0xb65f18</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitmovement"></a>AI_UnitMovement</td>
+<td><code>AI::AdjustUnitMovement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64110</code></td>
+<td><code>0xb66110</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitnearestcity"></a>AI_UnitNearestCity</td>
+<td><code>AI::UnitNearestCityAnalyzer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63be8</code></td>
+<td><code>0xb65be8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitnoforeignspread"></a>AI_UnitNoForeignSpread</td>
+<td><code>AI::AdjustUnitNoForeignSpreadEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f40</code></td>
+<td><code>0xb65f40</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitparadrop"></a>AI_UnitParadrop</td>
+<td><code>AI::AdjustParadropEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63ee8</code></td>
+<td><code>0xb65ee8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitproduction"></a>AI_UnitProduction</td>
+<td><code>AI::AdjustUnitProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640d0</code></td>
+<td><code>0xb660d0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitpromotionclass"></a>AI_UnitPromotionClass</td>
+<td><code>AI::UnitPromotionClassMatchesRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64548</code></td>
+<td><code>0xb66548</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitproperty"></a>AI_UnitProperty</td>
+<td><code>AI::AdjustUnitPropertyEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640e0</code></td>
+<td><code>0xb660e0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitpurchasecost"></a>AI_UnitPurchaseCost</td>
+<td><code>AI::AdjustUnitPurchaseCostEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640d8</code></td>
+<td><code>0xb660d8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitrockbandtourismbomvaluepeace"></a>AI_UnitRockBandTourismBomValuePeace</td>
+<td><code>AI::AdjustUnitRockBandTourismBomValuePeaceEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640e8</code></td>
+<td><code>0xb660e8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitseamoves"></a>AI_UnitSeaMoves</td>
+<td><code>AI::AdjustUnitSeaMovesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640f0</code></td>
+<td><code>0xb660f0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitseethrough"></a>AI_UnitSeeThrough</td>
+<td><code>AI::AdjustSeeThroughEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64028</code></td>
+<td><code>0xb66028</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitsight"></a>AI_UnitSight</td>
+<td><code>AI::AdjustUnitSightEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb640f8</code></td>
+<td><code>0xb660f8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitspyoperationtime"></a>AI_UnitSpyOperationTime</td>
+<td><code>AI::AdjustUnitSpyOperationTimeEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64100</code></td>
+<td><code>0xb66100</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitstrengthreductionfordamage"></a>AI_UnitStrengthReductionForDamage</td>
+<td><code>AI::AdjustUnitStrengthReductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64108</code></td>
+<td><code>0xb66108</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unittag"></a>AI_UnitTag</td>
+<td><code>AI::UnitTagRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64550</code></td>
+<td><code>0xb66550</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unittageraproduction"></a>AI_UnitTagEraProduction</td>
+<td><code>AI::AdjustCityEraTagUnitProductionEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63cd0</code></td>
+<td><code>0xb65cd0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unittype"></a>AI_UnitType</td>
+<td><code>AI::UnitTypeRequirement</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64558</code></td>
+<td><code>0xb66558</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitupgradediscount"></a>AI_UnitUpgradeDiscount</td>
+<td><code>AI::AdjustUnitUpgradeDiscountEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64120</code></td>
+<td><code>0xb66120</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitwallattack"></a>AI_UnitWallAttack</td>
+<td><code>AI::AdjustUnitAttackWallEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64080</code></td>
+<td><code>0xb66080</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_unitxp"></a>AI_UnitXp</td>
+<td><code>AI::AdjustUnitXpEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64128</code></td>
+<td><code>0xb66128</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_warweariness"></a>AI_WarWeariness</td>
+<td><code>AI::AdjustPlayerWarWearinessModEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb63f78</code></td>
+<td><code>0xb65f78</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_wmdcount"></a>AI_WmdCount</td>
+<td><code>AI::AdjustWmdCountEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64130</code></td>
+<td><code>0xb66130</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_wonderfeatures"></a>AI_WonderFeatures</td>
+<td><code>AI::AdjustWonderFeaturesEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64138</code></td>
+<td><code>0xb66138</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ai_wondersonrivers"></a>AI_WondersOnRivers</td>
+<td><code>AI::AdjustRiverWonderEffect</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb64020</code></td>
+<td><code>0xb66020</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__action_state_names"></a>BehaviorTree::ACTION_STATE_NAMES</td>
+<td><code>const char*[]</code></td>
+<td>0</td>
+<td>.data</td>
+<td><code>0xb65310</code></td>
+<td><code>0xb67310</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_decisionupdatefunctions"></a>BehaviorTree::BehaviorTree::s_DecisionUpdateFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::UpdateDecisionNodeFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8cdc0</code></td>
+<td><code>0xb8edc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_decoratorupdatefunctions"></a>BehaviorTree::BehaviorTree::s_DecoratorUpdateFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::UpdateDecoratorNodeFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8cd80</code></td>
+<td><code>0xb8ed80</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_executefunctions"></a>BehaviorTree::BehaviorTree::s_ExecuteFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::ExecuteActionFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8cde0</code></td>
+<td><code>0xb8ede0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_leafupdatefunctions"></a>BehaviorTree::BehaviorTree::s_LeafUpdateFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::UpdateLeafNodeFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8cda0</code></td>
+<td><code>0xb8eda0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_logfunctions"></a>BehaviorTree::BehaviorTree::s_LogFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::LogFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8ce20</code></td>
+<td><code>0xb8ee20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_nextindexfunctions"></a>BehaviorTree::BehaviorTree::s_NextIndexFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::NextFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8ce00</code></td>
+<td><code>0xb8ee00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_selectorparentfunctions"></a>BehaviorTree::BehaviorTree::s_SelectorParentFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::ParentSelectorNodeFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8cd60</code></td>
+<td><code>0xb8ed60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_selectorupdatefunctions"></a>BehaviorTree::BehaviorTree::s_SelectorUpdateFunctions</td>
+<td><code>BehaviorTreeNodeTypeIndexList&lt;BehaviorTree::UpdateSelectorNodeFcn&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb8cd40</code></td>
+<td><code>0xb8ed40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__behaviortree__s_updatefunctionsinitialized"></a>BehaviorTree::BehaviorTree::s_UpdateFunctionsInitialized</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb8cd38</code></td>
+<td><code>0xb8ed38</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__factory__ms_uicomponentid"></a>BehaviorTree::Factory::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8d004</code></td>
+<td><code>0xb8f004</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__factory__ms_uicomponentindex"></a>BehaviorTree::Factory::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb651e0</code></td>
+<td><code>0xb671e0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_addgoaltech"></a>BehaviorTree::NT_ADDGOALTECH</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce54</code></td>
+<td><code>0xb8ee54</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_archaeologist_dig"></a>BehaviorTree::NT_ARCHAEOLOGIST_DIG</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf3c</code></td>
+<td><code>0xb8ef3c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_archaeologist_donate"></a>BehaviorTree::NT_ARCHAEOLOGIST_DONATE</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf40</code></td>
+<td><code>0xb8ef40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_barbarian_raid"></a>BehaviorTree::NT_BARBARIAN_RAID</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cea0</code></td>
+<td><code>0xb8eea0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_barbarian_recruit"></a>BehaviorTree::NT_BARBARIAN_RECRUIT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ceb4</code></td>
+<td><code>0xb8eeb4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_barbarian_spawn"></a>BehaviorTree::NT_BARBARIAN_SPAWN</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce64</code></td>
+<td><code>0xb8ee64</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_buildimprovement"></a>BehaviorTree::NT_BUILDIMPROVEMENT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce78</code></td>
+<td><code>0xb8ee78</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_buildmilitaryimprovement"></a>BehaviorTree::NT_BUILDMILITARYIMPROVEMENT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce7c</code></td>
+<td><code>0xb8ee7c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_buildproduction"></a>BehaviorTree::NT_BUILDPRODUCTION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce80</code></td>
+<td><code>0xb8ee80</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_build_from_city"></a>BehaviorTree::NT_BUILD_FROM_CITY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce58</code></td>
+<td><code>0xb8ee58</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_cancel_contract"></a>BehaviorTree::NT_CANCEL_CONTRACT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf24</code></td>
+<td><code>0xb8ef24</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_check_plot"></a>BehaviorTree::NT_CHECK_PLOT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ceac</code></td>
+<td><code>0xb8eeac</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_choose_city"></a>BehaviorTree::NT_CHOOSE_CITY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce74</code></td>
+<td><code>0xb8ee74</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_choose_improvement"></a>BehaviorTree::NT_CHOOSE_IMPROVEMENT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce9c</code></td>
+<td><code>0xb8ee9c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_city_attack_units"></a>BehaviorTree::NT_CITY_ATTACK_UNITS</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cee0</code></td>
+<td><code>0xb8eee0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_city_build_railroad"></a>BehaviorTree::NT_CITY_BUILD_RAILROAD</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf08</code></td>
+<td><code>0xb8ef08</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_city_can_alpha"></a>BehaviorTree::NT_CITY_CAN_ALPHA</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf04</code></td>
+<td><code>0xb8ef04</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_city_threatened"></a>BehaviorTree::NT_CITY_THREATENED</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf00</code></td>
+<td><code>0xb8ef00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_clear_plot"></a>BehaviorTree::NT_CLEAR_PLOT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ceb0</code></td>
+<td><code>0xb8eeb0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_concurrent"></a>BehaviorTree::NT_CONCURRENT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce48</code></td>
+<td><code>0xb8ee48</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_contract_decorator"></a>BehaviorTree::NT_CONTRACT_DECORATOR</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cecc</code></td>
+<td><code>0xb8eecc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_decode_trigger"></a>BehaviorTree::NT_DECODE_TRIGGER</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce70</code></td>
+<td><code>0xb8ee70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_difficulty_decorator"></a>BehaviorTree::NT_DIFFICULTY_DECORATOR</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cea4</code></td>
+<td><code>0xb8eea4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_diplomacy"></a>BehaviorTree::NT_DIPLOMACY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf2c</code></td>
+<td><code>0xb8ef2c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_findunit"></a>BehaviorTree::NT_FINDUNIT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce5c</code></td>
+<td><code>0xb8ee5c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_find_targets"></a>BehaviorTree::NT_FIND_TARGETS</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf10</code></td>
+<td><code>0xb8ef10</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_has_great_person"></a>BehaviorTree::NT_HAS_GREAT_PERSON</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf1c</code></td>
+<td><code>0xb8ef1c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_has_inquisition"></a>BehaviorTree::NT_HAS_INQUISITION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf4c</code></td>
+<td><code>0xb8ef4c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_has_valid_target"></a>BehaviorTree::NT_HAS_VALID_TARGET</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf14</code></td>
+<td><code>0xb8ef14</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_interval_decorator"></a>BehaviorTree::NT_INTERVAL_DECORATOR</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ceb8</code></td>
+<td><code>0xb8eeb8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_is_at_war"></a>BehaviorTree::NT_IS_AT_WAR</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf0c</code></td>
+<td><code>0xb8ef0c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_is_near_fallout"></a>BehaviorTree::NT_IS_NEAR_FALLOUT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf5c</code></td>
+<td><code>0xb8ef5c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_launch_inquisition"></a>BehaviorTree::NT_LAUNCH_INQUISITION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf50</code></td>
+<td><code>0xb8ef50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_lock_units"></a>BehaviorTree::NT_LOCK_UNITS</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf28</code></td>
+<td><code>0xb8ef28</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_lua_script"></a>BehaviorTree::NT_LUA_SCRIPT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf60</code></td>
+<td><code>0xb8ef60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_make_formation"></a>BehaviorTree::NT_MAKE_FORMATION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ced8</code></td>
+<td><code>0xb8eed8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_moveunit"></a>BehaviorTree::NT_MOVEUNIT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce84</code></td>
+<td><code>0xb8ee84</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_naval_choose_target"></a>BehaviorTree::NT_NAVAL_CHOOSE_TARGET</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cee4</code></td>
+<td><code>0xb8eee4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_naval_patrol"></a>BehaviorTree::NT_NAVAL_PATROL</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cee8</code></td>
+<td><code>0xb8eee8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_naval_pillage"></a>BehaviorTree::NT_NAVAL_PILLAGE</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ceec</code></td>
+<td><code>0xb8eeec</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_not"></a>BehaviorTree::NT_NOT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce8c</code></td>
+<td><code>0xb8ee8c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_notify_owner"></a>BehaviorTree::NT_NOTIFY_OWNER</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce60</code></td>
+<td><code>0xb8ee60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_air_attack"></a>BehaviorTree::NT_OPERATION_AIR_ATTACK</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ced0</code></td>
+<td><code>0xb8eed0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_attack"></a>BehaviorTree::NT_OPERATION_ATTACK</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce88</code></td>
+<td><code>0xb8ee88</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_change_target"></a>BehaviorTree::NT_OPERATION_CHANGE_TARGET</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cec4</code></td>
+<td><code>0xb8eec4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_city_attack"></a>BehaviorTree::NT_OPERATION_CITY_ATTACK</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ced4</code></td>
+<td><code>0xb8eed4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_garrison_city"></a>BehaviorTree::NT_OPERATION_GARRISON_CITY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cefc</code></td>
+<td><code>0xb8eefc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_is_ready"></a>BehaviorTree::NT_OPERATION_IS_READY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cec8</code></td>
+<td><code>0xb8eec8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_launch_nukes"></a>BehaviorTree::NT_OPERATION_LAUNCH_NUKES</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf58</code></td>
+<td><code>0xb8ef58</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_military_formation"></a>BehaviorTree::NT_OPERATION_MILITARY_FORMATION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf64</code></td>
+<td><code>0xb8ef64</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_move"></a>BehaviorTree::NT_OPERATION_MOVE</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce6c</code></td>
+<td><code>0xb8ee6c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_move_attack"></a>BehaviorTree::NT_OPERATION_MOVE_ATTACK</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce98</code></td>
+<td><code>0xb8ee98</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_naval_escort"></a>BehaviorTree::NT_OPERATION_NAVAL_ESCORT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf44</code></td>
+<td><code>0xb8ef44</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_pillage"></a>BehaviorTree::NT_OPERATION_PILLAGE</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cef4</code></td>
+<td><code>0xb8eef4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_protect"></a>BehaviorTree::NT_OPERATION_PROTECT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cebc</code></td>
+<td><code>0xb8eebc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_operation_siege_city"></a>BehaviorTree::NT_OPERATION_SIEGE_CITY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cef8</code></td>
+<td><code>0xb8eef8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_player_ability_decorator"></a>BehaviorTree::NT_PLAYER_ABILITY_DECORATOR</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf48</code></td>
+<td><code>0xb8ef48</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_priority"></a>BehaviorTree::NT_PRIORITY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce4c</code></td>
+<td><code>0xb8ee4c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_protect_unit"></a>BehaviorTree::NT_PROTECT_UNIT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cedc</code></td>
+<td><code>0xb8eedc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_purchase_plot"></a>BehaviorTree::NT_PURCHASE_PLOT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce90</code></td>
+<td><code>0xb8ee90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_recruit_units"></a>BehaviorTree::NT_RECRUIT_UNITS</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce94</code></td>
+<td><code>0xb8ee94</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_reserve_plot"></a>BehaviorTree::NT_RESERVE_PLOT</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cef0</code></td>
+<td><code>0xb8eef0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_runtree"></a>BehaviorTree::NT_RUNTREE</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce68</code></td>
+<td><code>0xb8ee68</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_sequence"></a>BehaviorTree::NT_SEQUENCE</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8ce50</code></td>
+<td><code>0xb8ee50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_settle_action"></a>BehaviorTree::NT_SETTLE_ACTION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cea8</code></td>
+<td><code>0xb8eea8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_spy_choose_mission"></a>BehaviorTree::NT_SPY_CHOOSE_MISSION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf30</code></td>
+<td><code>0xb8ef30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_spy_do_operation"></a>BehaviorTree::NT_SPY_DO_OPERATION</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf34</code></td>
+<td><code>0xb8ef34</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_spy_move_to_city"></a>BehaviorTree::NT_SPY_MOVE_TO_CITY</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf38</code></td>
+<td><code>0xb8ef38</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_turnlimit_decorator"></a>BehaviorTree::NT_TURNLIMIT_DECORATOR</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cec0</code></td>
+<td><code>0xb8eec0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_upgrade_units"></a>BehaviorTree::NT_UPGRADE_UNITS</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf18</code></td>
+<td><code>0xb8ef18</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_use_great_person"></a>BehaviorTree::NT_USE_GREAT_PERSON</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf20</code></td>
+<td><code>0xb8ef20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_use_scripted_command"></a>BehaviorTree::NT_USE_SCRIPTED_COMMAND</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf68</code></td>
+<td><code>0xb8ef68</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__behaviortree__nt_will_use_nukes"></a>BehaviorTree::NT_WILL_USE_NUKES</td>
+<td><code>AI::BehaviorTree</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8cf54</code></td>
+<td><code>0xb8ef54</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__coast"></a>COAST</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6c8</code></td>
+<td><code>0xb8e700</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__cultural_pressure"></a>CULTURAL_PRESSURE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6e0</code></td>
+<td><code>0xb8e718</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__control__g_turntimer"></a>Control::g_TurnTimer</td>
+<td><code>Platform::SimpleTimer</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb8c798</code></td>
+<td><code>0xb8e798</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__control__g_numaiturns"></a>Control::g_numAITurns</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c794</code></td>
+<td><code>0xb8e794</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__control__g_totalaiturntime"></a>Control::g_totalAITurnTime</td>
+<td><code>uint64</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb8c7a0</code></td>
+<td><code>0xb8e7a0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__control__progressnames"></a>Control::progressNames</td>
+<td><code>const char*[]</code></td>
+<td>0</td>
+<td>.data</td>
+<td><code>0xb63650</code></td>
+<td><code>0xb65650</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__currentversion"></a>CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0x9f8548</code></td>
+<td><code>0x9f9568</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__default_land_scouts"></a>DEFAULT_LAND_SCOUTS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c790</code></td>
+<td><code>0xb8e584</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__default_naval_scouts"></a>DEFAULT_NAVAL_SCOUTS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c550</code></td>
+<td><code>0xb8e588</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__foreign_continent"></a>FOREIGN_CONTINENT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6dc</code></td>
+<td><code>0xb8e714</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__fresh_water"></a>FRESH_WATER</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6cc</code></td>
+<td><code>0xb8e704</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__globalai__s_barbarianleader"></a>GlobalAi::s_barbarianLeader</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb645c0</code></td>
+<td><code>0xb665c0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__governors__ms_uicomponentindex"></a>Governors::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb64630</code></td>
+<td><code>0xb66630</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_alliance"></a>INDEX_DIPLOACTION_ALLIANCE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c80c</code></td>
+<td><code>0xb8e80c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_alliance_cultural"></a>INDEX_DIPLOACTION_ALLIANCE_CULTURAL</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c878</code></td>
+<td><code>0xb8e878</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_alliance_economic"></a>INDEX_DIPLOACTION_ALLIANCE_ECONOMIC</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c874</code></td>
+<td><code>0xb8e874</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_alliance_military"></a>INDEX_DIPLOACTION_ALLIANCE_MILITARY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c870</code></td>
+<td><code>0xb8e870</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_alliance_religious"></a>INDEX_DIPLOACTION_ALLIANCE_RELIGIOUS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c87c</code></td>
+<td><code>0xb8e87c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_alliance_research"></a>INDEX_DIPLOACTION_ALLIANCE_RESEARCH</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c86c</code></td>
+<td><code>0xb8e86c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_alliance_teamup"></a>INDEX_DIPLOACTION_ALLIANCE_TEAMUP</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c880</code></td>
+<td><code>0xb8e880</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_colonial_war"></a>INDEX_DIPLOACTION_DECLARE_COLONIAL_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c83c</code></td>
+<td><code>0xb8e83c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_formal_war"></a>INDEX_DIPLOACTION_DECLARE_FORMAL_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c828</code></td>
+<td><code>0xb8e828</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_friendship"></a>INDEX_DIPLOACTION_DECLARE_FRIENDSHIP</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c810</code></td>
+<td><code>0xb8e810</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_golden_age_war"></a>INDEX_DIPLOACTION_DECLARE_GOLDEN_AGE_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c844</code></td>
+<td><code>0xb8e844</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_holy_war"></a>INDEX_DIPLOACTION_DECLARE_HOLY_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c82c</code></td>
+<td><code>0xb8e82c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_ideological_war"></a>INDEX_DIPLOACTION_DECLARE_IDEOLOGICAL_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c84c</code></td>
+<td><code>0xb8e84c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_liberation_war"></a>INDEX_DIPLOACTION_DECLARE_LIBERATION_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c830</code></td>
+<td><code>0xb8e830</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_protectorate_war"></a>INDEX_DIPLOACTION_DECLARE_PROTECTORATE_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c838</code></td>
+<td><code>0xb8e838</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_reconquest_war"></a>INDEX_DIPLOACTION_DECLARE_RECONQUEST_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c834</code></td>
+<td><code>0xb8e834</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_surprise_war"></a>INDEX_DIPLOACTION_DECLARE_SURPRISE_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c824</code></td>
+<td><code>0xb8e824</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_territorial_war"></a>INDEX_DIPLOACTION_DECLARE_TERRITORIAL_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c840</code></td>
+<td><code>0xb8e840</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_war_minor_civ"></a>INDEX_DIPLOACTION_DECLARE_WAR_MINOR_CIV</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c820</code></td>
+<td><code>0xb8e820</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_declare_war_of_retribution"></a>INDEX_DIPLOACTION_DECLARE_WAR_OF_RETRIBUTION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c848</code></td>
+<td><code>0xb8e848</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_defensive_pact"></a>INDEX_DIPLOACTION_DEFENSIVE_PACT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7ec</code></td>
+<td><code>0xb8e7ec</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_demand_tribute"></a>INDEX_DIPLOACTION_DEMAND_TRIBUTE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7e4</code></td>
+<td><code>0xb8e7e4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_denounce"></a>INDEX_DIPLOACTION_DENOUNCE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c800</code></td>
+<td><code>0xb8e800</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_diplomatic_delegation"></a>INDEX_DIPLOACTION_DIPLOMATIC_DELEGATION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c808</code></td>
+<td><code>0xb8e808</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_gift_unit"></a>INDEX_DIPLOACTION_GIFT_UNIT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c818</code></td>
+<td><code>0xb8e818</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_grant_influence_token"></a>INDEX_DIPLOACTION_GRANT_INFLUENCE_TOKEN</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c814</code></td>
+<td><code>0xb8e814</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_joint_war"></a>INDEX_DIPLOACTION_JOINT_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7f0</code></td>
+<td><code>0xb8e7f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_keep_dont_attack_ally"></a>INDEX_DIPLOACTION_KEEP_DONT_ATTACK_ALLY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c868</code></td>
+<td><code>0xb8e868</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_keep_dont_attack_city_state"></a>INDEX_DIPLOACTION_KEEP_DONT_ATTACK_CITY_STATE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c864</code></td>
+<td><code>0xb8e864</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_keep_promise_dont_convert"></a>INDEX_DIPLOACTION_KEEP_PROMISE_DONT_CONVERT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c858</code></td>
+<td><code>0xb8e858</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_keep_promise_dont_dig_artifacts"></a>INDEX_DIPLOACTION_KEEP_PROMISE_DONT_DIG_ARTIFACTS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c85c</code></td>
+<td><code>0xb8e85c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_keep_promise_dont_settle_too_near"></a>INDEX_DIPLOACTION_KEEP_PROMISE_DONT_SETTLE_TOO_NEAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c860</code></td>
+<td><code>0xb8e860</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_keep_promise_dont_spy"></a>INDEX_DIPLOACTION_KEEP_PROMISE_DONT_SPY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c854</code></td>
+<td><code>0xb8e854</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_liberate_city"></a>INDEX_DIPLOACTION_LIBERATE_CITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c890</code></td>
+<td><code>0xb8e890</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_make_peace"></a>INDEX_DIPLOACTION_MAKE_PEACE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c804</code></td>
+<td><code>0xb8e804</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_military_request"></a>INDEX_DIPLOACTION_MILITARY_REQUEST</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c81c</code></td>
+<td><code>0xb8e81c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_open_borders"></a>INDEX_DIPLOACTION_OPEN_BORDERS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7e8</code></td>
+<td><code>0xb8e7e8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_propose_peace_deal"></a>INDEX_DIPLOACTION_PROPOSE_PEACE_DEAL</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7dc</code></td>
+<td><code>0xb8e7dc</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_propose_trade"></a>INDEX_DIPLOACTION_PROPOSE_TRADE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c850</code></td>
+<td><code>0xb8e850</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_request_assistance"></a>INDEX_DIPLOACTION_REQUEST_ASSISTANCE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7fc</code></td>
+<td><code>0xb8e7fc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_research_agreement"></a>INDEX_DIPLOACTION_RESEARCH_AGREEMENT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7f8</code></td>
+<td><code>0xb8e7f8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_resident_embassy"></a>INDEX_DIPLOACTION_RESIDENT_EMBASSY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7e0</code></td>
+<td><code>0xb8e7e0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_third_party_war"></a>INDEX_DIPLOACTION_THIRD_PARTY_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c7f4</code></td>
+<td><code>0xb8e7f4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_use_nuclear_weapon"></a>INDEX_DIPLOACTION_USE_NUCLEAR_WEAPON</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c88c</code></td>
+<td><code>0xb8e88c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_view_demand"></a>INDEX_DIPLOACTION_VIEW_DEMAND</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c888</code></td>
+<td><code>0xb8e888</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diploaction_view_trade"></a>INDEX_DIPLOACTION_VIEW_TRADE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c884</code></td>
+<td><code>0xb8e884</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_allied"></a>INDEX_DIPLO_STATE_ALLIED</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c894</code></td>
+<td><code>0xb8e894</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_aware"></a>INDEX_DIPLO_STATE_AWARE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8c0</code></td>
+<td><code>0xb8e8c0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_declared_friend"></a>INDEX_DIPLO_STATE_DECLARED_FRIEND</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c898</code></td>
+<td><code>0xb8e898</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_denounced"></a>INDEX_DIPLO_STATE_DENOUNCED</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8a8</code></td>
+<td><code>0xb8e8a8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_friendly"></a>INDEX_DIPLO_STATE_FRIENDLY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c89c</code></td>
+<td><code>0xb8e89c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_influential"></a>INDEX_DIPLO_STATE_INFLUENTIAL</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8b4</code></td>
+<td><code>0xb8e8b4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_max_influence"></a>INDEX_DIPLO_STATE_MAX_INFLUENCE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8b8</code></td>
+<td><code>0xb8e8b8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_minor_minor"></a>INDEX_DIPLO_STATE_MINOR_MINOR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8d0</code></td>
+<td><code>0xb8e8d0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_minor_minor_war"></a>INDEX_DIPLO_STATE_MINOR_MINOR_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8d4</code></td>
+<td><code>0xb8e8d4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_neutral"></a>INDEX_DIPLO_STATE_NEUTRAL</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8a0</code></td>
+<td><code>0xb8e8a0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_no_influence"></a>INDEX_DIPLO_STATE_NO_INFLUENCE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8b0</code></td>
+<td><code>0xb8e8b0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_patron"></a>INDEX_DIPLO_STATE_PATRON</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8c4</code></td>
+<td><code>0xb8e8c4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_protector"></a>INDEX_DIPLO_STATE_PROTECTOR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8c8</code></td>
+<td><code>0xb8e8c8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_unfriendly"></a>INDEX_DIPLO_STATE_UNFRIENDLY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8a4</code></td>
+<td><code>0xb8e8a4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_war"></a>INDEX_DIPLO_STATE_WAR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8ac</code></td>
+<td><code>0xb8e8ac</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_war_with_major"></a>INDEX_DIPLO_STATE_WAR_WITH_MAJOR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8cc</code></td>
+<td><code>0xb8e8cc</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__index_diplo_state_war_with_minor"></a>INDEX_DIPLO_STATE_WAR_WITH_MINOR</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c8bc</code></td>
+<td><code>0xb8e8bc</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__land_scouts_per_primary_region"></a>LAND_SCOUTS_PER_PRIMARY_REGION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c554</code></td>
+<td><code>0xb8e58c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__land_scouts_per_secondary_region"></a>LAND_SCOUTS_PER_SECONDARY_REGION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c558</code></td>
+<td><code>0xb8e590</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_air_assault"></a>MOVE_AIR_ASSAULT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c780</code></td>
+<td><code>0xb8e574</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_air_deploy"></a>MOVE_AIR_DEPLOY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c77c</code></td>
+<td><code>0xb8e570</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_air_rebase"></a>MOVE_AIR_REBASE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c784</code></td>
+<td><code>0xb8e578</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_camp"></a>MOVE_ATTACK_CAMP</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c730</code></td>
+<td><code>0xb8e768</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_civilians"></a>MOVE_ATTACK_CIVILIANS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c718</code></td>
+<td><code>0xb8e750</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_enemy_district"></a>MOVE_ATTACK_ENEMY_DISTRICT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c71c</code></td>
+<td><code>0xb8e754</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_high_priority"></a>MOVE_ATTACK_HIGH_PRIORITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c70c</code></td>
+<td><code>0xb8e744</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_leader_formation"></a>MOVE_ATTACK_LEADER_FORMATION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c720</code></td>
+<td><code>0xb8e758</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_low_priority"></a>MOVE_ATTACK_LOW_PRIORITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c714</code></td>
+<td><code>0xb8e74c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_medium_priority"></a>MOVE_ATTACK_MEDIUM_PRIORITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c710</code></td>
+<td><code>0xb8e748</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_attack_support_formation"></a>MOVE_ATTACK_SUPPORT_FORMATION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c724</code></td>
+<td><code>0xb8e75c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_barbarian_rampage"></a>MOVE_BARBARIAN_RAMPAGE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c788</code></td>
+<td><code>0xb8e57c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_builder_outside_ring"></a>MOVE_BUILDER_OUTSIDE_RING</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c728</code></td>
+<td><code>0xb8e760</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_chase_target"></a>MOVE_CHASE_TARGET</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c73c</code></td>
+<td><code>0xb8e774</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_coastal_raid"></a>MOVE_COASTAL_RAID</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c774</code></td>
+<td><code>0xb8e568</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_defend_camp"></a>MOVE_DEFEND_CAMP</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c72c</code></td>
+<td><code>0xb8e764</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_end_turn"></a>MOVE_END_TURN</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c708</code></td>
+<td><code>0xb8e740</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_explore"></a>MOVE_EXPLORE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c704</code></td>
+<td><code>0xb8e73c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_first_turn_settler"></a>MOVE_FIRST_TURN_SETTLER</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6fc</code></td>
+<td><code>0xb8e734</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_found_national_park"></a>MOVE_FOUND_NATIONAL_PARK</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c778</code></td>
+<td><code>0xb8e56c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_gather_goody_hut"></a>MOVE_GATHER_GOODY_HUT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c750</code></td>
+<td><code>0xb8e788</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_great_person"></a>MOVE_GREAT_PERSON</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c754</code></td>
+<td><code>0xb8e78c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_heal"></a>MOVE_HEAL</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c734</code></td>
+<td><code>0xb8e76c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_make_military_formation"></a>MOVE_MAKE_MILITARY_FORMATION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c738</code></td>
+<td><code>0xb8e770</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_missionaries"></a>MOVE_MISSIONARIES</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c760</code></td>
+<td><code>0xb8e554</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_pillage_district"></a>MOVE_PILLAGE_DISTRICT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c748</code></td>
+<td><code>0xb8e780</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_pillage_improvement"></a>MOVE_PILLAGE_IMPROVEMENT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c744</code></td>
+<td><code>0xb8e77c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_plunder_trader"></a>MOVE_PLUNDER_TRADER</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c74c</code></td>
+<td><code>0xb8e784</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_promote_unit"></a>MOVE_PROMOTE_UNIT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c758</code></td>
+<td><code>0xb8e790</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_religious_combat"></a>MOVE_RELIGIOUS_COMBAT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c768</code></td>
+<td><code>0xb8e55c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_religious_heal"></a>MOVE_RELIGIOUS_HEAL</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c76c</code></td>
+<td><code>0xb8e560</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_rockband"></a>MOVE_ROCKBAND</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c75c</code></td>
+<td><code>0xb8e550</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_to_safety"></a>MOVE_TO_SAFETY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c700</code></td>
+<td><code>0xb8e738</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_wander"></a>MOVE_WANDER</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c740</code></td>
+<td><code>0xb8e778</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_wander_near_camp"></a>MOVE_WANDER_NEAR_CAMP</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c764</code></td>
+<td><code>0xb8e558</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_wander_near_city"></a>MOVE_WANDER_NEAR_CITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c770</code></td>
+<td><code>0xb8e564</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__move_zombie_horde"></a>MOVE_ZOMBIE_HORDE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c78c</code></td>
+<td><code>0xb8e580</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__naval_scouts_for_world_exploration"></a>NAVAL_SCOUTS_FOR_WORLD_EXPLORATION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c55c</code></td>
+<td><code>0xb8e594</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__nearest_enemy_city"></a>NEAREST_ENEMY_CITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6b4</code></td>
+<td><code>0xb8e6ec</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__nearest_friendly_city"></a>NEAREST_FRIENDLY_CITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6b8</code></td>
+<td><code>0xb8e6f0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__new_resources"></a>NEW_RESOURCES</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6bc</code></td>
+<td><code>0xb8e6f4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__operation__ms_kvariantmanager"></a>Operation::ms_kVariantManager</td>
+<td><code>Data::TypedVariantManager</code></td>
+<td>—</td>
+<td>.data</td>
+<td><code>0xb8cc90</code></td>
+<td><code>0xb8ec90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__resource_class"></a>RESOURCE_CLASS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6d8</code></td>
+<td><code>0xb8e710</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__route_railroad"></a>ROUTE_RAILROAD</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c5b0</code></td>
+<td><code>0xb8e5e8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__settlement_additional_value_per_city"></a>SETTLEMENT_ADDITIONAL_VALUE_PER_CITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6e8</code></td>
+<td><code>0xb8e720</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__settlement_city_minimum_value"></a>SETTLEMENT_CITY_MINIMUM_VALUE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6f4</code></td>
+<td><code>0xb8e72c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__settlement_city_value_multiplier"></a>SETTLEMENT_CITY_VALUE_MULTIPLIER</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6f8</code></td>
+<td><code>0xb8e730</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__settlement_decay_amount"></a>SETTLEMENT_DECAY_AMOUNT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6f0</code></td>
+<td><code>0xb8e728</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__settlement_decay_turns"></a>SETTLEMENT_DECAY_TURNS</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6ec</code></td>
+<td><code>0xb8e724</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__settlement_min_value_needed"></a>SETTLEMENT_MIN_VALUE_NEEDED</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6e4</code></td>
+<td><code>0xb8e71c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__specific_feature"></a>SPECIFIC_FEATURE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6d4</code></td>
+<td><code>0xb8e70c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__specific_resource"></a>SPECIFIC_RESOURCE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6d0</code></td>
+<td><code>0xb8e708</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__siteevaluators__evalfunctions"></a>SiteEvaluators::evalFunctions</td>
+<td><code>EvalFunc[]</code></td>
+<td>0</td>
+<td>.data</td>
+<td><code>0xb8c920</code></td>
+<td><code>0xb8e920</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_air_unit"></a>TARGET_AIR_UNIT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c5a0</code></td>
+<td><code>0xb8e5d8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_ally_support"></a>TARGET_ALLY_SUPPORT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c59c</code></td>
+<td><code>0xb8e5d4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_barbarian_camp"></a>TARGET_BARBARIAN_CAMP</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c570</code></td>
+<td><code>0xb8e5a8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_civilian"></a>TARGET_CIVILIAN</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c580</code></td>
+<td><code>0xb8e5b8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_disaster_capable"></a>TARGET_DISASTER_CAPABLE</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c5ac</code></td>
+<td><code>0xb8e5e4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_enemy_combat_district"></a>TARGET_ENEMY_COMBAT_DISTRICT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c564</code></td>
+<td><code>0xb8e59c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_enemy_improvement"></a>TARGET_ENEMY_IMPROVEMENT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c590</code></td>
+<td><code>0xb8e5c8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_enemy_passive_district"></a>TARGET_ENEMY_PASSIVE_DISTRICT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c568</code></td>
+<td><code>0xb8e5a0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_goody_hut"></a>TARGET_GOODY_HUT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c598</code></td>
+<td><code>0xb8e5d0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_high_priority_unit"></a>TARGET_HIGH_PRIORITY_UNIT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c58c</code></td>
+<td><code>0xb8e5c4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_low_priority_unit"></a>TARGET_LOW_PRIORITY_UNIT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c584</code></td>
+<td><code>0xb8e5bc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_medium_priority_unit"></a>TARGET_MEDIUM_PRIORITY_UNIT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c588</code></td>
+<td><code>0xb8e5c0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_my_city"></a>TARGET_MY_CITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c560</code></td>
+<td><code>0xb8e598</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_naval_superiority"></a>TARGET_NAVAL_SUPERIORITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c5a4</code></td>
+<td><code>0xb8e5dc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_neutral_city"></a>TARGET_NEUTRAL_CITY</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c56c</code></td>
+<td><code>0xb8e5a4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__target_neutral_civilian"></a>TARGET_NEUTRAL_CIVILIAN</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c574</code></td>
+<td><code>0xb8e5ac</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_religious_unit"></a>TARGET_RELIGIOUS_UNIT</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c578</code></td>
+<td><code>0xb8e5b0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_script_supplied"></a>TARGET_SCRIPT_SUPPLIED</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c5a8</code></td>
+<td><code>0xb8e5e0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_settle_location"></a>TARGET_SETTLE_LOCATION</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c594</code></td>
+<td><code>0xb8e5cc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__target_trader"></a>TARGET_TRADER</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c57c</code></td>
+<td><code>0xb8e5b4</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__valuemanager__invalid_pv"></a>ValueManager::INVALID_PV</td>
+<td><code>const FixedPoint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb64cb0</code></td>
+<td><code>0xb66cb0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__yield_inner"></a>YIELD_INNER</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6c0</code></td>
+<td><code>0xb8e6f8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__yield_total"></a>YIELD_TOTAL</td>
+<td><code>AI</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c6c4</code></td>
+<td><code>0xb8e6fc</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ai__ms_bforcedeclarwarwithhuman"></a>ms_bForceDeclarWarWithHuman</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb8c7da</code></td>
+<td><code>0xb8e7da</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="ai__ms_bforceopenborderswithhuman"></a>ms_bForceOpenBordersWithHuman</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb8c7db</code></td>
+<td><code>0xb8e7db</code></td>
+<td>inferred</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

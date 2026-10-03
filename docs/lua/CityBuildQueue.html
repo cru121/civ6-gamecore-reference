@@ -1,0 +1,351 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CityBuildQueue</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › CityBuildQueue</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>CityBuildQueue</h1>
+<p>40 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue/">CityBuildQueue</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addprogress"></a>AddProgress</td>
+<td><code>CityBuildQueue:AddProgress(xProgress?: number) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.AddProgress/">yes ↗</a></td>
+<td><code>0x6c9530</code></td>
+<td><code>0x6c9bf0</code></td>
+</tr>
+<tr>
+<td><a id="canproduce"></a>CanProduce</td>
+<td><em>UI state:</em> <code>CityBuildQueue:CanProduce(eProductionHash: table[HashID], arg2: table, arg3: table)</code><br><em>gameplay state:</em> <code>CityBuildQueue.CanProduce() (or nothing)</code><br><small>args: <code>arg2</code> — A boolean flag (true/false).; <code>arg3</code> — A boolean flag (true/false).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.CanProduce/">yes ↗</a></td>
+<td><code>0x68b400</code></td>
+<td><code>0x68b9e0</code></td>
+</tr>
+<tr>
+<td><a id="checkactiveproduction"></a>CheckActiveProduction</td>
+<td><code>CityBuildQueue:CheckActiveProduction() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.CheckActiveProduction/">yes ↗</a></td>
+<td><code>0x6c95c0</code></td>
+<td><code>0x6c9c60</code></td>
+</tr>
+<tr>
+<td><a id="createbuilding"></a>CreateBuilding</td>
+<td><code>CityBuildQueue:CreateBuilding(arg1?: number, x: integer/Plot, y?: integer) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.CreateBuilding/">yes ↗</a></td>
+<td><code>0x6c95f0</code></td>
+<td><code>0x6c9c90</code></td>
+</tr>
+<tr>
+<td><a id="createdistrict"></a>CreateDistrict</td>
+<td><code>CityBuildQueue:CreateDistrict(arg1?: number, x: integer/Plot, y?: integer) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.CreateDistrict/">yes ↗</a></td>
+<td><code>0x6c96c0</code></td>
+<td><code>0x6c9d60</code></td>
+</tr>
+<tr>
+<td><a id="createincompletebuilding"></a>CreateIncompleteBuilding</td>
+<td><code>CityBuildQueue:CreateIncompleteBuilding(arg1?: number, x: integer/Plot, y?: integer, arg4?: integer) → boolean</code><br><small>args: <code>x</code> — Plot index (plot:GetIndex()). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.CreateIncompleteBuilding/">yes ↗</a></td>
+<td><code>0x6c9780</code></td>
+<td><code>0x6c9e20</code></td>
+</tr>
+<tr>
+<td><a id="createincompletedistrict"></a>CreateIncompleteDistrict</td>
+<td><code>CityBuildQueue:CreateIncompleteDistrict(arg1?: number, x: integer/Plot, y?: integer, arg4?: integer) → boolean</code><br><small>args: <code>x</code> — Plot index (plot:GetIndex()). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.CreateIncompleteDistrict/">yes ↗</a></td>
+<td><code>0x6c9870</code></td>
+<td><code>0x6c9f10</code></td>
+</tr>
+<tr>
+<td><a id="currentlybuilding"></a>CurrentlyBuilding</td>
+<td><code>CityBuildQueue:CurrentlyBuilding() → nil/string/string</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.CurrentlyBuilding/">yes ↗</a></td>
+<td><code>0x6c9960</code></td>
+<td><code>0x6ca000</code></td>
+</tr>
+<tr>
+<td><a id="finishprogress"></a>FinishProgress</td>
+<td><code>CityBuildQueue:FinishProgress() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.FinishProgress/">yes ↗</a></td>
+<td><code>0x6c9b30</code></td>
+<td><code>0x6ca1d0</code></td>
+</tr>
+<tr>
+<td><a id="getat"></a>GetAt</td>
+<td><code>CityBuildQueue:GetAt(uiIndex?: number) → string (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetAt/">yes ↗</a></td>
+<td><code>0x68b840</code></td>
+<td><code>0x68be20</code></td>
+</tr>
+<tr>
+<td><a id="getavailableproductiontypes"></a>GetAvailableProductionTypes</td>
+<td><code>CityBuildQueue.GetAvailableProductionTypes() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetAvailableProductionTypes/">yes ↗</a></td>
+<td><code>0x6c95a0</code></td>
+<td><code>0x6ca200</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingcost"></a>GetBuildingCost</td>
+<td><code>CityBuildQueue:GetBuildingCost(arg1: string/number[BuildingTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetBuildingCost/">yes ↗</a></td>
+<td><code>0x68be30</code></td>
+<td><code>0x68c410</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingprogress"></a>GetBuildingProgress</td>
+<td><code>CityBuildQueue:GetBuildingProgress(arg1: string/number[BuildingTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetBuildingProgress/">yes ↗</a></td>
+<td><code>0x68bea0</code></td>
+<td><code>0x68c480</code></td>
+</tr>
+<tr>
+<td><a id="getcity"></a>GetCity</td>
+<td><code>CityBuildQueue:GetCity() → City</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetCity/">yes ↗</a></td>
+<td><code>0x68bf10</code></td>
+<td><code>0x68c4f0</code></td>
+</tr>
+<tr>
+<td><a id="getconstructionplot"></a>GetConstructionPlot</td>
+<td><code>CityBuildQueue:GetConstructionPlot(eBuilding: string/number[BuildingTypes]) → number</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetConstructionPlot/">yes ↗</a></td>
+<td><code>0x68bf50</code></td>
+<td><code>0x68c530</code></td>
+</tr>
+<tr>
+<td><a id="getconstructionsatlocation"></a>GetConstructionsAtLocation</td>
+<td><code>CityBuildQueue:GetConstructionsAtLocation(x: integer/Plot, y?: integer) → number[]</code><br><small>args: <code>x</code> — Plot index (named plotIndex / plotID in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetConstructionsAtLocation/">yes ↗</a></td>
+<td><code>0x68bfc0</code></td>
+<td><code>0x68c5a0</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentproductiontypehash"></a>GetCurrentProductionTypeHash</td>
+<td><code>CityBuildQueue:GetCurrentProductionTypeHash() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Hash of a row of the Buildings table: the scripts look it up with GameInfo.Buildings[result].</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetCurrentProductionTypeHash/">yes ↗</a></td>
+<td><code>0x68c0e0</code></td>
+<td><code>0x68c6c0</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentproductiontypemodifier"></a>GetCurrentProductionTypeModifier</td>
+<td><code>CityBuildQueue:GetCurrentProductionTypeModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetCurrentProductionTypeModifier/">yes ↗</a></td>
+<td><code>0x68c130</code></td>
+<td><code>0x68c710</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictcost"></a>GetDistrictCost</td>
+<td><code>CityBuildQueue:GetDistrictCost(arg1: string/number[DistrictTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Districts table (the value of GameInfo.Districts[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetDistrictCost/">yes ↗</a></td>
+<td><code>0x68c180</code></td>
+<td><code>0x68c760</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictprogress"></a>GetDistrictProgress</td>
+<td><code>CityBuildQueue:GetDistrictProgress(arg1: string/number[DistrictTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Districts table (the value of GameInfo.Districts[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetDistrictProgress/">yes ↗</a></td>
+<td><code>0x68c1f0</code></td>
+<td><code>0x68c7d0</code></td>
+</tr>
+<tr>
+<td><a id="getnumentriesofproductiontypehash"></a>GetNumEntriesOfProductionTypeHash</td>
+<td><code>CityBuildQueue:GetNumEntriesOfProductionTypeHash(eUnit: string/number[UnitTypes]) → number</code><br><small>args: <code>eUnit</code> — Index of a row of the Units table (the value of GameInfo.Units[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetNumEntriesOfProductionTypeHash/">yes ↗</a></td>
+<td><code>0x68c260</code></td>
+<td><code>0x68c840</code></td>
+</tr>
+<tr>
+<td><a id="getpreviousproductiontypehash"></a>GetPreviousProductionTypeHash</td>
+<td><code>CityBuildQueue:GetPreviousProductionTypeHash() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetPreviousProductionTypeHash/">yes ↗</a></td>
+<td><code>0x68c2d0</code></td>
+<td><code>0x68c8b0</code></td>
+</tr>
+<tr>
+<td><a id="getproductionyield"></a>GetProductionYield</td>
+<td><code>CityBuildQueue:GetProductionYield() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetProductionYield/">yes ↗</a></td>
+<td><code>0x68c320</code></td>
+<td><code>0x68c900</code></td>
+</tr>
+<tr>
+<td><a id="getprojectcost"></a>GetProjectCost</td>
+<td><code>CityBuildQueue:GetProjectCost(arg1: string/number[ProjectTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Projects table (the value of GameInfo.Projects[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetProjectCost/">yes ↗</a></td>
+<td><code>0x68c370</code></td>
+<td><code>0x68c950</code></td>
+</tr>
+<tr>
+<td><a id="getprojectprogress"></a>GetProjectProgress</td>
+<td><code>CityBuildQueue:GetProjectProgress(arg1: string/number[ProjectTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Projects table (the value of GameInfo.Projects[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetProjectProgress/">yes ↗</a></td>
+<td><code>0x68c3e0</code></td>
+<td><code>0x68c9c0</code></td>
+</tr>
+<tr>
+<td><a id="getsize"></a>GetSize</td>
+<td><code>CityBuildQueue:GetSize() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetSize/">yes ↗</a></td>
+<td><code>0x68c450</code></td>
+<td><code>0x68ca30</code></td>
+</tr>
+<tr>
+<td><a id="getturnsleft"></a>GetTurnsLeft</td>
+<td><em>UI state:</em> <code>CityBuildQueue:GetTurnsLeft(arg1: string/number, arg2?: number) → number</code><br><em>gameplay state:</em> <code>CityBuildQueue.GetTurnsLeft() (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetTurnsLeft/">yes ↗</a></td>
+<td><code>0x68c4a0</code></td>
+<td><code>0x68ca80</code></td>
+</tr>
+<tr>
+<td><a id="getunitarmycost"></a>GetUnitArmyCost</td>
+<td><code>CityBuildQueue:GetUnitArmyCost(arg1: string/number[UnitTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Units table (the value of GameInfo.Units[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetUnitArmyCost/">yes ↗</a></td>
+<td><code>0x68c600</code></td>
+<td><code>0x68cbe0</code></td>
+</tr>
+<tr>
+<td><a id="getunitcorpscost"></a>GetUnitCorpsCost</td>
+<td><code>CityBuildQueue:GetUnitCorpsCost(arg1: string/number[UnitTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Units table (the value of GameInfo.Units[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetUnitCorpsCost/">yes ↗</a></td>
+<td><code>0x68c670</code></td>
+<td><code>0x68cc50</code></td>
+</tr>
+<tr>
+<td><a id="getunitcost"></a>GetUnitCost</td>
+<td><code>CityBuildQueue:GetUnitCost(arg1: string/number[UnitTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Units table (the value of GameInfo.Units[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetUnitCost/">yes ↗</a></td>
+<td><code>0x68c6e0</code></td>
+<td><code>0x68ccc0</code></td>
+</tr>
+<tr>
+<td><a id="getunitprogress"></a>GetUnitProgress</td>
+<td><code>CityBuildQueue:GetUnitProgress(arg1: string/number[UnitTypes]) → number</code><br><small>args: <code>arg1</code> — Index of a row of the Units table (the value of GameInfo.Units[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetUnitProgress/">yes ↗</a></td>
+<td><code>0x68c750</code></td>
+<td><code>0x68cd30</code></td>
+</tr>
+<tr>
+<td><a id="getunitresourcecost"></a>GetUnitResourceCost</td>
+<td><code>CityBuildQueue:GetUnitResourceCost(eUnit: string/number[UnitTypes], eMilitaryFormation: string/number[MilitaryFormationTypes]) → number</code><br><small>args: <code>eUnit</code> — Index of a row of the Units table (the value of GameInfo.Units[...].Index).; <code>eMilitaryFormation</code> — Value of the MilitaryFormationTypes enum (a type index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.GetUnitResourceCost/">yes ↗</a></td>
+<td><code>0x73cfd0</code></td>
+<td><code>0x73d910</code></td>
+</tr>
+<tr>
+<td><a id="hasbeenplaced"></a>HasBeenPlaced</td>
+<td><em>UI state:</em> <code>CityBuildQueue:HasBeenPlaced(eBuilding: string/number[BuildingTypes]) → boolean</code><br><em>gameplay state:</em> <code>CityBuildQueue:HasBeenPlaced(arg1: number/string, arg2?: number) → boolean (or nothing)</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.HasBeenPlaced/">yes ↗</a></td>
+<td><code>0x68c7c0</code></td>
+<td><code>0x68cda0</code></td>
+</tr>
+<tr>
+<td><a id="hasbuildingbeenplaced"></a>HasBuildingBeenPlaced</td>
+<td><code>CityBuildQueue:HasBuildingBeenPlaced(arg1?: number) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.HasBuildingBeenPlaced/">yes ↗</a></td>
+<td><code>0x6c9cc0</code></td>
+<td><code>0x6ca380</code></td>
+</tr>
+<tr>
+<td><a id="hasbuildingproductionprogress"></a>HasBuildingProductionProgress</td>
+<td><code>CityBuildQueue:HasBuildingProductionProgress(arg1?: any, arg2?: number) → boolean ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.HasBuildingProductionProgress/">yes ↗</a></td>
+<td><code>0x6c9d40</code></td>
+<td><code>0x6ca400</code></td>
+</tr>
+<tr>
+<td><a id="hasdistrictbeenplaced"></a>HasDistrictBeenPlaced</td>
+<td><code>CityBuildQueue:HasDistrictBeenPlaced(arg1?: number) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.HasDistrictBeenPlaced/">yes ↗</a></td>
+<td><code>0x6c9dc0</code></td>
+<td><code>0x6ca480</code></td>
+</tr>
+<tr>
+<td><a id="hasdistrictproductionprogress"></a>HasDistrictProductionProgress</td>
+<td><code>CityBuildQueue:HasDistrictProductionProgress(arg1?: any, arg2?: number) → boolean ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.HasDistrictProductionProgress/">yes ↗</a></td>
+<td><code>0x6c9e40</code></td>
+<td><code>0x6ca500</code></td>
+</tr>
+<tr>
+<td><a id="hasproductionprogress"></a>HasProductionProgress</td>
+<td><em>UI state:</em> <code>CityBuildQueue:HasProductionProgress(eBuilding: string/number[BuildingTypes]) → boolean</code><br><em>gameplay state:</em> <code>CityBuildQueue:HasProductionProgress(arg1: number/string, arg2?: number) → boolean (or nothing)</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.HasProductionProgress/">yes ↗</a></td>
+<td><code>0x68c830</code></td>
+<td><code>0x68ce10</code></td>
+</tr>
+<tr>
+<td><a id="removebuilding"></a>RemoveBuilding</td>
+<td><code>CityBuildQueue:RemoveBuilding(eBuilding: number/string[BuildingTypes]) (or nothing)</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.RemoveBuilding/">yes ↗</a></td>
+<td><code>0x6ca020</code></td>
+<td><code>0x6ca6e0</code></td>
+</tr>
+<tr>
+<td><a id="removedistrict"></a>RemoveDistrict</td>
+<td><code>CityBuildQueue:RemoveDistrict(eDistrict: District) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue.RemoveDistrict/">yes ↗</a></td>
+<td><code>0x6ca070</code></td>
+<td><code>0x6ca730</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

@@ -1,0 +1,513 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › Game</p>
+<div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
+
+<h1>Game</h1>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Signature (Linux)</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>From Lua</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="game__climate__manager__applyoneoffeffects"></a>Climate::Manager::ApplyOneOffEffects</td>
+<td><code>void Game::Climate::Manager::ApplyOneOffEffects(Game::Climate::Manager* this, const Game::Climate::OneOff&amp; kOneOff, int&amp; iTilesDamaged, int&amp; iPopLost, int&amp; iUnitsLost, int&amp; iFertilityAdded)</code></td>
+<td><code>0x1baa40</code></td>
+<td><code>0x1b9380</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__climate__manager__applystormeffects"></a>Climate::Manager::ApplyStormEffects</td>
+<td><code>void Game::Climate::Manager::ApplyStormEffects(Game::Climate::Manager* this, Game::Climate::Storm&amp; kStorm, int iTurnStrength, int&amp; iTilesDamaged, int&amp; iPopLost, int&amp; iUnitsLost, int&amp; iFertilityAdded)</code></td>
+<td><code>0x1bb1d0</code></td>
+<td><code>0x1b9b10</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__culture__addrelic"></a>Culture::AddRelic ★</td>
+<td><code>GreatWorkTypes Game::Culture::AddRelic(Game::Culture* this, City::Instance* pkCity, BuildingTypes eBuilding, int iSlot, RelicSource eRelicSource)</code></td>
+<td><code>0x1c7760</code></td>
+<td><code>0x1c6b80</code></td>
+<td>no</td>
+<td>analysed</td>
+</tr>
+<tr>
+<td><a id="game__culture__buildcivics"></a>Culture::BuildCivics</td>
+<td><code>void Game::Culture::BuildCivics(Game::Culture* this)</code></td>
+<td><code>0x1c7da0</code></td>
+<td><code>0x1c71c0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Game.html#buildcivics">Game.BuildCivics</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__culture__findoraddgreatwork"></a>Culture::FindOrAddGreatWork ★</td>
+<td><code>int Game::Culture::FindOrAddGreatWork(Game::Culture* this, GreatWorkTypes eGreatWorkType)</code></td>
+<td><code>0x1c8f00</code></td>
+<td><code>0x1c80e0</code></td>
+<td>via CE: <a href="../ce/CultureManager.html#findoraddgreatwork">CultureManager.FindOrAddGreatWork</a></td>
+<td>analysed</td>
+</tr>
+<tr>
+<td><a id="game__culture__setgreatworkplayer"></a>Culture::SetGreatWorkPlayer ★</td>
+<td><code>void Game::Culture::SetGreatWorkPlayer(Game::Culture* this, int iIndex, PlayerTypes ePlayer)</code></td>
+<td><code>0x1c9890</code></td>
+<td><code>0x1c8c80</code></td>
+<td>via CE: <a href="../ce/CultureManager.html#setgreatworkplayer">CultureManager.SetGreatWorkPlayer</a></td>
+<td>analysed, edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__addgrievancelogentry"></a>DiplomaticRelations::AddGrievanceLogEntry</td>
+<td><code>void Game::DiplomaticRelations::AddGrievanceLogEntry(Game::DiplomaticRelations* this, Game::GrievanceLogItem&amp; kItem, bool bAppend)</code></td>
+<td><code>0x1cf2e0</code></td>
+<td><code>0x1ce980</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__changegrievancescore"></a>DiplomaticRelations::ChangeGrievanceScore</td>
+<td><code>void Game::DiplomaticRelations::ChangeGrievanceScore(Game::DiplomaticRelations* this, PlayerTypes a, PlayerTypes b, int iNumGrievances)</code></td>
+<td><code>0x1cf3a0</code></td>
+<td><code>0x1cea40</code></td>
+<td>via CE: <a href="../ce/GameDiplomacy.html#changegrievancescore">GameDiplomacy.ChangeGrievanceScore</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__setatwar"></a>DiplomaticRelations::SetAtWar</td>
+<td><code>void Game::DiplomaticRelations::SetAtWar(Game::DiplomaticRelations* this, PlayerTypes a, PlayerTypes b, WarTypes war)</code></td>
+<td><code>0x1d39d0</code></td>
+<td><code>0x1d31b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameDiplomacy.html#setatwar">GameDiplomacy.SetAtWar</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__setisindefensivepact"></a>DiplomaticRelations::SetIsInDefensivePact</td>
+<td><code>void Game::DiplomaticRelations::SetIsInDefensivePact(Game::DiplomaticRelations* this, PlayerTypes a, PlayerTypes b, bool pact)</code></td>
+<td><code>0x1d4450</code></td>
+<td><code>0x1d3c30</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameDiplomacy.html#setisindefensivepact">GameDiplomacy.SetIsInDefensivePact</a></td>
+<td>edit_call, signal, writes</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__setjointwartarget"></a>DiplomaticRelations::SetJointWarTarget</td>
+<td><code>void Game::DiplomaticRelations::SetJointWarTarget(Game::DiplomaticRelations* this, PlayerTypes initiator, PlayerTypes partner, PlayerTypes target)</code></td>
+<td><code>0x1d45d0</code></td>
+<td><code>0x1d3db0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameDiplomacy.html#setjointwartarget">GameDiplomacy.SetJointWarTarget</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__setsharessuzerain"></a>DiplomaticRelations::SetSharesSuzerain</td>
+<td><code>void Game::DiplomaticRelations::SetSharesSuzerain(Game::DiplomaticRelations* this, PlayerTypes a, PlayerTypes b, bool c)</code></td>
+<td><code>0x1d49f0</code></td>
+<td><code>0x1d41d0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameDiplomacy.html#setsharessuzerain">GameDiplomacy.SetSharesSuzerain</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__economic__manager__gettourismfrommonopolies"></a>Economic::Manager::GetTourismFromMonopolies</td>
+<td><code>int Game::Economic::Manager::GetTourismFromMonopolies(const Game::Economic::Manager* this, PlayerTypes ePlayer)</code></td>
+<td><code>0x62d550</code></td>
+<td><code>0x62dd20</code></td>
+<td>via CE: <a href="../ce/EconomicManager.html#gettourismfrommonopolies">EconomicManager.GetTourismFromMonopolies</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="game__economic__manager__removecorporation"></a>Economic::Manager::RemoveCorporation</td>
+<td><code>void Game::Economic::Manager::RemoveCorporation(Game::Economic::Manager* this, PlayerTypes ePlayer, PlotCoord kLocation)</code></td>
+<td><code>0x62f300</code></td>
+<td><code>0x62fb80</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__economic__manager__removeindustry"></a>Economic::Manager::RemoveIndustry</td>
+<td><code>void Game::Economic::Manager::RemoveIndustry(Game::Economic::Manager* this, PlayerTypes ePlayer, PlotCoord kLocation)</code></td>
+<td><code>0x62f3f0</code></td>
+<td><code>0x62fc70</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeextrascoreperpridemoment"></a>Eras::ChangeExtraScorePerPrideMoment</td>
+<td><code>void Game::Eras::ChangeExtraScorePerPrideMoment(Game::Eras* this, PlayerTypes ePlayer, int iDelta)</code></td>
+<td><code>0x1e2b00</code></td>
+<td><code>0x1e2260</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeextrascoreperpridemoment">GameEras.ChangeExtraScorePerPrideMoment</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayeralwaysallowedcommemorationquestcount"></a>Eras::ChangePlayerAlwaysAllowedCommemorationQuestCount</td>
+<td><code>void Game::Eras::ChangePlayerAlwaysAllowedCommemorationQuestCount(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2b50</code></td>
+<td><code>0x1e22b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayeralwaysallowedcommemorationquestcount">GameEras.ChangePlayerAlwaysAllowedCommemorationQuestCount</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperaerodromebuildingconstructed"></a>Eras::ChangePlayerEraScorePerAerodromeBuildingConstructed</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerAerodromeBuildingConstructed(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2ba0</code></td>
+<td><code>0x1e2300</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperaerodromebuildingconstructed">GameEras.ChangePlayerEraScorePerAerodromeBuildingConstructed</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperarmykilled"></a>Eras::ChangePlayerEraScorePerArmyKilled</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerArmyKilled(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2c20</code></td>
+<td><code>0x1e2380</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperarmykilled">GameEras.ChangePlayerEraScorePerArmyKilled</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperartifactextracted"></a>Eras::ChangePlayerEraScorePerArtifactExtracted</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerArtifactExtracted(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2ca0</code></td>
+<td><code>0x1e2400</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperartifactextracted">GameEras.ChangePlayerEraScorePerArtifactExtracted</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepercityreligionconversion"></a>Eras::ChangePlayerEraScorePerCityReligionConversion</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerCityReligionConversion(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2d20</code></td>
+<td><code>0x1e2480</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepercityreligionconversion">GameEras.ChangePlayerEraScorePerCityReligionConversion</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepercivicboost"></a>Eras::ChangePlayerEraScorePerCivicBoost</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerCivicBoost(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2da0</code></td>
+<td><code>0x1e2500</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepercivicboost">GameEras.ChangePlayerEraScorePerCivicBoost</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepercontinentdiscovered"></a>Eras::ChangePlayerEraScorePerContinentDiscovered</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerContinentDiscovered(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2e20</code></td>
+<td><code>0x1e2580</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepercontinentdiscovered">GameEras.ChangePlayerEraScorePerContinentDiscovered</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepercorpskilled"></a>Eras::ChangePlayerEraScorePerCorpsKilled</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerCorpsKilled(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2ea0</code></td>
+<td><code>0x1e2600</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepercorpskilled">GameEras.ChangePlayerEraScorePerCorpsKilled</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperculturebuildingconstructed"></a>Eras::ChangePlayerEraScorePerCultureBuildingConstructed</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerCultureBuildingConstructed(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2f20</code></td>
+<td><code>0x1e2680</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperculturebuildingconstructed">GameEras.ChangePlayerEraScorePerCultureBuildingConstructed</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepercurrentcivic"></a>Eras::ChangePlayerEraScorePerCurrentCivic</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerCurrentCivic(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e2fa0</code></td>
+<td><code>0x1e2700</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepercurrentcivic">GameEras.ChangePlayerEraScorePerCurrentCivic</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepercurrenttech"></a>Eras::ChangePlayerEraScorePerCurrentTech</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerCurrentTech(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e3020</code></td>
+<td><code>0x1e2780</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepercurrenttech">GameEras.ChangePlayerEraScorePerCurrentTech</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperdistrictconstructed"></a>Eras::ChangePlayerEraScorePerDistrictConstructed</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerDistrictConstructed(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e30a0</code></td>
+<td><code>0x1e2800</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperdistrictconstructed">GameEras.ChangePlayerEraScorePerDistrictConstructed</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepergreatpersonearned"></a>Eras::ChangePlayerEraScorePerGreatPersonEarned</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerGreatPersonEarned(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e3120</code></td>
+<td><code>0x1e2880</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepergreatpersonearned">GameEras.ChangePlayerEraScorePerGreatPersonEarned</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperindustrialbuildingconstructed"></a>Eras::ChangePlayerEraScorePerIndustrialBuildingConstructed</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerIndustrialBuildingConstructed(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e31a0</code></td>
+<td><code>0x1e2900</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperindustrialbuildingconstructed">GameEras.ChangePlayerEraScorePerIndustrialBuildingConstructed</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepernaturalwonderdiscovered"></a>Eras::ChangePlayerEraScorePerNaturalWonderDiscovered</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerNaturalWonderDiscovered(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e3220</code></td>
+<td><code>0x1e2980</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepernaturalwonderdiscovered">GameEras.ChangePlayerEraScorePerNaturalWonderDiscovered</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepernonbarbarianunitkilledbygdr"></a>Eras::ChangePlayerEraScorePerNonBarbarianUnitKilledByGDR</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerNonBarbarianUnitKilledByGDR(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e32a0</code></td>
+<td><code>0x1e2a00</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepernonbarbarianunitkilledbygdr">GameEras.ChangePlayerEraScorePerNonBarbarianUnitKilledByGDR</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepernonbarbarianunitseakilled"></a>Eras::ChangePlayerEraScorePerNonBarbarianUnitSeaKilled</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerNonBarbarianUnitSeaKilled(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e3320</code></td>
+<td><code>0x1e2a80</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepernonbarbarianunitseakilled">GameEras.ChangePlayerEraScorePerNonBarbarianUnitSeaKilled</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepersciencebuildingconstructed"></a>Eras::ChangePlayerEraScorePerScienceBuildingConstructed</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerScienceBuildingConstructed(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e33a0</code></td>
+<td><code>0x1e2b00</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepersciencebuildingconstructed">GameEras.ChangePlayerEraScorePerScienceBuildingConstructed</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperspysuccessfulmission"></a>Eras::ChangePlayerEraScorePerSpySuccessfulMission</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerSpySuccessfulMission(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e3420</code></td>
+<td><code>0x1e2b80</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperspysuccessfulmission">GameEras.ChangePlayerEraScorePerSpySuccessfulMission</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepertechboost"></a>Eras::ChangePlayerEraScorePerTechBoost</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerTechBoost(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e34a0</code></td>
+<td><code>0x1e2c00</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepertechboost">GameEras.ChangePlayerEraScorePerTechBoost</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascorepertraderoutecompleted"></a>Eras::ChangePlayerEraScorePerTradeRouteCompleted</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerTradeRouteCompleted(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e3520</code></td>
+<td><code>0x1e2c80</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascorepertraderoutecompleted">GameEras.ChangePlayerEraScorePerTradeRouteCompleted</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__changeplayererascoreperunitpromotionearned"></a>Eras::ChangePlayerEraScorePerUnitPromotionEarned</td>
+<td><code>void Game::Eras::ChangePlayerEraScorePerUnitPromotionEarned(Game::Eras* this, PlayerTypes ePlayer, int iAmount)</code></td>
+<td><code>0x1e35a0</code></td>
+<td><code>0x1e2d00</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#changeplayererascoreperunitpromotionearned">GameEras.ChangePlayerEraScorePerUnitPromotionEarned</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__recalculatethresholdshifts"></a>Eras::RecalculateThresholdShifts</td>
+<td><code>void Game::Eras::RecalculateThresholdShifts(Game::Eras* this, PlayerTypes ePlayer, EraTypes eCurrentEra)</code></td>
+<td><code>0x1e76a0</code></td>
+<td><code>0x1e6e00</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#recalculatethresholdshifts">GameEras.RecalculateThresholdShifts</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__setcurrentera"></a>Eras::SetCurrentEra</td>
+<td><code>void Game::Eras::SetCurrentEra(Game::Eras* this, EraTypes eEra)</code></td>
+<td><code>0x1e8660</code></td>
+<td><code>0x1e7eb0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#setcurrentera">GameEras.SetCurrentEra</a></td>
+<td>signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__setdarkage"></a>Eras::SetDarkAge</td>
+<td><code>void Game::Eras::SetDarkAge(Game::Eras* this, PlayerTypes ePlayer, bool bIsDarkAge)</code></td>
+<td><code>0x1e8750</code></td>
+<td><code>0x1e7fa0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#setdarkage">GameEras.SetDarkAge</a></td>
+<td>edit_call, signal, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__setgoldenage"></a>Eras::SetGoldenAge</td>
+<td><code>void Game::Eras::SetGoldenAge(Game::Eras* this, PlayerTypes ePlayer, bool bIsGoldenAge)</code></td>
+<td><code>0x1e87f0</code></td>
+<td><code>0x1e8040</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#setgoldenage">GameEras.SetGoldenAge</a></td>
+<td>edit_call, signal, writes</td>
+</tr>
+<tr>
+<td><a id="game__eras__setminscoreforextraerascore"></a>Eras::SetMinScoreForExtraEraScore</td>
+<td><code>void Game::Eras::SetMinScoreForExtraEraScore(Game::Eras* this, PlayerTypes ePlayer, int iNewValue)</code></td>
+<td><code>0x1e8890</code></td>
+<td><code>0x1e80e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameEras.html#setminscoreforextraerascore">GameEras.SetMinScoreForExtraEraScore</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__gossip__manager__addgossipitem"></a>Gossip::Manager::AddGossipItem</td>
+<td><code>void Game::Gossip::Manager::AddGossipItem(Game::Gossip::Manager* this, OccurrenceRef pkItem)</code></td>
+<td><code>0x1f6a60</code></td>
+<td><code>0x1f59f0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="game__greatpeople__awardfreepersonbyclass"></a>GreatPeople::AwardFreePersonByClass</td>
+<td><code>bool Game::GreatPeople::AwardFreePersonByClass(Game::GreatPeople* this, PlayerTypes ePlayer, GreatPersonClassTypes eClass)</code></td>
+<td><code>0x209fd0</code></td>
+<td><code>0x208fd0</code></td>
+<td>Dev CE (experimental): <a href="../devce/GameGreatPeople.html#awardfreepersonbyclass">GameGreatPeople.AwardFreePersonByClass</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__history__moment__setextradata"></a>History::Moment::SetExtraData</td>
+<td><code>void Game::History::Moment::SetExtraData(Game::History::Moment* this, MomentDataTypes eDataType, int iData)</code></td>
+<td><code>0x217330</code></td>
+<td><code>0x215e40</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="game__instance__decrementgamestatelock"></a>Instance::DecrementGameStateLock</td>
+<td><code>uint Game::Instance::DecrementGameStateLock(Game::Instance* this)</code></td>
+<td><code>0x63cdd0</code></td>
+<td><code>0x63cee0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Game.html#decrementgamestatelock">Game.DecrementGameStateLock</a></td>
+<td>signal, writes</td>
+</tr>
+<tr>
+<td><a id="game__instance__incrementgamestatelock"></a>Instance::IncrementGameStateLock</td>
+<td><code>uint Game::Instance::IncrementGameStateLock(Game::Instance* this)</code></td>
+<td><code>0x63d090</code></td>
+<td><code>0x63d1a0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Game.html#incrementgamestatelock">Game.IncrementGameStateLock</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="game__nationalparks__designatepark"></a>NationalParks::DesignatePark</td>
+<td><code>void Game::NationalParks::DesignatePark(Game::NationalParks* this, PlayerTypes ePlayer, PlotCoord kBaseTile)</code></td>
+<td><code>0x236180</code></td>
+<td><code>0x235830</code></td>
+<td>via CE: <a href="../ce/NationalParks.html#designatepark">NationalParks.DesignatePark</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="game__nationalparks__findpark"></a>NationalParks::FindPark</td>
+<td><code>const Game::ParkData* Game::NationalParks::FindPark(const Game::NationalParks* this, PlotCoord kLocation)</code></td>
+<td><code>0x236c70</code></td>
+<td><code>0x2362c0</code></td>
+<td>via CE: <a href="../ce/NationalParks.html#findpark">NationalParks.FindPark</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="game__nationalparks__restorevisualstate"></a>NationalParks::RestoreVisualState</td>
+<td><code>bool Game::NationalParks::RestoreVisualState(Game::NationalParks* this, const Game::ParkData* pkPark)</code> (+1 overload)</td>
+<td><code>0x239300</code></td>
+<td><code>0x2389f0</code></td>
+<td>via CE: <a href="../ce/NationalParks.html#restorevisualstate">NationalParks.RestoreVisualState</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="game__randomevents__pillagedistrict"></a>RandomEvents::PillageDistrict</td>
+<td><code>int Game::RandomEvents::PillageDistrict(Game::RandomEvents* this, int iPlotIndex, PlayerTypes&amp; iAffectedPlayer)</code> (+1 overload)</td>
+<td><code>0x2401d0</code></td>
+<td><code>0x23f880</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="game__randomevents__pillageimprovement"></a>RandomEvents::PillageImprovement</td>
+<td><code>int Game::RandomEvents::PillageImprovement(Game::RandomEvents* this, int iPlotIndex, PlayerTypes&amp; iAffectedPlayer)</code> (+1 overload)</td>
+<td><code>0x240470</code></td>
+<td><code>0x23fb20</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="game__techs__buildtechs"></a>Techs::BuildTechs</td>
+<td><code>void Game::Techs::BuildTechs(Game::Techs* this)</code></td>
+<td><code>0x250f90</code></td>
+<td><code>0x2502e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/Game.html#buildtechs">Game.BuildTechs</a></td>
+<td>edit_call, writes</td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>Game::Culture::AddRelic</h3>
+<p>Chooses a relic, creates its game-wide record, places it in a slot, and announces it. Its only caller is <code>Player::Religion::CreateRelic</code>.</p>
+<ul>
+<li>Selection among the pool is random (weighted). (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Because <code>AddGreatWorkToSlot</code> silently does nothing for an unknown building entry or an out-of-range slot (see its note), calling <code>AddRelic</code> with a <strong>valid city, a relic-holding building type and an out-of-range slot</strong> should create the record and skip placement. The notification would still say the relic was placed. <strong>Untested.</strong> (Low-medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Called with a valid city, a relic-holder building type and an out-of-range slot, AddRelic creates the record and notifies, but places the relic in no slot (it ends in limbo). This is what the archive hook relies on; verified with the <code>hut xN</code> test command and reload.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-30, single player)]</em></li>
+</ul>
+<h3>Game::Culture::FindOrAddGreatWork</h3>
+<p>Returns the position (list index) of the game-wide record for a great work type, creating the record if none exists.</p>
+<ul>
+<li>Scans the game-wide list (begin at Culture+0x118, end at +0x120, 0x18 bytes per record) for a record whose first field equals <code>type</code>; if found, returns its position.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Otherwise appends a new record through the tracked accessor (<code>edit()</code> on the list at Culture+0x108) and returns the new position.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li><strong>Record layout (0x18 bytes):</strong> +0x00 great work type (u32); +0x04 player (s32, initialised to -1); +0x08 the game's current turn at creation (read from the game instance at +0xc0); +0x10 a text string, initialised empty.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The type is an index into the great work definition collection (<code>Definitions::GetGreatWorkDefinitions</code>).
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The "Created in <year>" text comes from the record's creation-turn field (fits the observation: two works created one turn apart differ by 50 years). (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The "Created by" text comes from the string at +0x10, which normal creation code (great people, relics, artifacts) probably fills in; works spawned only with this function have it empty. (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The player field (+0x04) starts at -1 and is set by <code>SetGreatWorkPlayer</code>; see that note. (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>An archive that only remembers a work's type would lose its creation turn, creator text and player. To restore a work faithfully, keep the whole record, or leave the record in the game-wide list and only move the slot (what the experiments did).
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Creating a work with this function alone is enough to make it exist in limbo, but it will lack the creator text.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Called through the Frida tool for works 0 and 1: created records at list indexes 0 and 1; a second call with an existing type returned the existing index and added nothing.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-29/30)]</em></li>
+<li>A tooltip for a work created this way reads "Created in 950 BC" (the other, created a turn earlier, 1000 BC) and shows an <strong>empty "Created by"</strong>.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-29/30)]</em></li>
+</ul>
+<h3>Game::Culture::SetGreatWorkPlayer</h3>
+<p>Writes a player id into the game-wide great work record.</p>
+<ul>
+<li>Calls edit() on the tracked list at Culture+0x108, then writes the player at record[index<em>0x18 + 4].
+  </em>[verified; evidence: static-analysis — decompilation read in Ghidra]*</li>
+<li>The player field is initialised to -1 when the record is created (), so this call is what fills it in.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Not called in the trade path (Enact, PostEnact, City::Manager::Transfer). Called from GrantRandomProduct, CreateHeroEpicGreatWork and Player::Operations::Manager::Process.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>That field is probably the creator of the work, not its current holder; Game.GetGreatWorkPlayer most likely returns the creator and does not change on trade. (Medium; inferred from callers only.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Do not read this as 'who owns it now'. Use IsInCity across the player's cities for the current holder.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>On a real save from a forum report, the record "player" field of works held by other civilizations was the creator, not the holder; the field is also used for theming, so overwriting it with the holder is not safe.
+  <em>[verified; evidence: runtime — Observed in-game (real save, 2026-10-01)]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

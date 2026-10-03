@@ -1,0 +1,406 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI::GlobalAi</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../../index.html">Home</a><a href="../../conventions.html">How to read</a><a href="../../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../../lua/index.html">Lua API</a><a href="../../operations/index.html">Operations</a><a href="../../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../../ce/index.html">CE Lua API</a><a href="../../layouts/index.html">Class layouts</a><a href="../../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../../native/index.html">Native functions</a><a href="../../native/all.html">All functions (search)</a></nav><main><p><a href="../../index.html">Home</a> › <a href="../index.html">Class layouts</a> › <a href="../AI.html">AI</a> › AI::GlobalAi</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>AI::GlobalAi</h1>
+<p><code>GameCore::AI::GlobalAi</code> — class, size 11904 bytes (0x2e80).</p>
+<table>
+<thead>
+<tr>
+<th>Linux offset</th>
+<th>Member</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x0</code></td>
+<td>m_syncArchive</td>
+<td><code>FAutoArchiveClassContainer&lt;GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x98</code></td>
+<td>m_yieldAdvantage</td>
+<td><code>FAutoVariable&lt;Types::Vector&lt;FixedPointT&lt;8&gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc0</code></td>
+<td>m_yieldError</td>
+<td><code>FAutoVariable&lt;Types::Vector&lt;FixedPointT&lt;8&gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0xe8</code></td>
+<td>m_numStartingCities</td>
+<td><code>FAutoVariable&lt;unsigned int, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x100</code></td>
+<td>m_processingAis</td>
+<td><code>FAutoVariable&lt;int, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x118</code></td>
+<td>m_defaultAiDiscount</td>
+<td><code>FAutoVariable&lt;FixedPointT&lt;8&gt;, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x130</code></td>
+<td>m_valueHorizons</td>
+<td><code>FAutoVariable&lt;Types::Vector&lt;int, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x158</code></td>
+<td>m_mayhemTracker</td>
+<td><code>FAutoVariable&lt;GameCore::AI::MayhemTracker, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x170</code></td>
+<td>m_controlFactory</td>
+<td><code>FAutoVariable&lt;GameCore::AI::Control::Factory, GameCore::AI::GlobalAi&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x188</code></td>
+<td>m_unitEfficiencies</td>
+<td><a href="UnitEfficiencyManager.html">AI::UnitEfficiencyManager</a></td>
+</tr>
+<tr>
+<td><code>0x1d0</code></td>
+<td>m_gameEffectsAnalyzer</td>
+<td><a href="GameEffectAnalyzer.html">AI::GameEffectAnalyzer</a></td>
+</tr>
+<tr>
+<td><code>0x2f0</code></td>
+<td>m_boostSupport</td>
+<td><a href="BoostSupportFunctions.html">AI::BoostSupportFunctions</a></td>
+</tr>
+<tr>
+<td><code>0x318</code></td>
+<td>m_diplomaticSupport</td>
+<td><a href="DiplomaticSupport.html">AI::DiplomaticSupport</a></td>
+</tr>
+<tr>
+<td><code>0x368</code></td>
+<td>m_congressSupport</td>
+<td><a href="CongressSupport.html">AI::CongressSupport</a></td>
+</tr>
+<tr>
+<td><code>0x390</code></td>
+<td>m_operationsSupport</td>
+<td><a href="Operation.OperationConditionFunctions.html">AI::Operation::OperationConditionFunctions</a></td>
+</tr>
+<tr>
+<td><code>0x3b8</code></td>
+<td>m_victorySupport</td>
+<td><a href="VictorySupportFunctions.html">AI::VictorySupportFunctions</a></td>
+</tr>
+<tr>
+<td><code>0x3e0</code></td>
+<td>m_diplomaticActionEvaluators</td>
+<td><code>std::__1::unique_ptr&lt;GameCore::AI::DiplomaticActionEvaluators, std::__1::default_delete&lt;GameCore::AI::DiplomaticActionEvaluators&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x3e8</code></td>
+<td>m_espionageManager</td>
+<td><a href="EspionageManager.html">AI::EspionageManager</a></td>
+</tr>
+<tr>
+<td><code>0x408</code></td>
+<td>m_religiousManager</td>
+<td><a href="ReligiousManager.html">AI::ReligiousManager</a></td>
+</tr>
+<tr>
+<td><code>0x428</code></td>
+<td>m_aiJobs</td>
+<td><code>Platform::JobSet</code></td>
+</tr>
+<tr>
+<td><code>0x438</code></td>
+<td>m_aiJobList</td>
+<td><code>JobListHandle</code></td>
+</tr>
+<tr>
+<td><code>0x440</code></td>
+<td>m_favoredAgendaQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x590</code></td>
+<td>m_favoredCivicQuery</td>
+<td><code>AI::Lists::Handler&lt;bool&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x6e0</code></td>
+<td>m_favoredPolicyQuery</td>
+<td><code>AI::Lists::Handler&lt;bool&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x830</code></td>
+<td>m_favoredProjectQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x980</code></td>
+<td>m_favoredResolutionQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0xad0</code></td>
+<td>m_favoredDiscussionQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc20</code></td>
+<td>m_favoredTechQuery</td>
+<td><code>AI::Lists::Handler&lt;bool&gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd70</code></td>
+<td>m_triggeredBehaviorTreesQuery</td>
+<td><code>AI::Lists::Handler&lt;GameCore::AI::TriggeredTreeInfo&gt;</code></td>
+</tr>
+<tr>
+<td><code>0xed0</code></td>
+<td>m_favoredWonderQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1020</code></td>
+<td>m_favoredDistrictQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1170</code></td>
+<td>m_favoredCommemorationsQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x12c0</code></td>
+<td>m_techBoostSupportQuery</td>
+<td><code>AI::Lists::Handler&lt;GameCore::AI::BoostSupport&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1450</code></td>
+<td>m_favoredAllianceQuery</td>
+<td><code>AI::Lists::Handler&lt;GameCore::AI::DiplomaticPreference&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x15a0</code></td>
+<td>m_favoredDiploActionQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x16f0</code></td>
+<td>m_citySiteQuery</td>
+<td><code>AI::Lists::Handler&lt;GameCore::AI::CitySiteEvaluation&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x18b0</code></td>
+<td>m_playerPseudoYieldBonusQuery</td>
+<td><code>AI::Lists::Handler&lt;FixedPointT&lt;8&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1a00</code></td>
+<td>m_scoutUseQuery</td>
+<td><code>AI::Lists::Handler&lt;FixedPointT&lt;8&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1b50</code></td>
+<td>m_playerYieldBonusQuery</td>
+<td><code>AI::Lists::Handler&lt;FixedPointT&lt;8&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1ca0</code></td>
+<td>m_playerYieldSensitivityQuery</td>
+<td><code>AI::Lists::Handler&lt;FixedPointT&lt;8&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1df0</code></td>
+<td>m_unitPreferenceQuery</td>
+<td><code>AI::Lists::Handler&lt;FixedPointT&lt;8&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1f40</code></td>
+<td>m_citySettlementQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2090</code></td>
+<td>m_citySpecializationQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x21e0</code></td>
+<td>m_homelandMoveQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2330</code></td>
+<td>m_savingsQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2480</code></td>
+<td>m_tacticalMoveQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x25d0</code></td>
+<td>m_operationsQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2720</code></td>
+<td>m_perWarOperationsQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2870</code></td>
+<td>m_unitPriorityQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x29c0</code></td>
+<td>m_victoryStrategyQuery</td>
+<td><code>AI::Lists::Handler&lt;int&gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2b10</code></td>
+<td>m_cityTriggersQuery</td>
+<td><code>AI::Lists::Handler&lt;String::BasicT&lt;String::BasicStringAlloc, ASCII&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2c60</code></td>
+<td>m_allianceModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;[]</code></td>
+</tr>
+<tr>
+<td><code>0x2cc0</code></td>
+<td>m_buildingModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2cd8</code></td>
+<td>m_commemorationModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2cf0</code></td>
+<td>m_congressResolutionOptOneModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d08</code></td>
+<td>m_congressResolutionOptTwoModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d20</code></td>
+<td>m_districtModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d38</code></td>
+<td>m_governorModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d50</code></td>
+<td>m_governorPromotionModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d68</code></td>
+<td>m_improvementModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d80</code></td>
+<td>m_playerModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d98</code></td>
+<td>m_policyModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2db0</code></td>
+<td>m_projectModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2dc8</code></td>
+<td>m_unitAbilityModifiers</td>
+<td><code>Types::Vector&lt;Types::Vector&lt;GameCore::AI::ModifierAnalyzer, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;, Types::LinearAlloc::Default&lt;1, 0&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2de0</code></td>
+<td>m_combatHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2df0</code></td>
+<td>m_denounceHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e00</code></td>
+<td>m_nuclearLaunchHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e10</code></td>
+<td>m_buildingPillageHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e20</code></td>
+<td>m_districtPillageHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e30</code></td>
+<td>m_pillageHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e40</code></td>
+<td>m_playerLostHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e50</code></td>
+<td>m_warHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e60</code></td>
+<td>m_playerIntroducedHandle</td>
+<td><a href="../Message/Handle.html">Message::Handle</a></td>
+</tr>
+<tr>
+<td><code>0x2e70</code></td>
+<td>m_eState</td>
+<td><code>AI::InitializationState</code></td>
+</tr>
+<tr>
+<td><code>0x2e74</code></td>
+<td>m_bJobsRunning</td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>0x2e75</code></td>
+<td>m_bJobsReleasedGameCoreLock</td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../../";</script><script src="../../search.js"></script>

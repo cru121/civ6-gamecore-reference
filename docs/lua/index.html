@@ -1,0 +1,772 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Lua API</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › Lua API</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Lua API</h1>
+<p>Methods registered by GameCore, grouped by object. <strong>Where</strong> says which registration table lists the method (<code>ui-cache</code> = the UI-side cache interface, <code>gameplay</code> = the gameplay interface). It is not proof of which Lua state can call it; the community reference is more reliable for that.</p>
+<p><strong>In reference</strong> counts the methods that also appear in the community Lua reference by Sukrit Tan (external, ↗ links to it). Each method row links to its page there when it has one; methods without a link are registered by the game but undocumented there.</p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Methods</th>
+<th>Where</th>
+<th>In reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="AiCityBuild.html">AiCityBuild</a></td>
+<td>3</td>
+<td>ui-cache</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/AiCityBuild/">↗</a></td>
+</tr>
+<tr>
+<td><a href="AiDiplomacy.html">AiDiplomacy</a></td>
+<td>11</td>
+<td>gameplay, ui-cache</td>
+<td>11 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/AiDiplomacy/">↗</a></td>
+</tr>
+<tr>
+<td><a href="AiGrandStrategic.html">AiGrandStrategic</a></td>
+<td>3</td>
+<td>ui-cache</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/AiGrandStrategic/">↗</a></td>
+</tr>
+<tr>
+<td><a href="AiMilitary.html">AiMilitary</a></td>
+<td>11</td>
+<td>gameplay</td>
+<td>11 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/AiMilitary/">↗</a></td>
+</tr>
+<tr>
+<td><a href="AiReligious.html">AiReligious</a></td>
+<td>1</td>
+<td>gameplay</td>
+<td>1 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/AiReligious/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Area.html">Area</a></td>
+<td>14</td>
+<td>gameplay</td>
+<td>14 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Area/">↗</a></td>
+</tr>
+<tr>
+<td><a href="AutoplayManager.html">AutoplayManager</a></td>
+<td>10</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="BarbarianTribes.html">BarbarianTribes</a></td>
+<td>4</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="Barbarians.html">Barbarians</a></td>
+<td>15</td>
+<td>ui-cache</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Barbarians/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Calendar.html">Calendar</a></td>
+<td>4</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="Cities.html">Cities</a></td>
+<td>5</td>
+<td>gameplay, ui-cache</td>
+<td>5 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Cities/">↗</a></td>
+</tr>
+<tr>
+<td><a href="City.html">City</a></td>
+<td>52</td>
+<td>gameplay, ui-cache</td>
+<td>52 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/City/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityBuildQueue.html">CityBuildQueue</a></td>
+<td>40</td>
+<td>gameplay, ui-cache</td>
+<td>40 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildQueue/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityBuildings.html">CityBuildings</a></td>
+<td>20</td>
+<td>gameplay, ui-cache</td>
+<td>20 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityCitizens.html">CityCitizens</a></td>
+<td>7</td>
+<td>gameplay, ui-cache</td>
+<td>7 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityCitizens/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityCulturalIdentity.html">CityCulturalIdentity</a></td>
+<td>15</td>
+<td>ui-cache</td>
+<td>15 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityCulturalIdentity/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityCulture.html">CityCulture</a></td>
+<td>7</td>
+<td>ui-cache</td>
+<td>7 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityCulture/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityDistricts.html">CityDistricts</a></td>
+<td>19</td>
+<td>gameplay, ui-cache</td>
+<td>19 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityDistricts/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityGold.html">CityGold</a></td>
+<td>5</td>
+<td>ui-cache</td>
+<td>5 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGold/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityGrowth.html">CityGrowth</a></td>
+<td>40</td>
+<td>gameplay, ui-cache</td>
+<td>40 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityManager.html">CityManager</a></td>
+<td>19</td>
+<td>gameplay, ui-cache</td>
+<td>19 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityPlots.html">CityPlots</a></td>
+<td>6</td>
+<td>ui-cache</td>
+<td>6 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityPlots/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityPower.html">CityPower</a></td>
+<td>12</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="CityReligion.html">CityReligion</a></td>
+<td>15</td>
+<td>gameplay, ui-cache</td>
+<td>15 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityReligion/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CityTrade.html">CityTrade</a></td>
+<td>6</td>
+<td>ui-cache</td>
+<td>6 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityTrade/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CombatManager.html">CombatManager</a></td>
+<td>8</td>
+<td>gameplay</td>
+<td>8 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CombatManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="CongressManager.html">CongressManager</a></td>
+<td>9</td>
+<td>ui-cache</td>
+<td>9 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CongressManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Deal.html">Deal</a></td>
+<td>23</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="DealItem.html">DealItem</a></td>
+<td>37</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="DealManager.html">DealManager</a></td>
+<td>11</td>
+<td>gameplay, ui-cache</td>
+<td>11 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/DealManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Definitions.html">Definitions</a></td>
+<td>2</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="DiplomacyManager.html">DiplomacyManager</a></td>
+<td>15</td>
+<td>ui-cache</td>
+<td>15 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/DiplomacyManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="District.html">District</a></td>
+<td>30</td>
+<td>gameplay, ui-cache</td>
+<td>30 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/District/">↗</a></td>
+</tr>
+<tr>
+<td><a href="EmergencyManager.html">EmergencyManager</a></td>
+<td>3</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="Fractal.html">Fractal</a></td>
+<td>5</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="FreeCities.html">FreeCities</a></td>
+<td>6</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="Game.html">Game</a></td>
+<td>63</td>
+<td>gameplay, ui-cache</td>
+<td>63 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameCapabilities.html">GameCapabilities</a></td>
+<td>1</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="GameClimate.html">GameClimate</a></td>
+<td>50</td>
+<td>gameplay</td>
+<td>50 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameConfiguration.html">GameConfiguration</a></td>
+<td>9</td>
+<td>gameplay</td>
+<td>9 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameConfiguration/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameCulture.html">GameCulture</a></td>
+<td>1</td>
+<td>ui-cache</td>
+<td>1 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameCulture/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameDiplomacy.html">GameDiplomacy</a></td>
+<td>7</td>
+<td>gameplay, ui-cache</td>
+<td>7 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameDiplomacy/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameEconomicManager.html">GameEconomicManager</a></td>
+<td>13</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="GameEffects.html">GameEffects</a></td>
+<td>39</td>
+<td>gameplay</td>
+<td>39 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEffects/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameEras.html">GameEras</a></td>
+<td>28</td>
+<td>gameplay, ui-cache</td>
+<td>28 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameFalloutManager.html">GameFalloutManager</a></td>
+<td>13</td>
+<td>gameplay, ui-cache</td>
+<td>13 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameFalloutManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameGossipManager.html">GameGossipManager</a></td>
+<td>1</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="GameGreatPeople.html">GameGreatPeople</a></td>
+<td>14</td>
+<td>gameplay, ui-cache</td>
+<td>14 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameGreatPeople/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameHeroesManager.html">GameHeroesManager</a></td>
+<td>9</td>
+<td>gameplay, ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="GameHistoryManager.html">GameHistoryManager</a></td>
+<td>6</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="GameNationalParks.html">GameNationalParks</a></td>
+<td>7</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="GameRandomEvents.html">GameRandomEvents</a></td>
+<td>5</td>
+<td>gameplay</td>
+<td>5 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameRandomEvents/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameReligion.html">GameReligion</a></td>
+<td>15</td>
+<td>gameplay, ui-cache</td>
+<td>15 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameReligion/">↗</a></td>
+</tr>
+<tr>
+<td><a href="GameSummary.html">GameSummary</a></td>
+<td>9</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="GameTechs.html">GameTechs</a></td>
+<td>1</td>
+<td>ui-cache</td>
+<td>1 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameTechs/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Governor.html">Governor</a></td>
+<td>14</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="HallofFame.html">HallofFame</a></td>
+<td>20</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="ImprovementBuilder.html">ImprovementBuilder</a></td>
+<td>3</td>
+<td>gameplay</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/ImprovementBuilder/">↗</a></td>
+</tr>
+<tr>
+<td><a href="InfluenceMap.html">InfluenceMap</a></td>
+<td>1</td>
+<td>ui-cache</td>
+<td>1 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/InfluenceMap/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Map.html">Map</a></td>
+<td>33</td>
+<td>gameplay, ui-cache</td>
+<td>33 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map/">↗</a></td>
+</tr>
+<tr>
+<td><a href="MapAreaBuilder.html">MapAreaBuilder</a></td>
+<td>2</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MapAreaPortal.html">MapAreaPortal</a></td>
+<td>5</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MapAreas.html">MapAreas</a></td>
+<td>6</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MapConfiguration.html">MapConfiguration</a></td>
+<td>1</td>
+<td>gameplay</td>
+<td>1 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/MapConfiguration/">↗</a></td>
+</tr>
+<tr>
+<td><a href="MapFeature.html">MapFeature</a></td>
+<td>3</td>
+<td>gameplay</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/MapFeature/">↗</a></td>
+</tr>
+<tr>
+<td><a href="MapFeatureManager.html">MapFeatureManager</a></td>
+<td>17</td>
+<td>gameplay</td>
+<td>17 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/MapFeatureManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="MapPlotUnitList.html">MapPlotUnitList</a></td>
+<td>3</td>
+<td>gameplay, ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MapResourceBuilder.html">MapResourceBuilder</a></td>
+<td>5</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MapRouteBuilder.html">MapRouteBuilder</a></td>
+<td>3</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MapRoutes.html">MapRoutes</a></td>
+<td>2</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MapStartPositioner.html">MapStartPositioner</a></td>
+<td>13</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="MemoryIStream.html">MemoryIStream</a></td>
+<td>3</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="NotificationInstance.html">NotificationInstance</a></td>
+<td>28</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="NotificationManager.html">NotificationManager</a></td>
+<td>9</td>
+<td>gameplay</td>
+<td>9 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/NotificationManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Player.html">Player</a></td>
+<td>65</td>
+<td>gameplay, ui-cache</td>
+<td>65 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Player/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerCities.html">PlayerCities</a></td>
+<td>12</td>
+<td>gameplay, ui-cache</td>
+<td>12 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCities/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerConfiguration.html">PlayerConfiguration</a></td>
+<td>16</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="PlayerCulture.html">PlayerCulture</a></td>
+<td>80</td>
+<td>gameplay, ui-cache</td>
+<td>78 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerDistricts.html">PlayerDistricts</a></td>
+<td>3</td>
+<td>gameplay, ui-cache</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerDistricts/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerEras.html">PlayerEras</a></td>
+<td>3</td>
+<td>gameplay</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerEras/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerGovernors.html">PlayerGovernors</a></td>
+<td>22</td>
+<td>gameplay, ui-cache</td>
+<td>22 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerGovernors/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerGreatPeoplePoints.html">PlayerGreatPeoplePoints</a></td>
+<td>6</td>
+<td>gameplay, ui-cache</td>
+<td>6 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerGreatPeoplePoints/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerImprovements.html">PlayerImprovements</a></td>
+<td>1</td>
+<td>ui-cache</td>
+<td>1 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerImprovements/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerInfluence.html">PlayerInfluence</a></td>
+<td>20</td>
+<td>gameplay, ui-cache</td>
+<td>20 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerInfluence/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerManager.html">PlayerManager</a></td>
+<td>32</td>
+<td>gameplay, ui-cache</td>
+<td>32 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerReligion.html">PlayerReligion</a></td>
+<td>16</td>
+<td>gameplay, ui-cache</td>
+<td>16 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerReligion/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerResources.html">PlayerResources</a></td>
+<td>18</td>
+<td>gameplay, ui-cache</td>
+<td>18 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerResources/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerStats.html">PlayerStats</a></td>
+<td>26</td>
+<td>gameplay, ui-cache</td>
+<td>26 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerStats/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerTechs.html">PlayerTechs</a></td>
+<td>23</td>
+<td>gameplay, ui-cache</td>
+<td>23 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerTrade.html">PlayerTrade</a></td>
+<td>7</td>
+<td>gameplay, ui-cache</td>
+<td>6 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTrade/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerTreasury.html">PlayerTreasury</a></td>
+<td>14</td>
+<td>gameplay, ui-cache</td>
+<td>14 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTreasury/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerUnits.html">PlayerUnits</a></td>
+<td>11</td>
+<td>gameplay, ui-cache</td>
+<td>11 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerUnits/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerVisibility.html">PlayerVisibility</a></td>
+<td>11</td>
+<td>gameplay, ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="PlayerVisibilityManager.html">PlayerVisibilityManager</a></td>
+<td>2</td>
+<td>gameplay, ui-cache</td>
+<td>2 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerVisibilityManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="PlayerWMDs.html">PlayerWMDs</a></td>
+<td>3</td>
+<td>gameplay, ui-cache</td>
+<td>3 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerWMDs/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Plot.html">Plot</a></td>
+<td>90</td>
+<td>gameplay</td>
+<td>90 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Plot/">↗</a></td>
+</tr>
+<tr>
+<td><a href="QuestsManager.html">QuestsManager</a></td>
+<td>4</td>
+<td>gameplay, ui-cache</td>
+<td>4 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/QuestsManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="ReportingEvents.html">ReportingEvents</a></td>
+<td>2</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="RiverManager.html">RiverManager</a></td>
+<td>18</td>
+<td>gameplay</td>
+<td>18 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/RiverManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="TeamDiplomacy.html">TeamDiplomacy</a></td>
+<td>67</td>
+<td>gameplay, ui-cache</td>
+<td>48 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy/">↗</a></td>
+</tr>
+<tr>
+<td><a href="TerrainBuilder.html">TerrainBuilder</a></td>
+<td>21</td>
+<td>gameplay</td>
+<td>21 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder/">↗</a></td>
+</tr>
+<tr>
+<td><a href="TerrainManager.html">TerrainManager</a></td>
+<td>7</td>
+<td>gameplay</td>
+<td>7 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Territories.html">Territories</a></td>
+<td>5</td>
+<td>gameplay</td>
+<td>5 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territories/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Territory.html">Territory</a></td>
+<td>14</td>
+<td>gameplay</td>
+<td>14 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory/">↗</a></td>
+</tr>
+<tr>
+<td><a href="TradeManager.html">TradeManager</a></td>
+<td>24</td>
+<td>gameplay, ui-cache</td>
+<td>24 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="TunerManager.html">TunerManager</a></td>
+<td>1</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="Unit.html">Unit</a></td>
+<td>92</td>
+<td>gameplay, ui-cache</td>
+<td>92 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Unit/">↗</a></td>
+</tr>
+<tr>
+<td><a href="UnitAbility.html">UnitAbility</a></td>
+<td>7</td>
+<td>gameplay, ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="UnitArchaeology.html">UnitArchaeology</a></td>
+<td>7</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="UnitExperience.html">UnitExperience</a></td>
+<td>13</td>
+<td>gameplay, ui-cache</td>
+<td>13 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/UnitExperience/">↗</a></td>
+</tr>
+<tr>
+<td><a href="UnitGreatPerson.html">UnitGreatPerson</a></td>
+<td>11</td>
+<td>gameplay, ui-cache</td>
+<td>11 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/UnitGreatPerson/">↗</a></td>
+</tr>
+<tr>
+<td><a href="UnitManager.html">UnitManager</a></td>
+<td>45</td>
+<td>gameplay, ui-cache</td>
+<td>45 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/UnitManager/">↗</a></td>
+</tr>
+<tr>
+<td><a href="UnitReligion.html">UnitReligion</a></td>
+<td>26</td>
+<td>gameplay</td>
+<td>26 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/UnitReligion/">↗</a></td>
+</tr>
+<tr>
+<td><a href="UnitRockBand.html">UnitRockBand</a></td>
+<td>7</td>
+<td>ui-cache</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="UnitTrade.html">UnitTrade</a></td>
+<td>2</td>
+<td>ui-cache</td>
+<td>2 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/UnitTrade/">↗</a></td>
+</tr>
+<tr>
+<td><a href="Units.html">Units</a></td>
+<td>12</td>
+<td>gameplay, ui-cache</td>
+<td>12 — <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Units/">↗</a></td>
+</tr>
+<tr>
+<td><a href="WorldBuilderCityManager.html">WorldBuilderCityManager</a></td>
+<td>15</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="WorldBuilderConfigurationManager.html">WorldBuilderConfigurationManager</a></td>
+<td>3</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="WorldBuilderManager.html">WorldBuilderManager</a></td>
+<td>21</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="WorldBuilderManager_Inactive.html">WorldBuilderManager_Inactive</a></td>
+<td>1</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="WorldBuilderMapManager.html">WorldBuilderMapManager</a></td>
+<td>24</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="WorldBuilderModManager.html">WorldBuilderModManager</a></td>
+<td>6</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="WorldBuilderPlayerManager.html">WorldBuilderPlayerManager</a></td>
+<td>25</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="WorldBuilderUnitManager.html">WorldBuilderUnitManager</a></td>
+<td>4</td>
+<td>gameplay</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

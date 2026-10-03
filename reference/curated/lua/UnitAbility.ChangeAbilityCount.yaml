@@ -1,0 +1,10 @@
+id: lua:UnitAbility.ChangeAbilityCount
+summary: "Adds or removes a unit ability at run time by a signed count; returns whether the change was applied."
+notes:
+  - text: "The count methods (GetAbilityCount, ChangeAbilityCount, AddAbilityCount, RemoveAbilityCount, HasAbility) are registered on the gameplay state only; GetAbilities is on both states. None of them appear in the community reference."
+    status: verified
+    evidence: [{kind: dll-registration, note: "UnitAbility registration tables"}]
+  - text: "Civ6-GCO grants and strips an ability by name with a signed delta: ChangeAbilityCount(\"ABILITY_NO_MOVEMENT\", 1) to immobilise a garrison, and ChangeAbilityCount(\"ABILITY_NO_MOVEMENT\", -GetAbilityCount(...)) to clear it, keeping the boolean result. It also copies abilities onto a re-created unit this way. A type name string is accepted in place of an id, matching the recovered number|string parameter."
+    status: inferred
+    evidence: [{kind: community-reference, note: "Civ6-GCO Scripts/GCO_AltHistScript.lua:692,796,1637; GCO_UnitScript.lua ~1416; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]
+related: [lua:UnitAbility.GetAbilityCount, lua:UnitAbility.HasAbility, lua:UnitAbility.AddAbilityCount, lua:UnitAbility.RemoveAbilityCount]

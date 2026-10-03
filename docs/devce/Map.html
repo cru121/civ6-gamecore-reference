@@ -1,0 +1,231 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Map</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › Map</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>Map</h1>
+<p>7 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IMap</code> instance resolver (plain).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addplotyield"></a>AddPlotYield</td>
+<td><code>Map:AddPlotYield(iPlotIndex: integer, eYield: integer, iAmount: integer)</code></td>
+<td>Adds a positive yield bonus to a plot's stored yield map; if the plot is visible to the local observer it also sends a floating-text style event naming the yield and amount.</td>
+<td>—</td>
+<td><a href="../native/Map.html#map__feature__manager__addplotyield">Map::Feature::Manager::AddPlotYield</a></td>
+<td><code>0x720ee0</code></td>
+</tr>
+<tr>
+<td><a id="changenaturalwondercount"></a>ChangeNaturalWonderCount</td>
+<td><code>Map:ChangeNaturalWonderCount(iChange: integer)</code></td>
+<td>Adds a delta to the map's natural wonder count stored in an auto-variable.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Map.html#map__instance__changenaturalwondercount">Map::Instance::ChangeNaturalWonderCount</a></td>
+<td><code>0x52000</code></td>
+</tr>
+<tr>
+<td><a id="setrevealedimprovementtype"></a>SetRevealedImprovementType</td>
+<td><code>Map:SetRevealedImprovementType(ePlayer: integer, iPlotIndex: integer, eNewValue: integer) → boolean</code></td>
+<td>Sets the improvement type a given player has seen on a plot (revealed knowledge, which may differ from the real plot) and reports whether it changed.</td>
+<td>—</td>
+<td><a href="../native/Map.html#map__player__visibility__manager__setrevealedimprovementtype">Map::Player::Visibility::Manager::SetRevealedImprovementType</a></td>
+<td><code>0x35de10</code></td>
+</tr>
+<tr>
+<td><a id="setrevealedresourcetype"></a>SetRevealedResourceType</td>
+<td><code>Map:SetRevealedResourceType(ePlayer: integer, iPlotIndex: integer, eNewValue: integer) → boolean</code></td>
+<td>Sets the resource type a given player has seen on a plot and reports whether it changed.</td>
+<td>—</td>
+<td><a href="../native/Map.html#map__player__visibility__manager__setrevealedresourcetype">Map::Player::Visibility::Manager::SetRevealedResourceType</a></td>
+<td><code>0x35deb0</code></td>
+</tr>
+<tr>
+<td><a id="setrevealedroutetype"></a>SetRevealedRouteType</td>
+<td><code>Map:SetRevealedRouteType(ePlayer: integer, iPlotIndex: integer, eNewType: integer) → boolean</code></td>
+<td>Records which route type (road/rail level) a player has seen on a given plot, in that player's revealed-plot data. Returns true only if the stored value actually changed.</td>
+<td>—</td>
+<td><a href="../native/Map.html#map__player__visibility__manager__setrevealedroutetype">Map::Player::Visibility::Manager::SetRevealedRouteType</a></td>
+<td><code>0x35df50</code></td>
+</tr>
+<tr>
+<td><a id="setvolcanoactive"></a>SetVolcanoActive</td>
+<td><code>Map:SetVolcanoActive(bMustBeNamed: boolean)</code></td>
+<td>Randomly picks one inactive volcano feature and makes it active, then reports a reporting event and sends a notification to players who can see it.</td>
+<td>—</td>
+<td><a href="../native/Map.html#map__feature__manager__setvolcanoactive">Map::Feature::Manager::SetVolcanoActive</a></td>
+<td><code>0x7271e0</code></td>
+</tr>
+<tr>
+<td><a id="setvolcanoinactive"></a>SetVolcanoInactive</td>
+<td><code>Map:SetVolcanoInactive(bMustBeNamed: boolean)</code></td>
+<td>Randomly picks one currently active volcano and makes it dormant, then reports an event and notifies players who can see it.</td>
+<td>—</td>
+<td><a href="../native/Map.html#map__feature__manager__setvolcanoinactive">Map::Feature::Manager::SetVolcanoInactive</a></td>
+<td><code>0x727540</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>AddPlotYield</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index; <code>eYield</code> — yield type; <code>iAmount</code> — amount to add; event only for &gt;0</p>
+<p><strong>Writes</strong>
+- per-plot yield entry in variant map at this+0xb0 (creates entry if absent, adds amount to the yield slot)</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send hash 0x45b517d6 with plot, city and localized text, only when amount&gt;0 and plot visible</p>
+<p><strong>Input checks:</strong> Invalid plot or amount&lt;1 skips the event but still performs the stored add (amount added even if negative); out-of-range plot index goes to a scratch entry; out-of-range yield adds to a fallback field.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- valid plot index recommended</p>
+<p><strong>Multiplayer:</strong> may-desync: event depends on local observer visibility but state change is deterministic. <strong>Risk:</strong> medium (stored yield change plus local-only UI event). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- uses virtual map GetPlot at vtable+0x60
+- message only when amount &gt;= 1 and local visibility value &gt; 0
+- bounds checks for index and yield; fallback writes elsewhere
+- switch on yield 0-5 selects text, all cases fall to same code in decompile</p>
+<p><strong>Inferred</strong>
+- the +0xb0 map is plot index to yield list
+- the sent event is the plot yield popup</p>
+<p><strong>Open questions</strong>
+- what the fallback fields at +0x18/+0x30 of the scratch entry represent</p>
+<h3>ChangeNaturalWonderCount</h3>
+<p>Arguments: <code>iChange</code> — amount to add</p>
+<p><strong>Writes</strong>
+- natural wonder count at this+0x130 (via move-assign into variable at this+0x120)</p>
+<p><strong>Side effects</strong>
+- auto-variable assignment (replication hook)</p>
+<p><strong>Input checks:</strong> None; no clamp, negative results allowed.</p>
+<p><strong>Preconditions</strong>
+- map instance exists</p>
+<p><strong>Multiplayer:</strong> may-desync: map state counter; apply on all clients. <strong>Risk:</strong> low (simple counter). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- computes current plus delta and stores through a move-assign helper</p>
+<p><strong>Inferred</strong>
+- helper template name mentions AI ControlPriority but is probably a mis-resolved generic assignment</p>
+<p><strong>Open questions</strong>
+- protected member, so Lua exposure may not exist</p>
+<h3>SetRevealedImprovementType</h3>
+<p>Arguments: <code>ePlayer</code> — player whose knowledge is changed; 1000 selects the global/default visibility record; <code>iPlotIndex</code> — plot index; <code>eNewValue</code> — improvement type to record</p>
+<p><strong>Writes</strong>
+- 16-bit revealed improvement entry for the plot in the player's visibility data (via auto variable at visibility+0x150)</p>
+<p><strong>Input checks:</strong> Plot index and player id are not range checked (unchecked array indexing, crash risk). Returns false when the layer index is out of range, the layer is null, or the value is unchanged.</p>
+<p><strong>Preconditions</strong>
+- valid player id or 1000
+- valid plot index
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: per-player visibility state; keep it consistent on all clients. <strong>Risk:</strong> medium (Unchecked indexes; changes what a player sees for a plot.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Player id 1000 uses the record at this+0x50, otherwise looks up via the mapping tables
+- Layer index from this+0x18 is bounds-checked against count at record+0x240
+- Writes a short only if different, returning true
+- Returns false otherwise</p>
+<p><strong>Inferred</strong>
+- Field at this+0x18 is the improvement layer slot; this+0x1c is the resource layer slot in the sibling function
+- 1000 is the 'observer/all' pseudo player</p>
+<p><strong>Open questions</strong>
+- Whether callers must also refresh the UI</p>
+<h3>SetRevealedResourceType</h3>
+<p>Arguments: <code>ePlayer</code> — player whose knowledge is changed; 1000 selects the global/default record; <code>iPlotIndex</code> — plot index; <code>eNewValue</code> — resource type to record</p>
+<p><strong>Writes</strong>
+- 16-bit revealed resource entry for the plot in the player's visibility data (auto variable at visibility+0x150)</p>
+<p><strong>Input checks:</strong> Plot index and player id unchecked (crash risk). Returns false when layer out of range, layer null, or value unchanged.</p>
+<p><strong>Preconditions</strong>
+- valid player id or 1000
+- valid plot index
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: per-player visibility state. <strong>Risk:</strong> medium (Unchecked indexes; alters player-visible plot knowledge.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Identical structure to SetRevealedImprovementType but layer index from this+0x1c
+- Writes a short and returns true only if the value differs</p>
+<p><strong>Inferred</strong>
+- this+0x1c is the resource layer slot</p>
+<p><strong>Open questions</strong>
+- Whether callers refresh UI</p>
+<h3>SetRevealedRouteType</h3>
+<p>Arguments: <code>ePlayer</code> — player whose visibility record is edited; 1000 selects a special alternate record (observer/global); <code>iPlotIndex</code> — plot index into the per-layer revealed route array; <code>eNewType</code> — route type to store as the revealed route</p>
+<p><strong>Writes</strong>
+- revealed route type (16-bit) for the plot in the player's visibility data, inside a VariantMap edited via edit()</p>
+<p><strong>Side effects</strong>
+- marks the player's visibility variant map as edited (change tracking via edit())</p>
+<p><strong>Input checks:</strong> Player id 1000 uses a fallback record; any other id indexes the player table without a visible range check (crash risk on bad id). Layer index is checked against a count; the plot index is NOT bounds checked (crash risk). Failed layer check returns false silently.</p>
+<p><strong>Preconditions</strong>
+- valid player id (or 1000)
+- valid plot index
+- visibility manager initialized</p>
+<p><strong>Multiplayer:</strong> may-desync: visibility state mutation; only safe if run identically on all clients. <strong>Risk:</strong> medium (unchecked plot index and player index; visibility data only, so wrong values are cosmetic but bad indices can crash). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- returns false when the layer index is not below the record's count
+- stores the value as a 16-bit short only if different from the current one
+- player 1000 takes a different record path</p>
+<p><strong>Inferred</strong>
+- player 1000 is the 'no player/observer' slot
+- this+0x20 is the current visibility layer or team index</p>
+<p><strong>Open questions</strong>
+- exact meaning of this+0x20
+- whether edit() affects replication or only dirty-flagging</p>
+<h3>SetVolcanoActive</h3>
+<p>Arguments: <code>bMustBeNamed</code> — only consider volcanoes that have a name</p>
+<p><strong>Writes</strong>
+- chosen volcano record's 'active since turn' field (+0x14) set to current turn
+- uses and advances the game random state (Choose Active Volcano Roll)</p>
+<p><strong>Side effects</strong>
+- Random::Get roll consuming random state
+- Reporting::Event::Send with plot, flag and visibility
+- Reporting::Notification::Send to each player that can see the plot with localized text
+- Only runs when more volcanoes are inactive than active</p>
+<p><strong>Input checks:</strong> Silent return when no inactive volcano candidate exists (count difference must be positive). Notification only for players with the plot visible.</p>
+<p><strong>Preconditions</strong>
+- gameplay state
+- map with volcano features
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: uses the shared random generator and emits UI notifications; must run identically on all clients. <strong>Risk:</strong> high (Consumes random state and sends notifications; call order matters for sync.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Rolls Random::Get with label 'Choose Active Volcano Roll'
+- Iterates volcano list and skips those already active, and unnamed ones when bMustBeNamed is true
+- Sets a turn field on the selected entry and sends a reporting event and per-player notification
+- Notification only if the player's visibility array has the plot revealed</p>
+<p><strong>Inferred</strong>
+- Entry field +0x14 is the activation turn; -1 means inactive
+- Vtable calls give total/active volcano counts</p>
+<p><strong>Open questions</strong>
+- Meaning of virtual calls at +0x58/+0x68
+- Notification type hash identification</p>
+<h3>SetVolcanoInactive</h3>
+<p>Arguments: <code>bMustBeNamed</code> — only consider volcanoes that have a name</p>
+<p><strong>Writes</strong>
+- chosen volcano record's field at +0x14 set to -1
+- uses game random state (Choose Inactive Volcano Roll)</p>
+<p><strong>Side effects</strong>
+- Random::Get roll
+- Reporting::Event::Send
+- Reporting::Notification::Send to players who see the plot, different notification type than the active variant</p>
+<p><strong>Input checks:</strong> Silent return when no active volcano exists. Skips unnamed volcanoes if bMustBeNamed.</p>
+<p><strong>Preconditions</strong>
+- gameplay state
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: consumes shared random state and sends notifications. <strong>Risk:</strong> high (Random roll plus notifications; ordering matters.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Rolls Random::Get with label 'Choose Inactive Volcano Roll'
+- Picks among active entries and writes -1 into the entry at +0x14
+- Sends reporting event and notification to each player with visibility</p>
+<p><strong>Inferred</strong>
+- Mirror of SetVolcanoActive</p>
+<p><strong>Open questions</strong>
+- Same unknown virtual calls as the active variant</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

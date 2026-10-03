@@ -1,0 +1,6537 @@
+[
+ {
+  "id": "op:player-operation.RESEARCH",
+  "kind": "player-operation",
+  "name": "RESEARCH",
+  "lua": "PlayerOperations.RESEARCH",
+  "hash": "0x6e273371",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30da1e"
+     },
+     "current": {
+      "rva": "0x30ec2e"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_TECH_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Queue<GameCore::CivicTypes,4>",
+   "Techs::SetResearchingTech"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.DECLARE_WAR",
+  "kind": "player-operation",
+  "name": "DECLARE_WAR",
+  "lua": "PlayerOperations.DECLARE_WAR",
+  "hash": "0xb6e469af",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cb50"
+     },
+     "current": {
+      "rva": "0x30dd60"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_PLAYER_ONE"
+   },
+   {
+    "name": "PARAM_PLAYER_TWO"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Globals::EditPlayer",
+   "Diplomacy::DeclareWarOn"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.MAKE_PEACE",
+  "kind": "player-operation",
+  "name": "MAKE_PEACE",
+  "lua": "PlayerOperations.MAKE_PEACE",
+  "hash": "0x19a71b70",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d204"
+     },
+     "current": {
+      "rva": "0x30e414"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_PLAYER_ONE"
+   },
+   {
+    "name": "PARAM_PLAYER_TWO"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Globals::EditPlayer",
+   "Diplomacy::MakePeaceWith"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.PROGRESS_CIVIC",
+  "kind": "player-operation",
+  "name": "PROGRESS_CIVIC",
+  "lua": "PlayerOperations.PROGRESS_CIVIC",
+  "hash": "0x9fa5c528",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c72f"
+     },
+     "current": {
+      "rva": "0x30d93f"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_CIVIC_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Queue<GameCore::CivicTypes,4>",
+   "Culture::SetProgressingCivic",
+   "operator_delete"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.FOUND_PANTHEON",
+  "kind": "player-operation",
+  "name": "FOUND_PANTHEON",
+  "lua": "PlayerOperations.FOUND_PANTHEON",
+  "hash": "0x9671c7d1",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c304"
+     },
+     "current": {
+      "rva": "0x30d514"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_BELIEF_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Religion::Get",
+   "Religion::FoundPantheon"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.FOUND_RELIGION",
+  "kind": "player-operation",
+  "name": "FOUND_RELIGION",
+  "lua": "PlayerOperations.FOUND_RELIGION",
+  "hash": "0xa4daffb5",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c86a"
+     },
+     "current": {
+      "rva": "0x30da7a"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_RELIGION_CUSTOM_NAME"
+   },
+   {
+    "name": "PARAM_RELIGION_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Types::GetIndex",
+   "Religion::Get",
+   "Religion::FoundReligion"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.ADD_BELIEF",
+  "kind": "player-operation",
+  "name": "ADD_BELIEF",
+  "lua": "PlayerOperations.ADD_BELIEF",
+  "hash": "0xf8828e24",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cfa6"
+     },
+     "current": {
+      "rva": "0x30e1b6"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_BELIEF_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Religion::Get",
+   "Religion::AddBelief"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.GIVE_INFLUENCE_TOKEN",
+  "kind": "player-operation",
+  "name": "GIVE_INFLUENCE_TOKEN",
+  "lua": "PlayerOperations.GIVE_INFLUENCE_TOKEN",
+  "hash": "0x99ec0bce",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c29b"
+     },
+     "current": {
+      "rva": "0x30d4ab"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_PLAYER_ONE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Influence::GiveTokenToPlayer"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.RECRUIT_GREAT_PERSON",
+  "kind": "player-operation",
+  "name": "RECRUIT_GREAT_PERSON",
+  "lua": "PlayerOperations.RECRUIT_GREAT_PERSON",
+  "hash": "0xe8e854ba",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cd77"
+     },
+     "current": {
+      "rva": "0x30df87"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_GREAT_PERSON_INDIVIDUAL_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "GreatPeople::Get",
+   "GreatPeople::RecruitPerson"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.REJECT_GREAT_PERSON",
+  "kind": "player-operation",
+  "name": "REJECT_GREAT_PERSON",
+  "lua": "PlayerOperations.REJECT_GREAT_PERSON",
+  "hash": "0x05ace248",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30ce72"
+     },
+     "current": {
+      "rva": "0x30e082"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_GREAT_PERSON_INDIVIDUAL_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "GreatPeople::Get",
+   "GreatPeople::RejectPerson"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.PATRONIZE_GREAT_PERSON",
+  "kind": "player-operation",
+  "name": "PATRONIZE_GREAT_PERSON",
+  "lua": "PlayerOperations.PATRONIZE_GREAT_PERSON",
+  "hash": "0xebdeb9f6",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cceb"
+     },
+     "current": {
+      "rva": "0x30defb"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_GREAT_PERSON_INDIVIDUAL_TYPE"
+   },
+   {
+    "name": "PARAM_YIELD_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "GreatPeople::Get",
+   "GreatPeople::PatronizePerson"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.UNLOCK_POLICIES",
+  "kind": "player-operation",
+  "name": "UNLOCK_POLICIES",
+  "lua": "PlayerOperations.UNLOCK_POLICIES",
+  "hash": "0xbd51f5f4",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30caea"
+     },
+     "current": {
+      "rva": "0x30dcfa"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [
+   "Culture::GetCostToUnlockPolicies",
+   "Religion::ChangeFaithBalance",
+   "Culture::SetCivicCompletedThisTurn"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.LEVY_MILITARY",
+  "kind": "player-operation",
+  "name": "LEVY_MILITARY",
+  "lua": "PlayerOperations.LEVY_MILITARY",
+  "hash": "0xe6e2dbb2",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cdca"
+     },
+     "current": {
+      "rva": "0x30dfda"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_PLAYER_ONE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Influence::LevyMilitary"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.RETURN_LEVIED_MILITARY",
+  "kind": "player-operation",
+  "name": "RETURN_LEVIED_MILITARY",
+  "lua": "PlayerOperations.RETURN_LEVIED_MILITARY",
+  "hash": "0x61aee7dd",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d8d3"
+     },
+     "current": {
+      "rva": "0x30eae3"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_PLAYER_ONE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Influence::ReturnLeviedMilitary"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.SET_ESCAPE_ROUTE",
+  "kind": "player-operation",
+  "name": "SET_ESCAPE_ROUTE",
+  "lua": "PlayerOperations.SET_ESCAPE_ROUTE",
+  "hash": "0x63737dc4",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30dab3"
+     },
+     "current": {
+      "rva": "0x30ecc3"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_DISTRICT_TYPE"
+   },
+   {
+    "name": "PARAM_UNIT_ID"
+   }
+  ],
+  "events": [
+   "PLAYER_OPERATION_COMPLETE"
+  ],
+  "calls": [
+   "Espionage::GetNextEscapingSpy",
+   "Districts::Find",
+   "Instance>::edit",
+   "Espionage::Get",
+   "Instance::ResolveEscape",
+   "Event::Send",
+   "Processor::UpdateEndTurnBlockingState"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.CHOOSE_ARTIFACT_PLAYER",
+  "kind": "player-operation",
+  "name": "CHOOSE_ARTIFACT_PLAYER",
+  "lua": "PlayerOperations.CHOOSE_ARTIFACT_PLAYER",
+  "hash": "0x07247e03",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cff9"
+     },
+     "current": {
+      "rva": "0x30e209"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_PLAYER_ONE"
+   }
+  ],
+  "events": [
+   "UNIT_ARTIFACT_CHANGED",
+   "UNIT_VISIBILITY_CHANGED"
+  ],
+  "calls": [
+   "Units::GetNextExtractingArchaeologistID",
+   "Districts::Find",
+   "Culture::Get",
+   "Culture::SetGreatWorkPlayer",
+   "Instance>::edit",
+   "Culture::AddArtifactToBuilding",
+   "Event::Send",
+   "Buildings::GetFreeSlot",
+   "Units::DelayedDestroy"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.MOVE_GREAT_WORK",
+  "kind": "player-operation",
+  "name": "MOVE_GREAT_WORK",
+  "lua": "PlayerOperations.MOVE_GREAT_WORK",
+  "hash": "0x291d387e",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d4dd"
+     },
+     "current": {
+      "rva": "0x30e6ed"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_BUILDING_DEST"
+   },
+   {
+    "name": "PARAM_BUILDING_SRC"
+   },
+   {
+    "name": "PARAM_CITY_DEST"
+   },
+   {
+    "name": "PARAM_CITY_SRC"
+   },
+   {
+    "name": "PARAM_GREAT_WORK_INDEX"
+   },
+   {
+    "name": "PARAM_PLAYER_ONE"
+   },
+   {
+    "name": "PARAM_SLOT"
+   }
+  ],
+  "events": [
+   "GREAT_WORK_MOVED"
+  ],
+  "calls": [
+   "Globals::EditPlayer",
+   "Districts::Find",
+   "Buildings::GetGreatWorkInSlot",
+   "Instance>::edit",
+   "Buildings::RemoveGreatWork",
+   "Culture::Get",
+   "CollectorDefault<void>_>::Dispatch",
+   "Buildings::AddGreatWorkToSlot",
+   "Event::Send"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.EXECUTE_SCRIPT",
+  "kind": "player-operation",
+  "name": "EXECUTE_SCRIPT",
+  "lua": "PlayerOperations.EXECUTE_SCRIPT",
+  "hash": "0xc665ad08",
+  "handlers": [
+   {
+    "type": "class",
+    "function": "ExecuteScript::Start",
+    "builds": {
+     "symbol": {
+      "rva": "0x5b1f0"
+     },
+     "current": {
+      "rva": null
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "handler class Start function"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.START_OBSERVER_MODE",
+  "kind": "player-operation",
+  "name": "START_OBSERVER_MODE",
+  "lua": "PlayerOperations.START_OBSERVER_MODE",
+  "hash": "0xdaa47655",
+  "handlers": [
+   {
+    "type": "class",
+    "function": "StartObserverMode::Start",
+    "builds": {
+     "symbol": {
+      "rva": "0x5b370"
+     },
+     "current": {
+      "rva": "0x5c020"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "handler class Start function"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.NAME_CORPORATION",
+  "kind": "player-operation",
+  "name": "NAME_CORPORATION",
+  "lua": "PlayerOperations.NAME_CORPORATION",
+  "hash": "0x14180186",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d2e2"
+     },
+     "current": {
+      "rva": "0x30e4f2"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_CORPORATION_CUSTOM_NAME"
+   },
+   {
+    "name": "PARAM_RESOURCE_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "BasicT<Platform::StaticHeapAllocator<5,0>,1>",
+   "Manager::Get",
+   "Manager::SetCorporationName"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.APPOINT_GOVERNOR",
+  "kind": "player-operation",
+  "name": "APPOINT_GOVERNOR",
+  "lua": "PlayerOperations.APPOINT_GOVERNOR",
+  "hash": "0xa68659ab",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c7fb"
+     },
+     "current": {
+      "rva": "0x30da0b"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_GOVERNOR_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Governors::Get",
+   "Governors::CanAppointGovernor",
+   "Governors::AppointGovernor"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.ASSIGN_GOVERNOR",
+  "kind": "player-operation",
+  "name": "ASSIGN_GOVERNOR",
+  "lua": "PlayerOperations.ASSIGN_GOVERNOR",
+  "hash": "0xf97c278b",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cec5"
+     },
+     "current": {
+      "rva": "0x30e0d5"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_CITY_DEST"
+   },
+   {
+    "name": "PARAM_GOVERNOR_TYPE"
+   },
+   {
+    "name": "PARAM_PLAYER_ONE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Governors::Get",
+   "Governors::AssignGovernor"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.PROMOTE_GOVERNOR",
+  "kind": "player-operation",
+  "name": "PROMOTE_GOVERNOR",
+  "lua": "PlayerOperations.PROMOTE_GOVERNOR",
+  "hash": "0x7d3da99d",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d95d"
+     },
+     "current": {
+      "rva": "0x30eb6d"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_GOVERNOR_PROMOTION_TYPE"
+   },
+   {
+    "name": "PARAM_GOVERNOR_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Governors::Get",
+   "Governors::GetGovernor",
+   "Governors::CanEarnPromotion",
+   "Governors::PromoteGovernor"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.COMMEMORATE",
+  "kind": "player-operation",
+  "name": "COMMEMORATE",
+  "lua": "PlayerOperations.COMMEMORATE",
+  "hash": "0x9e4ddfd9",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c248"
+     },
+     "current": {
+      "rva": "0x30d458"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_COMMEMORATION_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Eras::Edit",
+   "Eras::Commemorate"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.COMPLIMENT_PRIDE_MOMENT",
+  "kind": "player-operation",
+  "name": "COMPLIMENT_PRIDE_MOMENT",
+  "lua": "PlayerOperations.COMPLIMENT_PRIDE_MOMENT",
+  "hash": "0x9fc14f7a",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c8ef"
+     },
+     "current": {
+      "rva": "0x30daff"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_MOMENT_ID"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Eras::Edit",
+   "Eras::ComplimentPrideMoment"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.REJECT_EMERGENCY",
+  "kind": "player-operation",
+  "name": "REJECT_EMERGENCY",
+  "lua": "PlayerOperations.REJECT_EMERGENCY",
+  "hash": "0xd57e9eb6",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cac5"
+     },
+     "current": {
+      "rva": "0x30dcd5"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_EMERGENCY_TYPE"
+   },
+   {
+    "name": "PARAM_OTHER_PLAYER"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.ACCEPT_EMERGENCY",
+  "kind": "player-operation",
+  "name": "ACCEPT_EMERGENCY",
+  "lua": "PlayerOperations.ACCEPT_EMERGENCY",
+  "hash": "0xedbb0064",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cac5"
+     },
+     "current": {
+      "rva": "0x30dcd5"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_EMERGENCY_TYPE"
+   },
+   {
+    "name": "PARAM_OTHER_PLAYER"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_RESOLUTION_VOTE",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_RESOLUTION_VOTE",
+  "lua": "PlayerOperations.WORLD_CONGRESS_RESOLUTION_VOTE",
+  "hash": "0xb0cfd998",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c942"
+     },
+     "current": {
+      "rva": "0x30db52"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_RESOLUTION_OPTION"
+   },
+   {
+    "name": "PARAM_RESOLUTION_SELECTION"
+   },
+   {
+    "name": "PARAM_RESOLUTION_TYPE"
+   },
+   {
+    "name": "PARAM_WORLD_CONGRESS_VOTES"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Manager::SubmitResolutionVotes",
+   "Definitions::GetResolutionDefinitions",
+   "Government>::Find",
+   "SubmitResolutionDecisionFromUi<GameCore::YieldTypes>"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_RESOLUTION_BID",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_RESOLUTION_BID",
+  "lua": "PlayerOperations.WORLD_CONGRESS_RESOLUTION_BID",
+  "hash": "0x4f830671",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": null
+     },
+     "current": {
+      "rva": null
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "unknown",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_RESOLUTION_SELECTION",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_RESOLUTION_SELECTION",
+  "lua": "PlayerOperations.WORLD_CONGRESS_RESOLUTION_SELECTION",
+  "hash": "0x89885d57",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30c357"
+     },
+     "current": {
+      "rva": "0x30d567"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_RESOLUTION_OPTION"
+   },
+   {
+    "name": "PARAM_RESOLUTION_SELECTION"
+   },
+   {
+    "name": "PARAM_RESOLUTION_TYPE"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Definitions::GetResolutionDefinitions",
+   "Government>::Find",
+   "Manager::Edit",
+   "SubmitResolutionDecisionFromUi<GameCore::ReligionTypes>"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_DISCUSSION_VOTE",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_DISCUSSION_VOTE",
+  "lua": "PlayerOperations.WORLD_CONGRESS_DISCUSSION_VOTE",
+  "hash": "0x456ca949",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d3d9"
+     },
+     "current": {
+      "rva": "0x30e5e9"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_PLAYER_ONE"
+   },
+   {
+    "name": "PARAM_PLAYER_TWO"
+   },
+   {
+    "name": "PARAM_WORLD_CONGRESS_VOTES"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Manager::FindDiscussion",
+   "Manager::SubmitVotes"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_DISCUSSION_SELECTION",
+  "lua": "PlayerOperations.WORLD_CONGRESS_DISCUSSION_SELECTION",
+  "hash": "0xe4d75de3",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30cc3e"
+     },
+     "current": {
+      "rva": "0x30de4e"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_DISCUSSION_TYPE"
+   },
+   {
+    "name": "PARAM_OTHER_PLAYER"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "Manager::Edit",
+   "Manager::SubmitDiscussionDecision"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_INDICATE_DESIRE",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_INDICATE_DESIRE",
+  "lua": "PlayerOperations.WORLD_CONGRESS_INDICATE_DESIRE",
+  "hash": "0x20260530",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d370"
+     },
+     "current": {
+      "rva": "0x30e580"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "PARAM_FLAGS"
+   }
+  ],
+  "events": [],
+  "calls": [
+   "TypedVariant::operator_bool",
+   "Congress::Get",
+   "Congress::ChangeWantsCongressToMeet"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_LOOKED_AT_AVAILABLE",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_LOOKED_AT_AVAILABLE",
+  "lua": "PlayerOperations.WORLD_CONGRESS_LOOKED_AT_AVAILABLE",
+  "hash": "0x1b75025a",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d1e0"
+     },
+     "current": {
+      "rva": "0x30e3f0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [
+   "Congress::Get"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.WORLD_CONGRESS_SUBMIT_TURN",
+  "kind": "player-operation",
+  "name": "WORLD_CONGRESS_SUBMIT_TURN",
+  "lua": "PlayerOperations.WORLD_CONGRESS_SUBMIT_TURN",
+  "hash": "0x35239b93",
+  "handlers": [
+   {
+    "type": "switch-case",
+    "function": "Player::Operations::Manager::Process",
+    "builds": {
+     "symbol": {
+      "rva": "0x30d4b9"
+     },
+     "current": {
+      "rva": "0x30e6c9"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [
+   "Congress::Get"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash comparison in the Process decision tree"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.HIRE_CLAN",
+  "kind": "player-operation",
+  "name": "HIRE_CLAN",
+  "lua": "PlayerOperations.HIRE_CLAN",
+  "hash": "0x93d53977",
+  "handlers": [
+   {
+    "type": "class",
+    "function": "HireClan::Start",
+    "builds": {
+     "symbol": {
+      "rva": "0x648340"
+     },
+     "current": {
+      "rva": "0x648a90"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "handler class Start function"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.BRIBE_CLAN",
+  "kind": "player-operation",
+  "name": "BRIBE_CLAN",
+  "lua": "PlayerOperations.BRIBE_CLAN",
+  "hash": "0x5229c613",
+  "handlers": [
+   {
+    "type": "class",
+    "function": "BribeClan::Start",
+    "builds": {
+     "symbol": {
+      "rva": "0x647980"
+     },
+     "current": {
+      "rva": "0x648230"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "handler class Start function"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.RANSOM_CLAN",
+  "kind": "player-operation",
+  "name": "RANSOM_CLAN",
+  "lua": "PlayerOperations.RANSOM_CLAN",
+  "hash": "0x3bcabf44",
+  "handlers": [
+   {
+    "type": "class",
+    "function": "RansomClan::Start",
+    "builds": {
+     "symbol": {
+      "rva": "0x649160"
+     },
+     "current": {
+      "rva": "0x649850"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "handler class Start function"
+   }
+  ]
+ },
+ {
+  "id": "op:player-operation.INCITE_CLAN",
+  "kind": "player-operation",
+  "name": "INCITE_CLAN",
+  "lua": "PlayerOperations.INCITE_CLAN",
+  "hash": "0xd2a827ab",
+  "handlers": [
+   {
+    "type": "class",
+    "function": "InciteClan::Start",
+    "builds": {
+     "symbol": {
+      "rva": "0x648ba0"
+     },
+     "current": {
+      "rva": "0x6492f0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "handler class Start function"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.DESTROY",
+  "kind": "city-command",
+  "name": "DESTROY",
+  "lua": "CityCommandTypes.DESTROY",
+  "hash": "0x7b72d9ea",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::XP1::Destroy",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x71b020",
+      "current": "0x71b800"
+     },
+     "Start": {
+      "symbol": "0x71b100",
+      "current": "0x71b8e0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x71b080"
+     },
+     "current": {
+      "rva": "0x71b860"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.MANAGE",
+  "kind": "city-command",
+  "name": "MANAGE",
+  "lua": "CityCommandTypes.MANAGE",
+  "hash": "0x2b759233",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::ManageCitizen",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x67f510",
+      "current": "0x67fba0"
+     },
+     "Start": {
+      "symbol": "0x67f740",
+      "current": "0x67fdd0"
+     },
+     "MakeParameters": {
+      "symbol": "0x67f550",
+      "current": "0x67fbe0"
+     },
+     "SetParameters": {
+      "symbol": "0x67f710",
+      "current": "0x67fda0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67f690"
+     },
+     "current": {
+      "rva": "0x67fd20"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eDirective",
+    "type": "uint"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.NAME_CITY",
+  "kind": "city-command",
+  "name": "NAME_CITY",
+  "lua": "CityCommandTypes.NAME_CITY",
+  "hash": "0xd79111d4",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::NameCity",
+    "methods": {
+     "Start": {
+      "symbol": "0x67fb30",
+      "current": "0x6801a0"
+     },
+     "MakeParameters": {
+      "symbol": "0x67f920",
+      "current": "0x67ff30"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67fab0"
+     },
+     "current": {
+      "rva": "0x680120"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "sName",
+    "type": "BasicU8"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.PURCHASE",
+  "kind": "city-command",
+  "name": "PURCHASE",
+  "lua": "CityCommandTypes.PURCHASE",
+  "hash": "0x58dbb288",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::XP2::Purchase",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74e770",
+      "current": "0x74ef40"
+     },
+     "Start": {
+      "symbol": "0x74eeb0",
+      "current": "0x74f680"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74ee30"
+     },
+     "current": {
+      "rva": "0x74f600"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.RANGE_ATTACK",
+  "kind": "city-command",
+  "name": "RANGE_ATTACK",
+  "lua": "CityCommandTypes.RANGE_ATTACK",
+  "hash": "0x8abcccc1",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::RangeAttack",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x681100",
+      "current": "0x6816c0"
+     },
+     "Start": {
+      "symbol": "0x681b30",
+      "current": "0x6820f0"
+     },
+     "MakeParameters": {
+      "symbol": "0x681830",
+      "current": "0x681df0"
+     },
+     "SetParameters": {
+      "symbol": "0x682920",
+      "current": "0x682f20"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x681ab0"
+     },
+     "current": {
+      "rva": "0x682070"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.SET_FOCUS",
+  "kind": "city-command",
+  "name": "SET_FOCUS",
+  "lua": "CityCommandTypes.SET_FOCUS",
+  "hash": "0x8d20552a",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::SetFocus",
+    "methods": {
+     "Start": {
+      "symbol": "0x67eb60",
+      "current": "0x67f1f0"
+     },
+     "MakeParameters": {
+      "symbol": "0x67e700",
+      "current": "0x67ed90"
+     },
+     "SetParameters": {
+      "symbol": "0x67eb20",
+      "current": "0x67f1b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67eaa0"
+     },
+     "current": {
+      "rva": "0x67f130"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eDirective",
+    "type": "uint"
+   },
+   {
+    "name": "eYield",
+    "type": "GameCore::YieldTypes"
+   },
+   {
+    "name": "bIsFavor",
+    "type": "bool"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.SWAP_TILE_OWNER",
+  "kind": "city-command",
+  "name": "SWAP_TILE_OWNER",
+  "lua": "CityCommandTypes.SWAP_TILE_OWNER",
+  "hash": "0xb894d3b7",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::SwapTileOwner",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x681cf0",
+      "current": "0x682270"
+     },
+     "Start": {
+      "symbol": "0x6821c0",
+      "current": "0x682740"
+     },
+     "MakeParameters": {
+      "symbol": "0x681ef0",
+      "current": "0x682470"
+     },
+     "SetParameters": {
+      "symbol": "0x682190",
+      "current": "0x682710"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x682110"
+     },
+     "current": {
+      "rva": "0x682690"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eDirective",
+    "type": "uint"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:city-command.WMD_STRIKE",
+  "kind": "city-command",
+  "name": "WMD_STRIKE",
+  "lua": "CityCommandTypes.WMD_STRIKE",
+  "hash": "0x28a1a8d9",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Commands::WMDStrike",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6822e0",
+      "current": "0x6828e0"
+     },
+     "Start": {
+      "symbol": "0x682940",
+      "current": "0x682f40"
+     },
+     "MakeParameters": {
+      "symbol": "0x682630",
+      "current": "0x682c30"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6828a0"
+     },
+     "current": {
+      "rva": "0x682ea0"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eWMDType",
+    "type": "GameCore::WMDTypes"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:city-operation.BUILD",
+  "kind": "city-operation",
+  "name": "BUILD",
+  "lua": "CityOperationTypes.BUILD",
+  "hash": "0x2c0f4a46",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::City::Operations::Build",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x682c10",
+      "current": "0x6831e0"
+     },
+     "MakeRequest": {
+      "symbol": "0x683320",
+      "current": "0x683900"
+     },
+     "MakeParameters": {
+      "symbol": "0x682d00",
+      "current": "0x6832e0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x683eb0"
+     },
+     "current": {
+      "rva": "0x684490"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::City::Operations::XP2::Build",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74f300",
+      "current": "0x74fb00"
+     },
+     "Start": {
+      "symbol": "0x74f560",
+      "current": "0x74fd60"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74f4e0"
+     },
+     "current": {
+      "rva": "0x74fce0"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eUnitType",
+    "type": "GameCore::UnitTypes"
+   },
+   {
+    "name": "eBuildingType",
+    "type": "GameCore::BuildingTypes"
+   },
+   {
+    "name": "eDistrictType",
+    "type": "GameCore::DistrictTypes"
+   },
+   {
+    "name": "eProjectType",
+    "type": "GameCore::ProjectTypes"
+   },
+   {
+    "name": "eMilitaryFormationType",
+    "type": "GameCore::MilitaryFormationTypes"
+   },
+   {
+    "name": "uiModifiers",
+    "type": "uint"
+   },
+   {
+    "name": "kLocation",
+    "type": "GameCore::PlotCoord"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.ACTIVATE_GREAT_PERSON",
+  "kind": "unit-command",
+  "name": "ACTIVATE_GREAT_PERSON",
+  "lua": "UnitCommandTypes.ACTIVATE_GREAT_PERSON",
+  "hash": "0x165502d8",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::ActivateGreatPerson",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x654350",
+      "current": "0x6549c0"
+     },
+     "Start": {
+      "symbol": "0x654ef0",
+      "current": "0x655560"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x654e00"
+     },
+     "current": {
+      "rva": "0x655470"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.AIRLIFT",
+  "kind": "unit-command",
+  "name": "AIRLIFT",
+  "lua": "UnitCommandTypes.AIRLIFT",
+  "hash": "0x2a50a9d8",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Airlift",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x655440",
+      "current": "0x655ab0"
+     },
+     "Start": {
+      "symbol": "0x655c30",
+      "current": "0x6562a0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x655b40"
+     },
+     "current": {
+      "rva": "0x6561b0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.AREA_DAMAGE_HEAL",
+  "kind": "unit-command",
+  "name": "AREA_DAMAGE_HEAL",
+  "lua": "UnitCommandTypes.AREA_DAMAGE_HEAL",
+  "hash": "0x2b5d4664",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroAreaDamageHeal",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65a110",
+      "current": "0x65a7c0"
+     },
+     "Start": {
+      "symbol": "0x65a4d0",
+      "current": "0x65ab80"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65a3f0"
+     },
+     "current": {
+      "rva": "0x65aaa0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.BUILDING_PRODUCTION",
+  "kind": "unit-command",
+  "name": "BUILDING_PRODUCTION",
+  "lua": "UnitCommandTypes.BUILDING_PRODUCTION",
+  "hash": "0xfd1bd244",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::BuildingProduction",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5de5a0",
+      "current": "0x5df200"
+     },
+     "Start": {
+      "symbol": "0x5de840",
+      "current": "0x5df4a0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5de750"
+     },
+     "current": {
+      "rva": "0x5df3b0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.CANCEL",
+  "kind": "unit-command",
+  "name": "CANCEL",
+  "lua": "UnitCommandTypes.CANCEL",
+  "hash": "0x1fc9af6d",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Cancel",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x655f30",
+      "current": "0x6565a0"
+     },
+     "Start": {
+      "symbol": "0x656040",
+      "current": "0x6566b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x655f50"
+     },
+     "current": {
+      "rva": "0x6565c0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.COMPLETE_DISTRICT",
+  "kind": "unit-command",
+  "name": "COMPLETE_DISTRICT",
+  "lua": "UnitCommandTypes.COMPLETE_DISTRICT",
+  "hash": "0xcc3352ac",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroCompleteDistrict",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65ae60",
+      "current": "0x65b540"
+     },
+     "Start": {
+      "symbol": "0x65b1f0",
+      "current": "0x65b8d0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65b140"
+     },
+     "current": {
+      "rva": "0x65b820"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.CONDEMN_HERETIC",
+  "kind": "unit-command",
+  "name": "CONDEMN_HERETIC",
+  "lua": "UnitCommandTypes.CONDEMN_HERETIC",
+  "hash": "0xdc60e164",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::XP2::CondemnHeretic",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5e0fa0",
+      "current": null
+     },
+     "Start": {
+      "symbol": "0x5e1420",
+      "current": "0x5e1e10"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5e1320"
+     },
+     "current": {
+      "rva": "0x5e1d10"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::CondemnHeretic",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6560b0",
+      "current": "0x656720"
+     },
+     "Start": {
+      "symbol": "0x6564d0",
+      "current": "0x656b40"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6563e0"
+     },
+     "current": {
+      "rva": "0x656a50"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.CREATE_RANDOM_RESOURCE",
+  "kind": "unit-command",
+  "name": "CREATE_RANDOM_RESOURCE",
+  "lua": "UnitCommandTypes.CREATE_RANDOM_RESOURCE",
+  "hash": "0xdfda903b",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroCreateRandomResource",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65b380",
+      "current": "0x65ba60"
+     },
+     "Start": {
+      "symbol": "0x65b800",
+      "current": "0x65bee0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65b6d0"
+     },
+     "current": {
+      "rva": "0x65bdb0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.DELETE",
+  "kind": "unit-command",
+  "name": "DELETE",
+  "lua": "UnitCommandTypes.DELETE",
+  "hash": "0x73cd1698",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Delete",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6567e0",
+      "current": "0x656e50"
+     },
+     "Start": {
+      "symbol": "0x656970",
+      "current": "0x656fe0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x656880"
+     },
+     "current": {
+      "rva": "0x656ef0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.DESTROY_DEVELOPMENT",
+  "kind": "unit-command",
+  "name": "DESTROY_DEVELOPMENT",
+  "lua": "UnitCommandTypes.DESTROY_DEVELOPMENT",
+  "hash": "0x55fbb654",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroDestroyDevelopment",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65bbb0",
+      "current": "0x65c290"
+     },
+     "Start": {
+      "symbol": "0x65c070",
+      "current": "0x65c750"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65bfc0"
+     },
+     "current": {
+      "rva": "0x65c6a0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.DISTRICT_PRODUCTION",
+  "kind": "unit-command",
+  "name": "DISTRICT_PRODUCTION",
+  "lua": "UnitCommandTypes.DISTRICT_PRODUCTION",
+  "hash": "0xb8e60f7f",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::XP2::DistrictProduction",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5e1890",
+      "current": "0x5e2280"
+     },
+     "Start": {
+      "symbol": "0x5e1b50",
+      "current": "0x5e2540"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5e1a50"
+     },
+     "current": {
+      "rva": "0x5e2440"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::DistrictProduction",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x656f50",
+      "current": "0x657590"
+     },
+     "Start": {
+      "symbol": "0x657220",
+      "current": "0x657860"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x657130"
+     },
+     "current": {
+      "rva": "0x657770"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.ENTER_FORMATION",
+  "kind": "unit-command",
+  "name": "ENTER_FORMATION",
+  "lua": "UnitCommandTypes.ENTER_FORMATION",
+  "hash": "0xc9903c80",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::EnterFormation",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x659210",
+      "current": "0x659880"
+     },
+     "Start": {
+      "symbol": "0x659a90",
+      "current": "0x65a170"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6598b0"
+     },
+     "current": {
+      "rva": "0x659f90"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.EXECUTE_SCRIPT",
+  "kind": "unit-command",
+  "name": "EXECUTE_SCRIPT",
+  "lua": "UnitCommandTypes.EXECUTE_SCRIPT",
+  "hash": "0x4d75cf01",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::ExecuteScript",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x657490",
+      "current": "0x657b00"
+     },
+     "Start": {
+      "symbol": "0x657870",
+      "current": "0x657ee0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x657780"
+     },
+     "current": {
+      "rva": "0x657df0"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "sFunctionName",
+    "type": "BasicU8"
+   },
+   {
+    "name": "kParameters",
+    "type": "Data::TypedVariantMap"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.EXIT_FORMATION",
+  "kind": "unit-command",
+  "name": "EXIT_FORMATION",
+  "lua": "UnitCommandTypes.EXIT_FORMATION",
+  "hash": "0xfcfe4c4d",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::ExitFormation",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x659600",
+      "current": "0x659c70"
+     },
+     "Start": {
+      "symbol": "0x659cd0",
+      "current": "0x65a3b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6599a0"
+     },
+     "current": {
+      "rva": "0x65a080"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.FORCE_LEVY_MILITARY",
+  "kind": "unit-command",
+  "name": "FORCE_LEVY_MILITARY",
+  "lua": "UnitCommandTypes.FORCE_LEVY_MILITARY",
+  "hash": "0xe6a84cbe",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroForceLevyMilitary",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65c450",
+      "current": "0x65cb00"
+     },
+     "Start": {
+      "symbol": "0x65c7a0",
+      "current": "0x65ce50"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65c6f0"
+     },
+     "current": {
+      "rva": "0x65cda0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.FORM_ARMY",
+  "kind": "unit-command",
+  "name": "FORM_ARMY",
+  "lua": "UnitCommandTypes.FORM_ARMY",
+  "hash": "0xae2337d1",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::FormArmy",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x657a80",
+      "current": "0x6580f0"
+     },
+     "Start": {
+      "symbol": "0x658440",
+      "current": "0x658ab0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x658350"
+     },
+     "current": {
+      "rva": "0x6589c0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.FORM_CORPS",
+  "kind": "unit-command",
+  "name": "FORM_CORPS",
+  "lua": "UnitCommandTypes.FORM_CORPS",
+  "hash": "0x1d13421d",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::FormCorps",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6587b0",
+      "current": "0x658e20"
+     },
+     "Start": {
+      "symbol": "0x658ea0",
+      "current": "0x659510"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x658db0"
+     },
+     "current": {
+      "rva": "0x659420"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.GRANT_ENVOY",
+  "kind": "unit-command",
+  "name": "GRANT_ENVOY",
+  "lua": "UnitCommandTypes.GRANT_ENVOY",
+  "hash": "0xbd267d77",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroGrantEnvoy",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65ca60",
+      "current": "0x65d110"
+     },
+     "Start": {
+      "symbol": "0x65cdb0",
+      "current": "0x65d460"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65ccd0"
+     },
+     "current": {
+      "rva": "0x65d380"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.HARVEST_WONDER",
+  "kind": "unit-command",
+  "name": "HARVEST_WONDER",
+  "lua": "UnitCommandTypes.HARVEST_WONDER",
+  "hash": "0x0f423544",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HarvestWonder",
+    "methods": {
+     "Start": {
+      "symbol": "0x659e40",
+      "current": "0x65a520"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x659d50"
+     },
+     "current": {
+      "rva": "0x65a430"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.KILL_WEAKER_UNIT",
+  "kind": "unit-command",
+  "name": "KILL_WEAKER_UNIT",
+  "lua": "UnitCommandTypes.KILL_WEAKER_UNIT",
+  "hash": "0x19d6e65c",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroKillWeakerUnit",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65d8f0",
+      "current": "0x65dfa0"
+     },
+     "Start": {
+      "symbol": "0x65df20",
+      "current": "0x65e560"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65de40"
+     },
+     "current": {
+      "rva": "0x65e480"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.MOVE_JUMP",
+  "kind": "unit-command",
+  "name": "MOVE_JUMP",
+  "lua": "UnitCommandTypes.MOVE_JUMP",
+  "hash": "0x9ff82652",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Jump",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5deb80",
+      "current": "0x5df7e0"
+     },
+     "Start": {
+      "symbol": "0x5df0a0",
+      "current": "0x5dfd00"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5defb0"
+     },
+     "current": {
+      "rva": "0x5dfc10"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.NAME_UNIT",
+  "kind": "unit-command",
+  "name": "NAME_UNIT",
+  "lua": "UnitCommandTypes.NAME_UNIT",
+  "hash": "0xad2ecad4",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::XP2::NameUnit",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5e1d90",
+      "current": "0x5e2780"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5e1eb0"
+     },
+     "current": {
+      "rva": "0x5e28a0"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::NameUnit",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x660920",
+      "current": "0x660f90"
+     },
+     "Start": {
+      "symbol": "0x660c50",
+      "current": "0x661260"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x660b60"
+     },
+     "current": {
+      "rva": "0x661170"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.NAVAL_GOLD_RAID",
+  "kind": "unit-command",
+  "name": "NAVAL_GOLD_RAID",
+  "lua": "UnitCommandTypes.NAVAL_GOLD_RAID",
+  "hash": "0x9b988476",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroNavalGoldRaid",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65e300",
+      "current": "0x65e970"
+     },
+     "Start": {
+      "symbol": "0x65e9a0",
+      "current": "0x65f010"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65e8c0"
+     },
+     "current": {
+      "rva": "0x65ef30"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.PARADROP",
+  "kind": "unit-command",
+  "name": "PARADROP",
+  "lua": "UnitCommandTypes.PARADROP",
+  "hash": "0xd854f833",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Paradrop",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5df550",
+      "current": "0x5e01b0"
+     },
+     "Start": {
+      "symbol": "0x5dfdb0",
+      "current": "0x5e08d0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5dfcc0"
+     },
+     "current": {
+      "rva": "0x5e07e0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.PET_THE_DOG",
+  "kind": "unit-command",
+  "name": "PET_THE_DOG",
+  "lua": "UnitCommandTypes.PET_THE_DOG",
+  "hash": "0xba044881",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::PetTheDog",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x660d90",
+      "current": "0x6613d0"
+     },
+     "Start": {
+      "symbol": "0x6610a0",
+      "current": "0x6616e0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x660fa0"
+     },
+     "current": {
+      "rva": "0x6615e0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.PLUNDER_TRADE_ROUTE",
+  "kind": "unit-command",
+  "name": "PLUNDER_TRADE_ROUTE",
+  "lua": "UnitCommandTypes.PLUNDER_TRADE_ROUTE",
+  "hash": "0x5ea751e8",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::XP2::PlunderTradeRoute",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5e1fb0",
+      "current": null
+     },
+     "Start": {
+      "symbol": "0x5e2400",
+      "current": "0x5e2df0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5e2300"
+     },
+     "current": {
+      "rva": "0x5e2cf0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.PRIORITY_TARGET",
+  "kind": "unit-command",
+  "name": "PRIORITY_TARGET",
+  "lua": "UnitCommandTypes.PRIORITY_TARGET",
+  "hash": "0x940a6c81",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::PriorityTarget",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5e0290",
+      "current": null
+     },
+     "Start": {
+      "symbol": "0x5e0980",
+      "current": "0x5e1370"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5e0790"
+     },
+     "current": {
+      "rva": "0x5e1280"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.PROJECT_PRODUCTION",
+  "kind": "unit-command",
+  "name": "PROJECT_PRODUCTION",
+  "lua": "UnitCommandTypes.PROJECT_PRODUCTION",
+  "hash": "0xb3ec17d3",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::ProjectProduction",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x5e0b10",
+      "current": "0x5e1500"
+     },
+     "Start": {
+      "symbol": "0x5e0d70",
+      "current": "0x5e1760"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x5e0c80"
+     },
+     "current": {
+      "rva": "0x5e1670"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.PROMOTE",
+  "kind": "unit-command",
+  "name": "PROMOTE",
+  "lua": "UnitCommandTypes.PROMOTE",
+  "hash": "0xb4edd43f",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Promote",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x661760",
+      "current": "0x661da0"
+     },
+     "Start": {
+      "symbol": "0x661eb0",
+      "current": "0x6624f0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x661dc0"
+     },
+     "current": {
+      "rva": "0x662400"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "ePromotion",
+    "type": "GameCore::UnitPromotionTypes"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.RANDOM_TECH_BOOST",
+  "kind": "unit-command",
+  "name": "RANDOM_TECH_BOOST",
+  "lua": "UnitCommandTypes.RANDOM_TECH_BOOST",
+  "hash": "0xa3acd12f",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroGrantRandomTechBoost",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65d190",
+      "current": "0x65d840"
+     },
+     "Start": {
+      "symbol": "0x65d600",
+      "current": "0x65dcb0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65d550"
+     },
+     "current": {
+      "rva": "0x65dc00"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.RELEASE_LEVY",
+  "kind": "unit-command",
+  "name": "RELEASE_LEVY",
+  "lua": "UnitCommandTypes.RELEASE_LEVY",
+  "hash": "0xa366b090",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Unlevy",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x662950",
+      "current": "0x662f90"
+     },
+     "Start": {
+      "symbol": "0x662b50",
+      "current": "0x663190"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x662a60"
+     },
+     "current": {
+      "rva": "0x6630a0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.RESOURCE_INSPIRE",
+  "kind": "unit-command",
+  "name": "RESOURCE_INSPIRE",
+  "lua": "UnitCommandTypes.RESOURCE_INSPIRE",
+  "hash": "0x5ea3895f",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroResourceInspire",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65ede0",
+      "current": "0x65f450"
+     },
+     "Start": {
+      "symbol": "0x65f340",
+      "current": "0x65f9b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65f260"
+     },
+     "current": {
+      "rva": "0x65f8d0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.RESTORE_UNIT_MOVES",
+  "kind": "unit-command",
+  "name": "RESTORE_UNIT_MOVES",
+  "lua": "UnitCommandTypes.RESTORE_UNIT_MOVES",
+  "hash": "0x5fb835b2",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroRestoreUnitMoves",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65f780",
+      "current": "0x65fdf0"
+     },
+     "Start": {
+      "symbol": "0x65fc80",
+      "current": "0x6602f0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x65fba0"
+     },
+     "current": {
+      "rva": "0x660210"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.SPREAD_DISSENT",
+  "kind": "unit-command",
+  "name": "SPREAD_DISSENT",
+  "lua": "UnitCommandTypes.SPREAD_DISSENT",
+  "hash": "0xb45e3413",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::SpreadDissent",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x714860",
+      "current": "0x7150d0"
+     },
+     "Start": {
+      "symbol": "0x714c50",
+      "current": "0x7154c0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x714b60"
+     },
+     "current": {
+      "rva": "0x7153d0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.TRANSFORM_UNIT",
+  "kind": "unit-command",
+  "name": "TRANSFORM_UNIT",
+  "lua": "UnitCommandTypes.TRANSFORM_UNIT",
+  "hash": "0xa46efbb1",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::HeroTransformUnit",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x65ffc0",
+      "current": "0x660630"
+     },
+     "Start": {
+      "symbol": "0x6605d0",
+      "current": "0x660c40"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6604f0"
+     },
+     "current": {
+      "rva": "0x660b60"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.TREAT_WITH_CLAN_DISPERSE",
+  "kind": "unit-command",
+  "name": "TREAT_WITH_CLAN_DISPERSE",
+  "lua": "UnitCommandTypes.TREAT_WITH_CLAN_DISPERSE",
+  "hash": "0x25eb8706",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::DisperseClan",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x656b60",
+      "current": "0x6571a0"
+     },
+     "Start": {
+      "symbol": "0x656e70",
+      "current": "0x6574b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x656d90"
+     },
+     "current": {
+      "rva": "0x6573d0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.TREAT_WITH_CLAN_RAID",
+  "kind": "unit-command",
+  "name": "TREAT_WITH_CLAN_RAID",
+  "lua": "UnitCommandTypes.TREAT_WITH_CLAN_RAID",
+  "hash": "0xad4cd51e",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::RaidClan",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x661fe0",
+      "current": "0x662620"
+     },
+     "Start": {
+      "symbol": "0x6626b0",
+      "current": "0x662cf0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x662600"
+     },
+     "current": {
+      "rva": "0x662c40"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash assigned by class-name convention"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.UPGRADE",
+  "kind": "unit-command",
+  "name": "UPGRADE",
+  "lua": "UnitCommandTypes.UPGRADE",
+  "hash": "0xd34b69c0",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Upgrade",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x662be0",
+      "current": "0x663220"
+     },
+     "Start": {
+      "symbol": "0x662e20",
+      "current": "0x663460"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x662d30"
+     },
+     "current": {
+      "rva": "0x663370"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::XP2::Upgrade",
+    "methods": {
+     "Start": {
+      "symbol": "0x745de0",
+      "current": "0x746680"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x745ce0"
+     },
+     "current": {
+      "rva": "0x746580"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.WAKE",
+  "kind": "unit-command",
+  "name": "WAKE",
+  "lua": "UnitCommandTypes.WAKE",
+  "hash": "0x0bf458e5",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::Wake",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6635d0",
+      "current": "0x663c10"
+     },
+     "Start": {
+      "symbol": "0x663700",
+      "current": "0x663d40"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x663610"
+     },
+     "current": {
+      "rva": "0x663c50"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-command.WONDER_PRODUCTION",
+  "kind": "unit-command",
+  "name": "WONDER_PRODUCTION",
+  "lua": "UnitCommandTypes.WONDER_PRODUCTION",
+  "hash": "0x666d2d87",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Commands::WonderProduction",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x663770",
+      "current": "0x663db0"
+     },
+     "Start": {
+      "symbol": "0x663a80",
+      "current": "0x6640c0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x663990"
+     },
+     "current": {
+      "rva": "0x663fd0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.AIR_ATTACK",
+  "kind": "unit-operation",
+  "name": "AIR_ATTACK",
+  "lua": "UnitOperationTypes.AIR_ATTACK",
+  "hash": "0x1f633b1e",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::AirAttack",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x663f10",
+      "current": "0x664550"
+     },
+     "MakeParameters": {
+      "symbol": "0x664260",
+      "current": "0x6648b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x664420"
+     },
+     "current": {
+      "rva": "0x664a70"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.ALERT",
+  "kind": "unit-operation",
+  "name": "ALERT",
+  "lua": "UnitOperationTypes.ALERT",
+  "hash": "0xe547bc17",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Alert",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x664620",
+      "current": "0x664c70"
+     },
+     "Start": {
+      "symbol": "0x672250",
+      "current": "0x665160"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x664a90"
+     },
+     "current": {
+      "rva": "0x6650e0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.AUTOMATE_EXPLORE",
+  "kind": "unit-operation",
+  "name": "AUTOMATE_EXPLORE",
+  "lua": "UnitOperationTypes.AUTOMATE_EXPLORE",
+  "hash": "0x9c0b44c6",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::AutomateExplore",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x664be0",
+      "current": "0x665280"
+     },
+     "MakeParameters": {
+      "symbol": "0x664ec0",
+      "current": "0x665560"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x664f90"
+     },
+     "current": {
+      "rva": "0x665630"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.BUILD_IMPROVEMENT",
+  "kind": "unit-operation",
+  "name": "BUILD_IMPROVEMENT",
+  "lua": "UnitOperationTypes.BUILD_IMPROVEMENT",
+  "hash": "0x1d60e778",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::BuildImprovement",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x7476f0",
+      "current": "0x747f90"
+     },
+     "Start": {
+      "symbol": "0x748870",
+      "current": "0x7490c0"
+     },
+     "MakeParameters": {
+      "symbol": "0x748630",
+      "current": "0x748ed0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x748740"
+     },
+     "current": {
+      "rva": "0x748f90"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eImprovementType",
+    "type": "GameCore::ImprovementTypes"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.BUILD_IMPROVEMENT_ADJACENT",
+  "kind": "unit-operation",
+  "name": "BUILD_IMPROVEMENT_ADJACENT",
+  "lua": "UnitOperationTypes.BUILD_IMPROVEMENT_ADJACENT",
+  "hash": "0x38541ac6",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::BuildImprovementAdjacent",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x7491d0",
+      "current": "0x7499c0"
+     },
+     "Start": {
+      "symbol": "0x749e90",
+      "current": "0x74a680"
+     },
+     "MakeParameters": {
+      "symbol": "0x749b20",
+      "current": "0x74a310"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x749e10"
+     },
+     "current": {
+      "rva": "0x74a600"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eImprovementType",
+    "type": "GameCore::ImprovementTypes"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.BUILD_ROUTE",
+  "kind": "unit-operation",
+  "name": "BUILD_ROUTE",
+  "lua": "UnitOperationTypes.BUILD_ROUTE",
+  "hash": "0x06e68aef",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::BuildRoute",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74a4a0",
+      "current": "0x74ac90"
+     },
+     "Start": {
+      "symbol": "0x74a990",
+      "current": "0x74b180"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74a910"
+     },
+     "current": {
+      "rva": "0x74b100"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.CAUSE_DISASTER",
+  "kind": "unit-operation",
+  "name": "CAUSE_DISASTER",
+  "lua": "UnitOperationTypes.CAUSE_DISASTER",
+  "hash": "0xa92585ad",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP3::CauseDisaster",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x746730",
+      "current": "0x746fd0"
+     },
+     "Start": {
+      "symbol": "0x746a20",
+      "current": "0x7472c0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x7469a0"
+     },
+     "current": {
+      "rva": "0x747240"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.CLEAR_CONTAMINATION",
+  "kind": "unit-operation",
+  "name": "CLEAR_CONTAMINATION",
+  "lua": "UnitOperationTypes.CLEAR_CONTAMINATION",
+  "hash": "0x9582ab1e",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::ClearContamination",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x665be0",
+      "current": "0x6662c0"
+     },
+     "Start": {
+      "symbol": "0x665e50",
+      "current": "0x6663e0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x665dd0"
+     },
+     "current": {
+      "rva": "0x666360"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.COASTAL_RAID",
+  "kind": "unit-operation",
+  "name": "COASTAL_RAID",
+  "lua": "UnitOperationTypes.COASTAL_RAID",
+  "hash": "0xcfb9b561",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::CoastalRaid",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x666320",
+      "current": "0x6668b0"
+     },
+     "Start": {
+      "symbol": "0x6668c0",
+      "current": "0x666e50"
+     },
+     "MakeParameters": {
+      "symbol": "0x666680",
+      "current": "0x666c10"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x666840"
+     },
+     "current": {
+      "rva": "0x666dd0"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::CoastalRaid",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74ace0",
+      "current": "0x74b4d0"
+     },
+     "Start": {
+      "symbol": "0x74b0b0",
+      "current": "0x74b8a0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74b030"
+     },
+     "current": {
+      "rva": "0x74b820"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.CONVERT_BARBARIANS",
+  "kind": "unit-operation",
+  "name": "CONVERT_BARBARIANS",
+  "lua": "UnitOperationTypes.CONVERT_BARBARIANS",
+  "hash": "0x4cab9003",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::ConvertBarbarians",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x666ee0",
+      "current": "0x667470"
+     },
+     "Start": {
+      "symbol": "0x6670f0",
+      "current": "0x667680"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x667070"
+     },
+     "current": {
+      "rva": "0x667600"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.DEPLOY",
+  "kind": "unit-operation",
+  "name": "DEPLOY",
+  "lua": "UnitOperationTypes.DEPLOY",
+  "hash": "0x14153aa4",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Deploy",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x667940",
+      "current": "0x667ed0"
+     },
+     "Start": {
+      "symbol": "0x667e70",
+      "current": "0x668400"
+     },
+     "MakeParameters": {
+      "symbol": "0x667c30",
+      "current": "0x6681c0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x667df0"
+     },
+     "current": {
+      "rva": "0x668380"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.DESIGNATE_PARK",
+  "kind": "unit-operation",
+  "name": "DESIGNATE_PARK",
+  "lua": "UnitOperationTypes.DESIGNATE_PARK",
+  "hash": "0x3d7d2377",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::DesignatePark",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x668030",
+      "current": "0x6685c0"
+     },
+     "Start": {
+      "symbol": "0x668440",
+      "current": "0x6689d0"
+     },
+     "MakeParameters": {
+      "symbol": "0x6681b0",
+      "current": "0x668740"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6683c0"
+     },
+     "current": {
+      "rva": "0x668950"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.DISEMBARK",
+  "kind": "unit-operation",
+  "name": "DISEMBARK",
+  "lua": "UnitOperationTypes.DISEMBARK",
+  "hash": "0x324e52e7",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Disembark",
+    "methods": {
+     "Start": {
+      "symbol": "0x6686d0",
+      "current": null
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6685d0"
+     },
+     "current": {
+      "rva": "0x668b60"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.EMBARK",
+  "kind": "unit-operation",
+  "name": "EMBARK",
+  "lua": "UnitOperationTypes.EMBARK",
+  "hash": "0x1124b3d3",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Embark",
+    "methods": {},
+    "builds": {
+     "symbol": {
+      "rva": "0x668650"
+     },
+     "current": {
+      "rva": "0x668c20"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.EVANGELIZE_BELIEF",
+  "kind": "unit-operation",
+  "name": "EVANGELIZE_BELIEF",
+  "lua": "UnitOperationTypes.EVANGELIZE_BELIEF",
+  "hash": "0xa4a61aed",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::EvangelizeBelief",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6686e0",
+      "current": "0x668ca0"
+     },
+     "Start": {
+      "symbol": "0x6688e0",
+      "current": "0x668ea0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x668860"
+     },
+     "current": {
+      "rva": "0x668e20"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.EXCAVATE",
+  "kind": "unit-operation",
+  "name": "EXCAVATE",
+  "lua": "UnitOperationTypes.EXCAVATE",
+  "hash": "0x5c533acc",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::ExtractArtifact",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x669010",
+      "current": "0x6695d0"
+     },
+     "Start": {
+      "symbol": "0x669180",
+      "current": "0x669740"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x669100"
+     },
+     "current": {
+      "rva": "0x6696c0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.EXECUTE_SCRIPT",
+  "kind": "unit-operation",
+  "name": "EXECUTE_SCRIPT",
+  "lua": "UnitOperationTypes.EXECUTE_SCRIPT",
+  "hash": "0xa590ba46",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::ExecuteScript",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x668aa0",
+      "current": "0x669060"
+     },
+     "Start": {
+      "symbol": "0x668d80",
+      "current": "0x669340"
+     },
+     "MakeParameters": {
+      "symbol": "0x668b50",
+      "current": "0x669110"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x668d00"
+     },
+     "current": {
+      "rva": "0x6692c0"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "kParameters",
+    "type": "Data::TypedVariantMap"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.FORTIFY",
+  "kind": "unit-operation",
+  "name": "FORTIFY",
+  "lua": "UnitOperationTypes.FORTIFY",
+  "hash": "0xd3a6f7e8",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Fortify",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x669450",
+      "current": "0x669a10"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x669610"
+     },
+     "current": {
+      "rva": "0x669bd0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.FOUND_CITY",
+  "kind": "unit-operation",
+  "name": "FOUND_CITY",
+  "lua": "UnitOperationTypes.FOUND_CITY",
+  "hash": "0x5733ac6c",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::FoundCity",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6696d0",
+      "current": "0x669c90"
+     },
+     "Start": {
+      "symbol": "0x669900",
+      "current": "0x669ec0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x669880"
+     },
+     "current": {
+      "rva": "0x669e40"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.FOUND_RELIGION",
+  "kind": "unit-operation",
+  "name": "FOUND_RELIGION",
+  "lua": "UnitOperationTypes.FOUND_RELIGION",
+  "hash": "0xc72fe8fb",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::FoundReligion",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x669cb0",
+      "current": "0x66a270"
+     },
+     "Start": {
+      "symbol": "0x66a160",
+      "current": "0x66a720"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66a0e0"
+     },
+     "current": {
+      "rva": "0x66a6a0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.HARVEST_RESOURCE",
+  "kind": "unit-operation",
+  "name": "HARVEST_RESOURCE",
+  "lua": "UnitOperationTypes.HARVEST_RESOURCE",
+  "hash": "0xf4027acc",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::HarvestResource",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66a470",
+      "current": "0x66aa30"
+     },
+     "Start": {
+      "symbol": "0x66a5d0",
+      "current": "0x66ab90"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66a550"
+     },
+     "current": {
+      "rva": "0x66ab10"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.HEAL",
+  "kind": "unit-operation",
+  "name": "HEAL",
+  "lua": "UnitOperationTypes.HEAL",
+  "hash": "0x7eb896fb",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Heal",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66aed0",
+      "current": "0x66b490"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66b100"
+     },
+     "current": {
+      "rva": "0x66b770"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.LAUNCH_INQUISITION",
+  "kind": "unit-operation",
+  "name": "LAUNCH_INQUISITION",
+  "lua": "UnitOperationTypes.LAUNCH_INQUISITION",
+  "hash": "0xbcc1d2a7",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::LaunchInquisition",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66b230",
+      "current": "0x66b8a0"
+     },
+     "Start": {
+      "symbol": "0x66b430",
+      "current": "0x66baa0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66b3b0"
+     },
+     "current": {
+      "rva": "0x66ba20"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.MAKE_TRADE_ROUTE",
+  "kind": "unit-operation",
+  "name": "MAKE_TRADE_ROUTE",
+  "lua": "UnitOperationTypes.MAKE_TRADE_ROUTE",
+  "hash": "0x8374d954",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::MakeTradeRoute",
+    "methods": {
+     "Start": {
+      "symbol": "0x74b750",
+      "current": "0x74bf40"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74b6d0"
+     },
+     "current": {
+      "rva": "0x74bec0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.MOVE_TO",
+  "kind": "unit-operation",
+  "name": "MOVE_TO",
+  "lua": "UnitOperationTypes.MOVE_TO",
+  "hash": "0x580f2f68",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::MoveTo",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66c480",
+      "current": "0x66cb10"
+     },
+     "Start": {
+      "symbol": "0x66ca40",
+      "current": "0x66d070"
+     },
+     "MakeParameters": {
+      "symbol": "0x66c690",
+      "current": "0x66ccc0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66c9c0"
+     },
+     "current": {
+      "rva": "0x66cff0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.MOVE_TO_UNIT",
+  "kind": "unit-operation",
+  "name": "MOVE_TO_UNIT",
+  "lua": "UnitOperationTypes.MOVE_TO_UNIT",
+  "hash": "0x59047564",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::MoveToUnit",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66cf50",
+      "current": "0x66d580"
+     },
+     "MakeParameters": {
+      "symbol": "0x66d0f0",
+      "current": "0x66d720"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66d1d0"
+     },
+     "current": {
+      "rva": "0x66d800"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.PILLAGE",
+  "kind": "unit-operation",
+  "name": "PILLAGE",
+  "lua": "UnitOperationTypes.PILLAGE",
+  "hash": "0x4885d724",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Pillage",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66d270",
+      "current": "0x66d8a0"
+     },
+     "Start": {
+      "symbol": "0x66d8b0",
+      "current": "0x66dee0"
+     },
+     "MakeParameters": {
+      "symbol": "0x66d640",
+      "current": "0x66dc70"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66d830"
+     },
+     "current": {
+      "rva": "0x66de60"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::Pillage",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74b9b0",
+      "current": "0x74c1a0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74bdc0"
+     },
+     "current": {
+      "rva": "0x74c5b0"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eImprovementType",
+    "type": "GameCore::ImprovementTypes"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.PILLAGE_ROUTE",
+  "kind": "unit-operation",
+  "name": "PILLAGE_ROUTE",
+  "lua": "UnitOperationTypes.PILLAGE_ROUTE",
+  "hash": "0xcd8cd1ee",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::PillageRoute",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66dc90",
+      "current": "0x66e320"
+     },
+     "Start": {
+      "symbol": "0x66de90",
+      "current": "0x66e520"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66de10"
+     },
+     "current": {
+      "rva": "0x66e4a0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.PLANT_FOREST",
+  "kind": "unit-operation",
+  "name": "PLANT_FOREST",
+  "lua": "UnitOperationTypes.PLANT_FOREST",
+  "hash": "0x2c5b585e",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::PlantForest",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66dfb0",
+      "current": "0x66e640"
+     },
+     "Start": {
+      "symbol": "0x66e140",
+      "current": "0x66e7d0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66e0c0"
+     },
+     "current": {
+      "rva": "0x66e750"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.RANGE_ATTACK",
+  "kind": "unit-operation",
+  "name": "RANGE_ATTACK",
+  "lua": "UnitOperationTypes.RANGE_ATTACK",
+  "hash": "0x09d0292a",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::RangeAttack",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66e4d0",
+      "current": "0x66eb60"
+     },
+     "MakeParameters": {
+      "symbol": "0x66ee10",
+      "current": "0x66f4a0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66efd0"
+     },
+     "current": {
+      "rva": "0x66f660"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.REBASE",
+  "kind": "unit-operation",
+  "name": "REBASE",
+  "lua": "UnitOperationTypes.REBASE",
+  "hash": "0xc124d677",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::ReBase",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66f290",
+      "current": "0x66f920"
+     },
+     "Start": {
+      "symbol": "0x66fa10",
+      "current": "0x6700a0"
+     },
+     "MakeParameters": {
+      "symbol": "0x66f7d0",
+      "current": "0x66fe60"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66f990"
+     },
+     "current": {
+      "rva": "0x670020"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.RELIGIOUS_HEAL",
+  "kind": "unit-operation",
+  "name": "RELIGIOUS_HEAL",
+  "lua": "UnitOperationTypes.RELIGIOUS_HEAL",
+  "hash": "0xb2bdb074",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::ReligiousHeal",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x66fb00",
+      "current": "0x670190"
+     },
+     "Start": {
+      "symbol": "0x670000",
+      "current": "0x670690"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x66ff80"
+     },
+     "current": {
+      "rva": "0x670610"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.REMOVE_FEATURE",
+  "kind": "unit-operation",
+  "name": "REMOVE_FEATURE",
+  "lua": "UnitOperationTypes.REMOVE_FEATURE",
+  "hash": "0xd1fde2e6",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::RemoveFeature",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x670360",
+      "current": "0x6709f0"
+     },
+     "Start": {
+      "symbol": "0x670a80",
+      "current": "0x671110"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x670a00"
+     },
+     "current": {
+      "rva": "0x671090"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::RemoveFeature",
+    "methods": {
+     "Start": {
+      "symbol": "0x74bec0",
+      "current": "0x74c6b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74be40"
+     },
+     "current": {
+      "rva": "0x74c630"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.REMOVE_HERESY",
+  "kind": "unit-operation",
+  "name": "REMOVE_HERESY",
+  "lua": "UnitOperationTypes.REMOVE_HERESY",
+  "hash": "0xe24f39a9",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::RemoveHeresy",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x670e20",
+      "current": "0x6714b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x671210"
+     },
+     "current": {
+      "rva": "0x6718a0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.REMOVE_IMPROVEMENT",
+  "kind": "unit-operation",
+  "name": "REMOVE_IMPROVEMENT",
+  "lua": "UnitOperationTypes.REMOVE_IMPROVEMENT",
+  "hash": "0xb1a33524",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::RemoveImprovement",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74c310",
+      "current": "0x74cb00"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74c470"
+     },
+     "current": {
+      "rva": "0x74cc60"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.REPAIR",
+  "kind": "unit-operation",
+  "name": "REPAIR",
+  "lua": "UnitOperationTypes.REPAIR",
+  "hash": "0x08ca367f",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::Repair",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74c4f0",
+      "current": "0x74cce0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74c740"
+     },
+     "current": {
+      "rva": "0x74cf30"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.REPAIR_ROUTE",
+  "kind": "unit-operation",
+  "name": "REPAIR_ROUTE",
+  "lua": "UnitOperationTypes.REPAIR_ROUTE",
+  "hash": "0x0d9c021e",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::RepairRoute",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x671b40",
+      "current": "0x672220"
+     },
+     "Start": {
+      "symbol": "0x671c20",
+      "current": "0x672300"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x671ba0"
+     },
+     "current": {
+      "rva": "0x672280"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.REST_REPAIR",
+  "kind": "unit-operation",
+  "name": "REST_REPAIR",
+  "lua": "UnitOperationTypes.REST_REPAIR",
+  "hash": "0x7d63187b",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::RestRepair",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x671d10",
+      "current": "0x6723f0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6721d0"
+     },
+     "current": {
+      "rva": "0x672800"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.RETRAIN",
+  "kind": "unit-operation",
+  "name": "RETRAIN",
+  "lua": "UnitOperationTypes.RETRAIN",
+  "hash": "0x41df0e9f",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Retrain",
+    "methods": {
+     "Start": {
+      "symbol": "0x672360",
+      "current": "0x672940"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6722e0"
+     },
+     "current": {
+      "rva": "0x6728c0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.ROUTE_TO",
+  "kind": "unit-operation",
+  "name": "ROUTE_TO",
+  "lua": "UnitOperationTypes.ROUTE_TO",
+  "hash": "0x411ac6df",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::RouteTo",
+    "methods": {
+     "Start": {
+      "symbol": "0x6725a0",
+      "current": "0x672b80"
+     },
+     "MakeParameters": {
+      "symbol": "0x672450",
+      "current": "0x672a30"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x672520"
+     },
+     "current": {
+      "rva": "0x672b00"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SKIP_TURN",
+  "kind": "unit-operation",
+  "name": "SKIP_TURN",
+  "lua": "UnitOperationTypes.SKIP_TURN",
+  "hash": "0x2c681908",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::SkipTurn",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x672660",
+      "current": "0x672c40"
+     },
+     "Start": {
+      "symbol": "0x672830",
+      "current": "0x672e10"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x6727b0"
+     },
+     "current": {
+      "rva": "0x672d90"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SLEEP",
+  "kind": "unit-operation",
+  "name": "SLEEP",
+  "lua": "UnitOperationTypes.SLEEP",
+  "hash": "0xfd89387a",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Sleep",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x6728b0",
+      "current": "0x672e90"
+     },
+     "Start": {
+      "symbol": "0x672a80",
+      "current": "0x673060"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x672a00"
+     },
+     "current": {
+      "rva": "0x672fe0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SOOTHSAYER_SACRIFICE",
+  "kind": "unit-operation",
+  "name": "SOOTHSAYER_SACRIFICE",
+  "lua": "UnitOperationTypes.SOOTHSAYER_SACRIFICE",
+  "hash": "0x6e290af6",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP3::SacrificeUnit",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x746d40",
+      "current": "0x7475e0"
+     },
+     "Start": {
+      "symbol": "0x747450",
+      "current": "0x747cf0"
+     },
+     "MakeParameters": {
+      "symbol": "0x747200",
+      "current": "0x747aa0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x7473d0"
+     },
+     "current": {
+      "rva": "0x747c70"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPREAD_RELIGION",
+  "kind": "unit-operation",
+  "name": "SPREAD_RELIGION",
+  "lua": "UnitOperationTypes.SPREAD_RELIGION",
+  "hash": "0x5eea3a1a",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::SpreadReligion",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x672b20",
+      "current": "0x673100"
+     },
+     "Start": {
+      "symbol": "0x6731e0",
+      "current": "0x6737c0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x673160"
+     },
+     "current": {
+      "rva": "0x673740"
+     }
+    }
+   },
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::SpreadReligion",
+    "methods": {
+     "Start": {
+      "symbol": "0x74c840",
+      "current": "0x74d030"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74c7c0"
+     },
+     "current": {
+      "rva": "0x74cfb0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_BREACH_DAM",
+  "kind": "unit-operation",
+  "name": "SPY_BREACH_DAM",
+  "lua": "UnitOperationTypes.SPY_BREACH_DAM",
+  "hash": "0xf4921fdc",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::SpyBreachDam",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74cde0",
+      "current": "0x74d5d0"
+     },
+     "Start": {
+      "symbol": "0x678eb0",
+      "current": "0x679420"
+     },
+     "ResolveOperation": {
+      "symbol": "0x74d3f0",
+      "current": null
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74d220"
+     },
+     "current": {
+      "rva": "0x74da10"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_COUNTERSPY",
+  "kind": "unit-operation",
+  "name": "SPY_COUNTERSPY",
+  "lua": "UnitOperationTypes.SPY_COUNTERSPY",
+  "hash": "0x886ffcd1",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyCounterspy",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x714f90",
+      "current": "0x715800"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x7153a0"
+     },
+     "current": {
+      "rva": "0x715c10"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_DISRUPT_ROCKETRY",
+  "kind": "unit-operation",
+  "name": "SPY_DISRUPT_ROCKETRY",
+  "lua": "UnitOperationTypes.SPY_DISRUPT_ROCKETRY",
+  "hash": "0xc31647e8",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyDisruptRocketry",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x715420",
+      "current": "0x715c90"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x715770"
+     },
+     "current": {
+      "rva": "0x715fe0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_FABRICATE_SCANDAL",
+  "kind": "unit-operation",
+  "name": "SPY_FABRICATE_SCANDAL",
+  "lua": "UnitOperationTypes.SPY_FABRICATE_SCANDAL",
+  "hash": "0x96b7df5a",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyFabricateScandal",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x7157f0",
+      "current": "0x716060"
+     },
+     "ResolveOperation": {
+      "symbol": "0x716400",
+      "current": "0x716c70"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x7160a0"
+     },
+     "current": {
+      "rva": "0x716910"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_FOMENT_UNREST",
+  "kind": "unit-operation",
+  "name": "SPY_FOMENT_UNREST",
+  "lua": "UnitOperationTypes.SPY_FOMENT_UNREST",
+  "hash": "0xa5d4e1a9",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyFomentUnrest",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x716e00",
+      "current": "0x717670"
+     },
+     "ResolveOperation": {
+      "symbol": "0x717230",
+      "current": "0x717aa0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x7170e0"
+     },
+     "current": {
+      "rva": "0x717950"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_GAIN_SOURCES",
+  "kind": "unit-operation",
+  "name": "SPY_GAIN_SOURCES",
+  "lua": "UnitOperationTypes.SPY_GAIN_SOURCES",
+  "hash": "0xed72b77d",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyGainSources",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x717a80",
+      "current": "0x7182f0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x717c60"
+     },
+     "current": {
+      "rva": "0x7184d0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_GREAT_WORK_HEIST",
+  "kind": "unit-operation",
+  "name": "SPY_GREAT_WORK_HEIST",
+  "lua": "UnitOperationTypes.SPY_GREAT_WORK_HEIST",
+  "hash": "0x1cf0d742",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyGreatWorkHeist",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x717ce0",
+      "current": "0x718550"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x718090"
+     },
+     "current": {
+      "rva": "0x718900"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_LISTENING_POST",
+  "kind": "unit-operation",
+  "name": "SPY_LISTENING_POST",
+  "lua": "UnitOperationTypes.SPY_LISTENING_POST",
+  "hash": "0xc70c4768",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyListeningPost",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x718110",
+      "current": "0x718980"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x7182c0"
+     },
+     "current": {
+      "rva": "0x718b30"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_NEUTRALIZE_GOVERNOR",
+  "kind": "unit-operation",
+  "name": "SPY_NEUTRALIZE_GOVERNOR",
+  "lua": "UnitOperationTypes.SPY_NEUTRALIZE_GOVERNOR",
+  "hash": "0xc08a9ad9",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyNeutralizeGovernor",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x718340",
+      "current": "0x718bb0"
+     },
+     "Start": {
+      "symbol": "0x675690",
+      "current": "0x677420"
+     },
+     "ResolveOperation": {
+      "symbol": "0x7187f0",
+      "current": "0x719060"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x718770"
+     },
+     "current": {
+      "rva": "0x718fe0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_RECRUIT_PARTISANS",
+  "kind": "unit-operation",
+  "name": "SPY_RECRUIT_PARTISANS",
+  "lua": "UnitOperationTypes.SPY_RECRUIT_PARTISANS",
+  "hash": "0xd575985b",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyRecruitPartisans",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x719150",
+      "current": "0x7199c0"
+     },
+     "ResolveOperation": {
+      "symbol": "0x719570",
+      "current": "0x719d50"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x7194f0"
+     },
+     "current": {
+      "rva": "0x719cd0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_SABOTAGE_PRODUCTION",
+  "kind": "unit-operation",
+  "name": "SPY_SABOTAGE_PRODUCTION",
+  "lua": "UnitOperationTypes.SPY_SABOTAGE_PRODUCTION",
+  "hash": "0x09c1ecc1",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpySabotageProduction",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x719e60",
+      "current": "0x71a640"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x71a1a0"
+     },
+     "current": {
+      "rva": "0x71a980"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_SIPHON_FUNDS",
+  "kind": "unit-operation",
+  "name": "SPY_SIPHON_FUNDS",
+  "lua": "UnitOperationTypes.SPY_SIPHON_FUNDS",
+  "hash": "0x223eea54",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpySiphonFunds",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x71a220",
+      "current": "0x71aa00"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x71a550"
+     },
+     "current": {
+      "rva": "0x71ad30"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_STEAL_TECH_BOOST",
+  "kind": "unit-operation",
+  "name": "SPY_STEAL_TECH_BOOST",
+  "lua": "UnitOperationTypes.SPY_STEAL_TECH_BOOST",
+  "hash": "0xd8687469",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyStealTechBoost",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x71a5d0",
+      "current": "0x71adb0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x71a9a0"
+     },
+     "current": {
+      "rva": "0x71b180"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_TRAVEL_NEW_CITY",
+  "kind": "unit-operation",
+  "name": "SPY_TRAVEL_NEW_CITY",
+  "lua": "UnitOperationTypes.SPY_TRAVEL_NEW_CITY",
+  "hash": "0xb2cca377",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP1::SpyTravelNewCity",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x71aa60",
+      "current": "0x71b240"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x71afa0"
+     },
+     "current": {
+      "rva": "0x71b780"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SPY_ZOMBIFY",
+  "kind": "unit-operation",
+  "name": "SPY_ZOMBIFY",
+  "lua": "UnitOperationTypes.SPY_ZOMBIFY",
+  "hash": "0x8c676517",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::SpyZombify",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x67ac70",
+      "current": "0x67b1e0"
+     },
+     "Start": {
+      "symbol": "0x6773c0",
+      "current": "0x67c090"
+     },
+     "ResolveOperation": {
+      "symbol": "0x67b0c0",
+      "current": "0x67b590"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67b040"
+     },
+     "current": {
+      "rva": "0x67b510"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.SWAP_UNITS",
+  "kind": "unit-operation",
+  "name": "SWAP_UNITS",
+  "lua": "UnitOperationTypes.SWAP_UNITS",
+  "hash": "0x7fa205d1",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::SwapUnits",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x67bca0",
+      "current": "0x67c2d0"
+     },
+     "Start": {
+      "symbol": "0x67c230",
+      "current": "0x67c860"
+     },
+     "MakeParameters": {
+      "symbol": "0x67bf90",
+      "current": "0x67c5c0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67c1b0"
+     },
+     "current": {
+      "rva": "0x67c7e0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.TELEPORT_TO",
+  "kind": "unit-operation",
+  "name": "TELEPORT_TO",
+  "lua": "UnitOperationTypes.TELEPORT_TO",
+  "hash": "0xc8ce5dfb",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::TeleportTo",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x67c440",
+      "current": "0x67ca70"
+     },
+     "Start": {
+      "symbol": "0x67c990",
+      "current": "0x67cfb0"
+     },
+     "MakeParameters": {
+      "symbol": "0x67c740",
+      "current": "0x67cd60"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67c910"
+     },
+     "current": {
+      "rva": "0x67cf30"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.TELEPORT_TO_CITY",
+  "kind": "unit-operation",
+  "name": "TELEPORT_TO_CITY",
+  "lua": "UnitOperationTypes.TELEPORT_TO_CITY",
+  "hash": "0x1e5838b9",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::TeleportToCity",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x67cc70",
+      "current": "0x67d290"
+     },
+     "Start": {
+      "symbol": "0x67d2e0",
+      "current": "0x67d900"
+     },
+     "MakeParameters": {
+      "symbol": "0x67d190",
+      "current": "0x67d7b0"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67d260"
+     },
+     "current": {
+      "rva": "0x67d880"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.TOURISM_BOMB",
+  "kind": "unit-operation",
+  "name": "TOURISM_BOMB",
+  "lua": "UnitOperationTypes.TOURISM_BOMB",
+  "hash": "0x852ce4df",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::XP2::TourismBomb",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x74dbc0",
+      "current": "0x74e390"
+     },
+     "Start": {
+      "symbol": "0x74e2f0",
+      "current": "0x74eac0"
+     },
+     "MakeParameters": {
+      "symbol": "0x74e040",
+      "current": "0x74e810"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x74e270"
+     },
+     "current": {
+      "rva": "0x74ea40"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.UPGRADE",
+  "kind": "unit-operation",
+  "name": "UPGRADE",
+  "lua": "UnitOperationTypes.UPGRADE",
+  "hash": "0xd25fe9ae",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::Upgrade",
+    "methods": {
+     "Start": {
+      "symbol": "0x67d450",
+      "current": "0x67da70"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67d3d0"
+     },
+     "current": {
+      "rva": "0x67d9f0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.WAIT_FOR",
+  "kind": "unit-operation",
+  "name": "WAIT_FOR",
+  "lua": "UnitOperationTypes.WAIT_FOR",
+  "hash": "0xcbb2f941",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::WaitFor",
+    "methods": {
+     "MakeParameters": {
+      "symbol": "0x67e5a0",
+      "current": "0x67ec00"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67e680"
+     },
+     "current": {
+      "rva": "0x67ece0"
+     }
+    }
+   }
+  ],
+  "parameters": [],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ },
+ {
+  "id": "op:unit-operation.WMD_STRIKE",
+  "kind": "unit-operation",
+  "name": "WMD_STRIKE",
+  "lua": "UnitOperationTypes.WMD_STRIKE",
+  "hash": "0x98eca9ea",
+  "handlers": [
+   {
+    "type": "class",
+    "class": "GameCore::Unit::Operations::WMDStrike",
+    "methods": {
+     "CanStart": {
+      "symbol": "0x67dc00",
+      "current": "0x67e260"
+     },
+     "MakeParameters": {
+      "symbol": "0x67dfb0",
+      "current": "0x67e610"
+     }
+    },
+    "builds": {
+     "symbol": {
+      "rva": "0x67e2a0"
+     },
+     "current": {
+      "rva": "0x67e900"
+     }
+    }
+   }
+  ],
+  "parameters": [
+   {
+    "name": "eWMDType",
+    "type": "GameCore::WMDTypes"
+   }
+  ],
+  "events": [],
+  "calls": [],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "hash stored by the handler Register function"
+   }
+  ]
+ }
+]

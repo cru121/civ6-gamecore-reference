@@ -1,0 +1,822 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>GameEras</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › GameEras</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>GameEras</h1>
+<p>28 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IGameEras</code> instance resolver (virtual).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="changeextrascoreperpridemoment"></a>ChangeExtraScorePerPrideMoment</td>
+<td><code>GameEras:ChangeExtraScorePerPrideMoment(ePlayer: integer, iDelta: integer)</code></td>
+<td>Adds a delta to the extra era score a player gets for each pride (historic) moment.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeextrascoreperpridemoment">Game::Eras::ChangeExtraScorePerPrideMoment</a></td>
+<td><code>0x1e2260</code></td>
+</tr>
+<tr>
+<td><a id="changeplayeralwaysallowedcommemorationquestcount"></a>ChangePlayerAlwaysAllowedCommemorationQuestCount</td>
+<td><code>GameEras:ChangePlayerAlwaysAllowedCommemorationQuestCount(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a delta to a player's counter of always-allowed commemoration quests.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayeralwaysallowedcommemorationquestcount">Game::Eras::ChangePlayerAlwaysAllowedCommemorationQuestCount</a></td>
+<td><code>0x1e22b0</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperaerodromebuildingconstructed"></a>ChangePlayerEraScorePerAerodromeBuildingConstructed</td>
+<td><code>GameEras:ChangePlayerEraScorePerAerodromeBuildingConstructed(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds an amount to a player's era-score value for each Aerodrome building constructed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperaerodromebuildingconstructed">Game::Eras::ChangePlayerEraScorePerAerodromeBuildingConstructed</a></td>
+<td><code>0x1e2300</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperarmykilled"></a>ChangePlayerEraScorePerArmyKilled</td>
+<td><code>GameEras:ChangePlayerEraScorePerArmyKilled(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds an amount to a player's era-score value for armies killed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperarmykilled">Game::Eras::ChangePlayerEraScorePerArmyKilled</a></td>
+<td><code>0x1e2380</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperartifactextracted"></a>ChangePlayerEraScorePerArtifactExtracted</td>
+<td><code>GameEras:ChangePlayerEraScorePerArtifactExtracted(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds an amount to a player's era-score value for artifacts extracted.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperartifactextracted">Game::Eras::ChangePlayerEraScorePerArtifactExtracted</a></td>
+<td><code>0x1e2400</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepercityreligionconversion"></a>ChangePlayerEraScorePerCityReligionConversion</td>
+<td><code>GameEras:ChangePlayerEraScorePerCityReligionConversion(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds an amount to a player's era-score value for city religion conversions.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepercityreligionconversion">Game::Eras::ChangePlayerEraScorePerCityReligionConversion</a></td>
+<td><code>0x1e2480</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepercivicboost"></a>ChangePlayerEraScorePerCivicBoost</td>
+<td><code>GameEras:ChangePlayerEraScorePerCivicBoost(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for civic boosts earned and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepercivicboost">Game::Eras::ChangePlayerEraScorePerCivicBoost</a></td>
+<td><code>0x1e2500</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepercontinentdiscovered"></a>ChangePlayerEraScorePerContinentDiscovered</td>
+<td><code>GameEras:ChangePlayerEraScorePerContinentDiscovered(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for continents discovered and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepercontinentdiscovered">Game::Eras::ChangePlayerEraScorePerContinentDiscovered</a></td>
+<td><code>0x1e2580</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepercorpskilled"></a>ChangePlayerEraScorePerCorpsKilled</td>
+<td><code>GameEras:ChangePlayerEraScorePerCorpsKilled(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for corps units killed and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepercorpskilled">Game::Eras::ChangePlayerEraScorePerCorpsKilled</a></td>
+<td><code>0x1e2600</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperculturebuildingconstructed"></a>ChangePlayerEraScorePerCultureBuildingConstructed</td>
+<td><code>GameEras:ChangePlayerEraScorePerCultureBuildingConstructed(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for culture buildings constructed and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperculturebuildingconstructed">Game::Eras::ChangePlayerEraScorePerCultureBuildingConstructed</a></td>
+<td><code>0x1e2680</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepercurrentcivic"></a>ChangePlayerEraScorePerCurrentCivic</td>
+<td><code>GameEras:ChangePlayerEraScorePerCurrentCivic(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for currently known civics and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepercurrentcivic">Game::Eras::ChangePlayerEraScorePerCurrentCivic</a></td>
+<td><code>0x1e2700</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepercurrenttech"></a>ChangePlayerEraScorePerCurrentTech</td>
+<td><code>GameEras:ChangePlayerEraScorePerCurrentTech(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for currently known techs and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepercurrenttech">Game::Eras::ChangePlayerEraScorePerCurrentTech</a></td>
+<td><code>0x1e2780</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperdistrictconstructed"></a>ChangePlayerEraScorePerDistrictConstructed</td>
+<td><code>GameEras:ChangePlayerEraScorePerDistrictConstructed(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for districts constructed and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperdistrictconstructed">Game::Eras::ChangePlayerEraScorePerDistrictConstructed</a></td>
+<td><code>0x1e2800</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepergreatpersonearned"></a>ChangePlayerEraScorePerGreatPersonEarned</td>
+<td><code>GameEras:ChangePlayerEraScorePerGreatPersonEarned(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for great people earned and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepergreatpersonearned">Game::Eras::ChangePlayerEraScorePerGreatPersonEarned</a></td>
+<td><code>0x1e2880</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperindustrialbuildingconstructed"></a>ChangePlayerEraScorePerIndustrialBuildingConstructed</td>
+<td><code>GameEras:ChangePlayerEraScorePerIndustrialBuildingConstructed(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for industrial buildings constructed and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperindustrialbuildingconstructed">Game::Eras::ChangePlayerEraScorePerIndustrialBuildingConstructed</a></td>
+<td><code>0x1e2900</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepernaturalwonderdiscovered"></a>ChangePlayerEraScorePerNaturalWonderDiscovered</td>
+<td><code>GameEras:ChangePlayerEraScorePerNaturalWonderDiscovered(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for natural wonders discovered and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepernaturalwonderdiscovered">Game::Eras::ChangePlayerEraScorePerNaturalWonderDiscovered</a></td>
+<td><code>0x1e2980</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepernonbarbarianunitkilledbygdr"></a>ChangePlayerEraScorePerNonBarbarianUnitKilledByGDR</td>
+<td><code>GameEras:ChangePlayerEraScorePerNonBarbarianUnitKilledByGDR(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for non-barbarian units killed by GDR (exact meaning of GDR unclear) and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepernonbarbarianunitkilledbygdr">Game::Eras::ChangePlayerEraScorePerNonBarbarianUnitKilledByGDR</a></td>
+<td><code>0x1e2a00</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepernonbarbarianunitseakilled"></a>ChangePlayerEraScorePerNonBarbarianUnitSeaKilled</td>
+<td><code>GameEras:ChangePlayerEraScorePerNonBarbarianUnitSeaKilled(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for non-barbarian sea units killed and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepernonbarbarianunitseakilled">Game::Eras::ChangePlayerEraScorePerNonBarbarianUnitSeaKilled</a></td>
+<td><code>0x1e2a80</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepersciencebuildingconstructed"></a>ChangePlayerEraScorePerScienceBuildingConstructed</td>
+<td><code>GameEras:ChangePlayerEraScorePerScienceBuildingConstructed(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for science buildings constructed and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepersciencebuildingconstructed">Game::Eras::ChangePlayerEraScorePerScienceBuildingConstructed</a></td>
+<td><code>0x1e2b00</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperspysuccessfulmission"></a>ChangePlayerEraScorePerSpySuccessfulMission</td>
+<td><code>GameEras:ChangePlayerEraScorePerSpySuccessfulMission(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for successful spy missions and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperspysuccessfulmission">Game::Eras::ChangePlayerEraScorePerSpySuccessfulMission</a></td>
+<td><code>0x1e2b80</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepertechboost"></a>ChangePlayerEraScorePerTechBoost</td>
+<td><code>GameEras:ChangePlayerEraScorePerTechBoost(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for tech boosts earned and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepertechboost">Game::Eras::ChangePlayerEraScorePerTechBoost</a></td>
+<td><code>0x1e2c00</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascorepertraderoutecompleted"></a>ChangePlayerEraScorePerTradeRouteCompleted</td>
+<td><code>GameEras:ChangePlayerEraScorePerTradeRouteCompleted(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for trade routes completed and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascorepertraderoutecompleted">Game::Eras::ChangePlayerEraScorePerTradeRouteCompleted</a></td>
+<td><code>0x1e2c80</code></td>
+</tr>
+<tr>
+<td><a id="changeplayererascoreperunitpromotionearned"></a>ChangePlayerEraScorePerUnitPromotionEarned</td>
+<td><code>GameEras:ChangePlayerEraScorePerUnitPromotionEarned(ePlayer: integer, iAmount: integer)</code></td>
+<td>Adds a signed amount to the per-player era-score counter for unit promotions earned and notifies listeners that era score changed.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Game.html#game__eras__changeplayererascoreperunitpromotionearned">Game::Eras::ChangePlayerEraScorePerUnitPromotionEarned</a></td>
+<td><code>0x1e2d00</code></td>
+</tr>
+<tr>
+<td><a id="recalculatethresholdshifts"></a>RecalculateThresholdShifts</td>
+<td><code>GameEras:RecalculateThresholdShifts(ePlayer: integer, eCurrentEra: integer)</code></td>
+<td>Recomputes, for one player, the era-score threshold shift values from amenity deficits, unresearched techs and civics of the current and later eras, and a government/era bonus, then fires the era-score changed event.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Game.html#game__eras__recalculatethresholdshifts">Game::Eras::RecalculateThresholdShifts</a></td>
+<td><code>0x1e6e00</code></td>
+</tr>
+<tr>
+<td><a id="setcurrentera"></a>SetCurrentEra</td>
+<td><code>GameEras:SetCurrentEra(eEra: integer)</code></td>
+<td>Private setter that changes the game's current era and records the turn the era began, then notifies listeners.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Game.html#game__eras__setcurrentera">Game::Eras::SetCurrentEra</a></td>
+<td><code>0x1e7eb0</code></td>
+</tr>
+<tr>
+<td><a id="setdarkage"></a>SetDarkAge</td>
+<td><code>GameEras:SetDarkAge(ePlayer: integer, bIsDarkAge: boolean)</code></td>
+<td>Sets whether a player is in a Dark Age and signals listeners when it changes.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Game.html#game__eras__setdarkage">Game::Eras::SetDarkAge</a></td>
+<td><code>0x1e7fa0</code></td>
+</tr>
+<tr>
+<td><a id="setgoldenage"></a>SetGoldenAge</td>
+<td><code>GameEras:SetGoldenAge(ePlayer: integer, bIsGoldenAge: boolean)</code></td>
+<td>Sets whether a player is in a Golden Age and signals listeners when it changes.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Game.html#game__eras__setgoldenage">Game::Eras::SetGoldenAge</a></td>
+<td><code>0x1e8040</code></td>
+</tr>
+<tr>
+<td><a id="setminscoreforextraerascore"></a>SetMinScoreForExtraEraScore</td>
+<td><code>GameEras:SetMinScoreForExtraEraScore(ePlayer: integer, iNewValue: integer)</code></td>
+<td>Sets, for one player, the minimum score threshold used for granting extra era score.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Game.html#game__eras__setminscoreforextraerascore">Game::Eras::SetMinScoreForExtraEraScore</a></td>
+<td><code>0x1e80e0</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>ChangeExtraScorePerPrideMoment</h3>
+<p>Arguments: <code>ePlayer</code> — player index; <code>iDelta</code> — amount to add</p>
+<p><strong>Writes</strong>
+- per-player int array in auto variable at this+0x1e0</p>
+<p><strong>Input checks:</strong> Silent no-op if player is -1 or beyond the size of the per-player array.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds checked.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Player range check against a vector size at this+0x1f0/0x1f8
+- Adds iDelta to int[ePlayer] in the auto variable at this+0x1e0</p>
+<p><strong>Inferred</strong>
+- Value feeds into era score computed per moment</p>
+<p><strong>Open questions</strong>
+- Whether the extra score applies to all moment types</p>
+<h3>ChangePlayerAlwaysAllowedCommemorationQuestCount</h3>
+<p>Arguments: <code>ePlayer</code> — player index; <code>iAmount</code> — amount to add</p>
+<p><strong>Writes</strong>
+- per-player int array in auto variable at this+0x1b0</p>
+<p><strong>Input checks:</strong> Silent no-op if player is -1 or beyond array size.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds checked.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Range checks player
+- Adds iAmount to the per-player int</p>
+<p><strong>Inferred</strong>
+- Counter is read when deciding which commemoration quests are available</p>
+<h3>ChangePlayerEraScorePerAerodromeBuildingConstructed</h3>
+<p>Arguments: <code>ePlayer</code> — player; <code>iAmount</code> — amount to add</p>
+<p><strong>Writes</strong>
+- field at offset 0x5c inside a 0x78-byte per-player record in the array at this+0x240</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0x788b7534 with player and amount</p>
+<p><strong>Input checks:</strong> Silent no-op if ePlayer is -1 or &gt;= number of per-player records. No check on iAmount.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds-checked additive change). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check against record count
+- adds to field +0x5c of the record
+- event 0x788b7534 shared with the sibling setters</p>
+<p><strong>Inferred</strong>
+- the field is a per-event era score value</p>
+<p><strong>Open questions</strong>
+- whether the value is a per-event score or an accumulated total</p>
+<h3>ChangePlayerEraScorePerArmyKilled</h3>
+<p>Arguments: <code>ePlayer</code> — player; <code>iAmount</code> — amount to add</p>
+<p><strong>Writes</strong>
+- field at offset 0x40 inside a 0x78-byte per-player record in the array at this+0x240</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0x788b7534 with player and amount</p>
+<p><strong>Input checks:</strong> Silent no-op if ePlayer is -1 or out of range.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds-checked additive change). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- field +0x40 of record
+- same event as siblings</p>
+<p><strong>Inferred</strong>
+- siblings differ only by field offset</p>
+<p><strong>Open questions</strong>
+- whether the value is accumulated or a per-event score</p>
+<h3>ChangePlayerEraScorePerArtifactExtracted</h3>
+<p>Arguments: <code>ePlayer</code> — player; <code>iAmount</code> — amount to add</p>
+<p><strong>Writes</strong>
+- field at offset 0x68 inside a 0x78-byte per-player record in the array at this+0x240</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0x788b7534 with player and amount</p>
+<p><strong>Input checks:</strong> Silent no-op if ePlayer is -1 or out of range.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds-checked additive change). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- field +0x68 of record
+- same event as siblings</p>
+<p><strong>Inferred</strong>
+- siblings differ only by field offset</p>
+<p><strong>Open questions</strong>
+- whether the value is accumulated or a per-event score</p>
+<h3>ChangePlayerEraScorePerCityReligionConversion</h3>
+<p>Arguments: <code>ePlayer</code> — player; <code>iAmount</code> — amount to add</p>
+<p><strong>Writes</strong>
+- field at offset 0x30 inside a 0x78-byte per-player record in the array at this+0x240</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0x788b7534 with player and amount</p>
+<p><strong>Input checks:</strong> Silent no-op if ePlayer is -1 or out of range.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds-checked additive change). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- field +0x30 of record
+- same event as siblings</p>
+<p><strong>Inferred</strong>
+- siblings differ only by field offset</p>
+<p><strong>Open questions</strong>
+- whether the value is accumulated or a per-event score</p>
+<h3>ChangePlayerEraScorePerCivicBoost</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x24 (counter for civic boosts earned)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x24
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerContinentDiscovered</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x48 (counter for continents discovered)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x48
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerCorpsKilled</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x3c (counter for corps units killed)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x3c
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerCultureBuildingConstructed</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x58 (counter for culture buildings constructed)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x58
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerCurrentCivic</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x2c (counter for currently known civics)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x2c
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerCurrentTech</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x28 (counter for currently known techs)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x28
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerDistrictConstructed</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x34 (counter for districts constructed)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x34
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerGreatPersonEarned</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x6c (counter for great people earned)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x6c
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerIndustrialBuildingConstructed</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x60 (counter for industrial buildings constructed)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x60
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerNaturalWonderDiscovered</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x4c (counter for natural wonders discovered)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x4c
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerNonBarbarianUnitKilledByGDR</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x70 (counter for non-barbarian units killed by GDR (exact meaning of GDR unclear))</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x70
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerNonBarbarianUnitSeaKilled</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x50 (counter for non-barbarian sea units killed)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x50
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerScienceBuildingConstructed</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x54 (counter for science buildings constructed)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x54
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerSpySuccessfulMission</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x64 (counter for successful spy missions)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x64
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerTechBoost</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x20 (counter for tech boosts earned)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x20
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerTradeRouteCompleted</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x44 (counter for trade routes completed)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x44
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>ChangePlayerEraScorePerUnitPromotionEarned</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>iAmount</code> — signed amount added to the counter (negative allowed)</p>
+<p><strong>Writes</strong>
+- per-player era-score record (stride 0x78, VariantMap at this+0x240), int at record offset 0x74 (counter for unit promotions earned)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player and amount
+- calls FAutoVariable<VariantMap>::edit on this+0x240 (marks game variable dirty)</p>
+<p><strong>Input checks:</strong> Silently does nothing if ePlayer is -1 or &gt;= number of per-player records; amount is not range-checked and there is no overflow check.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- era tracking initialised for all players</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised game state; safe only if executed identically on all clients. <strong>Risk:</strong> medium (Direct counter write bypassing the normal gameplay trigger; player is bounds-checked but value is not.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Early-out when ePlayer == -1 or index &gt;= element count (element size 0x78)
+- Adds iAmount at record offset 0x74
+- Always sends event 0x788b7534 after adding when player is valid</p>
+<p><strong>Inferred</strong>
+- Counter meaning taken from the function name; it is one of the per-player era-score tallies
+- Same shape as sibling ChangePlayerEraScorePer* functions, differing only by offset</p>
+<p><strong>Open questions</strong>
+- What the event listeners do with the amount (UI refresh vs score recalculation) was not examined</p>
+<h3>RecalculateThresholdShifts</h3>
+<p>Arguments: <code>ePlayer</code> — player to recalculate; <code>eCurrentEra</code> — era the shifts are computed relative to</p>
+<p><strong>Writes</strong>
+- per-player threshold record (stride 0x30, VariantMap at this+0x300): int slots +0x00 (game parameter * (num-1 items)), +0x04 (amenity penalty), +0x08, +0x0c, +0x10, +0x14, +0x18 (tech/civic shifts), +0x28 (era-specific bonus)</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x788b7534 with player
+- many VariantMap edit calls on this+0x300
+- calls Context::Globals::EditPlayer</p>
+<p><strong>Input checks:</strong> Checks player index in range and that the per-player record has exactly 11 int slots; otherwise does nothing silently. Null definition pointers skipped. EditPlayer is called before the range check, so an invalid player id is not guarded there.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- game thread
+- valid player id</p>
+<p><strong>Multiplayer:</strong> may-desync: rewrites synchronised state; deterministic only if run identically everywhere. <strong>Risk:</strong> medium (Large recomputation touching many fields; private method normally called by the era system.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Calls EditPlayer(ePlayer) first, then range check and slot-count==11 check
+- Iterates player cities calling GetAmenitiesNeeded and GetAmenities and adds a penalty on deficit
+- Loops tech and civic definition lists using HasTech/HasCivic and GetMaxEra
+- Sends event 0x788b7534 at the end</p>
+<p><strong>Inferred</strong>
+- Slots +0x0c/+0x14 are tech shifts and +0x10/+0x18 civic shifts (guess from the loops)
+- The shifts relate to golden/dark age thresholds</p>
+<p><strong>Open questions</strong>
+- Exact semantics of each slot unknown
+- Era pointers in definitions interpreted only as era links
+- Ghidra labels the era-definition lookups with a Government type, probably mislabelled</p>
+<h3>SetCurrentEra</h3>
+<p>Arguments: <code>eEra</code> — new current era</p>
+<p><strong>Writes</strong>
+- current era at this+0xb8 (auto-variable at this+0xa8)
+- era-start turn at this+0xc0 (start turn if era equals the configured start era, else current game turn)</p>
+<p><strong>Side effects</strong>
+- dispatches a game signal (+0x6c0) with old and new era
+- sends Reporting::Event 0xf50673b7 with old and new era</p>
+<p><strong>Input checks:</strong> No-op if the era is unchanged or if the current game or configuration pointer is null. No range check on the era id.</p>
+<p><strong>Preconditions</strong>
+- game and configuration must exist
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: global game state. <strong>Risk:</strong> medium (Global era change drives many systems; no era range check). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- early-out on same era
+- signal and event fire only if game and configuration are non-null
+- the stored era-start value depends on whether the era equals the start era</p>
+<p><strong>Inferred</strong>
+- offset +0xc0 is the era start turn
+- the signal parameter types in the symbol (PlayerTypes, BeliefTypes) look mis-resolved; actually old and new era</p>
+<p><strong>Open questions</strong>
+- whether the signal is dispatched on the same call path as other era-change handlers</p>
+<h3>SetDarkAge</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>bIsDarkAge</code> — new state</p>
+<p><strong>Writes</strong>
+- dark age byte array at this+0x150</p>
+<p><strong>Side effects</strong>
+- signal (PlayerTypes,bool) at game signal table +0xa08</p>
+<p><strong>Input checks:</strong> Silent return if id out of range or value unchanged.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: synced era state. <strong>Risk:</strong> low (bounds-checked flag). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- range check against array size
+- only acts on change
+- dispatches signal with id and value</p>
+<p><strong>Inferred</strong>
+- private method, normally reached via era score evaluation</p>
+<h3>SetGoldenAge</h3>
+<p>Arguments: <code>ePlayer</code> — player id; <code>bIsGoldenAge</code> — new state</p>
+<p><strong>Writes</strong>
+- golden age byte array at this+0x120</p>
+<p><strong>Side effects</strong>
+- signal (PlayerTypes,bool) at game signal table +0xa20</p>
+<p><strong>Input checks:</strong> Silent return if id out of range or value unchanged.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: synced era state. <strong>Risk:</strong> low (bounds-checked flag). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- range check against array size
+- only acts on change
+- dispatches signal with id and value</p>
+<p><strong>Inferred</strong>
+- private method</p>
+<h3>SetMinScoreForExtraEraScore</h3>
+<p>Arguments: <code>ePlayer</code> — player index; <code>iNewValue</code> — new threshold</p>
+<p><strong>Writes</strong>
+- per-player int in auto variable at this+0x210</p>
+<p><strong>Input checks:</strong> Silent no-op if player is -1 or beyond array size.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds checked overwrite.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Range check then direct assignment (not add) of iNewValue</p>
+<p><strong>Inferred</strong>
+- Value is a threshold compared against the player's era score</p>
+<p><strong>Open questions</strong>
+- Exact comparison used</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

@@ -1,0 +1,10 @@
+id: lua:AiMilitary.StartScriptedOperationWithTargetAndRally
+summary: "Starts a scripted AI operation by name against an enemy, with explicit target and rally plot indexes. Returns the operation id."
+notes:
+  - text: "Civ6-GCO reports that the rally and target plots must be visible to the player or the operation does not move (it forces visibility with PlayerVisibility.ChangeVisibilityCount). It also reports that only one running operation per OperationName per player is safe: a second one crashed the game (build of May 2021), so it generates numbered copies of the operation rows and picks a free one. Both are the author's observations and were not re-tested on the current build. The operation and behaviour-tree definitions live in the AI tables (AiOperationDefs, BehaviorTrees, BehaviorTreeNodes, TreeData)."
+    status: inferred
+    evidence: [{kind: community-reference, note: "Civ6-GCO Data/GamePlay.xml:1095-1135, Data/PostUpdate.sql:113-136, Scripts/GCO_AIUnitScript.lua:97-195; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]
+  - text: "In GCO's usage the returned id is -1 on failure."
+    status: inferred
+    evidence: [{kind: community-reference, note: "Civ6-GCO Scripts/GCO_AIUnitScript.lua ~155; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]
+related: [lua:AiMilitary.AddUnitToScriptedOperation, lua:PlayerVisibility.ChangeVisibilityCount]

@@ -1,0 +1,9 @@
+id: enum:Events
+summary: "Engine event ids used by the reporting and event systems (for example Reporting::Event::Send). Each id is the hash of the event name."
+notes:
+  - text: "351 of the 352 ids equal the hash of their name (see the hash function page). EMERGENCIES_UPDATED has an id that does not match its own name."
+    status: verified
+    evidence: [{kind: dwarf, note: enumerator values compared with the computed hash}]
+  - text: "13 events never appear as an immediate constant in any function of the symbol or current build, so they are probably sent through a computed id or are unused."
+    status: inferred
+    evidence: [{kind: static-analysis, note: scan of all 32-bit immediates in .text}]

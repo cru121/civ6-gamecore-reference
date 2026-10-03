@@ -1,0 +1,479 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Map</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Globals</a> › Map</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Map</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+<th>Section</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="map__circumcirclefunc"></a>CircumCircleFunc</td>
+<td><code>CircumCircleFuncPtr</code></td>
+<td>48</td>
+<td>.data</td>
+<td><code>0xb8d420</code></td>
+<td><code>0xb8f420</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__currentversion"></a>CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0x9bf430</code></td>
+<td><code>0x9c0430</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__feature__manager__ms_uicomponentindex"></a>Feature::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6aab0</code></td>
+<td><code>0xb6cab0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__feature__manager_currentversion"></a>Feature::Manager_CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0xa3f1a4</code></td>
+<td><code>0xa403f4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__generator__ms_krandom"></a>Generator::ms_kRandom</td>
+<td><a href="../layouts/Other/Random.html">Random</a></td>
+<td>—</td>
+<td>.data</td>
+<td><code>0xb8d460</code></td>
+<td><code>0xb8f460</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__hexspace__direction__ms_eturnleftdirection"></a>Hexspace::Direction::ms_eTurnLeftDirection</td>
+<td><code>GameCore[]</code></td>
+<td>0</td>
+<td>.data</td>
+<td><code>0xb5f6b8</code></td>
+<td><code>0xb616b8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__hexspace__direction__ms_eturnrightdirection"></a>Hexspace::Direction::ms_eTurnRightDirection</td>
+<td><code>GameCore[]</code></td>
+<td>0</td>
+<td>.data</td>
+<td><code>0xb5f6a0</code></td>
+<td><code>0xb616a0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__hexspace__direction__ms_ihexdirectionx"></a>Hexspace::Direction::ms_iHexDirectionX</td>
+<td><code>int[]</code></td>
+<td>0</td>
+<td>.data</td>
+<td><code>0xb5f670</code></td>
+<td><code>0xb61670</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__hexspace__direction__ms_ihexdirectiony"></a>Hexspace::Direction::ms_iHexDirectionY</td>
+<td><code>int[]</code></td>
+<td>0</td>
+<td>.data</td>
+<td><code>0xb5f688</code></td>
+<td><code>0xb61688</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__player__visibility__ms_pkinstance"></a>Player::Visibility::ms_pkInstance</td>
+<td><a href="../layouts/Map/Player.Visibility.Manager.html">Map::Player::Visibility::Manager*</a></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb8c1f8</code></td>
+<td><code>0xb8e1f8</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__river__manager__ms_uicomponentindex"></a>River::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6ab20</code></td>
+<td><code>0xb6cb20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__river__riverinstance_currentversion"></a>River::RiverInstance_CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0xa3fb68</code></td>
+<td><code>0xa40e4c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__river__rivermanager_currentversion"></a>River::RiverManager_CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0xa3fb6c</code></td>
+<td><code>0xa40e50</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__route__manager__ms_uicomponentindex"></a>Route::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5f8f0</code></td>
+<td><code>0xb618f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__route__portalmanager_currentversion"></a>Route::PortalManager_CurrentVersion</td>
+<td><code>const uint</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0x9c0108</code></td>
+<td><code>0x9c1128</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__route__routemanager_currentversion"></a>Route::RouteManager_CurrentVersion</td>
+<td><code>const uint</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0x9c0104</code></td>
+<td><code>0x9c1124</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__sparsecomponentidgrid_currentversion"></a>SparseComponentIDGrid_CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0x9bf888</code></td>
+<td><code>0x9c08a8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__terrain__manager__ms_uicomponentindex"></a>Terrain::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6ab90</code></td>
+<td><code>0xb6cb90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__terrain__manager_currentversion"></a>Terrain::Manager_CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0xa40188</code></td>
+<td><code>0xa413d8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__territory__builder__ms_uicomponentindex"></a>Territory::Builder::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5eae0</code></td>
+<td><code>0xb60ae0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__territory__container__ms_uicomponentindex"></a>Territory::Container::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5eb50</code></td>
+<td><code>0xb60b50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__territory__currentversion"></a>Territory::CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0x9bc9c8</code></td>
+<td><code>0x9bd9d8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__ms_aterraintypetoterrainclasstype"></a>ms_aTerrainTypeToTerrainClassType</td>
+<td><code>eastl::vector&lt;GameCore::TerrainClassTypes, eastl::allocator&gt;</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb88d38</code></td>
+<td><code>0xb8ad38</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_eice"></a>ms_eIce</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66168</code></td>
+<td><code>0xb68168</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_eterrain_snow"></a>ms_eTERRAIN_SNOW</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6616c</code></td>
+<td><code>0xb6816c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_eterrain_snow_hills"></a>ms_eTERRAIN_SNOW_HILLS</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66170</code></td>
+<td><code>0xb68170</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_eterrain_snow_mountain"></a>ms_eTERRAIN_SNOW_MOUNTAIN</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66174</code></td>
+<td><code>0xb68174</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_eterrain_tundra"></a>ms_eTERRAIN_TUNDRA</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66178</code></td>
+<td><code>0xb68178</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_eterrain_tundra_hills"></a>ms_eTERRAIN_TUNDRA_HILLS</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6617c</code></td>
+<td><code>0xb6817c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_eterrain_tundra_mountain"></a>ms_eTERRAIN_TUNDRA_MOUNTAIN</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66180</code></td>
+<td><code>0xb68180</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_ialloceanradius"></a>ms_iAllOceanRadius</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66164</code></td>
+<td><code>0xb68164</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_ibonusresourcefertility"></a>ms_iBonusResourceFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66134</code></td>
+<td><code>0xb68134</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_icoastfertility"></a>ms_iCoastFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66138</code></td>
+<td><code>0xb68138</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_ifreshwaterfertility"></a>ms_iFreshWaterFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6613c</code></td>
+<td><code>0xb6813c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_igoldexchangerate"></a>ms_iGoldExchangeRate</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66130</code></td>
+<td><code>0xb68130</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_iluxuryresourcefertility"></a>ms_iLuxuryResourceFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66140</code></td>
+<td><code>0xb68140</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_imountainadjacentfertility"></a>ms_iMountainAdjacentFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66144</code></td>
+<td><code>0xb68144</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_inaturalwonderadjacentfertility"></a>ms_iNaturalWonderAdjacentFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66148</code></td>
+<td><code>0xb68148</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_iriverfertility"></a>ms_iRiverFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6614c</code></td>
+<td><code>0xb6814c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_isnowicefertility"></a>ms_iSnowIceFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66150</code></td>
+<td><code>0xb68150</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_istrategicresourceadditional"></a>ms_iStrategicResourceAdditional</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6615c</code></td>
+<td><code>0xb6815c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_istrategicresourcefertility"></a>ms_iStrategicResourceFertility</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66158</code></td>
+<td><code>0xb68158</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_istrategicresourcerange"></a>ms_iStrategicResourceRange</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66160</code></td>
+<td><code>0xb68160</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_itundrafertilitymodifier"></a>ms_iTundraFertilityModifier</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb66154</code></td>
+<td><code>0xb68154</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_kcityattributecache"></a>ms_kCityAttributeCache</td>
+<td><code>CityAttributeCache</code></td>
+<td>32</td>
+<td>.data</td>
+<td><code>0xb5f480</code></td>
+<td><code>0xb61480</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_kemptycityattributes"></a>ms_kEmptyCityAttributes</td>
+<td><a href="../layouts/Map/Plot.CityAttributes.html">Map::Plot::CityAttributes</a></td>
+<td>—</td>
+<td>.data</td>
+<td><code>0xb5f3f8</code></td>
+<td><code>0xb613f8</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="map__ms_kemptycityid"></a>ms_kEmptyCityID</td>
+<td><code>Player::ComponentID</code></td>
+<td>8</td>
+<td>.data</td>
+<td><code>0xb5f3f0</code></td>
+<td><code>0xb613f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_kemptymap"></a>ms_kEmptyMap</td>
+<td><code>Data::TypedVariantMap</code></td>
+<td>—</td>
+<td>.data</td>
+<td><code>0xb89240</code></td>
+<td><code>0xb8b240</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_kfeaturelayoutcache"></a>ms_kFeatureLayoutCache</td>
+<td><code>FeatureLayoutCache</code></td>
+<td>72</td>
+<td>.data</td>
+<td><code>0xb5f500</code></td>
+<td><code>0xb61500</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="map__ms_numyields"></a>ms_numYields</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8d480</code></td>
+<td><code>0xb8f480</code></td>
+<td>verified</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

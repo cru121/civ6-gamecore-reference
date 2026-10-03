@@ -1,0 +1,17 @@
+id: op:player-operation.EXECUTE_SCRIPT
+summary: "Routes a UI request to a gameplay-side GameEvents handler named by the OnStart parameter, so a script action is processed through the normal operation path."
+lua_usage: |
+  -- UI state
+  local kParameters = {}
+  kParameters.OnStart = "MyScriptAction"   -- name of the GameEvents handler to run
+  kParameters.CityID = cityID
+  UI.RequestPlayerOperation(Game.GetLocalPlayer(), PlayerOperations.EXECUTE_SCRIPT, kParameters)
+  
+  -- gameplay state
+  GameEvents.MyScriptAction.Add(function(playerID, kParameters)
+      -- act on kParameters.CityID
+  end)
+notes:
+  - text: "Civ6-GCO uses this as its multiplayer-safe command channel: the UI sends a parameter table with OnStart set to an event name, the engine then fires GameEvents.<OnStart>(playerID, parameters) on the gameplay side. Nested plain tables were passed successfully. It uses five such events (city action, tribe action, production settings, unit settings, deal action). Whether the parameters are synchronised across clients was not tested here; GCO relies on it."
+    status: inferred
+    evidence: [{kind: community-reference, note: "Civ6-GCO InGame/GCO_ActionScreen.lua:55-120, Scripts/GCO_CityScript.lua:8235-8290, GCO_AltHistScript.lua:2533; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]

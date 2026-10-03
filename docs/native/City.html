@@ -1,0 +1,533 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>City</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › City</p>
+<div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
+
+<h1>City</h1>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Signature (Linux)</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>From Lua</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="city__buildqueue__buildqueue"></a>BuildQueue::BuildQueue</td>
+<td><code>void City::BuildQueue::BuildQueue(City::BuildQueue* this)</code></td>
+<td><code>0xf34f0</code></td>
+<td><code>0xf36a0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildqueue__changeextraunitcopytag"></a>BuildQueue::ChangeExtraUnitCopyTag</td>
+<td><code>void City::BuildQueue::ChangeExtraUnitCopyTag(City::BuildQueue* this, string sTag, int iChange)</code></td>
+<td><code>0xfa990</code></td>
+<td><code>0xfac80</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildqueue__changeproductionmodifier"></a>BuildQueue::ChangeProductionModifier</td>
+<td><code>void City::BuildQueue::ChangeProductionModifier(City::BuildQueue* this, BuildingTypes eBuilding, int iDelta)</code> (+3 overloads)</td>
+<td><code>0x948f70</code></td>
+<td><code>0x949730</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildQueue.html#changeproductionmodifier">CityBuildQueue.ChangeProductionModifier</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildqueue__removedistrictprogress"></a>BuildQueue::RemoveDistrictProgress</td>
+<td><code>void City::BuildQueue::RemoveDistrictProgress(City::BuildQueue* this, District::Instance* pkDistrict)</code></td>
+<td><code>0x103260</code></td>
+<td><code>0x103820</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="city__buildqueue__setdistrictpercentcomplete"></a>BuildQueue::SetDistrictPercentComplete</td>
+<td><code>void City::BuildQueue::SetDistrictPercentComplete(City::BuildQueue* this, DistrictTypes eDistrict, int iPercent)</code></td>
+<td><code>0x104020</code></td>
+<td><code>0x1046f0</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildQueue.html#setdistrictpercentcomplete">CityBuildQueue.SetDistrictPercentComplete</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__addgreatwork"></a>Buildings::AddGreatWork ★</td>
+<td><code>void City::Buildings::AddGreatWork(City::Buildings* this, GreatWorkListIndex iIndex)</code></td>
+<td><code>0x108b40</code></td>
+<td><code>0x109290</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#addgreatwork">CityBuildings.AddGreatWork</a></td>
+<td>analysed, signal, writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__addgreatworktoslot"></a>Buildings::AddGreatWorkToSlot ★</td>
+<td><code>void City::Buildings::AddGreatWorkToSlot(City::Buildings* this, GreatWorkListIndex iIndex, BuildingTypes eBuilding, int iSlot)</code></td>
+<td><code>0x109260</code></td>
+<td><code>0x1099b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#addgreatworktoslot">CityBuildings.AddGreatWorkToSlot</a></td>
+<td>analysed, writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__changewonderyieldchange"></a>Buildings::ChangeWonderYieldChange</td>
+<td><code>void City::Buildings::ChangeWonderYieldChange(City::Buildings* this, YieldTypes eYield, int iChange)</code></td>
+<td><code>0x1095e0</code></td>
+<td><code>0x109d30</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changewonderyieldchange">CityBuildings.ChangeWonderYieldChange</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__changeyieldchange"></a>Buildings::ChangeYieldChange</td>
+<td><code>void City::Buildings::ChangeYieldChange(City::Buildings* this, BuildingTypes eBuilding, YieldTypes eYield, int iChange)</code></td>
+<td><code>0x109670</code></td>
+<td><code>0x109dc0</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldchange">CityBuildings.ChangeYieldChange</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__changeyieldchangecitystates"></a>Buildings::ChangeYieldChangeCityStates</td>
+<td><code>void City::Buildings::ChangeYieldChangeCityStates(City::Buildings* this, BuildingTypes eBuilding, YieldTypes eYield, int iChange)</code></td>
+<td><code>0x1097c0</code></td>
+<td><code>0x109f10</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldchangecitystates">CityBuildings.ChangeYieldChangeCityStates</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__changeyieldchangefromfeature"></a>Buildings::ChangeYieldChangeFromFeature</td>
+<td><code>void City::Buildings::ChangeYieldChangeFromFeature(City::Buildings* this, FeatureTypes eFeature, YieldTypes eYield, int iChange)</code></td>
+<td><code>0x109910</code></td>
+<td><code>0x10a060</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldchangefromfeature">CityBuildings.ChangeYieldChangeFromFeature</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__changeyieldmodifier"></a>Buildings::ChangeYieldModifier</td>
+<td><code>void City::Buildings::ChangeYieldModifier(City::Buildings* this, BuildingTypes eBuilding, YieldTypes eYield, int iChange)</code></td>
+<td><code>0x109a80</code></td>
+<td><code>0x10a1d0</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldmodifier">CityBuildings.ChangeYieldModifier</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__isincity"></a>Buildings::IsInCity ★</td>
+<td><code>bool City::Buildings::IsInCity(const City::Buildings* this, GreatWorkListIndex iIndex)</code></td>
+<td><code>0x10c6a0</code></td>
+<td><code>0x10cc60</code></td>
+<td>no</td>
+<td>analysed</td>
+</tr>
+<tr>
+<td><a id="city__buildings__removeallbuildings"></a>Buildings::RemoveAllBuildings</td>
+<td><code>void City::Buildings::RemoveAllBuildings(City::Buildings* this)</code></td>
+<td><code>0x10c9c0</code></td>
+<td><code>0x10cf80</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#removeallbuildings">CityBuildings.RemoveAllBuildings</a></td>
+<td>signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="city__buildings__removegreatwork"></a>Buildings::RemoveGreatWork ★</td>
+<td><code>int City::Buildings::RemoveGreatWork(City::Buildings* this, GreatWorkListIndex iIndex)</code></td>
+<td><code>0x10cdb0</code></td>
+<td><code>0x10d370</code></td>
+<td>only indirectly</td>
+<td>analysed</td>
+</tr>
+<tr>
+<td><a id="city__buildings__seteracreatedtogameera"></a>Buildings::SetEraCreatedToGameEra</td>
+<td><code>void City::Buildings::SetEraCreatedToGameEra(City::Buildings* this, BuildingTypes eBuilding)</code></td>
+<td><code>0x10e2f0</code></td>
+<td><code>0x10e880</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityBuildings.html#seteracreatedtogameera">CityBuildings.SetEraCreatedToGameEra</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__combat__setsiegeprotection"></a>Combat::SetSiegeProtection</td>
+<td><code>void City::Combat::SetSiegeProtection(City::Combat* this, bool bProtected)</code></td>
+<td><code>0x111580</code></td>
+<td><code>0x111b10</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#setsiegeprotection">City.SetSiegeProtection</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__culturalidentity__changeaccumulatedidentity"></a>CulturalIdentity::ChangeAccumulatedIdentity</td>
+<td><code>void City::CulturalIdentity::ChangeAccumulatedIdentity(City::CulturalIdentity* this, PlayerTypes ePlayer, FixedPoint xIdentityChange)</code></td>
+<td><code>0x114a10</code></td>
+<td><code>0x114fa0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeaccumulatedidentity">City.ChangeAccumulatedIdentity</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="city__culturalidentity__changecountalwaysloyalflags"></a>CulturalIdentity::ChangeCountAlwaysLoyalFlags</td>
+<td><code>void City::CulturalIdentity::ChangeCountAlwaysLoyalFlags(City::CulturalIdentity* this, int iDelta)</code></td>
+<td><code>0x114b30</code></td>
+<td><code>0x1150c0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changecountalwaysloyalflags">City.ChangeCountAlwaysLoyalFlags</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__culturalidentity__changeextraidentityperturnpercitizen"></a>CulturalIdentity::ChangeExtraIdentityPerTurnPerCitizen</td>
+<td><code>void City::CulturalIdentity::ChangeExtraIdentityPerTurnPerCitizen(City::CulturalIdentity* this, FixedPoint xDelta)</code></td>
+<td><code>0x114b70</code></td>
+<td><code>0x115100</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeextraidentityperturnpercitizen">City.ChangeExtraIdentityPerTurnPerCitizen</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__culturalidentity__changeidentitypressurefromages"></a>CulturalIdentity::ChangeIdentityPressureFromAges</td>
+<td><code>void City::CulturalIdentity::ChangeIdentityPressureFromAges(City::CulturalIdentity* this, FixedPoint xChange)</code></td>
+<td><code>0x114c20</code></td>
+<td><code>0x1151b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeidentitypressurefromages">City.ChangeIdentityPressureFromAges</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__culturalidentity__changeidentitypressurefrommodifiers"></a>CulturalIdentity::ChangeIdentityPressureFromModifiers</td>
+<td><code>void City::CulturalIdentity::ChangeIdentityPressureFromModifiers(City::CulturalIdentity* this, FixedPoint xChange)</code></td>
+<td><code>0x114c50</code></td>
+<td><code>0x1151e0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeidentitypressurefrommodifiers">City.ChangeIdentityPressureFromModifiers</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__culture__changegreatworkyieldmodifier"></a>Culture::ChangeGreatWorkYieldModifier</td>
+<td><code>void City::Culture::ChangeGreatWorkYieldModifier(City::Culture* this, GreatWorkObjectTypes eObjectType, YieldTypes eYield, int iYieldChange, int iScalingFactor)</code></td>
+<td><code>0x11b650</code></td>
+<td><code>0x11b800</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changegreatworkyieldmodifier">City.ChangeGreatWorkYieldModifier</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__culture__changetourism"></a>Culture::ChangeTourism</td>
+<td><code>void City::Culture::ChangeTourism(City::Culture* this, ImprovementTypes eImprovement, GreatWorkObjectTypes eObjectType, bool bAffectsWonders, bool bAffectsReligiousTourism, int iScalingFactor, int iModifierID)</code></td>
+<td><code>0x11b7b0</code></td>
+<td><code>0x11b960</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changetourism">City.ChangeTourism</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__districts__destroyall"></a>Districts::DestroyAll</td>
+<td><code>void City::Districts::DestroyAll(City::Districts* this)</code></td>
+<td><code>0x11e290</code></td>
+<td><code>0x11e3f0</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityDistricts.html#destroyall">CityDistricts.DestroyAll</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__gold__setbuildingfaithpurchasebydistrict"></a>Gold::SetBuildingFaithPurchaseByDistrict</td>
+<td><code>void City::Gold::SetBuildingFaithPurchaseByDistrict(City::Gold* this, DistrictTypes eDistrict, bool bNewValue)</code></td>
+<td><code>0x121ac0</code></td>
+<td><code>0x121c20</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#setbuildingfaithpurchasebydistrict">City.SetBuildingFaithPurchaseByDistrict</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__gold__setunitfaithpurchasebytag"></a>Gold::SetUnitFaithPurchaseByTag</td>
+<td><code>void City::Gold::SetUnitFaithPurchaseByTag(City::Gold* this, string&amp; kTag, bool bNewValue)</code></td>
+<td><code>0x121ba0</code></td>
+<td><code>0x121d00</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__growth__addgrowth"></a>Growth::AddGrowth</td>
+<td><code>void City::Growth::AddGrowth(City::Growth* this, FixedPoint xGrowth)</code></td>
+<td><code>0x123000</code></td>
+<td><code>0x123160</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityGrowth.html#addgrowth">CityGrowth.AddGrowth</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__growth__changefeatureappealmodifier"></a>Growth::ChangeFeatureAppealModifier</td>
+<td><code>void City::Growth::ChangeFeatureAppealModifier(City::Growth* this, FeatureTypes eFeature, int iChange)</code></td>
+<td><code>0x123210</code></td>
+<td><code>0x123370</code></td>
+<td>Dev CE (experimental): <a href="../devce/CityGrowth.html#changefeatureappealmodifier">CityGrowth.ChangeFeatureAppealModifier</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__addcityhappinessmodifier"></a>Instance::AddCityHappinessModifier</td>
+<td><code>void City::Instance::AddCityHappinessModifier(City::Instance* this, HappinessTypes eHappiness, YieldTypes eYield, GreatPersonClassTypes eGreatPersonClass, int iYieldChange, int iGreatPersonChange)</code></td>
+<td><code>0x12f490</code></td>
+<td><code>0x12f320</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#addcityhappinessmodifier">City.AddCityHappinessModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__adddynamicadjacencybonus"></a>Instance::AddDynamicAdjacencyBonus</td>
+<td><code>void City::Instance::AddDynamicAdjacencyBonus(City::Instance* this, DistrictTypes eDistrict, TerrainTypes eTerrain, FeatureTypes eFeature, bool bIsRiver, int iAppeal, bool bAdjacentDistrict, YieldTypes eYield, int iTilesRequired, int iValue, LocalizationString szString)</code></td>
+<td><code>0x12f5e0</code></td>
+<td><code>0x12f470</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__changeallowincomingregionalstackingcount"></a>Instance::ChangeAllowIncomingRegionalStackingCount</td>
+<td><code>void City::Instance::ChangeAllowIncomingRegionalStackingCount(City::Instance* this, YieldTypes eYield, int iDelta)</code></td>
+<td><code>0x131c00</code></td>
+<td><code>0x131a90</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeallowincomingregionalstackingcount">City.ChangeAllowIncomingRegionalStackingCount</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__changefolloweryieldmodifier"></a>Instance::ChangeFollowerYieldModifier</td>
+<td><code>void City::Instance::ChangeFollowerYieldModifier(City::Instance* this, YieldTypes eYield, int iDelta)</code></td>
+<td><code>0x131c60</code></td>
+<td><code>0x131af0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changefolloweryieldmodifier">City.ChangeFollowerYieldModifier</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__changeyieldchange"></a>Instance::ChangeYieldChange</td>
+<td><code>void City::Instance::ChangeYieldChange(City::Instance* this, YieldTypes eYield, int iDelta)</code></td>
+<td><code>0x131dd0</code></td>
+<td><code>0x131c60</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldchange">City.ChangeYieldChange</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__changeyieldmodifier"></a>Instance::ChangeYieldModifier</td>
+<td><code>void City::Instance::ChangeYieldModifier(City::Instance* this, YieldTypes eYield, int iDelta)</code></td>
+<td><code>0x131e60</code></td>
+<td><code>0x131cf0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldmodifier">City.ChangeYieldModifier</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__changeyieldmodifierpergovernortitle"></a>Instance::ChangeYieldModifierPerGovernorTitle</td>
+<td><code>void City::Instance::ChangeYieldModifierPerGovernorTitle(City::Instance* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x131ef0</code></td>
+<td><code>0x131d80</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldmodifierpergovernortitle">City.ChangeYieldModifierPerGovernorTitle</a></td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__removecityhappinessmodifier"></a>Instance::RemoveCityHappinessModifier</td>
+<td><code>void City::Instance::RemoveCityHappinessModifier(City::Instance* this, HappinessTypes eHappiness, YieldTypes eYield, GreatPersonClassTypes eGreatPersonClass, int iYieldChange, int iGreatPersonChange)</code></td>
+<td><code>0x134c40</code></td>
+<td><code>0x1349b0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#removecityhappinessmodifier">City.RemoveCityHappinessModifier</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__removedynamicadjacencybonus"></a>Instance::RemoveDynamicAdjacencyBonus</td>
+<td><code>void City::Instance::RemoveDynamicAdjacencyBonus(City::Instance* this, DistrictTypes eDistrict, TerrainTypes eTerrain, FeatureTypes eFeature, bool bIsRiver, int iAppeal, bool bAdjacentDistrict, YieldTypes eYield)</code></td>
+<td><code>0x135020</code></td>
+<td><code>0x134d90</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#removedynamicadjacencybonus">City.RemoveDynamicAdjacencyBonus</a></td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__resetcache"></a>Instance::ResetCache</td>
+<td><code>void City::Instance::ResetCache(City::Instance* this)</code></td>
+<td><code>0x135600</code></td>
+<td><code>0x135370</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#resetcache">City.ResetCache</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__instance__setoccupied"></a>Instance::SetOccupied</td>
+<td><code>void City::Instance::SetOccupied(City::Instance* this, bool bNewValue)</code></td>
+<td><code>0x135cf0</code></td>
+<td><code>0x135a30</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#setoccupied">City.SetOccupied</a></td>
+<td>event, writes</td>
+</tr>
+<tr>
+<td><a id="city__manager__movecapital"></a>Manager::MoveCapital</td>
+<td><code>void City::Manager::MoveCapital(PlayerTypes ePlayer, City::Instance* pkNewCapital)</code></td>
+<td><code>0x143a40</code></td>
+<td><code>0x1425c0</code></td>
+<td>no</td>
+<td>edit_call, event, writes</td>
+</tr>
+<tr>
+<td><a id="city__manager__setcomplete"></a>Manager::SetComplete</td>
+<td><code>void City::Manager::SetComplete(District::Instance* pkDistrict, bool bState, bool bOriginalConstruction)</code></td>
+<td><code>0x144140</code></td>
+<td><code>0x142cc0</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__power__changefreepower"></a>Power::ChangeFreePower</td>
+<td><code>void City::Power::ChangeFreePower(City::Power* this, FixedPoint xFreePower, FreePowerSourceTypes eSource, PlotCoord kLocation)</code></td>
+<td><code>0x148310</code></td>
+<td><code>0x146f30</code></td>
+<td>no</td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__power__recalculatepower"></a>Power::RecalculatePower</td>
+<td><code>void City::Power::RecalculatePower(City::Power* this)</code></td>
+<td><code>0x148f50</code></td>
+<td><code>0x147e80</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#recalculatepower">City.RecalculatePower</a></td>
+<td>signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeflatyieldbonusforinternational"></a>Trade::ChangeFlatYieldBonusForInternational</td>
+<td><code>void City::Trade::ChangeFlatYieldBonusForInternational(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ec30</code></td>
+<td><code>0x14da50</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeflatyieldbonusforinternational">City.ChangeFlatYieldBonusForInternational</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldfromforeignroutespassingthrough"></a>Trade::ChangeYieldFromForeignRoutesPassingThrough</td>
+<td><code>void City::Trade::ChangeYieldFromForeignRoutesPassingThrough(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ece0</code></td>
+<td><code>0x14db00</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldfromforeignroutespassingthrough">City.ChangeYieldFromForeignRoutesPassingThrough</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldperdestinationluxuryresourceforinternational"></a>Trade::ChangeYieldPerDestinationLuxuryResourceForInternational</td>
+<td><code>void City::Trade::ChangeYieldPerDestinationLuxuryResourceForInternational(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ed10</code></td>
+<td><code>0x14db30</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperdestinationluxuryresourceforinternational">City.ChangeYieldPerDestinationLuxuryResourceForInternational</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldperdestinationstrategicresourcefordomestic"></a>Trade::ChangeYieldPerDestinationStrategicResourceForDomestic</td>
+<td><code>void City::Trade::ChangeYieldPerDestinationStrategicResourceForDomestic(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ed40</code></td>
+<td><code>0x14db60</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperdestinationstrategicresourcefordomestic">City.ChangeYieldPerDestinationStrategicResourceForDomestic</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldperdestinationstrategicresourceforinternational"></a>Trade::ChangeYieldPerDestinationStrategicResourceForInternational</td>
+<td><code>void City::Trade::ChangeYieldPerDestinationStrategicResourceForInternational(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ed70</code></td>
+<td><code>0x14db90</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperdestinationstrategicresourceforinternational">City.ChangeYieldPerDestinationStrategicResourceForInternational</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldperlocalbonusresourcefordomestic"></a>Trade::ChangeYieldPerLocalBonusResourceForDomestic</td>
+<td><code>void City::Trade::ChangeYieldPerLocalBonusResourceForDomestic(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14eda0</code></td>
+<td><code>0x14dbc0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalbonusresourcefordomestic">City.ChangeYieldPerLocalBonusResourceForDomestic</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldperlocalbonusresourceforinternational"></a>Trade::ChangeYieldPerLocalBonusResourceForInternational</td>
+<td><code>void City::Trade::ChangeYieldPerLocalBonusResourceForInternational(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14edd0</code></td>
+<td><code>0x14dbf0</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalbonusresourceforinternational">City.ChangeYieldPerLocalBonusResourceForInternational</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldperlocalluxuryresourceforinternational"></a>Trade::ChangeYieldPerLocalLuxuryResourceForInternational</td>
+<td><code>void City::Trade::ChangeYieldPerLocalLuxuryResourceForInternational(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ee00</code></td>
+<td><code>0x14dc20</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalluxuryresourceforinternational">City.ChangeYieldPerLocalLuxuryResourceForInternational</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldperlocalstrategicresourceforinternational"></a>Trade::ChangeYieldPerLocalStrategicResourceForInternational</td>
+<td><code>void City::Trade::ChangeYieldPerLocalStrategicResourceForInternational(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ee30</code></td>
+<td><code>0x14dc50</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalstrategicresourceforinternational">City.ChangeYieldPerLocalStrategicResourceForInternational</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__changeyieldpermajortradepartner"></a>Trade::ChangeYieldPerMajorTradePartner</td>
+<td><code>void City::Trade::ChangeYieldPerMajorTradePartner(City::Trade* this, YieldTypes eYield, FixedPoint xDelta)</code></td>
+<td><code>0x14ee60</code></td>
+<td><code>0x14dc80</code></td>
+<td>Dev CE (experimental): <a href="../devce/City.html#changeyieldpermajortradepartner">City.ChangeYieldPerMajorTradePartner</a></td>
+<td>writes</td>
+</tr>
+<tr>
+<td><a id="city__trade__sethasconstructedtradingpost"></a>Trade::SetHasConstructedTradingPost</td>
+<td><code>void City::Trade::SetHasConstructedTradingPost(City::Trade* this, PlayerTypes ePlayer, bool bValue)</code></td>
+<td><code>0x14fa50</code></td>
+<td><code>0x14e720</code></td>
+<td>via CE: <a href="../ce/CityTradeManager.html#sethasconstructedtradingpost">CityTradeManager.SetHasConstructedTradingPost</a></td>
+<td>signal, writes</td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>City::Buildings::AddGreatWork</h3>
+<p>Places a great work into the first empty slot in the city that accepts its object type.</p>
+<ul>
+<li>Looks up the great work's definition and object type, then scans the city's buildings and slots (empty slot = index field 0xFFFFFFFF).
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Uses Game::Culture::IsValidObjectForSlot(slotType, objectType) to decide whether a slot accepts it, writes the index into the first valid slot, then checks IsBuildingThemedCorrectly and, if themed, dispatches a signal.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Returns nothing. If no slot fits, it silently does nothing.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The themed-building signal probably drives game effects for theming bonuses. (Low-medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The 'add' half of moving a great work. Because it returns nothing, a caller must check CanAddGreatWork first if it needs to know whether it will work.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+</ul>
+<h3>City::Buildings::AddGreatWorkToSlot</h3>
+<p>Places a great work into a specific building's slot. A negative slot means 'first empty slot in that building'.</p>
+<ul>
+<li>Finds the entry for the given building type, resolves a negative slot to the first empty one, bounds-checks, writes the index at slot+4, then calls CheckForThemedBuilding.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Does not check slot-type compatibility itself (unlike AddGreatWork).
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Callers (relic, artifact, hero-epic and random-product code) probably validate compatibility beforehand. (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The precise-placement variant. A wrapper exposing it would need to enforce slot-type checks itself.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+</ul>
+<h3>City::Buildings::IsInCity</h3>
+<p>True if a great work with this index sits in any slot of any building in this city.</p>
+<ul>
+<li>Same walk as RemoveGreatWork, returning true on the first slot whose index matches.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>none
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Useful to find which city currently holds a great work. The game-wide owner field is not updated on trades (see SetGreatWorkPlayer), so this is the reliable 'current holder' test.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>On a real save, IsInCity returned true for a work held by a leftover Palace slot entry in a city that no longer has the Palace (a "ghost slot"), while the building-based UI lists did not show it; the trade screen did show it.
+  <em>[verified; evidence: runtime — Observed in-game (real save, 2026-10-01)]</em></li>
+</ul>
+<h3>City::Buildings::RemoveGreatWork</h3>
+<p>Clears the slot that holds a given great work in a city. Returns the slot number it was in, or -1 if this city does not hold it.</p>
+<ul>
+<li>Walks the city's building entries (array at this+0xc8, count at this+0xd8, 0x20 bytes each) and each building's slots (pointer at entry+0x8, count at entry+0x18, 8 bytes each). The great work index is at slot+4.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>On the first match it writes 0xFFFFFFFF into that slot and returns the slot number within its building. It does not report which building it was in, and stops after the first match.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>It does no tourism/yield recalculation, sends no event or signal, and does not touch the game-wide great work list.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Callers always obtain the city's Buildings through FAutoVariable<VariantMap,Game::Instance>::edit(city+0xca0) first. This looks like change tracking (save / multiplayer sync), so calling RemoveGreatWork on an un-edited object may skip that tracking. (Medium: mechanism read from the accessor, purpose inferred.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Tourism and yields appear to be computed on demand by getters (e.g. GetYieldFromGreatWorks), so nothing else needs refreshing after removal. (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>This is the missing 'take a great work out of a city' operation. No gameplay-side Lua method can currently do it.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>On its own it leaves the work in no city. The game pairs it with a placement call (ReceiveGreatWork) and retries if placement fails.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>See the topic note great-works-moving.md.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Called through the edit() accessor (command <code>remove</code>), a work leaves its slot but stays in the game-wide record list ("limbo"): the per-city getters then count no yield and no tourism for it, and Game.GetGreatWorkPlayer / HasGreatWorkBeenCreated still know it.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-29 to 2026-10-03, single player, Frida live channel)]</em></li>
+<li>Archive swap: after removing the Palace work and placing a different work into the freed Palace slot, a save/reload showed the new work with its yields in the Palace.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-29 to 2026-10-03, single player, Frida live channel)]</em></li>
+<li>Removing the whole Palace (City::Buildings::RemoveBuilding via edit()) while its slot held a work: the game did not refuse and did not crash; the building and its slots disappeared and the work went to limbo with its record intact (2026-10-03). The ghost scan found no leftover slot entries afterwards.
+  <em>[verified; evidence: runtime — Observed in-game (2026-09-29 to 2026-10-03, single player, Frida live channel)]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

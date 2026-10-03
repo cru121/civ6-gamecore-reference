@@ -1,0 +1,671 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PlayerCulture</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › PlayerCulture</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>PlayerCulture</h1>
+<p>80 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture/">PlayerCulture</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="canchangegovernment"></a>CanChangeGovernment</td>
+<td><code>PlayerCulture:CanChangeGovernment(eGovernment: string/number[GovernmentTypes]) → boolean</code><br><small>args: <code>eGovernment</code> — Index of a row of the Governments table (the value of GameInfo.Governments[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CanChangeGovernment/">yes ↗</a></td>
+<td><code>0x6abd90</code></td>
+<td><code>0x6ac2e0</code></td>
+</tr>
+<tr>
+<td><a id="canchangegovernmentatall"></a>CanChangeGovernmentAtAll</td>
+<td><code>PlayerCulture:CanChangeGovernmentAtAll() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CanChangeGovernmentAtAll/">yes ↗</a></td>
+<td><code>0x6abe00</code></td>
+<td><code>0x6ac350</code></td>
+</tr>
+<tr>
+<td><a id="canpolicybeslotted"></a>CanPolicyBeSlotted</td>
+<td><code>PlayerCulture:CanPolicyBeSlotted(ePolicy: string/number[PolicyTypes]) → boolean</code><br><small>args: <code>ePolicy</code> — Index of a row of the Policies table (the value of GameInfo.Policies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CanPolicyBeSlotted/">yes ↗</a></td>
+<td><code>0x741550</code></td>
+<td><code>0x741e90</code></td>
+</tr>
+<tr>
+<td><a id="canprogress"></a>CanProgress</td>
+<td><code>PlayerCulture:CanProgress(eCivic: integer[CivicTypes]) → boolean</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CanProgress/">yes ↗</a></td>
+<td><code>0x6abe50</code></td>
+<td><code>0x6ac3a0</code></td>
+</tr>
+<tr>
+<td><a id="canslotpolicy"></a>CanSlotPolicy</td>
+<td><code>PlayerCulture:CanSlotPolicy(ePolicy: string/number[PolicyTypes], iSlotIndex?: number) → boolean</code><br><small>args: <code>ePolicy</code> — Index of a row of the Policies table (the value of GameInfo.Policies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CanSlotPolicy/">yes ↗</a></td>
+<td><code>0x6abeb0</code></td>
+<td><code>0x6ac400</code></td>
+</tr>
+<tr>
+<td><a id="cantriggerboost"></a>CanTriggerBoost</td>
+<td><code>PlayerCulture:CanTriggerBoost(arg1: integer) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CanTriggerBoost/">yes ↗</a></td>
+<td><code>0x6abf50</code></td>
+<td><code>0x6ac4a0</code></td>
+</tr>
+<tr>
+<td><a id="changecurrentculturalprogress"></a>ChangeCurrentCulturalProgress</td>
+<td><code>PlayerCulture:ChangeCurrentCulturalProgress(xChange?: any) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.ChangeCurrentCulturalProgress/">yes ↗</a></td>
+<td><code>0x6f0490</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="civiccompletedthisturn"></a>CivicCompletedThisTurn</td>
+<td><code>PlayerCulture:CivicCompletedThisTurn() → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CivicCompletedThisTurn/">yes ↗</a></td>
+<td><code>0x6abfc0</code></td>
+<td><code>0x6ac510</code></td>
+</tr>
+<tr>
+<td><a id="civicunlocksgovernment"></a>CivicUnlocksGovernment</td>
+<td><code>PlayerCulture:CivicUnlocksGovernment(eCivic: integer[CivicTypes]) → boolean</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.CivicUnlocksGovernment/">yes ↗</a></td>
+<td><code>0x6ac010</code></td>
+<td><code>0x6ac560</code></td>
+</tr>
+<tr>
+<td><a id="clearpolicyslot"></a>ClearPolicySlot</td>
+<td><code>PlayerCulture:ClearPolicySlot(iSlotIndex: integer) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.ClearPolicySlot/">yes ↗</a></td>
+<td><code>0x6f04f0</code></td>
+<td><code>0x6f0c30</code></td>
+</tr>
+<tr>
+<td><a id="getanarchyendturn"></a>GetAnarchyEndTurn</td>
+<td><code>PlayerCulture:GetAnarchyEndTurn() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetAnarchyEndTurn/">yes ↗</a></td>
+<td><code>0x6ac070</code></td>
+<td><code>0x6ac5c0</code></td>
+</tr>
+<tr>
+<td><a id="getanarchyturns"></a>GetAnarchyTurns</td>
+<td><code>PlayerCulture:GetAnarchyTurns(eGovernment: integer[GovernmentTypes]) → number</code><br><small>args: <code>eGovernment</code> — Index of a row of the Governments table (the value of GameInfo.Governments[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetAnarchyTurns/">yes ↗</a></td>
+<td><code>0x6ac0c0</code></td>
+<td><code>0x6ac610</code></td>
+</tr>
+<tr>
+<td><a id="getautothemedbuilding"></a>GetAutoThemedBuilding</td>
+<td><code>PlayerCulture:GetAutoThemedBuilding() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Index of a database row (compared with row.Index).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetAutoThemedBuilding/">yes ↗</a></td>
+<td><code>0x6ac130</code></td>
+<td><code>0x6ac680</code></td>
+</tr>
+<tr>
+<td><a id="getciviccompletedthisturn"></a>GetCivicCompletedThisTurn</td>
+<td><code>PlayerCulture:GetCivicCompletedThisTurn() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCivicCompletedThisTurn/">yes ↗</a></td>
+<td><code>0x6ac180</code></td>
+<td><code>0x6ac6d0</code></td>
+</tr>
+<tr>
+<td><a id="getcivicpath"></a>GetCivicPath</td>
+<td><code>PlayerCulture:GetCivicPath(target: number/string[CivicTypes]) → number[] (or nothing)</code><br><small>args: <code>target</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCivicPath/">yes ↗</a></td>
+<td><code>0x6ac1d0</code></td>
+<td><code>0x6ac720</code></td>
+</tr>
+<tr>
+<td><a id="getcivicqueue"></a>GetCivicQueue</td>
+<td><code>PlayerCulture:GetCivicQueue() → number[]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCivicQueue/">yes ↗</a></td>
+<td><code>0x6ac3a0</code></td>
+<td><code>0x6ac8f0</code></td>
+</tr>
+<tr>
+<td><a id="getcosttounlockpolicies"></a>GetCostToUnlockPolicies</td>
+<td><code>PlayerCulture:GetCostToUnlockPolicies() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCostToUnlockPolicies/">yes ↗</a></td>
+<td><code>0x6ac520</code></td>
+<td><code>0x6aca70</code></td>
+</tr>
+<tr>
+<td><a id="getculturalprogress"></a>GetCulturalProgress</td>
+<td><code>PlayerCulture:GetCulturalProgress(eCivic?: integer[CivicTypes]) → FixedPointT&lt;8&gt;</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCulturalProgress/">yes ↗</a></td>
+<td><code>0x6ac570</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getculturecost"></a>GetCultureCost</td>
+<td><code>PlayerCulture:GetCultureCost(eCivic: integer[CivicTypes]) → number</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCultureCost/">yes ↗</a></td>
+<td><code>0x6ac580</code></td>
+<td><code>0x6acad0</code></td>
+</tr>
+<tr>
+<td><a id="getcultureyield"></a>GetCultureYield</td>
+<td><em>UI state:</em> <code>PlayerCulture:GetCultureYield() → number</code><br><em>gameplay state:</em> <code>PlayerCulture:GetCultureYield() → number (FixedPoint)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCultureYield/">yes ↗</a></td>
+<td><code>0x6ac5f0</code></td>
+<td><code>0x6acb40</code></td>
+</tr>
+<tr>
+<td><a id="getcultureyieldtooltip"></a>GetCultureYieldToolTip</td>
+<td><code>PlayerCulture:GetCultureYieldToolTip(arg1?: any, arg2?: any) → string</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCultureYieldToolTip/">yes ↗</a></td>
+<td><code>0x6ac660</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getcurrentgovernment"></a>GetCurrentGovernment</td>
+<td><code>PlayerCulture:GetCurrentGovernment() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Key of a row of the Governments table: the scripts look it up with GameInfo.Governments[result].</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetCurrentGovernment/">yes ↗</a></td>
+<td><code>0x6ac670</code></td>
+<td><code>0x6acbc0</code></td>
+</tr>
+<tr>
+<td><a id="getenactpolicycost"></a>GetEnactPolicyCost</td>
+<td><code>PlayerCulture:GetEnactPolicyCost(arg1: string/number) → number</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>arg1</code> — A database row hash (named …Hash in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetEnactPolicyCost/">yes ↗</a></td>
+<td><code>0x6ac6c0</code></td>
+<td><code>0x6acc10</code></td>
+</tr>
+<tr>
+<td><a id="getextratraderoutetourismmodifier"></a>GetExtraTradeRouteTourismModifier</td>
+<td><code>PlayerCulture:GetExtraTradeRouteTourismModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetExtraTradeRouteTourismModifier/">yes ↗</a></td>
+<td><code>0x6ac730</code></td>
+<td><code>0x6acc80</code></td>
+</tr>
+<tr>
+<td><a id="getflatbonus"></a>GetFlatBonus</td>
+<td><code>PlayerCulture:GetFlatBonus(arg1: integer[GovernmentBonusTypes]) → number</code><br><small>args: <code>arg1</code> — Value of the GovernmentBonusTypes enum (a type index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetFlatBonus/">yes ↗</a></td>
+<td><code>0x6ac780</code></td>
+<td><code>0x6accd0</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworksincity"></a>GetGreatWorksInCity</td>
+<td><code>PlayerCulture:GetGreatWorksInCity(arg1?: number)</code><br><small>args: <code>arg1</code> — Id of a city (named cityID in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetGreatWorksInCity/">yes ↗</a></td>
+<td><code>0x6ac7f0</code></td>
+<td><code>0x6acd40</code></td>
+</tr>
+<tr>
+<td><a id="getincrementingbonus"></a>GetIncrementingBonus</td>
+<td><code>PlayerCulture:GetIncrementingBonus(arg1: integer) → number</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetIncrementingBonus/">yes ↗</a></td>
+<td><code>0x6aca00</code><br><small>same code as GetIncrementingBonusIncrement</small></td>
+<td><code>0x6acf50</code></td>
+</tr>
+<tr>
+<td><a id="getincrementingbonusincrement"></a>GetIncrementingBonusIncrement</td>
+<td><code>PlayerCulture:GetIncrementingBonusIncrement(arg1: integer) → number</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetIncrementingBonusIncrement/">yes ↗</a></td>
+<td><code>0x6aca00</code><br><small>same code as GetIncrementingBonus</small></td>
+<td><code>0x6acf50</code></td>
+</tr>
+<tr>
+<td><a id="getincrementingbonusinterval"></a>GetIncrementingBonusInterval</td>
+<td><code>PlayerCulture:GetIncrementingBonusInterval(arg1: integer) → number</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetIncrementingBonusInterval/">yes ↗</a></td>
+<td><code>0x6aca70</code><br><small>same code as GetIncrementingBonusTurnsUntilNext</small></td>
+<td><code>0x6acfc0</code></td>
+</tr>
+<tr>
+<td><a id="getincrementingbonusturnsuntilnext"></a>GetIncrementingBonusTurnsUntilNext</td>
+<td><code>PlayerCulture:GetIncrementingBonusTurnsUntilNext(arg1: integer) → number</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetIncrementingBonusTurnsUntilNext/">yes ↗</a></td>
+<td><code>0x6aca70</code><br><small>same code as GetIncrementingBonusInterval</small></td>
+<td><code>0x6acfc0</code></td>
+</tr>
+<tr>
+<td><a id="getlifetimeculture"></a>GetLifetimeCulture</td>
+<td><code>PlayerCulture:GetLifetimeCulture() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetLifetimeCulture/">yes ↗</a></td>
+<td><code>0x6acae0</code></td>
+<td><code>0x6ad030</code></td>
+</tr>
+<tr>
+<td><a id="getnumpoliciesunlocked"></a>GetNumPoliciesUnlocked</td>
+<td><code>PlayerCulture:GetNumPoliciesUnlocked() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetNumPoliciesUnlocked/">yes ↗</a></td>
+<td><code>0x6acb50</code></td>
+<td><code>0x6ad0a0</code></td>
+</tr>
+<tr>
+<td><a id="getnumpolicyslots"></a>GetNumPolicySlots</td>
+<td><em>UI state:</em> <code>PlayerCulture:GetNumPolicySlots() → number</code><br><em>gameplay state:</em> <code>PlayerCulture:GetNumPolicySlots() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetNumPolicySlots/">yes ↗</a></td>
+<td><code>0x6acba0</code></td>
+<td><code>0x6ad0f0</code></td>
+</tr>
+<tr>
+<td><a id="getnumpolicyslotsopen"></a>GetNumPolicySlotsOpen</td>
+<td><code>PlayerCulture:GetNumPolicySlotsOpen() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetNumPolicySlotsOpen/">yes ↗</a></td>
+<td><code>0x6acbf0</code></td>
+<td><code>0x6ad140</code></td>
+</tr>
+<tr>
+<td><a id="getpolicytounlock"></a>GetPolicyToUnlock</td>
+<td><code>PlayerCulture:GetPolicyToUnlock(eBuilding: integer[BuildingTypes]) → number</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Key of a row of the Policies table: the scripts look it up with GameInfo.Policies[result]. (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetPolicyToUnlock/">yes ↗</a></td>
+<td><code>0x712380</code></td>
+<td><code>0x712bf0</code></td>
+</tr>
+<tr>
+<td><a id="getprogressingcivic"></a>GetProgressingCivic</td>
+<td><em>UI state:</em> <code>PlayerCulture:GetProgressingCivic() → number</code><br><em>gameplay state:</em> <code>PlayerCulture:GetProgressingCivic() → number (CivicTypes)</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Key of a row of the Civics table: the scripts look it up with GameInfo.Civics[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetProgressingCivic/">yes ↗</a></td>
+<td><code>0x6acc40</code></td>
+<td><code>0x6ad190</code></td>
+</tr>
+<tr>
+<td><a id="getslotpolicy"></a>GetSlotPolicy</td>
+<td><em>UI state:</em> <code>PlayerCulture:GetSlotPolicy(iSlotIndex?: number) → number</code><br><em>gameplay state:</em> <code>PlayerCulture:GetSlotPolicy(iSlotIndex: integer) → number (PolicyTypes)</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: Key of a row of the Policies table: the scripts look it up with GameInfo.Policies[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetSlotPolicy/">yes ↗</a></td>
+<td><code>0x6acc90</code></td>
+<td><code>0x6ad1e0</code></td>
+</tr>
+<tr>
+<td><a id="getslottype"></a>GetSlotType</td>
+<td><code>PlayerCulture:GetSlotType(iSlotIndex?: number) → number</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: Key of a row of the GovernmentSlots table: the scripts look it up with GameInfo.GovernmentSlots[result].</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetSlotType/">yes ↗</a></td>
+<td><code>0x6acd10</code></td>
+<td><code>0x6ad260</code></td>
+</tr>
+<tr>
+<td><a id="getstaycationers"></a>GetStaycationers</td>
+<td><code>PlayerCulture:GetStaycationers() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetStaycationers/">yes ↗</a></td>
+<td><code>0x6acd90</code></td>
+<td><code>0x6ad2e0</code></td>
+</tr>
+<tr>
+<td><a id="gettourismat"></a>GetTourismAt</td>
+<td><code>PlayerCulture:GetTourismAt(iPlotIndex: integer) → number</code><br><small>args: <code>iPlotIndex</code> — Plot index (named plotIndex / plotID in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTourismAt/">yes ↗</a></td>
+<td><code>0x6acde0</code></td>
+<td><code>0x6ad330</code></td>
+</tr>
+<tr>
+<td><a id="gettourismtooltipat"></a>GetTourismTooltipAt</td>
+<td><code>PlayerCulture:GetTourismTooltipAt(iPlotIndex?: number) → string</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTourismTooltipAt/">yes ↗</a></td>
+<td><code>0x6ace50</code></td>
+<td><code>0x6ad3a0</code></td>
+</tr>
+<tr>
+<td><a id="gettouristsat"></a>GetTouristsAt</td>
+<td><code>PlayerCulture:GetTouristsAt(iPlotIndex: integer) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTouristsAt/">yes ↗</a></td>
+<td><code>0x6acf50</code></td>
+<td><code>0x6ad4a0</code></td>
+</tr>
+<tr>
+<td><a id="gettouristsfrom"></a>GetTouristsFrom</td>
+<td><code>PlayerCulture:GetTouristsFrom(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTouristsFrom/">yes ↗</a></td>
+<td><code>0x6acfc0</code></td>
+<td><code>0x6ad510</code></td>
+</tr>
+<tr>
+<td><a id="gettouristsfromtooltip"></a>GetTouristsFromTooltip</td>
+<td><code>PlayerCulture:GetTouristsFromTooltip(ePlayer?: number) → string</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTouristsFromTooltip/">yes ↗</a></td>
+<td><code>0x6ad030</code></td>
+<td><code>0x6ad580</code></td>
+</tr>
+<tr>
+<td><a id="gettouriststo"></a>GetTouristsTo</td>
+<td><code>PlayerCulture:GetTouristsTo() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTouristsTo/">yes ↗</a></td>
+<td><code>0x6ad130</code></td>
+<td><code>0x6ad680</code></td>
+</tr>
+<tr>
+<td><a id="getturnsleft"></a>GetTurnsLeft</td>
+<td><code>PlayerCulture:GetTurnsLeft() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTurnsLeft/">yes ↗</a></td>
+<td><code>0x6ad180</code></td>
+<td><code>0x6ad6d0</code></td>
+</tr>
+<tr>
+<td><a id="getturnsleftoncurrentcivic"></a>GetTurnsLeftOnCurrentCivic</td>
+<td><code>PlayerCulture:GetTurnsLeftOnCurrentCivic() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTurnsLeftOnCurrentCivic/">yes ↗</a></td>
+<td><code>0x6f0800</code></td>
+<td><code>0x6f0f40</code></td>
+</tr>
+<tr>
+<td><a id="getturnstoprogresscivic"></a>GetTurnsToProgressCivic</td>
+<td><code>PlayerCulture:GetTurnsToProgressCivic(arg1?: number) → number</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: A turn number (the scripts name the result turn). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTurnsToProgressCivic/">yes ↗</a></td>
+<td><code>0x6ad1d0</code></td>
+<td><code>0x6ad720</code></td>
+</tr>
+<tr>
+<td><a id="getturnsuntildominant"></a>GetTurnsUntilDominant</td>
+<td><code>PlayerCulture:GetTurnsUntilDominant(ePlayer?: number) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTurnsUntilDominant/">yes ↗</a></td>
+<td><code>0x7415c0</code></td>
+<td><code>0x741f00</code></td>
+</tr>
+<tr>
+<td><a id="getturnsuntilvictory"></a>GetTurnsUntilVictory</td>
+<td><code>PlayerCulture:GetTurnsUntilVictory() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GetTurnsUntilVictory/">yes ↗</a></td>
+<td><code>0x741640</code></td>
+<td><code>0x741f80</code></td>
+</tr>
+<tr>
+<td><a id="governmentchangeconsidered"></a>GovernmentChangeConsidered</td>
+<td><code>PlayerCulture:GovernmentChangeConsidered() → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GovernmentChangeConsidered/">yes ↗</a></td>
+<td><code>0x6ad250</code></td>
+<td><code>0x6ad7a0</code></td>
+</tr>
+<tr>
+<td><a id="governmentchangemade"></a>GovernmentChangeMade</td>
+<td><code>PlayerCulture:GovernmentChangeMade() → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.GovernmentChangeMade/">yes ↗</a></td>
+<td><code>0x6ad2a0</code></td>
+<td><code>0x6ad7f0</code></td>
+</tr>
+<tr>
+<td><a id="hasboostbeentriggered"></a>HasBoostBeenTriggered</td>
+<td><em>UI state:</em> <code>PlayerCulture:HasBoostBeenTriggered(arg1: integer) → boolean</code><br><em>gameplay state:</em> <code>PlayerCulture:HasBoostBeenTriggered(eCivic: integer[CivicTypes]) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.HasBoostBeenTriggered/">yes ↗</a></td>
+<td><code>0x6ad2f0</code></td>
+<td><code>0x6ad840</code></td>
+</tr>
+<tr>
+<td><a id="hascivic"></a>HasCivic</td>
+<td><em>UI state:</em> <code>PlayerCulture:HasCivic(eCivic: integer) → boolean</code><br><em>gameplay state:</em> <code>PlayerCulture:HasCivic(eCivic: integer[CivicTypes]) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.HasCivic/">yes ↗</a></td>
+<td><code>0x6ad360</code></td>
+<td><code>0x6ad8b0</code></td>
+</tr>
+<tr>
+<td><a id="isautothemedeligible"></a>IsAutoThemedEligible</td>
+<td><code>PlayerCulture:IsAutoThemedEligible(arg1?: number) → boolean</code><br><small>args: <code>arg1</code> — Hash of a row of the Buildings table (the scripts pass GameInfo.Buildings[...].Hash). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsAutoThemedEligible/">yes ↗</a></td>
+<td><code>0x741690</code></td>
+<td><code>0x741fd0</code></td>
+</tr>
+<tr>
+<td><a id="iscivicrevealed"></a>IsCivicRevealed</td>
+<td><code>PlayerCulture:IsCivicRevealed(eCivic: integer) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsCivicRevealed/">yes ↗</a></td>
+<td><code>0x6ad3d0</code></td>
+<td><code>0x6ad920</code></td>
+</tr>
+<tr>
+<td><a id="isdominantover"></a>IsDominantOver</td>
+<td><em>UI state:</em> <code>PlayerCulture:IsDominantOver(ePlayer: integer[PlayerTypes]) → boolean</code><br><em>gameplay state:</em> <code>PlayerCulture:IsDominantOver(ePlayer: integer) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td>—</td>
+<td><code>0x6ad440</code></td>
+<td><code>0x6ad990</code></td>
+</tr>
+<tr>
+<td><a id="iseverautothemable"></a>IsEverAutoThemable</td>
+<td><code>PlayerCulture:IsEverAutoThemable(eBuilding: integer[BuildingTypes]) → boolean</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsEverAutoThemable/">yes ↗</a></td>
+<td><code>0x741710</code></td>
+<td><code>0x742050</code></td>
+</tr>
+<tr>
+<td><a id="isgovernmentunlocked"></a>IsGovernmentUnlocked</td>
+<td><em>UI state:</em> <code>PlayerCulture:IsGovernmentUnlocked(eGovernment: string/number[GovernmentTypes]) → boolean</code><br><em>gameplay state:</em> <code>PlayerCulture:IsGovernmentUnlocked(eGovernment: integer[GovernmentTypes]) → boolean</code><br><small>args: <code>eGovernment</code> — Index of a row of the Governments table (the value of GameInfo.Governments[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsGovernmentUnlocked/">yes ↗</a></td>
+<td><code>0x6ad4a0</code></td>
+<td><code>0x6ad9f0</code></td>
+</tr>
+<tr>
+<td><a id="isinanarchy"></a>IsInAnarchy</td>
+<td><code>PlayerCulture:IsInAnarchy() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsInAnarchy/">yes ↗</a></td>
+<td><code>0x6ad510</code></td>
+<td><code>0x6ada60</code></td>
+</tr>
+<tr>
+<td><a id="ispolicyactive"></a>IsPolicyActive</td>
+<td><em>UI state:</em> <code>PlayerCulture:IsPolicyActive(ePolicy: string/number[PolicyTypes]) → boolean</code><br><em>gameplay state:</em> <code>PlayerCulture:IsPolicyActive(ePolicy: integer[PolicyTypes]) → boolean</code><br><small>args: <code>ePolicy</code> — Index of a row of the Policies table (the value of GameInfo.Policies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsPolicyActive/">yes ↗</a></td>
+<td><code>0x6ad560</code></td>
+<td><code>0x6adab0</code></td>
+</tr>
+<tr>
+<td><a id="ispolicybanned"></a>IsPolicyBanned</td>
+<td><code>PlayerCulture:IsPolicyBanned(ePolicy: string/number[PolicyTypes]) → boolean</code><br><small>args: <code>ePolicy</code> — Index of a row of the Policies table (the value of GameInfo.Policies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsPolicyBanned/">yes ↗</a></td>
+<td><code>0x741770</code></td>
+<td><code>0x7420b0</code></td>
+</tr>
+<tr>
+<td><a id="ispolicyobsolete"></a>IsPolicyObsolete</td>
+<td><em>UI state:</em> <code>PlayerCulture:IsPolicyObsolete(ePolicy: string/number[PolicyTypes]) → boolean</code><br><em>gameplay state:</em> <code>PlayerCulture:IsPolicyObsolete(ePolicy: integer[PolicyTypes]) → boolean</code><br><small>args: <code>ePolicy</code> — Index of a row of the Policies table (the value of GameInfo.Policies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsPolicyObsolete/">yes ↗</a></td>
+<td><code>0x6ad5d0</code></td>
+<td><code>0x6adb20</code></td>
+</tr>
+<tr>
+<td><a id="ispolicyunlocked"></a>IsPolicyUnlocked</td>
+<td><em>UI state:</em> <code>PlayerCulture:IsPolicyUnlocked(ePolicy: string/number[PolicyTypes]) → boolean</code><br><em>gameplay state:</em> <code>PlayerCulture:IsPolicyUnlocked(ePolicy: integer[PolicyTypes]) → boolean</code><br><small>args: <code>ePolicy</code> — Index of a row of the Policies table (the value of GameInfo.Policies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.IsPolicyUnlocked/">yes ↗</a></td>
+<td><code>0x6ad640</code></td>
+<td><code>0x6adb90</code></td>
+</tr>
+<tr>
+<td><a id="policychangemade"></a>PolicyChangeMade</td>
+<td><code>PlayerCulture:PolicyChangeMade() → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.PolicyChangeMade/">yes ↗</a></td>
+<td><code>0x6ad6b0</code></td>
+<td><code>0x6adc00</code></td>
+</tr>
+<tr>
+<td><a id="requestchangegovernment"></a>RequestChangeGovernment</td>
+<td><code>PlayerCulture:RequestChangeGovernment(arg1: string/number) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.RequestChangeGovernment/">yes ↗</a></td>
+<td><code>0x6ad700</code></td>
+<td><code>0x6adc50</code></td>
+</tr>
+<tr>
+<td><a id="requestclearslot"></a>RequestClearSlot</td>
+<td><code>PlayerCulture:RequestClearSlot(iSlotIndex?: number) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.RequestClearSlot/">yes ↗</a></td>
+<td><code>0x6ad770</code></td>
+<td><code>0x6adcc0</code></td>
+</tr>
+<tr>
+<td><a id="requestenactpolicy"></a>RequestEnactPolicy</td>
+<td><code>PlayerCulture:RequestEnactPolicy(arg1: string/number, arg2?: number) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.RequestEnactPolicy/">yes ↗</a></td>
+<td><code>0x6ad7f0</code></td>
+<td><code>0x6add40</code></td>
+</tr>
+<tr>
+<td><a id="requestpolicychanges"></a>RequestPolicyChanges</td>
+<td><code>PlayerCulture:RequestPolicyChanges() → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.RequestPolicyChanges/">yes ↗</a></td>
+<td><code>0x6ad890</code></td>
+<td><code>0x6adde0</code></td>
+</tr>
+<tr>
+<td><a id="reset"></a>Reset</td>
+<td><code>PlayerCulture:Reset() (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f0b00</code></td>
+<td><code>0x6f1240</code></td>
+</tr>
+<tr>
+<td><a id="reverseboost"></a>ReverseBoost</td>
+<td><code>PlayerCulture:ReverseBoost(eCivic: integer[CivicTypes]) (or nothing)</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.ReverseBoost/">yes ↗</a></td>
+<td><code>0x6f0b20</code></td>
+<td><code>0x6f1260</code></td>
+</tr>
+<tr>
+<td><a id="setcivic"></a>SetCivic</td>
+<td><code>PlayerCulture:SetCivic(eCivic: integer[CivicTypes], bValue: boolean) (or nothing)</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index). The scripts pass its index.; <code>bValue</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.SetCivic/">yes ↗</a></td>
+<td><code>0x6f0b70</code></td>
+<td><code>0x6f12b0</code></td>
+</tr>
+<tr>
+<td><a id="setciviccompletedthisturn"></a>SetCivicCompletedThisTurn</td>
+<td><code>PlayerCulture:SetCivicCompletedThisTurn(bNewValue: boolean) (or nothing)</code><br><small>args: <code>bNewValue</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.SetCivicCompletedThisTurn/">yes ↗</a></td>
+<td><code>0x6f0bd0</code></td>
+<td><code>0x6f1310</code></td>
+</tr>
+<tr>
+<td><a id="setculturalprogress"></a>SetCulturalProgress</td>
+<td><code>PlayerCulture:SetCulturalProgress(eCivic?: integer[CivicTypes], iNewValue?: any) → boolean</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.SetCulturalProgress/">yes ↗</a></td>
+<td><code>0x6f0c20</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="setcurrentgovernment"></a>SetCurrentGovernment</td>
+<td><code>PlayerCulture:SetCurrentGovernment(eGovernment: integer[GovernmentTypes]) → boolean</code><br><small>args: <code>eGovernment</code> — Index of a row of the Governments table (the value of GameInfo.Governments[...].Index). The scripts pass its i</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.SetCurrentGovernment/">yes ↗</a></td>
+<td><code>0x6f0c30</code></td>
+<td><code>0x6f1370</code></td>
+</tr>
+<tr>
+<td><a id="setgovernmentchangeconsidered"></a>SetGovernmentChangeConsidered</td>
+<td><code>PlayerCulture:SetGovernmentChangeConsidered(bNewValue: boolean) (or nothing)</code><br><small>args: <code>bNewValue</code> — A boolean flag (true/false).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.SetGovernmentChangeConsidered/">yes ↗</a></td>
+<td><code>0x6ade10</code></td>
+<td><code>0x6ae360</code></td>
+</tr>
+<tr>
+<td><a id="setprogressingcivic"></a>SetProgressingCivic</td>
+<td><code>PlayerCulture:SetProgressingCivic(eCivic: table[CivicTypes]) → 1 values ⚠</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.SetProgressingCivic/">yes ↗</a></td>
+<td><code>0x6f0c90</code></td>
+<td><code>0x6f13d0</code></td>
+</tr>
+<tr>
+<td><a id="triggerboost"></a>TriggerBoost</td>
+<td><code>PlayerCulture:TriggerBoost(eCivic: integer[CivicTypes], eSource: integer[BoostSource]) (or nothing)</code><br><small>args: <code>eCivic</code> — Index of a row of the Civics table (the value of GameInfo.Civics[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.TriggerBoost/">yes ↗</a></td>
+<td><code>0x6f0ea0</code></td>
+<td><code>0x6f15e0</code></td>
+</tr>
+<tr>
+<td><a id="unlockgovernment"></a>UnlockGovernment</td>
+<td><code>PlayerCulture:UnlockGovernment(eGovernment: integer[GovernmentTypes]) (or nothing)</code><br><small>args: <code>eGovernment</code> — Index of a row of the Governments table (the value of GameInfo.Governments[...].Index). The scripts pass its i</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.UnlockGovernment/">yes ↗</a></td>
+<td><code>0x6f0f00</code></td>
+<td><code>0x6f1640</code></td>
+</tr>
+<tr>
+<td><a id="unlockpolicy"></a>UnlockPolicy</td>
+<td><code>PlayerCulture:UnlockPolicy(ePolicy: integer[PolicyTypes]) (or nothing)</code><br><small>args: <code>ePolicy</code> — Index of a row of the Policies table (the value of GameInfo.Policies[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerCulture.UnlockPolicy/">yes ↗</a></td>
+<td><code>0x6f0f50</code></td>
+<td><code>0x6f1690</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

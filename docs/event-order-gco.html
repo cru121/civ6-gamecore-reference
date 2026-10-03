@@ -1,0 +1,112 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Event order and patterns from a large mod</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Event order and patterns from a large mod</p>
+<h1>Event order and patterns from a large mod</h1>
+<blockquote>
+<p><strong>Source and credit.</strong> Everything on this page comes from reading <strong>Gedemon's Civilization Overhaul</strong> (GCO), a large gameplay mod by <strong>Gedemon</strong> (<a href="https://github.com/Gedemon/Civ6-GCO">github.com/Gedemon/Civ6-GCO</a>, the state of 2021-05-20, Gathering Storm era). GCO listens to, chains and invents many events, and the author left comments about what crashes, what fires too early and what fires in which order. Those comments are the valuable part. We read the code, checked the line references below against the repository, and wrote the prose ourselves; we did not copy code. The repository has no license file, so please read the original for the full context and credit Gedemon if you reuse an idea.</p>
+<p><strong>Status.</strong> Nothing here was run by us. Claims marked <em>author's comment</em> are what GCO's code says, not something re-tested on the current game. File references are relative to the repository (<code>Scripts/GCO_X.lua</code> is written <code>X.lua</code>).</p>
+</blockquote>
+<h2>Which kind of event is it?</h2>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Meaning</th>
+<th>Lua state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Events.X</code></td>
+<td>The engine reports that something <strong>already happened</strong>; a handler sees the changed world. See <a href="enums/LuaEvents.html">Lua events</a>.</td>
+<td>gameplay and UI, each state sees its own set</td>
+</tr>
+<tr>
+<td><code>GameEvents.X</code></td>
+<td>Two things share the name: engine <strong>hooks</strong> (such as <code>OnGameTurnStarted</code>) and <strong>names a mod invents</strong> (<code>GameEvents.Foo.Add(fn)</code>, <code>GameEvents.Foo.Call(...)</code>; no declaration needed).</td>
+<td>gameplay only</td>
+</tr>
+<tr>
+<td><code>LuaEvents.X</code></td>
+<td>Plain publish/subscribe inside <strong>one</strong> Lua state. Nothing is declared.</td>
+<td>one state</td>
+</tr>
+</tbody>
+</table>
+<p>The UI state cannot see the gameplay <code>GameEvents</code> unless a script exports the table (GCO: <code>ExposedMembers.GameEvents = GameEvents</code>, ModUtils.lua:137), and gameplay cannot see UI <code>LuaEvents</code> unless the UI exports them (ContextFunctions.lua:846). The author's rule of thumb (comment at UI/CityBannerManager.lua:4188): <strong>gameplay to UI = <code>LuaEvents</code>; UI to gameplay = a player operation.</strong> For the second, GCO uses <a href="operations/player-operation/EXECUTE_SCRIPT.html"><code>EXECUTE_SCRIPT</code></a> with an <code>OnStart</code> name, which makes the engine fire <code>GameEvents.&lt;OnStart&gt;(playerID, parameters)</code> on the gameplay side.</p>
+<h2>Starting a mod safely</h2>
+<ul>
+<li><code>GameCoreEventPublishComplete</code> fires very often and is used by GCO as a <strong>scheduler tick</strong>: it polls "is every script loaded?" (ModUtils.lua:444-460), resumes coroutines and runs timers. It is not in the engine event list on this site, which covers GameCore only. <em>Author's comment:</em> "called frequently, keep it clean".</li>
+<li>Readiness pattern: every script sets a flag in <code>ExposedMembers</code> when it finishes loading; one poll waits for all flags (including UI ones), removes itself and fires a single custom <code>GameEvents.InitializeGCO</code>. This avoids relying on load order across states.</li>
+<li><code>LoadGameViewStateDone</code> is the "game is loaded" moment (GameScript.lua:106). <code>LeaveGameComplete</code> is the unload; <code>ExposedMembers</code> <strong>survives</strong> an unload, so tables stored there must be cleared by hand (ModUtils.lua:2070-2106).</li>
+<li>Map events (<code>ImprovementAddedToMap</code>, <code>FeatureAddedToMap</code>, <code>RouteAddedToMap</code>...) fire during map generation, before your mod has initialised. Every plot handler in GCO starts with an "initialised?" check.</li>
+</ul>
+<h2>A per-player "turn started" that does not crash</h2>
+<p>The engine hooks <code>GameEvents.PlayerTurnStarted</code>, <code>PlayerTurnStartComplete</code> and <code>OnGameTurnStarted</code> are <strong>unsafe for work that touches units or unit flags</strong>. <em>Author's comments:</em> PlayerScript.lua:1333 ("makes the game crash" in the unit flag manager), UnitScript.lua:819-824 and :5427, and GameScript.lua:278 (tested 2017-10-25). GCO works around it in two ways:</p>
+<ol>
+<li>It builds its own "player turn started" from four real events: <code>LocalPlayerTurnBegin</code>, <code>RemotePlayerTurnBegin(playerID)</code>, <code>RemotePlayerTurnEnd(playerID)</code> and <code>LocalPlayerTurnEnd(playerID)</code> (PlayerScript.lua:1338-1408, 1615-1618). Single player: when one player's turn ends, start the next ever-alive player's. Network multiplayer: every player's turn is started from the local begin event, to avoid desyncs. A stored "current turn" number per player makes it run once even if several of the four fire.</li>
+<li>A flag turned unsafe on <code>OnGameTurnStarted</code> (ModUtils.lua:812) and safe again on its own turn-start event; UI refreshes of unit flags are skipped while it is unsafe.</li>
+</ol>
+<p>GCO tried other triggers and kept the dead experiments in ModUtils.lua:2129-2151. <em>Author's comments:</em> the <code>GameCoreEventPublishComplete</code> + <code>IsTurnActive()</code> poll is "first to fire, but not early enough", and <code>player:IsTurnActive()</code> is always false for player 0 under automation.</p>
+<h2>Ordering facts (all author's comments unless noted)</h2>
+<table>
+<thead>
+<tr>
+<th>Fact</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Combat is resolved before any Lua event.</strong> By the time <code>Combat</code>, <code>UnitAddedToMap</code> or a turn event runs, <code>unit:GetDamage()</code> already reflects all queued fights. GCO keeps its own virtual hit points and reconciles in <code>UnitDamageChanged</code> (it reverts healing it did not ask for: the engine hard-heals pillagers).</td>
+<td>UnitScript.lua:612-624, 5470</td>
+</tr>
+<tr>
+<td><strong><code>CityAddedToMap</code> comes before <code>CityInitialized</code>.</strong> Create data on the first; do anything that needs the city's plots on the second (the plots are not initialised at the first).</td>
+<td>CityScript.lua:582-583, 8111-8115; ModUtils.lua:1731</td>
+</tr>
+<tr>
+<td><strong><code>UnitAddedToMap</code> comes before <code>CityProductionCompleted</code></strong> for a unit built in a city, so work that needs the production result must wait. <code>PlayerTurnActivated</code> is "the first general event called after all <code>CityProductionCompleted</code> for a player".</td>
+<td>UnitScript.lua:928</td>
+</tr>
+<tr>
+<td><strong><code>GovernmentChanged</code> / <code>GovernmentPolicyChanged</code> fire before the change is visible</strong> to policy queries; GCO delays the recalculation with a delayed coroutine instead of reading it in the handler.</td>
+<td>CityScript.lua:8117-8150</td>
+</tr>
+<tr>
+<td><strong><code>UnitOperationStarted</code> for <code>REMOVE_FEATURE</code> fires after the world changed</strong>: the feature is already gone and the builder may be off the map. GCO reads the feature from a cache it keeps per plot.</td>
+<td>UnitScript.lua:6821-6823</td>
+</tr>
+<tr>
+<td><strong><code>UnitMoved</code> is once per step, <code>UnitMoveComplete</code> once per command.</strong> Do not change state in <code>UnitMoved</code> (multiplayer desync warning).</td>
+<td>UnitScript.lua:6921-6950</td>
+</tr>
+<tr>
+<td><strong><code>UnitTeleported</code> also fires when a unit steps onto the tile of a unit it just killed.</strong></td>
+<td>AltHistScript.lua:123</td>
+</tr>
+<tr>
+<td>Same-turn, same-plot correlation is fragile: every synthetic event below assumes the engine's event order never changes.</td>
+<td>CityScript.lua:664</td>
+</tr>
+</tbody>
+</table>
+<h2>Recipes: events the engine does not give you</h2>
+<p>The engine has no "city captured", "unit captured (with the new unit id)", "settler founded a city" or "feature removed" event. GCO reconstructs them by matching events that do exist.</p>
+<p><strong>City captured</strong> (ModUtils.lua:1257-1316). When a city changes hands its city-centre district is removed from the old owner: <code>DistrictRemovedFromMap(playerID, districtID, cityID, x, y)</code>. Store <code>{turn, playerID, cityID}</code> under the key <code>"x,y"</code>. Then <code>CityAddedToMap</code> on the same plot, same turn, with <code>city:GetOriginalOwner()</code> equal to the stored player, means a capture, not a new city.</p>
+<p><strong>Unit captured, with the new id</strong> (ModUtils.lua:1646-1688). <code>UnitCaptured</code> gives the old unit but not the new one. Remember the id from <code>UnitRemovedFromMap</code>, count the <code>UnitAddedToMap</code> events that follow, and in <code>UnitCaptured</code> accept it only if the removed unit matches, the added unit belongs to the capturing player, and exactly one unit was added. This relies on the removal firing first (author's comment "first called").</p>
+<p><strong>Settler founded a city</strong> (ModUtils.lua:1690-1731). On <code>UnitOperationStarted</code> with <code>FOUND_CITY</code> remember the settler; remember any feature removed at the site; complete in <code>CityInitialized</code> by checking the founder equals the city owner.</p>
+<p><strong>Feature removed.</strong> <code>FeatureAddedToMap</code> and <code>FeatureRemovedFromMap</code> carry only <code>x, y</code>. Keep the last known feature type per plot (GCO: <code>plot:SetCached("FeatureType", ...)</code>) and compare on each event: previous set and now none means it was removed (PlotScript.lua:3954-3967).</p>
+<p><strong>Learn the order yourself.</strong> GCO binds about 18 engine events (<code>AppInitComplete</code>, <code>GameViewStateDone</code>, <code>LoadScreenContentReady</code>, <code>MainMenuStateDone</code>, <code>RequestSave</code>, <code>EndGameView</code>...) to functions that only print their name, then reads the log (ModUtils.lua:2153-2187). The list also shows which names exist on the UI side.</p>
+<h2>Parameters seen in use</h2>
+<p>The Modding Companion list used for the <a href="enums/LuaEvents.html">Lua events</a> page disagrees with real handlers in a few places. Where the vanilla game's own Lua uses the same event with more parameters, that is stronger evidence than a third-party mod; the table says which applies. The per-event notes are on the Lua events page, section "Notes from real use".</p>
+<h2>What was left out</h2>
+<p>The original write-up (kept by the project, not published) also lists GCO's own custom events, its dead code and its wiring bugs. Those describe GCO, not the game, so they are not reproduced here. One is worth knowing as a trap: <code>GameEvents.X.Add(...)</code> written where <code>.Call(...)</code> was meant fails silently when nothing else subscribes (GCO's <code>CapturedCityInitialized</code>, ModUtils.lua:1308), and <code>Events.SaveComplete(handler)</code> without <code>.Add</code> (UnitScript.lua:918) never subscribes.</p></main><script>const ROOT="";</script><script src="search.js"></script>

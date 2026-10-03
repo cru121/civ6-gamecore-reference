@@ -1,0 +1,431 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>GameClimate</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › GameClimate</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>GameClimate</h1>
+<p>50 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate/">GameClimate</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getactivedroughtatplot"></a>GetActiveDroughtAtPlot</td>
+<td><code>GameClimate.GetActiveDroughtAtPlot(x: integer/Plot, y?: integer) → Drought (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveDroughtAtPlot/">yes ↗</a></td>
+<td><code>0x5b5da0</code></td>
+<td><code>0x5b6bd0</code></td>
+</tr>
+<tr>
+<td><a id="getactivedroughtbyindex"></a>GetActiveDroughtByIndex</td>
+<td><code>GameClimate.GetActiveDroughtByIndex(iDroughtIndex?: number) → Drought (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveDroughtByIndex/">yes ↗</a></td>
+<td><code>0x5b5e50</code></td>
+<td><code>0x5b6c80</code></td>
+</tr>
+<tr>
+<td><a id="getactivedroughtidatplot"></a>GetActiveDroughtIDAtPlot</td>
+<td><code>GameClimate.GetActiveDroughtIDAtPlot(x: integer/Plot, y?: integer) → number/nil</code><br><small>args: <code>x</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred); <code>y</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred)</small><br><small>returns: The scripts pass the result to <code>GameClimate.GetDroughtPlotsByID</code>. (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveDroughtIDAtPlot/">yes ↗</a></td>
+<td><code>0x5b5ef0</code></td>
+<td><code>0x5b6d20</code></td>
+</tr>
+<tr>
+<td><a id="getactivedroughtplotsbyindex"></a>GetActiveDroughtPlotsByIndex</td>
+<td><code>GameClimate.GetActiveDroughtPlotsByIndex(arg1?: number) → number[] (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveDroughtPlotsByIndex/">yes ↗</a></td>
+<td><code>0x5b5fc0</code></td>
+<td><code>0x5b6df0</code></td>
+</tr>
+<tr>
+<td><a id="getactivedroughttypeatplot"></a>GetActiveDroughtTypeAtPlot</td>
+<td><code>GameClimate.GetActiveDroughtTypeAtPlot(x: integer/Plot, y?: integer) → number</code><br><small>args: <code>x</code> — A Plot object (the scripts pass a variable named pPlot).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveDroughtTypeAtPlot/">yes ↗</a></td>
+<td><code>0x5b6170</code></td>
+<td><code>0x5b6fa0</code></td>
+</tr>
+<tr>
+<td><a id="getactivestormatplot"></a>GetActiveStormAtPlot</td>
+<td><code>GameClimate.GetActiveStormAtPlot(x: integer/Plot, y?: integer) → Storm (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveStormAtPlot/">yes ↗</a></td>
+<td><code>0x5b6250</code></td>
+<td><code>0x5b7080</code></td>
+</tr>
+<tr>
+<td><a id="getactivestormbyindex"></a>GetActiveStormByIndex</td>
+<td><code>GameClimate.GetActiveStormByIndex(iStormIndex?: number) → Storm (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveStormByIndex/">yes ↗</a></td>
+<td><code>0x5b6300</code></td>
+<td><code>0x5b7130</code></td>
+</tr>
+<tr>
+<td><a id="getactivestormidatplot"></a>GetActiveStormIDAtPlot</td>
+<td><code>GameClimate.GetActiveStormIDAtPlot(x: integer/Plot, y?: integer) → number/nil</code><br><small>args: <code>x</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred); <code>y</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred)</small><br><small>returns: The scripts pass the result to <code>GameClimate.GetStormPlotsByID</code>. (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveStormIDAtPlot/">yes ↗</a></td>
+<td><code>0x5b63a0</code></td>
+<td><code>0x5b71d0</code></td>
+</tr>
+<tr>
+<td><a id="getactivestormplotsbyindex"></a>GetActiveStormPlotsByIndex</td>
+<td><code>GameClimate.GetActiveStormPlotsByIndex(arg1?: number) → number[] (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveStormPlotsByIndex/">yes ↗</a></td>
+<td><code>0x5b6470</code></td>
+<td><code>0x5b72a0</code></td>
+</tr>
+<tr>
+<td><a id="getactivestormtypeatplot"></a>GetActiveStormTypeAtPlot</td>
+<td><code>GameClimate.GetActiveStormTypeAtPlot(x: integer/Plot, y?: integer) → number</code><br><small>args: <code>x</code> — A Plot object (the scripts pass a variable named pPlot).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetActiveStormTypeAtPlot/">yes ↗</a></td>
+<td><code>0x5b6610</code></td>
+<td><code>0x5b7440</code></td>
+</tr>
+<tr>
+<td><a id="getco2footprintmodifier"></a>GetCO2FootprintModifier</td>
+<td><code>GameClimate.GetCO2FootprintModifier() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetCO2FootprintModifier/">yes ↗</a></td>
+<td><code>0x5b66f0</code></td>
+<td><code>0x5b7520</code></td>
+</tr>
+<tr>
+<td><a id="getclimatechangeforlastsealevelevent"></a>GetClimateChangeForLastSeaLevelEvent</td>
+<td><code>GameClimate.GetClimateChangeForLastSeaLevelEvent() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetClimateChangeForLastSeaLevelEvent/">yes ↗</a></td>
+<td><code>0x5b6770</code></td>
+<td><code>0x5b75a0</code></td>
+</tr>
+<tr>
+<td><a id="getclimatechangefromrealism"></a>GetClimateChangeFromRealism</td>
+<td><code>GameClimate.GetClimateChangeFromRealism() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetClimateChangeFromRealism/">yes ↗</a></td>
+<td><code>0x5b67f0</code></td>
+<td><code>0x5b7620</code></td>
+</tr>
+<tr>
+<td><a id="getclimatechangefromtemperature"></a>GetClimateChangeFromTemperature</td>
+<td><code>GameClimate.GetClimateChangeFromTemperature() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetClimateChangeFromTemperature/">yes ↗</a></td>
+<td><code>0x5b6860</code></td>
+<td><code>0x5b7690</code></td>
+</tr>
+<tr>
+<td><a id="getclimatechangelevel"></a>GetClimateChangeLevel</td>
+<td><code>GameClimate.GetClimateChangeLevel() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetClimateChangeLevel/">yes ↗</a></td>
+<td><code>0x5b68d0</code></td>
+<td><code>0x5b7700</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentaveragetemperature"></a>GetCurrentAverageTemperature</td>
+<td><code>GameClimate.GetCurrentAverageTemperature() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetCurrentAverageTemperature/">yes ↗</a></td>
+<td><code>0x5b6940</code></td>
+<td><code>0x5b7770</code></td>
+</tr>
+<tr>
+<td><a id="getdeforestationtype"></a>GetDeforestationType</td>
+<td><code>GameClimate.GetDeforestationType() → number</code><br><small>returns: Key of a row of the DeforestationLevels table: the scripts look it up with GameInfo.DeforestationLevels[result]. (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetDeforestationType/">yes ↗</a></td>
+<td><code>0x5b69e0</code></td>
+<td><code>0x5b7810</code></td>
+</tr>
+<tr>
+<td><a id="getdroughtbyid"></a>GetDroughtByID</td>
+<td><code>GameClimate.GetDroughtByID(arg1?: number) → Drought (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetDroughtByID/">yes ↗</a></td>
+<td><code>0x5b6a60</code></td>
+<td><code>0x5b7890</code></td>
+</tr>
+<tr>
+<td><a id="getdroughtclimateincreasedchance"></a>GetDroughtClimateIncreasedChance</td>
+<td><code>GameClimate.GetDroughtClimateIncreasedChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetDroughtClimateIncreasedChance/">yes ↗</a></td>
+<td><code>0x5b6b20</code></td>
+<td><code>0x5b7950</code></td>
+</tr>
+<tr>
+<td><a id="getdroughtpercentchance"></a>GetDroughtPercentChance</td>
+<td><code>GameClimate.GetDroughtPercentChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetDroughtPercentChance/">yes ↗</a></td>
+<td><code>0x5b6b70</code></td>
+<td><code>0x5b79a0</code></td>
+</tr>
+<tr>
+<td><a id="getdroughtplotsbyid"></a>GetDroughtPlotsByID</td>
+<td><code>GameClimate.GetDroughtPlotsByID(arg1?: number) → number[] (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetDroughtPlotsByID/">yes ↗</a></td>
+<td><code>0x5b6bc0</code></td>
+<td><code>0x5b79f0</code></td>
+</tr>
+<tr>
+<td><a id="getdroughtturnsatplot"></a>GetDroughtTurnsAtPlot</td>
+<td><code>GameClimate.GetDroughtTurnsAtPlot(x: integer/Plot, y?: integer) → number (or nothing)</code><br><small>args: <code>x</code> — A Plot object (the scripts pass a variable named pPlot).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetDroughtTurnsAtPlot/">yes ↗</a></td>
+<td><code>0x5b6d80</code></td>
+<td><code>0x5b7bb0</code></td>
+</tr>
+<tr>
+<td><a id="geteruptionclimateincreasedchance"></a>GetEruptionClimateIncreasedChance</td>
+<td><code>GameClimate.GetEruptionClimateIncreasedChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetEruptionClimateIncreasedChance/">yes ↗</a></td>
+<td><code>0x5b6e50</code></td>
+<td><code>0x5b7c80</code></td>
+</tr>
+<tr>
+<td><a id="geteruptionpercentchance"></a>GetEruptionPercentChance</td>
+<td><code>GameClimate.GetEruptionPercentChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetEruptionPercentChance/">yes ↗</a></td>
+<td><code>0x5b6ea0</code></td>
+<td><code>0x5b7cd0</code></td>
+</tr>
+<tr>
+<td><a id="getfireclimateincreasedchance"></a>GetFireClimateIncreasedChance</td>
+<td><code>GameClimate.GetFireClimateIncreasedChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetFireClimateIncreasedChance/">yes ↗</a></td>
+<td><code>0x5b6ef0</code></td>
+<td><code>0x5b7d20</code></td>
+</tr>
+<tr>
+<td><a id="getfirepercentchance"></a>GetFirePercentChance</td>
+<td><code>GameClimate.GetFirePercentChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetFirePercentChance/">yes ↗</a></td>
+<td><code>0x5b6f40</code></td>
+<td><code>0x5b7d70</code></td>
+</tr>
+<tr>
+<td><a id="getfloodclimateincreasedchance"></a>GetFloodClimateIncreasedChance</td>
+<td><code>GameClimate.GetFloodClimateIncreasedChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetFloodClimateIncreasedChance/">yes ↗</a></td>
+<td><code>0x5b6f90</code></td>
+<td><code>0x5b7dc0</code></td>
+</tr>
+<tr>
+<td><a id="getfloodpercentchance"></a>GetFloodPercentChance</td>
+<td><code>GameClimate.GetFloodPercentChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetFloodPercentChance/">yes ↗</a></td>
+<td><code>0x5b6fe0</code></td>
+<td><code>0x5b7e10</code></td>
+</tr>
+<tr>
+<td><a id="getlocationsforpossibletriggerableevents"></a>GetLocationsForPossibleTriggerableEvents</td>
+<td><code>GameClimate.GetLocationsForPossibleTriggerableEvents(arg1?: number) → number[]</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetLocationsForPossibleTriggerableEvents/">yes ↗</a></td>
+<td><code>0x5b7030</code></td>
+<td><code>0x5b7e60</code></td>
+</tr>
+<tr>
+<td><a id="getnexticelossturns"></a>GetNextIceLossTurns</td>
+<td><code>GameClimate.GetNextIceLossTurns() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetNextIceLossTurns/">yes ↗</a></td>
+<td><code>0x5b7120</code></td>
+<td><code>0x5b7f50</code></td>
+</tr>
+<tr>
+<td><a id="getnextsealevelriseturns"></a>GetNextSeaLevelRiseTurns</td>
+<td><code>GameClimate.GetNextSeaLevelRiseTurns() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetNextSeaLevelRiseTurns/">yes ↗</a></td>
+<td><code>0x5b71a0</code></td>
+<td><code>0x5b7fd0</code></td>
+</tr>
+<tr>
+<td><a id="getnumactivedroughts"></a>GetNumActiveDroughts</td>
+<td><code>GameClimate.GetNumActiveDroughts() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetNumActiveDroughts/">yes ↗</a></td>
+<td><code>0x5b7220</code></td>
+<td><code>0x5b8050</code></td>
+</tr>
+<tr>
+<td><a id="getnumactivestorms"></a>GetNumActiveStorms</td>
+<td><code>GameClimate.GetNumActiveStorms() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetNumActiveStorms/">yes ↗</a></td>
+<td><code>0x5b72a0</code></td>
+<td><code>0x5b80d0</code></td>
+</tr>
+<tr>
+<td><a id="getnumstorms"></a>GetNumStorms</td>
+<td><code>GameClimate.GetNumStorms() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetNumStorms/">yes ↗</a></td>
+<td><code>0x5b7320</code></td>
+<td><code>0x5b8150</code></td>
+</tr>
+<tr>
+<td><a id="getoneoffbyid"></a>GetOneOffByID</td>
+<td><code>GameClimate.GetOneOffByID(arg1?: number) → OneOff (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetOneOffByID/">yes ↗</a></td>
+<td><code>0x5b73a0</code></td>
+<td><code>0x5b81d0</code></td>
+</tr>
+<tr>
+<td><a id="getoneoffplotsbyid"></a>GetOneOffPlotsByID</td>
+<td><code>GameClimate.GetOneOffPlotsByID(arg1?: number) → number[] (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetOneOffPlotsByID/">yes ↗</a></td>
+<td><code>0x5b7460</code></td>
+<td><code>0x5b8290</code></td>
+</tr>
+<tr>
+<td><a id="getplayerco2footprint"></a>GetPlayerCO2Footprint</td>
+<td><code>GameClimate.GetPlayerCO2Footprint(ePlayer: integer/Player[PlayerTypes], arg2?: any, arg3?: boolean) → number ⚠</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>arg2</code> — A boolean flag (true/false).</small><br><small>returns: Id of a player (the scripts name the result playerID / owner). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetPlayerCO2Footprint/">yes ↗</a></td>
+<td><code>0x5b7620</code></td>
+<td><code>0x5b8450</code></td>
+</tr>
+<tr>
+<td><a id="getplayerrawresourceconsumption"></a>GetPlayerRawResourceConsumption</td>
+<td><code>GameClimate.GetPlayerRawResourceConsumption(ePlayer: integer/Player[PlayerTypes], eResource: number/string[ResourceTypes], bLastTurn?: boolean) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>eResource</code> — Index of a row of the Resources table (the value of GameInfo.Resources[...].Index).; <code>bLastTurn</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetPlayerRawResourceConsumption/">yes ↗</a></td>
+<td><code>0x5b7700</code></td>
+<td><code>0x5b8530</code></td>
+</tr>
+<tr>
+<td><a id="getplayerresourceco2footprint"></a>GetPlayerResourceCO2Footprint</td>
+<td><code>GameClimate.GetPlayerResourceCO2Footprint(ePlayer: integer/Player[PlayerTypes], eResource: number/string[ResourceTypes], bLastTurn?: boolean) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>eResource</code> — Index of a row of the Resources table (the value of GameInfo.Resources[...].Index).; <code>bLastTurn</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetPlayerResourceCO2Footprint/">yes ↗</a></td>
+<td><code>0x5b77f0</code></td>
+<td><code>0x5b8620</code></td>
+</tr>
+<tr>
+<td><a id="getplayerresourceconsumption"></a>GetPlayerResourceConsumption</td>
+<td><code>GameClimate.GetPlayerResourceConsumption(ePlayer: integer/Player[PlayerTypes], eResource: number/string[ResourceTypes], bLastTurn?: boolean) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>eResource</code> — Index of a row of the Resources table (the value of GameInfo.Resources[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetPlayerResourceConsumption/">yes ↗</a></td>
+<td><code>0x5b78e0</code></td>
+<td><code>0x5b8710</code></td>
+</tr>
+<tr>
+<td><a id="getseverityforlastsealevelevent"></a>GetSeverityForLastSeaLevelEvent</td>
+<td><code>GameClimate.GetSeverityForLastSeaLevelEvent() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetSeverityForLastSeaLevelEvent/">yes ↗</a></td>
+<td><code>0x5b79d0</code></td>
+<td><code>0x5b8800</code></td>
+</tr>
+<tr>
+<td><a id="getstormbyid"></a>GetStormByID</td>
+<td><code>GameClimate.GetStormByID(arg1?: number) → Storm (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetStormByID/">yes ↗</a></td>
+<td><code>0x5b7a50</code></td>
+<td><code>0x5b8880</code></td>
+</tr>
+<tr>
+<td><a id="getstormclimateincreasedchance"></a>GetStormClimateIncreasedChance</td>
+<td><code>GameClimate.GetStormClimateIncreasedChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetStormClimateIncreasedChance/">yes ↗</a></td>
+<td><code>0x5b7b10</code></td>
+<td><code>0x5b8940</code></td>
+</tr>
+<tr>
+<td><a id="getstormpercentchance"></a>GetStormPercentChance</td>
+<td><code>GameClimate.GetStormPercentChance() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetStormPercentChance/">yes ↗</a></td>
+<td><code>0x5b7b60</code></td>
+<td><code>0x5b8990</code></td>
+</tr>
+<tr>
+<td><a id="getstormplotsbyid"></a>GetStormPlotsByID</td>
+<td><code>GameClimate.GetStormPlotsByID(arg1?: number) → number[] (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetStormPlotsByID/">yes ↗</a></td>
+<td><code>0x5b7bb0</code></td>
+<td><code>0x5b89e0</code></td>
+</tr>
+<tr>
+<td><a id="gettemperaturechange"></a>GetTemperatureChange</td>
+<td><code>GameClimate.GetTemperatureChange() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetTemperatureChange/">yes ↗</a></td>
+<td><code>0x5b7d70</code></td>
+<td><code>0x5b8ba0</code></td>
+</tr>
+<tr>
+<td><a id="gettilesflooded"></a>GetTilesFlooded</td>
+<td><code>GameClimate.GetTilesFlooded() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetTilesFlooded/">yes ↗</a></td>
+<td><code>0x5b7df0</code></td>
+<td><code>0x5b8c20</code></td>
+</tr>
+<tr>
+<td><a id="gettilessubmerged"></a>GetTilesSubmerged</td>
+<td><code>GameClimate.GetTilesSubmerged() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetTilesSubmerged/">yes ↗</a></td>
+<td><code>0x5b7e70</code></td>
+<td><code>0x5b8ca0</code></td>
+</tr>
+<tr>
+<td><a id="gettotalco2footprint"></a>GetTotalCO2Footprint</td>
+<td><code>GameClimate.GetTotalCO2Footprint() → number</code><br><small>returns: A count or amount (the scripts name the result count / num / amount). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.GetTotalCO2Footprint/">yes ↗</a></td>
+<td><code>0x5b7ef0</code></td>
+<td><code>0x5b8d20</code></td>
+</tr>
+<tr>
+<td><a id="isstormrevealed"></a>IsStormRevealed</td>
+<td><code>GameClimate.IsStormRevealed(arg1?: number, arg2?: number) → boolean (or nothing)</code><br><small>args: <code>arg2</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameClimate.IsStormRevealed/">yes ↗</a></td>
+<td><code>0x5b7f70</code></td>
+<td><code>0x5b8da0</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

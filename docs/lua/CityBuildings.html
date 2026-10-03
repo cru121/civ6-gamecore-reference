@@ -1,0 +1,191 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CityBuildings</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › CityBuildings</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>CityBuildings</h1>
+<p>20 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings/">CityBuildings</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getbuildinglocation"></a>GetBuildingLocation</td>
+<td><code>CityBuildings:GetBuildingLocation(eBuilding: integer[BuildingTypes]) → number</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetBuildingLocation/">yes ↗</a></td>
+<td><code>0x6ca4a0</code></td>
+<td><code>0x6cab60</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingmaintenance"></a>GetBuildingMaintenance</td>
+<td><em>UI state:</em> <code>CityBuildings:GetBuildingMaintenance(eBuilding?: number) → number</code><br><em>gameplay state:</em> <code>CityBuildings:GetBuildingMaintenance(eBuilding: integer[BuildingTypes]) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetBuildingMaintenance/">yes ↗</a></td>
+<td><code>0x68cd80</code></td>
+<td><code>0x68d360</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingnameoverride"></a>GetBuildingNameOverride</td>
+<td><em>UI state:</em> <code>CityBuildings:GetBuildingNameOverride(arg1?: number) → nil/string (or nothing)</code><br><em>gameplay state:</em> <code>CityBuildings:GetBuildingNameOverride(arg1?: number) → nil/string (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetBuildingNameOverride/">yes ↗</a></td>
+<td><code>0x68ce00</code></td>
+<td><code>0x68d3e0</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingtourismfromgreatworks"></a>GetBuildingTourismFromGreatWorks</td>
+<td><code>CityBuildings:GetBuildingTourismFromGreatWorks(bReligious: boolean, eBuilding: integer[BuildingTypes]) → number</code><br><small>args: <code>bReligious</code> — A boolean flag (true/false).; <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetBuildingTourismFromGreatWorks/">yes ↗</a></td>
+<td><code>0x68cf10</code></td>
+<td><code>0x68d4f0</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingyieldfromgreatworks"></a>GetBuildingYieldFromGreatWorks</td>
+<td><code>CityBuildings:GetBuildingYieldFromGreatWorks(eYield: integer[YieldTypes], eBuilding: integer[BuildingTypes]) → number</code><br><small>args: <code>eYield</code> — Index of a row of the Yields table (the value of GameInfo.Yields[...].Index).; <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetBuildingYieldFromGreatWorks/">yes ↗</a></td>
+<td><code>0x68cfa0</code></td>
+<td><code>0x68d580</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingsatlocation"></a>GetBuildingsAtLocation</td>
+<td><code>CityBuildings:GetBuildingsAtLocation(x: integer/Plot, y?: integer) → number[]</code><br><small>args: <code>x</code> — Plot index (named plotIndex / plotID in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetBuildingsAtLocation/">yes ↗</a></td>
+<td><code>0x68d020</code></td>
+<td><code>0x68d600</code></td>
+</tr>
+<tr>
+<td><a id="getcity"></a>GetCity</td>
+<td><code>CityBuildings:GetCity() → City</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetCity/">yes ↗</a></td>
+<td><code>0x68d140</code></td>
+<td><code>0x68d720</code></td>
+</tr>
+<tr>
+<td><a id="getcreatornamefromindex"></a>GetCreatorNameFromIndex</td>
+<td><code>CityBuildings:GetCreatorNameFromIndex(arg1: integer[GreatWorkListIndex]) → nil/string</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetCreatorNameFromIndex/">yes ↗</a></td>
+<td><code>0x68d180</code></td>
+<td><code>0x68d760</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkinslot"></a>GetGreatWorkInSlot</td>
+<td><code>CityBuildings:GetGreatWorkInSlot(eBuilding: integer[BuildingTypes], iSlot: integer) → number (GreatWorkListIndex)</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks table).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetGreatWorkInSlot/">yes ↗</a></td>
+<td><code>0x68d210</code></td>
+<td><code>0x68d7f0</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkslottype"></a>GetGreatWorkSlotType</td>
+<td><code>CityBuildings:GetGreatWorkSlotType(eBuilding: integer[BuildingTypes], iSlot: integer) → number (GreatWorkSlotTypes)</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Index of a row of the GreatWorkSlotTypes table (the value of GameInfo.GreatWorkSlotTypes[...].Index).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetGreatWorkSlotType/">yes ↗</a></td>
+<td><code>0x68d290</code></td>
+<td><code>0x68d870</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworktypefromindex"></a>GetGreatWorkTypeFromIndex</td>
+<td><code>CityBuildings:GetGreatWorkTypeFromIndex(arg1: integer[GreatWorkListIndex]) → number</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Key of a row of the GreatWorks table: the scripts look it up with GameInfo.GreatWorks[result].</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetGreatWorkTypeFromIndex/">yes ↗</a></td>
+<td><code>0x68d310</code></td>
+<td><code>0x68d8f0</code></td>
+</tr>
+<tr>
+<td><a id="getnumgreatworkslots"></a>GetNumGreatWorkSlots</td>
+<td><code>CityBuildings:GetNumGreatWorkSlots(eBuilding: integer[BuildingTypes]) → number</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: A count or amount (the scripts name the result count / num / amount). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetNumGreatWorkSlots/">yes ↗</a></td>
+<td><code>0x68d380</code></td>
+<td><code>0x68d960</code></td>
+</tr>
+<tr>
+<td><a id="getplayerfromindex"></a>GetPlayerFromIndex</td>
+<td><code>CityBuildings:GetPlayerFromIndex(arg1: integer[GreatWorkListIndex]) → number</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetPlayerFromIndex/">yes ↗</a></td>
+<td><code>0x68d3f0</code></td>
+<td><code>0x68d9d0</code></td>
+</tr>
+<tr>
+<td><a id="getturnfromindex"></a>GetTurnFromIndex</td>
+<td><code>CityBuildings:GetTurnFromIndex(arg1: integer[GreatWorkListIndex]) → number</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetTurnFromIndex/">yes ↗</a></td>
+<td><code>0x68d460</code></td>
+<td><code>0x68da40</code></td>
+</tr>
+<tr>
+<td><a id="hasbuilding"></a>HasBuilding</td>
+<td><code>CityBuildings:HasBuilding(eBuilding: integer[BuildingTypes]) → boolean</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.HasBuilding/">yes ↗</a></td>
+<td><code>0x68d4d0</code></td>
+<td><code>0x68dab0</code></td>
+</tr>
+<tr>
+<td><a id="isbuildingthemedcorrectly"></a>IsBuildingThemedCorrectly</td>
+<td><code>CityBuildings:IsBuildingThemedCorrectly(eBuilding: integer[BuildingTypes]) → boolean</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index). The scripts pass its index</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.IsBuildingThemedCorrectly/">yes ↗</a></td>
+<td><code>0x68d530</code></td>
+<td><code>0x68db10</code></td>
+</tr>
+<tr>
+<td><a id="ispillaged"></a>IsPillaged</td>
+<td><em>UI state:</em> <code>CityBuildings:IsPillaged(eBuilding?: number) → boolean</code><br><em>gameplay state:</em> <code>CityBuildings:IsPillaged(eBuilding: integer[BuildingTypes]) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.IsPillaged/">yes ↗</a></td>
+<td><code>0x68d590</code></td>
+<td><code>0x68db70</code></td>
+</tr>
+<tr>
+<td><a id="removebuilding"></a>RemoveBuilding</td>
+<td><code>CityBuildings:RemoveBuilding(eBuilding: integer[BuildingTypes]) (or nothing)</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.RemoveBuilding/">yes ↗</a></td>
+<td><code>0x6ca780</code></td>
+<td><code>0x6cae40</code></td>
+</tr>
+<tr>
+<td><a id="setbuildinglocation"></a>SetBuildingLocation</td>
+<td><code>CityBuildings:SetBuildingLocation(arg1?: number, x: integer/Plot, y?: integer) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.SetBuildingLocation/">yes ↗</a></td>
+<td><code>0x6ca7d0</code></td>
+<td><code>0x6cae90</code></td>
+</tr>
+<tr>
+<td><a id="setpillaged"></a>SetPillaged</td>
+<td><code>CityBuildings:SetPillaged(eBuilding?: integer[BuildingTypes], bNewValue?: boolean, fromCityTransfer?: boolean, ePillagingPlayerForNotification?: integer[PlayerTypes])</code><br><small>args: <code>eBuilding</code> — Index of a row of the Buildings table (the value of GameInfo.Buildings[...].Index).; <code>ePillagingPlayerForNotification</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.SetPillaged/">yes ↗</a></td>
+<td><code>0x6ca880</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

@@ -1,0 +1,4367 @@
+[
+ {
+  "id": "param:PlayerOperations.PARAM_FLAGS",
+  "table": "PlayerOperations",
+  "name": "PARAM_FLAGS",
+  "hash": "0xc65a8ea6",
+  "summary": "Bit flags for the operation; the meaning of the bits depends on the operation.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [
+   "op:player-operation.WORLD_CONGRESS_INDICATE_DESIRE"
+  ],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_MODIFIERS",
+  "table": "PlayerOperations",
+  "name": "PARAM_MODIFIERS",
+  "hash": "0x97b20a17",
+  "summary": "Modifier flags. For unit operations combine UnitOperationMoveModifiers.* values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_INSERT_MODE",
+  "table": "PlayerOperations",
+  "name": "PARAM_INSERT_MODE",
+  "hash": "0xac2fdc09",
+  "summary": "Where the entry goes in the queue: one of the VALUE_* constants of the same Lua table.",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [
+   "PlayerOperations.VALUE_EXCLUSIVE",
+   "PlayerOperations.VALUE_APPEND"
+  ],
+  "used_by": [
+   "op:player-operation.RESEARCH",
+   "op:player-operation.PROGRESS_CIVIC",
+   "op:player-operation.FOUND_PANTHEON",
+   "op:player-operation.FOUND_RELIGION",
+   "op:player-operation.ADD_BELIEF"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_YIELD_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_YIELD_TYPE",
+  "hash": "0x2b8aba02",
+  "summary": "Yield type (for example YieldTypes.GOLD or YieldTypes.FAITH, or the index of a row of the Yields table).",
+  "value": {
+   "kind": "db-index"
+  },
+  "examples": [
+   "YieldTypes.GOLD",
+   "YieldTypes.FAITH"
+  ],
+  "used_by": [
+   "op:player-operation.PATRONIZE_GREAT_PERSON"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_TECH_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_TECH_TYPE",
+  "hash": "0x14b7f8a8",
+  "summary": "Type of the tech, given as the hash of its row in the Technologies table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Technologies",
+   "form": "hash"
+  },
+  "examples": [
+   "m_LockedResearchHash",
+   "techHash",
+   "pathToTech"
+  ],
+  "used_by": [
+   "op:player-operation.RESEARCH"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_CIVIC_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_CIVIC_TYPE",
+  "hash": "0xa60f82f4",
+  "summary": "Type of the civic, given as the hash of its row in the Civics table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Civics",
+   "form": "hash"
+  },
+  "examples": [
+   "civicHash",
+   "pathToCivic"
+  ],
+  "used_by": [
+   "op:player-operation.PROGRESS_CIVIC"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_BELIEF_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_BELIEF_TYPE",
+  "hash": "0xa44b2907",
+  "summary": "Type of the belief, given as the hash of its row in the Beliefs table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Beliefs",
+   "form": "hash"
+  },
+  "examples": [
+   "GameInfo.Beliefs[m_SelectedBeliefs[1]].Hash",
+   "GameInfo.Beliefs[belief].Hash",
+   "GameInfo.Beliefs[beliefIndex].Hash"
+  ],
+  "used_by": [
+   "op:player-operation.FOUND_PANTHEON",
+   "op:player-operation.ADD_BELIEF"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_RESOURCE_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_RESOURCE_TYPE",
+  "hash": "0x1c32c6fc",
+  "summary": "Type of the resource: a row of the Resources table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Resources"
+  },
+  "examples": [
+   "eResource",
+   "m_eCurResourceType"
+  ],
+  "used_by": [
+   "op:player-operation.NAME_CORPORATION"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_RELIGION_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_RELIGION_TYPE",
+  "hash": "0x22a25b8b",
+  "summary": "Type of the religion, given as the hash of its row in the Religions table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Religions",
+   "form": "hash"
+  },
+  "examples": [
+   "GameInfo.Religions[m_SelectedReligion.ID].Hash"
+  ],
+  "used_by": [
+   "op:player-operation.FOUND_RELIGION",
+   "op:player-operation.ADD_BELIEF"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_RELIGION_CUSTOM_NAME",
+  "table": "PlayerOperations",
+  "name": "PARAM_RELIGION_CUSTOM_NAME",
+  "hash": "0x0addd95f",
+  "summary": "The player-chosen name of the religion.",
+  "value": {
+   "kind": "string"
+  },
+  "examples": [
+   "Controls.ChooseReligionName:GetText()"
+  ],
+  "used_by": [
+   "op:player-operation.FOUND_RELIGION",
+   "op:player-operation.ADD_BELIEF"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_CORPORATION_CUSTOM_NAME",
+  "table": "PlayerOperations",
+  "name": "PARAM_CORPORATION_CUSTOM_NAME",
+  "hash": "0x71730cc2",
+  "summary": "The player-chosen name of the corporation.",
+  "value": {
+   "kind": "string"
+  },
+  "examples": [
+   "corpName"
+  ],
+  "used_by": [
+   "op:player-operation.NAME_CORPORATION"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_DISTRICT_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_DISTRICT_TYPE",
+  "hash": "0x5fae19ef",
+  "summary": "Type of the district, given as the index of its row in the Districts table (row.Index).",
+  "value": {
+   "kind": "db-index",
+   "db_table": "Districts",
+   "form": "index"
+  },
+  "examples": [
+   "GameInfo.Districts[district1].Index",
+   "GameInfo.Districts[district2].Index",
+   "GameInfo.Districts[district3].Index",
+   "GameInfo.Districts[district4].Index"
+  ],
+  "used_by": [
+   "op:player-operation.SET_ESCAPE_ROUTE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_TEAM_ONE",
+  "table": "PlayerOperations",
+  "name": "PARAM_TEAM_ONE",
+  "hash": "0x4ba1e5ce",
+  "summary": "Id of the first team involved.",
+  "value": {
+   "kind": "team-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_TEAM_TWO",
+  "table": "PlayerOperations",
+  "name": "PARAM_TEAM_TWO",
+  "hash": "0x2007e959",
+  "summary": "Id of the second team involved.",
+  "value": {
+   "kind": "team-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_PLAYER_ONE",
+  "table": "PlayerOperations",
+  "name": "PARAM_PLAYER_ONE",
+  "hash": "0x0483191c",
+  "summary": "Id of the first player involved (usually the acting player).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [
+   "kVoteData.data.Sender",
+   "localPlayerID",
+   "g_ActingPlayerID",
+   "m_SelectedCityOwner"
+  ],
+  "used_by": [
+   "op:player-operation.DECLARE_WAR",
+   "op:player-operation.MAKE_PEACE",
+   "op:player-operation.GIVE_INFLUENCE_TOKEN",
+   "op:player-operation.LEVY_MILITARY",
+   "op:player-operation.RETURN_LEVIED_MILITARY",
+   "op:player-operation.CHOOSE_ARTIFACT_PLAYER",
+   "op:player-operation.MOVE_GREAT_WORK",
+   "op:player-operation.NAME_CORPORATION",
+   "op:player-operation.ASSIGN_GOVERNOR",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_SUBMIT_TURN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_PLAYER_TWO",
+  "table": "PlayerOperations",
+  "name": "PARAM_PLAYER_TWO",
+  "hash": "0x6f25158b",
+  "summary": "Id of the second player involved (the target or counterpart).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [
+   "kVoteData.data.Target",
+   "iPlayer",
+   "eDefendingPlayer",
+   "ms_playerTwo"
+  ],
+  "used_by": [
+   "op:player-operation.DECLARE_WAR",
+   "op:player-operation.MAKE_PEACE",
+   "op:player-operation.LEVY_MILITARY",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_SUBMIT_TURN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_OTHER_PLAYER",
+  "table": "PlayerOperations",
+  "name": "PARAM_OTHER_PLAYER",
+  "hash": "0xba2f6c9f",
+  "summary": "Id of the other player the operation is directed at.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [
+   "m_targetPlayerID",
+   "m_SelectedInciteTargetID",
+   "kVoteData.data.Target"
+  ],
+  "used_by": [
+   "op:player-operation.REJECT_EMERGENCY",
+   "op:player-operation.ACCEPT_EMERGENCY",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION",
+   "op:player-operation.INCITE_CLAN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_GREAT_PERSON_INDIVIDUAL_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_GREAT_PERSON_INDIVIDUAL_TYPE",
+  "hash": "0x385fc342",
+  "summary": "Type of the great person individual: a row of the GreatPersonIndividuals table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "GreatPersonIndividuals"
+  },
+  "examples": [
+   "individualID"
+  ],
+  "used_by": [
+   "op:player-operation.RECRUIT_GREAT_PERSON",
+   "op:player-operation.REJECT_GREAT_PERSON",
+   "op:player-operation.PATRONIZE_GREAT_PERSON"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_UNIT_ID",
+  "table": "PlayerOperations",
+  "name": "PARAM_UNIT_ID",
+  "hash": "0xc26f6f5b",
+  "summary": "Id of the unit (unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [
+   "op:player-operation.SET_ESCAPE_ROUTE"
+  ],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_CITY_ONE",
+  "table": "PlayerOperations",
+  "name": "PARAM_CITY_ONE",
+  "hash": "0x3c0415e2",
+  "summary": "Id of the first city involved (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_CITY_TWO",
+  "table": "PlayerOperations",
+  "name": "PARAM_CITY_TWO",
+  "hash": "0x57a21975",
+  "summary": "Id of the second city involved.",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_GREAT_WORK_INDEX",
+  "table": "PlayerOperations",
+  "name": "PARAM_GREAT_WORK_INDEX",
+  "hash": "0xdc6e26b0",
+  "summary": "Great work list index: the index of the work in the game-wide great work list (as returned by Cities:GetGreatWorkInSlot), not the row in the GreatWorks table.",
+  "value": {
+   "kind": "index"
+  },
+  "examples": [
+   "kSrcInstance[DATA_FIELD_GREAT_WORK_INDEX]"
+  ],
+  "used_by": [
+   "op:player-operation.MOVE_GREAT_WORK"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_BUILDING_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_BUILDING_TYPE",
+  "hash": "0xb5361112",
+  "summary": "Type of the building: a row of the Buildings table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Buildings"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_SLOT",
+  "table": "PlayerOperations",
+  "name": "PARAM_SLOT",
+  "hash": "0x2baddf94",
+  "summary": "Slot index inside the destination building.",
+  "value": {
+   "kind": "index"
+  },
+  "examples": [
+   "kDestInstance[DATA_FIELD_SLOT_INDEX]"
+  ],
+  "used_by": [
+   "op:player-operation.MOVE_GREAT_WORK"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_PLOT_ONE",
+  "table": "PlayerOperations",
+  "name": "PARAM_PLOT_ONE",
+  "hash": "0x0d893a64",
+  "summary": "Index of the first plot involved.",
+  "value": {
+   "kind": "plot-index"
+  },
+  "examples": [
+   "m_BarbarianTribePlotIndex"
+  ],
+  "used_by": [
+   "op:player-operation.HIRE_CLAN",
+   "op:player-operation.BRIBE_CLAN",
+   "op:player-operation.RANSOM_CLAN",
+   "op:player-operation.INCITE_CLAN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_PLOT_TWO",
+  "table": "PlayerOperations",
+  "name": "PARAM_PLOT_TWO",
+  "hash": "0x662f36f3",
+  "summary": "Index of the second plot involved.",
+  "value": {
+   "kind": "plot-index"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_CITY_SRC",
+  "table": "PlayerOperations",
+  "name": "PARAM_CITY_SRC",
+  "hash": "0x262cb79e",
+  "summary": "Id of the city the great work is taken from (city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [
+   "kSrcInstance[DATA_FIELD_CITY_ID]"
+  ],
+  "used_by": [
+   "op:player-operation.MOVE_GREAT_WORK"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_CITY_DEST",
+  "table": "PlayerOperations",
+  "name": "PARAM_CITY_DEST",
+  "hash": "0xe5f2cf9b",
+  "summary": "Id of the city the great work goes to (city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [
+   "cityID",
+   "m_SelectedCityID",
+   "kDestInstance[DATA_FIELD_CITY_ID]"
+  ],
+  "used_by": [
+   "op:player-operation.MOVE_GREAT_WORK",
+   "op:player-operation.ASSIGN_GOVERNOR",
+   "op:player-operation.PROMOTE_GOVERNOR"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_BUILDING_SRC",
+  "table": "PlayerOperations",
+  "name": "PARAM_BUILDING_SRC",
+  "hash": "0x84dbad68",
+  "summary": "Building type index (row index in the Buildings table) of the building the great work is taken from.",
+  "value": {
+   "kind": "db-index"
+  },
+  "examples": [
+   "kSrcInstance[DATA_FIELD_BUILDING_ID]"
+  ],
+  "used_by": [
+   "op:player-operation.MOVE_GREAT_WORK"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_BUILDING_DEST",
+  "table": "PlayerOperations",
+  "name": "PARAM_BUILDING_DEST",
+  "hash": "0xb18e6fa8",
+  "summary": "Building type index of the building the great work goes to.",
+  "value": {
+   "kind": "db-index"
+  },
+  "examples": [
+   "kDestInstance[DATA_FIELD_BUILDING_ID]"
+  ],
+  "used_by": [
+   "op:player-operation.MOVE_GREAT_WORK"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_GOVERNOR_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_GOVERNOR_TYPE",
+  "hash": "0xaf5e1625",
+  "summary": "Type of the governor: a row of the Governors table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Governors"
+  },
+  "examples": [
+   "eGovernor",
+   "m_SelectedGovernorID",
+   "m_GovernorIndex"
+  ],
+  "used_by": [
+   "op:player-operation.APPOINT_GOVERNOR",
+   "op:player-operation.ASSIGN_GOVERNOR",
+   "op:player-operation.PROMOTE_GOVERNOR"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_GOVERNOR_PROMOTION_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_GOVERNOR_PROMOTION_TYPE",
+  "hash": "0x6d4bd4ea",
+  "summary": "Type of the governor promotion: a row of the GovernorPromotions table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "GovernorPromotions"
+  },
+  "examples": [
+   "m_SelectedPromotion",
+   "ePromotion"
+  ],
+  "used_by": [
+   "op:player-operation.PROMOTE_GOVERNOR"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_MOMENT_ID",
+  "table": "PlayerOperations",
+  "name": "PARAM_MOMENT_ID",
+  "hash": "0xdcbf23c7",
+  "summary": "Id of the historic moment.",
+  "value": {
+   "kind": "id"
+  },
+  "examples": [],
+  "used_by": [
+   "op:player-operation.COMPLIMENT_PRIDE_MOMENT"
+  ],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_EMERGENCY_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_EMERGENCY_TYPE",
+  "hash": "0x15323433",
+  "summary": "The emergency being answered.",
+  "value": {
+   "kind": "id"
+  },
+  "examples": [
+   "m_emergencyType"
+  ],
+  "used_by": [
+   "op:player-operation.REJECT_EMERGENCY",
+   "op:player-operation.ACCEPT_EMERGENCY"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_COMMEMORATION_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_COMMEMORATION_TYPE",
+  "hash": "0x6a475e64",
+  "summary": "The chosen commemoration.",
+  "value": {
+   "kind": "id"
+  },
+  "examples": [
+   "selectedCommemorationType"
+  ],
+  "used_by": [
+   "op:player-operation.COMMEMORATE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_RESOLUTION_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_RESOLUTION_TYPE",
+  "hash": "0x0ee7635d",
+  "summary": "Hash of the World Congress resolution.",
+  "value": {
+   "kind": "hash",
+   "form": "hash"
+  },
+  "examples": [
+   "kVoteData.Hash"
+  ],
+  "used_by": [
+   "op:player-operation.WORLD_CONGRESS_RESOLUTION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_RESOLUTION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_SUBMIT_TURN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_WORLD_CONGRESS_VOTES",
+  "table": "PlayerOperations",
+  "name": "PARAM_WORLD_CONGRESS_VOTES",
+  "hash": "0x4adaf2b8",
+  "summary": "Number of favor points spent on the vote (the game passes the sum, or votes times direction).",
+  "value": {
+   "kind": "number"
+  },
+  "examples": [
+   "kVoteData.A.votes + kVoteData.B.votes",
+   "kVoteData.votes * kVoteData.voteDirection"
+  ],
+  "used_by": [
+   "op:player-operation.WORLD_CONGRESS_RESOLUTION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_SUBMIT_TURN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_DISCUSSION_TYPE",
+  "table": "PlayerOperations",
+  "name": "PARAM_DISCUSSION_TYPE",
+  "hash": "0xfb44138c",
+  "summary": "Type of the discussion item.",
+  "value": {
+   "kind": "id"
+  },
+  "examples": [
+   "kVoteData.data.Type"
+  ],
+  "used_by": [
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_RESOLUTION_SELECTION",
+  "table": "PlayerOperations",
+  "name": "PARAM_RESOLUTION_SELECTION",
+  "hash": "0xf6c73455",
+  "summary": "Index of the chosen target or option set (0-based; the game passes target - 1).",
+  "value": {
+   "kind": "index"
+  },
+  "examples": [
+   "kChoiceData.target - 1"
+  ],
+  "used_by": [
+   "op:player-operation.WORLD_CONGRESS_RESOLUTION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_RESOLUTION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_SUBMIT_TURN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:PlayerOperations.PARAM_RESOLUTION_OPTION",
+  "table": "PlayerOperations",
+  "name": "PARAM_RESOLUTION_OPTION",
+  "hash": "0xdf52dc5b",
+  "summary": "The chosen outcome (A or B) of the resolution.",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [
+   "kChoiceData.choice"
+  ],
+  "used_by": [
+   "op:player-operation.WORLD_CONGRESS_RESOLUTION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_RESOLUTION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_VOTE",
+   "op:player-operation.WORLD_CONGRESS_DISCUSSION_SELECTION",
+   "op:player-operation.WORLD_CONGRESS_SUBMIT_TURN"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the PlayerOperations parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_OPERATION_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_OPERATION_TYPE",
+  "hash": "0x513d5f37",
+  "summary": "Hash of the unit operation to perform (for example the hash of a build action).",
+  "value": {
+   "kind": "hash",
+   "form": "hash"
+  },
+  "examples": [
+   "actionHash"
+  ],
+  "used_by": [
+   "op:unit-operation.BUILD_IMPROVEMENT"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_FLAGS",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_FLAGS",
+  "hash": "0xc65a8ea6",
+  "summary": "Bit flags for the operation; the meaning of the bits depends on the operation.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_MODIFIERS",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_MODIFIERS",
+  "hash": "0x97b20a17",
+  "summary": "Modifier flags. For unit operations combine UnitOperationMoveModifiers.* values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [
+   "UnitOperationMoveModifiers.ATTACK",
+   "UnitOperationMoveModifiers.NONE",
+   "UnitOperationMoveModifiers.ATTACK + UnitOperationMoveModifiers.MOVE_IGNORE_UNEXPLORED_DEST"
+  ],
+  "used_by": [
+   "op:unit-operation.AIR_ATTACK",
+   "op:unit-operation.COASTAL_RAID",
+   "op:unit-operation.DEPLOY",
+   "op:unit-operation.MOVE_TO",
+   "op:unit-operation.RANGE_ATTACK",
+   "op:unit-operation.SWAP_UNITS"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_DIRECTIVE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_DIRECTIVE",
+  "hash": "0x7d835547",
+  "summary": "Selects a sub-variant of the operation or command (a directive constant specific to it).",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_X0",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_X0",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "city:GetX()",
+   "destinationCity:GetX()"
+  ],
+  "used_by": [
+   "op:unit-operation.MAKE_TRADE_ROUTE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_Y0",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_Y0",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "city:GetY()",
+   "destinationCity:GetY()"
+  ],
+  "used_by": [
+   "op:unit-operation.MAKE_TRADE_ROUTE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_X1",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_X1",
+  "hash": "0x24704b93",
+  "summary": "Plot x (column) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "unit:GetX()",
+   "m_selectedUnit:GetX()"
+  ],
+  "used_by": [
+   "op:unit-operation.MAKE_TRADE_ROUTE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_Y1",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_Y1",
+  "hash": "0x3d6b7ad2",
+  "summary": "Plot y (row) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "unit:GetY()",
+   "m_selectedUnit:GetY()"
+  ],
+  "used_by": [
+   "op:unit-operation.MAKE_TRADE_ROUTE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_UNIT0_PLAYER",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_UNIT0_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_UNIT0_ID",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_UNIT0_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (first one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_UNIT1_PLAYER",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_UNIT1_PLAYER",
+  "hash": "0x1a446f19",
+  "summary": "Id of the player who owns the unit (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_UNIT1_ID",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_UNIT1_ID",
+  "hash": "0xfb364325",
+  "summary": "Id of the unit (second one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_CITY0_PLAYER",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_CITY0_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_CITY0_ID",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_CITY0_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (first one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_CITY1_PLAYER",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_CITY1_PLAYER",
+  "hash": "0xf345df89",
+  "summary": "Id of the player who owns the city (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_CITY1_ID",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_CITY1_ID",
+  "hash": "0xc39d90f3",
+  "summary": "Id of the city (second one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_RESOURCE0_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_RESOURCE0_TYPE",
+  "hash": "0xf6ddb036",
+  "summary": "Type of the resource (the first one of the pair): a row of the Resources table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Resources"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_IMPROVEMENT0_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_IMPROVEMENT0_TYPE",
+  "hash": "0xcbcb6fb5",
+  "summary": "Type of the improvement (the first one of the pair): a row of the Improvements table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Improvements"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_PROMOTION0_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_PROMOTION0_TYPE",
+  "hash": "0x1d070345",
+  "summary": "Type of the promotion (the first one of the pair): a row of the UnitPromotions table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "UnitPromotions"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_DISTRICT0_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_DISTRICT0_TYPE",
+  "hash": "0x72206d37",
+  "summary": "Type of the district (the first one of the pair): a row of the Districts table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Districts"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_ROUTE0_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_ROUTE0_TYPE",
+  "hash": "0x27394309",
+  "summary": "Type of the route (the first one of the pair): a row of the Routes table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Routes"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_WMD0_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_WMD0_TYPE",
+  "hash": "0xdc096efa",
+  "summary": "Type of the wmd (the first one of the pair): a row of the WMDs table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "WMDs"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_X",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_X",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "plot:GetX()",
+   "pUnit:GetX()",
+   "plotX",
+   "districtPlot:GetX()"
+  ],
+  "used_by": [
+   "op:unit-operation.AIR_ATTACK",
+   "op:unit-operation.BUILD_IMPROVEMENT",
+   "op:unit-operation.BUILD_IMPROVEMENT_ADJACENT",
+   "op:unit-operation.COASTAL_RAID",
+   "op:unit-operation.DEPLOY",
+   "op:unit-operation.MOVE_TO",
+   "op:unit-operation.RANGE_ATTACK",
+   "op:unit-operation.REBASE",
+   "op:unit-operation.SPY_COUNTERSPY",
+   "op:unit-operation.SPY_TRAVEL_NEW_CITY",
+   "op:unit-operation.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_Y",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_Y",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "plot:GetY()",
+   "pUnit:GetY()",
+   "plotY",
+   "districtPlot:GetY()"
+  ],
+  "used_by": [
+   "op:unit-operation.AIR_ATTACK",
+   "op:unit-operation.BUILD_IMPROVEMENT",
+   "op:unit-operation.BUILD_IMPROVEMENT_ADJACENT",
+   "op:unit-operation.COASTAL_RAID",
+   "op:unit-operation.DEPLOY",
+   "op:unit-operation.MOVE_TO",
+   "op:unit-operation.RANGE_ATTACK",
+   "op:unit-operation.REBASE",
+   "op:unit-operation.SPY_COUNTERSPY",
+   "op:unit-operation.SPY_TRAVEL_NEW_CITY",
+   "op:unit-operation.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_UNIT_PLAYER",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_UNIT_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_UNIT_ID",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_UNIT_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_CITY_PLAYER",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_CITY_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_CITY_ID",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_CITY_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_RESOURCE_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_RESOURCE_TYPE",
+  "hash": "0xf6ddb036",
+  "summary": "Type of the resource: a row of the Resources table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Resources"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_IMPROVEMENT_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_IMPROVEMENT_TYPE",
+  "hash": "0xcbcb6fb5",
+  "summary": "Type of the improvement, given as the hash of its row in the Improvements table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Improvements",
+   "form": "hash"
+  },
+  "examples": [
+   "improvementHash",
+   "UI.GetInterfaceModeParameter(UnitOperationTypes.PARAM_IMPROVEMENT_TYPE)"
+  ],
+  "used_by": [
+   "op:unit-operation.BUILD_IMPROVEMENT",
+   "op:unit-operation.BUILD_IMPROVEMENT_ADJACENT",
+   "op:unit-operation.PILLAGE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_PROMOTION_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_PROMOTION_TYPE",
+  "hash": "0x1d070345",
+  "summary": "Type of the promotion: a row of the UnitPromotions table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "UnitPromotions"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_DISTRICT_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_DISTRICT_TYPE",
+  "hash": "0x72206d37",
+  "summary": "Type of the district: a row of the Districts table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Districts"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_ROUTE_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_ROUTE_TYPE",
+  "hash": "0x27394309",
+  "summary": "Type of the route: a row of the Routes table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Routes"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitOperationTypes.PARAM_WMD_TYPE",
+  "table": "UnitOperationTypes",
+  "name": "PARAM_WMD_TYPE",
+  "hash": "0xdc096efa",
+  "summary": "Type of the wmd: a row of the WMDs table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "WMDs"
+  },
+  "examples": [
+   "eWMD"
+  ],
+  "used_by": [
+   "op:unit-operation.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_FLAGS",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_FLAGS",
+  "hash": "0xc65a8ea6",
+  "summary": "Bit flags for the operation; the meaning of the bits depends on the operation.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_MODIFIERS",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_MODIFIERS",
+  "hash": "0x97b20a17",
+  "summary": "Modifier flags. For unit operations combine UnitOperationMoveModifiers.* values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_X0",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_X0",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_Y0",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_Y0",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_X1",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_X1",
+  "hash": "0x24704b93",
+  "summary": "Plot x (column) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_Y1",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_Y1",
+  "hash": "0x3d6b7ad2",
+  "summary": "Plot y (row) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_PLAYER0",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_PLAYER0",
+  "hash": "0xf06a2af2",
+  "summary": "Id of the first player involved.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_UNIT0_PLAYER",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_UNIT0_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_UNIT0_ID",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_UNIT0_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (first one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_UNIT1_PLAYER",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_UNIT1_PLAYER",
+  "hash": "0x1a446f19",
+  "summary": "Id of the player who owns the unit (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_UNIT1_ID",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_UNIT1_ID",
+  "hash": "0xfb364325",
+  "summary": "Id of the unit (second one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_CITY0_PLAYER",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_CITY0_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_CITY0_ID",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_CITY0_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (first one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_CITY1_PLAYER",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_CITY1_PLAYER",
+  "hash": "0xf345df89",
+  "summary": "Id of the player who owns the city (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_CITY1_ID",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_CITY1_ID",
+  "hash": "0xc39d90f3",
+  "summary": "Id of the city (second one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_NAME",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_NAME",
+  "hash": "0xd98081f5",
+  "summary": "A name string.",
+  "value": {
+   "kind": "string"
+  },
+  "examples": [
+   "pCommandTable.EventName or \"\"",
+   "m_FullVeteranName",
+   "\"ScenarioCommand_GrievingGift\"",
+   "kGlobalAbilityData.EventName or \"\""
+  ],
+  "used_by": [
+   "op:unit-command.EXECUTE_SCRIPT",
+   "op:unit-command.NAME_UNIT"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_PROMOTION_TYPE",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_PROMOTION_TYPE",
+  "hash": "0xc8b78a39",
+  "summary": "Type of the promotion: a row of the UnitPromotions table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "UnitPromotions"
+  },
+  "examples": [
+   "ePromotion"
+  ],
+  "used_by": [
+   "op:unit-command.DELETE",
+   "op:unit-command.PROMOTE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_X",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_X",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "plot:GetX()"
+  ],
+  "used_by": [
+   "op:unit-command.AIRLIFT",
+   "op:unit-command.EXECUTE_SCRIPT",
+   "op:unit-command.KILL_WEAKER_UNIT",
+   "op:unit-command.MOVE_JUMP",
+   "op:unit-command.NAVAL_GOLD_RAID",
+   "op:unit-command.PARADROP",
+   "op:unit-command.PRIORITY_TARGET",
+   "op:unit-command.RESTORE_UNIT_MOVES",
+   "op:unit-command.TRANSFORM_UNIT"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_Y",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_Y",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "plot:GetY()"
+  ],
+  "used_by": [
+   "op:unit-command.AIRLIFT",
+   "op:unit-command.EXECUTE_SCRIPT",
+   "op:unit-command.KILL_WEAKER_UNIT",
+   "op:unit-command.MOVE_JUMP",
+   "op:unit-command.NAVAL_GOLD_RAID",
+   "op:unit-command.PARADROP",
+   "op:unit-command.PRIORITY_TARGET",
+   "op:unit-command.RESTORE_UNIT_MOVES",
+   "op:unit-command.TRANSFORM_UNIT"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_PLAYER",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_PLAYER",
+  "hash": "0xf06a2af2",
+  "summary": "Player id.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_UNIT_PLAYER",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_UNIT_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [
+   "pUnit:GetOwner()",
+   "unitInstance:GetOwner()",
+   "kUnitInstance:GetOwner()"
+  ],
+  "used_by": [
+   "op:unit-command.ENTER_FORMATION",
+   "op:unit-command.FORM_ARMY",
+   "op:unit-command.FORM_CORPS"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_UNIT_ID",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_UNIT_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [
+   "pUnit:GetID()",
+   "unitInstance:GetID()",
+   "kUnitInstance:GetID()"
+  ],
+  "used_by": [
+   "op:unit-command.ENTER_FORMATION",
+   "op:unit-command.FORM_ARMY",
+   "op:unit-command.FORM_CORPS"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_CITY_PLAYER",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_CITY_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:UnitCommandTypes.PARAM_CITY_ID",
+  "table": "UnitCommandTypes",
+  "name": "PARAM_CITY_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the UnitCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_FLAGS",
+  "table": "CityOperationTypes",
+  "name": "PARAM_FLAGS",
+  "hash": "0xc65a8ea6",
+  "summary": "Bit flags for the operation; the meaning of the bits depends on the operation.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_MODIFIERS",
+  "table": "CityOperationTypes",
+  "name": "PARAM_MODIFIERS",
+  "hash": "0x97b20a17",
+  "summary": "Modifier flags. For unit operations combine UnitOperationMoveModifiers.* values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_BUILDING_TYPE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_BUILDING_TYPE",
+  "hash": "0xb5361112",
+  "summary": "Type of the building, given as the hash of its row in the Buildings table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Buildings",
+   "form": "hash"
+  },
+  "examples": [
+   "buildingEntry.Hash",
+   "eBuilding",
+   "m_LockedProductionHash"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_DISTRICT_TYPE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_DISTRICT_TYPE",
+  "hash": "0x5fae19ef",
+  "summary": "Type of the district, given as the hash of its row in the Districts table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Districts",
+   "form": "hash"
+  },
+  "examples": [
+   "districtEntry.Hash",
+   "districtHash",
+   "m_LockedProductionHash"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_UNIT_TYPE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_UNIT_TYPE",
+  "hash": "0x8ec26d13",
+  "summary": "Type of the unit, given as the hash of its row in the Units table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Units",
+   "form": "hash"
+  },
+  "examples": [
+   "unitEntry.Hash",
+   "m_LockedProductionHash"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_PROJECT_TYPE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_PROJECT_TYPE",
+  "hash": "0xa803a54b",
+  "summary": "Type of the project, given as the hash of its row in the Projects table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Projects",
+   "form": "hash"
+  },
+  "examples": [
+   "projectEntry.Hash"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_MILITARY_FORMATION_TYPE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_MILITARY_FORMATION_TYPE",
+  "hash": "0x7ec3eadf",
+  "summary": "Military formation: one of the MilitaryFormationTypes constants (for example STANDARD_MILITARY_FORMATION, CORPS_MILITARY_FORMATION).",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_PRODUCTION_TYPE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_PRODUCTION_TYPE",
+  "hash": "0x053af4ae",
+  "summary": "Kind of production item.",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_IS_EXCLUSION_TEST",
+  "table": "CityOperationTypes",
+  "name": "PARAM_IS_EXCLUSION_TEST",
+  "hash": "0x9d2d8804",
+  "summary": "Flag used when testing whether an item would be excluded from the queue (meaning not determined).",
+  "value": {
+   "kind": "boolean"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_INSERT_MODE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_INSERT_MODE",
+  "hash": "0xac2fdc09",
+  "summary": "Where the entry goes in the queue: one of the VALUE_* constants of the same Lua table.",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [
+   "CityOperationTypes.VALUE_REMOVE_AT",
+   "CityOperationTypes.VALUE_SWAP",
+   "CityOperationTypes.VALUE_MOVE_TO",
+   "UI.GetInterfaceModeParameter(CityOperationTypes.PARAM_INSERT_MODE)"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_QUEUE_LOCATION",
+  "table": "CityOperationTypes",
+  "name": "PARAM_QUEUE_LOCATION",
+  "hash": "0x2ebeeed3",
+  "summary": "Position in the city production queue.",
+  "value": {
+   "kind": "queue-index"
+  },
+  "examples": [
+   "queueIndex",
+   "UI.GetInterfaceModeParameter(CityOperationTypes.PARAM_QUEUE_LOCATION)"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_QUEUE_SOURCE_LOCATION",
+  "table": "CityOperationTypes",
+  "name": "PARAM_QUEUE_SOURCE_LOCATION",
+  "hash": "0xd6587e0d",
+  "summary": "Position the queue entry is moved from.",
+  "value": {
+   "kind": "queue-index"
+  },
+  "examples": [
+   "sourceIndex",
+   "UI.GetInterfaceModeParameter(CityOperationTypes.PARAM_QUEUE_SOURCE_LOCATION)"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION",
+  "table": "CityOperationTypes",
+  "name": "PARAM_QUEUE_DESTINATION_LOCATION",
+  "hash": "0xa03d9c9a",
+  "summary": "Position the queue entry is moved to.",
+  "value": {
+   "kind": "queue-index"
+  },
+  "examples": [
+   "destIndex",
+   "UI.GetInterfaceModeParameter(CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION)"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_DIRECTIVE",
+  "table": "CityOperationTypes",
+  "name": "PARAM_DIRECTIVE",
+  "hash": "0x7d835547",
+  "summary": "Selects a sub-variant of the operation or command (a directive constant specific to it).",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_X0",
+  "table": "CityOperationTypes",
+  "name": "PARAM_X0",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_Y0",
+  "table": "CityOperationTypes",
+  "name": "PARAM_Y0",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_X1",
+  "table": "CityOperationTypes",
+  "name": "PARAM_X1",
+  "hash": "0x24704b93",
+  "summary": "Plot x (column) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_Y1",
+  "table": "CityOperationTypes",
+  "name": "PARAM_Y1",
+  "hash": "0x3d6b7ad2",
+  "summary": "Plot y (row) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_UNIT0_PLAYER",
+  "table": "CityOperationTypes",
+  "name": "PARAM_UNIT0_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_UNIT0_ID",
+  "table": "CityOperationTypes",
+  "name": "PARAM_UNIT0_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (first one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_UNIT1_PLAYER",
+  "table": "CityOperationTypes",
+  "name": "PARAM_UNIT1_PLAYER",
+  "hash": "0x1a446f19",
+  "summary": "Id of the player who owns the unit (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_UNIT1_ID",
+  "table": "CityOperationTypes",
+  "name": "PARAM_UNIT1_ID",
+  "hash": "0xfb364325",
+  "summary": "Id of the unit (second one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_CITY0_PLAYER",
+  "table": "CityOperationTypes",
+  "name": "PARAM_CITY0_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_CITY0_ID",
+  "table": "CityOperationTypes",
+  "name": "PARAM_CITY0_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (first one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_CITY1_PLAYER",
+  "table": "CityOperationTypes",
+  "name": "PARAM_CITY1_PLAYER",
+  "hash": "0xf345df89",
+  "summary": "Id of the player who owns the city (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_CITY1_ID",
+  "table": "CityOperationTypes",
+  "name": "PARAM_CITY1_ID",
+  "hash": "0xc39d90f3",
+  "summary": "Id of the city (second one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_X",
+  "table": "CityOperationTypes",
+  "name": "PARAM_X",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "kPlot:GetX()"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_Y",
+  "table": "CityOperationTypes",
+  "name": "PARAM_Y",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "kPlot:GetY()"
+  ],
+  "used_by": [
+   "op:city-operation.BUILD"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_UNIT_PLAYER",
+  "table": "CityOperationTypes",
+  "name": "PARAM_UNIT_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_UNIT_ID",
+  "table": "CityOperationTypes",
+  "name": "PARAM_UNIT_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_CITY_PLAYER",
+  "table": "CityOperationTypes",
+  "name": "PARAM_CITY_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityOperationTypes.PARAM_CITY_ID",
+  "table": "CityOperationTypes",
+  "name": "PARAM_CITY_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityOperationTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_FLAGS",
+  "table": "CityCommandTypes",
+  "name": "PARAM_FLAGS",
+  "hash": "0xc65a8ea6",
+  "summary": "Bit flags for the operation; the meaning of the bits depends on the operation.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [
+   "0;\t\t\t-- Set Favored",
+   "1;\t\t\t-- Set Ignored"
+  ],
+  "used_by": [
+   "op:city-command.SET_FOCUS"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_MODIFIERS",
+  "table": "CityCommandTypes",
+  "name": "PARAM_MODIFIERS",
+  "hash": "0x97b20a17",
+  "summary": "Modifier flags. For unit operations combine UnitOperationMoveModifiers.* values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific.",
+  "value": {
+   "kind": "flags"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_DIRECTIVE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_DIRECTIVE",
+  "hash": "0x7d835547",
+  "summary": "Selects a sub-variant of the operation or command (a directive constant specific to it).",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [],
+  "used_by": [
+   "op:city-command.MANAGE",
+   "op:city-command.SET_FOCUS",
+   "op:city-command.SWAP_TILE_OWNER"
+  ],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_BUILDING_TYPE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_BUILDING_TYPE",
+  "hash": "0xb5361112",
+  "summary": "Type of the building, given as the hash of its row in the Buildings table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Buildings",
+   "form": "hash"
+  },
+  "examples": [
+   "buildingEntry.Hash"
+  ],
+  "used_by": [
+   "op:city-command.PURCHASE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_DISTRICT_TYPE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_DISTRICT_TYPE",
+  "hash": "0x5fae19ef",
+  "summary": "Type of the district: a row of the Districts table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Districts"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_UNIT_TYPE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_UNIT_TYPE",
+  "hash": "0x8ec26d13",
+  "summary": "Type of the unit, given as the hash of its row in the Units table (row.Hash).",
+  "value": {
+   "kind": "hash",
+   "db_table": "Units",
+   "form": "hash"
+  },
+  "examples": [
+   "unitEntry.Hash",
+   "kHeroUnitDef.Hash"
+  ],
+  "used_by": [
+   "op:city-command.PURCHASE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_PROJECT_TYPE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_PROJECT_TYPE",
+  "hash": "0xa803a54b",
+  "summary": "Type of the project: a row of the Projects table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "Projects"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_PLOT_PURCHASE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_PLOT_PURCHASE",
+  "hash": "0xd17440ae",
+  "summary": "The plot to buy (supplied by the interface mode; plot index).",
+  "value": {
+   "kind": "plot-index"
+  },
+  "examples": [
+   "UI.GetInterfaceModeParameter(CityCommandTypes.PARAM_PLOT_PURCHASE)"
+  ],
+  "used_by": [
+   "op:city-command.PURCHASE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_MANAGE_CITIZEN",
+  "table": "CityCommandTypes",
+  "name": "PARAM_MANAGE_CITIZEN",
+  "hash": "0x3e129982",
+  "summary": "The plot whose citizen assignment is changed (supplied by the interface mode).",
+  "value": {
+   "kind": "plot-index"
+  },
+  "examples": [
+   "UI.GetInterfaceModeParameter(CityCommandTypes.PARAM_MANAGE_CITIZEN)"
+  ],
+  "used_by": [
+   "op:city-command.MANAGE",
+   "op:city-command.PURCHASE",
+   "op:city-command.SWAP_TILE_OWNER"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_SWAP_TILE_OWNER",
+  "table": "CityCommandTypes",
+  "name": "PARAM_SWAP_TILE_OWNER",
+  "hash": "0xe40e23e4",
+  "summary": "The plot whose owner city is swapped (supplied by the interface mode).",
+  "value": {
+   "kind": "plot-index"
+  },
+  "examples": [
+   "UI.GetInterfaceModeParameter(CityCommandTypes.PARAM_SWAP_TILE_OWNER)"
+  ],
+  "used_by": [
+   "op:city-command.PURCHASE",
+   "op:city-command.SWAP_TILE_OWNER"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_RANGED_ATTACK",
+  "table": "CityCommandTypes",
+  "name": "PARAM_RANGED_ATTACK",
+  "hash": "0xa7c85586",
+  "summary": "The target of the ranged attack (supplied by the interface mode).",
+  "value": {
+   "kind": "plot-index"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_YIELD_TYPE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_YIELD_TYPE",
+  "hash": "0x2b8aba02",
+  "summary": "Yield type (for example YieldTypes.GOLD or YieldTypes.FAITH, or the index of a row of the Yields table).",
+  "value": {
+   "kind": "db-index",
+   "form": "index"
+  },
+  "examples": [
+   "GameInfo.Yields[\"YIELD_FAITH\"].Index",
+   "GameInfo.Yields[\"YIELD_GOLD\"].Index",
+   "yieldType;\t-- Yield type",
+   "purchaseYield"
+  ],
+  "used_by": [
+   "op:city-command.PURCHASE",
+   "op:city-command.SET_FOCUS"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_WMD_TYPE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_WMD_TYPE",
+  "hash": "0xa7c79e07",
+  "summary": "Type of the wmd: a row of the WMDs table (the game passes the row hash for most types; check the examples).",
+  "value": {
+   "kind": "db-type",
+   "db_table": "WMDs"
+  },
+  "examples": [
+   "eWMD"
+  ],
+  "used_by": [
+   "op:city-command.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_MILITARY_FORMATION_TYPE",
+  "table": "CityCommandTypes",
+  "name": "PARAM_MILITARY_FORMATION_TYPE",
+  "hash": "0x7ec3eadf",
+  "summary": "Military formation: one of the MilitaryFormationTypes constants (for example STANDARD_MILITARY_FORMATION, CORPS_MILITARY_FORMATION).",
+  "value": {
+   "kind": "constant"
+  },
+  "examples": [
+   "MilitaryFormationTypes.STANDARD_MILITARY_FORMATION",
+   "MilitaryFormationTypes.CORPS_MILITARY_FORMATION",
+   "MilitaryFormationTypes.ARMY_MILITARY_FORMATION"
+  ],
+  "used_by": [
+   "op:city-command.PURCHASE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_NAME",
+  "table": "CityCommandTypes",
+  "name": "PARAM_NAME",
+  "hash": "0xd98081f5",
+  "summary": "A name string.",
+  "value": {
+   "kind": "string"
+  },
+  "examples": [
+   "new_name"
+  ],
+  "used_by": [
+   "op:city-command.NAME_CITY"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_X0",
+  "table": "CityCommandTypes",
+  "name": "PARAM_X0",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "sourcePlotX"
+  ],
+  "used_by": [
+   "op:city-command.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_Y0",
+  "table": "CityCommandTypes",
+  "name": "PARAM_Y0",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate of the first plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "sourcePlotY"
+  ],
+  "used_by": [
+   "op:city-command.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_X1",
+  "table": "CityCommandTypes",
+  "name": "PARAM_X1",
+  "hash": "0x24704b93",
+  "summary": "Plot x (column) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "targetPlot:GetX()"
+  ],
+  "used_by": [
+   "op:city-command.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_Y1",
+  "table": "CityCommandTypes",
+  "name": "PARAM_Y1",
+  "hash": "0x3d6b7ad2",
+  "summary": "Plot y (row) coordinate of the second plot.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "targetPlot:GetY()"
+  ],
+  "used_by": [
+   "op:city-command.WMD_STRIKE"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_UNIT0_PLAYER",
+  "table": "CityCommandTypes",
+  "name": "PARAM_UNIT0_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_UNIT0_ID",
+  "table": "CityCommandTypes",
+  "name": "PARAM_UNIT0_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (first one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_UNIT1_PLAYER",
+  "table": "CityCommandTypes",
+  "name": "PARAM_UNIT1_PLAYER",
+  "hash": "0x1a446f19",
+  "summary": "Id of the player who owns the unit (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_UNIT1_ID",
+  "table": "CityCommandTypes",
+  "name": "PARAM_UNIT1_ID",
+  "hash": "0xfb364325",
+  "summary": "Id of the unit (second one) (the value returned by unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_CITY0_PLAYER",
+  "table": "CityCommandTypes",
+  "name": "PARAM_CITY0_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city (first one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_CITY0_ID",
+  "table": "CityCommandTypes",
+  "name": "PARAM_CITY0_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (first one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_CITY1_PLAYER",
+  "table": "CityCommandTypes",
+  "name": "PARAM_CITY1_PLAYER",
+  "hash": "0xf345df89",
+  "summary": "Id of the player who owns the city (second one).",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_CITY1_ID",
+  "table": "CityCommandTypes",
+  "name": "PARAM_CITY1_ID",
+  "hash": "0xc39d90f3",
+  "summary": "Id of the city (second one) (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_DATA0",
+  "table": "CityCommandTypes",
+  "name": "PARAM_DATA0",
+  "hash": "0xd6fcf3e4",
+  "summary": "Generic data slot 0; the meaning depends on the command (the game uses it for booleans passed as 1 or 0).",
+  "value": {
+   "kind": "generic"
+  },
+  "examples": [
+   "0;\t\t\t\t-- boolean (1=true, 0=false)",
+   "1;\t\t\t\t-- boolean (1=true, 0=false)"
+  ],
+  "used_by": [
+   "op:city-command.SET_FOCUS"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_DATA1",
+  "table": "CityCommandTypes",
+  "name": "PARAM_DATA1",
+  "hash": "0xa1fbc372",
+  "summary": "Generic data slot 1; the meaning depends on the command (the game uses it for booleans passed as 1 or 0).",
+  "value": {
+   "kind": "generic"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_DATA2",
+  "table": "CityCommandTypes",
+  "name": "PARAM_DATA2",
+  "hash": "0x38f292c8",
+  "summary": "Generic data slot 2; the meaning depends on the command (the game uses it for booleans passed as 1 or 0).",
+  "value": {
+   "kind": "generic"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_DATA3",
+  "table": "CityCommandTypes",
+  "name": "PARAM_DATA3",
+  "hash": "0x4ff5a25e",
+  "summary": "Generic data slot 3; the meaning depends on the command (the game uses it for booleans passed as 1 or 0).",
+  "value": {
+   "kind": "generic"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_X",
+  "table": "CityCommandTypes",
+  "name": "PARAM_X",
+  "hash": "0x53777b05",
+  "summary": "Plot x (column) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "kPlot:GetX()"
+  ],
+  "used_by": [
+   "op:city-command.MANAGE",
+   "op:city-command.PURCHASE",
+   "op:city-command.SWAP_TILE_OWNER"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_Y",
+  "table": "CityCommandTypes",
+  "name": "PARAM_Y",
+  "hash": "0x4a6c4a44",
+  "summary": "Plot y (row) coordinate.",
+  "value": {
+   "kind": "plot-coord"
+  },
+  "examples": [
+   "kPlot:GetY()"
+  ],
+  "used_by": [
+   "op:city-command.MANAGE",
+   "op:city-command.PURCHASE",
+   "op:city-command.SWAP_TILE_OWNER"
+  ],
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "filled by the game's own Lua scripts (examples listed)"
+   },
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_UNIT_PLAYER",
+  "table": "CityCommandTypes",
+  "name": "PARAM_UNIT_PLAYER",
+  "hash": "0xd6ee6f87",
+  "summary": "Id of the player who owns the unit.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_UNIT_ID",
+  "table": "CityCommandTypes",
+  "name": "PARAM_UNIT_ID",
+  "hash": "0x438a2440",
+  "summary": "Id of the unit (unit:GetID()).",
+  "value": {
+   "kind": "unit-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_CITY_PLAYER",
+  "table": "CityCommandTypes",
+  "name": "PARAM_CITY_PLAYER",
+  "hash": "0x3fefdf17",
+  "summary": "Id of the player who owns the city.",
+  "value": {
+   "kind": "player-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ },
+ {
+  "id": "param:CityCommandTypes.PARAM_CITY_ID",
+  "table": "CityCommandTypes",
+  "name": "PARAM_CITY_ID",
+  "hash": "0x7b21f796",
+  "summary": "Id of the city (the value returned by city:GetID()).",
+  "value": {
+   "kind": "city-id"
+  },
+  "examples": [],
+  "used_by": [],
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "dwarf",
+    "note": "parameter id from the CityCommandTypes parameter enum"
+   },
+   {
+    "kind": "static-analysis",
+    "note": "meaning inferred from the name"
+   }
+  ]
+ }
+]

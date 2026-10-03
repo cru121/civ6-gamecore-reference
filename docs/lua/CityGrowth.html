@@ -1,0 +1,351 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CityGrowth</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › CityGrowth</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>CityGrowth</h1>
+<p>40 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth/">CityGrowth</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getamenities"></a>GetAmenities</td>
+<td><em>UI state:</em> <code>CityGrowth:GetAmenities() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetAmenities() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenities/">yes ↗</a></td>
+<td><code>0x68f920</code></td>
+<td><code>0x68ff00</code></td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromcitystates"></a>GetAmenitiesFromCityStates</td>
+<td><code>CityGrowth:GetAmenitiesFromCityStates() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromCityStates/">yes ↗</a></td>
+<td><code>0x68f970</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromcivics"></a>GetAmenitiesFromCivics</td>
+<td><code>CityGrowth:GetAmenitiesFromCivics() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromCivics/">yes ↗</a></td>
+<td><code>0x68f9c0</code></td>
+<td><code>0x68ffa0</code></td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromdistricts"></a>GetAmenitiesFromDistricts</td>
+<td><code>CityGrowth:GetAmenitiesFromDistricts() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromDistricts/">yes ↗</a></td>
+<td><code>0x68fa10</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromentertainment"></a>GetAmenitiesFromEntertainment</td>
+<td><em>UI state:</em> <code>CityGrowth:GetAmenitiesFromEntertainment() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetAmenitiesFromEntertainment() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromEntertainment/">yes ↗</a></td>
+<td><code>0x68fa60</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromgovernors"></a>GetAmenitiesFromGovernors</td>
+<td><code>CityGrowth:GetAmenitiesFromGovernors() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromGovernors/">yes ↗</a></td>
+<td><code>0x710960</code></td>
+<td><code>0x7111d0</code></td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromgreatpeople"></a>GetAmenitiesFromGreatPeople</td>
+<td><code>CityGrowth:GetAmenitiesFromGreatPeople() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromGreatPeople/">yes ↗</a></td>
+<td><code>0x68fab0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromimprovements"></a>GetAmenitiesFromImprovements</td>
+<td><code>CityGrowth:GetAmenitiesFromImprovements() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromImprovements/">yes ↗</a></td>
+<td><code>0x68fb00</code></td>
+<td><code>0x6900e0</code></td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromluxuries"></a>GetAmenitiesFromLuxuries</td>
+<td><em>UI state:</em> <code>CityGrowth:GetAmenitiesFromLuxuries() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetAmenitiesFromLuxuries() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromLuxuries/">yes ↗</a></td>
+<td><code>0x68fb50</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromnationalparks"></a>GetAmenitiesFromNationalParks</td>
+<td><code>CityGrowth:GetAmenitiesFromNationalParks() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromNationalParks/">yes ↗</a></td>
+<td><code>0x68fba0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromnaturalwonders"></a>GetAmenitiesFromNaturalWonders</td>
+<td><code>CityGrowth:GetAmenitiesFromNaturalWonders() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromNaturalWonders/">yes ↗</a></td>
+<td><code>0x68fbf0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromreligion"></a>GetAmenitiesFromReligion</td>
+<td><code>CityGrowth:GetAmenitiesFromReligion() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromReligion/">yes ↗</a></td>
+<td><code>0x68fc40</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromstartingera"></a>GetAmenitiesFromStartingEra</td>
+<td><code>CityGrowth:GetAmenitiesFromStartingEra() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromStartingEra/">yes ↗</a></td>
+<td><code>0x68fc90</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesfromtraits"></a>GetAmenitiesFromTraits</td>
+<td><code>CityGrowth:GetAmenitiesFromTraits() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesFromTraits/">yes ↗</a></td>
+<td><code>0x68fce0</code></td>
+<td><code>0x6902c0</code></td>
+</tr>
+<tr>
+<td><a id="getamenitieslostfrombankruptcy"></a>GetAmenitiesLostFromBankruptcy</td>
+<td><code>CityGrowth:GetAmenitiesLostFromBankruptcy() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesLostFromBankruptcy/">yes ↗</a></td>
+<td><code>0x68fd30</code></td>
+<td><code>0x690310</code></td>
+</tr>
+<tr>
+<td><a id="getamenitieslostfromwarweariness"></a>GetAmenitiesLostFromWarWeariness</td>
+<td><code>CityGrowth:GetAmenitiesLostFromWarWeariness() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesLostFromWarWeariness/">yes ↗</a></td>
+<td><code>0x68fd80</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getamenitiesneeded"></a>GetAmenitiesNeeded</td>
+<td><code>CityGrowth:GetAmenitiesNeeded() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetAmenitiesNeeded/">yes ↗</a></td>
+<td><code>0x68fdd0</code></td>
+<td><code>0x6903b0</code></td>
+</tr>
+<tr>
+<td><a id="getcity"></a>GetCity</td>
+<td><code>CityGrowth:GetCity() → City</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetCity/">yes ↗</a></td>
+<td><code>0x68fe20</code></td>
+<td><code>0x690400</code></td>
+</tr>
+<tr>
+<td><a id="getfood"></a>GetFood</td>
+<td><code>CityGrowth:GetFood() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetFood/">yes ↗</a></td>
+<td><code>0x68fe60</code></td>
+<td><code>0x690440</code></td>
+</tr>
+<tr>
+<td><a id="getfoodsurplus"></a>GetFoodSurplus</td>
+<td><em>UI state:</em> <code>CityGrowth:GetFoodSurplus() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetFoodSurplus() → number (FixedPoint)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetFoodSurplus/">yes ↗</a></td>
+<td><code>0x68fed0</code></td>
+<td><code>0x6904b0</code></td>
+</tr>
+<tr>
+<td><a id="getgrowththreshold"></a>GetGrowthThreshold</td>
+<td><code>CityGrowth:GetGrowthThreshold() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetGrowthThreshold/">yes ↗</a></td>
+<td><code>0x68ff40</code></td>
+<td><code>0x690520</code></td>
+</tr>
+<tr>
+<td><a id="gethappiness"></a>GetHappiness</td>
+<td><em>UI state:</em> <code>CityGrowth:GetHappiness() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetHappiness() → number (HappinessTypes)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHappiness/">yes ↗</a></td>
+<td><code>0x68ff90</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="gethappinessgrowthmodifier"></a>GetHappinessGrowthModifier</td>
+<td><code>CityGrowth:GetHappinessGrowthModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHappinessGrowthModifier/">yes ↗</a></td>
+<td><code>0x68ffe0</code></td>
+<td><code>0x6905c0</code></td>
+</tr>
+<tr>
+<td><a id="gethappinessnonfoodyieldmodifier"></a>GetHappinessNonFoodYieldModifier</td>
+<td><code>CityGrowth:GetHappinessNonFoodYieldModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHappinessNonFoodYieldModifier/">yes ↗</a></td>
+<td><code>0x690050</code></td>
+<td><code>0x690630</code></td>
+</tr>
+<tr>
+<td><a id="gethousing"></a>GetHousing</td>
+<td><em>UI state:</em> <code>CityGrowth:GetHousing() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetHousing() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousing/">yes ↗</a></td>
+<td><code>0x6900c0</code></td>
+<td><code>0x6906a0</code></td>
+</tr>
+<tr>
+<td><a id="gethousingfrombuildings"></a>GetHousingFromBuildings</td>
+<td><em>UI state:</em> <code>CityGrowth:GetHousingFromBuildings() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetHousingFromBuildings() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromBuildings/">yes ↗</a></td>
+<td><code>0x690110</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="gethousingfromcivics"></a>GetHousingFromCivics</td>
+<td><code>CityGrowth:GetHousingFromCivics() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromCivics/">yes ↗</a></td>
+<td><code>0x690160</code></td>
+<td><code>0x690740</code></td>
+</tr>
+<tr>
+<td><a id="gethousingfromdistricts"></a>GetHousingFromDistricts</td>
+<td><em>UI state:</em> <code>CityGrowth:GetHousingFromDistricts() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetHousingFromDistricts() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromDistricts/">yes ↗</a></td>
+<td><code>0x6901b0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="gethousingfromgreatpeople"></a>GetHousingFromGreatPeople</td>
+<td><code>CityGrowth:GetHousingFromGreatPeople() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromGreatPeople/">yes ↗</a></td>
+<td><code>0x690200</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="gethousingfromgreatworks"></a>GetHousingFromGreatWorks</td>
+<td><code>CityGrowth:GetHousingFromGreatWorks() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromGreatWorks/">yes ↗</a></td>
+<td><code>0x690250</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="gethousingfromimprovements"></a>GetHousingFromImprovements</td>
+<td><em>UI state:</em> <code>CityGrowth:GetHousingFromImprovements() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetHousingFromImprovements() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromImprovements/">yes ↗</a></td>
+<td><code>0x6902a0</code></td>
+<td><code>0x690880</code></td>
+</tr>
+<tr>
+<td><a id="gethousingfromstartingera"></a>GetHousingFromStartingEra</td>
+<td><code>CityGrowth:GetHousingFromStartingEra() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromStartingEra/">yes ↗</a></td>
+<td><code>0x6902f0</code></td>
+<td><code>0x6908d0</code></td>
+</tr>
+<tr>
+<td><a id="gethousingfromwater"></a>GetHousingFromWater</td>
+<td><em>UI state:</em> <code>CityGrowth:GetHousingFromWater() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetHousingFromWater() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingFromWater/">yes ↗</a></td>
+<td><code>0x690340</code></td>
+<td><code>0x690920</code></td>
+</tr>
+<tr>
+<td><a id="gethousinggrowthmodifier"></a>GetHousingGrowthModifier</td>
+<td><code>CityGrowth:GetHousingGrowthModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetHousingGrowthModifier/">yes ↗</a></td>
+<td><code>0x690390</code></td>
+<td><code>0x690970</code></td>
+</tr>
+<tr>
+<td><a id="getloyaltygrowthmodifier"></a>GetLoyaltyGrowthModifier</td>
+<td><code>CityGrowth:GetLoyaltyGrowthModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetLoyaltyGrowthModifier/">yes ↗</a></td>
+<td><code>0x7109b0</code></td>
+<td><code>0x711220</code></td>
+</tr>
+<tr>
+<td><a id="getoccupationgrowthmodifier"></a>GetOccupationGrowthModifier</td>
+<td><code>CityGrowth:GetOccupationGrowthModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetOccupationGrowthModifier/">yes ↗</a></td>
+<td><code>0x690400</code></td>
+<td><code>0x6909e0</code></td>
+</tr>
+<tr>
+<td><a id="getothergrowthmodifier"></a>GetOtherGrowthModifier</td>
+<td><code>CityGrowth:GetOtherGrowthModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetOtherGrowthModifier/">yes ↗</a></td>
+<td><code>0x690470</code></td>
+<td><code>0x690a50</code></td>
+</tr>
+<tr>
+<td><a id="getoverallgrowthmodifier"></a>GetOverallGrowthModifier</td>
+<td><code>CityGrowth:GetOverallGrowthModifier() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetOverallGrowthModifier/">yes ↗</a></td>
+<td><code>0x6904e0</code></td>
+<td><code>0x690ac0</code></td>
+</tr>
+<tr>
+<td><a id="getturnsuntilgrowth"></a>GetTurnsUntilGrowth</td>
+<td><em>UI state:</em> <code>CityGrowth:GetTurnsUntilGrowth() → number</code><br><em>gameplay state:</em> <code>CityGrowth:GetTurnsUntilGrowth() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: A turn number (the scripts name the result turn). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetTurnsUntilGrowth/">yes ↗</a></td>
+<td><code>0x690550</code></td>
+<td><code>0x690b30</code></td>
+</tr>
+<tr>
+<td><a id="getturnsuntilstarvation"></a>GetTurnsUntilStarvation</td>
+<td><code>CityGrowth:GetTurnsUntilStarvation() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityGrowth.GetTurnsUntilStarvation/">yes ↗</a></td>
+<td><code>0x6905a0</code></td>
+<td><code>0x690b80</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

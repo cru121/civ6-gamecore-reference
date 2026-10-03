@@ -1,0 +1,10 @@
+id: lua:Game.GetGreatWorkPlayer
+summary: "Returns the player recorded on a great work record, or -1 for an index outside the list."
+notes:
+  - text: "Bounds-checked: an index past the end of the great work list returns -1."
+    status: verified
+    evidence: [{kind: runtime, note: observed in game while testing the archive}]
+  - text: "The recorded player is written only on creation paths (great person, relic, artifact, hero), never when a work is traded, so it is the creator, not the current holder. The holder is whichever city's Buildings contains the work."
+    status: inferred
+    evidence: [{kind: static-analysis, note: SetGreatWorkPlayer is not called from Deal GreatWork Enact or City Transfer}]
+related: [lua:Game.GetGreatWorkDataFromIndex, op:player-operation.CHOOSE_ARTIFACT_PLAYER]

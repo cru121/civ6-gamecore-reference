@@ -1,0 +1,7 @@
+id: "layout:City::Buildings"
+summary: "Per-city building state. The great-work slots of the city live in m_aGreatWorkBuildings."
+notes:
+  - text: "m_aGreatWorkBuildings is an array of GreatWorkBuilding entries (32 bytes each: building type at +0, a slot array at +8); each slot is 8 bytes with the slot type at +0 and the great work list index at +4. RemoveGreatWork and AddGreatWorkToSlot walk this array."
+    status: verified
+    evidence: [{kind: static-analysis, note: "decompiled RemoveGreatWork; entry and slot sizes from the Linux layout"}]
+related: ["layout:City::GreatWorkBuilding", "layout:City::GreatWorkSlot", "layout:Game::GreatWork"]

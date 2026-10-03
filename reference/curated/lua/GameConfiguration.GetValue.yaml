@@ -1,0 +1,9 @@
+id: lua:GameConfiguration.GetValue
+summary: "Reads a stored game-configuration value. Only getters are registered on the gameplay state: GetValue and eight read-only queries."
+notes:
+  - text: "The gameplay-state GameConfiguration registers 9 methods (GetGameSpeedType, GetMaxTurns, GetStartEra, GetStartTurn, GetStartYear, GetTurnTimerType, GetValue, IsAnyMultiplayer, IsNetworkMultiplayer). There is no SetValue, so gameplay scripts cannot write to it."
+    status: verified
+    evidence: [{kind: dll-registration, note: "method list of the gameplay registration table for GameConfiguration"}]
+  - text: "Civ6-GCO reports the same from the script side ('GameConfiguration.SetValue is nil in scripts context') and persists its mod state by calling SetValue from an InGame UI context, serialising Lua tables into string slots that end up in the savegame. SetValue is therefore a UI-state method outside this registration table. How large a value the save accepts was not tested."
+    status: inferred
+    evidence: [{kind: community-reference, note: "Civ6-GCO InGame/GCO_SaveLoad.lua:9-10, 78-82; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]

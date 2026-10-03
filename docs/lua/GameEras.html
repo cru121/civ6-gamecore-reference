@@ -1,0 +1,255 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>GameEras</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › GameEras</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>GameEras</h1>
+<p>28 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras/">GameEras</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="changeplayererascore"></a>ChangePlayerEraScore</td>
+<td><code>GameEras.ChangePlayerEraScore(arg1?: any, ePlayer: integer[PlayerTypes], iAmount: integer) (or nothing) ⚠</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.ChangePlayerEraScore/">yes ↗</a></td>
+<td><code>0x7130a0</code></td>
+<td><code>0x713910</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentera"></a>GetCurrentEra</td>
+<td><em>UI state:</em> <code>GameEras:GetCurrentEra() → number</code><br><em>gameplay state:</em> <code>GameEras:GetCurrentEra() → number</code><br><small>returns: Key of a row of the Eras table: the scripts look it up with GameInfo.Eras[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetCurrentEra/">yes ↗</a></td>
+<td><code>0xa5970</code></td>
+<td><code>0xa6510</code></td>
+</tr>
+<tr>
+<td><a id="getcurrenteramaximumendturn"></a>GetCurrentEraMaximumEndTurn</td>
+<td><code>GameEras:GetCurrentEraMaximumEndTurn() → number</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetCurrentEraMaximumEndTurn/">yes ↗</a></td>
+<td><code>0xa59c0</code></td>
+<td><code>0xa6560</code></td>
+</tr>
+<tr>
+<td><a id="getcurrenteraminimumendturn"></a>GetCurrentEraMinimumEndTurn</td>
+<td><code>GameEras:GetCurrentEraMinimumEndTurn() → number</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetCurrentEraMinimumEndTurn/">yes ↗</a></td>
+<td><code>0xa5a10</code></td>
+<td><code>0xa65b0</code></td>
+</tr>
+<tr>
+<td><a id="getcurrenteranumplayersasorlessadvanced"></a>GetCurrentEraNumPlayersAsOrLessAdvanced</td>
+<td><code>GameEras:GetCurrentEraNumPlayersAsOrLessAdvanced() → number</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetCurrentEraNumPlayersAsOrLessAdvanced/">yes ↗</a></td>
+<td><code>0xa5a60</code></td>
+<td><code>0xa6600</code></td>
+</tr>
+<tr>
+<td><a id="getcurrenteranumplayersmoreadvanced"></a>GetCurrentEraNumPlayersMoreAdvanced</td>
+<td><code>GameEras:GetCurrentEraNumPlayersMoreAdvanced() → number</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetCurrentEraNumPlayersMoreAdvanced/">yes ↗</a></td>
+<td><code>0xa5ab0</code></td>
+<td><code>0xa6650</code></td>
+</tr>
+<tr>
+<td><a id="getcurrenterastartturn"></a>GetCurrentEraStartTurn</td>
+<td><code>GameEras:GetCurrentEraStartTurn() → number</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetCurrentEraStartTurn/">yes ↗</a></td>
+<td><code>0xa5b00</code></td>
+<td><code>0xa66a0</code></td>
+</tr>
+<tr>
+<td><a id="getfinalera"></a>GetFinalEra</td>
+<td><code>GameEras:GetFinalEra() → number</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetFinalEra/">yes ↗</a></td>
+<td><code>0xa5b50</code></td>
+<td><code>0xa66f0</code></td>
+</tr>
+<tr>
+<td><a id="getnexteracountdown"></a>GetNextEraCountdown</td>
+<td><code>GameEras:GetNextEraCountdown() → number</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetNextEraCountdown/">yes ↗</a></td>
+<td><code>0xa5ba0</code></td>
+<td><code>0xa6740</code></td>
+</tr>
+<tr>
+<td><a id="getplayeractivecommemorations"></a>GetPlayerActiveCommemorations</td>
+<td><code>GameEras:GetPlayerActiveCommemorations(arg1?: number) → number[]</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerActiveCommemorations/">yes ↗</a></td>
+<td><code>0xa5bf0</code></td>
+<td><code>0xa6790</code></td>
+</tr>
+<tr>
+<td><a id="getplayercommemoratechoices"></a>GetPlayerCommemorateChoices</td>
+<td><code>GameEras:GetPlayerCommemorateChoices(arg1?: number) → number[]</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerCommemorateChoices/">yes ↗</a></td>
+<td><code>0xa5d40</code></td>
+<td><code>0xa68e0</code></td>
+</tr>
+<tr>
+<td><a id="getplayercomplimentchoices"></a>GetPlayerComplimentChoices</td>
+<td><code>GameEras:GetPlayerComplimentChoices(arg1?: number) → number[]</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerComplimentChoices/">yes ↗</a></td>
+<td><code>0xa5e90</code></td>
+<td><code>0xa6a30</code></td>
+</tr>
+<tr>
+<td><a id="getplayercurrenterascorebreakdown"></a>GetPlayerCurrentEraScoreBreakdown</td>
+<td><code>GameEras:GetPlayerCurrentEraScoreBreakdown(arg1?: number) → any[]</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerCurrentEraScoreBreakdown/">yes ↗</a></td>
+<td><code>0xa5fe0</code></td>
+<td><code>0xa6b80</code></td>
+</tr>
+<tr>
+<td><a id="getplayercurrentscore"></a>GetPlayerCurrentScore</td>
+<td><code>GameEras:GetPlayerCurrentScore(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerCurrentScore/">yes ↗</a></td>
+<td><code>0xa63a0</code></td>
+<td><code>0xa6f40</code></td>
+</tr>
+<tr>
+<td><a id="getplayerdarkagethreshold"></a>GetPlayerDarkAgeThreshold</td>
+<td><code>GameEras:GetPlayerDarkAgeThreshold(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerDarkAgeThreshold/">yes ↗</a></td>
+<td><code>0xa6410</code></td>
+<td><code>0xa6fb0</code></td>
+</tr>
+<tr>
+<td><a id="getplayerdarkagethresholdbreakdown"></a>GetPlayerDarkAgeThresholdBreakdown</td>
+<td><code>GameEras:GetPlayerDarkAgeThresholdBreakdown(arg1?: number) → any[]</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerDarkAgeThresholdBreakdown/">yes ↗</a></td>
+<td><code>0xa6480</code></td>
+<td><code>0xa7020</code></td>
+</tr>
+<tr>
+<td><a id="getplayergoldenagethreshold"></a>GetPlayerGoldenAgeThreshold</td>
+<td><code>GameEras:GetPlayerGoldenAgeThreshold(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerGoldenAgeThreshold/">yes ↗</a></td>
+<td><code>0xa6aa0</code></td>
+<td><code>0xa7640</code></td>
+</tr>
+<tr>
+<td><a id="getplayergoldenagethresholdbreakdown"></a>GetPlayerGoldenAgeThresholdBreakdown</td>
+<td><code>GameEras:GetPlayerGoldenAgeThresholdBreakdown(arg1?: number) → any[]</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerGoldenAgeThresholdBreakdown/">yes ↗</a></td>
+<td><code>0xa6b10</code></td>
+<td><code>0xa76b0</code></td>
+</tr>
+<tr>
+<td><a id="getplayernumallowedcommemorations"></a>GetPlayerNumAllowedCommemorations</td>
+<td><code>GameEras:GetPlayerNumAllowedCommemorations(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerNumAllowedCommemorations/">yes ↗</a></td>
+<td><code>0xa7130</code></td>
+<td><code>0xa7cd0</code></td>
+</tr>
+<tr>
+<td><a id="getplayerpreviousdarkagethreshold"></a>GetPlayerPreviousDarkAgeThreshold</td>
+<td><code>GameEras:GetPlayerPreviousDarkAgeThreshold(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerPreviousDarkAgeThreshold/">yes ↗</a></td>
+<td><code>0xa71a0</code></td>
+<td><code>0xa7d40</code></td>
+</tr>
+<tr>
+<td><a id="getplayerpreviouserascorebreakdown"></a>GetPlayerPreviousEraScoreBreakdown</td>
+<td><code>GameEras:GetPlayerPreviousEraScoreBreakdown(arg1?: number) → any[]</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerPreviousEraScoreBreakdown/">yes ↗</a></td>
+<td><code>0xa7210</code></td>
+<td><code>0xa7db0</code></td>
+</tr>
+<tr>
+<td><a id="getplayerpreviousgoldenagethreshold"></a>GetPlayerPreviousGoldenAgeThreshold</td>
+<td><code>GameEras:GetPlayerPreviousGoldenAgeThreshold(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerPreviousGoldenAgeThreshold/">yes ↗</a></td>
+<td><code>0xa75d0</code></td>
+<td><code>0xa8170</code></td>
+</tr>
+<tr>
+<td><a id="getplayerpreviousscore"></a>GetPlayerPreviousScore</td>
+<td><code>GameEras:GetPlayerPreviousScore(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerPreviousScore/">yes ↗</a></td>
+<td><code>0xa7640</code></td>
+<td><code>0xa81e0</code></td>
+</tr>
+<tr>
+<td><a id="getplayerthresholdbaseline"></a>GetPlayerThresholdBaseline</td>
+<td><code>GameEras:GetPlayerThresholdBaseline(arg1: integer[PlayerTypes]) → number</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.GetPlayerThresholdBaseline/">yes ↗</a></td>
+<td><code>0xa76b0</code></td>
+<td><code>0xa8250</code></td>
+</tr>
+<tr>
+<td><a id="hasdarkage"></a>HasDarkAge</td>
+<td><code>GameEras:HasDarkAge(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.HasDarkAge/">yes ↗</a></td>
+<td><code>0xa7720</code></td>
+<td><code>0xa82c0</code></td>
+</tr>
+<tr>
+<td><a id="hasgoldenage"></a>HasGoldenAge</td>
+<td><code>GameEras:HasGoldenAge(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.HasGoldenAge/">yes ↗</a></td>
+<td><code>0xa7780</code></td>
+<td><code>0xa8320</code></td>
+</tr>
+<tr>
+<td><a id="hasheroicgoldenage"></a>HasHeroicGoldenAge</td>
+<td><code>GameEras:HasHeroicGoldenAge(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.HasHeroicGoldenAge/">yes ↗</a></td>
+<td><code>0xa77e0</code></td>
+<td><code>0xa8380</code></td>
+</tr>
+<tr>
+<td><a id="isplayeralwaysallowedcommemorationquest"></a>IsPlayerAlwaysAllowedCommemorationQuest</td>
+<td><code>GameEras:IsPlayerAlwaysAllowedCommemorationQuest(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/GameEras.IsPlayerAlwaysAllowedCommemorationQuest/">yes ↗</a></td>
+<td><code>0xa7840</code></td>
+<td><code>0xa83e0</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

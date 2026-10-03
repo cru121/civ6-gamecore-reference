@@ -1,0 +1,2250 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Class layouts</a> › AI</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>AI</h1>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Size</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="AI/ActionEvalVector.html">AI::ActionEvalVector</a></td>
+<td>8792 (0x2258)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AddReligiousBuildingEffect.BuildingData.html">AI::AddReligiousBuildingEffect::BuildingData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AddReligiousBuildingMultEffect.BuildingData.html">AI::AddReligiousBuildingMultEffect::BuildingData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AddReligiousUnitEffect.UnitData.html">AI::AddReligiousUnitEffect::UnitData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustAllianceEnvoysEffect.AllianceEnvoysData.html">AI::AdjustAllianceEnvoysEffect::AllianceEnvoysData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustAlliancePlayerStrengthEffect.AllianceStrengthData.html">AI::AdjustAlliancePlayerStrengthEffect::AllianceStrengthData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustAllianceResearchAgreementEffect.AllianceResearchData.html">AI::AdjustAllianceResearchAgreementEffect::AllianceResearchData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustAllianceScienceEffect.AllianceScienceData.html">AI::AdjustAllianceScienceEffect::AllianceScienceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustAllianceTourismEffect.AllianceTourismData.html">AI::AdjustAllianceTourismEffect::AllianceTourismData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustAllianceYieldFromReligionEffect.AllianceYieldData.html">AI::AdjustAllianceYieldFromReligionEffect::AllianceYieldData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBanCityProductionEffect.ProductionData.html">AI::AdjustBanCityProductionEffect::ProductionData</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBarbarianCombatEffect.CombatAdjustmentData.html">AI::AdjustBarbarianCombatEffect::CombatAdjustmentData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBlockUnitEntryEffect.BlockUnitEntryData.html">AI::AdjustBlockUnitEntryEffect::BlockUnitEntryData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBuildingHousingEffect.HousingAdjustmentData.html">AI::AdjustBuildingHousingEffect::HousingAdjustmentData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBuildingProductionEffect.BuildingProductionData.html">AI::AdjustBuildingProductionEffect::BuildingProductionData</a></td>
+<td>40 (0x28)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBuildingPurchaseCostEffect.BuildingPurchaseData.html">AI::AdjustBuildingPurchaseCostEffect::BuildingPurchaseData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBuildingYieldEffect.BuildingYieldData.html">AI::AdjustBuildingYieldEffect::BuildingYieldData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBuildingYieldForDistrictEffect.DistrictYieldData.html">AI::AdjustBuildingYieldForDistrictEffect::DistrictYieldData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustBuildingYieldModifier.BuildingYieldData.html">AI::AdjustBuildingYieldModifier::BuildingYieldData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityAirDefenseEffect.AirDefenseData.html">AI::AdjustCityAirDefenseEffect::AirDefenseData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityAmenetiesEffect.CityAmenetiesData.html">AI::AdjustCityAmenetiesEffect::CityAmenetiesData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityAmenetiesGovEffect.CityAmenetiesData.html">AI::AdjustCityAmenetiesGovEffect::CityAmenetiesData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityAttacksEffect.CityAttacksData.html">AI::AdjustCityAttacksEffect::CityAttacksData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityBorderEffect.CultureYieldData.html">AI::AdjustCityBorderEffect::CultureYieldData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityCombatBonusEffect.CityCombatData.html">AI::AdjustCityCombatBonusEffect::CityCombatData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityCorpsArmyProductionEffect.CorpsDiscountData.html">AI::AdjustCityCorpsArmyProductionEffect::CorpsDiscountData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityDistrictYieldEffect.DistrictYieldData.html">AI::AdjustCityDistrictYieldEffect::DistrictYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityEntertainmentEffect.EntertainmentData.html">AI::AdjustCityEntertainmentEffect::EntertainmentData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityEraTagUnitProductionEffect.EraTagData.html">AI::AdjustCityEraTagUnitProductionEffect::EraTagData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityExtraAccumulationEffect.CityAccumulationData.html">AI::AdjustCityExtraAccumulationEffect::CityAccumulationData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityExtraAmenityForLuxuryDiversityEffect.LuxuryDiversityData.html">AI::AdjustCityExtraAmenityForLuxuryDiversityEffect::LuxuryDiversityData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityFreePowerEffect.FreePowerData.html">AI::AdjustCityFreePowerEffect::FreePowerData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityGreatPersonEffect.GreatPersonData.html">AI::AdjustCityGreatPersonEffect::GreatPersonData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityGrowthEffect.CityGrowthData.html">AI::AdjustCityGrowthEffect::CityGrowthData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityIgnoreStrategicsEffect.IgnoreData.html">AI::AdjustCityIgnoreStrategicsEffect::IgnoreData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityInnerDefenseEffect.InnerDefenseData.html">AI::AdjustCityInnerDefenseEffect::InnerDefenseData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityOuterDefenseEffect.OuterDefenseData.html">AI::AdjustCityOuterDefenseEffect::OuterDefenseData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityPopulationEffect.CityPopData.html">AI::AdjustCityPopulationEffect::CityPopData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityPopulationGoldEffect.PopulationGoldData.html">AI::AdjustCityPopulationGoldEffect::PopulationGoldData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityPopulationYieldEffect.PopulationYieldData.html">AI::AdjustCityPopulationYieldEffect::PopulationYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityProductionBuilding.ProductionChange.html">AI::AdjustCityProductionBuilding::ProductionChange</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityProductionDistrict.ProductionChange.html">AI::AdjustCityProductionDistrict::ProductionChange</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityProductionUnit.ProductionChange.html">AI::AdjustCityProductionUnit::ProductionChange</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityPropertyEffect.CityPropertyData.html">AI::AdjustCityPropertyEffect::CityPropertyData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityRangeStrikeEffect.CityRangeStrikeData.html">AI::AdjustCityRangeStrikeEffect::CityRangeStrikeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityReligiousPressureEffect.CityReligionData.html">AI::AdjustCityReligiousPressureEffect::CityReligionData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCitySiegeProtectionEffect.CitySiegeData.html">AI::AdjustCitySiegeProtectionEffect::CitySiegeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCitySpyDefenseEffect.CitySpyData.html">AI::AdjustCitySpyDefenseEffect::CitySpyData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCitySpyYieldEffect.SpyYieldData.html">AI::AdjustCitySpyYieldEffect::SpyYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityTourismEffect.CityTourismData.html">AI::AdjustCityTourismEffect::CityTourismData</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityTourismImprovementsEffect.CityTourismImprovementData.html">AI::AdjustCityTourismImprovementsEffect::CityTourismImprovementData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityTourismInEraEffect.CityTourismData.html">AI::AdjustCityTourismInEraEffect::CityTourismData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityTourismPerFeatureEffect.CityTourismFeatureData.html">AI::AdjustCityTourismPerFeatureEffect::CityTourismFeatureData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityTradeYieldPerDestLuxuryInternational.CityTradeYieldChangeData.html">AI::AdjustCityTradeYieldPerDestLuxuryInternational::CityTradeYieldChangeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityTradeYieldPerDestStrategicInternational.CityTradeYieldChangeData.html">AI::AdjustCityTradeYieldPerDestStrategicInternational::CityTradeYieldChangeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityUnitDomainProductionEffect.CityUnitsDomainData.html">AI::AdjustCityUnitDomainProductionEffect::CityUnitsDomainData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityUnitProductionEffect.CityUnitsData.html">AI::AdjustCityUnitProductionEffect::CityUnitsData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityYieldEffect.YieldChangeData.html">AI::AdjustCityYieldEffect::YieldChangeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityYieldModifierEffect.YieldModifierData.html">AI::AdjustCityYieldModifierEffect::YieldModifierData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCityYieldPerTerrainClassEffect.YieldTerrainClassData.html">AI::AdjustCityYieldPerTerrainClassEffect::YieldTerrainClassData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustCivicBoostEffect.ExtraBoostData.html">AI::AdjustCivicBoostEffect::ExtraBoostData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDiplomacyEffect.DiplomacyData.html">AI::AdjustDiplomacyEffect::DiplomacyData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDiplomaticBuildingFavorPerTurnEffect.BuildingFavorPerTurnData.html">AI::AdjustDiplomaticBuildingFavorPerTurnEffect::BuildingFavorPerTurnData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDiplomaticFavorEffect.PlayerFavorData.html">AI::AdjustDiplomaticFavorEffect::PlayerFavorData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDiplomaticFavorPerTurnEffect.FavorPerTurnData.html">AI::AdjustDiplomaticFavorPerTurnEffect::FavorPerTurnData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDiplomaticPointsEffect.DiploPointsData.html">AI::AdjustDiplomaticPointsEffect::DiploPointsData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictAmenityEffect.DistrictAmenityData.html">AI::AdjustDistrictAmenityEffect::DistrictAmenityData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictBaseYieldEffect.YieldModifierData.html">AI::AdjustDistrictBaseYieldEffect::YieldModifierData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictCreationEffect.DistrictCreationData.html">AI::AdjustDistrictCreationEffect::DistrictCreationData</a></td>
+<td>32 (0x20)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictFeaturesEffect.DistrictFeatureData.html">AI::AdjustDistrictFeaturesEffect::DistrictFeatureData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictGreatPersonEffect.DistrictGppData.html">AI::AdjustDistrictGreatPersonEffect::DistrictGppData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictHousingEffect.DistrictHousingData.html">AI::AdjustDistrictHousingEffect::DistrictHousingData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictProductionEffect.DistrictProductionData.html">AI::AdjustDistrictProductionEffect::DistrictProductionData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictPropertyEffect.DistrictPropertyData.html">AI::AdjustDistrictPropertyEffect::DistrictPropertyData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictYieldAppealEffect.YieldModifierData.html">AI::AdjustDistrictYieldAppealEffect::YieldModifierData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictYieldChangeEffect.YieldModifierData.html">AI::AdjustDistrictYieldChangeEffect::YieldModifierData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDistrictYieldModifierEffect.YieldModifierData.html">AI::AdjustDistrictYieldModifierEffect::YieldModifierData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDuplicateFirstInfluenceTokenEffect.TokenData.html">AI::AdjustDuplicateFirstInfluenceTokenEffect::TokenData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustDuplicateInfluenceTokenRivalEffect.TokenData.html">AI::AdjustDuplicateInfluenceTokenRivalEffect::TokenData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustEraScoreCivicBoostEffect.EraScoreData.html">AI::AdjustEraScoreCivicBoostEffect::EraScoreData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustEraScoreTechBoostEffect.EraScoreData.html">AI::AdjustEraScoreTechBoostEffect::EraScoreData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustExtraUnitEffect.ExtraUnitData.html">AI::AdjustExtraUnitEffect::ExtraUnitData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustFaithDispersalEffect.FaithDispersalData.html">AI::AdjustFaithDispersalEffect::FaithDispersalData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustFullAccessStrategicEffect.FullAccessData.html">AI::AdjustFullAccessStrategicEffect::FullAccessData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGamePropertyEffect.GamePropertyData.html">AI::AdjustGamePropertyEffect::GamePropertyData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGovernmentSlotsAllPlayersEffect.GovernmentData.html">AI::AdjustGovernmentSlotsAllPlayersEffect::GovernmentData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGovernmentSlotsEffect.GovernmentData.html">AI::AdjustGovernmentSlotsEffect::GovernmentData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGovernorPointsEffect.GovernorData.html">AI::AdjustGovernorPointsEffect::GovernorData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGreatPersonBonusEffect.GpBonusData.html">AI::AdjustGreatPersonBonusEffect::GpBonusData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGreatPersonPatronageEffect.PatronageData.html">AI::AdjustGreatPersonPatronageEffect::PatronageData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGreatPersonPtsEffect.GreatPersonData.html">AI::AdjustGreatPersonPtsEffect::GreatPersonData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGreatPersonPtsPercentEffect.GreatPersonData.html">AI::AdjustGreatPersonPtsPercentEffect::GreatPersonData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustGrievanceGenerationEffect.GrievanceData.html">AI::AdjustGrievanceGenerationEffect::GrievanceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustHappinessEffect.HappyData.html">AI::AdjustHappinessEffect::HappyData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustHealingFromDispersalEffect.DispersalHealingData.html">AI::AdjustHealingFromDispersalEffect::DispersalHealingData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustIgnoreZocEffect.IgnoreData.html">AI::AdjustIgnoreZocEffect::IgnoreData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustImprovementHousingEffect.ImprovementHousingData.html">AI::AdjustImprovementHousingEffect::ImprovementHousingData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustImprovementPropertyEffect.ImprovementPropertyData.html">AI::AdjustImprovementPropertyEffect::ImprovementPropertyData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustInfluencePointsPerTurnEffect.InfluenceData.html">AI::AdjustInfluencePointsPerTurnEffect::InfluenceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustInvalidTerrainEffect.TerrainData.html">AI::AdjustInvalidTerrainEffect::TerrainData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustMoveAndAttackEffect.AttackData.html">AI::AdjustMoveAndAttackEffect::AttackData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustNumberStolenTechsEffect.SpyBonusData.html">AI::AdjustNumberStolenTechsEffect::SpyBonusData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustParadropEffect.ParadropData.html">AI::AdjustParadropEffect::ParadropData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPillageImprovementModEffect.PillageModData.html">AI::AdjustPillageImprovementModEffect::PillageModData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerBuffUnitProductionYieldEffect.ProductionYieldData.html">AI::AdjustPlayerBuffUnitProductionYieldEffect::ProductionYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerDistrictPilliageModEffect.PillageModData.html">AI::AdjustPlayerDistrictPilliageModEffect::PillageModData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerPropertyEffect.PlayerPropertyData.html">AI::AdjustPlayerPropertyEffect::PlayerPropertyData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerReligiousTourismEffect.TourismData.html">AI::AdjustPlayerReligiousTourismEffect::TourismData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerResourceStockpileCapEffect.StockpileData.html">AI::AdjustPlayerResourceStockpileCapEffect::StockpileData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerTradeRouteDomesticEffect.TradeData.html">AI::AdjustPlayerTradeRouteDomesticEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerTradeRouteFavorEffect.TradeData.html">AI::AdjustPlayerTradeRouteFavorEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerTradeRouteForeignEffect.TradeData.html">AI::AdjustPlayerTradeRouteForeignEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerTradeRoutePlunderFavorEffect.TradeData.html">AI::AdjustPlayerTradeRoutePlunderFavorEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerValidBuildingEffect.ValidBuildingData.html">AI::AdjustPlayerValidBuildingEffect::ValidBuildingData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerWarWearinessModEffect.WarWearinessData.html">AI::AdjustPlayerWarWearinessModEffect::WarWearinessData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerYieldEffect.YieldChangeData.html">AI::AdjustPlayerYieldEffect::YieldChangeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerYieldPerGreatPersonEffect.YieldChangeData.html">AI::AdjustPlayerYieldPerGreatPersonEffect::YieldChangeData</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerYieldPerToken.PlayerYieldData.html">AI::AdjustPlayerYieldPerToken::PlayerYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerYieldPerTributaryEffect.YieldChangeData.html">AI::AdjustPlayerYieldPerTributaryEffect::YieldChangeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlayerYieldPerTributaryModEffect.YieldChangeData.html">AI::AdjustPlayerYieldPerTributaryModEffect::YieldChangeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPlotYieldEffect.AdjustYieldData.html">AI::AdjustPlotYieldEffect::AdjustYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPolicyAmenityEffect.PolicyAmenityData.html">AI::AdjustPolicyAmenityEffect::PolicyAmenityData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPolicyHousingEffect.PolicyHousingData.html">AI::AdjustPolicyHousingEffect::PolicyHousingData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustProjectProductionEffect.ProjectProductionData.html">AI::AdjustProjectProductionEffect::ProjectProductionData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustPurchasePlotEffect.PurchasePlotData.html">AI::AdjustPurchasePlotEffect::PurchasePlotData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustResourceAccumulationEffect.PlayerResourceAccumulationtData.html">AI::AdjustResourceAccumulationEffect::PlayerResourceAccumulationtData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustResourcePowerGovernorEffect.ResourcePowerGovernorData.html">AI::AdjustResourcePowerGovernorEffect::ResourcePowerGovernorData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustRiverDistrictEffect.AdjustCostData.html">AI::AdjustRiverDistrictEffect::AdjustCostData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustRiverWonderEffect.AdjustCostData.html">AI::AdjustRiverWonderEffect::AdjustCostData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustScienceVictoryPointsEffect.ScienceVictoryData.html">AI::AdjustScienceVictoryPointsEffect::ScienceVictoryData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustSpaceRaceProductionEffect.AdjustSpaceRaceData.html">AI::AdjustSpaceRaceProductionEffect::AdjustSpaceRaceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustSpyBonusEffect.SpyBonusData.html">AI::AdjustSpyBonusEffect::SpyBonusData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustTechBoostEffect.ExtraBoostData.html">AI::AdjustTechBoostEffect::ExtraBoostData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustTradeRouteCapacityEffect.TradeData.html">AI::AdjustTradeRouteCapacityEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustTradeRouteDestinationAllyEffect.TradeData.html">AI::AdjustTradeRouteDestinationAllyEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustTradeRouteOriginAllyEffect.TradeData.html">AI::AdjustTradeRouteOriginAllyEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustTradeRouteTourismEffect.TradeData.html">AI::AdjustTradeRouteTourismEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustTradeRouteYieldEffect.TradeData.html">AI::AdjustTradeRouteYieldEffect::TradeData</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustTradeRouteYieldOtherEffect.TradeData.html">AI::AdjustTradeRouteYieldOtherEffect::TradeData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitAttackWallEffect.AttackData.html">AI::AdjustUnitAttackWallEffect::AttackData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitAttackWallWholeGamePromotionClassEffect.AttackPromotionClassData.html">AI::AdjustUnitAttackWallWholeGamePromotionClassEffect::AttackPromotionClassData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitBypassWallEffect.BypassData.html">AI::AdjustUnitBypassWallEffect::BypassData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitChargesEffect.ChargeData.html">AI::AdjustUnitChargesEffect::ChargeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitExtraMovesEffect.MoveData.html">AI::AdjustUnitExtraMovesEffect::MoveData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitGrantExperienceEffect.XpData.html">AI::AdjustUnitGrantExperienceEffect::XpData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitLoyaltyDamageEffect.DamageData.html">AI::AdjustUnitLoyaltyDamageEffect::DamageData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitMaintenanceDiscount.MaintenanceData.html">AI::AdjustUnitMaintenanceDiscount::MaintenanceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitMovement.MoveData.html">AI::AdjustUnitMovement::MoveData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitNoForeignSpreadEffect.ForeignSpreadData.html">AI::AdjustUnitNoForeignSpreadEffect::ForeignSpreadData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitProductionEffect.UnitProductionData.html">AI::AdjustUnitProductionEffect::UnitProductionData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitPropertyEffect.UnitPropertyData.html">AI::AdjustUnitPropertyEffect::UnitPropertyData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitPurchaseCostEffect.UnitPurchaseData.html">AI::AdjustUnitPurchaseCostEffect::UnitPurchaseData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitRockBandTourismBomValuePeaceEffect.RockBandPeaceData.html">AI::AdjustUnitRockBandTourismBomValuePeaceEffect::RockBandPeaceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitSeaMovesEffect.MoveData.html">AI::AdjustUnitSeaMovesEffect::MoveData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitSightEffect.SightData.html">AI::AdjustUnitSightEffect::SightData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitSpyOperationTimeEffect.OperationData.html">AI::AdjustUnitSpyOperationTimeEffect::OperationData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitStrengthReductionEffect.StengthData.html">AI::AdjustUnitStrengthReductionEffect::StengthData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitUpgradeDiscountEffect.DiscountData.html">AI::AdjustUnitUpgradeDiscountEffect::DiscountData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustUnitXpEffect.XpData.html">AI::AdjustUnitXpEffect::XpData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustWmdCountEffect.WmdData.html">AI::AdjustWmdCountEffect::WmdData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AdjustWonderFeaturesEffect.WonderFeatureData.html">AI::AdjustWonderFeaturesEffect::WonderFeatureData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/AiMapChange.html">AI::AiMapChange</a></td>
+<td>24 (0x18)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/AiTarget.html">AI::AiTarget</a></td>
+<td>40 (0x28)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/ArmyKnowledge.html">AI::ArmyKnowledge</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/AssignCityPropertyEffect.PropertyData.html">AI::AssignCityPropertyEffect::PropertyData</a></td>
+<td>32 (0x20)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AssignDistrictPropertyEffect.PropertyData.html">AI::AssignDistrictPropertyEffect::PropertyData</a></td>
+<td>32 (0x20)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AssignGamePropertyEffect.PropertyData.html">AI::AssignGamePropertyEffect::PropertyData</a></td>
+<td>32 (0x20)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AssignPlayerPropertyEffect.PropertyData.html">AI::AssignPlayerPropertyEffect::PropertyData</a></td>
+<td>32 (0x20)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AssignUnitPropertyEffect.PropertyData.html">AI::AssignUnitPropertyEffect::PropertyData</a></td>
+<td>32 (0x20)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/AttachModifierEffect.ModifierData.html">AI::AttachModifierEffect::ModifierData</a></td>
+<td>64 (0x40)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BarbarianKnowledge.html">AI::BarbarianKnowledge</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.AddGoalTechData.html">AI::BehaviorTree::AddGoalTechData</a></td>
+<td>168 (0xa8)</td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ArcheologistDigData.html">AI::BehaviorTree::ArcheologistDigData</a></td>
+<td>24 (0x18)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ArcheologistDonateData.html">AI::BehaviorTree::ArcheologistDonateData</a></td>
+<td>4 (0x4)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BarbarianRaidingScoreData.html">AI::BehaviorTree::BarbarianRaidingScoreData</a></td>
+<td>56 (0x38)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BarbarianRecruitData.html">AI::BehaviorTree::BarbarianRecruitData</a></td>
+<td>96 (0x60)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BarbarianRecruiter.html">AI::BehaviorTree::BarbarianRecruiter</a></td>
+<td>64 (0x40)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BarbarianSpawnRateData.html">AI::BehaviorTree::BarbarianSpawnRateData</a></td>
+<td>48 (0x30)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BehaviorTree.html">AI::BehaviorTree::BehaviorTree</a></td>
+<td>936 (0x3a8)</td>
+<td>24</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BehaviorTreeControlCallbacks.html">AI::BehaviorTree::BehaviorTreeControlCallbacks</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.Blackboard.html">AI::BehaviorTree::Blackboard</a></td>
+<td>536 (0x218)</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.Blackboard.JobHolder.html">AI::BehaviorTree::Blackboard::JobHolder</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BuildFromCityData.html">AI::BehaviorTree::BuildFromCityData</a></td>
+<td>160 (0xa0)</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BuildImprovementData.html">AI::BehaviorTree::BuildImprovementData</a></td>
+<td>96 (0x60)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BuildMilitaryImprovementData.html">AI::BehaviorTree::BuildMilitaryImprovementData</a></td>
+<td>40 (0x28)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.BuildProductionData.html">AI::BehaviorTree::BuildProductionData</a></td>
+<td>40 (0x28)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.CancelContractData.html">AI::BehaviorTree::CancelContractData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.CheckPlotData.html">AI::BehaviorTree::CheckPlotData</a></td>
+<td>120 (0x78)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ChooseCityData.html">AI::BehaviorTree::ChooseCityData</a></td>
+<td>88 (0x58)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ChooseImprovementData.html">AI::BehaviorTree::ChooseImprovementData</a></td>
+<td>72 (0x48)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.CityAttackUnitsData.html">AI::BehaviorTree::CityAttackUnitsData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.CityBuildRailroadData.html">AI::BehaviorTree::CityBuildRailroadData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ClearPlotData.html">AI::BehaviorTree::ClearPlotData</a></td>
+<td>72 (0x48)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ConcurrentNodeData.html">AI::BehaviorTree::ConcurrentNodeData</a></td>
+<td>40 (0x28)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ContractData.html">AI::BehaviorTree::ContractData</a></td>
+<td>88 (0x58)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.DataEntry.html">AI::BehaviorTree::DataEntry</a></td>
+<td>52 (0x34)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.DecisionState.html">AI::BehaviorTree::DecisionState</a></td>
+<td>20 (0x14)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.DecodeTriggerData.html">AI::BehaviorTree::DecodeTriggerData</a></td>
+<td>144 (0x90)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.DiplomacyData.html">AI::BehaviorTree::DiplomacyData</a></td>
+<td>96 (0x60)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.Factory.html">AI::BehaviorTree::Factory</a></td>
+<td>984 (0x3d8)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.Factory.FactoryNodeData.html">AI::BehaviorTree::Factory::FactoryNodeData</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.Factory.FactoryNodeDefinition.html">AI::BehaviorTree::Factory::FactoryNodeDefinition</a></td>
+<td>24 (0x18)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.FindTargetsData.html">AI::BehaviorTree::FindTargetsData</a></td>
+<td>72 (0x48)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.FindUnitsData.html">AI::BehaviorTree::FindUnitsData</a></td>
+<td>80 (0x50)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.FindUnitsEvaluator.html">AI::BehaviorTree::FindUnitsEvaluator</a></td>
+<td>32 (0x20)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.GetterData.html">AI::BehaviorTree::GetterData</a></td>
+<td>144 (0x90)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.HasGreatPersonData.html">AI::BehaviorTree::HasGreatPersonData</a></td>
+<td>24 (0x18)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.HasInquisitionData.html">AI::BehaviorTree::HasInquisitionData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.HasPlayerAbilityData.html">AI::BehaviorTree::HasPlayerAbilityData</a></td>
+<td>56 (0x38)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.InDifficultyData.html">AI::BehaviorTree::InDifficultyData</a></td>
+<td>72 (0x48)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.IntervalData.html">AI::BehaviorTree::IntervalData</a></td>
+<td>24 (0x18)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.IsAtWarData.html">AI::BehaviorTree::IsAtWarData</a></td>
+<td>72 (0x48)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.IsNearFalloutData.html">AI::BehaviorTree::IsNearFalloutData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.LaunchInquisitionData.html">AI::BehaviorTree::LaunchInquisitionData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.LaunchNukesData.html">AI::BehaviorTree::LaunchNukesData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.LockUnitsData.html">AI::BehaviorTree::LockUnitsData</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.LuaScriptData.html">AI::BehaviorTree::LuaScriptData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.MakeFormationData.html">AI::BehaviorTree::MakeFormationData</a></td>
+<td>80 (0x50)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.Manager.html">AI::BehaviorTree::Manager</a></td>
+<td>928 (0x3a0)</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.MoveUnitData.html">AI::BehaviorTree::MoveUnitData</a></td>
+<td>88 (0x58)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.NavalChooseTargetData.html">AI::BehaviorTree::NavalChooseTargetData</a></td>
+<td>40 (0x28)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.NavalEscortEvaluator.html">AI::BehaviorTree::NavalEscortEvaluator</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.NearestCityJob.html">AI::BehaviorTree::NearestCityJob</a></td>
+<td>72 (0x48)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.NodeData.html">AI::BehaviorTree::NodeData</a></td>
+<td>168 (0xa8)</td>
+<td>62</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.NodeDefinition.html">AI::BehaviorTree::NodeDefinition</a></td>
+<td>184 (0xb8)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.NotifyOwnerData.html">AI::BehaviorTree::NotifyOwnerData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OpRecruitEvaluator.html">AI::BehaviorTree::OpRecruitEvaluator</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OperationAirAssaultData.html">AI::BehaviorTree::OperationAirAssaultData</a></td>
+<td>88 (0x58)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OperationAttackUnitsData.html">AI::BehaviorTree::OperationAttackUnitsData</a></td>
+<td>88 (0x58)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OperationChangeTargetData.html">AI::BehaviorTree::OperationChangeTargetData</a></td>
+<td>88 (0x58)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OperationMoveData.html">AI::BehaviorTree::OperationMoveData</a></td>
+<td>128 (0x80)</td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OperationNavalEscortData.html">AI::BehaviorTree::OperationNavalEscortData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OperationPillageData.html">AI::BehaviorTree::OperationPillageData</a></td>
+<td>48 (0x30)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.OperationProtectUnitsData.html">AI::BehaviorTree::OperationProtectUnitsData</a></td>
+<td>40 (0x28)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ProtectUnitData.html">AI::BehaviorTree::ProtectUnitData</a></td>
+<td>40 (0x28)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.PurchasePlotData.html">AI::BehaviorTree::PurchasePlotData</a></td>
+<td>64 (0x40)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.RecruitUnitsData.html">AI::BehaviorTree::RecruitUnitsData</a></td>
+<td>144 (0x90)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.ReservePlotData.html">AI::BehaviorTree::ReservePlotData</a></td>
+<td>72 (0x48)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.RunBehaviorTreeData.html">AI::BehaviorTree::RunBehaviorTreeData</a></td>
+<td>40 (0x28)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.SequenceNodeData.html">AI::BehaviorTree::SequenceNodeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.SettleActionData.html">AI::BehaviorTree::SettleActionData</a></td>
+<td>24 (0x18)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.SpyAtCityEvaluator.html">AI::BehaviorTree::SpyAtCityEvaluator</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.SpyChooseMissionData.html">AI::BehaviorTree::SpyChooseMissionData</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.SpyDoOperationData.html">AI::BehaviorTree::SpyDoOperationData</a></td>
+<td>56 (0x38)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.SpyMoveToCityData.html">AI::BehaviorTree::SpyMoveToCityData</a></td>
+<td>40 (0x28)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.StringTable.html">AI::BehaviorTree::StringTable</a></td>
+<td>24 (0x18)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.TurnLimitData.html">AI::BehaviorTree::TurnLimitData</a></td>
+<td>56 (0x38)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.UpgradeUnitsData.html">AI::BehaviorTree::UpgradeUnitsData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BehaviorTree.UseGreatPersonData.html">AI::BehaviorTree::UseGreatPersonData</a></td>
+<td>4 (0x4)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/BeliefAnalysis.html">AI::BeliefAnalysis</a></td>
+<td>48 (0x30)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/BeliefAnalysisJob.html">AI::BeliefAnalysisJob</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BoostManager.html">AI::BoostManager</a></td>
+<td>64 (0x40)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/BoostManager.BoostManagement.html">AI::BoostManager::BoostManagement</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/BoostSupport.html">AI::BoostSupport</a></td>
+<td>80 (0x50)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/BoostSupportFunctions.html">AI::BoostSupportFunctions</a></td>
+<td>40 (0x28)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/CityBuild.html">AI::CityBuild</a></td>
+<td>1688 (0x698)</td>
+<td>50</td>
+</tr>
+<tr>
+<td><a href="AI/CityDistrictProductionEffect.DistrictProductionData.html">AI::CityDistrictProductionEffect::DistrictProductionData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/CityEvaluationJob.html">AI::CityEvaluationJob</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/CityHasBuildingRequirement.BuildingTypeData.html">AI::CityHasBuildingRequirement::BuildingTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/CityHasDistrictRequirement.DistrictTypeData.html">AI::CityHasDistrictRequirement::DistrictTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/CityHasDistrictsRequirement.NumDistrictsData.html">AI::CityHasDistrictsRequirement::NumDistrictsData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/CityHasGoodDistrictRequirement.DistrictData.html">AI::CityHasGoodDistrictRequirement::DistrictData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/CityHasPopulationRequirement.PopulationData.html">AI::CityHasPopulationRequirement::PopulationData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/CityKnowledge.html">AI::CityKnowledge</a></td>
+<td>224 (0xe0)</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a href="AI/CityManager.html">AI::CityManager</a></td>
+<td>176 (0xb0)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="AI/CityPlanner.html">AI::CityPlanner</a></td>
+<td>112 (0x70)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/CityPlotEvaluation.html">AI::CityPlotEvaluation</a></td>
+<td>120 (0x78)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/CityPlotInfo.html">AI::CityPlotInfo</a></td>
+<td>96 (0x60)</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a href="AI/CityPlotReservationInfo.html">AI::CityPlotReservationInfo</a></td>
+<td>12 (0xc)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/CityReligionAnalysis.html">AI::CityReligionAnalysis</a></td>
+<td>64 (0x40)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/CitySettleSiteEvaluation.html">AI::CitySettleSiteEvaluation</a></td>
+<td>12 (0xc)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/CitySiteEvaluation.html">AI::CitySiteEvaluation</a></td>
+<td>120 (0x78)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/CityTradeInfo.html">AI::CityTradeInfo</a></td>
+<td>96 (0x60)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/CivKnowledge.html">AI::CivKnowledge</a></td>
+<td>1824 (0x720)</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a href="AI/CivKnowledge.ArmyUnitInfo.html">AI::CivKnowledge::ArmyUnitInfo</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/CivicAnalysis.html">AI::CivicAnalysis</a></td>
+<td>80 (0x50)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="AI/CivicAnalyzer.html">AI::CivicAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/CollectionIndexData.html">AI::CollectionIndexData</a></td>
+<td>16 (0x10)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/CombatOrders.html">AI::CombatOrders</a></td>
+<td>56 (0x38)</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="AI/CombatTypeMatchesRequirement.CombatTypeData.html">AI::CombatTypeMatchesRequirement::CombatTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/CongressSupport.html">AI::CongressSupport</a></td>
+<td>40 (0x28)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Control.Callbacks.html">AI::Control::Callbacks</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Control.CivicResearchContract.html">AI::Control::CivicResearchContract</a></td>
+<td>416 (0x1a0)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/Control.Contract.html">AI::Control::Contract</a></td>
+<td>368 (0x170)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="AI/Control.DiplomaticActionContract.html">AI::Control::DiplomaticActionContract</a></td>
+<td>416 (0x1a0)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/Control.Factory.html">AI::Control::Factory</a></td>
+<td>4 (0x4)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Control.Handle.html">AI::Control::Handle</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/Control.Instance.html">AI::Control::Instance</a></td>
+<td>24 (0x18)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/Control.Manager.html">AI::Control::Manager</a></td>
+<td>520 (0x208)</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="AI/Control.PurchasePlotContract.html">AI::Control::PurchasePlotContract</a></td>
+<td>392 (0x188)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Control.TechResearchContract.html">AI::Control::TechResearchContract</a></td>
+<td>440 (0x1b8)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/Control.UnitEvaluator.html">AI::Control::UnitEvaluator</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Control.UnitRequestContract.html">AI::Control::UnitRequestContract</a></td>
+<td>560 (0x230)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="AI/CultureAi.html">AI::CultureAi</a></td>
+<td>1528 (0x5f8)</td>
+<td>41</td>
+</tr>
+<tr>
+<td><a href="AI/CultureAi_GreatWorks.html">AI::CultureAi_GreatWorks</a></td>
+<td>128 (0x80)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/DealItemEval.html">AI::DealItemEval</a></td>
+<td>12 (0xc)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/Diplomatic.html">AI::Diplomatic</a></td>
+<td>25096 (0x6208)</td>
+<td>53</td>
+</tr>
+<tr>
+<td><a href="AI/DiplomaticActionEvaluators.html">AI::DiplomaticActionEvaluators</a></td>
+<td>232 (0xe8)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/DiplomaticActionHandler.html">AI::DiplomaticActionHandler</a></td>
+<td>136 (0x88)</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a href="AI/DiplomaticActionHandler.DesirabilityEvaluator.html">AI::DiplomaticActionHandler::DesirabilityEvaluator</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/DiplomaticState.html">AI::DiplomaticState</a></td>
+<td>200 (0xc8)</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="AI/DiplomaticSupport.html">AI::DiplomaticSupport</a></td>
+<td>80 (0x50)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/DiplomaticTransition.html">AI::DiplomaticTransition</a></td>
+<td>200 (0xc8)</td>
+<td>24</td>
+</tr>
+<tr>
+<td><a href="AI/DisableGrievanceDecayEffect.GrievanceDecayData.html">AI::DisableGrievanceDecayEffect::GrievanceDecayData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/DistrictDefenses.html">AI::DistrictDefenses</a></td>
+<td>32 (0x20)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/DistrictMatchesRequirement.DistrictTypeData.html">AI::DistrictMatchesRequirement::DistrictTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Economic.html">AI::Economic</a></td>
+<td>712 (0x2c8)</td>
+<td>23</td>
+</tr>
+<tr>
+<td><a href="AI/EnableUnitFaithPurchaseEffect.UnitTagData.html">AI::EnableUnitFaithPurchaseEffect::UnitTagData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Espionage.html">AI::Espionage</a></td>
+<td>680 (0x2a8)</td>
+<td>24</td>
+</tr>
+<tr>
+<td><a href="AI/EspionageAnalyzer.html">AI::EspionageAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/EspionageCityAnalysis.html">AI::EspionageCityAnalysis</a></td>
+<td>56 (0x38)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/EspionageManager.html">AI::EspionageManager</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/ExplorationInfo.html">AI::ExplorationInfo</a></td>
+<td>12 (0xc)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/FeatureAdjacencyEffect.FeatureData.html">AI::FeatureAdjacencyEffect::FeatureData</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/FlavorManager.html">AI::FlavorManager</a></td>
+<td>240 (0xf0)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/GameEffectAnalysis.AnalysisData.html">AI::GameEffectAnalysis::AnalysisData</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GameEffectAnalyzer.html">AI::GameEffectAnalyzer</a></td>
+<td>288 (0x120)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/GameModifierAnalysis.html">AI::GameModifierAnalysis</a></td>
+<td>224 (0xe0)</td>
+<td>40</td>
+</tr>
+<tr>
+<td><a href="AI/GameRequirementAnalysis.AnalysisData.html">AI::GameRequirementAnalysis::AnalysisData</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GameRequirementSetAnalyzer.html">AI::GameRequirementSetAnalyzer</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GameRequirementSetAnalyzer.RequirementInfo.html">AI::GameRequirementSetAnalyzer::RequirementInfo</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/GlobalAi.html">AI::GlobalAi</a></td>
+<td>11904 (0x2e80)</td>
+<td>76</td>
+</tr>
+<tr>
+<td><a href="AI/GovernorAnalysis.html">AI::GovernorAnalysis</a></td>
+<td>64 (0x40)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/GovernorAnalyzer.html">AI::GovernorAnalyzer</a></td>
+<td>64 (0x40)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/GovernorGrantEnvoysEffect.EnvoysData.html">AI::GovernorGrantEnvoysEffect::EnvoysData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GovernorIncreaseEnvoysEffect.EnvoysData.html">AI::GovernorIncreaseEnvoysEffect::EnvoysData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GovernorPromotionAnalysis.html">AI::GovernorPromotionAnalysis</a></td>
+<td>56 (0x38)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/Governors.html">AI::Governors</a></td>
+<td>504 (0x1f8)</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="AI/GrandStrategic.html">AI::GrandStrategic</a></td>
+<td>1280 (0x500)</td>
+<td>31</td>
+</tr>
+<tr>
+<td><a href="AI/GrantAbilityEffect.AbilityData.html">AI::GrantAbilityEffect::AbilityData</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantAllTechBoostByEra.EraData.html">AI::GrantAllTechBoostByEra::EraData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GrantBuildingEffect.GrantBuildingData.html">AI::GrantBuildingEffect::GrantBuildingData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantCityYieldEffect.GrantCityYieldData.html">AI::GrantCityYieldEffect::GrantCityYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GrantCombatAdjacencyEffect.GrantAdjacencyData.html">AI::GrantCombatAdjacencyEffect::GrantAdjacencyData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantFaithFromFeature.FaithData.html">AI::GrantFaithFromFeature::FaithData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantFaithFromHarvest.FaithData.html">AI::GrantFaithFromHarvest::FaithData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantFreeResourceExtractionEffect.FreeResourceExtractionData.html">AI::GrantFreeResourceExtractionEffect::FreeResourceExtractionData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GrantFreeResourceVisibilityEffect.FreeResourceVisbilityData.html">AI::GrantFreeResourceVisibilityEffect::FreeResourceVisbilityData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantGreatPersonEffect.GrantGreatPersonData.html">AI::GrantGreatPersonEffect::GrantGreatPersonData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantHeroEffect.HeroData.html">AI::GrantHeroEffect::HeroData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GrantInfluenceTokenEffect.GrantInfluenceTokenData.html">AI::GrantInfluenceTokenEffect::GrantInfluenceTokenData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantInfluenceWonderEffect.GrantInfluenceData.html">AI::GrantInfluenceWonderEffect::GrantInfluenceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantRandomCivicBoostEffect.BoostData.html">AI::GrantRandomCivicBoostEffect::BoostData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/GrantRandomTechBoostEffect.BoostData.html">AI::GrantRandomTechBoostEffect::BoostData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/GrantSpyEffect.SpyData.html">AI::GrantSpyEffect::SpyData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/GrantUnitEffect.GrantUnitData.html">AI::GrantUnitEffect::GrantUnitData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GrantYieldEffect.GrantYieldData.html">AI::GrantYieldEffect::GrantYieldData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GrantYieldFromYieldRateEffect.GrantYieldData.html">AI::GrantYieldFromYieldRateEffect::GrantYieldData</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/GreatWorkAnalyzer.html">AI::GreatWorkAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/GreatWorkBuildingInfo.html">AI::GreatWorkBuildingInfo</a></td>
+<td>64 (0x40)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="AI/GreatWorkCollectionAnalysis.html">AI::GreatWorkCollectionAnalysis</a></td>
+<td>112 (0x70)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="AI/GreatWorkComboInfo.html">AI::GreatWorkComboInfo</a></td>
+<td>168 (0xa8)</td>
+<td>17</td>
+</tr>
+<tr>
+<td><a href="AI/Homeland.html">AI::Homeland</a></td>
+<td>416 (0x1a0)</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="AI/HomelandAiControlCallbacks.html">AI::HomelandAiControlCallbacks</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/HomelandUnit.html">AI::HomelandUnit</a></td>
+<td>80 (0x50)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/IDiplomatic.html">AI::IDiplomatic</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/IReligious.html">AI::IReligious</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/InfluenceMap.html">AI::InfluenceMap</a></td>
+<td>256 (0x100)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/MayhemTracker.html">AI::MayhemTracker</a></td>
+<td>4 (0x4)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Military.html">AI::Military</a></td>
+<td>1672 (0x688)</td>
+<td>39</td>
+</tr>
+<tr>
+<td><a href="AI/MilitaryDefense.html">AI::MilitaryDefense</a></td>
+<td>88 (0x58)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/MilitaryDefense.Assignment.html">AI::MilitaryDefense::Assignment</a></td>
+<td>12 (0xc)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/ModifierAnalyzer.html">AI::ModifierAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/Move.html">AI::Move</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/MoveList.html">AI::MoveList</a></td>
+<td>48 (0x30)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/NearCultureBorderRequirement.CultureBorderData.html">AI::NearCultureBorderRequirement::CultureBorderData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.Operation.html">AI::Operation::Operation</a></td>
+<td>776 (0x308)</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.OperationConditionFunctions.html">AI::Operation::OperationConditionFunctions</a></td>
+<td>40 (0x28)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.OperationDef.html">AI::Operation::OperationDef</a></td>
+<td>128 (0x80)</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.OperationEvaluator.html">AI::Operation::OperationEvaluator</a></td>
+<td>112 (0x70)</td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.OperationTarget.html">AI::Operation::OperationTarget</a></td>
+<td>32 (0x20)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.OperationTeam.html">AI::Operation::OperationTeam</a></td>
+<td>280 (0x118)</td>
+<td>18</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.OperationTeam.FormationPairs.html">AI::Operation::OperationTeam::FormationPairs</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.TeamDefinition.html">AI::Operation::TeamDefinition</a></td>
+<td>48 (0x30)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/Operation.TeamRequirement.html">AI::Operation::TeamRequirement</a></td>
+<td>28 (0x1c)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/OpponentPromotionClassRequirement.PromotionClassData.html">AI::OpponentPromotionClassRequirement::PromotionClassData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/OpponentUnitDomainRequirement.UnitDomainData.html">AI::OpponentUnitDomainRequirement::UnitDomainData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/OpponentUnitTypeRequirement.UnitTypeData.html">AI::OpponentUnitTypeRequirement::UnitTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Planning.Instance.html">AI::Planning::Instance</a></td>
+<td>104 (0x68)</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="AI/Planning.Instance.MoveInformation.html">AI::Planning::Instance::MoveInformation</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/Planning.Instance.TargetInformation.html">AI::Planning::Instance::TargetInformation</a></td>
+<td>208 (0xd0)</td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="AI/Planning.Manager.html">AI::Planning::Manager</a></td>
+<td>264 (0x108)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/Planning.PlotsOnly.html">AI::Planning::PlotsOnly</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/Planning.UnitPlanningJob.html">AI::Planning::UnitPlanningJob</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/PlayerComponent.html">AI::PlayerComponent</a></td>
+<td>8 (0x8)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlayerGaveInfluenceRequirement.InfluenceTypeData.html">AI::PlayerGaveInfluenceRequirement::InfluenceTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlayerKnowledge.html">AI::PlayerKnowledge</a></td>
+<td>8 (0x8)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/PlayerSuzerainFavorMultiplierEffect.SuzerainFavorMultiplierFavorData.html">AI::PlayerSuzerainFavorMultiplierEffect::SuzerainFavorMultiplierFavorData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlayerTokenForTradeRouteEffect.PlayerTokenForTradeRouteData.html">AI::PlayerTokenForTradeRouteEffect::PlayerTokenForTradeRouteData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlayerTourismEffect.TourismData.html">AI::PlayerTourismEffect::TourismData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlayerUnitStrengthEffect.UnitCombatStrengthData.html">AI::PlayerUnitStrengthEffect::UnitCombatStrengthData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotAdjacentToDistrictRequirement.AdjacentDistrictData.html">AI::PlotAdjacentToDistrictRequirement::AdjacentDistrictData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotAdjacentToFeatureRequirement.AdjacentFeatureData.html">AI::PlotAdjacentToFeatureRequirement::AdjacentFeatureData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotAdjacentToImprovementRequirement.AdjacentImprovementData.html">AI::PlotAdjacentToImprovementRequirement::AdjacentImprovementData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotAdjacentToResourceRequirement.AdjacentResourceData.html">AI::PlotAdjacentToResourceRequirement::AdjacentResourceData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotAppealBetween.AppealData.html">AI::PlotAppealBetween::AppealData</a></td>
+<td>16 (0x10)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/PlotDistrictTagRequirement.DistrictTagData.html">AI::PlotDistrictTagRequirement::DistrictTagData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotDistrictTypeRequirement.DistrictTypeData.html">AI::PlotDistrictTypeRequirement::DistrictTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotEvaluation.html">AI::PlotEvaluation</a></td>
+<td>216 (0xd8)</td>
+<td>17</td>
+</tr>
+<tr>
+<td><a href="AI/PlotFeatureRequirement.FeatureData.html">AI::PlotFeatureRequirement::FeatureData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotImprovedResourceClassRequirement.ResourceClassData.html">AI::PlotImprovedResourceClassRequirement::ResourceClassData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotImprovementTagRequirement.ImprovementTagData.html">AI::PlotImprovementTagRequirement::ImprovementTagData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotImprovementTypeRequirement.ImprovementTypeData.html">AI::PlotImprovementTypeRequirement::ImprovementTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotResourceClassRequirement.ResourceClassData.html">AI::PlotResourceClassRequirement::ResourceClassData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotResourceTagRequirement.ResourceTagData.html">AI::PlotResourceTagRequirement::ResourceTagData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotResourceTypeRequirement.ResourceTypeData.html">AI::PlotResourceTypeRequirement::ResourceTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PlotTerrainMatchRequirement.TerrainTypeData.html">AI::PlotTerrainMatchRequirement::TerrainTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/PolicyAnalysis.html">AI::PolicyAnalysis</a></td>
+<td>80 (0x50)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/PolicyAnalyzer.html">AI::PolicyAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/Religious.html">AI::Religious</a></td>
+<td>712 (0x2c8)</td>
+<td>24</td>
+</tr>
+<tr>
+<td><a href="AI/ReligiousManager.html">AI::ReligiousManager</a></td>
+<td>32 (0x20)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/Research.html">AI::Research</a></td>
+<td>704 (0x2c0)</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a href="AI/ResolutionAnalysis.html">AI::ResolutionAnalysis</a></td>
+<td>32 (0x20)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/ResolutionAnalyzer.html">AI::ResolutionAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/RockBandAnalysis.html">AI::RockBandAnalysis</a></td>
+<td>32 (0x20)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/RockBandAnalyzer.html">AI::RockBandAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/SettleScoreInformation.html">AI::SettleScoreInformation</a></td>
+<td>80 (0x50)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/SiteEvaluationJob.html">AI::SiteEvaluationJob</a></td>
+<td>104 (0x68)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/StateVector.html">AI::StateVector</a></td>
+<td>12888 (0x3258)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/Tactical.html">AI::Tactical</a></td>
+<td>440 (0x1b8)</td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="AI/TacticalAiControlCallbacks.html">AI::TacticalAiControlCallbacks</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/TacticalUnit.html">AI::TacticalUnit</a></td>
+<td>48 (0x30)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="AI/TargetList.html">AI::TargetList</a></td>
+<td>32 (0x20)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/Targets.html">AI::Targets</a></td>
+<td>2504 (0x9c8)</td>
+<td>25</td>
+</tr>
+<tr>
+<td><a href="AI/TechAnalyzer.html">AI::TechAnalyzer</a></td>
+<td>56 (0x38)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/TechTreeAnalysis.html">AI::TechTreeAnalysis</a></td>
+<td>80 (0x50)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="AI/TerrainAdjacencyEffect.TerrainData.html">AI::TerrainAdjacencyEffect::TerrainData</a></td>
+<td>24 (0x18)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/Trade.City.html">AI::Trade::City</a></td>
+<td>64 (0x40)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/Trade.CityTradeConnection.html">AI::Trade::CityTradeConnection</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/Trade.Player.html">AI::Trade::Player</a></td>
+<td>32 (0x20)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/TradeItem.html">AI::TradeItem</a></td>
+<td>20 (0x14)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="AI/TradeKnowledge.html">AI::TradeKnowledge</a></td>
+<td>104 (0x68)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="AI/TriggeredTransition.html">AI::TriggeredTransition</a></td>
+<td>16 (0x10)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/TriggeredTreeInfo.html">AI::TriggeredTreeInfo</a></td>
+<td>24 (0x18)</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="AI/UnitEfficiencyInfo.html">AI::UnitEfficiencyInfo</a></td>
+<td>360 (0x168)</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="AI/UnitEfficiencyManager.html">AI::UnitEfficiencyManager</a></td>
+<td>72 (0x48)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/UnitInfluenceJob.html">AI::UnitInfluenceJob</a></td>
+<td>88 (0x58)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="AI/UnitInfo.html">AI::UnitInfo</a></td>
+<td>32 (0x20)</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AI/UnitProduction.html">AI::UnitProduction</a></td>
+<td>48 (0x30)</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AI/UnitPromotionClassMatchesRequirement.PromotionClassData.html">AI::UnitPromotionClassMatchesRequirement::PromotionClassData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/UnitTagRequirement.UnitTagData.html">AI::UnitTagRequirement::UnitTagData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/UnitTypeRequirement.UnitTypeData.html">AI::UnitTypeRequirement::UnitTypeData</a></td>
+<td>16 (0x10)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/VictoryStrategy.html">AI::VictoryStrategy</a></td>
+<td>248 (0xf8)</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a href="AI/VictorySupportFunctions.html">AI::VictorySupportFunctions</a></td>
+<td>40 (0x28)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AI/WarKnowledge.html">AI::WarKnowledge</a></td>
+<td>16 (0x10)</td>
+<td>4</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

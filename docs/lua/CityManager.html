@@ -1,0 +1,183 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CityManager</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › CityManager</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>CityManager</h1>
+<p>19 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager/">CityManager</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="canstartcommand"></a>CanStartCommand</td>
+<td><code>CityManager.CanStartCommand(arg1?: any, arg2: string/number[TypeHash], arg3: boolean) → boolean ⚠</code><br><small>args: <code>arg2</code> — A constant from the Lua table CityCommandTypes.</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.CanStartCommand/">yes ↗</a></td>
+<td><code>0x690a20</code></td>
+<td><code>0x691000</code></td>
+</tr>
+<tr>
+<td><a id="canstartoperation"></a>CanStartOperation</td>
+<td><code>CityManager.CanStartOperation(arg1?: any, arg2?: number, arg3: table) → boolean ⚠</code><br><small>args: <code>arg2</code> — A constant from the Lua table CityOperationTypes.</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.CanStartOperation/">yes ↗</a></td>
+<td><code>0x690c50</code></td>
+<td><code>0x691230</code></td>
+</tr>
+<tr>
+<td><a id="destroycity"></a>DestroyCity</td>
+<td><code>CityManager:DestroyCity(arg1?: number) (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.DestroyCity/">yes ↗</a></td>
+<td><code>0x6cc240</code></td>
+<td><code>0x6cc900</code></td>
+</tr>
+<tr>
+<td><a id="destroydistrict"></a>DestroyDistrict</td>
+<td><code>CityManager:DestroyDistrict(arg1?: number) (or nothing) ⚠</code><br><small>args: <code>arg1</code> — A District object (the scripts pass a variable named pDistrict). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.DestroyDistrict/">yes ↗</a></td>
+<td><code>0x6cc350</code></td>
+<td><code>0x6cca10</code></td>
+</tr>
+<tr>
+<td><a id="getcity"></a>GetCity</td>
+<td><code>CityManager.GetCity(arg1?: number, arg2?: number) → City (or nothing) ⚠</code></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.GetCity/">yes ↗</a></td>
+<td><code>0x690f40</code></td>
+<td><code>0x691520</code></td>
+</tr>
+<tr>
+<td><a id="getcityat"></a>GetCityAt</td>
+<td><code>CityManager.GetCityAt(x: integer/Plot, y?: integer) → City (or nothing)</code><br><small>args: <code>x</code> — Plot x coordinate (plot:GetX()).; <code>y</code> — Plot y coordinate (plot:GetY()).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.GetCityAt/">yes ↗</a></td>
+<td><code>0x691040</code></td>
+<td><code>0x691620</code></td>
+</tr>
+<tr>
+<td><a id="getcommandtargets"></a>GetCommandTargets</td>
+<td><code>CityManager.GetCommandTargets(arg1?: any, arg2: string/number[TypeHash], arg3: table) → 1 values (or nothing) ⚠</code><br><small>args: <code>arg1</code> — A City object (the scripts pass a variable named pCity).; <code>arg2</code> — A constant from the Lua table CityCommandTypes.</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.GetCommandTargets/">yes ↗</a></td>
+<td><code>0x6910b0</code></td>
+<td><code>0x691690</code></td>
+</tr>
+<tr>
+<td><a id="getdistrict"></a>GetDistrict</td>
+<td><code>CityManager.GetDistrict(arg1?: number, arg2?: number) → District (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.GetDistrict/">yes ↗</a></td>
+<td><code>0x6cc5d0</code></td>
+<td><code>0x6ccc90</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictat"></a>GetDistrictAt</td>
+<td><code>CityManager.GetDistrictAt(x: integer/Plot, y?: integer) → District (or nothing)</code><br><small>args: <code>y</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.GetDistrictAt/">yes ↗</a></td>
+<td><code>0x6911f0</code></td>
+<td><code>0x6917d0</code></td>
+</tr>
+<tr>
+<td><a id="getfreecityat"></a>GetFreeCityAt</td>
+<td><code>CityManager.GetFreeCityAt(x: integer/Plot, y?: integer) → FreeCities (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.GetFreeCityAt/">yes ↗</a></td>
+<td><code>0x713a90</code></td>
+<td><code>0x714300</code></td>
+</tr>
+<tr>
+<td><a id="getoperationtargets"></a>GetOperationTargets</td>
+<td><code>CityManager.GetOperationTargets(arg1?: any, arg2?: number, arg3: table) → 1 values (or nothing) ⚠</code><br><small>args: <code>arg1</code> — A City object (the scripts pass a variable named pCity).; <code>arg2</code> — A constant from the Lua table CityOperationTypes.</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.GetOperationTargets/">yes ↗</a></td>
+<td><code>0x691260</code></td>
+<td><code>0x691840</code></td>
+</tr>
+<tr>
+<td><a id="iscity"></a>IsCity</td>
+<td><code>CityManager.IsCity() → boolean</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.IsCity/">yes ↗</a></td>
+<td><code>0x691430</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="isdistrict"></a>IsDistrict</td>
+<td><code>CityManager.IsDistrict() → boolean</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.IsDistrict/">yes ↗</a></td>
+<td><code>0x691490</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requestcommand"></a>RequestCommand</td>
+<td><code>CityManager.RequestCommand(arg1?: any, arg2: string/number[TypeHash], arg3: table) (or nothing) ⚠</code><br><small>args: <code>arg2</code> — A constant from the Lua table CityCommandTypes.</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.RequestCommand/">yes ↗</a></td>
+<td><code>0x6914f0</code></td>
+<td><code>0x691ad0</code></td>
+</tr>
+<tr>
+<td><a id="requestoperation"></a>RequestOperation</td>
+<td><code>CityManager.RequestOperation(arg1?: any, arg2?: number, arg3: table) (or nothing) ⚠</code><br><small>args: <code>arg2</code> — A constant from the Lua table CityOperationTypes.</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.RequestOperation/">yes ↗</a></td>
+<td><code>0x6915a0</code></td>
+<td><code>0x691b80</code></td>
+</tr>
+<tr>
+<td><a id="setascapital"></a>SetAsCapital</td>
+<td><code>CityManager:SetAsCapital() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.SetAsCapital/">yes ↗</a></td>
+<td><code>0x6cc740</code></td>
+<td><code>0x6cce00</code></td>
+</tr>
+<tr>
+<td><a id="setasoriginalcapital"></a>SetAsOriginalCapital</td>
+<td><code>CityManager:SetAsOriginalCapital() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.SetAsOriginalCapital/">yes ↗</a></td>
+<td><code>0x6cc770</code></td>
+<td><code>0x6cce30</code></td>
+</tr>
+<tr>
+<td><a id="transfercity"></a>TransferCity</td>
+<td><code>CityManager:TransferCity(arg1?: number, arg2?: any[HksObject]) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.TransferCity/">yes ↗</a></td>
+<td><code>0x6cc7a0</code></td>
+<td><code>0x6cce60</code></td>
+</tr>
+<tr>
+<td><a id="transfercitytofreecities"></a>TransferCityToFreeCities</td>
+<td><code>CityManager:TransferCityToFreeCities() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityManager.TransferCityToFreeCities/">yes ↗</a></td>
+<td><code>0x6cc870</code></td>
+<td><code>0x6ccf30</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

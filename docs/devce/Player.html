@@ -1,0 +1,387 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Player</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › Player</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>Player</h1>
+<p>14 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayer</code> instance resolver (virtual).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addagenda"></a>AddAgenda</td>
+<td><code>Player:AddAgenda(agenda: integer, visibility: integer) → boolean</code></td>
+<td>Adds a diplomatic agenda to a player in the first free slot, with its visibility, then initializes it and notifies.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__instance__addagenda">Player::Instance::AddAgenda</a></td>
+<td><code>0x2f7400</code></td>
+</tr>
+<tr>
+<td><a id="addchopfeaturebehavior"></a>AddChopFeatureBehavior</td>
+<td><code>Player:AddChopFeatureBehavior(eFeature: integer, bBan: boolean, eYield: integer, iAmount: integer)</code></td>
+<td>Appends a rule describing what happens when this player chops a feature (ban it, or give a yield amount).</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__instance__addchopfeaturebehavior">Player::Instance::AddChopFeatureBehavior</a></td>
+<td><code>0x2f7570</code></td>
+</tr>
+<tr>
+<td><a id="changeco2generationreduction"></a>ChangeCO2GenerationReduction</td>
+<td><code>Player:ChangeCO2GenerationReduction(eUsageType: integer, iDiscount: integer)</code></td>
+<td>Adds a discount to the CO2 generation reduction for a resource usage type.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__instance__changeco2generationreduction">Player::Instance::ChangeCO2GenerationReduction</a></td>
+<td><code>0x2f7720</code></td>
+</tr>
+<tr>
+<td><a id="changeflatbonus"></a>ChangeFlatBonus</td>
+<td><code>Player:ChangeFlatBonus(eBonus: integer, iDelta: integer)</code></td>
+<td>Adds a signed delta to a per-government-bonus-type counter stored in the player's bonuses data.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__bonuses__changeflatbonus">Player::Bonuses::ChangeFlatBonus</a></td>
+<td><code>0x261010</code></td>
+</tr>
+<tr>
+<td><a id="changeidentityperturnfortraderouteorigin"></a>ChangeIdentityPerTurnForTradeRouteOrigin</td>
+<td><code>Player:ChangeIdentityPerTurnForTradeRouteOrigin(xChange: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a fixed-point delta to the per-turn identity (cultural identity) contribution from trade route origins.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__culturalidentity__changeidentityperturnfortraderouteorigin">Player::CulturalIdentity::ChangeIdentityPerTurnForTradeRouteOrigin</a></td>
+<td><code>0x26ef90</code></td>
+</tr>
+<tr>
+<td><a id="changerandomeventmodifieddamageopposingplayer"></a>ChangeRandomEventModifiedDamageOpposingPlayer</td>
+<td><code>Player:ChangeRandomEventModifiedDamageOpposingPlayer(iDelta: integer, eRandomEvent: integer)</code></td>
+<td>Adds a delta to the modified damage percent that a random event deals to opposing players, per random event type.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__instance__changerandomeventmodifieddamageopposingplayer">Player::Instance::ChangeRandomEventModifiedDamageOpposingPlayer</a></td>
+<td><code>0x2f7760</code></td>
+</tr>
+<tr>
+<td><a id="changerandomeventnounitdamage"></a>ChangeRandomEventNoUnitDamage</td>
+<td><code>Player:ChangeRandomEventNoUnitDamage(iDelta: integer, eRandomEvent: integer)</code></td>
+<td>Adds a delta to a counter that prevents unit damage from a random event type.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__instance__changerandomeventnounitdamage">Player::Instance::ChangeRandomEventNoUnitDamage</a></td>
+<td><code>0x2f77b0</code></td>
+</tr>
+<tr>
+<td><a id="changeresolutioneffectrefundpercent"></a>ChangeResolutionEffectRefundPercent</td>
+<td><code>Player:ChangeResolutionEffectRefundPercent(eResolution: integer, iWhichEffect: integer, iChange: integer)</code></td>
+<td>Adds a delta to the refund percent for a particular effect of a World Congress resolution, creating a record if none exists.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__congress__changeresolutioneffectrefundpercent">Player::Congress::ChangeResolutionEffectRefundPercent</a></td>
+<td><code>0x26c4e0</code></td>
+</tr>
+<tr>
+<td><a id="changespycapacity"></a>ChangeSpyCapacity</td>
+<td><code>Player:ChangeSpyCapacity(iDelta: integer)</code></td>
+<td>Changes the player's spy capacity; non-major players are forced to 0.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__espionage__changespycapacity">Player::Espionage::ChangeSpyCapacity</a></td>
+<td><code>0x2cf7a0</code></td>
+</tr>
+<tr>
+<td><a id="changetargetcityspyyieldpercent"></a>ChangeTargetCitySpyYieldPercent</td>
+<td><code>Player:ChangeTargetCitySpyYieldPercent(eYield: integer, iPercent: integer)</code></td>
+<td>Adds a percentage to the yield bonus for spies targeting cities, per yield type, creating an entry if absent.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__espionage__changetargetcityspyyieldpercent">Player::Espionage::ChangeTargetCitySpyYieldPercent</a></td>
+<td><code>0x2cf800</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldrate"></a>ChangeYieldRate</td>
+<td><code>Player:ChangeYieldRate(eYield: integer, iAmount: integer)</code></td>
+<td>Adds a per-turn rate change for culture, gold, science or faith by forwarding to the matching subsystem.</td>
+<td>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__instance__changeyieldrate">Player::Instance::ChangeYieldRate</a></td>
+<td><code>0x2f7800</code></td>
+</tr>
+<tr>
+<td><a id="recomputecost"></a>RecomputeCost</td>
+<td><code>Player:RecomputeCost(eDistrict: integer) → number</code></td>
+<td>Recomputes and caches the production cost of a district type for this player, using the district's cost progression model, escalation, era/handicap production rate, and game speed. Returns the new cost.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__districts__recomputecost">Player::Districts::RecomputeCost</a></td>
+<td><code>0x2c4f10</code></td>
+</tr>
+<tr>
+<td><a id="removechopfeaturebehavior"></a>RemoveChopFeatureBehavior</td>
+<td><code>Player:RemoveChopFeatureBehavior(eFeature: integer, bBan: boolean, eYield: integer)</code></td>
+<td>Removes a matching chop-feature rule from the player's rule list by copying the list, clearing it, and re-adding non-matching rules.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__instance__removechopfeaturebehavior">Player::Instance::RemoveChopFeatureBehavior</a></td>
+<td><code>0x2fa1e0</code></td>
+</tr>
+<tr>
+<td><a id="setalive"></a>SetAlive</td>
+<td><code>Player:SetAlive(bIsAlive: boolean)</code></td>
+<td>Sets whether a player is alive, re-initializes alive state and player lists, and on a change fires a revive signal and a reporting event.</td>
+<td>—</td>
+<td><a href="../native/Player.html#player__instance__setalive">Player::Instance::SetAlive</a></td>
+<td><code>0x2fa9a0</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>AddAgenda</h3>
+<p>Arguments: <code>agenda</code> — agenda to add; <code>visibility</code> — how visible the agenda is</p>
+<p><strong>Writes</strong>
+- agenda list at this+0x478
+- visibility list at this+0x4a0</p>
+<p><strong>Side effects</strong>
+- InitializeAgenda
+- Reporting::Event 0x7124e66b (player id, agenda)
+- agenda-added signal</p>
+<p><strong>Input checks:</strong> Returns false when the agenda is not allowed or already in list; reuses an empty (-1) slot or appends.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: must be applied identically. <strong>Risk:</strong> low (guarded and bounded). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- returns false for duplicates and disallowed agendas
+- stores visibility parallel to agenda
+- dispatches signal</p>
+<p><strong>Inferred</strong>
+- vector type names in decompile are misleading</p>
+<h3>AddChopFeatureBehavior</h3>
+<p>Arguments: <code>eFeature</code> — feature being chopped; <code>bBan</code> — true to forbid chopping; <code>eYield</code> — yield granted; <code>iAmount</code> — yield amount</p>
+<p><strong>Writes</strong>
+- 16-byte rule appended to vector in VariantMap at this+0x5b0</p>
+<p><strong>Side effects</strong>
+- vector may reallocate</p>
+<p><strong>Input checks:</strong> None; yield and amount are only stored when bBan is false (otherwise uninitialised stack values are stored).</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> medium (no duplicate check; stores uninitialised fields when ban is true). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- pushes record containing feature, ban flag, yield, amount
+- yield/amount copied only when ban is false</p>
+<p><strong>Inferred</strong>
+- Pairs with RemoveChopFeatureBehavior</p>
+<p><strong>Open questions</strong>
+- Which code consumes these records</p>
+<h3>ChangeCO2GenerationReduction</h3>
+<p>Arguments: <code>eUsageType</code> — resource usage type (0-3); <code>iDiscount</code> — amount added</p>
+<p><strong>Writes</strong>
+- int array element at VariantMap this+0x610</p>
+<p><strong>Input checks:</strong> Ignored silently when usage type &gt;= 4 (unsigned).</p>
+<p><strong>Preconditions</strong>
+- gameplay state only
+- climate/CO2 feature present</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked against constant 4). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- check &lt; 4
+- adds delta to element</p>
+<p><strong>Inferred</strong>
+- Four usage categories</p>
+<h3>ChangeFlatBonus</h3>
+<p>Arguments: <code>eBonus</code> — government bonus type; <code>iDelta</code> — amount added to the counter</p>
+<p><strong>Writes</strong>
+- int array element indexed by bonus type in VariantMap at this+0xa8 (flat bonus total)</p>
+<p><strong>Side effects</strong>
+- marks the networked/auto variable as edited</p>
+<p><strong>Input checks:</strong> Silently returns if the type index is 0xffffffff; the index is otherwise not range-checked against the array size (crash risk for out-of-range index).</p>
+<p><strong>Preconditions</strong>
+- gameplay state only
+- valid Bonuses object for a player</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write; must run identically on all clients. <strong>Risk:</strong> medium (unchecked array index and no recalculation or notification). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Calls Types::GetIndex then FAutoVariable edit at this+0xa8
+- adds param to int element at index*4
+- no bounds check besides -1</p>
+<p><strong>Inferred</strong>
+- Counter is read elsewhere by government bonus calculation</p>
+<p><strong>Open questions</strong>
+- What reads this array and whether any dirty flags are needed</p>
+<h3>ChangeIdentityPerTurnForTradeRouteOrigin</h3>
+<p>Arguments: <code>xChange</code> — delta in 24.8 fixed point (raw/256)</p>
+<p><strong>Writes</strong>
+- auto variable at this+0xa8 (value mirror at this+0xb8) identity per turn for trade route origin</p>
+<p><strong>Side effects</strong>
+- assignment through an auto-variable setter (marks changed)</p>
+<p><strong>Input checks:</strong> None; any delta accepted.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (simple additive stat). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- reads int at this+0xb8, adds *param, writes via MoveAssignmentDo to this+0xa8</p>
+<p><strong>Inferred</strong>
+- Is the value used per route origin city</p>
+<p><strong>Open questions</strong>
+- Exact consumer of the value</p>
+<h3>ChangeRandomEventModifiedDamageOpposingPlayer</h3>
+<p>Arguments: <code>iDelta</code> — change; <code>eRandomEvent</code> — random event type</p>
+<p><strong>Writes</strong>
+- int array element in VariantMap at this+0x450</p>
+<p><strong>Input checks:</strong> Ignores -1 and indices &gt;= stored size.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only
+- random events enabled</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- index checked against this+0x470
+- adds delta to element</p>
+<p><strong>Inferred</strong>
+- unit of damage (percent) is guessed from name</p>
+<h3>ChangeRandomEventNoUnitDamage</h3>
+<p>Arguments: <code>iDelta</code> — change; <code>eRandomEvent</code> — random event type</p>
+<p><strong>Writes</strong>
+- int array element in VariantMap at this+0x428</p>
+<p><strong>Input checks:</strong> Ignores -1 and indices &gt;= stored size.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only
+- random events enabled</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- index checked against this+0x448
+- adds delta to element</p>
+<p><strong>Inferred</strong>
+- nonzero counter means immunity</p>
+<h3>ChangeResolutionEffectRefundPercent</h3>
+<p>Arguments: <code>eResolution</code> — resolution type; <code>iWhichEffect</code> — which effect of the resolution (index); <code>iChange</code> — amount added to the refund percent</p>
+<p><strong>Writes</strong>
+- vector of (resolution, effect, refund percent) triples at this+0x268: either an existing entry's third field is incremented or a new entry appended</p>
+<p><strong>Side effects</strong>
+- vector may reallocate</p>
+<p><strong>Input checks:</strong> No validation of resolution or effect index; no clamp on percent.</p>
+<p><strong>Preconditions</strong>
+- valid Congress object</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (unclamped integer in a vector entry). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- linear search for matching (resolution, effect) pair
+- adds to matching entry or appends new 12-byte entry</p>
+<p><strong>Inferred</strong>
+- entry size 12 bytes = three ints
+- meaning of refund from the function name</p>
+<p><strong>Open questions</strong>
+- how the refund is consumed
+- whether Lua object is player-level rather than CongressManager</p>
+<h3>ChangeSpyCapacity</h3>
+<p>Arguments: <code>iDelta</code> — change to spy capacity</p>
+<p><strong>Writes</strong>
+- spy capacity auto variable at this+0xe0 (value at this+0xf0)</p>
+<p><strong>Side effects</strong>
+- auto-variable assignment</p>
+<p><strong>Input checks:</strong> No clamping; non-major players always set to 0; negative results are not clamped here.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (simple stat; negative capacity possible). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- IsMajor check on owner at this+0x90
+- new = old+delta for majors else 0</p>
+<p><strong>Inferred</strong>
+- Capacity gates number of spies</p>
+<h3>ChangeTargetCitySpyYieldPercent</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>iPercent</code> — percent change</p>
+<p><strong>Writes</strong>
+- vector of (yield, percent) pairs in VariantMap at this+0x1e8</p>
+<p><strong>Side effects</strong>
+- may grow the vector</p>
+<p><strong>Input checks:</strong> Returns silently if yield is -1; otherwise searches for matching entry and appends one if missing.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (simple list mutation). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Types::GetIndex on yield
+- linear search over 8-byte entries
+- adds to second int or pushes new pair</p>
+<p><strong>Inferred</strong>
+- Entries are yield/percent pairs</p>
+<p><strong>Open questions</strong>
+- Odd end-pointer check against this+0x200 purpose</p>
+<h3>ChangeYieldRate</h3>
+<p>Arguments: <code>eYield</code> — yield (culture, gold, science, faith only); <code>iAmount</code> — whole-number rate change</p>
+<p><strong>Writes</strong>
+- Culture rate change
+- Treasury gold rate change
+- Techs science rate change
+- Religion faith rate change</p>
+<p><strong>Side effects</strong>
+- calls SetCultureRateChange / SetGoldRateChange / SetScienceRateChange / SetFaithRateChange</p>
+<p><strong>Input checks:</strong> Other yield types silently ignored; amount multiplied by 256 (converted to fixed point).</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (only four yields handled). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- four-way branch on yield
+- delta scaled by 0x100 added to current value then setter called</p>
+<p><strong>Inferred</strong>
+- rate-change is a per-turn modifier</p>
+<h3>RecomputeCost</h3>
+<p>Arguments: <code>eDistrict</code> — district type</p>
+<p><strong>Writes</strong>
+- per-district cost array at this+0x110 (index eDistrict)</p>
+<p><strong>Side effects</strong>
+- calls Economic::ComputeCostEscalation and AdjustForGameSpeed</p>
+<p><strong>Input checks:</strong> definition index range-checked but a null definition pointer is later dereferenced (invalid id risk); result clamped to at least 1</p>
+<p><strong>Preconditions</strong>
+- valid district id
+- owning player set (this+0x90)</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> medium (invalid district id leads to null dereference; floats used but game-logic deterministic). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- switch on cost progression model: count of districts, tech/civic percent (min of the two), city/state field, or average-constructable based formulas
+- final cost = game-speed-adjusted escalated cost times a production-rate factor, minimum 1
+- stores result in array at +0x110</p>
+<p><strong>Inferred</strong>
+- model cases map to names such as per-district, tech/civic percent, per-city
+- factor depends on era and difficulty handicap setting</p>
+<p><strong>Open questions</strong>
+- exact mapping of switch cases to model names
+- float constants not shown</p>
+<h3>RemoveChopFeatureBehavior</h3>
+<p>Arguments: <code>eFeature</code> — feature; <code>bBan</code> — ban flag of the rule; <code>eYield</code> — yield of the rule</p>
+<p><strong>Writes</strong>
+- rule vector in VariantMap at this+0x5b0 rebuilt</p>
+<p><strong>Side effects</strong>
+- temporary heap allocation freed at end</p>
+<p><strong>Input checks:</strong> No validation; the keep test is feature differs OR (ban differs AND yield differs), so matching rules require same feature and (ban equal or yield equal).</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> medium (rebuilds list; removal matching is loose (ban or yield match removes)). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- copies existing entries to a temp buffer
+- resets size to begin
+- re-adds entries failing the match condition
+- frees temp buffer</p>
+<p><strong>Inferred</strong>
+- Probably removes all matching rules, not just the first</p>
+<p><strong>Open questions</strong>
+- Whether offsets 0x5c0/0x5c8 are the same vector as at 0x5b0 value</p>
+<h3>SetAlive</h3>
+<p>Arguments: <code>bIsAlive</code> — new alive state</p>
+<p><strong>Writes</strong>
+- player alive flag (this+600) via InitializeAliveState
+- player manager lists rebuilt</p>
+<p><strong>Side effects</strong>
+- SetPlayerRevived when becoming alive
+- signal dispatch on revive
+- Reporting::Event 0xa0a8f479 with alive state and player id</p>
+<p><strong>Input checks:</strong> No validation; always re-initializes lists even if state unchanged. Events only on change.</p>
+<p><strong>Preconditions</strong>
+- gameplay state
+- valid player</p>
+<p><strong>Multiplayer:</strong> may-desync: global player lists changed. <strong>Risk:</strong> high (changes player life state and global lists). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- compares old and new flag
+- calls InitializeAliveState and Manager::InitializeLists unconditionally
+- revive path calls SetPlayerRevived and dispatches a signal</p>
+<p><strong>Inferred</strong>
+- signal declared with Unit parameter but passed the player</p>
+<p><strong>Open questions</strong>
+- what InitializeAliveState does for death</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

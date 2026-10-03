@@ -1,0 +1,10 @@
+id: op:player-operation.CHOOSE_ARTIFACT_PLAYER
+summary: "Finishes an archaeologist artifact excavation: the chosen player receives the artifact as a great work."
+notes:
+  - text: "This case calls Game::Culture::SetGreatWorkPlayer and AddArtifactToBuilding, looks up the target city, asks Buildings::GetFreeSlot, sends UNIT_ARTIFACT_CHANGED and UNIT_VISIBILITY_CHANGED, and destroys the archaeologist unit."
+    status: verified
+    evidence: [{kind: static-analysis, note: call list of the case body in both builds}]
+  - text: "The current build adds a null check on the city lookup before the city's Buildings object is used. The symbol build used the result unchecked."
+    status: verified
+    evidence: [{kind: static-analysis, note: instruction-aligned diff of Process, symbol vs current build}]
+related: [op:player-operation.MOVE_GREAT_WORK, lua:Game.GetGreatWorkPlayer]

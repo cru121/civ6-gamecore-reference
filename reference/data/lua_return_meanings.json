@@ -1,0 +1,2233 @@
+{
+ "AiDiplomacy.GetDiplomaticStateIndex": {
+  "summary": "Key of a row of the DiplomaticStates table: the scripts look it up with GameInfo.DiplomaticStates[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 22 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "DiplomaticStates",
+  "seen_as": [
+   "iState",
+   "diploStateID",
+   "eRelationship",
+   "iPlayerDiploState"
+  ]
+ },
+ "Barbarians.GetTribeIndexAtLocation": {
+  "summary": "The scripts pass the result to `Barbarians.GetTribeNameType`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Barbarians.GetTribeNameType in 4 place(s)"
+   }
+  ],
+  "seen_as": [
+   "tribeIndex",
+   "iTribeIndex"
+  ]
+ },
+ "Barbarians.GetTribeNameType": {
+  "summary": "Key of a row of the BarbarianTribeNames table: the scripts look it up with GameInfo.BarbarianTribeNames[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 8 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "BarbarianTribeNames",
+  "seen_as": [
+   "barbType",
+   "eTribeName"
+  ]
+ },
+ "Barbarians.GetTribeType": {
+  "summary": "Value of the BarbarianNameTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type BarbarianNameTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "eTribeType"
+  ]
+ },
+ "City.GetID": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "TradeManager.CalculateOriginYieldFromPotentialRoute",
+   "TradeManager.CalculateDestinationYieldFromPotentialRoute"
+  ],
+  "seen_as": [
+   "cityID",
+   "nCityID"
+  ]
+ },
+ "City.GetJustConqueredFrom": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "eConqueredFrom"
+  ]
+ },
+ "City.GetOriginalOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "originalOwnerID"
+  ]
+ },
+ "City.GetOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 24 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "TradeManager.CalculateOriginYieldFromPotentialRoute",
+   "TradeManager.CalculateDestinationYieldFromPotentialRoute"
+  ],
+  "seen_as": [
+   "cityOwner",
+   "owner",
+   "playerID",
+   "ownerID"
+  ]
+ },
+ "City.GetOwnerBeforeOccupation": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "eOwnerBeforeOccupation"
+  ]
+ },
+ "City.GetX": {
+  "summary": "The scripts pass the result to `PlayerVisibility.IsVisible` (parameter `x`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to PlayerVisibility.IsVisible in 9 place(s)"
+   }
+  ],
+  "seen_as": [
+   "locX",
+   "cityX",
+   "iCityX",
+   "plotX"
+  ]
+ },
+ "City.GetY": {
+  "summary": "The scripts pass the result to `PlayerVisibility.IsVisible` (parameter `y`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to PlayerVisibility.IsVisible in 9 place(s)"
+   }
+  ],
+  "seen_as": [
+   "locY",
+   "cityY",
+   "iCityY",
+   "plotY"
+  ]
+ },
+ "CityBuildQueue.GetCurrentProductionTypeHash": {
+  "summary": "Hash of a row of the Buildings table: the scripts look it up with GameInfo.Buildings[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Buildings",
+  "seen_as": [
+   "currentProductionHash",
+   "hash",
+   "m_LockedProductionHash",
+   "hCurrentProduction"
+  ]
+ },
+ "CityBuildings.GetGreatWorkInSlot": {
+  "summary": "Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks table).",
+  "kind": "index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type GreatWorkListIndex"
+   }
+  ],
+  "also_passed_to": [
+   "CityBuildings.GetCreatorNameFromIndex",
+   "CityBuildings.GetTurnFromIndex"
+  ],
+  "seen_as": [
+   "greatWorkIndex",
+   "srcGreatWork",
+   "dstGreatWork"
+  ]
+ },
+ "CityBuildings.GetGreatWorkSlotType": {
+  "summary": "Index of a row of the GreatWorkSlotTypes table (the value of GameInfo.GreatWorkSlotTypes[...].Index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type GreatWorkSlotTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 4 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "GreatWorkSlotTypes",
+  "seen_as": [
+   "greatWorkSlotType",
+   "dstSlotType",
+   "srcSlotType"
+  ]
+ },
+ "CityBuildings.GetGreatWorkTypeFromIndex": {
+  "summary": "Key of a row of the GreatWorks table: the scripts look it up with GameInfo.GreatWorks[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 5 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "GreatWorks",
+  "seen_as": [
+   "greatWorkType"
+  ]
+ },
+ "CityBuildings.GetNumGreatWorkSlots": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (numSlots, iSlots) in 16 assignments"
+   }
+  ],
+  "seen_as": [
+   "numSlots",
+   "iSlots"
+  ]
+ },
+ "CityCulturalIdentity.GetLoyaltyLevel": {
+  "summary": "Key of a row of the LoyaltyLevels table: the scripts look it up with GameInfo.LoyaltyLevels[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 6 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "LoyaltyLevels",
+  "seen_as": [
+   "loyaltyLevel"
+  ]
+ },
+ "CityCulturalIdentity.GetLoyaltyPerTurn": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (loyaltyPerTurn) in 6 assignments"
+   }
+  ],
+  "seen_as": [
+   "loyaltyPerTurn"
+  ]
+ },
+ "CityCulturalIdentity.GetPotentialTransferPlayer": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 6 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "potentialNewOwner",
+   "transferPlayerID",
+   "eNextOwner"
+  ]
+ },
+ "CityCulturalIdentity.GetTurnsToConversion": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (turnsToConversion, nTurns) in 6 assignments"
+   }
+  ],
+  "seen_as": [
+   "turnsToConversion",
+   "nTurns"
+  ]
+ },
+ "CityCulture.GetNextPlot": {
+  "summary": "Plot index: the scripts pass the result to Map.GetPlotByIndex.",
+  "kind": "plot-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "Map.GetPlotByIndex"
+  ],
+  "seen_as": [
+   "newGrowthPlot"
+  ]
+ },
+ "CityDistricts.GetNumZonedDistrictsRequiringPopulation": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (iNumDistricts) in 4 assignments"
+   }
+  ],
+  "seen_as": [
+   "iNumDistricts"
+  ]
+ },
+ "CityGrowth.GetTurnsUntilGrowth": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (turnsUntilGrowth) in 6 assignments"
+   }
+  ],
+  "seen_as": [
+   "turnsUntilGrowth"
+  ]
+ },
+ "CityReligion.GetActivePantheon": {
+  "summary": "Key of a row of the Beliefs table: the scripts look it up with GameInfo.Beliefs[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Beliefs",
+  "seen_as": [
+   "activePantheon"
+  ]
+ },
+ "CityReligion.GetMajorityReligion": {
+  "summary": "Key of a row of the Religions table: the scripts look it up with GameInfo.Religions[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 5 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Religions",
+  "seen_as": [
+   "eMajorityReligion",
+   "eDominantReligion",
+   "majorityReligion",
+   "religionType"
+  ]
+ },
+ "CityReligion.GetNextReligion": {
+  "summary": "Key of a row of the Religions table: the scripts look it up with GameInfo.Religions[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Religions",
+  "seen_as": [
+   "nextReligion"
+  ]
+ },
+ "CityReligion.GetTurnsToNextReligion": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (turnsTillNextReligion) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "turnsTillNextReligion"
+  ]
+ },
+ "Deal.GetOtherPlayerID": {
+  "summary": "Id of a player (as in Players[id]).",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type PlayerTypes"
+   }
+  ]
+ },
+ "DealItem.GetDuration": {
+  "summary": "The scripts pass the result to `DealItem.SetDuration` (parameter `iDuration`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to DealItem.SetDuration in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "iDuration",
+   "duration"
+  ]
+ },
+ "DealItem.GetFromPlayerID": {
+  "summary": "The scripts pass the result to `Deal.AddItemOfType`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Deal.AddItemOfType in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "fromPlayerId"
+  ]
+ },
+ "DealItem.GetID": {
+  "summary": "The scripts pass the result to `Deal.RemoveItemByID` (parameter `uiID`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Deal.RemoveItemByID in 7 place(s)"
+   }
+  ],
+  "seen_as": [
+   "dealItemID",
+   "itemID"
+  ]
+ },
+ "DealItem.GetSubType": {
+  "summary": "The scripts pass the result to `DealItem.SetSubType`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to DealItem.SetSubType in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "subType",
+   "subtype"
+  ]
+ },
+ "DealItem.GetType": {
+  "summary": "The scripts pass the result to `Deal.AddItemOfType`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Deal.AddItemOfType in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "type",
+   "itemType"
+  ]
+ },
+ "DiplomacyManager.FindOpenSessionID": {
+  "summary": "The scripts pass the result to `DiplomacyManager.CloseSession`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to DiplomacyManager.CloseSession in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "sessionID"
+  ]
+ },
+ "District.GetOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "districtOwner"
+  ]
+ },
+ "District.GetX": {
+  "summary": "The scripts pass the result to `PlayerVisibility.IsVisible` (parameter `x`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to PlayerVisibility.IsVisible in 9 place(s)"
+   }
+  ],
+  "seen_as": [
+   "locX",
+   "iPlotX"
+  ]
+ },
+ "District.GetY": {
+  "summary": "The scripts pass the result to `PlayerVisibility.IsVisible` (parameter `y`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to PlayerVisibility.IsVisible in 9 place(s)"
+   }
+  ],
+  "seen_as": [
+   "locY",
+   "iPlotY"
+  ]
+ },
+ "Game.GetCurrentGameTurn": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (currentTurn, iCurrentTurn, turn) in 62 assignments"
+   }
+  ],
+  "seen_as": [
+   "currentTurn",
+   "iCurrentTurn",
+   "turn",
+   "g_FinalTurn"
+  ]
+ },
+ "Game.GetCurrentTurnSegment": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (turnSegment) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "turnSegment"
+  ]
+ },
+ "Game.GetGameEndTurn": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (endTurn) in 7 assignments"
+   }
+  ],
+  "seen_as": [
+   "endTurn"
+  ]
+ },
+ "Game.GetGreatWorkPlayer": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "eGWPlayer",
+   "greatWorkPlayer",
+   "gwPlayer"
+  ]
+ },
+ "Game.GetGreatWorkType": {
+  "summary": "Key of a row of the GreatWorks table: the scripts look it up with GameInfo.GreatWorks[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "GreatWorks",
+  "seen_as": [
+   "eGWType"
+  ]
+ },
+ "Game.GetGreatWorkTypeFromIndex": {
+  "summary": "Key of a row of the GreatWorks table: the scripts look it up with GameInfo.GreatWorks[result].",
+  "kind": "db-row-key",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "GreatWorks",
+  "seen_as": [
+   "greatWorkType"
+  ]
+ },
+ "Game.GetLocalObserver": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "PlayerVisibilityManager.GetPlayerVisibility"
+  ],
+  "seen_as": [
+   "eObserverID",
+   "localObserverID",
+   "ms_LocalPlayerID",
+   "eObserverPlayerID"
+  ]
+ },
+ "Game.GetLocalPlayer": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 273 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "GameEras.HasDarkAge (ePlayer)",
+   "GameEras.HasGoldenAge (ePlayer)"
+  ],
+  "seen_as": [
+   "localPlayerID",
+   "localPlayer",
+   "ePlayer",
+   "playerID"
+  ]
+ },
+ "Game.GetUnitNamePrefix": {
+  "summary": "The scripts pass the result to `Game.GenerateUnitName` (parameter `uiUnitNameSuffix`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Game.GenerateUnitName in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "m_namePrefix"
+  ]
+ },
+ "Game.GetUnitNameSuffix": {
+  "summary": "The scripts pass the result to `Game.GenerateUnitName`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Game.GenerateUnitName in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "m_nameSuffix"
+  ]
+ },
+ "Game.GetVictoryRequirements": {
+  "summary": "The scripts pass the result to `GameEffects.GetRequirementSetInnerRequirements`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to GameEffects.GetRequirementSetInnerRequirements in 3 place(s)"
+   }
+  ],
+  "seen_as": [
+   "requirementSetID"
+  ]
+ },
+ "GameClimate.GetActiveDroughtIDAtPlot": {
+  "summary": "The scripts pass the result to `GameClimate.GetDroughtPlotsByID`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to GameClimate.GetDroughtPlotsByID in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "iDroughtID"
+  ]
+ },
+ "GameClimate.GetActiveStormIDAtPlot": {
+  "summary": "The scripts pass the result to `GameClimate.GetStormPlotsByID`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to GameClimate.GetStormPlotsByID in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "iStormID"
+  ]
+ },
+ "GameClimate.GetDeforestationType": {
+  "summary": "Key of a row of the DeforestationLevels table: the scripts look it up with GameInfo.DeforestationLevels[result].",
+  "kind": "db-row-key",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "DeforestationLevels",
+  "seen_as": [
+   "deforestationType"
+  ]
+ },
+ "GameClimate.GetPlayerCO2Footprint": {
+  "summary": "Id of a player (the scripts name the result playerID / owner).",
+  "kind": "player-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (CO2Player, CO2FootprintNum) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "CO2Player",
+   "CO2FootprintNum"
+  ]
+ },
+ "GameClimate.GetTotalCO2Footprint": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (CO2Total) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "CO2Total"
+  ]
+ },
+ "GameConfiguration.GetGameSpeedType": {
+  "summary": "Key of a row of the GameSpeeds table: the scripts look it up with GameInfo.GameSpeeds[result].",
+  "kind": "db-row-key",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "GameSpeeds",
+  "seen_as": [
+   "eGameSpeed"
+  ]
+ },
+ "GameConfiguration.GetStartTurn": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (g_InitialTurn, gameStartTurn, startTurn) in 8 assignments"
+   }
+  ],
+  "seen_as": [
+   "g_InitialTurn",
+   "gameStartTurn",
+   "startTurn"
+  ]
+ },
+ "GameEconomicManager.GetResourceMonopolyPlayer": {
+  "summary": "Id of a player (as in Players[id]).",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type PlayerTypes"
+   }
+  ],
+  "seen_as": [
+   "monopolyID"
+  ]
+ },
+ "GameEras.GetCurrentEra": {
+  "summary": "Key of a row of the Eras table: the scripts look it up with GameInfo.Eras[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 9 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Eras",
+  "seen_as": [
+   "currentEra",
+   "currentEraIndex"
+  ]
+ },
+ "GameHeroesManager.GetHeroClaimPlayer": {
+  "summary": "Id of a player (as in Players[id]).",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type PlayerTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 5 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "TeamDiplomacy.HasMet (ePlayer)"
+  ],
+  "seen_as": [
+   "claimedByPlayer",
+   "eClaimedByPlayer"
+  ]
+ },
+ "GameHeroesManager.GetPlayerHeroOriginBuildingType": {
+  "summary": "Key of a row of the Buildings table: the scripts look it up with GameInfo.Buildings[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Buildings",
+  "seen_as": [
+   "eOriginBuildingType"
+  ]
+ },
+ "GameHeroesManager.GetUnitHeroClass": {
+  "summary": "Key of a row of the HeroClasses table: the scripts look it up with GameInfo.HeroClasses[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "HeroClasses",
+  "seen_as": [
+   "eHeroClass"
+  ]
+ },
+ "GameSummary.GetDataSetCount": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (count) in 6 assignments"
+   }
+  ],
+  "seen_as": [
+   "count"
+  ]
+ },
+ "Governor.GetNeutralizedTurns": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (numOfNeutralizedTurns, iNeutralizedTurns) in 6 assignments"
+   }
+  ],
+  "seen_as": [
+   "numOfNeutralizedTurns",
+   "iNeutralizedTurns"
+  ]
+ },
+ "Governor.GetOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "TeamDiplomacy.GetVisibilityOn (player)",
+   "TeamDiplomacy.HasMet (ePlayer)"
+  ],
+  "seen_as": [
+   "playerID"
+  ]
+ },
+ "Governor.GetTurnsOnSite": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (iTurnsOnSite) in 8 assignments"
+   }
+  ],
+  "seen_as": [
+   "iTurnsOnSite"
+  ]
+ },
+ "Governor.GetTurnsToEstablish": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (iTurnsToEstablish) in 6 assignments"
+   }
+  ],
+  "seen_as": [
+   "iTurnsToEstablish"
+  ]
+ },
+ "HallofFame.GetCityObject": {
+  "summary": "The scripts pass the result to `HallofFame.GetOrCreateDataSet`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to HallofFame.GetOrCreateDataSet in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "iCityID"
+  ]
+ },
+ "Map.GetMapSize": {
+  "summary": "Key of a row of the Maps table: the scripts look it up with GameInfo.Maps[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 8 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Maps",
+  "seen_as": [
+   "sizekey",
+   "mapSizeIndex",
+   "mapSize",
+   "maptype"
+  ]
+ },
+ "Map.GetPlotCount": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (iPlotCount, nPlots, iCount) in 16 assignments"
+   }
+  ],
+  "seen_as": [
+   "iPlotCount",
+   "nPlots",
+   "iCount",
+   "count"
+  ]
+ },
+ "Map.GetPlotIndex": {
+  "summary": "Plot index: the scripts pass the result to Map.GetPlotByIndex.",
+  "kind": "plot-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "PlayerVisibility.IsRevealed (x)",
+   "Map.GetPlotByIndex"
+  ],
+  "seen_as": [
+   "plotID",
+   "plot",
+   "plotIndex",
+   "iPlot"
+  ]
+ },
+ "MapStartPositioner.GetOceanStartTile": {
+  "summary": "Plot index: the scripts pass the result to Map.GetPlotByIndex.",
+  "kind": "plot-index",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "Map.GetPlotByIndex"
+  ],
+  "seen_as": [
+   "iStartIndex"
+  ]
+ },
+ "NotificationInstance.GetPlayerID": {
+  "summary": "Id of a player (the scripts name the result playerID / owner).",
+  "kind": "player-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (playerID, ePlayer) in 10 assignments"
+   }
+  ],
+  "seen_as": [
+   "playerID",
+   "ePlayer"
+  ]
+ },
+ "NotificationManager.GetFirstEndTurnBlocking": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (m_TurnBlockingType) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "m_TurnBlockingType"
+  ]
+ },
+ "Player.GetID": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 51 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "TeamDiplomacy.HasMet (ePlayer)",
+   "GameReligion.AddBeliefHash (ePlayer)"
+  ],
+  "seen_as": [
+   "playerID",
+   "iPlayer",
+   "pID",
+   "topPlayer"
+  ]
+ },
+ "Player.GetTeam": {
+  "summary": "The scripts pass the result to `TeamDiplomacy.HasMet` (parameter `ePlayer`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to TeamDiplomacy.HasMet in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "lTeamID",
+   "teamID",
+   "localTeam",
+   "iTeamID"
+  ]
+ },
+ "PlayerConfiguration.GetCivilizationLevelTypeID": {
+  "summary": "Value of the CivilizationLevelTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type CivilizationLevelTypes"
+   }
+  ],
+  "seen_as": [
+   "civLevel"
+  ]
+ },
+ "PlayerConfiguration.GetCivilizationTypeID": {
+  "summary": "Index of a row of the Civilizations table (the value of GameInfo.Civilizations[...].Index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type CivilizationTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 17 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Civilizations",
+  "seen_as": [
+   "civID",
+   "ms_OtherCivilizationID"
+  ]
+ },
+ "PlayerConfiguration.GetColor": {
+  "summary": "Value of the PlayerColorTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type PlayerColorTypes"
+   }
+  ]
+ },
+ "PlayerConfiguration.GetHandicapTypeID": {
+  "summary": "Value of the HandicapTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type HandicapTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 6 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "gameDifficultyTypeID"
+  ]
+ },
+ "PlayerConfiguration.GetLeaderTypeID": {
+  "summary": "Index of a row of the Leaders table (the value of GameInfo.Leaders[...].Index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type LeaderTypes"
+   }
+  ],
+  "db_table": "Leaders",
+  "seen_as": [
+   "ms_OtherLeaderID",
+   "ms_LocalPlayerLeaderID",
+   "selectedLeader",
+   "leaderID"
+  ]
+ },
+ "PlayerCulture.GetAutoThemedBuilding": {
+  "summary": "Index of a database row (compared with row.Index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "eBuilding"
+  ]
+ },
+ "PlayerCulture.GetCurrentGovernment": {
+  "summary": "Key of a row of the Governments table: the scripts look it up with GameInfo.Governments[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 6 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Governments",
+  "seen_as": [
+   "governmentId",
+   "governmentRowId",
+   "eSelectedPlayerGovernment",
+   "governmentIndex"
+  ]
+ },
+ "PlayerCulture.GetPolicyToUnlock": {
+  "summary": "Key of a row of the Policies table: the scripts look it up with GameInfo.Policies[result].",
+  "kind": "db-row-key",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Policies",
+  "seen_as": [
+   "slottounlock"
+  ]
+ },
+ "PlayerCulture.GetProgressingCivic": {
+  "summary": "Key of a row of the Civics table: the scripts look it up with GameInfo.Civics[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Civics",
+  "also_passed_to": [
+   "PlayerCulture.GetCulturalProgress (eCivic)",
+   "PlayerCulture.GetCultureCost (eCivic)"
+  ],
+  "seen_as": [
+   "currentCivicID",
+   "m_currentID",
+   "m_currentCivicID",
+   "currentCivic"
+  ]
+ },
+ "PlayerCulture.GetSlotPolicy": {
+  "summary": "Key of a row of the Policies table: the scripts look it up with GameInfo.Policies[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Policies",
+  "seen_as": [
+   "iPolicyID",
+   "iSlotPolicy"
+  ]
+ },
+ "PlayerCulture.GetSlotType": {
+  "summary": "Key of a row of the GovernmentSlots table: the scripts look it up with GameInfo.GovernmentSlots[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "GovernmentSlots",
+  "seen_as": [
+   "iSlotType"
+  ]
+ },
+ "PlayerCulture.GetTurnsToProgressCivic": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (turnsLeft, TurnsLeft) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "turnsLeft",
+   "TurnsLeft"
+  ]
+ },
+ "PlayerGovernors.GetSecretSociety": {
+  "summary": "Key of a row of the SecretSocieties table: the scripts look it up with GameInfo.SecretSocieties[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "SecretSocieties",
+  "also_passed_to": [
+   "PlayerGovernors.IsAwareOfSecretSociety (eSecretSociety)"
+  ],
+  "seen_as": [
+   "eSecretSociety",
+   "memberSocietyHash"
+  ]
+ },
+ "PlayerInfluence.GetSuzerain": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 4 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "suzerainID"
+  ]
+ },
+ "PlayerManager.GetFreeCitiesPlayerID": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "m_iFreeCitiesPlayerID"
+  ]
+ },
+ "PlayerReligion.GetFaithYield": {
+  "summary": "The scripts pass the result to `Player.SetScoringScenario3`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Player.SetScoringScenario3 in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "faithYield",
+   "iFaith"
+  ]
+ },
+ "PlayerReligion.GetNumBeliefsEarned": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (m_NumBeliefsEarned) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "m_NumBeliefsEarned"
+  ]
+ },
+ "PlayerReligion.GetPantheon": {
+  "summary": "Key of a row of the Beliefs table: the scripts look it up with GameInfo.Beliefs[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Beliefs",
+  "seen_as": [
+   "m_PantheonBelief",
+   "pantheonBelief",
+   "playerPantheon"
+  ]
+ },
+ "PlayerReligion.GetReligionTypeCreated": {
+  "summary": "The scripts pass the result to `CityReligion.SetAllCityToReligion` (parameter `eReligion`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to CityReligion.SetAllCityToReligion in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "m_PlayerReligionType",
+   "eReligion"
+  ]
+ },
+ "PlayerResources.GetResourceAccumulationPerTurn": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (amount, resourceAccumulationPerTurn, accumulationPerTurn) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "amount",
+   "resourceAccumulationPerTurn",
+   "accumulationPerTurn"
+  ]
+ },
+ "PlayerResources.GetResourceAmount": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (amount, internalResourceAmount, iAmount) in 9 assignments"
+   }
+  ],
+  "seen_as": [
+   "amount",
+   "internalResourceAmount",
+   "iAmount",
+   "miscResourceTotal"
+  ]
+ },
+ "PlayerStats.GetNumForeignCitiesFollowingReligion": {
+  "summary": "The scripts pass the result to `Player.SetScoringScenario2`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Player.SetScoringScenario2 in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "iCities"
+  ]
+ },
+ "PlayerTechs.GetResearchingTech": {
+  "summary": "Key of a row of the Technologies table: the scripts look it up with GameInfo.Technologies[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Technologies",
+  "also_passed_to": [
+   "PlayerTechs.HasTech",
+   "PlayerTechs.SetResearchProgress (eTech)"
+  ],
+  "seen_as": [
+   "m_currentID",
+   "currentTechID",
+   "eCurrentResearch",
+   "m_currentResearchID"
+  ]
+ },
+ "PlayerWMDs.GetWeaponCount": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (count) in 11 assignments"
+   }
+  ],
+  "seen_as": [
+   "count"
+  ]
+ },
+ "Plot.GetContinentType": {
+  "summary": "Key of a row of the Continents table: the scripts look it up with GameInfo.Continents[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Continents",
+  "seen_as": [
+   "iContinentType",
+   "eContinentType"
+  ]
+ },
+ "Plot.GetDistrictType": {
+  "summary": "Key of a row of the Districts table: the scripts look it up with GameInfo.Districts[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 6 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Districts",
+  "seen_as": [
+   "eDistrictType",
+   "districtType"
+  ]
+ },
+ "Plot.GetFeatureType": {
+  "summary": "Key of a row of the Features table: the scripts look it up with GameInfo.Features[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 5 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Features",
+  "seen_as": [
+   "featureType",
+   "eFeatureType",
+   "adjFeatureType",
+   "eFeature"
+  ]
+ },
+ "Plot.GetImprovementOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 8 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "playerID",
+   "treasureOwnerID"
+  ]
+ },
+ "Plot.GetImprovementType": {
+  "summary": "Index of a database row (compared with row.Index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 7 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "eImprovement",
+   "impType",
+   "prevImprovment",
+   "eImprovementType"
+  ]
+ },
+ "Plot.GetIndex": {
+  "summary": "Plot index: the scripts pass the result to Map.GetPlotByIndex.",
+  "kind": "plot-index",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "CityBuildings.GetBuildingsAtLocation (x)",
+   "CityGold.GetPlotPurchaseCost (x)"
+  ],
+  "seen_as": [
+   "iSourceIndex",
+   "plotID",
+   "iPlotIndex",
+   "index"
+  ]
+ },
+ "Plot.GetOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 9 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "eOwner",
+   "plotOwner",
+   "iPlotOwner",
+   "owner"
+  ]
+ },
+ "Plot.GetResourceType": {
+  "summary": "Key of a row of the Resources table: the scripts look it up with GameInfo.Resources[result].",
+  "kind": "db-row-key",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Resources",
+  "seen_as": [
+   "resType",
+   "eResource",
+   "eResourceType",
+   "ePlotResource"
+  ]
+ },
+ "Plot.GetRiverEFlowDirection": {
+  "summary": "Value of the FlowDirectionTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type FlowDirectionTypes"
+   }
+  ]
+ },
+ "Plot.GetRiverSEFlowDirection": {
+  "summary": "Value of the FlowDirectionTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type FlowDirectionTypes"
+   }
+  ]
+ },
+ "Plot.GetRiverSWFlowDirection": {
+  "summary": "Value of the FlowDirectionTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type FlowDirectionTypes"
+   }
+  ]
+ },
+ "Plot.GetTerrainClassType": {
+  "summary": "Value of the TerrainClassTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type TerrainClassTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "iPlotTerrainClass",
+   "terrainClass"
+  ]
+ },
+ "Plot.GetTerrainType": {
+  "summary": "Key of a row of the Terrains table: the scripts look it up with GameInfo.Terrains[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Terrains",
+  "seen_as": [
+   "terrainType",
+   "iTerrain",
+   "eTerrainType",
+   "terrType"
+  ]
+ },
+ "Plot.GetWonderType": {
+  "summary": "Key of a row of the Buildings table: the scripts look it up with GameInfo.Buildings[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Buildings",
+  "seen_as": [
+   "eWonderType"
+  ]
+ },
+ "Plot.GetX": {
+  "summary": "The scripts pass the result to `Map.GetPlotXY`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Map.GetPlotXY in 27 place(s)"
+   }
+  ],
+  "seen_as": [
+   "plotX",
+   "x",
+   "iX",
+   "locX"
+  ]
+ },
+ "Plot.GetY": {
+  "summary": "The scripts pass the result to `Map.GetPlotXY`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Map.GetPlotXY in 27 place(s)"
+   }
+  ],
+  "seen_as": [
+   "plotY",
+   "y",
+   "iY",
+   "locY"
+  ]
+ },
+ "RiverManager.GetRiverForFloodplain": {
+  "summary": "The scripts pass the result to `RiverManager.GetFloodplainPlots` (parameter `eRiver`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to RiverManager.GetFloodplainPlots in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "eRiver"
+  ]
+ },
+ "TeamDiplomacy.GetAllianceType": {
+  "summary": "Index of a row of the Alliances table (the value of GameInfo.Alliances[...].Index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type AllianceTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 10 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Alliances",
+  "seen_as": [
+   "allianceType"
+  ]
+ },
+ "TeamDiplomacy.GetDeclaredFriendshipTurn": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (iFriendshipTurn) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "iFriendshipTurn"
+  ]
+ },
+ "TeamDiplomacy.GetDenounceTurn": {
+  "summary": "A turn number (the scripts name the result turn).",
+  "kind": "turn",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (iOurDenounceTurn, iTheirDenounceTurn) in 6 assignments"
+   }
+  ],
+  "seen_as": [
+   "iOurDenounceTurn",
+   "iTheirDenounceTurn"
+  ]
+ },
+ "TeamDiplomacy.GetNumSpiesCaptured": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (numCapturedSpies) in 3 assignments"
+   }
+  ],
+  "seen_as": [
+   "numCapturedSpies"
+  ]
+ },
+ "TeamDiplomacy.GetResearchAgreementTech": {
+  "summary": "Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type TechTypes"
+   }
+  ],
+  "db_table": "Technologies"
+ },
+ "TeamDiplomacy.GetVisibilityOn": {
+  "summary": "Value of the DiplomaticVisibilityTypes enum (a type index).",
+  "kind": "db-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "static-analysis",
+    "note": "the wrapper returns the C++ type DiplomaticVisibilityTypes"
+   },
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "iAccessLevel",
+   "visibility",
+   "visibilityIndex",
+   "eVisibility"
+  ]
+ },
+ "TerrainManager.GetCoastalLowlandType": {
+  "summary": "Key of a row of the CoastalLowlands table: the scripts look it up with GameInfo.CoastalLowlands[result].",
+  "kind": "db-row-key",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "CoastalLowlands",
+  "seen_as": [
+   "eCoastalLowlandType"
+  ]
+ },
+ "Unit.GetBarbarianTargetPlayer": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "targetPlayer"
+  ]
+ },
+ "Unit.GetBarbarianTribeIndex": {
+  "summary": "The scripts pass the result to `Barbarians.GetTribeInciteTargetPlayer`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Barbarians.GetTribeInciteTargetPlayer in 3 place(s)"
+   }
+  ],
+  "seen_as": [
+   "tribeIndex",
+   "iTribe"
+  ]
+ },
+ "Unit.GetDomain": {
+  "summary": "The scripts pass the result to `UnitManager.CanFormMilitaryFormation` (parameter `eDomain`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to UnitManager.CanFormMilitaryFormation in 2 place(s)"
+   }
+  ],
+  "seen_as": [
+   "eDomain"
+  ]
+ },
+ "Unit.GetGreatWorkIndex": {
+  "summary": "The scripts pass the result to `Game.GetGreatWorkType`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Game.GetGreatWorkType in 3 place(s)"
+   }
+  ],
+  "seen_as": [
+   "iGreatWorkIndex"
+  ]
+ },
+ "Unit.GetHeroClassType": {
+  "summary": "Key of a row of the HeroClasses table: the scripts look it up with GameInfo.HeroClasses[result].",
+  "kind": "db-row-key",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "HeroClasses",
+  "seen_as": [
+   "eHeroClass"
+  ]
+ },
+ "Unit.GetID": {
+  "summary": "Id of a unit (the scripts name the result unitID).",
+  "kind": "unit-id",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (unitID, eUnitID) in 15 assignments"
+   }
+  ],
+  "seen_as": [
+   "unitID",
+   "eUnitID"
+  ]
+ },
+ "Unit.GetOriginalOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "iOriginalOwner"
+  ]
+ },
+ "Unit.GetOwner": {
+  "summary": "Id of a player: the scripts use the result as Players[result].",
+  "kind": "player-id",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 5 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "unitOwner",
+   "playerID",
+   "TargetID",
+   "iOwner"
+  ]
+ },
+ "Unit.GetPlotId": {
+  "summary": "Plot index: the scripts pass the result to Map.GetPlotByIndex.",
+  "kind": "plot-index",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 4 place(s) in the game's scripts"
+   }
+  ],
+  "also_passed_to": [
+   "Map.GetPlotByIndex"
+  ],
+  "seen_as": [
+   "iPlotId",
+   "startHexId",
+   "unitPlotID"
+  ]
+ },
+ "Unit.GetReligionType": {
+  "summary": "Key of a row of the Religions table: the scripts look it up with GameInfo.Religions[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Religions",
+  "seen_as": [
+   "eReligion",
+   "religionType"
+  ]
+ },
+ "Unit.GetSpyOperation": {
+  "summary": "Key of a row of the UnitOperations table: the scripts look it up with GameInfo.UnitOperations[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 2 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "UnitOperations",
+  "also_passed_to": [
+   "UnitManager.GetTimeToComplete (eOperation)"
+  ],
+  "seen_as": [
+   "operationType",
+   "eOperationType"
+  ]
+ },
+ "Unit.GetUnitType": {
+  "summary": "Key of a row of the Units table: the scripts look it up with GameInfo.Units[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 3 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "Units",
+  "seen_as": [
+   "unitType"
+  ]
+ },
+ "Unit.GetX": {
+  "summary": "The scripts pass the result to `PlayerVisibility.IsVisible` (parameter `x`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to PlayerVisibility.IsVisible in 3 place(s)"
+   }
+  ],
+  "seen_as": [
+   "PlotX",
+   "unitX",
+   "locX"
+  ]
+ },
+ "Unit.GetY": {
+  "summary": "The scripts pass the result to `PlayerVisibility.IsVisible` (parameter `y`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to PlayerVisibility.IsVisible in 3 place(s)"
+   }
+  ],
+  "seen_as": [
+   "PlotY",
+   "unitY",
+   "locY"
+  ]
+ },
+ "UnitAbility.GetAbilityCount": {
+  "summary": "A count or amount (the scripts name the result count / num / amount).",
+  "kind": "count",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "inferred from the variable names the scripts use (iCurrentCount, cloakCount, abilityFlagCount) in 8 assignments"
+   }
+  ],
+  "seen_as": [
+   "iCurrentCount",
+   "cloakCount",
+   "abilityFlagCount",
+   "lockCount"
+  ]
+ },
+ "UnitArchaeology.GetArtifactIndex": {
+  "summary": "The scripts pass the result to `Game.GetArtifactByIndex`.",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to Game.GetArtifactByIndex in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "iIndex"
+  ]
+ },
+ "UnitExperience.GetExperienceForNextLevel": {
+  "summary": "The scripts pass the result to `UnitExperience.ChangeExperience` (parameter `iExperience`).",
+  "kind": "passed-on",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "passed to UnitExperience.ChangeExperience in 1 place(s)"
+   }
+  ],
+  "seen_as": [
+   "nextLevelExperience"
+  ]
+ },
+ "UnitGreatPerson.GetIndividual": {
+  "summary": "Key of a row of the GreatPersonIndividuals table: the scripts look it up with GameInfo.GreatPersonIndividuals[result].",
+  "kind": "db-row-key",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 5 place(s) in the game's scripts"
+   }
+  ],
+  "db_table": "GreatPersonIndividuals",
+  "seen_as": [
+   "individual"
+  ]
+ },
+ "UnitGreatPerson.GetIndividualHash": {
+  "summary": "Hash of a database row (compared with row.Hash).",
+  "kind": "hash",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "used that way in 1 place(s) in the game's scripts"
+   }
+  ],
+  "seen_as": [
+   "greatperson"
+  ]
+ }
+}

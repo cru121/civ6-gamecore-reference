@@ -1,0 +1,143 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Territory</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › Territory</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Territory</h1>
+<p>14 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory/">Territory</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getboundaries"></a>GetBoundaries</td>
+<td><code>Territory:GetBoundaries() → number, number, number ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetBoundaries/">yes ↗</a></td>
+<td><code>0x238f0</code></td>
+<td><code>0x23de0</code></td>
+</tr>
+<tr>
+<td><a id="getcentroid"></a>GetCentroid</td>
+<td><code>Territory:GetCentroid() → number, number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetCentroid/">yes ↗</a></td>
+<td><code>0x23990</code></td>
+<td><code>0x23e80</code></td>
+</tr>
+<tr>
+<td><a id="getfeaturecount"></a>GetFeatureCount</td>
+<td><code>Territory:GetFeatureCount(eFeature: number/string[FeatureTypes]) → number</code><br><small>args: <code>eFeature</code> — Index of a row of the Features table (the value of GameInfo.Features[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetFeatureCount/">yes ↗</a></td>
+<td><code>0x239f0</code></td>
+<td><code>0x23ee0</code></td>
+</tr>
+<tr>
+<td><a id="getid"></a>GetID</td>
+<td><code>Territory:GetID() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetID/">yes ↗</a></td>
+<td><code>0x23a60</code></td>
+<td><code>0x23f50</code></td>
+</tr>
+<tr>
+<td><a id="getname"></a>GetName</td>
+<td><code>Territory:GetName()</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetName/">yes ↗</a></td>
+<td><code>0x23aa0</code></td>
+<td><code>0x23f90</code></td>
+</tr>
+<tr>
+<td><a id="getplotcount"></a>GetPlotCount</td>
+<td><code>Territory:GetPlotCount() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetPlotCount/">yes ↗</a></td>
+<td><code>0x23b40</code></td>
+<td><code>0x24030</code></td>
+</tr>
+<tr>
+<td><a id="getriveredgecount"></a>GetRiverEdgeCount</td>
+<td><code>Territory:GetRiverEdgeCount() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetRiverEdgeCount/">yes ↗</a></td>
+<td><code>0x23b90</code></td>
+<td><code>0x24080</code></td>
+</tr>
+<tr>
+<td><a id="getterrainclass"></a>GetTerrainClass</td>
+<td><code>Territory:GetTerrainClass() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetTerrainClass/">yes ↗</a></td>
+<td><code>0x23be0</code></td>
+<td><code>0x240d0</code></td>
+</tr>
+<tr>
+<td><a id="gettotalfeatures"></a>GetTotalFeatures</td>
+<td><code>Territory:GetTotalFeatures() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetTotalFeatures/">yes ↗</a></td>
+<td><code>0x23c30</code></td>
+<td><code>0x24120</code></td>
+</tr>
+<tr>
+<td><a id="gettotalnaturalwonders"></a>GetTotalNaturalWonders</td>
+<td><code>Territory:GetTotalNaturalWonders() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.GetTotalNaturalWonders/">yes ↗</a></td>
+<td><code>0x23c80</code></td>
+<td><code>0x24170</code></td>
+</tr>
+<tr>
+<td><a id="islake"></a>IsLake</td>
+<td><code>Territory:IsLake() → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.IsLake/">yes ↗</a></td>
+<td><code>0x23cd0</code></td>
+<td><code>0x241c0</code></td>
+</tr>
+<tr>
+<td><a id="isnone"></a>IsNone</td>
+<td><code>Territory:IsNone() → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.IsNone/">yes ↗</a></td>
+<td><code>0x23d10</code></td>
+<td><code>0x24200</code></td>
+</tr>
+<tr>
+<td><a id="issea"></a>IsSea</td>
+<td><code>Territory:IsSea() → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.IsSea/">yes ↗</a></td>
+<td><code>0x23d50</code></td>
+<td><code>0x24240</code></td>
+</tr>
+<tr>
+<td><a id="setname"></a>SetName</td>
+<td><code>Territory:SetName(szName?: string) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Territory.SetName/">yes ↗</a></td>
+<td><code>0x23d90</code></td>
+<td><code>0x24280</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

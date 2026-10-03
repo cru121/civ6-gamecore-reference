@@ -1,0 +1,24 @@
+id: op:player-operation.MOVE_GREAT_WORK
+summary: "Moves a great work the player owns from one building slot to another building slot, in the same or another city of that player."
+lua_usage: |
+  -- as used by the game's own Great Works screen (Base/Assets/UI/GreatWorksOverview.lua)
+  local tParameters = {}
+  tParameters[PlayerOperations.PARAM_PLAYER_ONE]       = Game.GetLocalPlayer()
+  tParameters[PlayerOperations.PARAM_CITY_SRC]         = srcCityId
+  tParameters[PlayerOperations.PARAM_CITY_DEST]        = destCityId
+  tParameters[PlayerOperations.PARAM_BUILDING_SRC]     = srcBuildingId
+  tParameters[PlayerOperations.PARAM_BUILDING_DEST]    = destBuildingId
+  tParameters[PlayerOperations.PARAM_GREAT_WORK_INDEX] = greatWorkIndex
+  tParameters[PlayerOperations.PARAM_SLOT]             = destSlotIndex
+  UI.RequestPlayerOperation(Game.GetLocalPlayer(), PlayerOperations.MOVE_GREAT_WORK, tParameters)
+notes:
+  - text: "The source is found by looking the great work up in the source building's slots (Buildings::GetGreatWorkInSlot), so a work that sits in no building cannot be moved with this operation."
+    status: verified
+    evidence: [{kind: static-analysis, note: case body calls GetGreatWorkInSlot, RemoveGreatWork, AddGreatWorkToSlot}]
+  - text: "Sends the engine event GREAT_WORK_MOVED and dispatches a signal after placing the work."
+    status: verified
+    evidence: [{kind: static-analysis, note: event hash constant in the case body}]
+  - text: "The seven parameters listed are exactly the ones the vanilla Lua passes."
+    status: verified
+    evidence: [{kind: game-script, note: GreatWorksOverview.lua line ~914}]
+related: [op:player-operation.CHOOSE_ARTIFACT_PLAYER, lua:CityBuildings.GetGreatWorkInSlot, lua:Game.GetGreatWorkPlayer]

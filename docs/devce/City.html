@@ -1,0 +1,748 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>City</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › City</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>City</h1>
+<p>30 methods (Dev CE test build). <code>this</code> is found with the game's own <code>ICity</code> instance resolver (virtual).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addcityhappinessmodifier"></a>AddCityHappinessModifier</td>
+<td><code>City:AddCityHappinessModifier(eHappiness: integer, eYield: integer, eGreatPersonClass: integer, iYieldChange: integer, iGreatPersonChange: integer)</code></td>
+<td>Appends a happiness modifier record (happiness type, yield, great person class, yield change, great person change) to the city's modifier list.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__instance__addcityhappinessmodifier">City::Instance::AddCityHappinessModifier</a></td>
+<td><code>0x12f320</code></td>
+</tr>
+<tr>
+<td><a id="changeaccumulatedidentity"></a>ChangeAccumulatedIdentity</td>
+<td><code>City:ChangeAccumulatedIdentity(ePlayer: integer, xIdentityChange: number (fixed point, 1/256 steps))</code></td>
+<td>For a Free Cities city, adds identity points for a major player (creating a new presence entry if none exists), with the value clamped at zero when decreasing.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__culturalidentity__changeaccumulatedidentity">City::CulturalIdentity::ChangeAccumulatedIdentity</a></td>
+<td><code>0x114fa0</code></td>
+</tr>
+<tr>
+<td><a id="changeallowincomingregionalstackingcount"></a>ChangeAllowIncomingRegionalStackingCount</td>
+<td><code>City:ChangeAllowIncomingRegionalStackingCount(eYield: integer, iDelta: integer)</code></td>
+<td>Adds a delta to a per-yield counter controlling whether the city allows incoming regional stacking for that yield.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__instance__changeallowincomingregionalstackingcount">City::Instance::ChangeAllowIncomingRegionalStackingCount</a></td>
+<td><code>0x131a90</code></td>
+</tr>
+<tr>
+<td><a id="changecountalwaysloyalflags"></a>ChangeCountAlwaysLoyalFlags</td>
+<td><code>City:ChangeCountAlwaysLoyalFlags(iDelta: integer)</code></td>
+<td>Adds a delta to the counter of always-loyal flags on the city and recalculates the city's conversion trends.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__culturalidentity__changecountalwaysloyalflags">City::CulturalIdentity::ChangeCountAlwaysLoyalFlags</a></td>
+<td><code>0x1150c0</code></td>
+</tr>
+<tr>
+<td><a id="changeextraidentityperturnpercitizen"></a>ChangeExtraIdentityPerTurnPerCitizen</td>
+<td><code>City:ChangeExtraIdentityPerTurnPerCitizen(xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a fixed-point delta to the city's extra identity gained per turn per citizen.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__culturalidentity__changeextraidentityperturnpercitizen">City::CulturalIdentity::ChangeExtraIdentityPerTurnPerCitizen</a></td>
+<td><code>0x115100</code></td>
+</tr>
+<tr>
+<td><a id="changeflatyieldbonusforinternational"></a>ChangeFlatYieldBonusForInternational</td>
+<td><code>City:ChangeFlatYieldBonusForInternational(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the city's flat yield bonus for international trade routes for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeflatyieldbonusforinternational">City::Trade::ChangeFlatYieldBonusForInternational</a></td>
+<td><code>0x14da50</code></td>
+</tr>
+<tr>
+<td><a id="changefolloweryieldmodifier"></a>ChangeFollowerYieldModifier ✓</td>
+<td><code>City:ChangeFollowerYieldModifier(eYield: integer, iDelta: integer)</code></td>
+<td>Adds a delta to the city's follower (religion) yield modifier for one yield type and sends an event.</td>
+<td>plumbing ✓<br>effect ✓ (GetFoodSurplus)</td>
+<td><a href="../native/City.html#city__instance__changefolloweryieldmodifier">City::Instance::ChangeFollowerYieldModifier</a></td>
+<td><code>0x131af0</code></td>
+</tr>
+<tr>
+<td><a id="changegreatworkyieldmodifier"></a>ChangeGreatWorkYieldModifier</td>
+<td><code>City:ChangeGreatWorkYieldModifier(eObjectType: integer, eYield: integer, iYieldChange: integer, iScalingFactor: integer)</code></td>
+<td>Adds or removes a great-work yield modifier entry (object type, yield type, flat change, scaling factor) in the city's culture modifier list; a negative change removes the matching entry.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__culture__changegreatworkyieldmodifier">City::Culture::ChangeGreatWorkYieldModifier</a></td>
+<td><code>0x11b800</code></td>
+</tr>
+<tr>
+<td><a id="changeidentitypressurefromages"></a>ChangeIdentityPressureFromAges</td>
+<td><code>City:ChangeIdentityPressureFromAges(xChange: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a fixed-point delta to the identity pressure the city gets from ages.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__culturalidentity__changeidentitypressurefromages">City::CulturalIdentity::ChangeIdentityPressureFromAges</a></td>
+<td><code>0x1151b0</code></td>
+</tr>
+<tr>
+<td><a id="changeidentitypressurefrommodifiers"></a>ChangeIdentityPressureFromModifiers</td>
+<td><code>City:ChangeIdentityPressureFromModifiers(xChange: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a fixed-point delta to the identity pressure the city gets from modifiers.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__culturalidentity__changeidentitypressurefrommodifiers">City::CulturalIdentity::ChangeIdentityPressureFromModifiers</a></td>
+<td><code>0x1151e0</code></td>
+</tr>
+<tr>
+<td><a id="changetourism"></a>ChangeTourism</td>
+<td><code>City:ChangeTourism(eImprovement: integer, eObjectType: integer, bAffectsWonders: boolean, bAffectsReligiousTourism: boolean, iScalingFactor: integer, iModifierID: integer)</code></td>
+<td>Adds or removes a tourism modifier entry in the city's culture list (improvement, great work type, wonders/religious flags, scaling factor, modifier id); a negative scaling factor removes matching entries.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__culture__changetourism">City::Culture::ChangeTourism</a></td>
+<td><code>0x11b960</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldchange"></a>ChangeYieldChange ✓</td>
+<td><code>City:ChangeYieldChange(eYield: integer, iDelta: integer)</code></td>
+<td>Adds a delta to the city's flat yield bonus for one yield type and sends an event.</td>
+<td>plumbing ✓<br>effect ✓ (GetFoodSurplus, GetTurnsUntilGrowth)</td>
+<td><a href="../native/City.html#city__instance__changeyieldchange">City::Instance::ChangeYieldChange</a></td>
+<td><code>0x131c60</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldfromforeignroutespassingthrough"></a>ChangeYieldFromForeignRoutesPassingThrough</td>
+<td><code>City:ChangeYieldFromForeignRoutesPassingThrough(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the yield the city gets from foreign trade routes passing through it, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldfromforeignroutespassingthrough">City::Trade::ChangeYieldFromForeignRoutesPassingThrough</a></td>
+<td><code>0x14db00</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldmodifier"></a>ChangeYieldModifier ✓</td>
+<td><code>City:ChangeYieldModifier(eYield: integer, iDelta: integer)</code></td>
+<td>Adds a delta to the city's percentage yield modifier for one yield type and sends an event.</td>
+<td>plumbing ✓<br>effect ✓ (GetFoodSurplus)</td>
+<td><a href="../native/City.html#city__instance__changeyieldmodifier">City::Instance::ChangeYieldModifier</a></td>
+<td><code>0x131cf0</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldmodifierpergovernortitle"></a>ChangeYieldModifierPerGovernorTitle</td>
+<td><code>City:ChangeYieldModifierPerGovernorTitle(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a fixed-point delta to a city's per-governor-title yield modifier for one yield and sends an event.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__instance__changeyieldmodifierpergovernortitle">City::Instance::ChangeYieldModifierPerGovernorTitle</a></td>
+<td><code>0x131d80</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperdestinationluxuryresourceforinternational"></a>ChangeYieldPerDestinationLuxuryResourceForInternational</td>
+<td><code>City:ChangeYieldPerDestinationLuxuryResourceForInternational(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-destination-luxury-resource yield modifier for international routes, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldperdestinationluxuryresourceforinternational">City::Trade::ChangeYieldPerDestinationLuxuryResourceForInternational</a></td>
+<td><code>0x14db30</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperdestinationstrategicresourcefordomestic"></a>ChangeYieldPerDestinationStrategicResourceForDomestic</td>
+<td><code>City:ChangeYieldPerDestinationStrategicResourceForDomestic(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-destination-strategic-resource yield modifier for domestic routes, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldperdestinationstrategicresourcefordomestic">City::Trade::ChangeYieldPerDestinationStrategicResourceForDomestic</a></td>
+<td><code>0x14db60</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperdestinationstrategicresourceforinternational"></a>ChangeYieldPerDestinationStrategicResourceForInternational</td>
+<td><code>City:ChangeYieldPerDestinationStrategicResourceForInternational(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-destination-strategic-resource yield modifier for international routes, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldperdestinationstrategicresourceforinternational">City::Trade::ChangeYieldPerDestinationStrategicResourceForInternational</a></td>
+<td><code>0x14db90</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperlocalbonusresourcefordomestic"></a>ChangeYieldPerLocalBonusResourceForDomestic</td>
+<td><code>City:ChangeYieldPerLocalBonusResourceForDomestic(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-local-bonus-resource yield modifier for domestic routes, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalbonusresourcefordomestic">City::Trade::ChangeYieldPerLocalBonusResourceForDomestic</a></td>
+<td><code>0x14dbc0</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperlocalbonusresourceforinternational"></a>ChangeYieldPerLocalBonusResourceForInternational</td>
+<td><code>City:ChangeYieldPerLocalBonusResourceForInternational(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-local-bonus-resource yield modifier for international routes, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalbonusresourceforinternational">City::Trade::ChangeYieldPerLocalBonusResourceForInternational</a></td>
+<td><code>0x14dbf0</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperlocalluxuryresourceforinternational"></a>ChangeYieldPerLocalLuxuryResourceForInternational</td>
+<td><code>City:ChangeYieldPerLocalLuxuryResourceForInternational(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-local-luxury-resource yield modifier for international routes, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalluxuryresourceforinternational">City::Trade::ChangeYieldPerLocalLuxuryResourceForInternational</a></td>
+<td><code>0x14dc20</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperlocalstrategicresourceforinternational"></a>ChangeYieldPerLocalStrategicResourceForInternational</td>
+<td><code>City:ChangeYieldPerLocalStrategicResourceForInternational(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-local-strategic-resource yield modifier for international routes, for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalstrategicresourceforinternational">City::Trade::ChangeYieldPerLocalStrategicResourceForInternational</a></td>
+<td><code>0x14dc50</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldpermajortradepartner"></a>ChangeYieldPerMajorTradePartner</td>
+<td><code>City:ChangeYieldPerMajorTradePartner(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the per-major-trade-partner yield modifier for one yield type.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/City.html#city__trade__changeyieldpermajortradepartner">City::Trade::ChangeYieldPerMajorTradePartner</a></td>
+<td><code>0x14dc80</code></td>
+</tr>
+<tr>
+<td><a id="recalculatepower"></a>RecalculatePower</td>
+<td><code>City:RecalculatePower()</code></td>
+<td>Recomputes how much power a city needs: zeroes the required total, re-adds power requirements of non-pillaged buildings, the current production project and extra amounts, then signals whether the city is powered and sends an event when power balance sign changes.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__power__recalculatepower">City::Power::RecalculatePower</a></td>
+<td><code>0x147e80</code></td>
+</tr>
+<tr>
+<td><a id="removecityhappinessmodifier"></a>RemoveCityHappinessModifier</td>
+<td><code>City:RemoveCityHappinessModifier(eHappiness: integer, eYield: integer, eGreatPersonClass: integer, iYieldChange: integer, iGreatPersonChange: integer)</code></td>
+<td>Rebuilds the city's happiness modifier list, intended to drop a matching modifier record.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__instance__removecityhappinessmodifier">City::Instance::RemoveCityHappinessModifier</a></td>
+<td><code>0x1349b0</code></td>
+</tr>
+<tr>
+<td><a id="removedynamicadjacencybonus"></a>RemoveDynamicAdjacencyBonus</td>
+<td><code>City:RemoveDynamicAdjacencyBonus(eDistrict: integer, eTerrain: integer, eFeature: integer, bIsRiver: boolean, iAppeal: integer, bAdjacentDistrict: boolean, eYield: integer)</code></td>
+<td>Removes matching dynamic adjacency bonus entries from the city's list.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__instance__removedynamicadjacencybonus">City::Instance::RemoveDynamicAdjacencyBonus</a></td>
+<td><code>0x134d90</code></td>
+</tr>
+<tr>
+<td><a id="resetcache"></a>ResetCache</td>
+<td><code>City:ResetCache()</code></td>
+<td>Resizes and clears the city's per-yield cached values so they will be recomputed.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__instance__resetcache">City::Instance::ResetCache</a></td>
+<td><code>0x135370</code></td>
+</tr>
+<tr>
+<td><a id="setbuildingfaithpurchasebydistrict"></a>SetBuildingFaithPurchaseByDistrict</td>
+<td><code>City:SetBuildingFaithPurchaseByDistrict(eDistrict: integer, bNewValue: boolean)</code></td>
+<td>Enables or disables faith purchasing for every building that belongs to a given district type by adjusting a per-building counter.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__gold__setbuildingfaithpurchasebydistrict">City::Gold::SetBuildingFaithPurchaseByDistrict</a></td>
+<td><code>0x121c20</code></td>
+</tr>
+<tr>
+<td><a id="setoccupied"></a>SetOccupied</td>
+<td><code>City:SetOccupied(bNewValue: boolean)</code></td>
+<td>Sets the city's occupied flag and sends an event if the stored value actually changed.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__instance__setoccupied">City::Instance::SetOccupied</a></td>
+<td><code>0x135a30</code></td>
+</tr>
+<tr>
+<td><a id="setsiegeprotection"></a>SetSiegeProtection</td>
+<td><code>City:SetSiegeProtection(bProtected: boolean)</code></td>
+<td>Sets the city's siege-protection flag, then re-applies the district's current besieged status so the siege state refreshes.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/City.html#city__combat__setsiegeprotection">City::Combat::SetSiegeProtection</a></td>
+<td><code>0x111b10</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>AddCityHappinessModifier</h3>
+<p>Arguments: <code>eHappiness</code> — happiness state the modifier applies to; <code>eYield</code> — yield affected; <code>eGreatPersonClass</code> — great person class affected; <code>iYieldChange</code> — yield change; must be &gt;0 unless iGreatPersonChange &gt;0; <code>iGreatPersonChange</code> — great person point change</p>
+<p><strong>Writes</strong>
+- 20-byte modifier record appended to the vector held in the city's auto variable at this+0x710</p>
+<p><strong>Side effects</strong>
+- may reallocate the vector</p>
+<p><strong>Input checks:</strong> Silently does nothing unless iYieldChange &gt; 0 or iGreatPersonChange &gt; 0. Enum values are stored unchecked and not deduplicated.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Append to a synchronised auto variable; no validation of enums.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Returns without effect when both change values are not positive
+- Writes through FAutoVariable<VariantMap>::edit at this+0x710 and appends five 4-byte fields
+- Record type is typed as BeliefYield in symbols but the field is City happiness modifiers</p>
+<p><strong>Inferred</strong>
+- Record semantic is 'when city is in this happiness state, add yield/GP'</p>
+<p><strong>Open questions</strong>
+- How RemoveCityHappinessModifier matches records (see that function)</p>
+<h3>ChangeAccumulatedIdentity</h3>
+<p>Arguments: <code>ePlayer</code> — major player whose identity changes; <code>xIdentityChange</code> — identity delta (raw/256)</p>
+<p><strong>Writes</strong>
+- per-player identity presence list at this+0xc8 (new entry appended or existing amount changed)</p>
+<p><strong>Side effects</strong>
+- may grow the presence vector</p>
+<p><strong>Input checks:</strong> Does nothing unless the city's owner is Free Cities and ePlayer is major. New entries only created for positive deltas; existing entries below 0 clamp to 0; entries with the flag byte set are not changed.</p>
+<p><strong>Preconditions</strong>
+- city owned by Free Cities
+- valid player id
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state edit; run on all clients. <strong>Risk:</strong> medium (EditPlayer on unchecked player id). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- gates on owner IsFreeCities and param IsMajor
+- entries are 12 bytes (player, amount, flag byte)
+- negative result clamped to 0; positive new entry appended</p>
+<p><strong>Inferred</strong>
+- flag byte probably marks a locked/loyal entry</p>
+<p><strong>Open questions</strong>
+- flag byte meaning
+- behaviour when entry search runs to end pointer is partially garbled in decompile</p>
+<h3>ChangeAllowIncomingRegionalStackingCount</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>iDelta</code> — amount added to the counter</p>
+<p><strong>Writes</strong>
+- per-yield int at array in auto variable this+0x6b0 (added to), or a fallback int at +0x18 of the container if index beyond its size</p>
+<p><strong>Input checks:</strong> Silent no-op if eYield is -1 or &gt;= number of yield types. If the index is within the type range but beyond the container length, the delta goes into a fallback field instead.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds checked counter change.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Range check against NUM_YIELD_TYPES
+- Edits the auto variable at this+0x6b0 and adds iDelta to int[eYield]
+- Fallback add to container+0x18 when index &gt;= container length at +0x10</p>
+<p><strong>Inferred</strong>
+- It is a reference-counted flag for regional (per-region) stacking of yields</p>
+<p><strong>Open questions</strong>
+- Purpose of the fallback field at container+0x18</p>
+<h3>ChangeCountAlwaysLoyalFlags</h3>
+<p>Arguments: <code>iDelta</code> — change in the number of always-loyal flags</p>
+<p><strong>Writes</strong>
+- always-loyal flag count at this+0x1a0 (value at +0x1b0)</p>
+<p><strong>Side effects</strong>
+- calls RecalculateConversionTrends</p>
+<p><strong>Input checks:</strong> None; count can go negative.</p>
+<p><strong>Preconditions</strong>
+- valid city
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synchronized state. <strong>Risk:</strong> low (simple counter). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- new value = old + delta stored via the variable's move assignment
+- then RecalculateConversionTrends</p>
+<p><strong>Inferred</strong>
+- flag count above zero means city is always loyal</p>
+<p><strong>Open questions</strong>
+- how the count is consumed</p>
+<h3>ChangeExtraIdentityPerTurnPerCitizen</h3>
+<p>Arguments: <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- extra identity per turn per citizen at this+0x1e8 (value at +0x1f8)</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> None; unclamped.</p>
+<p><strong>Preconditions</strong>
+- valid city
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synchronized state. <strong>Risk:</strong> low (simple value add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- reads old value, adds delta from reference, stores via the variable's move assignment</p>
+<p><strong>Inferred</strong>
+- does not recompute trends here</p>
+<h3>ChangeFlatYieldBonusForInternational</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0x88 (flat bonus, international routes)</p>
+<p><strong>Input checks:</strong> Bounds checked: index &gt;= array size is silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object
+- yield index within yield count</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change without events; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add; no recalculation of displayed yields triggered). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- unsigned bounds check against vector length
+- adds raw delta to element</p>
+<p><strong>Inferred</strong>
+- array is the international flat bonus table by name</p>
+<p><strong>Open questions</strong>
+- whether city yields are refreshed elsewhere</p>
+<h3>ChangeFollowerYieldModifier</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>iDelta</code> — amount to add</p>
+<p><strong>Writes</strong>
+- per-yield array at this+0x4d0 (element += iDelta); out-of-range yield writes to a dummy slot</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0xef1e2348 with city id and yield</p>
+<p><strong>Input checks:</strong> Out-of-range yield hits a dummy slot rather than crashing.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds handled additive change). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds checked with dummy slot
+- edit() before write
+- same event as ChangeYieldChange</p>
+<p><strong>Inferred</strong>
+- 'Follower' semantics come from the function name</p>
+<p><strong>Open questions</strong>
+- unit of the modifier (percent assumed)</p>
+<h3>ChangeGreatWorkYieldModifier</h3>
+<p>Arguments: <code>eObjectType</code> — great work object type; <code>eYield</code> — yield type affected; <code>iYieldChange</code> — flat yield change; <code>iScalingFactor</code> — scaling factor</p>
+<p><strong>Writes</strong>
+- modifier vector at this+0x68 (entry of 16 bytes appended or removed)</p>
+<p><strong>Side effects</strong>
+- may reallocate the vector</p>
+<p><strong>Input checks:</strong> If both values are positive an entry is appended; if either is negative, all entries matching type, yield and the negated values are removed (copying the vector); if both are zero nothing happens. No check on type/yield validity.</p>
+<p><strong>Preconditions</strong>
+- valid city
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synchronized state; run on all clients. <strong>Risk:</strong> low (contained list edit). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- zero/both-nonpositive-with-a-negative triggers a rebuild of the vector without the entry equal to (type,yield,-change,-scaling)
+- positive case appends the 4-field entry
+- mixed positive and negative: positive branch tested first only if both &gt;0</p>
+<p><strong>Inferred</strong>
+- note a mixed-sign call (one positive, one negative) is appended, not removed
+- removal rebuilds by copy and drops all matches</p>
+<p><strong>Open questions</strong>
+- whether the mixed-sign case is intended
+- consumer of the list</p>
+<h3>ChangeIdentityPressureFromAges</h3>
+<p>Arguments: <code>xChange</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- identity pressure from ages at this+0xf8 (value at +0x108)</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> None; unclamped.</p>
+<p><strong>Preconditions</strong>
+- valid city
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synchronized state. <strong>Risk:</strong> low (simple value add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- reads old value, adds delta from reference, stores via the variable's move assignment</p>
+<h3>ChangeIdentityPressureFromModifiers</h3>
+<p>Arguments: <code>xChange</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- identity pressure from modifiers at this+0x140 (value at +0x150)</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> None; unclamped.</p>
+<p><strong>Preconditions</strong>
+- valid city
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synchronized state. <strong>Risk:</strong> low (simple value add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- reads old value, adds delta from reference, stores via the variable's move assignment</p>
+<h3>ChangeTourism</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type; <code>eObjectType</code> — great work object type; <code>bAffectsWonders</code> — whether it applies to wonders; <code>bAffectsReligiousTourism</code> — whether it applies to religious tourism; <code>iScalingFactor</code> — scaling factor (positive adds, negative removes); <code>iModifierID</code> — modifier id the entry belongs to</p>
+<p><strong>Writes</strong>
+- tourism modifier vector at this+0x30 (20-byte entries appended or removed)</p>
+<p><strong>Side effects</strong>
+- may reallocate the vector</p>
+<p><strong>Input checks:</strong> Positive factor appends; negative removes all entries with the same improvement, object type, both flags and modifier id (the stored factor is not compared); zero does nothing.</p>
+<p><strong>Preconditions</strong>
+- valid city
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synchronized state. <strong>Risk:</strong> low (contained list edit). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- removal path copies the vector and skips entries matching improvement, type, both flags and modifier id
+- append path stores the 20-byte entry</p>
+<p><strong>Inferred</strong>
+- vector element type shown as BeliefYield is probably a mislabel</p>
+<p><strong>Open questions</strong>
+- the consumer of this list</p>
+<h3>ChangeYieldChange</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>iDelta</code> — amount to add</p>
+<p><strong>Writes</strong>
+- per-yield array at this+0x530 (element += iDelta); out-of-range yield writes to a fallback slot</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0xef1e2348 with city id and yield (shared event with the modifier setters)</p>
+<p><strong>Input checks:</strong> Out-of-range or negative yield does not crash: it writes to a dummy slot at offset 0x18 of the map object.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds handled, additive change). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check with dummy slot fallback
+- event always sent
+- edit() on the variant map</p>
+<p><strong>Inferred</strong>
+- offset +0x530 is a flat yield bonus vs +0x4a0 multiplier</p>
+<p><strong>Open questions</strong>
+- which yield calculation reads this array</p>
+<h3>ChangeYieldFromForeignRoutesPassingThrough</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0x148</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldModifier</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>iDelta</code> — amount to add</p>
+<p><strong>Writes</strong>
+- per-yield array at this+0x4a0 (element += iDelta); out-of-range yield writes to a dummy slot</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0xef1e2348 with city id and yield</p>
+<p><strong>Input checks:</strong> Out-of-range yield hits a dummy slot rather than crashing.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Bounds handled additive change). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds checked with dummy slot
+- edit() before write
+- event identical to the other two yield setters</p>
+<p><strong>Inferred</strong>
+- modifier is likely a percentage</p>
+<p><strong>Open questions</strong>
+- whether yields are recalculated automatically afterwards</p>
+<h3>ChangeYieldModifierPerGovernorTitle</h3>
+<p>Arguments: <code>eYield</code> — yield; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- array at this+0x500 element for yield</p>
+<p><strong>Side effects</strong>
+- Reporting::Event 0xef1e2348</p>
+<p><strong>Input checks:</strong> Out-of-range yield index writes to a fallback slot instead of crashing.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: must be applied everywhere. <strong>Risk:</strong> low (bounded fallback). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check with fallback slot
+- event includes yield</p>
+<h3>ChangeYieldPerDestinationLuxuryResourceForInternational</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0xe8</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldPerDestinationStrategicResourceForDomestic</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0x108</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldPerDestinationStrategicResourceForInternational</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0x128</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldPerLocalBonusResourceForDomestic</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0xa8</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldPerLocalBonusResourceForInternational</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0xc8</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldPerLocalLuxuryResourceForInternational</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0x168</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldPerLocalStrategicResourceForInternational</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0x188</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>ChangeYieldPerMajorTradePartner</h3>
+<p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- per-yield FixedPoint array at this+0x1a8</p>
+<p><strong>Input checks:</strong> Bounds checked: out-of-range yield silently ignored.</p>
+<p><strong>Preconditions</strong>
+- valid city Trade object</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state change; must run on all clients. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check then raw add to array element</p>
+<p><strong>Inferred</strong>
+- meaning taken from the function name</p>
+<h3>RecalculatePower</h3>
+<p><strong>Writes</strong>
+- required power total at this+0x58 (zeroed then rebuilt)
+- this+0x68 reset from this+0x60
+- powered flag at this+0xa0 (set to true when newly powered)</p>
+<p><strong>Side effects</strong>
+- city-powered signal dispatch (city, bool)
+- Reporting::Event 0xd210fbfb when surplus/deficit sign changes
+- calls ChangeRequiredPower per building/project</p>
+<p><strong>Input checks:</strong> No inputs. Skips signal if there is no current game. Requirement lookups are null-checked.</p>
+<p><strong>Preconditions</strong>
+- gameplay state
+- city must have an owner</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (pure recalculation of derived state). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- only major players get building/project requirements added
+- only buildings that exist and are not pillaged contribute
+- signal sent with the city and a bool
+- event sent only when sign of (produced minus required) changes between before and after</p>
+<p><strong>Inferred</strong>
+- this+0x30 is power produced, +0x8 is a base amount scaled by a percent modifier
+- fixed-point 8 fractional bits used for requirements</p>
+<p><strong>Open questions</strong>
+- exact semantics of fields 0x5c, 0x60, 0x68
+- type confusion in Find template names</p>
+<h3>RemoveCityHappinessModifier</h3>
+<p>Arguments: <code>eHappiness</code> — happiness type to match; <code>eYield</code> — yield to match; <code>eGreatPersonClass</code> — great person class to match; <code>iYieldChange</code> — yield change (checked for &lt;0 as the trigger); <code>iGreatPersonChange</code> — great person change</p>
+<p><strong>Writes</strong>
+- clears and refills the modifier vector in auto variable at this+0x710</p>
+<p><strong>Side effects</strong>
+- allocates a temporary copy of the vector and frees it</p>
+<p><strong>Input checks:</strong> Does nothing unless iYieldChange &lt; 0 or iGreatPersonChange &lt; 0. Unmatched id combinations leave the list rebuilt as copied.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> medium (Matching logic looks odd (any one field equal counts as a match; after the first match later records are not re-added), so it may drop more than expected.). <strong>Confidence of the reading:</strong> low.</p>
+<p><strong>Verified from the code</strong>
+- Runs only if either amount is negative
+- Copies the vector, sets the live vector's end to its begin, then re-adds records
+- A record is considered matching if happiness OR yield OR great person class equals the argument; once matched, a flag stops all later records being re-added
+- Non-matching records are re-added only when both amounts differ from the arguments</p>
+<p><strong>Inferred</strong>
+- Decompilation may have merged conditions; the intended behaviour is probably removing one exact record
+- Caller likely passes negated amounts</p>
+<p><strong>Open questions</strong>
+- Whether the OR/AND logic is a decompiler artefact or a real game quirk
+- Why the first matching record and everything after is lost</p>
+<h3>RemoveDynamicAdjacencyBonus</h3>
+<p>Arguments: <code>eDistrict</code> — district type of the bonus; <code>eTerrain</code> — terrain filter; <code>eFeature</code> — feature filter; <code>bIsRiver</code> — river adjacency; <code>iAppeal</code> — appeal value; <code>bAdjacentDistrict</code> — adjacent district flag; <code>eYield</code> — yield type</p>
+<p><strong>Writes</strong>
+- dynamic adjacency bonus vector at this+0x800 (matching elements erased)</p>
+<p><strong>Input checks:</strong> No validation; non-matches leave list unchanged.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: synced city state. <strong>Risk:</strong> low (list filter). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- remove-if then erase on vector
+- match criteria are packed from all 7 parameters</p>
+<p><strong>Inferred</strong>
+- matching compares all fields (lambda not shown)
+- no cache refresh is triggered here</p>
+<p><strong>Open questions</strong>
+- exact lambda comparison, whether adjacency yields recalculated elsewhere</p>
+<h3>ResetCache</h3>
+<p><strong>Writes</strong>
+- per-yield cached value array at this+0x1950 (capacity at +0x1958, count at +0x1960): all entries marked invalid, count set to number of yields</p>
+<p><strong>Side effects</strong>
+- may allocate a bigger block</p>
+<p><strong>Input checks:</strong> None needed. Protected method.</p>
+<p><strong>Preconditions</strong>
+- definitions loaded</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Only invalidates a cache.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Count comes from yield definitions list size
+- Grows the vector when capacity is smaller
+- Sets the validity byte of every 8-byte entry (value+flag) to 0
+- Updates the stored count</p>
+<p><strong>Inferred</strong>
+- Each entry is a CachedValue of fixed-point with a valid flag</p>
+<p><strong>Open questions</strong>
+- The value field is written from an uninitialised local so its content is irrelevant</p>
+<h3>SetBuildingFaithPurchaseByDistrict</h3>
+<p>Arguments: <code>eDistrict</code> — district type whose buildings are affected; <code>bNewValue</code> — true adds one to each counter, false subtracts one</p>
+<p><strong>Writes</strong>
+- per-building int counter array at this+0x50 (+1 or -1 per matching building)</p>
+<p><strong>Input checks:</strong> No validation. Counters are reference counts, so unbalanced false calls go negative. Building index used unchecked into the array.</p>
+<p><strong>Preconditions</strong>
+- definitions loaded
+- counter array sized for all buildings</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Simple counter change; the name says Set but it increments/decrements.). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- Iterates all building definitions
+- Matches when the building's district entry equals eDistrict
+- Adds or subtracts 1 in an int array at this+0x50 indexed by the building type</p>
+<p><strong>Inferred</strong>
+- The array is a faith-purchase enable refcount; nonzero likely means purchasable</p>
+<p><strong>Open questions</strong>
+- How the counter is later interpreted (&gt;0?)</p>
+<h3>SetOccupied</h3>
+<p>Arguments: <code>bNewValue</code> — new occupied flag</p>
+<p><strong>Writes</strong>
+- bool at this+0x328 (auto-variable at this+0x318)</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Event 0xde2d2813 with city id when value changed</p>
+<p><strong>Input checks:</strong> No input checks; the event compares old and new stored value.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (Single flag write). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- writes through an auto-variable
+- event only when flag changed</p>
+<p><strong>Inferred</strong>
+- occupied means city is under foreign/captured occupation</p>
+<p><strong>Open questions</strong>
+- effects of the flag are elsewhere (e.g. yields or loyalty)</p>
+<h3>SetSiegeProtection</h3>
+<p>Arguments: <code>bProtected</code> — whether the city is protected from siege</p>
+<p><strong>Writes</strong>
+- siege-protection byte at this+0x18
+- district siege status (via SetSiegeStatus)</p>
+<p><strong>Side effects</strong>
+- district SetSiegeStatus may update visuals/combat state</p>
+<p><strong>Input checks:</strong> None; assumes a valid city pointer at this+0.</p>
+<p><strong>Preconditions</strong>
+- valid city
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits gameplay state; apply on all clients. <strong>Risk:</strong> low (single flag plus status refresh). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- stores the bool at this+0x18
+- reads district IsBesieged then calls SetSiegeStatus on the editable district with the result</p>
+<p><strong>Inferred</strong>
+- IsBesieged now takes the new protection flag into account so the status may flip</p>
+<p><strong>Open questions</strong>
+- whether SetSiegeStatus triggers notifications</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

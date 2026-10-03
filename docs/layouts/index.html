@@ -1,0 +1,353 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Class layouts</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › Class layouts</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Class layouts</h1>
+<p>Member names, offsets and sizes of 1915 GameCore classes, taken from the Linux port's debug information. Offsets are from the <strong>Linux build</strong> (debug info). Where a Windows offset was checked against Windows code it is shown in the <em>Windows</em> column with its relation to the Linux offset. For classes built from tracked variables the Windows offset is usually the Linux offset minus 8, but this is only stated where it was checked; plain classes are usually identical; classes holding STL containers can differ.</p>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Classes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="AI.html">AI</a></td>
+<td>445</td>
+</tr>
+<tr>
+<td><a href="AiCityBuild.html">AiCityBuild</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AiDiplomatic.html">AiDiplomatic</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="AiGrandStrategic.html">AiGrandStrategic</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Analysis.html">Analysis</a></td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="BOUNDEDKNAPSACK_ALGORITHM.html">BOUNDEDKNAPSACK_ALGORITHM</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Barbarian.html">Barbarian</a></td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Boost.html">Boost</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Cache.html">Cache</a></td>
+<td>262</td>
+</tr>
+<tr>
+<td><a href="City.html">City</a></td>
+<td>74</td>
+</tr>
+<tr>
+<td><a href="CityCulturalIdentity.html">CityCulturalIdentity</a></td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="CityCulture.html">CityCulture</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="CityDistricts.html">CityDistricts</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="CityGrowth.html">CityGrowth</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="CityPower.html">CityPower</a></td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="CityReligion.html">CityReligion</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="CityTrade.html">CityTrade</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Combat.html">Combat</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Configuration.html">Configuration</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Congress.html">Congress</a></td>
+<td>22</td>
+</tr>
+<tr>
+<td><a href="Context.html">Context</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Definition.html">Definition</a></td>
+<td>328</td>
+</tr>
+<tr>
+<td><a href="Diplomacy.html">Diplomacy</a></td>
+<td>29</td>
+</tr>
+<tr>
+<td><a href="DiplomaticRelations.html">DiplomaticRelations</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="District.html">District</a></td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Emergency.html">Emergency</a></td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Events.html">Events</a></td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Exports.html">Exports</a></td>
+<td>68</td>
+</tr>
+<tr>
+<td><a href="Formation.html">Formation</a></td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Fractal.html">Fractal</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="FreeCities.html">FreeCities</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Game.html">Game</a></td>
+<td>106</td>
+</tr>
+<tr>
+<td><a href="GameCulture.html">GameCulture</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="GameEras.html">GameEras</a></td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="GameGreatPeople.html">GameGreatPeople</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="GameHistoryManager.html">GameHistoryManager</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="GameNationalParks.html">GameNationalParks</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="GameReligion.html">GameReligion</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="GameSummary.html">GameSummary</a></td>
+<td>10</td>
+</tr>
+<tr>
+<td><a href="GameTechs.html">GameTechs</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Governor.html">Governor</a></td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Interfaces.html">Interfaces</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Lua.html">Lua</a></td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="Map.html">Map</a></td>
+<td>101</td>
+</tr>
+<tr>
+<td><a href="Message.html">Message</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Messages.html">Messages</a></td>
+<td>22</td>
+</tr>
+<tr>
+<td><a href="ObjectPairing.html">ObjectPairing</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Operations.html">Operations</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Other.html">Other</a></td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="Pathfinder.html">Pathfinder</a></td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="Player.html">Player</a></td>
+<td>99</td>
+</tr>
+<tr>
+<td><a href="PlayerCulture.html">PlayerCulture</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="PlayerDiplomacy.html">PlayerDiplomacy</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="PlayerGreatPeoplePoints.html">PlayerGreatPeoplePoints</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="PlayerInfluence.html">PlayerInfluence</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="PlayerReligion.html">PlayerReligion</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="PlayerStats.html">PlayerStats</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="PlayerTechs.html">PlayerTechs</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="PlayerTrade.html">PlayerTrade</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="PlayerTreasury.html">PlayerTreasury</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Quests.html">Quests</a></td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="Reflection.html">Reflection</a></td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Reporting.html">Reporting</a></td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="Requirements.html">Requirements</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Rules.html">Rules</a></td>
+<td>24</td>
+</tr>
+<tr>
+<td><a href="Scripting.html">Scripting</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Serializer.html">Serializer</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Shared.html">Shared</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="SharedParameters.html">SharedParameters</a></td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Tag.html">Tag</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Trade.html">Trade</a></td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="Tuner.html">Tuner</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Tutorial.html">Tutorial</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="Unit.html">Unit</a></td>
+<td>66</td>
+</tr>
+<tr>
+<td><a href="UnitAbility.html">UnitAbility</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="UnitArchaeology.html">UnitArchaeology</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="UnitExperience.html">UnitExperience</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="UnitGreatPerson.html">UnitGreatPerson</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="UnitRockBand.html">UnitRockBand</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="UnitTrade.html">UnitTrade</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="WorldBuilder.html">WorldBuilder</a></td>
+<td>58</td>
+</tr>
+<tr>
+<td><a href="YieldMonitor.html">YieldMonitor</a></td>
+<td>3</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

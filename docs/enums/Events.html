@@ -1,0 +1,2148 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Events</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Enums</a> › Events</p>
+<div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
+
+<h1>Events</h1>
+<p>C++ type: <code>GameCore::Events::EventTypes</code></p>
+<p>Engine event ids used by the reporting and event systems (for example Reporting::Event::Send). Each id is the hash of the event name.</p>
+<ul>
+<li>351 of the 352 ids equal the hash of their name (see the hash function page). EMERGENCIES_UPDATED has an id that does not match its own name.
+  <em>[verified; evidence: dwarf — enumerator values compared with the computed hash]</em></li>
+<li>13 events never appear as an immediate constant in any function of the symbol or current build, so they are probably sent through a computed id or are unused.
+  <em>[inferred; evidence: static-analysis — scan of all 32-bit immediates in .text]</em></li>
+</ul>
+<p>These are the engine's event ids. About three quarters of them are also <strong>Lua events</strong> that scripts can subscribe to; those are on the <a href="LuaEvents.html">Lua events</a> page with their parameters. The last column gives the Lua name where one is known.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Hash</th>
+<th>Signed value</th>
+<th>Lua event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNIT_VISIBILITY_CHANGED</td>
+<td><code>0xc1300ee7</code></td>
+<td>-1053815065</td>
+<td><a href="LuaEvents.html">UnitVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_WORK_CHANGED</td>
+<td><code>0x4b28bc37</code></td>
+<td>1260960823</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_ACTIVATE</td>
+<td><code>0x981a9186</code></td>
+<td>-1743089274</td>
+<td><a href="LuaEvents.html">UnitActivate</a></td>
+</tr>
+<tr>
+<td>UNIT_TELEPORTED</td>
+<td><code>0x9deb82e7</code></td>
+<td>-1645509913</td>
+<td><a href="LuaEvents.html">UnitTeleported</a></td>
+</tr>
+<tr>
+<td>UNIT_MOVED</td>
+<td><code>0xbe121408</code></td>
+<td>-1106111480</td>
+<td><a href="LuaEvents.html">UnitMoved</a></td>
+</tr>
+<tr>
+<td>UNIT_JUMPED</td>
+<td><code>0xcc6f2070</code></td>
+<td>-865132432</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_ARRIVED_AT_CITY</td>
+<td><code>0x89facdc3</code></td>
+<td>-1980052029</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_LEFT_CITY</td>
+<td><code>0x8ee31e6f</code></td>
+<td>-1897718161</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_ARRIVED_AT_DISTRICT</td>
+<td><code>0xc1f57315</code></td>
+<td>-1040878827</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_LEFT_DISTRICT</td>
+<td><code>0x4ce3627a</code></td>
+<td>1289970298</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_MOVE_COMPLETE</td>
+<td><code>0x6e7ef927</code></td>
+<td>1853815079</td>
+<td><a href="LuaEvents.html">UnitMoveComplete</a></td>
+</tr>
+<tr>
+<td>UNIT_MOVEMENT_POINTS_CHANGED</td>
+<td><code>0xc50d66d6</code></td>
+<td>-988977450</td>
+<td><a href="LuaEvents.html">UnitMovementPointsChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_MOVEMENT_POINTS_CLEARED</td>
+<td><code>0xe992f3cd</code></td>
+<td>-376245299</td>
+<td><a href="LuaEvents.html">UnitMovementPointsCleared</a></td>
+</tr>
+<tr>
+<td>UNIT_MOVEMENT_POINTS_RESTORED</td>
+<td><code>0x6e8a2f93</code></td>
+<td>1854549907</td>
+<td><a href="LuaEvents.html">UnitMovementPointsRestored</a></td>
+</tr>
+<tr>
+<td>UNIT_ATTACKS_REMAINING_CHANGED</td>
+<td><code>0x35597c21</code></td>
+<td>895056929</td>
+<td><a href="LuaEvents.html">UnitAttacksRemainingChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_REMOVED_FROM_MAP</td>
+<td><code>0xd8adfd71</code></td>
+<td>-659686031</td>
+<td><a href="LuaEvents.html">UnitRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>UNIT_ADDED_TO_MAP</td>
+<td><code>0xb8515a41</code></td>
+<td>-1202628031</td>
+<td><a href="LuaEvents.html">UnitAddedToMap</a></td>
+</tr>
+<tr>
+<td>UNIT_DAMAGE_CHANGED</td>
+<td><code>0xf8a5ab14</code></td>
+<td>-123360492</td>
+<td><a href="LuaEvents.html">UnitDamageChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_ARTIFACT_CHANGED</td>
+<td><code>0x9d4424f5</code></td>
+<td>-1656478475</td>
+<td><a href="LuaEvents.html">UnitArtifactChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_KILLED_IN_COMBAT</td>
+<td><code>0x754cbd1b</code></td>
+<td>1967963419</td>
+<td><a href="LuaEvents.html">UnitKilledInCombat</a></td>
+</tr>
+<tr>
+<td>UNIT_KILLED_BY_FALLOUT</td>
+<td><code>0x705fc8ec</code></td>
+<td>1885325548</td>
+<td><a href="LuaEvents.html">UnitKilledByFallout</a></td>
+</tr>
+<tr>
+<td>UNIT_KILLED_LIFESPAN_EXPIRED</td>
+<td><code>0x35c46e9e</code></td>
+<td>902065822</td>
+<td><a href="LuaEvents.html">UnitKilledLifespanExpired</a></td>
+</tr>
+<tr>
+<td>UNIT_CAPTURED</td>
+<td><code>0x664a37b6</code></td>
+<td>1716139958</td>
+<td><a href="LuaEvents.html">UnitCaptured</a></td>
+</tr>
+<tr>
+<td>UNIT_ENTER_FORMATION</td>
+<td><code>0x7222312b</code></td>
+<td>1914843435</td>
+<td><a href="LuaEvents.html">UnitEnterFormation</a></td>
+</tr>
+<tr>
+<td>UNIT_EXIT_FORMATION</td>
+<td><code>0x45b4e4f8</code></td>
+<td>1169483000</td>
+<td><a href="LuaEvents.html">UnitExitFormation</a></td>
+</tr>
+<tr>
+<td>UNIT_FORM_CORPS</td>
+<td><code>0x577efb25</code></td>
+<td>1467939621</td>
+<td><a href="LuaEvents.html">UnitFormCorps</a></td>
+</tr>
+<tr>
+<td>UNIT_FORM_ARMY</td>
+<td><code>0x1c3f4eb5</code></td>
+<td>473910965</td>
+<td><a href="LuaEvents.html">UnitFormArmy</a></td>
+</tr>
+<tr>
+<td>UNIT_FORTIFICATION_CHANGED</td>
+<td><code>0xf90fc0eb</code></td>
+<td>-116408085</td>
+<td><a href="LuaEvents.html">UnitFortificationChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_EXPERIENCE_CHANGED</td>
+<td><code>0xa479f83f</code></td>
+<td>-1535510465</td>
+<td><a href="LuaEvents.html">UnitExperienceChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_LEVEL_CHANGED</td>
+<td><code>0xa038d885</code></td>
+<td>-1606887291</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_GREATPERSON_CREATED</td>
+<td><code>0x8dfa08b7</code></td>
+<td>-1912993609</td>
+<td><a href="LuaEvents.html">UnitGreatPersonCreated</a></td>
+</tr>
+<tr>
+<td>UNIT_GREATPERSON_CHANGED</td>
+<td><code>0x9c3482f5</code></td>
+<td>-1674280203</td>
+<td><a href="LuaEvents.html">UnitGreatPersonChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_GREATPERSON_ACTIVATED</td>
+<td><code>0x0379681d</code></td>
+<td>58288157</td>
+<td><a href="LuaEvents.html">UnitGreatPersonActivated</a></td>
+</tr>
+<tr>
+<td>UNIT_PROMOTED</td>
+<td><code>0x661109d9</code></td>
+<td>1712392665</td>
+<td><a href="LuaEvents.html">UnitPromoted</a></td>
+</tr>
+<tr>
+<td>UNIT_ABILITY_GAINED</td>
+<td><code>0xa96df790</code></td>
+<td>-1452410992</td>
+<td><a href="LuaEvents.html">UnitAbilityGained</a></td>
+</tr>
+<tr>
+<td>UNIT_ABILITY_LOST</td>
+<td><code>0x7274f04b</code></td>
+<td>1920266315</td>
+<td><a href="LuaEvents.html">UnitAbilityLost</a></td>
+</tr>
+<tr>
+<td>UNIT_AI_COMPLETE</td>
+<td><code>0xd70ba51f</code></td>
+<td>-687102689</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_EMBARK_CHANGED</td>
+<td><code>0x84c1fdd6</code></td>
+<td>-2067661354</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_CHARGES_CHANGED</td>
+<td><code>0xb2176dc4</code></td>
+<td>-1307087420</td>
+<td><a href="LuaEvents.html">UnitChargesChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_UPGRADED</td>
+<td><code>0x4b7440e9</code></td>
+<td>1265909993</td>
+<td><a href="LuaEvents.html">UnitUpgraded</a></td>
+</tr>
+<tr>
+<td>UNIT_AIRLIFTED</td>
+<td><code>0xa84839a6</code></td>
+<td>-1471661658</td>
+<td><a href="LuaEvents.html">UnitAirlifted</a></td>
+</tr>
+<tr>
+<td>UNIT_PARADROPPED</td>
+<td><code>0x2e056017</code></td>
+<td>772104215</td>
+<td><a href="LuaEvents.html">UnitParadropped</a></td>
+</tr>
+<tr>
+<td>UNIT_SACRIFICED</td>
+<td><code>0xee3a2c37</code></td>
+<td>-298177481</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_TRADE_CHANGED</td>
+<td><code>0xf210a56c</code></td>
+<td>-233790100</td>
+<td><a href="LuaEvents.html">UnitTradeChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_TOURISM_BOMB</td>
+<td><code>0xe9615c9b</code></td>
+<td>-379495269</td>
+<td><a href="LuaEvents.html">UnitTourismBomb</a></td>
+</tr>
+<tr>
+<td>POST_TOURISM_BOMB</td>
+<td><code>0x90cac3df</code></td>
+<td>-1865759777</td>
+<td><a href="LuaEvents.html">PostTourismBomb</a></td>
+</tr>
+<tr>
+<td>UNIT_KILL_WEAKER_UNIT</td>
+<td><code>0x58692e31</code></td>
+<td>1483288113</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_GRANT_ENVOY</td>
+<td><code>0x956ea850</code></td>
+<td>-1787910064</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_FORCE_LEVY_MILITARY</td>
+<td><code>0xfe5ae7d7</code></td>
+<td>-27596841</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_DESTROY_DEVELOPMENT</td>
+<td><code>0x4d091d3d</code></td>
+<td>1292442941</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_RESTORE_UNIT_MOVES</td>
+<td><code>0x1a542b65</code></td>
+<td>441723749</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_RESOURCE_INSPIRE</td>
+<td><code>0x1f1c4132</code></td>
+<td>521945394</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_HERO_ACTIVATED</td>
+<td><code>0x81748a58</code></td>
+<td>-2123068840</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_AREA_DAMAGE</td>
+<td><code>0xb085ed8d</code></td>
+<td>-1333400179</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_AREA_HEAL</td>
+<td><code>0xef523425</code></td>
+<td>-279825371</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_CREATE_RANDOM_RESOURCE</td>
+<td><code>0x869c969e</code></td>
+<td>-2036558178</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_NAVAL_GOLD_RAID</td>
+<td><code>0x202a89dd</code></td>
+<td>539658717</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_OPERATION_ADDED</td>
+<td><code>0x15c35863</code></td>
+<td>365123683</td>
+<td><a href="LuaEvents.html">UnitOperationAdded</a></td>
+</tr>
+<tr>
+<td>UNIT_OPERATION_ADDED_BY_LOCAL_PLAYER</td>
+<td><code>0x7b4264e9</code></td>
+<td>2067948777</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_OPERATIONS_CLEARED</td>
+<td><code>0x383669f1</code></td>
+<td>943090161</td>
+<td><a href="LuaEvents.html">UnitOperationsCleared</a></td>
+</tr>
+<tr>
+<td>UNIT_OPERATION_STARTED</td>
+<td><code>0x3d4006f2</code></td>
+<td>1027606258</td>
+<td><a href="LuaEvents.html">UnitOperationStarted</a></td>
+</tr>
+<tr>
+<td>UNIT_OPERATION_SEGMENT_COMPLETE</td>
+<td><code>0xcb0345f1</code></td>
+<td>-888977935</td>
+<td><a href="LuaEvents.html">UnitOperationSegmentComplete</a></td>
+</tr>
+<tr>
+<td>UNIT_OPERATION_DEACTIVATED</td>
+<td><code>0xa60328c5</code></td>
+<td>-1509742395</td>
+<td><a href="LuaEvents.html">UnitOperationDeactivated</a></td>
+</tr>
+<tr>
+<td>UNIT_ACTIVITY_CHANGED</td>
+<td><code>0xe23b112d</code></td>
+<td>-499445459</td>
+<td><a href="LuaEvents.html">UnitActivityChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_COMMAND_STARTED</td>
+<td><code>0xfc7db95e</code></td>
+<td>-58869410</td>
+<td><a href="LuaEvents.html">UnitCommandStarted</a></td>
+</tr>
+<tr>
+<td>UNIT_FORMATION_CHANGED</td>
+<td><code>0xcc1b6864</code></td>
+<td>-870619036</td>
+<td><a href="LuaEvents.html">UnitFormationChanged</a></td>
+</tr>
+<tr>
+<td>UNIT_FORMATION_MOVEMENT_POINTS_CHANGED</td>
+<td><code>0x3d75b3ed</code></td>
+<td>1031123949</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_FORMATION_MOVE_INTO_ZOC_CHANGED</td>
+<td><code>0xc52231ab</code></td>
+<td>-987614805</td>
+<td></td>
+</tr>
+<tr>
+<td>UNIT_PROPERTY_CHANGED</td>
+<td><code>0xbba42db5</code></td>
+<td>-1146868299</td>
+<td><a href="LuaEvents.html">UnitPropertyChanged</a></td>
+</tr>
+<tr>
+<td>OBJECT_PAIRING</td>
+<td><code>0x65f98bc8</code></td>
+<td>1710853064</td>
+<td><a href="LuaEvents.html">ObjectPairing</a></td>
+</tr>
+<tr>
+<td>BARBARIAN_SPOTTED_CITY</td>
+<td><code>0xb19dd18b</code></td>
+<td>-1315057269</td>
+<td><a href="LuaEvents.html">BarbarianSpottedCity</a></td>
+</tr>
+<tr>
+<td>BARBARIAN_RAID_STARTED</td>
+<td><code>0xad786513</code></td>
+<td>-1384618733</td>
+<td><a href="LuaEvents.html">BarbarianRaidStarted</a></td>
+</tr>
+<tr>
+<td>UNIT_ENTERED_BARBARIAN_CAMP</td>
+<td><code>0xa06c349e</code></td>
+<td>-1603521378</td>
+<td><a href="LuaEvents.html">UnitEnteredBarbarianCamp</a></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_DISPERSED</td>
+<td><code>0xe30b97a5</code></td>
+<td>-485779547</td>
+<td></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_RAIDED</td>
+<td><code>0x35ee54b9</code></td>
+<td>904811705</td>
+<td></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_HIRED</td>
+<td><code>0xca77a9e6</code></td>
+<td>-898127386</td>
+<td></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_BRIBED</td>
+<td><code>0x15f5c7c2</code></td>
+<td>368428994</td>
+<td></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_RANSOMED</td>
+<td><code>0x0a172bfa</code></td>
+<td>169290746</td>
+<td></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_INCITED</td>
+<td><code>0xeb93226e</code></td>
+<td>-342678930</td>
+<td></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_CONVERSION_ENABLED</td>
+<td><code>0x085098eb</code></td>
+<td>139499755</td>
+<td><a href="LuaEvents.html">BarbarianClanConversionEnabled</a></td>
+</tr>
+<tr>
+<td>BARBARIAN_CLAN_CONVERSION_DISABLED</td>
+<td><code>0xb0c7744c</code></td>
+<td>-1329105844</td>
+<td><a href="LuaEvents.html">BarbarianClanConversionDisabled</a></td>
+</tr>
+<tr>
+<td>CITY_ADDED_TO_MAP</td>
+<td><code>0xfa5b1159</code></td>
+<td>-94695079</td>
+<td><a href="LuaEvents.html">CityAddedToMap</a></td>
+</tr>
+<tr>
+<td>CITY_CHANGED</td>
+<td><code>0x8d005711</code></td>
+<td>-1929357551</td>
+<td><a href="LuaEvents.html">CityChanged</a></td>
+</tr>
+<tr>
+<td>CITY_REMOVED_FROM_MAP</td>
+<td><code>0x53f22816</code></td>
+<td>1408378902</td>
+<td><a href="LuaEvents.html">CityRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>CITY_INITIALIZED</td>
+<td><code>0x2b1ba0f8</code></td>
+<td>723230968</td>
+<td><a href="LuaEvents.html">CityInitialized</a></td>
+</tr>
+<tr>
+<td>CITY_VISIBILITY_CHANGED</td>
+<td><code>0x1d355e83</code></td>
+<td>490036867</td>
+<td><a href="LuaEvents.html">CityVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>CITY_PRODUCTION_CHANGED</td>
+<td><code>0x2842ce14</code></td>
+<td>675466772</td>
+<td><a href="LuaEvents.html">CityProductionChanged</a></td>
+</tr>
+<tr>
+<td>CITY_PRODUCTION_UPDATED</td>
+<td><code>0x4d2a6519</code></td>
+<td>1294624025</td>
+<td><a href="LuaEvents.html">CityProductionUpdated</a></td>
+</tr>
+<tr>
+<td>CITY_PRODUCTION_COMPLETED</td>
+<td><code>0x3182bc8e</code></td>
+<td>830651534</td>
+<td><a href="LuaEvents.html">CityProductionCompleted</a></td>
+</tr>
+<tr>
+<td>CITY_PRODUCTION_QUEUE_CHANGED</td>
+<td><code>0x92492f56</code></td>
+<td>-1840697514</td>
+<td><a href="LuaEvents.html">CityProductionQueueChanged</a></td>
+</tr>
+<tr>
+<td>CITY_POPULATION_CHANGED</td>
+<td><code>0x10419f1f</code></td>
+<td>272736031</td>
+<td><a href="LuaEvents.html">CityPopulationChanged</a></td>
+</tr>
+<tr>
+<td>CITY_RELIGION_CHANGED</td>
+<td><code>0x51c84cba</code></td>
+<td>1372081338</td>
+<td><a href="LuaEvents.html">CityReligionChanged</a></td>
+</tr>
+<tr>
+<td>CITY_RELIGION_FOLLOWERS_CHANGED</td>
+<td><code>0x99e85ec6</code></td>
+<td>-1712824634</td>
+<td><a href="LuaEvents.html">CityReligionFollowersChanged</a></td>
+</tr>
+<tr>
+<td>CITY_FOCUS_CHANGED</td>
+<td><code>0xe808a01e</code></td>
+<td>-402087906</td>
+<td><a href="LuaEvents.html">CityFocusChanged</a></td>
+</tr>
+<tr>
+<td>CITY_DEFENSE_STATUS_CHANGED</td>
+<td><code>0x93556d2d</code></td>
+<td>-1823118035</td>
+<td><a href="LuaEvents.html">CityDefenseStatusChanged</a></td>
+</tr>
+<tr>
+<td>CITY_LIBERATED</td>
+<td><code>0x29115d4a</code></td>
+<td>689003850</td>
+<td><a href="LuaEvents.html">CityLiberated</a></td>
+</tr>
+<tr>
+<td>CITY_YIELD_MODIFIER_CHANGED</td>
+<td><code>0xef1e2348</code></td>
+<td>-283237560</td>
+<td></td>
+</tr>
+<tr>
+<td>CITY_SIEGE_STATUS_CHANGED</td>
+<td><code>0xfbada2c8</code></td>
+<td>-72506680</td>
+<td><a href="LuaEvents.html">CitySiegeStatusChanged</a></td>
+</tr>
+<tr>
+<td>CITY_OCCUPATION_CHANGED</td>
+<td><code>0xde2d2813</code></td>
+<td>-567465965</td>
+<td><a href="LuaEvents.html">CityOccupationChanged</a></td>
+</tr>
+<tr>
+<td>CITY_COMMAND_STARTED</td>
+<td><code>0x1d103404</code></td>
+<td>487601156</td>
+<td><a href="LuaEvents.html">CityCommandStarted</a></td>
+</tr>
+<tr>
+<td>CITY_OPERATION_STARTED</td>
+<td><code>0xee1daddc</code></td>
+<td>-300044836</td>
+<td></td>
+</tr>
+<tr>
+<td>CITY_NAME_CHANGED</td>
+<td><code>0xd4820ab3</code></td>
+<td>-729675085</td>
+<td><a href="LuaEvents.html">CityNameChanged</a></td>
+</tr>
+<tr>
+<td>CITY_PROPERTY_CHANGED</td>
+<td><code>0x30fbf8d2</code></td>
+<td>821819602</td>
+<td><a href="LuaEvents.html">CityPropertyChanged</a></td>
+</tr>
+<tr>
+<td>CITY_MADE_PURCHASE</td>
+<td><code>0x418bc436</code></td>
+<td>1099678774</td>
+<td><a href="LuaEvents.html">CityMadePurchase</a></td>
+</tr>
+<tr>
+<td>CITY_FORCE_WORKER</td>
+<td><code>0xc2f385c0</code></td>
+<td>-1024227904</td>
+<td></td>
+</tr>
+<tr>
+<td>CITY_TILE_OWNERSHIP_CHANGED</td>
+<td><code>0xfb5f1edb</code></td>
+<td>-77652261</td>
+<td><a href="LuaEvents.html">CityTileOwnershipChanged</a></td>
+</tr>
+<tr>
+<td>CITY_WORKING_PLOT_CHANGED</td>
+<td><code>0x67001fe1</code></td>
+<td>1728061409</td>
+<td></td>
+</tr>
+<tr>
+<td>CITY_TRANSFERED</td>
+<td><code>0xe05ec908</code></td>
+<td>-530659064</td>
+<td><a href="LuaEvents.html">CityTransfered</a></td>
+</tr>
+<tr>
+<td>CAPITAL_CITY_CHANGED</td>
+<td><code>0x7bbbe6e0</code></td>
+<td>2075911904</td>
+<td><a href="LuaEvents.html">CapitalCityChanged</a></td>
+</tr>
+<tr>
+<td>GAME_ERA_CHANGED</td>
+<td><code>0xf50673b7</code></td>
+<td>-184126537</td>
+<td><a href="LuaEvents.html">GameEraChanged</a></td>
+</tr>
+<tr>
+<td>GAME_HISTORY_MOMENT_RECORDED</td>
+<td><code>0x4710f1a4</code></td>
+<td>1192292772</td>
+<td><a href="LuaEvents.html">GameHistoryMomentRecorded</a></td>
+</tr>
+<tr>
+<td>GAME_PAUSE_CHANGED</td>
+<td><code>0x562fd140</code></td>
+<td>1445974336</td>
+<td></td>
+</tr>
+<tr>
+<td>GAME_PROPERTY_CHANGED</td>
+<td><code>0x4082a91e</code></td>
+<td>1082304798</td>
+<td><a href="LuaEvents.html">GamePropertyChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_AGE_CHANGED</td>
+<td><code>0x2c333ac8</code></td>
+<td>741554888</td>
+<td><a href="LuaEvents.html">PlayerAgeChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_DARK_AGE_CHANGED</td>
+<td><code>0xa7e78c7a</code></td>
+<td>-1477997446</td>
+<td><a href="LuaEvents.html">PlayerDarkAgeChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_ERA_CHANGED</td>
+<td><code>0x008152ea</code></td>
+<td>8475370</td>
+<td><a href="LuaEvents.html">PlayerEraChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_ERA_SCORE_CHANGED</td>
+<td><code>0x788b7534</code></td>
+<td>2022405428</td>
+<td><a href="LuaEvents.html">PlayerEraScoreChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_ERA_TRANSITION_BEGINS</td>
+<td><code>0xa47d34e3</code></td>
+<td>-1535298333</td>
+<td><a href="LuaEvents.html">PlayerEraTransitionBegins</a></td>
+</tr>
+<tr>
+<td>PLAYER_BORDERS_CHANGED</td>
+<td><code>0x52e2805c</code></td>
+<td>1390575708</td>
+<td><a href="LuaEvents.html">PlayerBordersChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_OPERATION_COMPLETE</td>
+<td><code>0x059d6cc2</code></td>
+<td>94203074</td>
+<td><a href="LuaEvents.html">PlayerOperationComplete</a></td>
+</tr>
+<tr>
+<td>PLAYER_AGENDA_ADDED</td>
+<td><code>0x7124e66b</code></td>
+<td>1898243691</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_PROPERTY_CHANGED</td>
+<td><code>0x153e72c2</code></td>
+<td>356414146</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_VISIBILITY_CHANGED</td>
+<td><code>0x5a9a0329</code></td>
+<td>1520042793</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_CAN_CONSTRUCT_CHANGED</td>
+<td><code>0xa8dbf775</code></td>
+<td>-1461979275</td>
+<td></td>
+</tr>
+<tr>
+<td>CULTURE_CHANGED</td>
+<td><code>0xe5999d60</code></td>
+<td>-442917536</td>
+<td><a href="LuaEvents.html">CultureChanged</a></td>
+</tr>
+<tr>
+<td>GOVERNMENT_CHANGED</td>
+<td><code>0x90fb33e4</code></td>
+<td>-1862585372</td>
+<td><a href="LuaEvents.html">GovernmentChanged</a></td>
+</tr>
+<tr>
+<td>ANARCHY_BEGINS</td>
+<td><code>0x862d3681</code></td>
+<td>-2043857279</td>
+<td><a href="LuaEvents.html">AnarchyBegins</a></td>
+</tr>
+<tr>
+<td>ANARCHY_ENDS</td>
+<td><code>0x77838837</code></td>
+<td>2005108791</td>
+<td><a href="LuaEvents.html">AnarchyEnds</a></td>
+</tr>
+<tr>
+<td>GOVERNMENT_POLICY_CHANGED</td>
+<td><code>0x44855c91</code></td>
+<td>1149590673</td>
+<td><a href="LuaEvents.html">GovernmentPolicyChanged</a></td>
+</tr>
+<tr>
+<td>GOVERNMENT_POLICY_OBSOLETED</td>
+<td><code>0xd127ff37</code></td>
+<td>-785907913</td>
+<td><a href="LuaEvents.html">GovernmentPolicyObsoleted</a></td>
+</tr>
+<tr>
+<td>GOVERNMENT_MULTI_POLICY_CHANGED</td>
+<td><code>0xd559f80d</code></td>
+<td>-715524083</td>
+<td></td>
+</tr>
+<tr>
+<td>CIVICS_UNLOCKED</td>
+<td><code>0x0a981150</code></td>
+<td>177738064</td>
+<td><a href="LuaEvents.html">CivicsUnlocked</a></td>
+</tr>
+<tr>
+<td>INFLUENCE_CHANGED</td>
+<td><code>0xd35e571d</code></td>
+<td>-748792035</td>
+<td><a href="LuaEvents.html">InfluenceChanged</a></td>
+</tr>
+<tr>
+<td>INFLUENCE_GIVEN</td>
+<td><code>0x65c1d0a2</code></td>
+<td>1707200674</td>
+<td><a href="LuaEvents.html">InfluenceGiven</a></td>
+</tr>
+<tr>
+<td>LEVY_COUNTER_CHANGED</td>
+<td><code>0xf2f69b23</code></td>
+<td>-218719453</td>
+<td><a href="LuaEvents.html">LevyCounterChanged</a></td>
+</tr>
+<tr>
+<td>QUEST_CHANGED</td>
+<td><code>0xd7111ffd</code></td>
+<td>-686743555</td>
+<td><a href="LuaEvents.html">QuestChanged</a></td>
+</tr>
+<tr>
+<td>TRADE_ROUTE_ADDED_TO_MAP</td>
+<td><code>0x78932d93</code></td>
+<td>2022911379</td>
+<td><a href="LuaEvents.html">TradeRouteAddedToMap</a></td>
+</tr>
+<tr>
+<td>TRADE_ROUTE_REMOVED_FROM_MAP</td>
+<td><code>0x67e685ca</code></td>
+<td>1743160778</td>
+<td><a href="LuaEvents.html">TradeRouteRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>TRADE_ROUTE_ACTIVITY_CHANGED</td>
+<td><code>0x5d706996</code></td>
+<td>1567648150</td>
+<td><a href="LuaEvents.html">TradeRouteActivityChanged</a></td>
+</tr>
+<tr>
+<td>TRADE_ROUTE_CAPACITY_CHANGED</td>
+<td><code>0xa5423bfe</code></td>
+<td>-1522385922</td>
+<td><a href="LuaEvents.html">TradeRouteCapacityChanged</a></td>
+</tr>
+<tr>
+<td>TRADE_ROUTE_RANGE_CHANGED</td>
+<td><code>0x39a17bf7</code></td>
+<td>966884343</td>
+<td><a href="LuaEvents.html">TradeRouteRangeChanged</a></td>
+</tr>
+<tr>
+<td>TRADE_ROUTE_YIELD_CHANGED</td>
+<td><code>0x14deda5a</code></td>
+<td>350149210</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_DEFEAT</td>
+<td><code>0x81a4085d</code></td>
+<td>-2119956387</td>
+<td><a href="LuaEvents.html">PlayerDefeat</a></td>
+</tr>
+<tr>
+<td>PLAYER_RESTORED</td>
+<td><code>0xad6c0a71</code></td>
+<td>-1385428367</td>
+<td><a href="LuaEvents.html">PlayerRestored</a></td>
+</tr>
+<tr>
+<td>PLAYER_INTRODUCED</td>
+<td><code>0xa4b6c9d5</code></td>
+<td>-1531524651</td>
+<td><a href="LuaEvents.html">PlayerIntroduced</a></td>
+</tr>
+<tr>
+<td>TEAM_VICTORY</td>
+<td><code>0x1c79a5d4</code></td>
+<td>477734356</td>
+<td><a href="LuaEvents.html">TeamVictory</a></td>
+</tr>
+<tr>
+<td>GREAT_PEOPLE_TIMELINE_CHANGED</td>
+<td><code>0x49ebbfc5</code></td>
+<td>1240186821</td>
+<td><a href="LuaEvents.html">GreatPeopleTimelineChanged</a></td>
+</tr>
+<tr>
+<td>GREAT_PEOPLE_POINTS_CHANGED</td>
+<td><code>0x884c48ce</code></td>
+<td>-2008266546</td>
+<td><a href="LuaEvents.html">GreatPeoplePointsChanged</a></td>
+</tr>
+<tr>
+<td>GREAT_WORK_CREATED</td>
+<td><code>0x1a71e9f0</code></td>
+<td>443673072</td>
+<td><a href="LuaEvents.html">GreatWorkCreated</a></td>
+</tr>
+<tr>
+<td>GREAT_WORK_MOVED</td>
+<td><code>0x9648f000</code></td>
+<td>-1773604864</td>
+<td><a href="LuaEvents.html">GreatWorkMoved</a></td>
+</tr>
+<tr>
+<td>NATIONAL_PARK_ADDED_TO_MAP</td>
+<td><code>0xbe698d56</code></td>
+<td>-1100378794</td>
+<td></td>
+</tr>
+<tr>
+<td>NATIONAL_PARK_REMOVING_FROM_MAP</td>
+<td><code>0x83aca6da</code></td>
+<td>-2085837094</td>
+<td></td>
+</tr>
+<tr>
+<td>NATIONAL_PARK_REMOVED_FROM_MAP</td>
+<td><code>0x6359a82c</code></td>
+<td>1666820140</td>
+<td></td>
+</tr>
+<tr>
+<td>NATIONAL_PARK_VISIBILITY_CHANGED</td>
+<td><code>0xd5243371</code></td>
+<td>-719047823</td>
+<td><a href="LuaEvents.html">NationalParkVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>COMBAT</td>
+<td><code>0x8256dbe1</code></td>
+<td>-2108236831</td>
+<td><a href="LuaEvents.html">Combat</a></td>
+</tr>
+<tr>
+<td>AI_ADVISOR_UPDATED</td>
+<td><code>0xa235ddf7</code></td>
+<td>-1573528073</td>
+<td></td>
+</tr>
+<tr>
+<td>DIPLOMACY</td>
+<td><code>0xfc731e25</code></td>
+<td>-59564507</td>
+<td></td>
+</tr>
+<tr>
+<td>DIPLOMACY_SESSION_CLOSED</td>
+<td><code>0x14410052</code></td>
+<td>339804242</td>
+<td><a href="LuaEvents.html">DiplomacySessionClosed</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_DECLARE_WAR</td>
+<td><code>0x7dddaff1</code></td>
+<td>2111680497</td>
+<td><a href="LuaEvents.html">DiplomacyDeclareWar</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_REFUSE_PEACE</td>
+<td><code>0xdc2d4376</code></td>
+<td>-601013386</td>
+<td><a href="LuaEvents.html">DiplomacyRefusePeace</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_MAKE_PEACE</td>
+<td><code>0x41d2c9c0</code></td>
+<td>1104333248</td>
+<td><a href="LuaEvents.html">DiplomacyMakePeace</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_MEET</td>
+<td><code>0x133d411c</code></td>
+<td>322781468</td>
+<td><a href="LuaEvents.html">DiplomacyMeet</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_MEET_MAJOR_MINOR</td>
+<td><code>0x08b3bf96</code></td>
+<td>145997718</td>
+<td><a href="LuaEvents.html">DiplomacyMeetMajorMinor</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_MEET_MAJORS</td>
+<td><code>0x892f171c</code></td>
+<td>-1993402596</td>
+<td><a href="LuaEvents.html">DiplomacyMeetMajors</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_MEET_BARBARIANS</td>
+<td><code>0x09a285e8</code></td>
+<td>161646056</td>
+<td></td>
+</tr>
+<tr>
+<td>DIPLOMACY_INCOMING_DEAL</td>
+<td><code>0x34ef1bb7</code></td>
+<td>888085431</td>
+<td><a href="LuaEvents.html">DiplomacyIncomingDeal</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_DEAL_ENACTED</td>
+<td><code>0x01c9372d</code></td>
+<td>29964077</td>
+<td><a href="LuaEvents.html">DiplomacyDealEnacted</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_DEAL_EXPIRED</td>
+<td><code>0xe2f6f44f</code></td>
+<td>-487132081</td>
+<td><a href="LuaEvents.html">DiplomacyDealExpired</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_RELATIONSHIP_CHANGED</td>
+<td><code>0xeaa9d373</code></td>
+<td>-357969037</td>
+<td><a href="LuaEvents.html">DiplomacyRelationshipChanged</a></td>
+</tr>
+<tr>
+<td>DIPLOMACY_VISIBILITY_CHANGED</td>
+<td><code>0x3b09d4be</code></td>
+<td>990500030</td>
+<td></td>
+</tr>
+<tr>
+<td>DIPLOMACY_GRIEVANCES_CHANGED</td>
+<td><code>0x7989583f</code></td>
+<td>2039044159</td>
+<td></td>
+</tr>
+<tr>
+<td>EMERGENCY_AVAILABLE</td>
+<td><code>0x219c09b6</code></td>
+<td>563874230</td>
+<td><a href="LuaEvents.html">EmergencyAvailable</a></td>
+</tr>
+<tr>
+<td>EMERGENCY_AVAILABLE_PARTICIPANT</td>
+<td><code>0xd177b16e</code></td>
+<td>-780684946</td>
+<td><a href="LuaEvents.html">EmergencyAvailableParticipant</a></td>
+</tr>
+<tr>
+<td>EMERGENCY_STARTED</td>
+<td><code>0x5a1081ff</code></td>
+<td>1511031295</td>
+<td><a href="LuaEvents.html">EmergencyStarted</a></td>
+</tr>
+<tr>
+<td>EMERGENCY_COMPLETE</td>
+<td><code>0xe0e14d36</code></td>
+<td>-522105546</td>
+<td></td>
+</tr>
+<tr>
+<td>EMERGENCY_COMPLETE_PARTICIPANTS</td>
+<td><code>0x697de853</code></td>
+<td>1769859155</td>
+<td><a href="LuaEvents.html">EmergencyCompleteParticipants</a></td>
+</tr>
+<tr>
+<td>EMERGENCY_REJECTED</td>
+<td><code>0x20dcc110</code></td>
+<td>551338256</td>
+<td><a href="LuaEvents.html">EmergencyRejected</a></td>
+</tr>
+<tr>
+<td>EMERGENCY_PLAYER_SCORE_CHANGED</td>
+<td><code>0x6a1f04b8</code></td>
+<td>1780417720</td>
+<td></td>
+</tr>
+<tr>
+<td>EMERGENCIES_UPDATED ⚠</td>
+<td><code>0x281d81d2</code></td>
+<td>673022418</td>
+<td><a href="LuaEvents.html">EmergenciesUpdated</a></td>
+</tr>
+<tr>
+<td>ALLIANCE_ENDED</td>
+<td><code>0x068c17ef</code></td>
+<td>109844463</td>
+<td><a href="LuaEvents.html">AllianceEnded</a></td>
+</tr>
+<tr>
+<td>ALLIANCE_AVAILABLE</td>
+<td><code>0x04d49a86</code></td>
+<td>81042054</td>
+<td><a href="LuaEvents.html">AllianceAvailable</a></td>
+</tr>
+<tr>
+<td>GOVDISTRICT_UNLOCKS_POLICY</td>
+<td><code>0x607bbe26</code></td>
+<td>1618722342</td>
+<td></td>
+</tr>
+<tr>
+<td>GOVDISTRICT_LOCKS_POLICY</td>
+<td><code>0x20abbc3b</code></td>
+<td>548125755</td>
+<td></td>
+</tr>
+<tr>
+<td>PLOT_OWNERSHIP_CHANGED</td>
+<td><code>0xf4fe1b62</code></td>
+<td>-184673438</td>
+<td></td>
+</tr>
+<tr>
+<td>PLOT_VISIBILITY_CHANGED</td>
+<td><code>0x827289e6</code></td>
+<td>-2106422810</td>
+<td><a href="LuaEvents.html">PlotVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>PLOT_MARKER_CHANGED</td>
+<td><code>0x9aeed0e9</code></td>
+<td>-1695624983</td>
+<td><a href="LuaEvents.html">PlotMarkerChanged</a></td>
+</tr>
+<tr>
+<td>PLOT_STATE_CHANGED</td>
+<td><code>0x24a71ff8</code></td>
+<td>614932472</td>
+<td></td>
+</tr>
+<tr>
+<td>PLOT_PROPERTY_CHANGED</td>
+<td><code>0x6195d70f</code></td>
+<td>1637209871</td>
+<td><a href="LuaEvents.html">PlotPropertyChanged</a></td>
+</tr>
+<tr>
+<td>PLOT_PASSABILITY_CHANGED</td>
+<td><code>0x73d763a3</code></td>
+<td>1943495587</td>
+<td></td>
+</tr>
+<tr>
+<td>FEATURE_ADDED_TO_MAP</td>
+<td><code>0xb39c906a</code></td>
+<td>-1281585046</td>
+<td><a href="LuaEvents.html">FeatureAddedToMap</a></td>
+</tr>
+<tr>
+<td>FEATURE_CHANGED</td>
+<td><code>0xf7807ff9</code></td>
+<td>-142573575</td>
+<td><a href="LuaEvents.html">FeatureChanged</a></td>
+</tr>
+<tr>
+<td>FEATURE_VISIBILITY_CHANGED</td>
+<td><code>0x878cd252</code></td>
+<td>-2020814254</td>
+<td></td>
+</tr>
+<tr>
+<td>FEATURE_REMOVED_FROM_MAP</td>
+<td><code>0xda20b653</code></td>
+<td>-635390381</td>
+<td><a href="LuaEvents.html">FeatureRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>RIVER_ADDED_TO_MAP</td>
+<td><code>0x2d1591e5</code></td>
+<td>756388325</td>
+<td><a href="LuaEvents.html">RiverAddedToMap</a></td>
+</tr>
+<tr>
+<td>RIVER_REMOVED_FROM_MAP</td>
+<td><code>0x932ee748</code></td>
+<td>-1825642680</td>
+<td><a href="LuaEvents.html">RiverRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>CLIFF_ADDED_TO_MAP</td>
+<td><code>0x1ee4173a</code></td>
+<td>518264634</td>
+<td></td>
+</tr>
+<tr>
+<td>CLIFF_REMOVED_FROM_MAP</td>
+<td><code>0xbad6985f</code></td>
+<td>-1160341409</td>
+<td></td>
+</tr>
+<tr>
+<td>TERRAIN_TYPE_CHANGED</td>
+<td><code>0x13ae3a55</code></td>
+<td>330185301</td>
+<td><a href="LuaEvents.html">TerrainTypeChanged</a></td>
+</tr>
+<tr>
+<td>TERRAIN_SUBTYPE_CHANGED</td>
+<td><code>0xb3269430</code></td>
+<td>-1289317328</td>
+<td></td>
+</tr>
+<tr>
+<td>TERRAIN_STATE_CHANGED</td>
+<td><code>0xfc5eac6e</code></td>
+<td>-60904338</td>
+<td></td>
+</tr>
+<tr>
+<td>NATURAL_WONDER_REVEALED</td>
+<td><code>0x36c9b2b4</code></td>
+<td>919188148</td>
+<td><a href="LuaEvents.html">NaturalWonderRevealed</a></td>
+</tr>
+<tr>
+<td>RESOURCE_ADDED_TO_MAP</td>
+<td><code>0x195088c7</code></td>
+<td>424708295</td>
+<td><a href="LuaEvents.html">ResourceAddedToMap</a></td>
+</tr>
+<tr>
+<td>RESOURCE_CHANGED</td>
+<td><code>0x8c087865</code></td>
+<td>-1945601947</td>
+<td></td>
+</tr>
+<tr>
+<td>RESOURCE_VISIBILITY_CHANGED</td>
+<td><code>0x9aea8529</code></td>
+<td>-1695906519</td>
+<td><a href="LuaEvents.html">ResourceVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>RESOURCE_REMOVED_FROM_MAP</td>
+<td><code>0x265857f7</code></td>
+<td>643323895</td>
+<td><a href="LuaEvents.html">ResourceRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>RESOURCE_AMOUNT_CHANGED</td>
+<td><code>0x56020598</code></td>
+<td>1442973080</td>
+<td></td>
+</tr>
+<tr>
+<td>RESOURCE_CONSUMED</td>
+<td><code>0x0d7c38a3</code></td>
+<td>226244771</td>
+<td></td>
+</tr>
+<tr>
+<td>IMPROVEMENT_ADDED_TO_MAP</td>
+<td><code>0xe5b20b82</code></td>
+<td>-441316478</td>
+<td><a href="LuaEvents.html">ImprovementAddedToMap</a></td>
+</tr>
+<tr>
+<td>IMPROVEMENT_CHANGED</td>
+<td><code>0x30ae2a3d</code></td>
+<td>816720445</td>
+<td><a href="LuaEvents.html">ImprovementChanged</a></td>
+</tr>
+<tr>
+<td>IMPROVEMENT_VISIBILITY_CHANGED</td>
+<td><code>0xf391d7b3</code></td>
+<td>-208545869</td>
+<td><a href="LuaEvents.html">ImprovementVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>IMPROVEMENT_REMOVED_FROM_MAP</td>
+<td><code>0xb1a27578</code></td>
+<td>-1314753160</td>
+<td><a href="LuaEvents.html">ImprovementRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>IMPROVEMENT_ACTIVATED</td>
+<td><code>0xd857b21b</code></td>
+<td>-665341413</td>
+<td><a href="LuaEvents.html">ImprovementActivated</a></td>
+</tr>
+<tr>
+<td>IMPROVEMENT_OWNERSHIP_CHANGED</td>
+<td><code>0xa625c726</code></td>
+<td>-1507473626</td>
+<td><a href="LuaEvents.html">ImprovementOwnershipChanged</a></td>
+</tr>
+<tr>
+<td>APPEAL_CHANGED_NEAR</td>
+<td><code>0x359703a2</code></td>
+<td>899089314</td>
+<td></td>
+</tr>
+<tr>
+<td>ROUTE_ADDED_TO_MAP</td>
+<td><code>0x5d0f4014</code></td>
+<td>1561280532</td>
+<td><a href="LuaEvents.html">RouteAddedToMap</a></td>
+</tr>
+<tr>
+<td>ROUTE_CHANGED</td>
+<td><code>0x7b65ff2e</code></td>
+<td>2070282030</td>
+<td><a href="LuaEvents.html">RouteChanged</a></td>
+</tr>
+<tr>
+<td>ROUTE_VISIBILITY_CHANGED</td>
+<td><code>0x33d8725a</code></td>
+<td>869823066</td>
+<td><a href="LuaEvents.html">RouteVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>ROUTE_REMOVED_FROM_MAP</td>
+<td><code>0xc197426a</code></td>
+<td>-1047051670</td>
+<td><a href="LuaEvents.html">RouteRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>DISTRICT_ADDED_TO_MAP</td>
+<td><code>0xc3183902</code></td>
+<td>-1021822718</td>
+<td><a href="LuaEvents.html">DistrictAddedToMap</a></td>
+</tr>
+<tr>
+<td>DISTRICT_CHANGED</td>
+<td><code>0x6d7163b0</code></td>
+<td>1836147632</td>
+<td></td>
+</tr>
+<tr>
+<td>DISTRICT_VISIBILITY_CHANGED</td>
+<td><code>0x28d6ebbe</code></td>
+<td>685173694</td>
+<td><a href="LuaEvents.html">DistrictVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>DISTRICT_REMOVED_FROM_MAP</td>
+<td><code>0xfdf12323</code></td>
+<td>-34528477</td>
+<td><a href="LuaEvents.html">DistrictRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>DISTRICT_COMBAT_CHANGED</td>
+<td><code>0x47261a7d</code></td>
+<td>1193679485</td>
+<td><a href="LuaEvents.html">DistrictCombatChanged</a></td>
+</tr>
+<tr>
+<td>DISTRICT_DAMAGE_CHANGED</td>
+<td><code>0xf74afc79</code></td>
+<td>-146080647</td>
+<td><a href="LuaEvents.html">DistrictDamageChanged</a></td>
+</tr>
+<tr>
+<td>DISTRICT_BUILDING_RESTORE</td>
+<td><code>0xd4d926b0</code></td>
+<td>-723966288</td>
+<td></td>
+</tr>
+<tr>
+<td>DISTRICT_PROPERTY_CHANGED</td>
+<td><code>0x9ef8f3e7</code></td>
+<td>-1627851801</td>
+<td></td>
+</tr>
+<tr>
+<td>BUILDING_ADDED_TO_MAP</td>
+<td><code>0x07c83dae</code></td>
+<td>130563502</td>
+<td><a href="LuaEvents.html">BuildingAddedToMap</a></td>
+</tr>
+<tr>
+<td>BUILDING_CHANGED</td>
+<td><code>0xe66012a7</code></td>
+<td>-429911385</td>
+<td><a href="LuaEvents.html">BuildingChanged</a></td>
+</tr>
+<tr>
+<td>BUILDING_VISIBILITY_CHANGED</td>
+<td><code>0x037a1bee</code></td>
+<td>58334190</td>
+<td><a href="LuaEvents.html">BuildingVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>BUILDING_REMOVED_FROM_MAP</td>
+<td><code>0xe074eef4</code></td>
+<td>-529207564</td>
+<td><a href="LuaEvents.html">BuildingRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>BUILDING_EFFECT_ADDED</td>
+<td><code>0x731d8604</code></td>
+<td>1931314692</td>
+<td></td>
+</tr>
+<tr>
+<td>BUILDING_EFFECT_REMOVED</td>
+<td><code>0x7c6d0e38</code></td>
+<td>2087521848</td>
+<td></td>
+</tr>
+<tr>
+<td>BUILDING_EFFECT_CHANGED</td>
+<td><code>0x61f2c9bf</code></td>
+<td>1643301311</td>
+<td></td>
+</tr>
+<tr>
+<td>TECH_BOOST_TRIGGERED</td>
+<td><code>0xbf48fda8</code></td>
+<td>-1085735512</td>
+<td><a href="LuaEvents.html">TechBoostTriggered</a></td>
+</tr>
+<tr>
+<td>CIVIC_BOOST_TRIGGERED</td>
+<td><code>0x3feaad02</code></td>
+<td>1072344322</td>
+<td><a href="LuaEvents.html">CivicBoostTriggered</a></td>
+</tr>
+<tr>
+<td>RESEARCH_YIELD_CHANGED</td>
+<td><code>0xdca96e74</code></td>
+<td>-592875916</td>
+<td><a href="LuaEvents.html">ResearchYieldChanged</a></td>
+</tr>
+<tr>
+<td>RESEARCH_QUEUE_CHANGED</td>
+<td><code>0x4378a305</code></td>
+<td>1131979525</td>
+<td><a href="LuaEvents.html">ResearchQueueChanged</a></td>
+</tr>
+<tr>
+<td>RESEARCH_CHANGED</td>
+<td><code>0x48062f97</code></td>
+<td>1208364951</td>
+<td><a href="LuaEvents.html">ResearchChanged</a></td>
+</tr>
+<tr>
+<td>RESEARCH_COMPLETED</td>
+<td><code>0xf621c5ac</code></td>
+<td>-165558868</td>
+<td><a href="LuaEvents.html">ResearchCompleted</a></td>
+</tr>
+<tr>
+<td>CULTURE_YIELD_CHANGED</td>
+<td><code>0x8aba2360</code></td>
+<td>-1967512736</td>
+<td><a href="LuaEvents.html">CultureYieldChanged</a></td>
+</tr>
+<tr>
+<td>CIVIC_CHANGED</td>
+<td><code>0xc5613042</code></td>
+<td>-983486398</td>
+<td><a href="LuaEvents.html">CivicChanged</a></td>
+</tr>
+<tr>
+<td>CIVIC_QUEUE_CHANGED</td>
+<td><code>0xac2769a3</code></td>
+<td>-1406703197</td>
+<td><a href="LuaEvents.html">CivicQueueChanged</a></td>
+</tr>
+<tr>
+<td>CIVIC_COMPLETED</td>
+<td><code>0x87667464</code></td>
+<td>-2023328668</td>
+<td><a href="LuaEvents.html">CivicCompleted</a></td>
+</tr>
+<tr>
+<td>CULTURE_UPDATED</td>
+<td><code>0x80f1366d</code></td>
+<td>-2131675539</td>
+<td></td>
+</tr>
+<tr>
+<td>TREASURY_CHANGED</td>
+<td><code>0x20f2116e</code></td>
+<td>552735086</td>
+<td><a href="LuaEvents.html">TreasuryChanged</a></td>
+</tr>
+<tr>
+<td>FAITH_CHANGED</td>
+<td><code>0xb3495127</code></td>
+<td>-1287040729</td>
+<td><a href="LuaEvents.html">FaithChanged</a></td>
+</tr>
+<tr>
+<td>PANTHEON_FOUNDED</td>
+<td><code>0x565abe26</code></td>
+<td>1448787494</td>
+<td><a href="LuaEvents.html">PantheonFounded</a></td>
+</tr>
+<tr>
+<td>RELIGION_FOUNDED</td>
+<td><code>0x314df199</code></td>
+<td>827191705</td>
+<td><a href="LuaEvents.html">ReligionFounded</a></td>
+</tr>
+<tr>
+<td>BELIEF_ADDED</td>
+<td><code>0x486d648e</code></td>
+<td>1215128718</td>
+<td><a href="LuaEvents.html">BeliefAdded</a></td>
+</tr>
+<tr>
+<td>HOLY_CITY_ADDED</td>
+<td><code>0x305c2e09</code></td>
+<td>811347465</td>
+<td></td>
+</tr>
+<tr>
+<td>WMD_COUNT_CHANGED</td>
+<td><code>0x23f12549</code></td>
+<td>603006281</td>
+<td><a href="LuaEvents.html">WMDCountChanged</a></td>
+</tr>
+<tr>
+<td>WMD_DETONATED</td>
+<td><code>0x9cc603a8</code></td>
+<td>-1664744536</td>
+<td><a href="LuaEvents.html">WMDDetonated</a></td>
+</tr>
+<tr>
+<td>WMD_FALLOUT_CHANGED</td>
+<td><code>0x8e5e1e95</code></td>
+<td>-1906434411</td>
+<td><a href="LuaEvents.html">WMDFalloutChanged</a></td>
+</tr>
+<tr>
+<td>WMD_FALLOUT_VISIBILITY_CHANGED</td>
+<td><code>0x8cbda9f3</code></td>
+<td>-1933727245</td>
+<td><a href="LuaEvents.html">WMDFalloutVisibilityChanged</a></td>
+</tr>
+<tr>
+<td>NUCLEAR_REACTOR_CHANGED</td>
+<td><code>0x686fdce3</code></td>
+<td>1752161507</td>
+<td><a href="LuaEvents.html">NuclearReactorChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_RESOURCE_CHANGED</td>
+<td><code>0x1153df52</code></td>
+<td>290709330</td>
+<td><a href="LuaEvents.html">PlayerResourceChanged</a></td>
+</tr>
+<tr>
+<td>PLAYER_RESOURCE_ALLOCATION_CHANGED</td>
+<td><code>0x3f5e7f8d</code></td>
+<td>1063157645</td>
+<td></td>
+</tr>
+<tr>
+<td>CAMERA_LOOKAT_NORMAL</td>
+<td><code>0xb6b48d9c</code></td>
+<td>-1229681252</td>
+<td></td>
+</tr>
+<tr>
+<td>PRE_TURN_BEGIN</td>
+<td><code>0x1e39e493</code></td>
+<td>507110547</td>
+<td><a href="LuaEvents.html">PreTurnBegin</a></td>
+</tr>
+<tr>
+<td>TURN_BEGIN</td>
+<td><code>0x21535587</code></td>
+<td>559109511</td>
+<td><a href="LuaEvents.html">TurnBegin</a></td>
+</tr>
+<tr>
+<td>TURN_END</td>
+<td><code>0x66ade3b3</code></td>
+<td>1722672051</td>
+<td><a href="LuaEvents.html">TurnEnd</a></td>
+</tr>
+<tr>
+<td>PHASE_BEGIN</td>
+<td><code>0xd3f37746</code></td>
+<td>-739018938</td>
+<td><a href="LuaEvents.html">PhaseBegin</a></td>
+</tr>
+<tr>
+<td>PHASE_END</td>
+<td><code>0x93dd170f</code></td>
+<td>-1814227185</td>
+<td><a href="LuaEvents.html">PhaseEnd</a></td>
+</tr>
+<tr>
+<td>LOCAL_PLAYER_TURN_BEGIN</td>
+<td><code>0x11c07b90</code></td>
+<td>297827216</td>
+<td><a href="LuaEvents.html">LocalPlayerTurnBegin</a></td>
+</tr>
+<tr>
+<td>LOCAL_PLAYER_TURN_END</td>
+<td><code>0x6e63a083</code></td>
+<td>1852022915</td>
+<td><a href="LuaEvents.html">LocalPlayerTurnEnd</a></td>
+</tr>
+<tr>
+<td>LOCAL_PLAYER_TURN_UNREADY</td>
+<td><code>0x1100e2cb</code></td>
+<td>285270731</td>
+<td><a href="LuaEvents.html">LocalPlayerTurnUnready</a></td>
+</tr>
+<tr>
+<td>LOCAL_PLAYER_END_TURN_BLOCKING_CHANGED</td>
+<td><code>0x55f15a7b</code></td>
+<td>1441880699</td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_PLAYER_TURN_BEGIN</td>
+<td><code>0xd7b3572b</code></td>
+<td>-676112597</td>
+<td><a href="LuaEvents.html">RemotePlayerTurnBegin</a></td>
+</tr>
+<tr>
+<td>REMOTE_PLAYER_TURN_END</td>
+<td><code>0xf16721cf</code></td>
+<td>-244899377</td>
+<td><a href="LuaEvents.html">RemotePlayerTurnEnd</a></td>
+</tr>
+<tr>
+<td>REMOTE_PLAYER_TURN_UNREADY</td>
+<td><code>0x24e93f28</code></td>
+<td>619265832</td>
+<td><a href="LuaEvents.html">RemotePlayerTurnUnready</a></td>
+</tr>
+<tr>
+<td>PLAYER_TURN_ACTIVATED</td>
+<td><code>0x8953f126</code></td>
+<td>-1990987482</td>
+<td><a href="LuaEvents.html">PlayerTurnActivated</a></td>
+</tr>
+<tr>
+<td>PLAYER_TURN_DEACTIVATED</td>
+<td><code>0x6c4dc5c4</code></td>
+<td>1817036228</td>
+<td><a href="LuaEvents.html">PlayerTurnDeactivated</a></td>
+</tr>
+<tr>
+<td>PLAYER_TURN_COMPLETE_IGNORED</td>
+<td><code>0xa7b85261</code></td>
+<td>-1481092511</td>
+<td><a href="LuaEvents.html">PlayerTurnCompleteIgnored</a></td>
+</tr>
+<tr>
+<td>NOTIFICATION_REFRESH_REQUESTED</td>
+<td><code>0xb93df1b5</code></td>
+<td>-1187122763</td>
+<td><a href="LuaEvents.html">NotificationRefreshRequested</a></td>
+</tr>
+<tr>
+<td>NOTIFICATION_ADDED</td>
+<td><code>0xf26f3acf</code></td>
+<td>-227591473</td>
+<td><a href="LuaEvents.html">NotificationAdded</a></td>
+</tr>
+<tr>
+<td>NOTIFICATION_ACTIVATED</td>
+<td><code>0x025f6cfd</code></td>
+<td>39808253</td>
+<td><a href="LuaEvents.html">NotificationActivated</a></td>
+</tr>
+<tr>
+<td>NOTIFICATION_DISMISSED</td>
+<td><code>0x9ad1c020</code></td>
+<td>-1697529824</td>
+<td><a href="LuaEvents.html">NotificationDismissed</a></td>
+</tr>
+<tr>
+<td>WORLD_TEXT_MESSAGE</td>
+<td><code>0x45b517d6</code></td>
+<td>1169496022</td>
+<td><a href="LuaEvents.html">WorldTextMessage</a></td>
+</tr>
+<tr>
+<td>GOODY_HUT_REWARD</td>
+<td><code>0xc08fc0f9</code></td>
+<td>-1064320775</td>
+<td><a href="LuaEvents.html">GoodyHutReward</a></td>
+</tr>
+<tr>
+<td>PLAYER_ALIVE_CHANGED</td>
+<td><code>0xa0a8f479</code></td>
+<td>-1599540103</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_CONNECTED</td>
+<td><code>0x7ecbee7d</code></td>
+<td>2127294077</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_DISCONNECTED</td>
+<td><code>0x77d72c0d</code></td>
+<td>2010590221</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_INITIALIZED</td>
+<td><code>0x237ddda8</code></td>
+<td>595451304</td>
+<td></td>
+</tr>
+<tr>
+<td>PLAYER_UNINITIALIZED</td>
+<td><code>0x45cc4a59</code></td>
+<td>1171016281</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCAL_PLAYER_CHANGED</td>
+<td><code>0xc0372152</code></td>
+<td>-1070128814</td>
+<td><a href="LuaEvents.html">LocalPlayerChanged</a></td>
+</tr>
+<tr>
+<td>TURN_TIMINGS</td>
+<td><code>0x1be52206</code></td>
+<td>468001286</td>
+<td></td>
+</tr>
+<tr>
+<td>PLOT_YIELD_CHANGED</td>
+<td><code>0x1f943311</code></td>
+<td>529806097</td>
+<td><a href="LuaEvents.html">PlotYieldChanged</a></td>
+</tr>
+<tr>
+<td>MAP_YIELDS_CHANGED</td>
+<td><code>0x8fef0d8e</code></td>
+<td>-1880158834</td>
+<td><a href="LuaEvents.html">MapYieldsChanged</a></td>
+</tr>
+<tr>
+<td>MESSAGES_PROCESSED</td>
+<td><code>0x9ea4c222</code></td>
+<td>-1633369566</td>
+<td></td>
+</tr>
+<tr>
+<td>SPY_ADDED</td>
+<td><code>0xb653d624</code></td>
+<td>-1236019676</td>
+<td><a href="LuaEvents.html">SpyAdded</a></td>
+</tr>
+<tr>
+<td>SPY_REMOVED</td>
+<td><code>0x8282be20</code></td>
+<td>-2105360864</td>
+<td><a href="LuaEvents.html">SpyRemoved</a></td>
+</tr>
+<tr>
+<td>SPY_UPDATED</td>
+<td><code>0xfa75d2aa</code></td>
+<td>-92941654</td>
+<td><a href="LuaEvents.html">SpyUpdated</a></td>
+</tr>
+<tr>
+<td>SPY_MISSION_UPDATED</td>
+<td><code>0x3b38bbc1</code></td>
+<td>993573825</td>
+<td><a href="LuaEvents.html">SpyMissionUpdated</a></td>
+</tr>
+<tr>
+<td>SPY_MISSION_COMPLETED</td>
+<td><code>0x19087a58</code></td>
+<td>419986008</td>
+<td><a href="LuaEvents.html">SpyMissionCompleted</a></td>
+</tr>
+<tr>
+<td>GOVERNOR_APPOINTED</td>
+<td><code>0x69356374</code></td>
+<td>1765106548</td>
+<td><a href="LuaEvents.html">GovernorAppointed</a></td>
+</tr>
+<tr>
+<td>GOVERNOR_ASSIGNED</td>
+<td><code>0xcf9c73f1</code></td>
+<td>-811830287</td>
+<td><a href="LuaEvents.html">GovernorAssigned</a></td>
+</tr>
+<tr>
+<td>GOVERNOR_CHANGED</td>
+<td><code>0xcb6c9e05</code></td>
+<td>-882074107</td>
+<td><a href="LuaEvents.html">GovernorChanged</a></td>
+</tr>
+<tr>
+<td>GOVERNOR_POINTS_CHANGED</td>
+<td><code>0xda3ef23d</code></td>
+<td>-633408963</td>
+<td><a href="LuaEvents.html">GovernorPointsChanged</a></td>
+</tr>
+<tr>
+<td>GOVERNOR_PROMOTED</td>
+<td><code>0x8c6b2399</code></td>
+<td>-1939135591</td>
+<td><a href="LuaEvents.html">GovernorPromoted</a></td>
+</tr>
+<tr>
+<td>GOVERNOR_ESTABLISHED</td>
+<td><code>0xdb0807b6</code></td>
+<td>-620230730</td>
+<td><a href="LuaEvents.html">GovernorEstablished</a></td>
+</tr>
+<tr>
+<td>GOVERNOR_EJECTED</td>
+<td><code>0xfcfe6900</code></td>
+<td>-50435840</td>
+<td><a href="LuaEvents.html">GovernorEjected</a></td>
+</tr>
+<tr>
+<td>CORPORATION_ADDED</td>
+<td><code>0xe5612b81</code></td>
+<td>-446616703</td>
+<td><a href="LuaEvents.html">CorporationAdded</a></td>
+</tr>
+<tr>
+<td>CORPORATION_REMOVED</td>
+<td><code>0x92fe2b1f</code></td>
+<td>-1828836577</td>
+<td><a href="LuaEvents.html">CorporationRemoved</a></td>
+</tr>
+<tr>
+<td>CORPORATION_NAME_CHANGED</td>
+<td><code>0xd924d25e</code></td>
+<td>-651898274</td>
+<td><a href="LuaEvents.html">CorporationNameChanged</a></td>
+</tr>
+<tr>
+<td>MONOPOLY_GAINED</td>
+<td><code>0xab5cc1c4</code></td>
+<td>-1419984444</td>
+<td><a href="LuaEvents.html">MonopolyGained</a></td>
+</tr>
+<tr>
+<td>MONOPOLY_LOST</td>
+<td><code>0x644037f0</code></td>
+<td>1681930224</td>
+<td><a href="LuaEvents.html">MonopolyLost</a></td>
+</tr>
+<tr>
+<td>SECRET_SOCIETY_DISCOVERED</td>
+<td><code>0xeace7288</code></td>
+<td>-355569016</td>
+<td><a href="LuaEvents.html">SecretSocietyDiscovered</a></td>
+</tr>
+<tr>
+<td>SECRET_SOCIETY_JOINED</td>
+<td><code>0x83d6ba74</code></td>
+<td>-2083079564</td>
+<td><a href="LuaEvents.html">SecretSocietyJoined</a></td>
+</tr>
+<tr>
+<td>SECRET_SOCIETY_LEFT</td>
+<td><code>0x6de27f3d</code></td>
+<td>1843560253</td>
+<td><a href="LuaEvents.html">SecretSocietyLeft</a></td>
+</tr>
+<tr>
+<td>UNIT_HERO_CREATED</td>
+<td><code>0x9b294d70</code></td>
+<td>-1691792016</td>
+<td><a href="LuaEvents.html">UnitHeroCreated</a></td>
+</tr>
+<tr>
+<td>PLAYER_DISCOVERED_HERO</td>
+<td><code>0xf133f3c8</code></td>
+<td>-248253496</td>
+<td><a href="LuaEvents.html">PlayerDiscoveredHero</a></td>
+</tr>
+<tr>
+<td>CULTURAL_IDENTITY_CITIZEN_CONVERTED</td>
+<td><code>0x5ee4a25c</code></td>
+<td>1592042076</td>
+<td><a href="LuaEvents.html">CulturalIdentityCitizenConverted</a></td>
+</tr>
+<tr>
+<td>CULTURAL_IDENTITY_CONVERSION_OUTCOME_CHANGED</td>
+<td><code>0x0242e68c</code></td>
+<td>37938828</td>
+<td><a href="LuaEvents.html">CulturalIdentityConversionOutcomeChanged</a></td>
+</tr>
+<tr>
+<td>CULTURAL_IDENTITY_PER_TURN_FROM_MODIFIERS_CHANGED</td>
+<td><code>0x312df0f6</code></td>
+<td>825094390</td>
+<td><a href="LuaEvents.html">CulturalIdentityPerturnFromModifiersChanged</a></td>
+</tr>
+<tr>
+<td>CULTURAL_IDENTITY_CITY_CONVERTED</td>
+<td><code>0xcf61eb26</code></td>
+<td>-815666394</td>
+<td><a href="LuaEvents.html">CulturalIdentityCityConverted</a></td>
+</tr>
+<tr>
+<td>CITY_LOYALTY_CHANGED</td>
+<td><code>0x89de2474</code></td>
+<td>-1981930380</td>
+<td><a href="LuaEvents.html">CityLoyaltyChanged</a></td>
+</tr>
+<tr>
+<td>EVENT_POPUP_REQUEST</td>
+<td><code>0x155d31d3</code></td>
+<td>358429139</td>
+<td><a href="LuaEvents.html">EventPopupRequest</a></td>
+</tr>
+<tr>
+<td>EVENT_POPUP_RESPONSE</td>
+<td><code>0xa85303bb</code></td>
+<td>-1470954565</td>
+<td><a href="LuaEvents.html">EventPopupResponse</a></td>
+</tr>
+<tr>
+<td>EVENT_SOUND_REQUEST</td>
+<td><code>0xf7a2983d</code></td>
+<td>-140339139</td>
+<td><a href="LuaEvents.html">EventSoundRequest</a></td>
+</tr>
+<tr>
+<td>APP_LUA_EVENT</td>
+<td><code>0xac565dea</code></td>
+<td>-1403626006</td>
+<td></td>
+</tr>
+<tr>
+<td>PROFILE_TIMER</td>
+<td><code>0x431bb9e4</code></td>
+<td>1125890532</td>
+<td></td>
+</tr>
+<tr>
+<td>TUNER_UPDATE_REQUEST</td>
+<td><code>0x2b5a0873</code></td>
+<td>727320691</td>
+<td></td>
+</tr>
+<tr>
+<td>MESSAGE_RECORDER</td>
+<td><code>0xef48b524</code></td>
+<td>-280447708</td>
+<td></td>
+</tr>
+<tr>
+<td>REQUEST_AUTOSAVE</td>
+<td><code>0xc43968ee</code></td>
+<td>-1002870546</td>
+<td></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_STAGE1</td>
+<td><code>0xdabc2341</code></td>
+<td>-625204415</td>
+<td><a href="LuaEvents.html">WorldCongressStage1</a></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_STAGE2</td>
+<td><code>0x43b572fb</code></td>
+<td>1135964923</td>
+<td><a href="LuaEvents.html">WorldCongressStage2</a></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_STAGE3</td>
+<td><code>0x34b2426d</code></td>
+<td>884097645</td>
+<td><a href="LuaEvents.html">WorldCongressStage3</a></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_PLAYERS_CHOICE</td>
+<td><code>0x30810688</code></td>
+<td>813762184</td>
+<td><a href="LuaEvents.html">WorldCongressPlayersChoice</a></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_DECISION_REACHED</td>
+<td><code>0x6ed99ee8</code></td>
+<td>1859755752</td>
+<td></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_RIBBON_UPDATE</td>
+<td><code>0x23aceece</code></td>
+<td>598535886</td>
+<td><a href="LuaEvents.html">WorldCongressRibbonUpdate</a></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_SPECIAL_SESSION_START</td>
+<td><code>0x3b75bad7</code></td>
+<td>997571287</td>
+<td></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_SPECIAL_SESSION_BEING_CALLED</td>
+<td><code>0xfdc05d8b</code></td>
+<td>-37724789</td>
+<td><a href="LuaEvents.html">WorldCongressSpecialSessionBeingCalled</a></td>
+</tr>
+<tr>
+<td>WORLD_CONGRESS_EMERGENCY_READY</td>
+<td><code>0x54e4377b</code></td>
+<td>1424242555</td>
+<td><a href="LuaEvents.html">WorldCongressEmergencyReady</a></td>
+</tr>
+<tr>
+<td>CLIMATE_CHANGE_EVENT</td>
+<td><code>0x2bea7bcb</code></td>
+<td>736787403</td>
+<td><a href="LuaEvents.html">ClimateChangeEvent</a></td>
+</tr>
+<tr>
+<td>CARBON_SEQUESTERED</td>
+<td><code>0xaef5f54f</code></td>
+<td>-1359612593</td>
+<td></td>
+</tr>
+<tr>
+<td>STORM_ADDED_TO_MAP</td>
+<td><code>0x13b135e4</code></td>
+<td>330380772</td>
+<td><a href="LuaEvents.html">StormAddedToMap</a></td>
+</tr>
+<tr>
+<td>STORM_REMOVED_FROM_MAP</td>
+<td><code>0xfee911d7</code></td>
+<td>-18279977</td>
+<td><a href="LuaEvents.html">StormRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>STORM_CHANGED</td>
+<td><code>0x21e62149</code></td>
+<td>568729929</td>
+<td><a href="LuaEvents.html">StormChanged</a></td>
+</tr>
+<tr>
+<td>DROUGHT_ADDED_TO_MAP</td>
+<td><code>0x07f2abd3</code></td>
+<td>133344211</td>
+<td><a href="LuaEvents.html">DroughtAddedToMap</a></td>
+</tr>
+<tr>
+<td>DROUGHT_REMOVED_FROM_MAP</td>
+<td><code>0xa5168c8e</code></td>
+<td>-1525248882</td>
+<td><a href="LuaEvents.html">DroughtRemovedFromMap</a></td>
+</tr>
+<tr>
+<td>RANDOM_EVENT_STARTING</td>
+<td><code>0xd109a8fc</code></td>
+<td>-787896068</td>
+<td></td>
+</tr>
+<tr>
+<td>RANDOM_EVENT_OCCURRED</td>
+<td><code>0xe869c8ff</code></td>
+<td>-395720449</td>
+<td><a href="LuaEvents.html">RandomEventOccurred</a></td>
+</tr>
+<tr>
+<td>FLOODPLAIN_REVEALED</td>
+<td><code>0xee846031</code></td>
+<td>-293314511</td>
+<td><a href="LuaEvents.html">FloodplainRevealed</a></td>
+</tr>
+<tr>
+<td>VOLCANO_REVEALED</td>
+<td><code>0x7d35ca0c</code></td>
+<td>2100677132</td>
+<td><a href="LuaEvents.html">VolcanoRevealed</a></td>
+</tr>
+<tr>
+<td>GEOTHERMAL_FISSURE_REVEALED</td>
+<td><code>0x8bed8ec4</code></td>
+<td>-1947365692</td>
+<td><a href="LuaEvents.html">GeothermalFissureRevealed</a></td>
+</tr>
+<tr>
+<td>POWER_GENERATED_FROM_RESOURCE</td>
+<td><code>0x37fae0c3</code></td>
+<td>939188419</td>
+<td><a href="LuaEvents.html">PowerGeneratedFromResource</a></td>
+</tr>
+<tr>
+<td>CITY_POWER_CHANGED</td>
+<td><code>0xd210fbfb</code></td>
+<td>-770638853</td>
+<td><a href="LuaEvents.html">CityPowerChanged</a></td>
+</tr>
+<tr>
+<td>FAVOR_CHANGED</td>
+<td><code>0x68e7d3da</code></td>
+<td>1760023514</td>
+<td><a href="LuaEvents.html">FavorChanged</a></td>
+</tr>
+<tr>
+<td>FLOOD_OCCURED</td>
+<td><code>0xb67b6b53</code></td>
+<td>-1233425581</td>
+<td></td>
+</tr>
+<tr>
+<td>FLOOD_MITIGATED</td>
+<td><code>0xe55646ce</code></td>
+<td>-447330610</td>
+<td></td>
+</tr>
+<tr>
+<td>CLIMATE_ONE_OFF_EVENT_STARTING</td>
+<td><code>0xec289c5b</code></td>
+<td>-332882853</td>
+<td></td>
+</tr>
+<tr>
+<td>CLIMATE_ONE_OFF_EVENT_OCCURRED</td>
+<td><code>0xd548fc58</code></td>
+<td>-716637096</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>⚠ = the value is not the hash of the name.</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

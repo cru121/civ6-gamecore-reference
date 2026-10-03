@@ -1,0 +1,222 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PlayerTechs</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › PlayerTechs</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>PlayerTechs</h1>
+<p>23 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs/">PlayerTechs</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="canresearch"></a>CanResearch</td>
+<td><code>PlayerTechs:CanResearch(eTech: integer[TechTypes]) → boolean</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.CanResearch/">yes ↗</a></td>
+<td><code>0x6b4ef0</code></td>
+<td><code>0x6b5470</code></td>
+</tr>
+<tr>
+<td><a id="cantriggerboost"></a>CanTriggerBoost</td>
+<td><code>PlayerTechs:CanTriggerBoost(arg1: integer) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.CanTriggerBoost/">yes ↗</a></td>
+<td><code>0x6b4f50</code></td>
+<td><code>0x6b54d0</code></td>
+</tr>
+<tr>
+<td><a id="changecurrentresearchprogress"></a>ChangeCurrentResearchProgress</td>
+<td><code>PlayerTechs:ChangeCurrentResearchProgress(xChange?: any) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.ChangeCurrentResearchProgress/">yes ↗</a></td>
+<td><code>0x6f6840</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getresearchcost"></a>GetResearchCost</td>
+<td><code>PlayerTechs:GetResearchCost(eTech: integer[TechTypes]) → number</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetResearchCost/">yes ↗</a></td>
+<td><code>0x6b4fc0</code></td>
+<td><code>0x6b5540</code></td>
+</tr>
+<tr>
+<td><a id="getresearchpath"></a>GetResearchPath</td>
+<td><code>PlayerTechs:GetResearchPath(target: number/string[TechTypes]) → number[] (or nothing)</code><br><small>args: <code>target</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetResearchPath/">yes ↗</a></td>
+<td><code>0x6b5030</code></td>
+<td><code>0x6b55b0</code></td>
+</tr>
+<tr>
+<td><a id="getresearchprogress"></a>GetResearchProgress</td>
+<td><em>UI state:</em> <code>PlayerTechs:GetResearchProgress(eCivic?: integer[TechTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>PlayerTechs:GetResearchProgress(eTech?: integer[TechTypes]) → FixedPointT&lt;8&gt;</code><br><small>args: <code>eCivic</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetResearchProgress/">yes ↗</a></td>
+<td><code>0x6b5200</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getresearchqueue"></a>GetResearchQueue</td>
+<td><code>PlayerTechs:GetResearchQueue() → number[]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetResearchQueue/">yes ↗</a></td>
+<td><code>0x6b5210</code></td>
+<td><code>0x6b5790</code></td>
+</tr>
+<tr>
+<td><a id="getresearchingtech"></a>GetResearchingTech</td>
+<td><em>UI state:</em> <code>PlayerTechs:GetResearchingTech() → number</code><br><em>gameplay state:</em> <code>PlayerTechs:GetResearchingTech() → number (TechTypes)</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Key of a row of the Technologies table: the scripts look it up with GameInfo.Technologies[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetResearchingTech/">yes ↗</a></td>
+<td><code>0x6b52f0</code></td>
+<td><code>0x6b5870</code></td>
+</tr>
+<tr>
+<td><a id="getscienceyield"></a>GetScienceYield</td>
+<td><em>UI state:</em> <code>PlayerTechs:GetScienceYield() → number</code><br><em>gameplay state:</em> <code>PlayerTechs:GetScienceYield() → number (FixedPoint)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetScienceYield/">yes ↗</a></td>
+<td><code>0x6b5340</code></td>
+<td><code>0x6b58c0</code></td>
+</tr>
+<tr>
+<td><a id="getscienceyieldtooltip"></a>GetScienceYieldToolTip</td>
+<td><code>PlayerTechs:GetScienceYieldToolTip(arg1?: any, arg2?: any) → string</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetScienceYieldToolTip/">yes ↗</a></td>
+<td><code>0x6b53c0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getturnsleft"></a>GetTurnsLeft</td>
+<td><em>UI state:</em> <code>PlayerTechs:GetTurnsLeft() → number</code><br><em>gameplay state:</em> <code>PlayerTechs:GetTurnsLeft() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetTurnsLeft/">yes ↗</a></td>
+<td><code>0x6b53d0</code></td>
+<td><code>0x6b5950</code></td>
+</tr>
+<tr>
+<td><a id="getturnstoresearch"></a>GetTurnsToResearch</td>
+<td><em>UI state:</em> <code>PlayerTechs:GetTurnsToResearch(arg1?: number) → number</code><br><em>gameplay state:</em> <code>PlayerTechs:GetTurnsToResearch(eTech?: number) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.GetTurnsToResearch/">yes ↗</a></td>
+<td><code>0x6b5420</code></td>
+<td><code>0x6b59a0</code></td>
+</tr>
+<tr>
+<td><a id="hasboostbeentriggered"></a>HasBoostBeenTriggered</td>
+<td><em>UI state:</em> <code>PlayerTechs:HasBoostBeenTriggered(arg1: integer) → boolean</code><br><em>gameplay state:</em> <code>PlayerTechs:HasBoostBeenTriggered(eTech: integer[TechTypes]) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.HasBoostBeenTriggered/">yes ↗</a></td>
+<td><code>0x6b54a0</code></td>
+<td><code>0x6b5a20</code></td>
+</tr>
+<tr>
+<td><a id="hastech"></a>HasTech</td>
+<td><em>UI state:</em> <code>PlayerTechs:HasTech(arg1: integer) → boolean</code><br><em>gameplay state:</em> <code>PlayerTechs:HasTech(eTech: integer[TechTypes]) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.HasTech/">yes ↗</a></td>
+<td><code>0x6b5510</code></td>
+<td><code>0x6b5a90</code></td>
+</tr>
+<tr>
+<td><a id="isresearchingtech"></a>IsResearchingTech</td>
+<td><code>PlayerTechs:IsResearchingTech(eTech: integer[TechTypes]) → boolean</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.IsResearchingTech/">yes ↗</a></td>
+<td><code>0x6b5580</code></td>
+<td><code>0x6b5b00</code></td>
+</tr>
+<tr>
+<td><a id="istechrevealed"></a>IsTechRevealed</td>
+<td><code>PlayerTechs:IsTechRevealed(eTech: integer) → boolean</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.IsTechRevealed/">yes ↗</a></td>
+<td><code>0x6b55e0</code></td>
+<td><code>0x6b5b60</code></td>
+</tr>
+<tr>
+<td><a id="researchqueue"></a>ResearchQueue</td>
+<td><code>PlayerTechs.ResearchQueue() → table, function</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.ResearchQueue/">yes ↗</a></td>
+<td><code>0x6b5650</code></td>
+<td><code>0x6b5bd0</code></td>
+</tr>
+<tr>
+<td><a id="researchqueueaux"></a>ResearchQueueAux</td>
+<td><code>PlayerTechs:ResearchQueueAux()</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.ResearchQueueAux/">yes ↗</a></td>
+<td><code>0x6b56b0</code></td>
+<td><code>0x6b5c30</code></td>
+</tr>
+<tr>
+<td><a id="reverseboost"></a>ReverseBoost</td>
+<td><code>PlayerTechs:ReverseBoost(eTech: integer[TechTypes]) (or nothing)</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.ReverseBoost/">yes ↗</a></td>
+<td><code>0x6f6d50</code></td>
+<td><code>0x6f7490</code></td>
+</tr>
+<tr>
+<td><a id="setresearchprogress"></a>SetResearchProgress ★</td>
+<td><code>PlayerTechs:SetResearchProgress(eTech?: integer[TechTypes], iNewValue?: any) → boolean</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.SetResearchProgress/">yes ↗</a></td>
+<td><code>0x6f6da0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="setresearchingtech"></a>SetResearchingTech</td>
+<td><code>PlayerTechs:SetResearchingTech(eTech: table[TechTypes]) → 1 values ⚠</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.SetResearchingTech/">yes ↗</a></td>
+<td><code>0x6f6db0</code></td>
+<td><code>0x6f74f0</code></td>
+</tr>
+<tr>
+<td><a id="settech"></a>SetTech</td>
+<td><code>PlayerTechs:SetTech(eTech: integer[TechTypes], bValue: boolean) (or nothing)</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index). The scripts pass its; <code>bValue</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.SetTech/">yes ↗</a></td>
+<td><code>0x6f6fc0</code></td>
+<td><code>0x6f7700</code></td>
+</tr>
+<tr>
+<td><a id="triggerboost"></a>TriggerBoost</td>
+<td><code>PlayerTechs:TriggerBoost(eTech: integer[TechTypes], eSource: integer[BoostSource]) (or nothing)</code><br><small>args: <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/PlayerTechs.TriggerBoost/">yes ↗</a></td>
+<td><code>0x6f7020</code></td>
+<td><code>0x6f7760</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>SetResearchProgress</h3>
+<p>Sets the research progress of a technology; returns whether it was applied.</p>
+<ul>
+<li>Civ6-GCO unlocks a hidden gate technology by setting its progress to its full cost, SetResearchProgress(techID, GetResearchCost(techID)), and re-applies the current research progress afterwards. It reports that its ResearchChanged guard did not reliably stop the AI from re-picking locked technologies in the same turn (tested January 2021).
+  <em>[inferred; evidence: community-reference — Civ6-GCO Scripts/GCO_ResearchScript.lua:832-880, 1709; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

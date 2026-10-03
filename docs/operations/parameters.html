@@ -1,0 +1,1255 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Parameter reference</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Operations</a> › Parameter reference</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Parameter reference</h1>
+<p>Operations and commands take a table of parameters keyed by constants such as <code>PlayerOperations.PARAM_CITY_SRC</code>. This page says what each parameter means, what kind of value it takes and which operations use it.</p>
+<p>The <strong>status</strong> says how the meaning is known: <em>verified</em> = confirmed by how the game's own Lua fills it; <em>inferred</em> = deduced from the name and the code around it. The same name can mean different things in different tables (for example <code>PARAM_DISTRICT_TYPE</code> is an index in player operations and a hash in city operations), so each table is listed separately. Value kinds: <code>hash</code> = the <code>Hash</code> column of a database row; <code>db-index</code> = the row <code>Index</code>; <code>*-id</code> = the id returned by <code>GetID()</code>; <code>plot-coord</code> = a plot x or y coordinate.</p>
+<h2>Player operations (<code>PlayerOperations</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Value</th>
+<th>Used by</th>
+<th>Game examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="playeroperations.param_flags"></a><code>PARAM_FLAGS</code></td>
+<td>Bit flags for the operation; the meaning of the bits depends on the operation. <em>(inferred)</em></td>
+<td>flags</td>
+<td><a href="player-operation/WORLD_CONGRESS_INDICATE_DESIRE.html">WORLD_CONGRESS_INDICATE_DESIRE</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_modifiers"></a><code>PARAM_MODIFIERS</code></td>
+<td>Modifier flags. For unit operations combine UnitOperationMoveModifiers.<em> values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific. </em>(inferred)*</td>
+<td>flags</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_insert_mode"></a><code>PARAM_INSERT_MODE</code></td>
+<td>Where the entry goes in the queue: one of the VALUE_<em> constants of the same Lua table. </em>(verified)*</td>
+<td>constant</td>
+<td><a href="player-operation/RESEARCH.html">RESEARCH</a>, <a href="player-operation/PROGRESS_CIVIC.html">PROGRESS_CIVIC</a>, <a href="player-operation/FOUND_PANTHEON.html">FOUND_PANTHEON</a>, <a href="player-operation/FOUND_RELIGION.html">FOUND_RELIGION</a>, <a href="player-operation/ADD_BELIEF.html">ADD_BELIEF</a></td>
+<td><code>PlayerOperations.VALUE_EXCLUSIVE</code>, <code>PlayerOperations.VALUE_APPEND</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_yield_type"></a><code>PARAM_YIELD_TYPE</code></td>
+<td>Yield type (for example YieldTypes.GOLD or YieldTypes.FAITH, or the index of a row of the Yields table). <em>(verified)</em></td>
+<td>db-index</td>
+<td><a href="player-operation/PATRONIZE_GREAT_PERSON.html">PATRONIZE_GREAT_PERSON</a></td>
+<td><code>YieldTypes.GOLD</code>, <code>YieldTypes.FAITH</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_tech_type"></a><code>PARAM_TECH_TYPE</code></td>
+<td>Type of the tech, given as the hash of its row in the Technologies table (row.Hash). <em>(verified)</em></td>
+<td>hash → Technologies (hash)</td>
+<td><a href="player-operation/RESEARCH.html">RESEARCH</a></td>
+<td><code>m_LockedResearchHash</code>, <code>techHash</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_civic_type"></a><code>PARAM_CIVIC_TYPE</code></td>
+<td>Type of the civic, given as the hash of its row in the Civics table (row.Hash). <em>(verified)</em></td>
+<td>hash → Civics (hash)</td>
+<td><a href="player-operation/PROGRESS_CIVIC.html">PROGRESS_CIVIC</a></td>
+<td><code>civicHash</code>, <code>pathToCivic</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_belief_type"></a><code>PARAM_BELIEF_TYPE</code></td>
+<td>Type of the belief, given as the hash of its row in the Beliefs table (row.Hash). <em>(verified)</em></td>
+<td>hash → Beliefs (hash)</td>
+<td><a href="player-operation/FOUND_PANTHEON.html">FOUND_PANTHEON</a>, <a href="player-operation/ADD_BELIEF.html">ADD_BELIEF</a></td>
+<td><code>GameInfo.Beliefs[m_SelectedBeliefs[1]].Hash</code>, <code>GameInfo.Beliefs[belief].Hash</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_resource_type"></a><code>PARAM_RESOURCE_TYPE</code></td>
+<td>Type of the resource: a row of the Resources table (the game passes the row hash for most types; check the examples). <em>(verified)</em></td>
+<td>db-type → Resources</td>
+<td><a href="player-operation/NAME_CORPORATION.html">NAME_CORPORATION</a></td>
+<td><code>eResource</code>, <code>m_eCurResourceType</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_religion_type"></a><code>PARAM_RELIGION_TYPE</code></td>
+<td>Type of the religion, given as the hash of its row in the Religions table (row.Hash). <em>(verified)</em></td>
+<td>hash → Religions (hash)</td>
+<td><a href="player-operation/FOUND_RELIGION.html">FOUND_RELIGION</a>, <a href="player-operation/ADD_BELIEF.html">ADD_BELIEF</a></td>
+<td><code>GameInfo.Religions[m_SelectedReligion.ID].Hash</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_religion_custom_name"></a><code>PARAM_RELIGION_CUSTOM_NAME</code></td>
+<td>The player-chosen name of the religion. <em>(verified)</em></td>
+<td>string</td>
+<td><a href="player-operation/FOUND_RELIGION.html">FOUND_RELIGION</a>, <a href="player-operation/ADD_BELIEF.html">ADD_BELIEF</a></td>
+<td><code>Controls.ChooseReligionName:GetText()</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_corporation_custom_name"></a><code>PARAM_CORPORATION_CUSTOM_NAME</code></td>
+<td>The player-chosen name of the corporation. <em>(verified)</em></td>
+<td>string</td>
+<td><a href="player-operation/NAME_CORPORATION.html">NAME_CORPORATION</a></td>
+<td><code>corpName</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_district_type"></a><code>PARAM_DISTRICT_TYPE</code></td>
+<td>Type of the district, given as the index of its row in the Districts table (row.Index). <em>(verified)</em></td>
+<td>db-index → Districts (index)</td>
+<td><a href="player-operation/SET_ESCAPE_ROUTE.html">SET_ESCAPE_ROUTE</a></td>
+<td><code>GameInfo.Districts[district1].Index</code>, <code>GameInfo.Districts[district2].Index</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_team_one"></a><code>PARAM_TEAM_ONE</code></td>
+<td>Id of the first team involved. <em>(inferred)</em></td>
+<td>team-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_team_two"></a><code>PARAM_TEAM_TWO</code></td>
+<td>Id of the second team involved. <em>(inferred)</em></td>
+<td>team-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_player_one"></a><code>PARAM_PLAYER_ONE</code></td>
+<td>Id of the first player involved (usually the acting player). <em>(verified)</em></td>
+<td>player-id</td>
+<td><a href="player-operation/DECLARE_WAR.html">DECLARE_WAR</a>, <a href="player-operation/MAKE_PEACE.html">MAKE_PEACE</a>, <a href="player-operation/GIVE_INFLUENCE_TOKEN.html">GIVE_INFLUENCE_TOKEN</a>, <a href="player-operation/LEVY_MILITARY.html">LEVY_MILITARY</a>, <a href="player-operation/RETURN_LEVIED_MILITARY.html">RETURN_LEVIED_MILITARY</a>, <a href="player-operation/CHOOSE_ARTIFACT_PLAYER.html">CHOOSE_ARTIFACT_PLAYER</a> …</td>
+<td><code>kVoteData.data.Sender</code>, <code>localPlayerID</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_player_two"></a><code>PARAM_PLAYER_TWO</code></td>
+<td>Id of the second player involved (the target or counterpart). <em>(verified)</em></td>
+<td>player-id</td>
+<td><a href="player-operation/DECLARE_WAR.html">DECLARE_WAR</a>, <a href="player-operation/MAKE_PEACE.html">MAKE_PEACE</a>, <a href="player-operation/LEVY_MILITARY.html">LEVY_MILITARY</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_VOTE.html">WORLD_CONGRESS_DISCUSSION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_SELECTION.html">WORLD_CONGRESS_DISCUSSION_SELECTION</a>, <a href="player-operation/WORLD_CONGRESS_SUBMIT_TURN.html">WORLD_CONGRESS_SUBMIT_TURN</a></td>
+<td><code>kVoteData.data.Target</code>, <code>iPlayer</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_other_player"></a><code>PARAM_OTHER_PLAYER</code></td>
+<td>Id of the other player the operation is directed at. <em>(verified)</em></td>
+<td>player-id</td>
+<td><a href="player-operation/REJECT_EMERGENCY.html">REJECT_EMERGENCY</a>, <a href="player-operation/ACCEPT_EMERGENCY.html">ACCEPT_EMERGENCY</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_SELECTION.html">WORLD_CONGRESS_DISCUSSION_SELECTION</a>, <a href="player-operation/INCITE_CLAN.html">INCITE_CLAN</a></td>
+<td><code>m_targetPlayerID</code>, <code>m_SelectedInciteTargetID</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_great_person_individual_type"></a><code>PARAM_GREAT_PERSON_INDIVIDUAL_TYPE</code></td>
+<td>Type of the great person individual: a row of the GreatPersonIndividuals table (the game passes the row hash for most types; check the examples). <em>(verified)</em></td>
+<td>db-type → GreatPersonIndividuals</td>
+<td><a href="player-operation/RECRUIT_GREAT_PERSON.html">RECRUIT_GREAT_PERSON</a>, <a href="player-operation/REJECT_GREAT_PERSON.html">REJECT_GREAT_PERSON</a>, <a href="player-operation/PATRONIZE_GREAT_PERSON.html">PATRONIZE_GREAT_PERSON</a></td>
+<td><code>individualID</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_unit_id"></a><code>PARAM_UNIT_ID</code></td>
+<td>Id of the unit (unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td><a href="player-operation/SET_ESCAPE_ROUTE.html">SET_ESCAPE_ROUTE</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_city_one"></a><code>PARAM_CITY_ONE</code></td>
+<td>Id of the first city involved (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_city_two"></a><code>PARAM_CITY_TWO</code></td>
+<td>Id of the second city involved. <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_great_work_index"></a><code>PARAM_GREAT_WORK_INDEX</code></td>
+<td>Great work list index: the index of the work in the game-wide great work list (as returned by Cities:GetGreatWorkInSlot), not the row in the GreatWorks table. <em>(verified)</em></td>
+<td>index</td>
+<td><a href="player-operation/MOVE_GREAT_WORK.html">MOVE_GREAT_WORK</a></td>
+<td><code>kSrcInstance[DATA_FIELD_GREAT_WORK_INDEX]</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_building_type"></a><code>PARAM_BUILDING_TYPE</code></td>
+<td>Type of the building: a row of the Buildings table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Buildings</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_slot"></a><code>PARAM_SLOT</code></td>
+<td>Slot index inside the destination building. <em>(verified)</em></td>
+<td>index</td>
+<td><a href="player-operation/MOVE_GREAT_WORK.html">MOVE_GREAT_WORK</a></td>
+<td><code>kDestInstance[DATA_FIELD_SLOT_INDEX]</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_plot_one"></a><code>PARAM_PLOT_ONE</code></td>
+<td>Index of the first plot involved. <em>(verified)</em></td>
+<td>plot-index</td>
+<td><a href="player-operation/HIRE_CLAN.html">HIRE_CLAN</a>, <a href="player-operation/BRIBE_CLAN.html">BRIBE_CLAN</a>, <a href="player-operation/RANSOM_CLAN.html">RANSOM_CLAN</a>, <a href="player-operation/INCITE_CLAN.html">INCITE_CLAN</a></td>
+<td><code>m_BarbarianTribePlotIndex</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_plot_two"></a><code>PARAM_PLOT_TWO</code></td>
+<td>Index of the second plot involved. <em>(inferred)</em></td>
+<td>plot-index</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_city_src"></a><code>PARAM_CITY_SRC</code></td>
+<td>Id of the city the great work is taken from (city:GetID()). <em>(verified)</em></td>
+<td>city-id</td>
+<td><a href="player-operation/MOVE_GREAT_WORK.html">MOVE_GREAT_WORK</a></td>
+<td><code>kSrcInstance[DATA_FIELD_CITY_ID]</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_city_dest"></a><code>PARAM_CITY_DEST</code></td>
+<td>Id of the city the great work goes to (city:GetID()). <em>(verified)</em></td>
+<td>city-id</td>
+<td><a href="player-operation/MOVE_GREAT_WORK.html">MOVE_GREAT_WORK</a>, <a href="player-operation/ASSIGN_GOVERNOR.html">ASSIGN_GOVERNOR</a>, <a href="player-operation/PROMOTE_GOVERNOR.html">PROMOTE_GOVERNOR</a></td>
+<td><code>cityID</code>, <code>m_SelectedCityID</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_building_src"></a><code>PARAM_BUILDING_SRC</code></td>
+<td>Building type index (row index in the Buildings table) of the building the great work is taken from. <em>(verified)</em></td>
+<td>db-index</td>
+<td><a href="player-operation/MOVE_GREAT_WORK.html">MOVE_GREAT_WORK</a></td>
+<td><code>kSrcInstance[DATA_FIELD_BUILDING_ID]</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_building_dest"></a><code>PARAM_BUILDING_DEST</code></td>
+<td>Building type index of the building the great work goes to. <em>(verified)</em></td>
+<td>db-index</td>
+<td><a href="player-operation/MOVE_GREAT_WORK.html">MOVE_GREAT_WORK</a></td>
+<td><code>kDestInstance[DATA_FIELD_BUILDING_ID]</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_governor_type"></a><code>PARAM_GOVERNOR_TYPE</code></td>
+<td>Type of the governor: a row of the Governors table (the game passes the row hash for most types; check the examples). <em>(verified)</em></td>
+<td>db-type → Governors</td>
+<td><a href="player-operation/APPOINT_GOVERNOR.html">APPOINT_GOVERNOR</a>, <a href="player-operation/ASSIGN_GOVERNOR.html">ASSIGN_GOVERNOR</a>, <a href="player-operation/PROMOTE_GOVERNOR.html">PROMOTE_GOVERNOR</a></td>
+<td><code>eGovernor</code>, <code>m_SelectedGovernorID</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_governor_promotion_type"></a><code>PARAM_GOVERNOR_PROMOTION_TYPE</code></td>
+<td>Type of the governor promotion: a row of the GovernorPromotions table (the game passes the row hash for most types; check the examples). <em>(verified)</em></td>
+<td>db-type → GovernorPromotions</td>
+<td><a href="player-operation/PROMOTE_GOVERNOR.html">PROMOTE_GOVERNOR</a></td>
+<td><code>m_SelectedPromotion</code>, <code>ePromotion</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_moment_id"></a><code>PARAM_MOMENT_ID</code></td>
+<td>Id of the historic moment. <em>(inferred)</em></td>
+<td>id</td>
+<td><a href="player-operation/COMPLIMENT_PRIDE_MOMENT.html">COMPLIMENT_PRIDE_MOMENT</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_emergency_type"></a><code>PARAM_EMERGENCY_TYPE</code></td>
+<td>The emergency being answered. <em>(verified)</em></td>
+<td>id</td>
+<td><a href="player-operation/REJECT_EMERGENCY.html">REJECT_EMERGENCY</a>, <a href="player-operation/ACCEPT_EMERGENCY.html">ACCEPT_EMERGENCY</a></td>
+<td><code>m_emergencyType</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_commemoration_type"></a><code>PARAM_COMMEMORATION_TYPE</code></td>
+<td>The chosen commemoration. <em>(verified)</em></td>
+<td>id</td>
+<td><a href="player-operation/COMMEMORATE.html">COMMEMORATE</a></td>
+<td><code>selectedCommemorationType</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_resolution_type"></a><code>PARAM_RESOLUTION_TYPE</code></td>
+<td>Hash of the World Congress resolution. <em>(verified)</em></td>
+<td>hash (hash)</td>
+<td><a href="player-operation/WORLD_CONGRESS_RESOLUTION_VOTE.html">WORLD_CONGRESS_RESOLUTION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_RESOLUTION_SELECTION.html">WORLD_CONGRESS_RESOLUTION_SELECTION</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_VOTE.html">WORLD_CONGRESS_DISCUSSION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_SUBMIT_TURN.html">WORLD_CONGRESS_SUBMIT_TURN</a></td>
+<td><code>kVoteData.Hash</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_world_congress_votes"></a><code>PARAM_WORLD_CONGRESS_VOTES</code></td>
+<td>Number of favor points spent on the vote (the game passes the sum, or votes times direction). <em>(verified)</em></td>
+<td>number</td>
+<td><a href="player-operation/WORLD_CONGRESS_RESOLUTION_VOTE.html">WORLD_CONGRESS_RESOLUTION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_VOTE.html">WORLD_CONGRESS_DISCUSSION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_SELECTION.html">WORLD_CONGRESS_DISCUSSION_SELECTION</a>, <a href="player-operation/WORLD_CONGRESS_SUBMIT_TURN.html">WORLD_CONGRESS_SUBMIT_TURN</a></td>
+<td><code>kVoteData.A.votes + kVoteData.B.votes</code>, <code>kVoteData.votes * kVoteData.voteDirection</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_discussion_type"></a><code>PARAM_DISCUSSION_TYPE</code></td>
+<td>Type of the discussion item. <em>(verified)</em></td>
+<td>id</td>
+<td><a href="player-operation/WORLD_CONGRESS_DISCUSSION_SELECTION.html">WORLD_CONGRESS_DISCUSSION_SELECTION</a></td>
+<td><code>kVoteData.data.Type</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_resolution_selection"></a><code>PARAM_RESOLUTION_SELECTION</code></td>
+<td>Index of the chosen target or option set (0-based; the game passes target - 1). <em>(verified)</em></td>
+<td>index</td>
+<td><a href="player-operation/WORLD_CONGRESS_RESOLUTION_VOTE.html">WORLD_CONGRESS_RESOLUTION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_RESOLUTION_SELECTION.html">WORLD_CONGRESS_RESOLUTION_SELECTION</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_VOTE.html">WORLD_CONGRESS_DISCUSSION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_SELECTION.html">WORLD_CONGRESS_DISCUSSION_SELECTION</a>, <a href="player-operation/WORLD_CONGRESS_SUBMIT_TURN.html">WORLD_CONGRESS_SUBMIT_TURN</a></td>
+<td><code>kChoiceData.target - 1</code></td>
+</tr>
+<tr>
+<td><a id="playeroperations.param_resolution_option"></a><code>PARAM_RESOLUTION_OPTION</code></td>
+<td>The chosen outcome (A or B) of the resolution. <em>(verified)</em></td>
+<td>constant</td>
+<td><a href="player-operation/WORLD_CONGRESS_RESOLUTION_VOTE.html">WORLD_CONGRESS_RESOLUTION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_RESOLUTION_SELECTION.html">WORLD_CONGRESS_RESOLUTION_SELECTION</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_VOTE.html">WORLD_CONGRESS_DISCUSSION_VOTE</a>, <a href="player-operation/WORLD_CONGRESS_DISCUSSION_SELECTION.html">WORLD_CONGRESS_DISCUSSION_SELECTION</a>, <a href="player-operation/WORLD_CONGRESS_SUBMIT_TURN.html">WORLD_CONGRESS_SUBMIT_TURN</a></td>
+<td><code>kChoiceData.choice</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Unit operations (<code>UnitOperationTypes</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Value</th>
+<th>Used by</th>
+<th>Game examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="unitoperationtypes.param_operation_type"></a><code>PARAM_OPERATION_TYPE</code></td>
+<td>Hash of the unit operation to perform (for example the hash of a build action). <em>(verified)</em></td>
+<td>hash (hash)</td>
+<td><a href="unit-operation/BUILD_IMPROVEMENT.html">BUILD_IMPROVEMENT</a></td>
+<td><code>actionHash</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_flags"></a><code>PARAM_FLAGS</code></td>
+<td>Bit flags for the operation; the meaning of the bits depends on the operation. <em>(inferred)</em></td>
+<td>flags</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_modifiers"></a><code>PARAM_MODIFIERS</code></td>
+<td>Modifier flags. For unit operations combine UnitOperationMoveModifiers.<em> values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific. </em>(verified)*</td>
+<td>flags</td>
+<td><a href="unit-operation/AIR_ATTACK.html">AIR_ATTACK</a>, <a href="unit-operation/COASTAL_RAID.html">COASTAL_RAID</a>, <a href="unit-operation/DEPLOY.html">DEPLOY</a>, <a href="unit-operation/MOVE_TO.html">MOVE_TO</a>, <a href="unit-operation/RANGE_ATTACK.html">RANGE_ATTACK</a>, <a href="unit-operation/SWAP_UNITS.html">SWAP_UNITS</a></td>
+<td><code>UnitOperationMoveModifiers.ATTACK</code>, <code>UnitOperationMoveModifiers.NONE</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_directive"></a><code>PARAM_DIRECTIVE</code></td>
+<td>Selects a sub-variant of the operation or command (a directive constant specific to it). <em>(inferred)</em></td>
+<td>constant</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_x0"></a><code>PARAM_X0</code></td>
+<td>Plot x (column) coordinate of the first plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-operation/MAKE_TRADE_ROUTE.html">MAKE_TRADE_ROUTE</a></td>
+<td><code>city:GetX()</code>, <code>destinationCity:GetX()</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_y0"></a><code>PARAM_Y0</code></td>
+<td>Plot y (row) coordinate of the first plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-operation/MAKE_TRADE_ROUTE.html">MAKE_TRADE_ROUTE</a></td>
+<td><code>city:GetY()</code>, <code>destinationCity:GetY()</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_x1"></a><code>PARAM_X1</code></td>
+<td>Plot x (column) coordinate of the second plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-operation/MAKE_TRADE_ROUTE.html">MAKE_TRADE_ROUTE</a></td>
+<td><code>unit:GetX()</code>, <code>m_selectedUnit:GetX()</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_y1"></a><code>PARAM_Y1</code></td>
+<td>Plot y (row) coordinate of the second plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-operation/MAKE_TRADE_ROUTE.html">MAKE_TRADE_ROUTE</a></td>
+<td><code>unit:GetY()</code>, <code>m_selectedUnit:GetY()</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_unit0_player"></a><code>PARAM_UNIT0_PLAYER</code></td>
+<td>Id of the player who owns the unit (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_unit0_id"></a><code>PARAM_UNIT0_ID</code></td>
+<td>Id of the unit (first one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_unit1_player"></a><code>PARAM_UNIT1_PLAYER</code></td>
+<td>Id of the player who owns the unit (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_unit1_id"></a><code>PARAM_UNIT1_ID</code></td>
+<td>Id of the unit (second one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_city0_player"></a><code>PARAM_CITY0_PLAYER</code></td>
+<td>Id of the player who owns the city (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_city0_id"></a><code>PARAM_CITY0_ID</code></td>
+<td>Id of the city (first one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_city1_player"></a><code>PARAM_CITY1_PLAYER</code></td>
+<td>Id of the player who owns the city (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_city1_id"></a><code>PARAM_CITY1_ID</code></td>
+<td>Id of the city (second one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_resource0_type"></a><code>PARAM_RESOURCE0_TYPE</code></td>
+<td>Type of the resource (the first one of the pair): a row of the Resources table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Resources</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_improvement0_type"></a><code>PARAM_IMPROVEMENT0_TYPE</code></td>
+<td>Type of the improvement (the first one of the pair): a row of the Improvements table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Improvements</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_promotion0_type"></a><code>PARAM_PROMOTION0_TYPE</code></td>
+<td>Type of the promotion (the first one of the pair): a row of the UnitPromotions table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → UnitPromotions</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_district0_type"></a><code>PARAM_DISTRICT0_TYPE</code></td>
+<td>Type of the district (the first one of the pair): a row of the Districts table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Districts</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_route0_type"></a><code>PARAM_ROUTE0_TYPE</code></td>
+<td>Type of the route (the first one of the pair): a row of the Routes table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Routes</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_wmd0_type"></a><code>PARAM_WMD0_TYPE</code></td>
+<td>Type of the wmd (the first one of the pair): a row of the WMDs table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → WMDs</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_x"></a><code>PARAM_X</code></td>
+<td>Plot x (column) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-operation/AIR_ATTACK.html">AIR_ATTACK</a>, <a href="unit-operation/BUILD_IMPROVEMENT.html">BUILD_IMPROVEMENT</a>, <a href="unit-operation/BUILD_IMPROVEMENT_ADJACENT.html">BUILD_IMPROVEMENT_ADJACENT</a>, <a href="unit-operation/COASTAL_RAID.html">COASTAL_RAID</a>, <a href="unit-operation/DEPLOY.html">DEPLOY</a>, <a href="unit-operation/MOVE_TO.html">MOVE_TO</a> …</td>
+<td><code>plot:GetX()</code>, <code>pUnit:GetX()</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_y"></a><code>PARAM_Y</code></td>
+<td>Plot y (row) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-operation/AIR_ATTACK.html">AIR_ATTACK</a>, <a href="unit-operation/BUILD_IMPROVEMENT.html">BUILD_IMPROVEMENT</a>, <a href="unit-operation/BUILD_IMPROVEMENT_ADJACENT.html">BUILD_IMPROVEMENT_ADJACENT</a>, <a href="unit-operation/COASTAL_RAID.html">COASTAL_RAID</a>, <a href="unit-operation/DEPLOY.html">DEPLOY</a>, <a href="unit-operation/MOVE_TO.html">MOVE_TO</a> …</td>
+<td><code>plot:GetY()</code>, <code>pUnit:GetY()</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_unit_player"></a><code>PARAM_UNIT_PLAYER</code></td>
+<td>Id of the player who owns the unit. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_unit_id"></a><code>PARAM_UNIT_ID</code></td>
+<td>Id of the unit (unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_city_player"></a><code>PARAM_CITY_PLAYER</code></td>
+<td>Id of the player who owns the city. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_city_id"></a><code>PARAM_CITY_ID</code></td>
+<td>Id of the city (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_resource_type"></a><code>PARAM_RESOURCE_TYPE</code></td>
+<td>Type of the resource: a row of the Resources table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Resources</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_improvement_type"></a><code>PARAM_IMPROVEMENT_TYPE</code></td>
+<td>Type of the improvement, given as the hash of its row in the Improvements table (row.Hash). <em>(verified)</em></td>
+<td>hash → Improvements (hash)</td>
+<td><a href="unit-operation/BUILD_IMPROVEMENT.html">BUILD_IMPROVEMENT</a>, <a href="unit-operation/BUILD_IMPROVEMENT_ADJACENT.html">BUILD_IMPROVEMENT_ADJACENT</a>, <a href="unit-operation/PILLAGE.html">PILLAGE</a></td>
+<td><code>improvementHash</code>, <code>UI.GetInterfaceModeParameter(UnitOperationTypes.PARAM_IMPROVEMENT_TYPE)</code></td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_promotion_type"></a><code>PARAM_PROMOTION_TYPE</code></td>
+<td>Type of the promotion: a row of the UnitPromotions table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → UnitPromotions</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_district_type"></a><code>PARAM_DISTRICT_TYPE</code></td>
+<td>Type of the district: a row of the Districts table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Districts</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_route_type"></a><code>PARAM_ROUTE_TYPE</code></td>
+<td>Type of the route: a row of the Routes table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Routes</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitoperationtypes.param_wmd_type"></a><code>PARAM_WMD_TYPE</code></td>
+<td>Type of the wmd: a row of the WMDs table (the game passes the row hash for most types; check the examples). <em>(verified)</em></td>
+<td>db-type → WMDs</td>
+<td><a href="unit-operation/WMD_STRIKE.html">WMD_STRIKE</a></td>
+<td><code>eWMD</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Unit commands (<code>UnitCommandTypes</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Value</th>
+<th>Used by</th>
+<th>Game examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="unitcommandtypes.param_flags"></a><code>PARAM_FLAGS</code></td>
+<td>Bit flags for the operation; the meaning of the bits depends on the operation. <em>(inferred)</em></td>
+<td>flags</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_modifiers"></a><code>PARAM_MODIFIERS</code></td>
+<td>Modifier flags. For unit operations combine UnitOperationMoveModifiers.<em> values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific. </em>(inferred)*</td>
+<td>flags</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_x0"></a><code>PARAM_X0</code></td>
+<td>Plot x (column) coordinate of the first plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_y0"></a><code>PARAM_Y0</code></td>
+<td>Plot y (row) coordinate of the first plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_x1"></a><code>PARAM_X1</code></td>
+<td>Plot x (column) coordinate of the second plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_y1"></a><code>PARAM_Y1</code></td>
+<td>Plot y (row) coordinate of the second plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_player0"></a><code>PARAM_PLAYER0</code></td>
+<td>Id of the first player involved. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_unit0_player"></a><code>PARAM_UNIT0_PLAYER</code></td>
+<td>Id of the player who owns the unit (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_unit0_id"></a><code>PARAM_UNIT0_ID</code></td>
+<td>Id of the unit (first one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_unit1_player"></a><code>PARAM_UNIT1_PLAYER</code></td>
+<td>Id of the player who owns the unit (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_unit1_id"></a><code>PARAM_UNIT1_ID</code></td>
+<td>Id of the unit (second one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_city0_player"></a><code>PARAM_CITY0_PLAYER</code></td>
+<td>Id of the player who owns the city (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_city0_id"></a><code>PARAM_CITY0_ID</code></td>
+<td>Id of the city (first one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_city1_player"></a><code>PARAM_CITY1_PLAYER</code></td>
+<td>Id of the player who owns the city (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_city1_id"></a><code>PARAM_CITY1_ID</code></td>
+<td>Id of the city (second one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_name"></a><code>PARAM_NAME</code></td>
+<td>A name string. <em>(verified)</em></td>
+<td>string</td>
+<td><a href="unit-command/EXECUTE_SCRIPT.html">EXECUTE_SCRIPT</a>, <a href="unit-command/NAME_UNIT.html">NAME_UNIT</a></td>
+<td><code>pCommandTable.EventName or ""</code>, <code>m_FullVeteranName</code></td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_promotion_type"></a><code>PARAM_PROMOTION_TYPE</code></td>
+<td>Type of the promotion: a row of the UnitPromotions table (the game passes the row hash for most types; check the examples). <em>(verified)</em></td>
+<td>db-type → UnitPromotions</td>
+<td><a href="unit-command/DELETE.html">DELETE</a>, <a href="unit-command/PROMOTE.html">PROMOTE</a></td>
+<td><code>ePromotion</code></td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_x"></a><code>PARAM_X</code></td>
+<td>Plot x (column) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-command/AIRLIFT.html">AIRLIFT</a>, <a href="unit-command/EXECUTE_SCRIPT.html">EXECUTE_SCRIPT</a>, <a href="unit-command/KILL_WEAKER_UNIT.html">KILL_WEAKER_UNIT</a>, <a href="unit-command/MOVE_JUMP.html">MOVE_JUMP</a>, <a href="unit-command/NAVAL_GOLD_RAID.html">NAVAL_GOLD_RAID</a>, <a href="unit-command/PARADROP.html">PARADROP</a> …</td>
+<td><code>plot:GetX()</code></td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_y"></a><code>PARAM_Y</code></td>
+<td>Plot y (row) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="unit-command/AIRLIFT.html">AIRLIFT</a>, <a href="unit-command/EXECUTE_SCRIPT.html">EXECUTE_SCRIPT</a>, <a href="unit-command/KILL_WEAKER_UNIT.html">KILL_WEAKER_UNIT</a>, <a href="unit-command/MOVE_JUMP.html">MOVE_JUMP</a>, <a href="unit-command/NAVAL_GOLD_RAID.html">NAVAL_GOLD_RAID</a>, <a href="unit-command/PARADROP.html">PARADROP</a> …</td>
+<td><code>plot:GetY()</code></td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_player"></a><code>PARAM_PLAYER</code></td>
+<td>Player id. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_unit_player"></a><code>PARAM_UNIT_PLAYER</code></td>
+<td>Id of the player who owns the unit. <em>(verified)</em></td>
+<td>player-id</td>
+<td><a href="unit-command/ENTER_FORMATION.html">ENTER_FORMATION</a>, <a href="unit-command/FORM_ARMY.html">FORM_ARMY</a>, <a href="unit-command/FORM_CORPS.html">FORM_CORPS</a></td>
+<td><code>pUnit:GetOwner()</code>, <code>unitInstance:GetOwner()</code></td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_unit_id"></a><code>PARAM_UNIT_ID</code></td>
+<td>Id of the unit (unit:GetID()). <em>(verified)</em></td>
+<td>unit-id</td>
+<td><a href="unit-command/ENTER_FORMATION.html">ENTER_FORMATION</a>, <a href="unit-command/FORM_ARMY.html">FORM_ARMY</a>, <a href="unit-command/FORM_CORPS.html">FORM_CORPS</a></td>
+<td><code>pUnit:GetID()</code>, <code>unitInstance:GetID()</code></td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_city_player"></a><code>PARAM_CITY_PLAYER</code></td>
+<td>Id of the player who owns the city. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="unitcommandtypes.param_city_id"></a><code>PARAM_CITY_ID</code></td>
+<td>Id of the city (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>City operations (<code>CityOperationTypes</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Value</th>
+<th>Used by</th>
+<th>Game examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="cityoperationtypes.param_flags"></a><code>PARAM_FLAGS</code></td>
+<td>Bit flags for the operation; the meaning of the bits depends on the operation. <em>(inferred)</em></td>
+<td>flags</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_modifiers"></a><code>PARAM_MODIFIERS</code></td>
+<td>Modifier flags. For unit operations combine UnitOperationMoveModifiers.<em> values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific. </em>(inferred)*</td>
+<td>flags</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_building_type"></a><code>PARAM_BUILDING_TYPE</code></td>
+<td>Type of the building, given as the hash of its row in the Buildings table (row.Hash). <em>(verified)</em></td>
+<td>hash → Buildings (hash)</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>buildingEntry.Hash</code>, <code>eBuilding</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_district_type"></a><code>PARAM_DISTRICT_TYPE</code></td>
+<td>Type of the district, given as the hash of its row in the Districts table (row.Hash). <em>(verified)</em></td>
+<td>hash → Districts (hash)</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>districtEntry.Hash</code>, <code>districtHash</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_unit_type"></a><code>PARAM_UNIT_TYPE</code></td>
+<td>Type of the unit, given as the hash of its row in the Units table (row.Hash). <em>(verified)</em></td>
+<td>hash → Units (hash)</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>unitEntry.Hash</code>, <code>m_LockedProductionHash</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_project_type"></a><code>PARAM_PROJECT_TYPE</code></td>
+<td>Type of the project, given as the hash of its row in the Projects table (row.Hash). <em>(verified)</em></td>
+<td>hash → Projects (hash)</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>projectEntry.Hash</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_military_formation_type"></a><code>PARAM_MILITARY_FORMATION_TYPE</code></td>
+<td>Military formation: one of the MilitaryFormationTypes constants (for example STANDARD_MILITARY_FORMATION, CORPS_MILITARY_FORMATION). <em>(inferred)</em></td>
+<td>constant</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_production_type"></a><code>PARAM_PRODUCTION_TYPE</code></td>
+<td>Kind of production item. <em>(inferred)</em></td>
+<td>constant</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_is_exclusion_test"></a><code>PARAM_IS_EXCLUSION_TEST</code></td>
+<td>Flag used when testing whether an item would be excluded from the queue (meaning not determined). <em>(inferred)</em></td>
+<td>boolean</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_insert_mode"></a><code>PARAM_INSERT_MODE</code></td>
+<td>Where the entry goes in the queue: one of the VALUE_<em> constants of the same Lua table. </em>(verified)*</td>
+<td>constant</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>CityOperationTypes.VALUE_REMOVE_AT</code>, <code>CityOperationTypes.VALUE_SWAP</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_queue_location"></a><code>PARAM_QUEUE_LOCATION</code></td>
+<td>Position in the city production queue. <em>(verified)</em></td>
+<td>queue-index</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>queueIndex</code>, <code>UI.GetInterfaceModeParameter(CityOperationTypes.PARAM_QUEUE_LOCATION)</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_queue_source_location"></a><code>PARAM_QUEUE_SOURCE_LOCATION</code></td>
+<td>Position the queue entry is moved from. <em>(verified)</em></td>
+<td>queue-index</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>sourceIndex</code>, <code>UI.GetInterfaceModeParameter(CityOperationTypes.PARAM_QUEUE_SOURCE_LOCATION)</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_queue_destination_location"></a><code>PARAM_QUEUE_DESTINATION_LOCATION</code></td>
+<td>Position the queue entry is moved to. <em>(verified)</em></td>
+<td>queue-index</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>destIndex</code>, <code>UI.GetInterfaceModeParameter(CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION)</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_directive"></a><code>PARAM_DIRECTIVE</code></td>
+<td>Selects a sub-variant of the operation or command (a directive constant specific to it). <em>(inferred)</em></td>
+<td>constant</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_x0"></a><code>PARAM_X0</code></td>
+<td>Plot x (column) coordinate of the first plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_y0"></a><code>PARAM_Y0</code></td>
+<td>Plot y (row) coordinate of the first plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_x1"></a><code>PARAM_X1</code></td>
+<td>Plot x (column) coordinate of the second plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_y1"></a><code>PARAM_Y1</code></td>
+<td>Plot y (row) coordinate of the second plot. <em>(inferred)</em></td>
+<td>plot-coord</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_unit0_player"></a><code>PARAM_UNIT0_PLAYER</code></td>
+<td>Id of the player who owns the unit (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_unit0_id"></a><code>PARAM_UNIT0_ID</code></td>
+<td>Id of the unit (first one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_unit1_player"></a><code>PARAM_UNIT1_PLAYER</code></td>
+<td>Id of the player who owns the unit (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_unit1_id"></a><code>PARAM_UNIT1_ID</code></td>
+<td>Id of the unit (second one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_city0_player"></a><code>PARAM_CITY0_PLAYER</code></td>
+<td>Id of the player who owns the city (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_city0_id"></a><code>PARAM_CITY0_ID</code></td>
+<td>Id of the city (first one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_city1_player"></a><code>PARAM_CITY1_PLAYER</code></td>
+<td>Id of the player who owns the city (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_city1_id"></a><code>PARAM_CITY1_ID</code></td>
+<td>Id of the city (second one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_x"></a><code>PARAM_X</code></td>
+<td>Plot x (column) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>kPlot:GetX()</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_y"></a><code>PARAM_Y</code></td>
+<td>Plot y (row) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-operation/BUILD.html">BUILD</a></td>
+<td><code>kPlot:GetY()</code></td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_unit_player"></a><code>PARAM_UNIT_PLAYER</code></td>
+<td>Id of the player who owns the unit. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_unit_id"></a><code>PARAM_UNIT_ID</code></td>
+<td>Id of the unit (unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_city_player"></a><code>PARAM_CITY_PLAYER</code></td>
+<td>Id of the player who owns the city. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="cityoperationtypes.param_city_id"></a><code>PARAM_CITY_ID</code></td>
+<td>Id of the city (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>City commands (<code>CityCommandTypes</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Value</th>
+<th>Used by</th>
+<th>Game examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="citycommandtypes.param_flags"></a><code>PARAM_FLAGS</code></td>
+<td>Bit flags for the operation; the meaning of the bits depends on the operation. <em>(verified)</em></td>
+<td>flags</td>
+<td><a href="city-command/SET_FOCUS.html">SET_FOCUS</a></td>
+<td><code>0;           -- Set Favored</code>, <code>1;            -- Set Ignored</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_modifiers"></a><code>PARAM_MODIFIERS</code></td>
+<td>Modifier flags. For unit operations combine UnitOperationMoveModifiers.<em> values (for example ATTACK, MOVE_IGNORE_UNEXPLORED_DEST); otherwise operation specific. </em>(inferred)*</td>
+<td>flags</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_directive"></a><code>PARAM_DIRECTIVE</code></td>
+<td>Selects a sub-variant of the operation or command (a directive constant specific to it). <em>(inferred)</em></td>
+<td>constant</td>
+<td><a href="city-command/MANAGE.html">MANAGE</a>, <a href="city-command/SET_FOCUS.html">SET_FOCUS</a>, <a href="city-command/SWAP_TILE_OWNER.html">SWAP_TILE_OWNER</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_building_type"></a><code>PARAM_BUILDING_TYPE</code></td>
+<td>Type of the building, given as the hash of its row in the Buildings table (row.Hash). <em>(verified)</em></td>
+<td>hash → Buildings (hash)</td>
+<td><a href="city-command/PURCHASE.html">PURCHASE</a></td>
+<td><code>buildingEntry.Hash</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_district_type"></a><code>PARAM_DISTRICT_TYPE</code></td>
+<td>Type of the district: a row of the Districts table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Districts</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_unit_type"></a><code>PARAM_UNIT_TYPE</code></td>
+<td>Type of the unit, given as the hash of its row in the Units table (row.Hash). <em>(verified)</em></td>
+<td>hash → Units (hash)</td>
+<td><a href="city-command/PURCHASE.html">PURCHASE</a></td>
+<td><code>unitEntry.Hash</code>, <code>kHeroUnitDef.Hash</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_project_type"></a><code>PARAM_PROJECT_TYPE</code></td>
+<td>Type of the project: a row of the Projects table (the game passes the row hash for most types; check the examples). <em>(inferred)</em></td>
+<td>db-type → Projects</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_plot_purchase"></a><code>PARAM_PLOT_PURCHASE</code></td>
+<td>The plot to buy (supplied by the interface mode; plot index). <em>(verified)</em></td>
+<td>plot-index</td>
+<td><a href="city-command/PURCHASE.html">PURCHASE</a></td>
+<td><code>UI.GetInterfaceModeParameter(CityCommandTypes.PARAM_PLOT_PURCHASE)</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_manage_citizen"></a><code>PARAM_MANAGE_CITIZEN</code></td>
+<td>The plot whose citizen assignment is changed (supplied by the interface mode). <em>(verified)</em></td>
+<td>plot-index</td>
+<td><a href="city-command/MANAGE.html">MANAGE</a>, <a href="city-command/PURCHASE.html">PURCHASE</a>, <a href="city-command/SWAP_TILE_OWNER.html">SWAP_TILE_OWNER</a></td>
+<td><code>UI.GetInterfaceModeParameter(CityCommandTypes.PARAM_MANAGE_CITIZEN)</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_swap_tile_owner"></a><code>PARAM_SWAP_TILE_OWNER</code></td>
+<td>The plot whose owner city is swapped (supplied by the interface mode). <em>(verified)</em></td>
+<td>plot-index</td>
+<td><a href="city-command/PURCHASE.html">PURCHASE</a>, <a href="city-command/SWAP_TILE_OWNER.html">SWAP_TILE_OWNER</a></td>
+<td><code>UI.GetInterfaceModeParameter(CityCommandTypes.PARAM_SWAP_TILE_OWNER)</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_ranged_attack"></a><code>PARAM_RANGED_ATTACK</code></td>
+<td>The target of the ranged attack (supplied by the interface mode). <em>(inferred)</em></td>
+<td>plot-index</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_yield_type"></a><code>PARAM_YIELD_TYPE</code></td>
+<td>Yield type (for example YieldTypes.GOLD or YieldTypes.FAITH, or the index of a row of the Yields table). <em>(verified)</em></td>
+<td>db-index (index)</td>
+<td><a href="city-command/PURCHASE.html">PURCHASE</a>, <a href="city-command/SET_FOCUS.html">SET_FOCUS</a></td>
+<td><code>GameInfo.Yields["YIELD_FAITH"].Index</code>, <code>GameInfo.Yields["YIELD_GOLD"].Index</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_wmd_type"></a><code>PARAM_WMD_TYPE</code></td>
+<td>Type of the wmd: a row of the WMDs table (the game passes the row hash for most types; check the examples). <em>(verified)</em></td>
+<td>db-type → WMDs</td>
+<td><a href="city-command/WMD_STRIKE.html">WMD_STRIKE</a></td>
+<td><code>eWMD</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_military_formation_type"></a><code>PARAM_MILITARY_FORMATION_TYPE</code></td>
+<td>Military formation: one of the MilitaryFormationTypes constants (for example STANDARD_MILITARY_FORMATION, CORPS_MILITARY_FORMATION). <em>(verified)</em></td>
+<td>constant</td>
+<td><a href="city-command/PURCHASE.html">PURCHASE</a></td>
+<td><code>MilitaryFormationTypes.STANDARD_MILITARY_FORMATION</code>, <code>MilitaryFormationTypes.CORPS_MILITARY_FORMATION</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_name"></a><code>PARAM_NAME</code></td>
+<td>A name string. <em>(verified)</em></td>
+<td>string</td>
+<td><a href="city-command/NAME_CITY.html">NAME_CITY</a></td>
+<td><code>new_name</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_x0"></a><code>PARAM_X0</code></td>
+<td>Plot x (column) coordinate of the first plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-command/WMD_STRIKE.html">WMD_STRIKE</a></td>
+<td><code>sourcePlotX</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_y0"></a><code>PARAM_Y0</code></td>
+<td>Plot y (row) coordinate of the first plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-command/WMD_STRIKE.html">WMD_STRIKE</a></td>
+<td><code>sourcePlotY</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_x1"></a><code>PARAM_X1</code></td>
+<td>Plot x (column) coordinate of the second plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-command/WMD_STRIKE.html">WMD_STRIKE</a></td>
+<td><code>targetPlot:GetX()</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_y1"></a><code>PARAM_Y1</code></td>
+<td>Plot y (row) coordinate of the second plot. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-command/WMD_STRIKE.html">WMD_STRIKE</a></td>
+<td><code>targetPlot:GetY()</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_unit0_player"></a><code>PARAM_UNIT0_PLAYER</code></td>
+<td>Id of the player who owns the unit (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_unit0_id"></a><code>PARAM_UNIT0_ID</code></td>
+<td>Id of the unit (first one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_unit1_player"></a><code>PARAM_UNIT1_PLAYER</code></td>
+<td>Id of the player who owns the unit (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_unit1_id"></a><code>PARAM_UNIT1_ID</code></td>
+<td>Id of the unit (second one) (the value returned by unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_city0_player"></a><code>PARAM_CITY0_PLAYER</code></td>
+<td>Id of the player who owns the city (first one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_city0_id"></a><code>PARAM_CITY0_ID</code></td>
+<td>Id of the city (first one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_city1_player"></a><code>PARAM_CITY1_PLAYER</code></td>
+<td>Id of the player who owns the city (second one). <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_city1_id"></a><code>PARAM_CITY1_ID</code></td>
+<td>Id of the city (second one) (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_data0"></a><code>PARAM_DATA0</code></td>
+<td>Generic data slot 0; the meaning depends on the command (the game uses it for booleans passed as 1 or 0). <em>(verified)</em></td>
+<td>generic</td>
+<td><a href="city-command/SET_FOCUS.html">SET_FOCUS</a></td>
+<td><code>0;              -- boolean (1=true, 0=false)</code>, <code>1;              -- boolean (1=true, 0=false)</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_data1"></a><code>PARAM_DATA1</code></td>
+<td>Generic data slot 1; the meaning depends on the command (the game uses it for booleans passed as 1 or 0). <em>(inferred)</em></td>
+<td>generic</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_data2"></a><code>PARAM_DATA2</code></td>
+<td>Generic data slot 2; the meaning depends on the command (the game uses it for booleans passed as 1 or 0). <em>(inferred)</em></td>
+<td>generic</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_data3"></a><code>PARAM_DATA3</code></td>
+<td>Generic data slot 3; the meaning depends on the command (the game uses it for booleans passed as 1 or 0). <em>(inferred)</em></td>
+<td>generic</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_x"></a><code>PARAM_X</code></td>
+<td>Plot x (column) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-command/MANAGE.html">MANAGE</a>, <a href="city-command/PURCHASE.html">PURCHASE</a>, <a href="city-command/SWAP_TILE_OWNER.html">SWAP_TILE_OWNER</a></td>
+<td><code>kPlot:GetX()</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_y"></a><code>PARAM_Y</code></td>
+<td>Plot y (row) coordinate. <em>(verified)</em></td>
+<td>plot-coord</td>
+<td><a href="city-command/MANAGE.html">MANAGE</a>, <a href="city-command/PURCHASE.html">PURCHASE</a>, <a href="city-command/SWAP_TILE_OWNER.html">SWAP_TILE_OWNER</a></td>
+<td><code>kPlot:GetY()</code></td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_unit_player"></a><code>PARAM_UNIT_PLAYER</code></td>
+<td>Id of the player who owns the unit. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_unit_id"></a><code>PARAM_UNIT_ID</code></td>
+<td>Id of the unit (unit:GetID()). <em>(inferred)</em></td>
+<td>unit-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_city_player"></a><code>PARAM_CITY_PLAYER</code></td>
+<td>Id of the player who owns the city. <em>(inferred)</em></td>
+<td>player-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="citycommandtypes.param_city_id"></a><code>PARAM_CITY_ID</code></td>
+<td>Id of the city (the value returned by city:GetID()). <em>(inferred)</em></td>
+<td>city-id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

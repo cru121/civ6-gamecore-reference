@@ -1,0 +1,295 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Map</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › Map</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Map</h1>
+<p>33 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map/">Map</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="findsecondcontinent"></a>FindSecondContinent</td>
+<td><code>Map:FindSecondContinent(iRange: integer) → boolean</code><br><small>args: <code>iRange</code> — A Plot object (the scripts pass a variable named pPlot).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.FindSecondContinent/">yes ↗</a></td>
+<td><code>0x16dd0</code></td>
+<td><code>0x17240</code></td>
+</tr>
+<tr>
+<td><a id="findwater"></a>FindWater</td>
+<td><code>Map:FindWater(iRange: integer, arg2?: boolean) → boolean</code><br><small>args: <code>iRange</code> — Plot index (named plotIndex / plotID in the scripts). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.FindWater/">yes ↗</a></td>
+<td><code>0x16e50</code></td>
+<td><code>0x172c0</code></td>
+</tr>
+<tr>
+<td><a id="getadjacentplot"></a>GetAdjacentPlot</td>
+<td><code>Map.GetAdjacentPlot(arg1?: number, arg2?: number, arg3?: number) → MapPlot</code><br><small>args: <code>arg1</code> — Plot x coordinate (plot:GetX()).; <code>arg2</code> — Plot y coordinate (plot:GetY()).; <code>arg3</code> — A constant from the Lua table DirectionTypes.</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetAdjacentPlot/">yes ↗</a></td>
+<td><code>0x6a1540</code></td>
+<td><code>0x6a1ac0</code></td>
+</tr>
+<tr>
+<td><a id="getadjacentplots"></a>GetAdjacentPlots</td>
+<td><code>Map.GetAdjacentPlots(arg1?: number, arg2?: number) → MapPlot</code><br><small>args: <code>arg1</code> — Plot x coordinate (plot:GetX()).; <code>arg2</code> — Plot y coordinate (plot:GetY()).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetAdjacentPlots/">yes ↗</a></td>
+<td><code>0x6a1600</code></td>
+<td><code>0x6a1b80</code></td>
+</tr>
+<tr>
+<td><a id="getcityplots"></a>GetCityPlots</td>
+<td><code>Map.GetCityPlots() → MapCityPlots</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetCityPlots/">yes ↗</a></td>
+<td><code>0x6a1770</code></td>
+<td><code>0x6a1cf0</code></td>
+</tr>
+<tr>
+<td><a id="getcontinentcoastalplots"></a>GetContinentCoastalPlots</td>
+<td><code>Map.GetContinentCoastalPlots(arg1?: number, arg2?: number) → number[]</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetContinentCoastalPlots/">yes ↗</a></td>
+<td><code>0x17150</code></td>
+<td><code>0x175c0</code></td>
+</tr>
+<tr>
+<td><a id="getcontinentplots"></a>GetContinentPlots</td>
+<td><code>Map.GetContinentPlots(arg1?: number) → number[]</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetContinentPlots/">yes ↗</a></td>
+<td><code>0x6a17a0</code></td>
+<td><code>0x6a1d20</code></td>
+</tr>
+<tr>
+<td><a id="getcontinentplotsappeal"></a>GetContinentPlotsAppeal</td>
+<td><em>UI state:</em> <code>Map.GetContinentPlotsAppeal() → table, table, table, table, table (or nothing)</code><br><em>gameplay state:</em> <code>Map.GetContinentPlotsAppeal() → table, table, table, table, table</code><br><small>✓ called in the game: 5 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetContinentPlotsAppeal/">yes ↗</a></td>
+<td><code>0x6a1890</code></td>
+<td><code>0x6a1e10</code></td>
+</tr>
+<tr>
+<td><a id="getcontinentplotsloyalty"></a>GetContinentPlotsLoyalty</td>
+<td><code>Map.GetContinentPlotsLoyalty() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetContinentPlotsLoyalty/">yes ↗</a></td>
+<td><code>0x7119b0</code></td>
+<td><code>0x712220</code></td>
+</tr>
+<tr>
+<td><a id="getcontinentplotswateravailability"></a>GetContinentPlotsWaterAvailability</td>
+<td><em>UI state:</em> <code>Map.GetContinentPlotsWaterAvailability() → table, table, table, table (or nothing)</code><br><em>gameplay state:</em> <code>Map.GetContinentPlotsWaterAvailability() → table, table, table, table</code><br><small>✓ called in the game: 4 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetContinentPlotsWaterAvailability/">yes ↗</a></td>
+<td><code>0x6a1af0</code></td>
+<td><code>0x6a2070</code></td>
+</tr>
+<tr>
+<td><a id="getcontinentsinuse"></a>GetContinentsInUse</td>
+<td><code>Map.GetContinentsInUse() → number[]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetContinentsInUse/">yes ↗</a></td>
+<td><code>0x6a1d60</code></td>
+<td><code>0x6a22e0</code></td>
+</tr>
+<tr>
+<td><a id="getfeaturecount"></a>GetFeatureCount</td>
+<td><code>Map.GetFeatureCount(arg1: number/string) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetFeatureCount/">yes ↗</a></td>
+<td><code>0x6a1e50</code></td>
+<td><code>0x6a23d0</code></td>
+</tr>
+<tr>
+<td><a id="getgridsize"></a>GetGridSize</td>
+<td><code>Map.GetGridSize() → number, number</code><br><small>✓ called in the game: 2 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetGridSize/">yes ↗</a></td>
+<td><code>0x6a1eb0</code></td>
+<td><code>0x6a2430</code></td>
+</tr>
+<tr>
+<td><a id="getlandplotcount"></a>GetLandPlotCount</td>
+<td><code>Map.GetLandPlotCount() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetLandPlotCount/">yes ↗</a></td>
+<td><code>0x6a1f10</code></td>
+<td><code>0x6a2490</code></td>
+</tr>
+<tr>
+<td><a id="getlandresourcecount"></a>GetLandResourceCount</td>
+<td><code>Map.GetLandResourceCount(arg1: number/string) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetLandResourceCount/">yes ↗</a></td>
+<td><code>0x6a1f50</code></td>
+<td><code>0x6a24d0</code></td>
+</tr>
+<tr>
+<td><a id="getmapsize"></a>GetMapSize</td>
+<td><code>Map.GetMapSize() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Key of a row of the Maps table: the scripts look it up with GameInfo.Maps[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetMapSize/">yes ↗</a></td>
+<td><code>0x6a1fb0</code></td>
+<td><code>0x6a2530</code></td>
+</tr>
+<tr>
+<td><a id="getmaxplotdistance"></a>GetMaxPlotDistance</td>
+<td><code>Map.GetMaxPlotDistance() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetMaxPlotDistance/">yes ↗</a></td>
+<td><code>0x6a1ff0</code></td>
+<td><code>0x6a2570</code></td>
+</tr>
+<tr>
+<td><a id="getneighborplots"></a>GetNeighborPlots</td>
+<td><code>Map.GetNeighborPlots(arg1?: number, arg2?: number, arg3?: number) → table</code><br><small>args: <code>arg1</code> — Plot x coordinate (plot:GetX()).; <code>arg2</code> — Plot y coordinate (plot:GetY()).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetNeighborPlots/">yes ↗</a></td>
+<td><code>0x6a2030</code></td>
+<td><code>0x6a25b0</code></td>
+</tr>
+<tr>
+<td><a id="getplot"></a>GetPlot</td>
+<td><em>UI state:</em> <code>Map.GetPlot(arg1?: any, arg2?: number) → MapPlot (or nothing) ⚠</code><br><em>gameplay state:</em> <code>Map.GetPlot(arg1?: number, arg2?: number) → MapPlot (or nothing)</code><br><small>args: <code>arg1</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred); <code>arg2</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlot/">yes ↗</a></td>
+<td><code>0x6a2140</code></td>
+<td><code>0x6a26c0</code></td>
+</tr>
+<tr>
+<td><a id="getplotbyindex"></a>GetPlotByIndex</td>
+<td><code>Map.GetPlotByIndex(arg1?: number) → MapPlot (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlotByIndex/">yes ↗</a></td>
+<td><code>0x6a2210</code></td>
+<td><code>0x6a2790</code></td>
+</tr>
+<tr>
+<td><a id="getplotcount"></a>GetPlotCount</td>
+<td><code>Map.GetPlotCount() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: A count or amount (the scripts name the result count / num / amount). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlotCount/">yes ↗</a></td>
+<td><code>0x6a2290</code></td>
+<td><code>0x6a2810</code></td>
+</tr>
+<tr>
+<td><a id="getplotdistance"></a>GetPlotDistance</td>
+<td><em>UI state:</em> <code>Map.GetPlotDistance(arg1?: number, arg2?: number, arg3?: number, arg4?: number) → number</code><br><em>gameplay state:</em> <code>Map.GetPlotDistance(arg1?: any, arg2?: number, arg3?: number, arg4?: number) → number ⚠</code><br><small>args: <code>arg3</code> — Plot x coordinate (plot:GetX()).; <code>arg4</code> — Plot y coordinate (plot:GetY()).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlotDistance/">yes ↗</a></td>
+<td><code>0x6a22d0</code></td>
+<td><code>0x6a2850</code></td>
+</tr>
+<tr>
+<td><a id="getplotindex"></a>GetPlotIndex</td>
+<td><code>Map.GetPlotIndex(x: integer/Plot, y?: integer) → number (or nothing)</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: Plot index: the scripts pass the result to Map.GetPlotByIndex.</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlotIndex/">yes ↗</a></td>
+<td><code>0x6a23e0</code></td>
+<td><code>0x6a2960</code></td>
+</tr>
+<tr>
+<td><a id="getplotlocation"></a>GetPlotLocation</td>
+<td><code>Map.GetPlotLocation(x: integer/Plot, y?: integer) → number, number (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlotLocation/">yes ↗</a></td>
+<td><code>0x6a2440</code></td>
+<td><code>0x6a29c0</code></td>
+</tr>
+<tr>
+<td><a id="getplotxy"></a>GetPlotXY</td>
+<td><code>Map.GetPlotXY(arg1?: any, arg2?: number, arg3?: number, arg4?: any[HksObject]) → MapPlot ⚠</code><br><small>args: <code>arg1</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred); <code>arg2</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlotXY/">yes ↗</a></td>
+<td><code>0x6a24d0</code></td>
+<td><code>0x6a2a50</code></td>
+</tr>
+<tr>
+<td><a id="getplotxywithrangecheck"></a>GetPlotXYWithRangeCheck</td>
+<td><code>Map.GetPlotXYWithRangeCheck(arg1?: number, arg2?: number, arg3?: number, arg4?: number, arg5?: number) → MapPlot</code><br><small>args: <code>arg1</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred); <code>arg2</code> — A plot coordinate (named x / y / plotX / plotY in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetPlotXYWithRangeCheck/">yes ↗</a></td>
+<td><code>0x6a2640</code></td>
+<td><code>0x6a2bc0</code></td>
+</tr>
+<tr>
+<td><a id="getresourcecount"></a>GetResourceCount</td>
+<td><code>Map.GetResourceCount(arg1: number/string) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetResourceCount/">yes ↗</a></td>
+<td><code>0x6a2770</code></td>
+<td><code>0x6a2cf0</code></td>
+</tr>
+<tr>
+<td><a id="getringplots"></a>GetRingPlots</td>
+<td><code>Map.GetRingPlots(arg1?: number, arg2?: number, arg3?: number) → table</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetRingPlots/">yes ↗</a></td>
+<td><code>0x183b0</code></td>
+<td><code>0x18820</code></td>
+</tr>
+<tr>
+<td><a id="getunitsat"></a>GetUnitsAt</td>
+<td><code>Map.GetUnitsAt(x: integer/Plot, y?: integer) → MapPlotUnitList (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetUnitsAt/">yes ↗</a></td>
+<td><code>0x6a27d0</code></td>
+<td><code>0x6a2d50</code></td>
+</tr>
+<tr>
+<td><a id="getvisiblecontinentplots"></a>GetVisibleContinentPlots</td>
+<td><code>Map.GetVisibleContinentPlots(arg1?: number) → number[] (or nothing)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.GetVisibleContinentPlots/">yes ↗</a></td>
+<td><code>0x6a2860</code></td>
+<td><code>0x6a2de0</code></td>
+</tr>
+<tr>
+<td><a id="isplot"></a>IsPlot</td>
+<td><code>Map.IsPlot(arg1?: any, arg2?: number) → boolean ⚠</code><br><small>args: <code>arg1</code> — Plot index (named plotIndex / plotID in the scripts). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.IsPlot/">yes ↗</a></td>
+<td><code>0x6a29c0</code></td>
+<td><code>0x6a2f40</code></td>
+</tr>
+<tr>
+<td><a id="iswrapx"></a>IsWrapX</td>
+<td><code>Map.IsWrapX() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.IsWrapX/">yes ↗</a></td>
+<td><code>0x6a2ac0</code></td>
+<td><code>0x6a3040</code></td>
+</tr>
+<tr>
+<td><a id="iswrapy"></a>IsWrapY</td>
+<td><code>Map.IsWrapY() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Map.IsWrapY/">yes ↗</a></td>
+<td><code>0x6a2b00</code></td>
+<td><code>0x6a3080</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

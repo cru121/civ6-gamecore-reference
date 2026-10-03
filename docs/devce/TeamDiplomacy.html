@@ -1,0 +1,353 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>TeamDiplomacy</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › TeamDiplomacy</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>TeamDiplomacy</h1>
+<p>12 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerDiplomacy</code> instance resolver (virtual).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addespionageincursion"></a>AddEspionageIncursion</td>
+<td><code>TeamDiplomacy:AddEspionageIncursion(eOtherPlayer: integer)</code></td>
+<td>Records an espionage incursion promise-breach against another player when the two are not at war and signals listeners.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__addespionageincursion">Player::Diplomacy::AddEspionageIncursion</a></td>
+<td><code>0x29e220</code></td>
+</tr>
+<tr>
+<td><a id="addincursiondata"></a>AddIncursionData</td>
+<td><code>TeamDiplomacy:AddIncursionData(eOtherPlayer: integer, ePromiseType: integer, iTurnMade: integer)</code></td>
+<td>Appends an incursion record (turn number) to the per-other-player, per-promise-type incursion list stored in the diplomacy state, creating map entries as needed.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__addincursiondata">Player::Diplomacy::AddIncursionData</a></td>
+<td><code>0x29e2a0</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperdelegation"></a>ChangeYieldPerDelegation</td>
+<td><code>TeamDiplomacy:ChangeYieldPerDelegation(iAmount: integer, eYield: integer)</code></td>
+<td>Sets the yield received per delegation for a given yield type. Despite the 'Change' name, the value is assigned, not added.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__changeyieldperdelegation">Player::Diplomacy::ChangeYieldPerDelegation</a></td>
+<td><code>0x2a1060</code></td>
+</tr>
+<tr>
+<td><a id="changeyieldperembassy"></a>ChangeYieldPerEmbassy</td>
+<td><code>TeamDiplomacy:ChangeYieldPerEmbassy(iAmount: integer, eYield: integer)</code></td>
+<td>Sets the yield received per embassy for a given yield type. Despite the 'Change' name, the value is assigned, not added.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__changeyieldperembassy">Player::Diplomacy::ChangeYieldPerEmbassy</a></td>
+<td><code>0x2a10e0</code></td>
+</tr>
+<tr>
+<td><a id="setblockedentry"></a>SetBlockedEntry</td>
+<td><code>TeamDiplomacy:SetBlockedEntry(eUnit: integer, bNewValue: boolean)</code></td>
+<td>Sets whether this player blocks entry of a given unit type (open borders style restriction) and, when blocking, expels other players' units from the territory with notifications.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__setblockedentry">Player::Diplomacy::SetBlockedEntry</a></td>
+<td><code>0x2af7e0</code></td>
+</tr>
+<tr>
+<td><a id="setcanenforceborders"></a>SetCanEnforceBorders</td>
+<td><code>TeamDiplomacy:SetCanEnforceBorders(bNewValue: boolean)</code></td>
+<td>Toggles whether this player may enforce its borders (expel foreign units from its territory). When changed, it expels units of other alive players from this player's territory and notifies them.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__setcanenforceborders">Player::Diplomacy::SetCanEnforceBorders</a></td>
+<td><code>0x2af9f0</code></td>
+</tr>
+<tr>
+<td><a id="setfightingjointwar"></a>SetFightingJointWar</td>
+<td><code>TeamDiplomacy:SetFightingJointWar(target: integer, partner: integer)</code></td>
+<td>Records in the global diplomatic relations that this player is fighting a joint war against a target alongside a partner.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__setfightingjointwar">Player::Diplomacy::SetFightingJointWar</a></td>
+<td><code>0x2afc50</code></td>
+</tr>
+<tr>
+<td><a id="sethasdefensivepact"></a>SetHasDefensivePact</td>
+<td><code>TeamDiplomacy:SetHasDefensivePact(ePlayer: integer, bNewValue: boolean)</code></td>
+<td>Sets whether this player has a defensive pact with another player in the global diplomatic relations.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__sethasdefensivepact">Player::Diplomacy::SetHasDefensivePact</a></td>
+<td><code>0x2aff30</code></td>
+</tr>
+<tr>
+<td><a id="sethasopenbordersfrom"></a>SetHasOpenBordersFrom</td>
+<td><code>TeamDiplomacy:SetHasOpenBordersFrom(ePlayer: integer, bNewValue: boolean)</code></td>
+<td>Adds or removes one open-borders agreement from a given player toward this player, tracked as a counter. When the count hits zero it records the turn and expels units; when it becomes 1 it fires a signal.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__sethasopenbordersfrom">Player::Diplomacy::SetHasOpenBordersFrom</a></td>
+<td><code>0x2b0360</code></td>
+</tr>
+<tr>
+<td><a id="setlastturnoffereddeal"></a>SetLastTurnOfferedDeal</td>
+<td><code>TeamDiplomacy:SetLastTurnOfferedDeal(ePlayer: integer, iTurn: integer)</code></td>
+<td>Stores the turn on which this player last offered a deal to the given player.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__setlastturnoffereddeal">Player::Diplomacy::SetLastTurnOfferedDeal</a></td>
+<td><code>0x2b04b0</code></td>
+</tr>
+<tr>
+<td><a id="setoccupyingoriginalcity"></a>SetOccupyingOriginalCity</td>
+<td><code>TeamDiplomacy:SetOccupyingOriginalCity(ePlayer: integer, bNewValue: boolean)</code></td>
+<td>Sets a flag recording whether this player occupies an original (capital) city of another player.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__setoccupyingoriginalcity">Player::Diplomacy::SetOccupyingOriginalCity</a></td>
+<td><code>0x2b04e0</code></td>
+</tr>
+<tr>
+<td><a id="setresearchagreementtech"></a>SetResearchAgreementTech</td>
+<td><code>TeamDiplomacy:SetResearchAgreementTech(ePlayer: integer, eTech: integer)</code></td>
+<td>Records which technology a research agreement between this player and another targets.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__diplomacy__setresearchagreementtech">Player::Diplomacy::SetResearchAgreementTech</a></td>
+<td><code>0x2b0560</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>AddEspionageIncursion</h3>
+<p>Arguments: <code>eOtherPlayer</code> — player whose territory was spied in</p>
+<p><strong>Writes</strong>
+- incursion record via AddIncursionData (type hash 0xc298a89c, current turn)</p>
+<p><strong>Side effects</strong>
+- AddIncursionData call
+- signal at game signal table +0xf00 with owner and other player objects</p>
+<p><strong>Input checks:</strong> Does nothing when at war; other player id used unchecked as array index for the signal.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- valid player id</p>
+<p><strong>Multiplayer:</strong> may-desync: diplomatic record. <strong>Risk:</strong> low (records memory only). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- skips if IsAtWarWith
+- calls AddIncursionData with constant 0xc298a89c
+- dispatches signal</p>
+<p><strong>Inferred</strong>
+- 0xc298a89c is the espionage promise type hash</p>
+<p><strong>Open questions</strong>
+- precise meaning of the promise hash</p>
+<h3>AddIncursionData</h3>
+<p>Arguments: <code>eOtherPlayer</code> — other player involved; <code>ePromiseType</code> — promise type that was broken; <code>iTurnMade</code> — turn the incursion occurred</p>
+<p><strong>Writes</strong>
+- nested map player -&gt; promise type -&gt; list of turns at this+0x2bc8</p>
+<p><strong>Side effects</strong>
+- memory allocation for new map entries</p>
+<p><strong>Input checks:</strong> None on player id or promise type; creates entries for any value.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: synced diplomacy memory. <strong>Risk:</strong> low (append-only log). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- searches player map then promise map
+- appends a 4-byte turn value to the list
+- creates new entries when missing</p>
+<p><strong>Inferred</strong>
+- IncursionData holds just the turn number</p>
+<p><strong>Open questions</strong>
+- container details are noisy in decompile</p>
+<h3>ChangeYieldPerDelegation</h3>
+<p>Arguments: <code>iAmount</code> — value stored for that yield; <code>eYield</code> — yield type</p>
+<p><strong>Writes</strong>
+- int array element indexed by the yield definition's index in the array at this+0x10d0; if the index is out of range, a fallback/default field at offset 0x18 of the array object is written instead</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> Yield -1 returns silently. Out-of-range definition index falls back to writing the default slot rather than crashing. A null Find result would crash (not checked).</p>
+<p><strong>Preconditions</strong>
+- valid yield type</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (bounds-checked assignment; semantic mismatch with name). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- parameter is assigned, not accumulated
+- uses yield definitions Find to get an index at +0x14
+- index checked against array size</p>
+<p><strong>Inferred</strong>
+- Ghidra labels the Find result as Government due to template folding; it is really a Yield definition
+- the +0x18 field is a default/overflow value</p>
+<p><strong>Open questions</strong>
+- real semantics of the fallback write
+- Lua object for Player Diplomacy is not listed (DiplomacyManager unclear)</p>
+<h3>ChangeYieldPerEmbassy</h3>
+<p>Arguments: <code>iAmount</code> — value stored for that yield; <code>eYield</code> — yield type</p>
+<p><strong>Writes</strong>
+- int array element for the yield in the array at this+0x1100; out-of-range falls back to a default field at offset 0x18</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> Yield -1 returns silently. Index bounds-checked, fallback write otherwise.</p>
+<p><strong>Preconditions</strong>
+- valid yield type</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (bounds-checked assignment; semantic mismatch with name). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- same structure as ChangeYieldPerDelegation but array at this+0x1100
+- assigns rather than adds</p>
+<p><strong>Inferred</strong>
+- Find template mislabelled as Government</p>
+<p><strong>Open questions</strong>
+- fallback field meaning
+- Lua object</p>
+<h3>SetBlockedEntry</h3>
+<p>Arguments: <code>eUnit</code> — unit type index into the blocked-entry array; <code>bNewValue</code> — whether entry is blocked</p>
+<p><strong>Writes</strong>
+- blocked-entry byte array at this+0x2c08, indexed by unit type</p>
+<p><strong>Side effects</strong>
+- ExpelFromTerritory for every other active player (reason 7)
+- two localized Reporting::Notification::Send per player that was expelled</p>
+<p><strong>Input checks:</strong> Unit index is used unchecked as array index (crash risk on bad value); no player checks.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- valid unit type index</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synced array and expels units. <strong>Risk:</strong> medium (unchecked array index plus unit expulsion). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- writes byte at array[eUnit] unchecked
+- only expels when bNewValue is true
+- skips the owner and inactive players
+- sends notification hash 0x90fa1800 when expel returns true</p>
+<p><strong>Inferred</strong>
+- feature models restrict-units-in-territory style agreements</p>
+<p><strong>Open questions</strong>
+- Lua object for Player::Diplomacy not in list; confirm
+- meaning of expel reason 7</p>
+<h3>SetCanEnforceBorders</h3>
+<p>Arguments: <code>bNewValue</code> — new can-enforce-borders flag</p>
+<p><strong>Writes</strong>
+- diplomacy flag at this+0x478 (can enforce borders, via auto-variable at this+0x468)</p>
+<p><strong>Side effects</strong>
+- calls ExpelFromTerritory on each other qualifying player's diplomacy
+- sends a localized notification (type 0x84ad28f0) to each player whose units were expelled
+- sends Reporting::Event 0x52e2805c with the owner id and the inverted new value</p>
+<p><strong>Input checks:</strong> No-op if the value equals the current one. No range check needed on the bool.</p>
+<p><strong>Preconditions</strong>
+- gameplay state on game thread
+- diplomacy object must have a valid owner player</p>
+<p><strong>Multiplayer:</strong> may-desync: edits game state and expels units; must be run identically on all clients. <strong>Risk:</strong> medium (Moves/expels other players' units and sends notifications as a side effect). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- early-outs when flag unchanged
+- loops over players in the manager and calls ExpelFromTerritory for those with a nonzero filter byte other than the owner
+- sends notification only if ExpelFromTerritory returned true
+- sends event with !param</p>
+<p><strong>Inferred</strong>
+- byte at player+0x258 probably means player is alive/major
+- the notification tells other players their units were expelled</p>
+<p><strong>Open questions</strong>
+- exact meaning of the player+0x258 filter
+- the localization keys used</p>
+<h3>SetFightingJointWar</h3>
+<p>Arguments: <code>target</code> — enemy player of the joint war; <code>partner</code> — ally player in the joint war</p>
+<p><strong>Writes</strong>
+- joint-war target entry in global DiplomaticRelations (via SetJointWarTarget) keyed by owner, partner, target</p>
+<p><strong>Side effects</strong>
+- edits the game-wide DiplomaticRelations object</p>
+<p><strong>Input checks:</strong> None visible; validation (if any) is inside SetJointWarTarget.</p>
+<p><strong>Preconditions</strong>
+- valid player ids
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: edits global diplomacy state; must run identically on all clients. <strong>Risk:</strong> medium (global diplomatic state, unchecked ids). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- passes owner id, partner and target to SetJointWarTarget (note Ghidra param order: target is the first param)</p>
+<p><strong>Inferred</strong>
+- argument order to SetJointWarTarget is owner, partner, target</p>
+<p><strong>Open questions</strong>
+- internal checks in SetJointWarTarget</p>
+<h3>SetHasDefensivePact</h3>
+<p>Arguments: <code>ePlayer</code> — other player in the pact; <code>bNewValue</code> — true to set pact, false to clear</p>
+<p><strong>Writes</strong>
+- defensive pact flag in DiplomaticRelations between owner and ePlayer (via SetIsInDefensivePact)</p>
+<p><strong>Side effects</strong>
+- edits global DiplomaticRelations</p>
+<p><strong>Input checks:</strong> None visible in this wrapper.</p>
+<p><strong>Preconditions</strong>
+- valid player ids</p>
+<p><strong>Multiplayer:</strong> may-desync: edits global diplomacy state; must run identically on all clients. <strong>Risk:</strong> medium (global diplomatic state; no notification sent here). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- thin wrapper to DiplomaticRelations::SetIsInDefensivePact with owner id first</p>
+<p><strong>Inferred</strong>
+- flag likely symmetric handled inside callee</p>
+<p><strong>Open questions</strong>
+- symmetry and validation inside callee</p>
+<h3>SetHasOpenBordersFrom</h3>
+<p>Arguments: <code>ePlayer</code> — other player granting the open borders; <code>bNewValue</code> — true adds one, false removes one</p>
+<p><strong>Writes</strong>
+- open-borders counter array at this+0x480, indexed by ePlayer (clamped at 0)
+- turn-of-expiry array at this+0x590, indexed by ePlayer (current game turn from game+0xc0)</p>
+<p><strong>Side effects</strong>
+- when count reaches 0: calls ExpelFromTerritory(ePlayer) and dispatches a signal (game signal at +0xde0) with unit/player instance
+- when count becomes 1 by adding: dispatches a different signal (game signal +0xdc8)
+- sends Reporting::Event 0x52e2805c with owner id and bNewValue</p>
+<p><strong>Input checks:</strong> ePlayer is used as an unchecked array index; invalid id is a crash/corruption risk. Counter never goes below 0.</p>
+<p><strong>Preconditions</strong>
+- valid ePlayer index
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates replicated diplomacy state and expels units; must execute identically everywhere. <strong>Risk:</strong> high (Unchecked player index and expels units). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- counter is incremented/decremented by 1 and floored at 0
+- edit() called on the variant map before each write
+- event is always sent
+- no bounds check on ePlayer</p>
+<p><strong>Inferred</strong>
+- offsets +0x480/+0x590 look like per-player int arrays
+- the signal arguments are the other player instance and the owner instance</p>
+<p><strong>Open questions</strong>
+- what the two signals are named
+- what the +0x590 array is used for exactly (assumed last-turn-ended)</p>
+<h3>SetLastTurnOfferedDeal</h3>
+<p>Arguments: <code>ePlayer</code> — other player; <code>iTurn</code> — turn number</p>
+<p><strong>Writes</strong>
+- per-player int array at this+0xc90</p>
+<p><strong>Input checks:</strong> Silent return if id &gt;= 0x40 (unsigned compare, so negatives also rejected).</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: synced array. <strong>Risk:</strong> low (bounds-checked store). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- unsigned bound 0x40
+- stores turn in array</p>
+<p><strong>Inferred</strong>
+- used by AI deal cooldown logic</p>
+<h3>SetOccupyingOriginalCity</h3>
+<p>Arguments: <code>ePlayer</code> — the other player; <code>bNewValue</code> — new flag value</p>
+<p><strong>Writes</strong>
+- per-player flag byte array at this+0xc40 (64 entries)</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> silently ignores ePlayer &gt;= 0x40 (unsigned compare)</p>
+<p><strong>Preconditions</strong>
+- gameplay thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (bounds checked flag write). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check &lt; 0x40
+- writes a byte into array at +0xc40</p>
+<p><strong>Inferred</strong>
+- flag affects diplomatic attitude and AI behaviour</p>
+<p><strong>Open questions</strong>
+- readers of this flag</p>
+<h3>SetResearchAgreementTech</h3>
+<p>Arguments: <code>ePlayer</code> — partner player; <code>eTech</code> — technology chosen for the agreement</p>
+<p><strong>Writes</strong>
+- research agreement tech entry in global DiplomaticRelations (owner, partner)</p>
+<p><strong>Side effects</strong>
+- edits global DiplomaticRelations</p>
+<p><strong>Input checks:</strong> None visible in this wrapper.</p>
+<p><strong>Preconditions</strong>
+- valid player ids
+- research agreement exists (likely)</p>
+<p><strong>Multiplayer:</strong> may-desync: edits global diplomacy state; must run identically on all clients. <strong>Risk:</strong> medium (global diplomatic state, unchecked tech id). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- wrapper to DiplomaticRelations::SetResearchAgreementTech with owner id first</p>
+<p><strong>Inferred</strong>
+- tech -1 probably clears it</p>
+<p><strong>Open questions</strong>
+- callee validation</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

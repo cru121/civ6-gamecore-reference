@@ -1,0 +1,7 @@
+id: lua:Plot.SetOwner
+summary: "Sets the owning player and city of a plot."
+notes:
+  - text: "Civ6-GCO needs two steps for a change of owner to show up in the UI context: SetOwner(-1) first, then SetOwner(owner, city, true). It reports that without clearing first 'the UI context doesn't update'. The recovered signature has two parameters (owner, city); the third argument GCO passes is not accounted for and its meaning is unknown."
+    status: inferred
+    evidence: [{kind: community-reference, note: "Civ6-GCO Scripts/GCO_PlotScript.lua:404-430, 1447; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script"}]
+related: [lua:WorldBuilderCityManager.SetPlotOwner]

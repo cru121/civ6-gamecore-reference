@@ -1,0 +1,1046 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Globals</a> › Game</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Game</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+<th>Section</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="game__archaeology__ms_uicomponentid"></a>Archaeology::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bb10</code></td>
+<td><code>0xb8db10</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__archaeology__ms_uicomponentindex"></a>Archaeology::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61a20</code></td>
+<td><code>0xb63a20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_bactive"></a>Autoplay::Manager::m_bActive</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88a50</code></td>
+<td><code>0xb8aa50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_bdisableassertswhileactive"></a>Autoplay::Manager::m_bDisableAssertsWhileActive</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88a53</code></td>
+<td><code>0xb8aa53</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_bendturnsignaled"></a>Autoplay::Manager::m_bEndTurnSignaled</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88a54</code></td>
+<td><code>0xb8aa54</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_bhaspendingstatechange"></a>Autoplay::Manager::m_bHasPendingStateChange</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88a51</code></td>
+<td><code>0xb8aa51</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_bpendingstate"></a>Autoplay::Manager::m_bPendingState</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88a52</code></td>
+<td><code>0xb8aa52</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_elocalobserveas"></a>Autoplay::Manager::m_eLocalObserveAs</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5ed0c</code></td>
+<td><code>0xb60d0c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_elocalplayerresumeas"></a>Autoplay::Manager::m_eLocalPlayerResumeAs</td>
+<td><code>GameCore</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5ed08</code></td>
+<td><code>0xb60d08</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__autoplay__manager__m_iturns"></a>Autoplay::Manager::m_iTurns</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb88a4c</code></td>
+<td><code>0xb8aa4c</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__climate__manager__ms_uicomponentid"></a>Climate::Manager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bb1c</code></td>
+<td><code>0xb8db1c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__climate__manager__ms_uicomponentindex"></a>Climate::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61a90</code></td>
+<td><code>0xb63a90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__culture__ms_uicomponentid"></a>Culture::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bb74</code></td>
+<td><code>0xb8db28</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__culture__ms_uicomponentindex"></a>Culture::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61b00</code></td>
+<td><code>0xb63b00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__currentversion"></a>CurrentVersion</td>
+<td><code>const int</code></td>
+<td>4</td>
+<td>.rdata</td>
+<td><code>0x9bef50</code></td>
+<td><code>0x9bff50</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__ms_uicomponentid"></a>DiplomaticRelations::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bb80</code></td>
+<td><code>0xb8db80</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__diplomaticrelations__ms_uicomponentindex"></a>DiplomaticRelations::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61b70</code></td>
+<td><code>0xb63b70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__economic__manager__ms_uicomponentid"></a>Economic::Manager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8dc10</code></td>
+<td><code>0xb8fc10</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__economic__manager__ms_uicomponentindex"></a>Economic::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb672c0</code></td>
+<td><code>0xb692c0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__eras__ms_uicomponentid"></a>Eras::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bb98</code></td>
+<td><code>0xb8db98</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__eras__ms_uicomponentindex"></a>Eras::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61be0</code></td>
+<td><code>0xb63be0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__fallout__manager__ms_uicomponentid"></a>Fallout::Manager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bba4</code></td>
+<td><code>0xb8dba4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__fallout__manager__ms_uicomponentindex"></a>Fallout::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61c50</code></td>
+<td><code>0xb63c50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__agendakudos__ms_hmessage"></a>Gossip::AgendaKudos::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bbc0</code></td>
+<td><code>0xb8dbc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__agendawarning__ms_hmessage"></a>Gossip::AgendaWarning::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bbd0</code></td>
+<td><code>0xb8dbd0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__allied__ms_hmessage"></a>Gossip::Allied::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bbe0</code></td>
+<td><code>0xb8dbe0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__anarchybegins__ms_hmessage"></a>Gossip::AnarchyBegins::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bbf0</code></td>
+<td><code>0xb8dbf0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__artifactextracted__ms_hmessage"></a>Gossip::ArtifactExtracted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc00</code></td>
+<td><code>0xb8dc00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__barbarianinvasionstarted__ms_hmessage"></a>Gossip::BarbarianInvasionStarted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc10</code></td>
+<td><code>0xb8dc10</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__barbarianraidstarted__ms_hmessage"></a>Gossip::BarbarianRaidStarted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc20</code></td>
+<td><code>0xb8dc20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__beachresortcreated__ms_hmessage"></a>Gossip::BeachResortCreated::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc30</code></td>
+<td><code>0xb8dc30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__buildingconstructed__ms_hmessage"></a>Gossip::BuildingConstructed::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc40</code></td>
+<td><code>0xb8dc40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__campdestroyed__ms_hmessage"></a>Gossip::CampDestroyed::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc50</code></td>
+<td><code>0xb8dc50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__citybesieged__ms_hmessage"></a>Gossip::CityBesieged::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc60</code></td>
+<td><code>0xb8dc60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__cityfounded__ms_hmessage"></a>Gossip::CityFounded::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc70</code></td>
+<td><code>0xb8dc70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__cityliberated__ms_hmessage"></a>Gossip::CityLiberated::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc80</code></td>
+<td><code>0xb8dc80</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__cityrazed__ms_hmessage"></a>Gossip::CityRazed::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bc90</code></td>
+<td><code>0xb8dc90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__citystateinfluence__ms_hmessage"></a>Gossip::CityStateInfluence::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bca0</code></td>
+<td><code>0xb8dca0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__conquercity__ms_hmessage"></a>Gossip::ConquerCity::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bcb0</code></td>
+<td><code>0xb8dcb0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__culturevatecivic__ms_hmessage"></a>Gossip::CulturevateCivic::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bcc0</code></td>
+<td><code>0xb8dcc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__declaredfriendship__ms_hmessage"></a>Gossip::DeclaredFriendship::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bcd0</code></td>
+<td><code>0xb8dcd0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__delegation__ms_hmessage"></a>Gossip::Delegation::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bce0</code></td>
+<td><code>0xb8dce0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__denounced__ms_hmessage"></a>Gossip::Denounced::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bcf0</code></td>
+<td><code>0xb8dcf0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__districtconstructed__ms_hmessage"></a>Gossip::DistrictConstructed::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd00</code></td>
+<td><code>0xb8dd00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__embassy__ms_hmessage"></a>Gossip::Embassy::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd30</code></td>
+<td><code>0xb8dd30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__erachanged__ms_hmessage"></a>Gossip::EraChanged::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd40</code></td>
+<td><code>0xb8dd40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__governmentchanged__ms_hmessage"></a>Gossip::GovernmentChanged::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd60</code></td>
+<td><code>0xb8dd60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__greatpersoncreated__ms_hmessage"></a>Gossip::GreatPersonCreated::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd50</code></td>
+<td><code>0xb8dd50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__inquisitionlaunched__ms_hmessage"></a>Gossip::InquisitionLaunched::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd90</code></td>
+<td><code>0xb8dd90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__landunitpromoted__ms_hmessage"></a>Gossip::LandUnitPromoted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd70</code></td>
+<td><code>0xb8dd70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__launchingattack__ms_hmessage"></a>Gossip::LaunchingAttack::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bd80</code></td>
+<td><code>0xb8dd80</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__manager__ms_uicomponentid"></a>Gossip::Manager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bbb0</code></td>
+<td><code>0xb8dbb0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__gossip__manager__ms_uicomponentindex"></a>Gossip::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61cc0</code></td>
+<td><code>0xb63cc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__nationalparkcreated__ms_hmessage"></a>Gossip::NationalParkCreated::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bda0</code></td>
+<td><code>0xb8dda0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__naturalwonderfound__ms_hmessage"></a>Gossip::NaturalWonderFound::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bdb0</code></td>
+<td><code>0xb8ddb0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__navalunitpromoted__ms_hmessage"></a>Gossip::NavalUnitPromoted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bdc0</code></td>
+<td><code>0xb8ddc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__newreligiousmajority__ms_hmessage"></a>Gossip::NewReligiousMajority::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bdd0</code></td>
+<td><code>0xb8ddd0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__pantheoncreated__ms_hmessage"></a>Gossip::PantheonCreated::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bde0</code></td>
+<td><code>0xb8dde0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__pillage__ms_hmessage"></a>Gossip::Pillage::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bdf0</code></td>
+<td><code>0xb8ddf0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__policyenacted__ms_hmessage"></a>Gossip::PolicyEnacted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be00</code></td>
+<td><code>0xb8de00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__poweredcity__ms_hmessage"></a>Gossip::PoweredCity::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be10</code></td>
+<td><code>0xb8de10</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__projectstarted__ms_hmessage"></a>Gossip::ProjectStarted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be20</code></td>
+<td><code>0xb8de20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__randomevent__ms_hmessage"></a>Gossip::RandomEvent::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be70</code></td>
+<td><code>0xb8de70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__relicreceived__ms_hmessage"></a>Gossip::RelicReceived::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be30</code></td>
+<td><code>0xb8de30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__religionfounded__ms_hmessage"></a>Gossip::ReligionFounded::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be40</code></td>
+<td><code>0xb8de40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__researchagreement__ms_hmessage"></a>Gossip::ResearchAgreement::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be50</code></td>
+<td><code>0xb8de50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__researchedtech__ms_hmessage"></a>Gossip::ResearchedTech::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be60</code></td>
+<td><code>0xb8de60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__rockconcert__ms_hmessage"></a>Gossip::RockConcert::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be80</code></td>
+<td><code>0xb8de80</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__settlercreated__ms_hmessage"></a>Gossip::SettlerCreated::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf60</code></td>
+<td><code>0xb8df60</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spaceraceprojectcompleted__ms_hmessage"></a>Gossip::SpaceRaceProjectCompleted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8be90</code></td>
+<td><code>0xb8de90</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spybreachdam__ms_hmessage"></a>Gossip::SpyBreachDam::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bea0</code></td>
+<td><code>0xb8dea0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spydisruptrocketry__ms_hmessage"></a>Gossip::SpyDisruptRocketry::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bec0</code></td>
+<td><code>0xb8dec0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spygreatworkheist__ms_hmessage"></a>Gossip::SpyGreatWorkHeist::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bee0</code></td>
+<td><code>0xb8dee0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spyrecruitpartisans__ms_hmessage"></a>Gossip::SpyRecruitPartisans::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf00</code></td>
+<td><code>0xb8df00</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spysabotageproduction__ms_hmessage"></a>Gossip::SpySabotageProduction::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf10</code></td>
+<td><code>0xb8df10</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spysiphonfunds__ms_hmessage"></a>Gossip::SpySiphonFunds::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf20</code></td>
+<td><code>0xb8df20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__spystealtechboost__ms_hmessage"></a>Gossip::SpyStealTechBoost::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf30</code></td>
+<td><code>0xb8df30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__tradedeal__ms_hmessage"></a>Gossip::TradeDeal::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf40</code></td>
+<td><code>0xb8df40</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__traderenege__ms_hmessage"></a>Gossip::TradeRenege::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf50</code></td>
+<td><code>0xb8df50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__unitcreated__ms_hmessage"></a>Gossip::UnitCreated::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf70</code></td>
+<td><code>0xb8df70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__victorystrategychanged__ms_hmessage"></a>Gossip::VictoryStrategyChanged::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bf80</code></td>
+<td><code>0xb8df80</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__wmdcitystrike__ms_hmessage"></a>Gossip::WMDCityStrike::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bfa0</code></td>
+<td><code>0xb8dfa0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__wmdstrike__ms_hmessage"></a>Gossip::WMDStrike::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bfb0</code></td>
+<td><code>0xb8dfb0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__warpreparation__ms_hmessage"></a>Gossip::WarPreparation::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bfc0</code></td>
+<td><code>0xb8dfc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__gossip__wonderstarted__ms_hmessage"></a>Gossip::WonderStarted::ms_hMessage</td>
+<td><a href="../layouts/Message/Handle.html">Message::Handle</a></td>
+<td>16</td>
+<td>.data</td>
+<td><code>0xb8bfd0</code></td>
+<td><code>0xb8dfd0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__greatpeople__ms_uicomponentid"></a>GreatPeople::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bfe0</code></td>
+<td><code>0xb8dfe0</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__greatpeople__ms_uicomponentindex"></a>GreatPeople::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61d30</code></td>
+<td><code>0xb63d30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__heroesmanager__ms_uicomponentid"></a>HeroesManager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8dc1c</code></td>
+<td><code>0xb8fc1c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__heroesmanager__ms_uicomponentindex"></a>HeroesManager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb67330</code></td>
+<td><code>0xb69330</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__history__manager__ms_uicomponentid"></a>History::Manager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8bfec</code></td>
+<td><code>0xb8dfec</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__history__manager__ms_uicomponentindex"></a>History::Manager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61da0</code></td>
+<td><code>0xb63da0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__namemanager__ms_uicomponentid"></a>NameManager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c03c</code></td>
+<td><code>0xb8e03c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__namemanager__ms_uicomponentindex"></a>NameManager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61e70</code></td>
+<td><code>0xb63e70</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__nationalparks__ms_uicomponentid"></a>NationalParks::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c048</code></td>
+<td><code>0xb8e048</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__nationalparks__ms_uicomponentindex"></a>NationalParks::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61ee0</code></td>
+<td><code>0xb63ee0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__randomevents__ms_uicomponentid"></a>RandomEvents::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c054</code></td>
+<td><code>0xb8e054</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__randomevents__ms_uicomponentindex"></a>RandomEvents::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61f50</code></td>
+<td><code>0xb63f50</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__religion__ms_uicomponentid"></a>Religion::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c060</code></td>
+<td><code>0xb8e060</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__religion__ms_uicomponentindex"></a>Religion::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb61fc0</code></td>
+<td><code>0xb63fc0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__secretsocietymanager__ms_uicomponentid"></a>SecretSocietyManager::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8dfb4</code></td>
+<td><code>0xb8ffb4</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__secretsocietymanager__ms_uicomponentindex"></a>SecretSocietyManager::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb6a2f0</code></td>
+<td><code>0xb6c2f0</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__stats__ms_uicomponentid"></a>Stats::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c06c</code></td>
+<td><code>0xb8e06c</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__stats__ms_uicomponentindex"></a>Stats::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb62030</code></td>
+<td><code>0xb64030</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__techs__ms_uicomponentid"></a>Techs::ms_uiComponentID</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb8c094</code></td>
+<td><code>0xb8e094</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="game__techs__ms_uicomponentindex"></a>Techs::ms_uiComponentIndex</td>
+<td><code>uint</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb62034</code></td>
+<td><code>0xb64034</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_ailastturninitialaiprocessed"></a>ms_aiLastTurnInitialAIProcessed</td>
+<td><code>Types::StaticArray&lt;int, 64&gt;</code></td>
+<td>256</td>
+<td>.data</td>
+<td><code>0xb88b30</code></td>
+<td><code>0xb8ab30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_aiturnorder"></a>ms_aiTurnOrder</td>
+<td><code>Types::StaticArray&lt;int, 64&gt;</code></td>
+<td>256</td>
+<td>.data</td>
+<td><code>0xb88c30</code></td>
+<td><code>0xb8ac30</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_badvanceturn"></a>ms_bAdvanceTurn</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88b21</code></td>
+<td><code>0xb8ab21</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_bisgenerating"></a>ms_bIsGenerating</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb8c03b</code></td>
+<td><code>0xb8e03b</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_bneedsupdate"></a>ms_bNeedsUpdate</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88b23</code></td>
+<td><code>0xb8ab23</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_bnewgame"></a>ms_bNewGame</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88b22</code></td>
+<td><code>0xb8ab22</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_bturncomplete"></a>ms_bTurnComplete</td>
+<td><code>bool</code></td>
+<td>1</td>
+<td>.data</td>
+<td><code>0xb88b20</code></td>
+<td><code>0xb8ab20</code></td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="game__ms_ilastturnaiprocessed"></a>ms_iLastTurnAIProcessed</td>
+<td><code>int</code></td>
+<td>4</td>
+<td>.data</td>
+<td><code>0xb5f2c0</code></td>
+<td><code>0xb612c0</code></td>
+<td>verified</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

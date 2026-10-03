@@ -1,0 +1,567 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>TeamDiplomacy</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › TeamDiplomacy</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>TeamDiplomacy</h1>
+<p>67 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy/">TeamDiplomacy</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="calcfavorperturnfromalliances"></a>CalcFavorPerTurnFromAlliances</td>
+<td><em>UI state:</em> <code>TeamDiplomacy:CalcFavorPerTurnFromAlliances() → number</code><br><em>gameplay state:</em> <code>TeamDiplomacy:CalcFavorPerTurnFromAlliances() → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.CalcFavorPerTurnFromAlliances/">yes ↗</a></td>
+<td><code>0x7418e0</code></td>
+<td><code>0x742220</code></td>
+</tr>
+<tr>
+<td><a id="candeclarewaron"></a>CanDeclareWarOn</td>
+<td><em>UI state:</em> <code>TeamDiplomacy:CanDeclareWarOn(eRecipient: integer[PlayerTypes]) → boolean</code><br><em>gameplay state:</em> <code>TeamDiplomacy:CanDeclareWarOn(arg1?: number, arg2?: number, arg3?: any, arg4: number) → boolean ⚠</code><br><small>args: <code>eRecipient</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.CanDeclareWarOn/">yes ↗</a></td>
+<td><code>0x6ae9f0</code></td>
+<td><code>0x6aef40</code></td>
+</tr>
+<tr>
+<td><a id="canliberatecityto"></a>CanLiberateCityTo</td>
+<td><code>TeamDiplomacy:CanLiberateCityTo(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.CanLiberateCityTo/">yes ↗</a></td>
+<td><code>0x6aea50</code></td>
+<td><code>0x6aefa0</code></td>
+</tr>
+<tr>
+<td><a id="canmakepeacewith"></a>CanMakePeaceWith</td>
+<td><em>UI state:</em> <code>TeamDiplomacy:CanMakePeaceWith(eRecipient: integer[PlayerTypes]) → boolean</code><br><em>gameplay state:</em> <code>TeamDiplomacy:CanMakePeaceWith(arg1?: number) → boolean</code><br><small>args: <code>eRecipient</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.CanMakePeaceWith/">yes ↗</a></td>
+<td><code>0x6aeab0</code></td>
+<td><code>0x6af000</code></td>
+</tr>
+<tr>
+<td><a id="changefavor"></a>ChangeFavor</td>
+<td><code>TeamDiplomacy:ChangeFavor(iChange?: integer) (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x745780</code></td>
+<td><code>0x746020</code></td>
+</tr>
+<tr>
+<td><a id="computecitywarmongerpoints"></a>ComputeCityWarmongerPoints</td>
+<td><code>TeamDiplomacy:ComputeCityWarmongerPoints(kCityID: City, ePreviousOwner?: number, bRazeCity?: boolean) → number</code><br><small>args: <code>bRazeCity</code> — A boolean flag (true/false).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.ComputeCityWarmongerPoints/">yes ↗</a></td>
+<td><code>0x6aeb10</code></td>
+<td><code>0x6af060</code></td>
+</tr>
+<tr>
+<td><a id="computedowwarmongerpoints"></a>ComputeDOWWarmongerPoints</td>
+<td><code>TeamDiplomacy:ComputeDOWWarmongerPoints(eWarRecipient?: number, warType: number/string[WarTypes]) → number</code><br><small>args: <code>eWarRecipient</code> — Id of a player (the scripts name the argument playerID / owner). (inferred); <code>warType</code> — Value of the WarTypes enum (a type index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.ComputeDOWWarmongerPoints/">yes ↗</a></td>
+<td><code>0x6aec20</code></td>
+<td><code>0x6af170</code></td>
+</tr>
+<tr>
+<td><a id="computeresearchagreementturns"></a>ComputeResearchAgreementTurns</td>
+<td><code>TeamDiplomacy:ComputeResearchAgreementTurns(ePlayer: integer[PlayerTypes], eTech: integer[TechTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>eTech</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.ComputeResearchAgreementTurns/">yes ↗</a></td>
+<td><code>0x6aecc0</code></td>
+<td><code>0x6af210</code></td>
+</tr>
+<tr>
+<td><a id="declarewaron"></a>DeclareWarOn</td>
+<td><code>TeamDiplomacy:DeclareWarOn(eRecipient?: integer[PlayerTypes], warType?: integer[WarTypes], overrideChecks?: boolean, assumeDenouncement?: boolean, bIsJointWar?: boolean)</code><br><small>args: <code>eRecipient</code> — Id of a player (as in Players[id]).; <code>warType</code> — Value of the WarTypes enum (a type index).; <code>overrideChecks</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f19e0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getalliancelevel"></a>GetAllianceLevel</td>
+<td><code>TeamDiplomacy:GetAllianceLevel(arg1: integer[PlayerTypes]) → number</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAllianceLevel/">yes ↗</a></td>
+<td><code>0x712560</code></td>
+<td><code>0x712dd0</code></td>
+</tr>
+<tr>
+<td><a id="getalliancepointsperturn"></a>GetAlliancePointsPerTurn</td>
+<td><code>TeamDiplomacy:GetAlliancePointsPerTurn(arg1: integer[PlayerTypes]) → number</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAlliancePointsPerTurn/">yes ↗</a></td>
+<td><code>0x7125d0</code></td>
+<td><code>0x712e40</code></td>
+</tr>
+<tr>
+<td><a id="getalliancepointstooltip"></a>GetAlliancePointsTooltip</td>
+<td><code>TeamDiplomacy:GetAlliancePointsTooltip(ePlayer?: number) → string</code><br><small>args: <code>ePlayer</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAlliancePointsTooltip/">yes ↗</a></td>
+<td><code>0x712640</code></td>
+<td><code>0x712eb0</code></td>
+</tr>
+<tr>
+<td><a id="getallianceturnsthislevel"></a>GetAllianceTurnsThisLevel</td>
+<td><code>TeamDiplomacy:GetAllianceTurnsThisLevel(arg1: integer[PlayerTypes]) → number</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAllianceTurnsThisLevel/">yes ↗</a></td>
+<td><code>0x7126f0</code></td>
+<td><code>0x712f60</code></td>
+</tr>
+<tr>
+<td><a id="getallianceturnstonextlevel"></a>GetAllianceTurnsToNextLevel</td>
+<td><code>TeamDiplomacy:GetAllianceTurnsToNextLevel(arg1: integer[PlayerTypes]) → number</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAllianceTurnsToNextLevel/">yes ↗</a></td>
+<td><code>0x712760</code></td>
+<td><code>0x712fd0</code></td>
+</tr>
+<tr>
+<td><a id="getallianceturnsuntilexpiration"></a>GetAllianceTurnsUntilExpiration</td>
+<td><code>TeamDiplomacy:GetAllianceTurnsUntilExpiration(arg1: integer[PlayerTypes]) → number</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAllianceTurnsUntilExpiration/">yes ↗</a></td>
+<td><code>0x7127d0</code></td>
+<td><code>0x713040</code></td>
+</tr>
+<tr>
+<td><a id="getalliancetype"></a>GetAllianceType</td>
+<td><code>TeamDiplomacy:GetAllianceType(ePlayer: integer[PlayerTypes]) → number (AllianceTypes)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Index of a row of the Alliances table (the value of GameInfo.Alliances[...].Index).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAllianceType/">yes ↗</a></td>
+<td><code>0x712840</code></td>
+<td><code>0x7130b0</code></td>
+</tr>
+<tr>
+<td><a id="getatwarchangeturn"></a>GetAtWarChangeTurn</td>
+<td><code>TeamDiplomacy:GetAtWarChangeTurn(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetAtWarChangeTurn/">yes ↗</a></td>
+<td><code>0x6aed40</code></td>
+<td><code>0x6af290</code></td>
+</tr>
+<tr>
+<td><a id="getdeclaredfriendshipturn"></a>GetDeclaredFriendshipTurn</td>
+<td><code>TeamDiplomacy:GetDeclaredFriendshipTurn(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: A turn number (the scripts name the result turn). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetDeclaredFriendshipTurn/">yes ↗</a></td>
+<td><code>0x6aedb0</code></td>
+<td><code>0x6af300</code></td>
+</tr>
+<tr>
+<td><a id="getdenounceturn"></a>GetDenounceTurn</td>
+<td><code>TeamDiplomacy:GetDenounceTurn(arg1: integer[PlayerTypes]) → number</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: A turn number (the scripts name the result turn). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetDenounceTurn/">yes ↗</a></td>
+<td><code>0x6aee20</code></td>
+<td><code>0x6af370</code></td>
+</tr>
+<tr>
+<td><a id="getdiplomaticactioncost"></a>GetDiplomaticActionCost</td>
+<td><code>TeamDiplomacy:GetDiplomaticActionCost(actionHash: number/string) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetDiplomaticActionCost/">yes ↗</a></td>
+<td><code>0x6aee90</code></td>
+<td><code>0x6af3e0</code></td>
+</tr>
+<tr>
+<td><a id="getfavor"></a>GetFavor</td>
+<td><code>TeamDiplomacy:GetFavor() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x7457e0</code></td>
+<td><code>0x746080</code></td>
+</tr>
+<tr>
+<td><a id="getfavorperturn"></a>GetFavorPerTurn</td>
+<td><code>TeamDiplomacy:GetFavorPerTurn() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x745850</code></td>
+<td><code>0x7460f0</code></td>
+</tr>
+<tr>
+<td><a id="getgrievancesagainst"></a>GetGrievancesAgainst</td>
+<td><code>TeamDiplomacy:GetGrievancesAgainst(arg1?: number) → number</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetGrievancesAgainst/">yes ↗</a></td>
+<td><code>0x741930</code></td>
+<td><code>0x742270</code></td>
+</tr>
+<tr>
+<td><a id="getmetturn"></a>GetMetTurn</td>
+<td><code>TeamDiplomacy:GetMetTurn(ePlayer: integer[PlayerTypes]) → number</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetMetTurn/">yes ↗</a></td>
+<td><code>0x6aef00</code></td>
+<td><code>0x6af450</code></td>
+</tr>
+<tr>
+<td><a id="getmission"></a>GetMission</td>
+<td><code>TeamDiplomacy:GetMission(arg1?: number, arg2?: number) → MissionToLua (or nothing)</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetMission/">yes ↗</a></td>
+<td><code>0x6aef70</code></td>
+<td><code>0x6af4c0</code></td>
+</tr>
+<tr>
+<td><a id="getnextescapingspyid"></a>GetNextEscapingSpyID</td>
+<td><code>TeamDiplomacy:GetNextEscapingSpyID() → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNextEscapingSpyID/">yes ↗</a></td>
+<td><code>0x6af020</code></td>
+<td><code>0x6af570</code></td>
+</tr>
+<tr>
+<td><a id="getnextpursuedspyid"></a>GetNextPursuedSpyID</td>
+<td><code>TeamDiplomacy:GetNextPursuedSpyID() → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNextPursuedSpyID/">yes ↗</a></td>
+<td><code>0x6af070</code></td>
+<td><code>0x6af5c0</code></td>
+</tr>
+<tr>
+<td><a id="getnthcapturedspy"></a>GetNthCapturedSpy</td>
+<td><code>TeamDiplomacy:GetNthCapturedSpy(arg1?: number, arg2?: number) → number (or nothing)</code><br><small>args: <code>arg1</code> — Id of a player.</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNthCapturedSpy/">yes ↗</a></td>
+<td><code>0x6af0c0</code></td>
+<td><code>0x6af610</code></td>
+</tr>
+<tr>
+<td><a id="getnthoffmapspy"></a>GetNthOffMapSpy</td>
+<td><code>TeamDiplomacy:GetNthOffMapSpy(arg1?: number, arg2?: number) → number</code><br><small>args: <code>arg1</code> — Id of a player. (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNthOffMapSpy/">yes ↗</a></td>
+<td><code>0x6af270</code></td>
+<td><code>0x6af7c0</code></td>
+</tr>
+<tr>
+<td><a id="getnumplayersmet"></a>GetNumPlayersMet</td>
+<td><code>TeamDiplomacy:GetNumPlayersMet() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNumPlayersMet/">yes ↗</a></td>
+<td><code>0x6af480</code></td>
+<td><code>0x6af9d0</code></td>
+</tr>
+<tr>
+<td><a id="getnumspiescaptured"></a>GetNumSpiesCaptured</td>
+<td><code>TeamDiplomacy:GetNumSpiesCaptured() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: A count or amount (the scripts name the result count / num / amount). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNumSpiesCaptured/">yes ↗</a></td>
+<td><code>0x6af4d0</code></td>
+<td><code>0x6afa20</code></td>
+</tr>
+<tr>
+<td><a id="getnumspiesoffmap"></a>GetNumSpiesOffMap</td>
+<td><code>TeamDiplomacy:GetNumSpiesOffMap() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNumSpiesOffMap/">yes ↗</a></td>
+<td><code>0x6af520</code></td>
+<td><code>0x6afa70</code></td>
+</tr>
+<tr>
+<td><a id="getplayersmet"></a>GetPlayersMet</td>
+<td><code>TeamDiplomacy:GetPlayersMet() → Player[]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetPlayersMet/">yes ↗</a></td>
+<td><code>0x6af570</code></td>
+<td><code>0x6afac0</code></td>
+</tr>
+<tr>
+<td><a id="getplayersmetids"></a>GetPlayersMetIDs</td>
+<td><code>TeamDiplomacy:GetPlayersMetIDs() → number[]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetPlayersMetIDs/">yes ↗</a></td>
+<td><code>0x6af660</code></td>
+<td><code>0x6afbb0</code></td>
+</tr>
+<tr>
+<td><a id="getrecentmissions"></a>GetRecentMissions</td>
+<td><code>TeamDiplomacy:GetRecentMissions(arg1?: number, arg2?: number, arg3?: number)</code><br><small>args: <code>arg1</code> — Id of a player. (inferred); <code>arg2</code> — A number. (inferred); <code>arg3</code> — A number. (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetRecentMissions/">yes ↗</a></td>
+<td><code>0x6af760</code></td>
+<td><code>0x6afcb0</code></td>
+</tr>
+<tr>
+<td><a id="getresearchagreementtech"></a>GetResearchAgreementTech</td>
+<td><code>TeamDiplomacy:GetResearchAgreementTech(ePlayer: integer[PlayerTypes]) → number (TechTypes)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetResearchAgreementTech/">yes ↗</a></td>
+<td><code>0x6af8a0</code></td>
+<td><code>0x6afdf0</code></td>
+</tr>
+<tr>
+<td><a id="getsourceturnsremaining"></a>GetSourceTurnsRemaining</td>
+<td><code>TeamDiplomacy:GetSourceTurnsRemaining(pkCity: City) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetSourceTurnsRemaining/">yes ↗</a></td>
+<td><code>0x6af910</code></td>
+<td><code>0x6afe60</code></td>
+</tr>
+<tr>
+<td><a id="getspycapacity"></a>GetSpyCapacity</td>
+<td><code>TeamDiplomacy:GetSpyCapacity() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetSpyCapacity/">yes ↗</a></td>
+<td><code>0x6af9b0</code></td>
+<td><code>0x6aff00</code></td>
+</tr>
+<tr>
+<td><a id="getvisibilityon"></a>GetVisibilityOn</td>
+<td><em>UI state:</em> <code>TeamDiplomacy:GetVisibilityOn(player: integer[PlayerTypes]) → number (DiplomaticVisibilityTypes)</code><br><em>gameplay state:</em> <code>TeamDiplomacy:GetVisibilityOn(arg1: integer) → number</code><br><small>args: <code>player</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Value of the DiplomaticVisibilityTypes enum (a type index).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetVisibilityOn/">yes ↗</a></td>
+<td><code>0x6afa00</code></td>
+<td><code>0x6aff50</code></td>
+</tr>
+<tr>
+<td><a id="getwarmongerlevel"></a>GetWarmongerLevel</td>
+<td><code>TeamDiplomacy:GetWarmongerLevel(iWarmongerPoints?: number) → string</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetWarmongerLevel/">yes ↗</a></td>
+<td><code>0x6afa70</code></td>
+<td><code>0x6affc0</code></td>
+</tr>
+<tr>
+<td><a id="hasallied"></a>HasAllied</td>
+<td><code>TeamDiplomacy:HasAllied(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1ad0</code></td>
+<td><code>0x6f2210</code></td>
+</tr>
+<tr>
+<td><a id="hasdeclaredfriendship"></a>HasDeclaredFriendship</td>
+<td><code>TeamDiplomacy:HasDeclaredFriendship(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1b30</code></td>
+<td><code>0x6f2270</code></td>
+</tr>
+<tr>
+<td><a id="hasdefensivepact"></a>HasDefensivePact</td>
+<td><code>TeamDiplomacy:HasDefensivePact(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.HasDefensivePact/">yes ↗</a></td>
+<td><code>0x6afb40</code></td>
+<td><code>0x6b0090</code></td>
+</tr>
+<tr>
+<td><a id="hasdelegationat"></a>HasDelegationAt</td>
+<td><code>TeamDiplomacy:HasDelegationAt(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.HasDelegationAt/">yes ↗</a></td>
+<td><code>0x6afba0</code></td>
+<td><code>0x6b00f0</code></td>
+</tr>
+<tr>
+<td><a id="hasembassyat"></a>HasEmbassyAt</td>
+<td><code>TeamDiplomacy:HasEmbassyAt(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.HasEmbassyAt/">yes ↗</a></td>
+<td><code>0x6afc00</code></td>
+<td><code>0x6b0150</code></td>
+</tr>
+<tr>
+<td><a id="hasmet"></a>HasMet</td>
+<td><code>TeamDiplomacy:HasMet(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.HasMet/">yes ↗</a></td>
+<td><code>0x6afc60</code></td>
+<td><code>0x6b01b0</code></td>
+</tr>
+<tr>
+<td><a id="hasopenbordersfrom"></a>HasOpenBordersFrom</td>
+<td><code>TeamDiplomacy:HasOpenBordersFrom(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.HasOpenBordersFrom/">yes ↗</a></td>
+<td><code>0x6afcc0</code></td>
+<td><code>0x6b0210</code></td>
+</tr>
+<tr>
+<td><a id="isatwarwith"></a>IsAtWarWith</td>
+<td><code>TeamDiplomacy:IsAtWarWith(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsAtWarWith/">yes ↗</a></td>
+<td><code>0x6afd20</code></td>
+<td><code>0x6b0270</code></td>
+</tr>
+<tr>
+<td><a id="isatwarwithhumans"></a>IsAtWarWithHumans</td>
+<td><em>UI state:</em> <code>TeamDiplomacy:IsAtWarWithHumans() → boolean</code><br><em>gameplay state:</em> <code>TeamDiplomacy:IsAtWarWithHumans() → boolean</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsAtWarWithHumans/">yes ↗</a></td>
+<td><code>0x6afd80</code></td>
+<td><code>0x6b02d0</code></td>
+</tr>
+<tr>
+<td><a id="isdiplomaticactionvalid"></a>IsDiplomaticActionValid</td>
+<td><code>TeamDiplomacy:IsDiplomaticActionValid(action: number/string[DiplomaticActions], arg2?: number)</code><br><small>args: <code>arg2</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsDiplomaticActionValid/">yes ↗</a></td>
+<td><code>0x6afdd0</code></td>
+<td><code>0x6b0320</code></td>
+</tr>
+<tr>
+<td><a id="isfightinganyjointwarwith"></a>IsFightingAnyJointWarWith</td>
+<td><code>TeamDiplomacy:IsFightingAnyJointWarWith(partner: integer[PlayerTypes]) → boolean</code><br><small>args: <code>partner</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsFightingAnyJointWarWith/">yes ↗</a></td>
+<td><code>0x6aff40</code></td>
+<td><code>0x6b0490</code></td>
+</tr>
+<tr>
+<td><a id="isfightingjointwaragainst"></a>IsFightingJointWarAgainst</td>
+<td><code>TeamDiplomacy:IsFightingJointWarAgainst(target: integer[PlayerTypes], arg2: integer[PlayerTypes]) → boolean (PlayerTypes)</code><br><small>args: <code>target</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsFightingJointWarAgainst/">yes ↗</a></td>
+<td><code>0x6affa0</code></td>
+<td><code>0x6b04f0</code></td>
+</tr>
+<tr>
+<td><a id="ispromisemade"></a>IsPromiseMade</td>
+<td><code>TeamDiplomacy:IsPromiseMade(arg1?: number, ePromiseType: number/string[PromiseTypes]) → boolean</code><br><small>args: <code>arg1</code> — Id of a player.; <code>ePromiseType</code> — Value of the PromiseTypes enum (a type index).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsPromiseMade/">yes ↗</a></td>
+<td><code>0x6b0020</code></td>
+<td><code>0x6b0570</code></td>
+</tr>
+<tr>
+<td><a id="isvisibilitysourceactive"></a>IsVisibilitySourceActive</td>
+<td><code>TeamDiplomacy:IsVisibilitySourceActive(ePlayer: integer[PlayerTypes], eSource: integer[DiplomaticVisibilitySources]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsVisibilitySourceActive/">yes ↗</a></td>
+<td><code>0x6b00c0</code></td>
+<td><code>0x6b0610</code></td>
+</tr>
+<tr>
+<td><a id="makepeacewith"></a>MakePeaceWith</td>
+<td><code>TeamDiplomacy:MakePeaceWith(eRecipient: integer[PlayerTypes], overrideChecks: boolean) (or nothing)</code><br><small>args: <code>eRecipient</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1de0</code></td>
+<td><code>0x6f2520</code></td>
+</tr>
+<tr>
+<td><a id="nevermakepeacewith"></a>NeverMakePeaceWith</td>
+<td><code>TeamDiplomacy:NeverMakePeaceWith(eRecipient: integer[PlayerTypes]) (or nothing)</code><br><small>args: <code>eRecipient</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1e40</code></td>
+<td><code>0x6f2580</code></td>
+</tr>
+<tr>
+<td><a id="recheckvisibilityon"></a>RecheckVisibilityOn</td>
+<td><code>TeamDiplomacy:RecheckVisibilityOn(ePlayer: integer[PlayerTypes]) (or nothing)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1e90</code></td>
+<td><code>0x6f25d0</code></td>
+</tr>
+<tr>
+<td><a id="recheckvisibilityonall"></a>RecheckVisibilityOnAll</td>
+<td><code>TeamDiplomacy:RecheckVisibilityOnAll() (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1ee0</code></td>
+<td><code>0x6f2620</code></td>
+</tr>
+<tr>
+<td><a id="sendkudoto"></a>SendKudoTo</td>
+<td><code>TeamDiplomacy:SendKudoTo(player: integer[PlayerTypes], kudoHash: integer, bIsHiddenAgenda: boolean) (or nothing)</code><br><small>args: <code>player</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1f00</code></td>
+<td><code>0x6f2640</code></td>
+</tr>
+<tr>
+<td><a id="sendwarningto"></a>SendWarningTo</td>
+<td><code>TeamDiplomacy:SendWarningTo(player: integer[PlayerTypes], warningHash: integer, bIsHiddenAgenda: boolean) (or nothing)</code><br><small>args: <code>player</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f1f80</code></td>
+<td><code>0x6f26c0</code></td>
+</tr>
+<tr>
+<td><a id="sethasallied"></a>SetHasAllied</td>
+<td><code>TeamDiplomacy:SetHasAllied(ePlayer: integer[PlayerTypes], eNewValue: integer[AllianceTypes]) (or nothing)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>eNewValue</code> — Index of a row of the Alliances table (the value of GameInfo.Alliances[...].Index).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f2000</code></td>
+<td><code>0x6f2740</code></td>
+</tr>
+<tr>
+<td><a id="sethasdeclaredfriendship"></a>SetHasDeclaredFriendship</td>
+<td><code>TeamDiplomacy:SetHasDeclaredFriendship(ePlayer: integer[PlayerTypes], bNewValue: boolean) (or nothing)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f2060</code></td>
+<td><code>0x6f27a0</code></td>
+</tr>
+<tr>
+<td><a id="sethasdelegationat"></a>SetHasDelegationAt</td>
+<td><code>TeamDiplomacy:SetHasDelegationAt(ePlayer: integer[PlayerTypes], bNewValue: boolean) (or nothing)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>bNewValue</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f20c0</code></td>
+<td><code>0x6f2800</code></td>
+</tr>
+<tr>
+<td><a id="sethasembassyat"></a>SetHasEmbassyAt</td>
+<td><code>TeamDiplomacy:SetHasEmbassyAt(ePlayer: integer[PlayerTypes], bNewValue: boolean) (or nothing)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f2120</code></td>
+<td><code>0x6f2860</code></td>
+</tr>
+<tr>
+<td><a id="sethasmet"></a>SetHasMet</td>
+<td><code>TeamDiplomacy:SetHasMet(ePlayer?: number) → 1 values ⚠</code><br><small>args: <code>ePlayer</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f2180</code></td>
+<td><code>0x6f28c0</code></td>
+</tr>
+<tr>
+<td><a id="setpermanentalliance"></a>SetPermanentAlliance</td>
+<td><code>TeamDiplomacy:SetPermanentAlliance(ePlayer: integer[PlayerTypes]) (or nothing)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f2240</code></td>
+<td><code>0x6f2980</code></td>
+</tr>
+<tr>
+<td><a id="setvisibilityon"></a>SetVisibilityOn</td>
+<td><code>TeamDiplomacy:SetVisibilityOn(player: integer[PlayerTypes], newVis: integer[DiplomaticVisibilityTypes]) (or nothing)</code><br><small>args: <code>player</code> — Id of a player (as in Players[id]).; <code>newVis</code> — Value of the DiplomaticVisibilityTypes enum (a type index).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6f2290</code></td>
+<td><code>0x6f29d0</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

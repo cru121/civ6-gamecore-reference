@@ -1,0 +1,7 @@
+id: "layout:Unit::CombatModifiers"
+summary: "Per-unit combat flags and modifiers, stored at unit+0x7a0 on Windows (tracked-variable wrapper at unit+0x790)."
+notes:
+  - text: "The Linux layout is the pre-New-Frontier-Pass one. In the current Windows build one more bool sits at struct offset 0x81 (the no-barbarian-XP-limit flag used by Julius Caesar), so m_bIgnoreRangedVsDistrictPenalty is at 0x82 and m_bFightWhileEmbarked at 0x83 there."
+    status: verified
+    evidence: [{kind: static-analysis, note: "modifier effect stores and readers in both builds"}, {kind: game-script, note: "DLC/JuliusCaesar/Data/JuliusCaesar_Leaders.xml"}]
+related: ["layout:Unit::Instance"]

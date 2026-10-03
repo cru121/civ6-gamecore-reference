@@ -1,0 +1,254 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>NotificationInstance</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › NotificationInstance</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>NotificationInstance</h1>
+<p>28 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="activate"></a>Activate</td>
+<td><code>NotificationInstance:Activate() (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5be0</code></td>
+<td><code>0x6e6320</code></td>
+</tr>
+<tr>
+<td><a id="autoexpires"></a>AutoExpires</td>
+<td><code>NotificationInstance:AutoExpires() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5c50</code></td>
+<td><code>0x6e6390</code></td>
+</tr>
+<tr>
+<td><a id="canuserdismiss"></a>CanUserDismiss</td>
+<td><code>NotificationInstance:CanUserDismiss() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5ca0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getaddedturn"></a>GetAddedTurn</td>
+<td><code>NotificationInstance:GetAddedTurn() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5cf0</code></td>
+<td><code>0x6e6430</code></td>
+</tr>
+<tr>
+<td><a id="getcount"></a>GetCount</td>
+<td><code>NotificationInstance:GetCount() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5d40</code></td>
+<td><code>0x6e6480</code></td>
+</tr>
+<tr>
+<td><a id="getendturnblocking"></a>GetEndTurnBlocking</td>
+<td><code>NotificationInstance:GetEndTurnBlocking() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5d90</code></td>
+<td><code>0x6e64d0</code></td>
+</tr>
+<tr>
+<td><a id="getexpireturn"></a>GetExpireTurn</td>
+<td><code>NotificationInstance:GetExpireTurn() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5de0</code></td>
+<td><code>0x6e6520</code></td>
+</tr>
+<tr>
+<td><a id="getgroup"></a>GetGroup</td>
+<td><code>NotificationInstance:GetGroup() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5e30</code></td>
+<td><code>0x6e6570</code></td>
+</tr>
+<tr>
+<td><a id="getid"></a>GetID</td>
+<td><code>NotificationInstance:GetID() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5e80</code></td>
+<td><code>0x6e65c0</code></td>
+</tr>
+<tr>
+<td><a id="geticonname"></a>GetIconName</td>
+<td><code>NotificationInstance:GetIconName() → string/nil/string (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e5ed0</code></td>
+<td><code>0x6e6610</code></td>
+</tr>
+<tr>
+<td><a id="getlocation"></a>GetLocation</td>
+<td><code>NotificationInstance:GetLocation() → number, number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6030</code></td>
+<td><code>0x6e6770</code></td>
+</tr>
+<tr>
+<td><a id="getmessage"></a>GetMessage</td>
+<td><code>NotificationInstance:GetMessage() → nil/string</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e60a0</code></td>
+<td><code>0x6e67e0</code></td>
+</tr>
+<tr>
+<td><a id="getplayerid"></a>GetPlayerID</td>
+<td><code>NotificationInstance:GetPlayerID() → number</code><br><small>returns: Id of a player (the scripts name the result playerID / owner). (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6110</code></td>
+<td><code>0x6e6850</code></td>
+</tr>
+<tr>
+<td><a id="getseverity"></a>GetSeverity</td>
+<td><code>NotificationInstance:GetSeverity() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6160</code></td>
+<td><code>0x6e68a0</code></td>
+</tr>
+<tr>
+<td><a id="getsummary"></a>GetSummary</td>
+<td><code>NotificationInstance:GetSummary() → nil/string</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e61b0</code></td>
+<td><code>0x6e68f0</code></td>
+</tr>
+<tr>
+<td><a id="gettarget"></a>GetTarget</td>
+<td><code>NotificationInstance:GetTarget() → number, number, number (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6220</code></td>
+<td><code>0x6e6960</code></td>
+</tr>
+<tr>
+<td><a id="gettype"></a>GetType</td>
+<td><code>NotificationInstance:GetType() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e62d0</code></td>
+<td><code>0x6e6a10</code></td>
+</tr>
+<tr>
+<td><a id="gettypename"></a>GetTypeName</td>
+<td><code>NotificationInstance:GetTypeName() → nil/string (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6320</code></td>
+<td><code>0x6e6a60</code></td>
+</tr>
+<tr>
+<td><a id="getvalue"></a>GetValue</td>
+<td><code>NotificationInstance:GetValue(arg1?: number) → 1 values (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e63b0</code></td>
+<td><code>0x6e6af0</code></td>
+</tr>
+<tr>
+<td><a id="isautonotify"></a>IsAutoNotify</td>
+<td><code>NotificationInstance:IsAutoNotify() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e64d0</code></td>
+<td><code>0x6e6c10</code></td>
+</tr>
+<tr>
+<td><a id="isdismissed"></a>IsDismissed</td>
+<td><code>NotificationInstance:IsDismissed() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6520</code></td>
+<td><code>0x6e6c60</code></td>
+</tr>
+<tr>
+<td><a id="isexpired"></a>IsExpired</td>
+<td><code>NotificationInstance:IsExpired() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6570</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="isicondisplayable"></a>IsIconDisplayable</td>
+<td><code>NotificationInstance:IsIconDisplayable() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e65c0</code></td>
+<td><code>0x6e6d00</code></td>
+</tr>
+<tr>
+<td><a id="islocationvalid"></a>IsLocationValid</td>
+<td><code>NotificationInstance:IsLocationValid() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6610</code></td>
+<td><code>0x6e6d50</code></td>
+</tr>
+<tr>
+<td><a id="isneeded"></a>IsNeeded</td>
+<td><code>NotificationInstance:IsNeeded() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6670</code></td>
+<td><code>0x6e6db0</code></td>
+</tr>
+<tr>
+<td><a id="istargetvalid"></a>IsTargetValid</td>
+<td><code>NotificationInstance:IsTargetValid() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e66c0</code></td>
+<td><code>0x6e6e00</code></td>
+</tr>
+<tr>
+<td><a id="isvalidforphase"></a>IsValidForPhase</td>
+<td><code>NotificationInstance:IsValidForPhase() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6720</code></td>
+<td><code>0x6e6e60</code></td>
+</tr>
+<tr>
+<td><a id="isvisibleinui"></a>IsVisibleInUI</td>
+<td><code>NotificationInstance:IsVisibleInUI() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6e6770</code></td>
+<td><code>0x6e6eb0</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

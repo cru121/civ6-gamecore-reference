@@ -1,0 +1,586 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › Game</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Game</h1>
+<p>63 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game/">Game</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addworldviewtext"></a>AddWorldViewText</td>
+<td><code>Game.AddWorldViewText(arg1: table, arg2: string, arg3?: number, iData3?: number, arg5?: number, arg6: Unit) (or nothing)</code><br><small>args: <code>arg3</code> — Plot x coordinate (plot:GetX()).; <code>iData3</code> — Plot y coordinate (plot:GetY()).; <code>arg5</code> — A number.</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.AddWorldViewText/">yes ↗</a></td>
+<td><code>0x6d5dc0</code></td>
+<td><code>0x6d6460</code></td>
+</tr>
+<tr>
+<td><a id="generateunitname"></a>GenerateUnitName</td>
+<td><code>Game:GenerateUnitName(uiUnitNamePrefix: integer, uiUnitNameSuffix: integer) → nil</code><br><small>args: <code>uiUnitNamePrefix</code> — A Unit object (the scripts pass a variable named pUnit). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GenerateUnitName/">yes ↗</a></td>
+<td><code>0x69a5b0</code></td>
+<td><code>0x69ab80</code></td>
+</tr>
+<tr>
+<td><a id="getactiveplayercount"></a>GetActivePlayerCount</td>
+<td><code>Game.GetActivePlayerCount() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetActivePlayerCount/">yes ↗</a></td>
+<td><code>0x69a7e0</code></td>
+<td><code>0x69adb0</code></td>
+</tr>
+<tr>
+<td><a id="getartifactatplot"></a>GetArtifactAtPlot</td>
+<td><code>Game.GetArtifactAtPlot(arg1?: number)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetArtifactAtPlot/">yes ↗</a></td>
+<td><code>0x69a820</code></td>
+<td><code>0x69adf0</code></td>
+</tr>
+<tr>
+<td><a id="getartifactbyindex"></a>GetArtifactByIndex</td>
+<td><code>Game.GetArtifactByIndex(arg1?: number)</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetArtifactByIndex/">yes ↗</a></td>
+<td><code>0x69a880</code></td>
+<td><code>0x69ae50</code></td>
+</tr>
+<tr>
+<td><a id="getbarbarianmanager"></a>GetBarbarianManager</td>
+<td><em>UI state:</em> <code>Game.GetBarbarianManager() → Barbarians (or nothing)</code><br><em>gameplay state:</em> <code>Game.GetBarbarianManager() → BarbarianTribes (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetBarbarianManager/">yes ↗</a></td>
+<td><code>0x69a8c0</code></td>
+<td><code>0x69ae90</code></td>
+</tr>
+<tr>
+<td><a id="getcomponentid"></a>GetComponentID</td>
+<td><code>Game.GetComponentID() → 1 values ⚠</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetComponentID/">yes ↗</a></td>
+<td><code>0x69a900</code></td>
+<td><code>0x69aed0</code></td>
+</tr>
+<tr>
+<td><a id="getculture"></a>GetCulture</td>
+<td><code>Game.GetCulture() → GameCulture (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetCulture/">yes ↗</a></td>
+<td><code>0x69a940</code></td>
+<td><code>0x69af10</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentgameturn"></a>GetCurrentGameTurn</td>
+<td><code>Game.GetCurrentGameTurn() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: A turn number (the scripts name the result turn). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetCurrentGameTurn/">yes ↗</a></td>
+<td><code>0x69a980</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getcurrentturnphase"></a>GetCurrentTurnPhase</td>
+<td><code>Game.GetCurrentTurnPhase() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetCurrentTurnPhase/">yes ↗</a></td>
+<td><code>0x69a9c0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getcurrentturnphasename"></a>GetCurrentTurnPhaseName</td>
+<td><code>Game.GetCurrentTurnPhaseName() → nil/string</code><br><small>✓ called in the game (returned nothing in that state)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetCurrentTurnPhaseName/">yes ↗</a></td>
+<td><code>0x69aa00</code><br><small>same code as GetCurrentTurnSegmentName</small></td>
+<td><code>0x69b070</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentturnphasesound"></a>GetCurrentTurnPhaseSound</td>
+<td><code>Game.GetCurrentTurnPhaseSound() → nil/string</code><br><small>✓ called in the game (returned nothing in that state)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetCurrentTurnPhaseSound/">yes ↗</a></td>
+<td><code>0x69aa60</code></td>
+<td><code>0x69afd0</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentturnsegment"></a>GetCurrentTurnSegment</td>
+<td><code>Game.GetCurrentTurnSegment() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: A turn number (the scripts name the result turn). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetCurrentTurnSegment/">yes ↗</a></td>
+<td><code>0x69aac0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getcurrentturnsegmentname"></a>GetCurrentTurnSegmentName</td>
+<td><code>Game.GetCurrentTurnSegmentName() → nil/string</code><br><small>✓ called in the game (returned nothing in that state)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetCurrentTurnSegmentName/">yes ↗</a></td>
+<td><code>0x69aa00</code><br><small>same code as GetCurrentTurnPhaseName</small></td>
+<td><code>0x69b070</code></td>
+</tr>
+<tr>
+<td><a id="getdefeatrequirements"></a>GetDefeatRequirements</td>
+<td><code>Game.GetDefeatRequirements(arg1: integer) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetDefeatRequirements/">yes ↗</a></td>
+<td><code>0x69ab00</code></td>
+<td><code>0x69b0d0</code></td>
+</tr>
+<tr>
+<td><a id="geteconomicmanager"></a>GetEconomicManager</td>
+<td><code>Game.GetEconomicManager() → GameEconomicManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetEconomicManager/">yes ↗</a></td>
+<td><code>0x69ac50</code></td>
+<td><code>0x69b220</code></td>
+</tr>
+<tr>
+<td><a id="getemergencymanager"></a>GetEmergencyManager</td>
+<td><code>Game.GetEmergencyManager() → EmergencyManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetEmergencyManager/">yes ↗</a></td>
+<td><code>0x711670</code></td>
+<td><code>0x711ee0</code></td>
+</tr>
+<tr>
+<td><a id="geteras"></a>GetEras</td>
+<td><em>UI state:</em> <code>Game.GetEras() → GameEras (or nothing)</code><br><em>gameplay state:</em> <code>Game.GetEras() → GameEras (or nothing) ⚠</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetEras/">yes ↗</a></td>
+<td><code>0x7116b0</code></td>
+<td><code>0x711f20</code></td>
+</tr>
+<tr>
+<td><a id="getfalloutmanager"></a>GetFalloutManager</td>
+<td><code>Game.GetFalloutManager() → GameFalloutManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetFalloutManager/">yes ↗</a></td>
+<td><code>0x69ac90</code></td>
+<td><code>0x69b260</code></td>
+</tr>
+<tr>
+<td><a id="getgamediplomacy"></a>GetGameDiplomacy</td>
+<td><code>Game.GetGameDiplomacy() → GameDiplomacy (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGameDiplomacy/">yes ↗</a></td>
+<td><code>0x69acd0</code></td>
+<td><code>0x69b2a0</code></td>
+</tr>
+<tr>
+<td><a id="getgameendturn"></a>GetGameEndTurn</td>
+<td><code>Game.GetGameEndTurn() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: A turn number (the scripts name the result turn). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGameEndTurn/">yes ↗</a></td>
+<td><code>0x69ad10</code></td>
+<td><code>0x69b2e0</code></td>
+</tr>
+<tr>
+<td><a id="getgossipmanager"></a>GetGossipManager</td>
+<td><code>Game.GetGossipManager() → GameGossipManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGossipManager/">yes ↗</a></td>
+<td><code>0x69ad50</code></td>
+<td><code>0x69b320</code></td>
+</tr>
+<tr>
+<td><a id="getgreatpeople"></a>GetGreatPeople</td>
+<td><code>Game.GetGreatPeople() → GameGreatPeople (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGreatPeople/">yes ↗</a></td>
+<td><code>0x69ad90</code></td>
+<td><code>0x69b360</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkdatafromindex"></a>GetGreatWorkDataFromIndex ★</td>
+<td><code>Game.GetGreatWorkDataFromIndex(arg1?: number) → string</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGreatWorkDataFromIndex/">yes ↗</a></td>
+<td><code>0x69add0</code></td>
+<td><code>0x69b3a0</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkplayer"></a>GetGreatWorkPlayer ★</td>
+<td><code>Game.GetGreatWorkPlayer(arg1?: number) → number</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: Id of a player: the scripts use the result as Players[result].</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGreatWorkPlayer/">yes ↗</a></td>
+<td><code>0x69b080</code></td>
+<td><code>0x69b650</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworktype"></a>GetGreatWorkType</td>
+<td><code>Game.GetGreatWorkType(arg1?: number) → number</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: Key of a row of the GreatWorks table: the scripts look it up with GameInfo.GreatWorks[result].</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGreatWorkType/">yes ↗</a></td>
+<td><code>0x69b140</code></td>
+<td><code>0x69b710</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworktypefromindex"></a>GetGreatWorkTypeFromIndex</td>
+<td><code>Game.GetGreatWorkTypeFromIndex(arg1: integer[GreatWorkListIndex]) → number</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Key of a row of the GreatWorks table: the scripts look it up with GameInfo.GreatWorks[result]. (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetGreatWorkTypeFromIndex/">yes ↗</a></td>
+<td><code>0x69b200</code></td>
+<td><code>0x69b7d0</code></td>
+</tr>
+<tr>
+<td><a id="getheroesmanager"></a>GetHeroesManager</td>
+<td><code>Game.GetHeroesManager() → GameHeroesManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetHeroesManager/">yes ↗</a></td>
+<td><code>0x69b260</code></td>
+<td><code>0x69b830</code></td>
+</tr>
+<tr>
+<td><a id="gethistorymanager"></a>GetHistoryManager</td>
+<td><code>Game.GetHistoryManager() → GameHistoryManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetHistoryManager/">yes ↗</a></td>
+<td><code>0x7116f0</code></td>
+<td><code>0x711f60</code></td>
+</tr>
+<tr>
+<td><a id="getlocalobserver"></a>GetLocalObserver</td>
+<td><code>Game.GetLocalObserver() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Id of a player: the scripts use the result as Players[result]. (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetLocalObserver/">yes ↗</a></td>
+<td><code>0x69b2a0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getlocalplayer"></a>GetLocalPlayer</td>
+<td><code>Game.GetLocalPlayer() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small><br><small>returns: Id of a player: the scripts use the result as Players[result].</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetLocalPlayer/">yes ↗</a></td>
+<td><code>0x69b2e0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmaxgameturns"></a>GetMaxGameTurns</td>
+<td><code>Game.GetMaxGameTurns() → number</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetMaxGameTurns/">yes ↗</a></td>
+<td><code>0x69b320</code></td>
+<td><code>0x69b8f0</code></td>
+</tr>
+<tr>
+<td><a id="getnationalparks"></a>GetNationalParks</td>
+<td><code>Game.GetNationalParks() → GameNationalParks (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetNationalParks/">yes ↗</a></td>
+<td><code>0x69b360</code></td>
+<td><code>0x69b930</code></td>
+</tr>
+<tr>
+<td><a id="getobjectfromcomponentid"></a>GetObjectFromComponentID</td>
+<td><code>Game.GetObjectFromComponentID() → object (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetObjectFromComponentID/">yes ↗</a></td>
+<td><code>0x6d68d0</code></td>
+<td><code>0x6d6f70</code></td>
+</tr>
+<tr>
+<td><a id="getphasename"></a>GetPhaseName</td>
+<td><code>Game.GetPhaseName() → string (or nothing)</code><br><small>✓ called in the game (returned nothing in that state)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetPhaseName/">yes ↗</a></td>
+<td><code>0x69b3a0</code></td>
+<td><code>0x69b970</code></td>
+</tr>
+<tr>
+<td><a id="getphasesound"></a>GetPhaseSound</td>
+<td><code>Game.GetPhaseSound() → string (or nothing)</code><br><small>✓ called in the game (returned nothing in that state)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetPhaseSound/">yes ↗</a></td>
+<td><code>0x69b3f0</code></td>
+<td><code>0x69b9c0</code></td>
+</tr>
+<tr>
+<td><a id="getplayers"></a>GetPlayers</td>
+<td><code>Game.GetPlayers() → table</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetPlayers/">yes ↗</a></td>
+<td><code>0x69b440</code></td>
+<td><code>0x69ba10</code></td>
+</tr>
+<tr>
+<td><a id="getproperties"></a>GetProperties</td>
+<td><code>Game.GetProperties() → 1 values ⚠</code><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetProperties/">yes ↗</a></td>
+<td><code>0x69ba40</code></td>
+<td><code>0x69c010</code></td>
+</tr>
+<tr>
+<td><a id="getproperty"></a>GetProperty</td>
+<td><em>UI state:</em> <code>Game.GetProperty() → 1 values (or nothing) ⚠</code><br><em>gameplay state:</em> <code>Game.GetProperty() (or nothing)</code><br><small>✓ called in the game: 0 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetProperty/">yes ↗</a></td>
+<td><code>0x69ba80</code></td>
+<td><code>0x69c050</code></td>
+</tr>
+<tr>
+<td><a id="getquestsmanager"></a>GetQuestsManager</td>
+<td><code>Game.GetQuestsManager() → QuestsManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetQuestsManager/">yes ↗</a></td>
+<td><code>0x69bb60</code></td>
+<td><code>0x69c130</code></td>
+</tr>
+<tr>
+<td><a id="getrandnum"></a>GetRandNum</td>
+<td><code>Game.GetRandNum(arg1?: number, pszLog?: string[const char]) → number (IntRange)</code><br><small>args: <code>arg1</code> — A number.; <code>pszLog</code> — A string.</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetRandNum/">yes ↗</a></td>
+<td><code>0x6d7070</code></td>
+<td><code>0x6d7710</code></td>
+</tr>
+<tr>
+<td><a id="getrandomseed"></a>GetRandomSeed</td>
+<td><code>Game.GetRandomSeed() → number</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetRandomSeed/">yes ↗</a></td>
+<td><code>0x6d7150</code></td>
+<td><code>0x6d77f0</code></td>
+</tr>
+<tr>
+<td><a id="getreligion"></a>GetReligion</td>
+<td><code>Game.GetReligion() → GameReligion (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetReligion/">yes ↗</a></td>
+<td><code>0x69bba0</code></td>
+<td><code>0x69c170</code></td>
+</tr>
+<tr>
+<td><a id="gettechs"></a>GetTechs</td>
+<td><code>Game.GetTechs() → GameTechs (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetTechs/">yes ↗</a></td>
+<td><code>0x69bbe0</code></td>
+<td><code>0x69c1b0</code></td>
+</tr>
+<tr>
+<td><a id="gettrademanager"></a>GetTradeManager</td>
+<td><code>Game.GetTradeManager() → TradeManager (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetTradeManager/">yes ↗</a></td>
+<td><code>0x69bc20</code></td>
+<td><code>0x69c1f0</code></td>
+</tr>
+<tr>
+<td><a id="getunitnameprefix"></a>GetUnitNamePrefix ★</td>
+<td><code>Game:GetUnitNamePrefix() → number</code><br><small>⚠ test call in the game raised: Not a valid instance. Either the instance is NULL or you used '.' instead of ':'</small><br><small>returns: The scripts pass the result to <code>Game.GenerateUnitName</code> (parameter <code>uiUnitNameSuffix</code>). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetUnitNamePrefix/">yes ↗</a></td>
+<td><code>0x69bc60</code></td>
+<td><code>0x69c230</code></td>
+</tr>
+<tr>
+<td><a id="getunitnamesuffix"></a>GetUnitNameSuffix ★</td>
+<td><code>Game:GetUnitNameSuffix() → number</code><br><small>⚠ test call in the game raised: Not a valid instance. Either the instance is NULL or you used '.' instead of ':'</small><br><small>returns: The scripts pass the result to <code>Game.GenerateUnitName</code>. (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetUnitNameSuffix/">yes ↗</a></td>
+<td><code>0x69bd20</code></td>
+<td><code>0x69c2f0</code></td>
+</tr>
+<tr>
+<td><a id="getunits"></a>GetUnits</td>
+<td><code>Game.GetUnits() → number[][]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetUnits/">yes ↗</a></td>
+<td><code>0x69bde0</code></td>
+<td><code>0x69c3b0</code></td>
+</tr>
+<tr>
+<td><a id="getvictoryprogressforteam"></a>GetVictoryProgressForTeam</td>
+<td><code>Game.GetVictoryProgressForTeam(arg1?: number, eTeam: integer[TeamTypes]) → number (or nothing)</code><br><small>args: <code>eTeam</code> — Id of a team.</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetVictoryProgressForTeam/">yes ↗</a></td>
+<td><code>0x69c330</code></td>
+<td><code>0x69c900</code></td>
+</tr>
+<tr>
+<td><a id="getvictoryrequirements"></a>GetVictoryRequirements</td>
+<td><code>Game.GetVictoryRequirements(arg1: integer) → number</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: The scripts pass the result to <code>GameEffects.GetRequirementSetInnerRequirements</code>. (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetVictoryRequirements/">yes ↗</a></td>
+<td><code>0x69c480</code></td>
+<td><code>0x69ca50</code></td>
+</tr>
+<tr>
+<td><a id="getwinningteam"></a>GetWinningTeam ★</td>
+<td><code>Game.GetWinningTeam() → number, number (or nothing)</code><br><small>✓ called in the game (returned nothing in that state)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetWinningTeam/">yes ↗</a></td>
+<td><code>0x69c5d0</code></td>
+<td><code>0x69cba0</code></td>
+</tr>
+<tr>
+<td><a id="getworldcongress"></a>GetWorldCongress</td>
+<td><code>Game.GetWorldCongress() → WorldCongress (or nothing)</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetWorldCongress/">yes ↗</a></td>
+<td><code>0x740440</code></td>
+<td><code>0x740d80</code></td>
+</tr>
+<tr>
+<td><a id="isallowstrategiccommands"></a>IsAllowStrategicCommands</td>
+<td><em>UI state:</em> <code>Game.IsAllowStrategicCommands(ePlayer: integer[PlayerTypes]) → boolean</code><br><em>gameplay state:</em> <code>Game.IsAllowStrategicCommands(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.IsAllowStrategicCommands/">yes ↗</a></td>
+<td><code>0x69c690</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="isallowtacticalcommands"></a>IsAllowTacticalCommands</td>
+<td><em>UI state:</em> <code>Game.IsAllowTacticalCommands(ePlayer: integer[PlayerTypes]) → boolean</code><br><em>gameplay state:</em> <code>Game.IsAllowTacticalCommands(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.IsAllowTacticalCommands/">yes ↗</a></td>
+<td><code>0x69c6f0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="isdefeatenabled"></a>IsDefeatEnabled ★</td>
+<td><code>Game.IsDefeatEnabled() → boolean</code><br><small>⚠ test call in the game raised: Invalid argument type. Expected number or string. stack traceback: [C]: in funct</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.IsDefeatEnabled/">yes ↗</a></td>
+<td><code>0x69c750</code></td>
+<td><code>0x69cd20</code></td>
+</tr>
+<tr>
+<td><a id="isvictoryenabled"></a>IsVictoryEnabled ★</td>
+<td><code>Game.IsVictoryEnabled() → boolean</code><br><small>⚠ test call in the game raised: Invalid argument type. Expected number or string. stack traceback: [C]: in funct</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.IsVictoryEnabled/">yes ↗</a></td>
+<td><code>0x69c810</code></td>
+<td><code>0x69cde0</code></td>
+</tr>
+<tr>
+<td><a id="observercanseeplayer"></a>ObserverCanSeePlayer</td>
+<td><code>Game.ObserverCanSeePlayer(ePlayer: integer[PlayerTypes]) → boolean</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.ObserverCanSeePlayer/">yes ↗</a></td>
+<td><code>0x69c8d0</code></td>
+<td><code>0x69cea0</code></td>
+</tr>
+<tr>
+<td><a id="retireplayer"></a>RetirePlayer</td>
+<td><code>Game.RetirePlayer(player?: number) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.RetirePlayer/">yes ↗</a></td>
+<td><code>0x6d7830</code></td>
+<td><code>0x6d7ed0</code></td>
+</tr>
+<tr>
+<td><a id="setcurrentgameturn"></a>SetCurrentGameTurn</td>
+<td><code>Game.SetCurrentGameTurn(iTurn: integer) (or nothing)</code><br><small>args: <code>iTurn</code> — A number. (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.SetCurrentGameTurn/">yes ↗</a></td>
+<td><code>0x6d7880</code></td>
+<td><code>0x6d7f20</code></td>
+</tr>
+<tr>
+<td><a id="setproperty"></a>SetProperty</td>
+<td><code>Game.SetProperty() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.SetProperty/">yes ↗</a></td>
+<td><code>0x6d78b0</code></td>
+<td><code>0x6d7f50</code></td>
+</tr>
+<tr>
+<td><a id="setrandomseed"></a>SetRandomSeed</td>
+<td><code>Game.SetRandomSeed(newSeed: integer[SeedType]) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.SetRandomSeed/">yes ↗</a></td>
+<td><code>0x6d7920</code></td>
+<td><code>0x6d7fc0</code></td>
+</tr>
+<tr>
+<td><a id="setwinningteam"></a>SetWinningTeam</td>
+<td><code>Game.SetWinningTeam(team?: number, victoryType?: number) (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.SetWinningTeam/">yes ↗</a></td>
+<td><code>0x6d7950</code></td>
+<td><code>0x6d7ff0</code></td>
+</tr>
+<tr>
+<td><a id="unlockachievement"></a>UnlockAchievement</td>
+<td><code>Game.UnlockAchievement(ePlayer: integer[PlayerTypes], szAchievement: string[const char]) (or nothing)</code><br><small>args: <code>ePlayer</code> — Id of a player (as in Players[id]).; <code>szAchievement</code> — A string.</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.UnlockAchievement/">yes ↗</a></td>
+<td><code>0x6d7a00</code></td>
+<td><code>0x6d80a0</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>GetGreatWorkDataFromIndex</h3>
+<p>Returns the data record for a great work list index.</p>
+<ul>
+<li>Not bounds-checked. Calling it with an index past the end of the great work list reads beyond the list and crashed the game.
+  <em>[verified; evidence: runtime — crash reproduced while opening a screen that scanned past the list end]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="Game.html#getgreatworkplayer">Game.GetGreatWorkPlayer</a></p>
+<h3>GetGreatWorkPlayer</h3>
+<p>Returns the player recorded on a great work record, or -1 for an index outside the list.</p>
+<ul>
+<li>Bounds-checked: an index past the end of the great work list returns -1.
+  <em>[verified; evidence: runtime — observed in game while testing the archive]</em></li>
+<li>The recorded player is written only on creation paths (great person, relic, artifact, hero), never when a work is traded, so it is the creator, not the current holder. The holder is whichever city's Buildings contains the work.
+  <em>[inferred; evidence: static-analysis — SetGreatWorkPlayer is not called from Deal GreatWork Enact or City Transfer]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="Game.html#getgreatworkdatafromindex">Game.GetGreatWorkDataFromIndex</a>, <a href="../operations/player-operation/CHOOSE_ARTIFACT_PLAYER.html">player-operation.CHOOSE_ARTIFACT_PLAYER</a></p>
+<h3>GetUnitNamePrefix</h3>
+<p>Not callable with no arguments; the recovered signature (no parameters) is incomplete.</p>
+<ul>
+<li>Called as Game.GetUnitNamePrefix() it raises "Not a valid instance. Either the instance is NULL or you used '.' instead of ':'": it needs an instance or an argument.
+  <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
+</ul>
+<h3>GetUnitNameSuffix</h3>
+<p>Not callable with no arguments; the recovered signature (no parameters) is incomplete.</p>
+<ul>
+<li>Called as Game.GetUnitNameSuffix() it raises "Not a valid instance. Either the instance is NULL or you used '.' instead of ':'": it needs an instance or an argument.
+  <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
+</ul>
+<h3>GetWinningTeam</h3>
+<p>Returns nothing (not two numbers) while no team has won.</p>
+<ul>
+<li>In a running game with no winner the call returns no values at all, although two numbers are documented; scripts must handle the empty result.
+  <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
+</ul>
+<h3>IsDefeatEnabled</h3>
+<p>Takes an argument although the recovered signature shows none.</p>
+<ul>
+<li>Called with no arguments the wrapper raises "Invalid argument type. Expected number or string": it needs an argument (a number or a string).
+  <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
+<li>The argument is probably a defeat type (index or name); not tested with a value.
+  <em>[inferred; evidence: static-analysis — inferred from the error message and the name]</em></li>
+</ul>
+<h3>IsVictoryEnabled</h3>
+<p>Takes an argument although the recovered signature shows none.</p>
+<ul>
+<li>Called with no arguments the wrapper raises "Invalid argument type. Expected number or string": it needs an argument (a number or a string).
+  <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
+<li>The argument is probably a victory type (index or name); not tested with a value.
+  <em>[inferred; evidence: static-analysis — inferred from the error message and the name]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

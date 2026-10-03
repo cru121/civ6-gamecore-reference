@@ -1,0 +1,1406 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game::Signals</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../../index.html">Home</a><a href="../../conventions.html">How to read</a><a href="../../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../../lua/index.html">Lua API</a><a href="../../operations/index.html">Operations</a><a href="../../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../../ce/index.html">CE Lua API</a><a href="../../layouts/index.html">Class layouts</a><a href="../../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../../native/index.html">Native functions</a><a href="../../native/all.html">All functions (search)</a></nav><main><p><a href="../../index.html">Home</a> › <a href="../index.html">Class layouts</a> › <a href="../Game.html">Game</a> › Game::Signals</p>
+<div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).</div>
+
+<h1>Game::Signals</h1>
+<p><code>GameCore::Game::Signals</code> — class, size 6624 bytes (0x19e0).</p>
+<table>
+<thead>
+<tr>
+<th>Linux offset</th>
+<th>Member</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x0</code></td>
+<td>OnAnarchyBegins</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, GameCore::GovernmentTypes, GameCore::GovernmentTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x18</code></td>
+<td>OnArtifactExtracted</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::Map::Plot::Instance *, GameCore::GreatWorkTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x30</code></td>
+<td>OnBarbarianTribeCreated</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x48</code></td>
+<td>OnBarbarianTribeDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x60</code></td>
+<td>OnBarbarianSpottedCity</td>
+<td><code>Message::Signal&lt;void (GameCore::BarbarianNameTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x78</code></td>
+<td>OnBarbarianRaidStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::BarbarianNameTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x90</code></td>
+<td>OnBarbarianInvasionStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::BarbarianNameTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa8</code></td>
+<td>OnBarbarianAttackAtCity</td>
+<td><code>Message::Signal&lt;void (GameCore::BarbarianNameTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc0</code></td>
+<td>OnUnitEnterBarbarianCamp</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd8</code></td>
+<td>OnBarbarianTribeConversionPointsChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf0</code></td>
+<td>OnBarbarianTribeConvertedToCiv</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x108</code></td>
+<td>OnBarbarianTribeClaimedUniqueUnit</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::UnitTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x120</code></td>
+<td>OnBarbarianTribeStoleTech</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::TechTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x138</code></td>
+<td>OnBarbarianTribeRaided</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x150</code></td>
+<td>OnBarbarianTribeHired</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::PlayerTypes, GameCore::UnitTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x168</code></td>
+<td>OnBarbarianTribeBribed</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x180</code></td>
+<td>OnBarbarianTribeBribeExpired</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x198</code></td>
+<td>OnBarbarianTribeUnitRansomed</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::Unit::Instance *, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1b0</code></td>
+<td>OnBarbarianTribeIncited</td>
+<td><code>Message::Signal&lt;void (GameCore::Barbarian::Instance *, GameCore::PlayerTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1c8</code></td>
+<td>OnBeliefAddedToReligion</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ReligionTypes, GameCore::BeliefTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1e0</code></td>
+<td>OnBeliefAddedToPantheon</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ReligionTypes, GameCore::BeliefTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1f8</code></td>
+<td>OnBuildingConstructed</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::BuildingTypes, int, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x210</code></td>
+<td>OnBuildingDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::BuildingTypes, int, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x228</code></td>
+<td>OnBuildingPillageChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *, GameCore::BuildingTypes, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x240</code></td>
+<td>OnBuildingThemed</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::BuildingTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x258</code></td>
+<td>OnCapturedUnitCoastalRaid</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x270</code></td>
+<td>OnCityBesieged</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x288</code></td>
+<td>OnCityBuilt</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2a0</code></td>
+<td>OnCityFoundedNewContinent</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::ContinentTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2b8</code></td>
+<td>OnPreCityConquered</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *, const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2d0</code></td>
+<td>OnCityConquered</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x2e8</code></td>
+<td>OnCityDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x300</code></td>
+<td>OnCityLiberated</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x318</code></td>
+<td>OnCityLoyaltyChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x330</code></td>
+<td>OnCityLoyaltyChangedPreTransfer</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x348</code></td>
+<td>OnCityLoyaltyScoreChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x360</code></td>
+<td>OnCityOccupied</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x378</code></td>
+<td>OnLastCityOccupied</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x390</code></td>
+<td>OnCityPopulationChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x3a8</code></td>
+<td>OnCityRazed</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x3c0</code></td>
+<td>OnCityTransferred</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *, GameCore::PlayerTypes, GameCore::CityTransferTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x3d8</code></td>
+<td>OnCityCeded</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x3f0</code></td>
+<td>OnCityReturned</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x408</code></td>
+<td>OnCapitalCityChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x420</code></td>
+<td>OnCityChangesPantheon</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::BeliefTypes, GameCore::BeliefTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x438</code></td>
+<td>OnCityChangesReligion</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::ReligionTypes, GameCore::ReligionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x450</code></td>
+<td>OnCityPowerChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x468</code></td>
+<td>OnCityPowerGeneratedFromResource</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *, GameCore::ResourceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x480</code></td>
+<td>OnCityLostToDarkAge</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x498</code></td>
+<td>OnCivicCulturevated</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::CivicTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x4b0</code></td>
+<td>OnCivicBoostTriggered</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::CivicTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x4c8</code></td>
+<td>OnCombatOccurred</td>
+<td><code>Message::Signal&lt;void (const GameCore::Combat::Results &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x4e0</code></td>
+<td>OnContaminationCleared</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::Map::Plot::Instance *, GameCore::Player::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x4f8</code></td>
+<td>OnDiplomaticVPChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, int, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x510</code></td>
+<td>OnDisloyalCityKept</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x528</code></td>
+<td>OnDistrictConstructed</td>
+<td><code>Message::Signal&lt;void (GameCore::District::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x540</code></td>
+<td>OnDistrictPillaged</td>
+<td><code>Message::Signal&lt;void (GameCore::District::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x558</code></td>
+<td>OnDistrictRepaired</td>
+<td><code>Message::Signal&lt;void (GameCore::District::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x570</code></td>
+<td>OnDistrictDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::District::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x588</code></td>
+<td>OnDealOffered</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *, GameCore::Diplomacy::Deal::ProposalAction, const GameCore::Diplomacy::Deal::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x5a0</code></td>
+<td>OnDealEnacted</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::PlayerTypes, const GameCore::Diplomacy::Deal::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x5b8</code></td>
+<td>OnDealItemExpired</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::PlayerTypes, const GameCore::Diplomacy::Deal::Item::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x5d0</code></td>
+<td>OnDealItemReneged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::PlayerTypes, const GameCore::Diplomacy::Deal::Item::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x5e8</code></td>
+<td>OnEncounterUnit</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::UnitTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x600</code></td>
+<td>OnFaithEarned</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, FixedPointT&lt;8&gt;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x618</code></td>
+<td>OnCheckNewFaithPurchases</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, FixedPointT&lt;8&gt;, FixedPointT&lt;8&gt;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x630</code></td>
+<td>OnFeaturePlaced</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Plot::Instance *, GameCore::FeatureTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x648</code></td>
+<td>OnFeatureRemoved</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Plot::Instance *, GameCore::FeatureTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x660</code></td>
+<td>OnFindNewContinent</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ContinentTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x678</code></td>
+<td>OnFindWonder</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::FeatureTypes, GameCore::PlotCoord), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x690</code></td>
+<td>OnUnitFindNewContinent</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, GameCore::ContinentTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x6a8</code></td>
+<td>OnUnitFindWonder</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, GameCore::FeatureTypes, GameCore::PlotCoord), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x6c0</code></td>
+<td>OnGameEraChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::EraTypes, GameCore::EraTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x6d8</code></td>
+<td>OnGameResumed</td>
+<td><code>Message::Signal&lt;void (), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x6f0</code></td>
+<td>OnGameStarted</td>
+<td><code>Message::Signal&lt;void (), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x708</code></td>
+<td>OnGameTurnStarted</td>
+<td><code>Message::Signal&lt;void (unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x720</code></td>
+<td>OnTurnPhaseStarted</td>
+<td><code>Message::Signal&lt;void (unsigned int, unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x738</code></td>
+<td>OnTurnPhaseEnded</td>
+<td><code>Message::Signal&lt;void (unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x750</code></td>
+<td>OnGameTurnEnded</td>
+<td><code>Message::Signal&lt;void (unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x768</code></td>
+<td>OnGovernmentEnacted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::GovernmentTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x780</code></td>
+<td>OnGovernmentRetracted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::GovernmentTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x798</code></td>
+<td>OnGreatPersonPointsChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::GreatPersonClassTypes, FixedPointT&lt;8&gt;, FixedPointT&lt;8&gt;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x7b0</code></td>
+<td>OnGreatPersonCreated</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::GreatPersonIndividualTypes, GameCore::YieldTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x7c8</code></td>
+<td>OnGreatPersonActivated</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::GreatPersonIndividualTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x7e0</code></td>
+<td>OnImportResource</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance &amp;, GameCore::ResourceTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x7f8</code></td>
+<td>OnImprovementConstructed</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Plot::Instance *, const GameCore::ImprovementInitializationParameters &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x810</code></td>
+<td>OnImprovementPillaged</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Plot::Instance *, GameCore::ImprovementTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x828</code></td>
+<td>OnImprovementRepaired</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Plot::Instance *, GameCore::ImprovementTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x840</code></td>
+<td>OnImprovementDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Plot::Instance *, GameCore::PlayerTypes, GameCore::ImprovementTypes, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x858</code></td>
+<td>OnImprovementDestroyedByUnit</td>
+<td><code>Message::Signal&lt;void (GameCore::ImprovementTypes, const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x870</code></td>
+<td>OnInquisitionLaunched</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ReligionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x888</code></td>
+<td>OnNationalParkConstructed</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::PlotCoord), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x8a0</code></td>
+<td>OnNationalParkDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::PlotCoord), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x8b8</code></td>
+<td>OnNewMajorityReligion</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ReligionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x8d0</code></td>
+<td>OnPillage</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, GameCore::ImprovementTypes, GameCore::BuildingTypes, GameCore::DistrictTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x8e8</code></td>
+<td>OnPlayerInitialized</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x900</code></td>
+<td>OnPlayerDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x918</code></td>
+<td>OnPlayerRevived</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x930</code></td>
+<td>OnPlayerIntroduced</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, GameCore::PlayerIntroductionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x948</code></td>
+<td>OnPlayerAgendaAdded</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::AgendaTypes, GameCore::DiplomaticVisibilityTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x960</code></td>
+<td>OnPlayerPropertyChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, unsigned int, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x978</code></td>
+<td>OnPlayerChangeEra</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::EraTypes, GameCore::EraTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x990</code></td>
+<td>OnPlayerTurnStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x9a8</code></td>
+<td>OnPlayerTurnEnded</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x9c0</code></td>
+<td>OnPlayerNewTurnPhaseStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x9d8</code></td>
+<td>OnPlayerTurnInitializationComplete</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x9f0</code></td>
+<td>OnPlayerTreasuryChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa08</code></td>
+<td>OnPlayerDarkAgeChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa20</code></td>
+<td>OnPlayerGoldenAgeChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa38</code></td>
+<td>OnCommemorationBegun</td>
+<td><code>Message::Signal&lt;void (GameCore::CommemorationTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa50</code></td>
+<td>OnCommemorationEnded</td>
+<td><code>Message::Signal&lt;void (GameCore::CommemorationTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa68</code></td>
+<td>OnPrideMomentComplimented</td>
+<td><code>Message::Signal&lt;void (int, GameCore::MomentTypes, GameCore::PlayerTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa80</code></td>
+<td>OnMomentRecorded</td>
+<td><code>Message::Signal&lt;void (int, GameCore::MomentTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xa98</code></td>
+<td>OnEmergencyAvailable</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::EmergencyTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xab0</code></td>
+<td>OnEmergencyStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::EmergencyTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xac8</code></td>
+<td>OnEmergencyEnded</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::EmergencyTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xae0</code></td>
+<td>OnEmergencyRejected</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::EmergencyTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xaf8</code></td>
+<td>OnEmergencyMemberKilled</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::EmergencyTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xb10</code></td>
+<td>OnWorldCongressNormalStageThisPhase</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xb28</code></td>
+<td>OnWorldCongressSpecialStageThisPhase</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xb40</code></td>
+<td>OnWorldCongressReadyForStage1</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xb58</code></td>
+<td>OnWorldCongressReadyForStage2</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xb70</code></td>
+<td>OnWorldCongressReadyForStage3</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xb88</code></td>
+<td>OnWorldCongressResolutionBidSuccessful</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;, const GameCore::Congress::Resolution &amp;, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xba0</code></td>
+<td>OnWorldCongressResolutionVoteSuccessful</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;, const GameCore::Congress::Resolution &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xbb8</code></td>
+<td>OnWorldCongressResolutionApply</td>
+<td><code>Message::Signal&lt;void (GameCore::Congress::Manager &amp;, const GameCore::Congress::Resolution &amp;, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xbd0</code></td>
+<td>OnRiverFloodMitigated</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::NamedRiverTypes, GameCore::RandomEventTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xbe8</code></td>
+<td>OnCoastalFloodMitigated</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::CityID, GameCore::CoastalLowlandTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc00</code></td>
+<td>TeamVictorious</td>
+<td><code>Message::Signal&lt;void (GameCore::TeamTypes, GameCore::VictoryTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc18</code></td>
+<td>PlayerDefeated</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::DefeatTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc30</code></td>
+<td>OnRandomEventDamage</td>
+<td><code>Message::Signal&lt;void (GameCore::RandomEventTypes, const GameCore::Game::PlayerRandomDamageArray &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc48</code></td>
+<td>OnPlayerHitByRandomEvent</td>
+<td><code>Message::Signal&lt;void (GameCore::RandomEventTypes, GameCore::PlayerTypes, unsigned int, unsigned int, unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc60</code></td>
+<td>OnRandomEventSeaLevel</td>
+<td><code>Message::Signal&lt;void (GameCore::RandomEventTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc78</code></td>
+<td>OnPlayersMet</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xc90</code></td>
+<td>OnPlayerGaveInfluenceToken</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *, int, GameCore::PlayerTypes, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xca8</code></td>
+<td>OnPlayerSuzerainUniqueBonusDisableChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xcc0</code></td>
+<td>OnWarDeclared</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *, GameCore::WarTypes, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xcd8</code></td>
+<td>OnPeaceDeclared</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xcf0</code></td>
+<td>OnPlayerDenounced</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd08</code></td>
+<td>OnDenounceEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd20</code></td>
+<td>OnFriendshipDeclared</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd38</code></td>
+<td>OnFriendshipEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd50</code></td>
+<td>OnAllianceDeclared</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *, GameCore::AllianceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd68</code></td>
+<td>OnAllianceEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *, GameCore::AllianceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd80</code></td>
+<td>OnAllianceLeveled</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance &amp;, GameCore::Player::Instance &amp;, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xd98</code></td>
+<td>OnDefensivePactDeclared</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xdb0</code></td>
+<td>OnDefensivePactEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xdc8</code></td>
+<td>OnOpenBordersDeclared</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xde0</code></td>
+<td>OnOpenBordersEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xdf8</code></td>
+<td>OnResearchAgreementDeclared</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xe10</code></td>
+<td>OnResearchAgreementEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xe28</code></td>
+<td>OnDemandReceived</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xe40</code></td>
+<td>OnDelegationEstablished</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xe58</code></td>
+<td>OnDelegationEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xe70</code></td>
+<td>OnEmbassyEstablished</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xe88</code></td>
+<td>OnEmbassyEnded</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xea0</code></td>
+<td>OnDiplomaticVisibilityChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xeb8</code></td>
+<td>OnKudoSent</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *, unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xed0</code></td>
+<td>OnWarningSent</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *, unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xee8</code></td>
+<td>OnSpyCaptured</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf00</code></td>
+<td>OnSpyDetected</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf18</code></td>
+<td>OnNuclearWeaponDetonated</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::PlotCoord &amp;, GameCore::WMDTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf30</code></td>
+<td>OnWMDCountChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, int, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf48</code></td>
+<td>OnSpyDisruptRocketry</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf60</code></td>
+<td>OnSpyGreatWorkHeist</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf78</code></td>
+<td>OnSpyRecruitPartisans</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xf90</code></td>
+<td>OnSpySabotageProduction</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xfa8</code></td>
+<td>OnSpySiphonFunds</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xfc0</code></td>
+<td>OnSpyStealTechBoost</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xfd8</code></td>
+<td>OnSpyFabricateScandal</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0xff0</code></td>
+<td>OnSpyFomentUnrest</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1008</code></td>
+<td>OnSpyNeutralizeGovernor</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1020</code></td>
+<td>OnSpyBreachDam</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1038</code></td>
+<td>OnPromiseBroken</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *, GameCore::PromiseTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1050</code></td>
+<td>OnPromiseKept</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, const GameCore::Player::Instance *, GameCore::PromiseTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1068</code></td>
+<td>OnAiBeginWarPreparation</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance &amp;, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1080</code></td>
+<td>OnAiBeginMilitaryOperation</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance &amp;, GameCore::PlayerTypes, const char *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1098</code></td>
+<td>OnAiStrategyChange</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance &amp;, int, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x10b0</code></td>
+<td>OnPlotAppealChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::Map::Plot::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x10c8</code></td>
+<td>OnPlotRevealed</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, const GameCore::Map::Plot::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x10e0</code></td>
+<td>OnPlotPurchased</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance &amp;, GameCore::City::Instance *, GameCore::Map::Plot::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x10f8</code></td>
+<td>OnPlotAnnexed</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::City::Instance *, GameCore::Map::Plot::Instance *, GameCore::Player::CityID), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1110</code></td>
+<td>OnPlotAcquiredFromCultureBomb</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::PlotCoord &amp;, const GameCore::PlotCoord &amp;, GameCore::BuildingTypes, GameCore::ImprovementTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1128</code></td>
+<td>OnPlotCityOwnershipChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlotCoord, GameCore::Player::CityID, GameCore::Player::CityID), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1140</code></td>
+<td>OnPlotPropertyChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlotCoord, unsigned int, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1158</code></td>
+<td>FalloutChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlotCoord, int, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1170</code></td>
+<td>OnPlotPreSubmergedStateChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlotCoord, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1188</code></td>
+<td>OnPlotSubmergedStateChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlotCoord, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x11a0</code></td>
+<td>OnPolicyEnacted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::PolicyTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x11b8</code></td>
+<td>OnPolicyRetracted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::PolicyTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x11d0</code></td>
+<td>OnPolicyObsoleted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::PolicyTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x11e8</code></td>
+<td>OnProjectStartedInCity</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *, GameCore::ProjectTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1200</code></td>
+<td>OnProjectAdvancedInCity</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::ProjectTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1218</code></td>
+<td>OnPlayerLevyMilitary</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1230</code></td>
+<td>OnPlayerResourcesChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::ResourceTypes, GameCore::ResourceOwnershipTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1248</code></td>
+<td>OnResourceHarvested</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Plot::Instance *, GameCore::ResourceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1260</code></td>
+<td>OnRelicReceived</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::GreatWorkTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1278</code></td>
+<td>OnRouteChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::PlotCoord &amp;, GameCore::RouteTypes, GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1290</code></td>
+<td>OnPlayerResourceVisibilityChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::ResourceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x12a8</code></td>
+<td>OnPlayerResourcesPlotVisibilityChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::ResourceTypes, const GameCore::Map::Plot::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x12c0</code></td>
+<td>OnTileResourceVisibilityChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::ResourceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x12d8</code></td>
+<td>OnScienceVPChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x12f0</code></td>
+<td>OnTechnologyResearched</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::TechTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1308</code></td>
+<td>OnTechnologyBoostTriggered</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::TechTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1320</code></td>
+<td>OnResourceTraded</td>
+<td><code>Message::Signal&lt;void (GameCore::ResourceTypes, GameCore::Player::CityID, GameCore::Player::CityID), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1338</code></td>
+<td>OnTradeRouteStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::CityID, GameCore::Player::CityID), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1350</code></td>
+<td>OnTradeRouteEnded</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *, GameCore::Player::CityID, GameCore::Player::CityID, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1368</code></td>
+<td>TradeRoutePlundered</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, const GameCore::Unit::Instance *, GameCore::PlotCoord), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1380</code></td>
+<td>OnPotentialTradeRouteStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::CityID, GameCore::Player::CityID), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1398</code></td>
+<td>OnPotentialTradeRouteEnded</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *, GameCore::Player::CityID, GameCore::Player::CityID), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x13b0</code></td>
+<td>OnPotentialTradeRoutesCleared</td>
+<td><code>Message::Signal&lt;void (), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x13c8</code></td>
+<td>TradePostToBeCreated</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::Player::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x13e0</code></td>
+<td>OnTradingPostChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance &amp;, GameCore::PlayerTypes, bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x13f8</code></td>
+<td>OnUnitAirLifted</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::PlotCoord &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1410</code></td>
+<td>OnUnitParadropped</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::PlotCoord &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1428</code></td>
+<td>OnUnitCreated</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1440</code></td>
+<td>OnUnitInitialized</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1458</code></td>
+<td>OnUnitCreatedInCity</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1470</code></td>
+<td>OnUnitDestroyed</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1488</code></td>
+<td>OnUnitDiscoveredVolcano</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x14a0</code></td>
+<td>OnUnitKilledInCombat</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x14b8</code></td>
+<td>OnUnitRetreated</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x14d0</code></td>
+<td>OnUnitReligiousHeal</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x14e8</code></td>
+<td>OnUnitTriggerGoodyHut</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::GoodyHutTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1500</code></td>
+<td>OnPlotTriggerGoodyHut</td>
+<td><code>Message::Signal&lt;void (const GameCore::Map::Plot::Instance *, GameCore::GoodyHutTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1518</code></td>
+<td>UnitHealed</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, int, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1530</code></td>
+<td>OnUnitSacrificed</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1548</code></td>
+<td>OnUnitTakeDefenseDamage</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, GameCore::PlayerTypes, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1560</code></td>
+<td>OnUnitAbilityEarned</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::UnitAbilityTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1578</code></td>
+<td>OnUnitAbilityRevoked</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::UnitAbilityTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1590</code></td>
+<td>OnUnitPromoted</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x15a8</code></td>
+<td>OnCityWMDStrike</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, const GameCore::Map::Plot::Instance *, GameCore::WMDTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x15c0</code></td>
+<td>OnUnitWMDStrike</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::Map::Plot::Instance *, GameCore::WMDTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x15d8</code></td>
+<td>OnWMDCityHitsChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x15f0</code></td>
+<td>OnWMDBuilt</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1608</code></td>
+<td>OnUnitNamed</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1620</code></td>
+<td>OnUnitPropertyChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, unsigned int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1638</code></td>
+<td>OnUnitPromotionEarned</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::UnitPromotionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1650</code></td>
+<td>PostUnitPromotionEarned</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::UnitPromotionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1668</code></td>
+<td>OnUnitPromotionRevoked</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::UnitPromotionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1680</code></td>
+<td>OnUnitFormationChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1698</code></td>
+<td>OnUnitArmyFormed</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x16b0</code></td>
+<td>OnUnitCorpsFormed</td>
+<td><code>Message::Signal&lt;void (const GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x16c8</code></td>
+<td>OnUnitLevied</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x16e0</code></td>
+<td>OnUnitMoved</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::PlotCoord &amp;, const GameCore::PlotCoord &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x16f8</code></td>
+<td>OnUnitTourismBomb</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, const GameCore::PlotCoord &amp;, int, GameCore::RockBandResultTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1710</code></td>
+<td>OnWonderStarted</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::BuildingTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1728</code></td>
+<td>OnWorldCircumnavigated</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, const GameCore::PlotCoord &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1740</code></td>
+<td>OnPantheonFounded</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::BeliefTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1758</code></td>
+<td>OnReligionFounded</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ReligionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1770</code></td>
+<td>OnCityConverted</td>
+<td><code>Message::Signal&lt;void (GameCore::Player::Instance *, GameCore::Player::Instance *, const GameCore::City::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1788</code></td>
+<td>OnCityReligionChanged</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::Player::Instance &amp;, GameCore::ReligionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x17a0</code></td>
+<td>OnGovernorEstablished</td>
+<td><code>Message::Signal&lt;void (const GameCore::Governor::Instance *, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x17b8</code></td>
+<td>OnGovernorAssignedToCity</td>
+<td><code>Message::Signal&lt;void (const GameCore::Governor::Instance *, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x17d0</code></td>
+<td>OnGovernorRemovedFromCity</td>
+<td><code>Message::Signal&lt;void (const GameCore::Governor::Instance *, const GameCore::City::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x17e8</code></td>
+<td>OnGovernorPromoted</td>
+<td><code>Message::Signal&lt;void (const GameCore::Governor::Instance *, GameCore::GovernorPromotionTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1800</code></td>
+<td>OnGovernorAppointed</td>
+<td><code>Message::Signal&lt;void (const GameCore::Governor::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1818</code></td>
+<td>OnPlayerDiscoveredSecretSociety</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::SecretSocietyTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1830</code></td>
+<td>OnPlayerJoinedSecretSociety</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::SecretSocietyTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1848</code></td>
+<td>OnPlayerLeftSecretSociety</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::SecretSocietyTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1860</code></td>
+<td>OnMapInitialized</td>
+<td><code>Message::Signal&lt;void (GameCore::Map::Instance *), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1878</code></td>
+<td>OnPlayerConnected</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1890</code></td>
+<td>OnPlayerDisconnected</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x18a8</code></td>
+<td>OnInitializeVisualState</td>
+<td><code>Message::Signal&lt;void (GameCore::Game::Component::VisualStateSequence, bool &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x18c0</code></td>
+<td>OnRestoreVisualState</td>
+<td><code>Message::Signal&lt;void (GameCore::Game::Component::VisualStateSequence, bool &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x18d8</code></td>
+<td>OnMapGenerationComplete</td>
+<td><code>Message::Signal&lt;void (GameCore::Configuration::MapSourceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x18f0</code></td>
+<td>OnGameStateLocked</td>
+<td><code>Message::Signal&lt;void (bool), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1908</code></td>
+<td>OnCityRenamed</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance &amp;), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1920</code></td>
+<td>OnCityPropertyChanged</td>
+<td><code>Message::Signal&lt;void (const GameCore::City::Instance *, unsigned int, int), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1938</code></td>
+<td>OnHeroCreated</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::HeroClassTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1950</code></td>
+<td>OnHeroExpired</td>
+<td><code>Message::Signal&lt;void (GameCore::Unit::Instance *, GameCore::HeroClassTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1968</code></td>
+<td>OnPlayerDiscoveredHero</td>
+<td><code>Message::Signal&lt;void (const GameCore::Player::Instance *, GameCore::HeroClassTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1980</code></td>
+<td>OnResourceMonopolyGained</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ResourceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x1998</code></td>
+<td>OnResourceMonopolyLost</td>
+<td><code>Message::Signal&lt;void (GameCore::PlayerTypes, GameCore::ResourceTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x19b0</code></td>
+<td>OnGreatWorkAdded</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::GreatWorkTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+<tr>
+<td><code>0x19c8</code></td>
+<td>OnGreatWorkRemoved</td>
+<td><code>Message::Signal&lt;void (GameCore::City::Instance *, GameCore::GreatWorkTypes), GameCore::Message::SignalBase::CollectorDefault&lt;void&gt; &gt;</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../../";</script><script src="../../search.js"></script>

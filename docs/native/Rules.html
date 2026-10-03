@@ -1,0 +1,113 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Rules</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › Rules</p>
+<div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
+
+<h1>Rules</h1>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Signature (Linux)</th>
+<th>Symbol</th>
+<th>Current</th>
+<th>From Lua</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="rules__appeal__instance__updateonly"></a>Appeal::Instance::UpdateOnly</td>
+<td><code>void Rules::Appeal::Instance::UpdateOnly(Rules::Appeal::Instance* this, Map::Plot::Instance* pkPlot)</code></td>
+<td><code>0x35ff20</code></td>
+<td><code>0x362420</code></td>
+<td>no</td>
+<td>signal, event, writes</td>
+</tr>
+<tr>
+<td><a id="rules__cities__shared__instance__relocatebuildinggreatworks"></a>Cities::Shared::Instance::RelocateBuildingGreatWorks ★</td>
+<td><code>void Rules::Cities::Shared::Instance::RelocateBuildingGreatWorks(const Rules::Cities::Shared::Instance* this, City::Instance&amp; kCity, const eastl::vector&lt;GreatWorkListIndex, eastl::allocator&gt;&amp; aGreatWorkIndices)</code></td>
+<td><code>0x64d150</code></td>
+<td><code>0x64d980</code></td>
+<td>no</td>
+<td>analysed</td>
+</tr>
+<tr>
+<td><a id="rules__economic__instance__doculturebombat"></a>Economic::Instance::DoCultureBombAt</td>
+<td><code>void Rules::Economic::Instance::DoCultureBombAt(Rules::Economic::Instance* this, PlotCoord kLocation, bool bCaptureOwnedTerritory)</code></td>
+<td><code>0x36e380</code></td>
+<td><code>0x370870</code></td>
+<td>no</td>
+<td>notification, writes</td>
+</tr>
+<tr>
+<td><a id="rules__espionage__instance__capturespy"></a>Espionage::Instance::CaptureSpy</td>
+<td><code>void Rules::Espionage::Instance::CaptureSpy(Rules::Espionage::Instance* this, UnitOperationTypes eOperation, Unit::Instance* pkSpy, Unit::Instance* pkCounterSpy)</code></td>
+<td><code>0x370200</code></td>
+<td><code>0x3726e0</code></td>
+<td>no</td>
+<td>signal, notification, event, writes</td>
+</tr>
+<tr>
+<td><a id="rules__espionage__instance__killspy"></a>Espionage::Instance::KillSpy</td>
+<td><code>void Rules::Espionage::Instance::KillSpy(Rules::Espionage::Instance* this, UnitOperationTypes eOperation, Unit::Instance* pkSpy, Unit::Instance* pkCounterSpy)</code></td>
+<td><code>0x372240</code></td>
+<td><code>0x374720</code></td>
+<td>no</td>
+<td>notification, event, writes</td>
+</tr>
+<tr>
+<td><a id="rules__espionage__instance__resetfailedspy"></a>Espionage::Instance::ResetFailedSpy</td>
+<td><code>void Rules::Espionage::Instance::ResetFailedSpy(Rules::Espionage::Instance* this, UnitOperationTypes eOperation, Unit::Instance* pkSpy)</code></td>
+<td><code>0x3728e0</code></td>
+<td><code>0x374dc0</code></td>
+<td>no</td>
+<td>notification, event, writes</td>
+</tr>
+<tr>
+<td><a id="rules__espionage__instance__resetspydata"></a>Espionage::Instance::ResetSpyData</td>
+<td><code>void Rules::Espionage::Instance::ResetSpyData(Rules::Espionage::Instance* this, Unit::Instance* pkSpy)</code></td>
+<td><code>0x372bb0</code></td>
+<td><code>0x375090</code></td>
+<td>no</td>
+<td>edit_call, writes</td>
+</tr>
+<tr>
+<td><a id="rules__espionage__shared__instance__awardcounteryield"></a>Espionage::Shared::Instance::AwardCounterYield</td>
+<td><code>void Rules::Espionage::Shared::Instance::AwardCounterYield(Rules::Espionage::Shared::Instance* this, Unit::Instance* pkUnit, PlayerTypes ePlayer)</code></td>
+<td><code>0x64e0c0</code></td>
+<td><code>0x64e8e0</code></td>
+<td>no</td>
+<td>event, writes</td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>Rules::Cities::Shared::Instance::RelocateBuildingGreatWorks</h3>
+<p>Re-homes a list of great works after a building replacement changes a city's slots.</p>
+<ul>
+<li>For each work in the list: if the city's own Buildings can take it (<code>CanAddGreatWork</code>), it adds it there via <code>edit()</code> + <code>AddGreatWork</code>.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Otherwise it walks the player's other cities and, for every other city where <code>CanAddGreatWork</code> is true, calls <code>AddGreatWork</code>.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>If no city can take it, nothing happens: no notification, no record, no fallback. The work simply ends up in no slot.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>The loop over other cities has no <code>break</code>/<code>return</code> after a successful add.
+  <em>[verified; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>A work that fits nowhere is silently dropped from all slots (it probably still exists in the game-wide great work list). (Medium.)
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Because the loop does not stop after the first successful add, the same work could be added to more than one other city if <code>CanAddGreatWork</code> only checks the target city and not other cities. <strong>Possible duplication bug. (Low: depends on what <code>CanAddGreatWork</code> checks, not yet read.)</strong>
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>One concrete way works "get lost": a building replacement with no spare slots elsewhere. The work is neither archived nor reported.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+<li>Relevant to any 'great works archive' idea: this is a point where a work could be saved instead of dropped.
+  <em>[inferred; evidence: static-analysis — decompilation read in Ghidra]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

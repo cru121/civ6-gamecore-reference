@@ -1,0 +1,155 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Coverage and confidence</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Coverage and confidence</p>
+<h1>Coverage and confidence</h1>
+<p>Generated from the data files at build time. "Verified" means seen directly in code, data, game scripts or at run time; "inferred" means deduced from verified facts. Counts are for the symbol build mapped to the current build.</p>
+<h2>Available out of the box</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Total</th>
+<th>How complete</th>
+<th>How sure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lua methods</td>
+<td>1920</td>
+<td>all registered methods; 1480 (77%) also appear in the community reference, 440 (23%) do not</td>
+<td>registration is read from the DLL tables (verified)</td>
+</tr>
+<tr>
+<td>Signatures</td>
+<td>1920</td>
+<td>988 (51%) have at least one parameter; 966 (57%) of 1709 parameters have a real name; 512 (30%) have a C++ type</td>
+<td>1773 (92%) high confidence, 147 (8%) partial (marked ⚠)</td>
+</tr>
+<tr>
+<td>Return values</td>
+<td>1527 return something</td>
+<td>1432 (94%) have a detailed description (tables, arrays, types); 141 (9%) have a stated meaning</td>
+<td>meanings: 66 verified, 75 inferred</td>
+</tr>
+<tr>
+<td>Argument meanings</td>
+<td>1709 parameters</td>
+<td>798 (47%) have a stated meaning</td>
+<td>603 verified, 195 inferred</td>
+</tr>
+<tr>
+<td>Operations and commands</td>
+<td>154</td>
+<td>all identified with hash, handler, addresses</td>
+<td>137 verified, 16 inferred (16 handlers matched by class name), 1 unknown</td>
+</tr>
+<tr>
+<td>Operation parameters</td>
+<td>76 slots, 167 parameter entities</td>
+<td>0 (0%) slots have an example from the game's scripts</td>
+<td>entities: 73 verified, 94 inferred</td>
+</tr>
+<tr>
+<td>Lua constant tables</td>
+<td>25 tables, 546 members</td>
+<td>the 6 operation and command tables are complete; 19 more tables are matched to engine enums through the Companion (only the members it lists are known to be exposed)</td>
+<td>operation tables verified from the debug info; the 19 others inferred</td>
+</tr>
+</tbody>
+</table>
+<h2>Needs the Community Extension</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Total</th>
+<th>How complete</th>
+<th>How sure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Community Extension functions</td>
+<td>33</td>
+<td>all in its wiki; 17 (52%) linked to the engine function</td>
+<td>wiki + source (verified)</td>
+</tr>
+<tr>
+<td>Class layouts</td>
+<td>1915 classes, 12022 members</td>
+<td>all non-template GameCore classes in the Linux build</td>
+<td>Linux offsets verified from debug info; <strong>25 members</strong> checked against Windows code</td>
+</tr>
+<tr>
+<td>Globals</td>
+<td>1314</td>
+<td>named globals present in both builds</td>
+<td>801 verified (mapping rests on 2+ references), 513 inferred</td>
+</tr>
+</tbody>
+</table>
+<h2>Engine internals</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Total</th>
+<th>How complete</th>
+<th>How sure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Function inventory</td>
+<td>43803 functions</td>
+<td>33271 (76%) mapped to the current build; 21782 (50%) have a Linux signature</td>
+<td>mapping method is described in the analysis notes (not yet part of this site)</td>
+</tr>
+<tr>
+<td>Native function entries</td>
+<td>367</td>
+<td>17 analysed in detail (106 notes), 17 wrapped by the Community Extension</td>
+<td>analysed notes labelled verified / inferred</td>
+</tr>
+<tr>
+<td>Hand-written notes (all entity types)</td>
+<td>39</td>
+<td>a small curated set</td>
+<td>22 verified, 17 inferred</td>
+</tr>
+</tbody>
+</table>
+<h2>Known gaps</h2>
+<ul>
+<li>Return and argument meanings exist where the game's own scripts reveal them; the remaining methods are listed with types only.</li>
+<li>Signature columns marked ⚠ (147 methods) have arguments or returns we could not fully classify.</li>
+<li>Only 25 layout members have a checked Windows offset; for the rest use the Linux offset with the stated rule.</li>
+<li>The Events enum lists engine ids (not scriptable). 152 of the 352 are also Lua events with parameter names from the Civ VI Modding Companion (ChimpanG, WildW); see the Lua events page. These are community-sourced and not checked against the DLL.</li>
+</ul>
+<h2>Checked against a running game</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Total</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lua methods seen on live objects (UI state)</td>
+<td>825</td>
+<td>453 called once: 439 returned the documented number of values, 8 returned nothing, 6 raised errors (each noted on the method page)</td>
+</tr>
+</tbody>
+</table>
+<p>See the topic <em>Checking the reference against a running game</em>. Not covered: methods with arguments, mutators, the gameplay Lua state, multiplayer.</p></main><script>const ROOT="";</script><script src="search.js"></script>

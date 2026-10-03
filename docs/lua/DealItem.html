@@ -1,0 +1,326 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>DealItem</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › DealItem</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>DealItem</h1>
+<p>37 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getamount"></a>GetAmount</td>
+<td><code>DealItem:GetAmount() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cf980</code></td>
+<td><code>0x6d0020</code></td>
+</tr>
+<tr>
+<td><a id="getduration"></a>GetDuration</td>
+<td><code>DealItem:GetDuration() → number</code><br><small>returns: The scripts pass the result to <code>DealItem.SetDuration</code> (parameter <code>iDuration</code>). (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cf9d0</code></td>
+<td><code>0x6d0070</code></td>
+</tr>
+<tr>
+<td><a id="getenactedturn"></a>GetEnactedTurn</td>
+<td><code>DealItem:GetEnactedTurn() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfa20</code></td>
+<td><code>0x6d00c0</code></td>
+</tr>
+<tr>
+<td><a id="getendturn"></a>GetEndTurn</td>
+<td><code>DealItem:GetEndTurn() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfa70</code></td>
+<td><code>0x6d0110</code></td>
+</tr>
+<tr>
+<td><a id="getfromplayerid"></a>GetFromPlayerID</td>
+<td><code>DealItem:GetFromPlayerID() → number</code><br><small>returns: The scripts pass the result to <code>Deal.AddItemOfType</code>. (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfac0</code></td>
+<td><code>0x6d0160</code></td>
+</tr>
+<tr>
+<td><a id="getid"></a>GetID</td>
+<td><code>DealItem:GetID() → number</code><br><small>returns: The scripts pass the result to <code>Deal.RemoveItemByID</code> (parameter <code>uiID</code>). (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfb10</code></td>
+<td><code>0x6d01b0</code></td>
+</tr>
+<tr>
+<td><a id="getmaxamount"></a>GetMaxAmount</td>
+<td><code>DealItem:GetMaxAmount() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfb60</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getminamount"></a>GetMinAmount</td>
+<td><code>DealItem:GetMinAmount() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfbb0</code></td>
+<td><code>0x6d0250</code></td>
+</tr>
+<tr>
+<td><a id="getparametervalue"></a>GetParameterValue</td>
+<td><code>DealItem:GetParameterValue(arg1: number/string) → 1 values (or nothing) ⚠</code><br><small>args: <code>arg1</code> — A string.</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfc00</code></td>
+<td><code>0x6d02a0</code></td>
+</tr>
+<tr>
+<td><a id="getparentid"></a>GetParentID</td>
+<td><code>DealItem:GetParentID() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfca0</code></td>
+<td><code>0x6d0340</code></td>
+</tr>
+<tr>
+<td><a id="getplayerids"></a>GetPlayerIDs</td>
+<td><code>DealItem:GetPlayerIDs() → number, number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfcf0</code></td>
+<td><code>0x6d0390</code></td>
+</tr>
+<tr>
+<td><a id="getsubtype"></a>GetSubType</td>
+<td><code>DealItem:GetSubType() → number</code><br><small>returns: The scripts pass the result to <code>DealItem.SetSubType</code>. (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfd60</code></td>
+<td><code>0x6d0400</code></td>
+</tr>
+<tr>
+<td><a id="getsubtypeid"></a>GetSubTypeID</td>
+<td><code>DealItem:GetSubTypeID() → nil/string (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfdb0</code></td>
+<td><code>0x6d0450</code></td>
+</tr>
+<tr>
+<td><a id="getsubtypenameid"></a>GetSubTypeNameID</td>
+<td><code>DealItem:GetSubTypeNameID() → nil/string (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cfe70</code></td>
+<td><code>0x6d0510</code></td>
+</tr>
+<tr>
+<td><a id="gettoplayerid"></a>GetToPlayerID</td>
+<td><code>DealItem:GetToPlayerID() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cff30</code></td>
+<td><code>0x6d05d0</code></td>
+</tr>
+<tr>
+<td><a id="gettype"></a>GetType</td>
+<td><code>DealItem:GetType() → number</code><br><small>returns: The scripts pass the result to <code>Deal.AddItemOfType</code>. (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cff80</code></td>
+<td><code>0x6d0620</code></td>
+</tr>
+<tr>
+<td><a id="getvaluecategory"></a>GetValueCategory</td>
+<td><code>DealItem:GetValueCategory() → number</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6cffd0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getvaluetype"></a>GetValueType</td>
+<td><code>DealItem:GetValueType() → 1 values ⚠</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0020</code></td>
+<td><code>0x6d06c0</code></td>
+</tr>
+<tr>
+<td><a id="getvaluetypeid"></a>GetValueTypeID</td>
+<td><code>DealItem:GetValueTypeID() → nil/string (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0080</code></td>
+<td><code>0x6d0720</code></td>
+</tr>
+<tr>
+<td><a id="getvaluetypenameid"></a>GetValueTypeNameID</td>
+<td><code>DealItem:GetValueTypeNameID() → nil/string (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0140</code></td>
+<td><code>0x6d07e0</code></td>
+</tr>
+<tr>
+<td><a id="haspossibleamounts"></a>HasPossibleAmounts</td>
+<td><code>DealItem:HasPossibleAmounts() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0200</code></td>
+<td><code>0x6d08a0</code></td>
+</tr>
+<tr>
+<td><a id="haspossibledurations"></a>HasPossibleDurations</td>
+<td><code>DealItem:HasPossibleDurations() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0250</code></td>
+<td><code>0x6d08f0</code></td>
+</tr>
+<tr>
+<td><a id="haspossiblevalues"></a>HasPossibleValues</td>
+<td><code>DealItem:HasPossibleValues() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d02a0</code></td>
+<td><code>0x6d0940</code></td>
+</tr>
+<tr>
+<td><a id="ischild"></a>IsChild</td>
+<td><code>DealItem:IsChild() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d02f0</code></td>
+<td><code>0x6d0990</code></td>
+</tr>
+<tr>
+<td><a id="isexpired"></a>IsExpired</td>
+<td><code>DealItem:IsExpired() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0330</code></td>
+<td><code>0x6d09d0</code></td>
+</tr>
+<tr>
+<td><a id="islocked"></a>IsLocked</td>
+<td><code>DealItem:IsLocked() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0380</code></td>
+<td><code>0x6d0a20</code></td>
+</tr>
+<tr>
+<td><a id="isunacceptable"></a>IsUnacceptable</td>
+<td><code>DealItem:IsUnacceptable() → boolean</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d03d0</code></td>
+<td><code>0x6d0a70</code></td>
+</tr>
+<tr>
+<td><a id="isvalid"></a>IsValid</td>
+<td><code>DealItem:IsValid(pkResults: Deal) → number, boolean, number</code><br><small>args: <code>pkResults</code> — A Deal object (the scripts pass a variable named pDeal).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0420</code></td>
+<td><code>0x6d0ac0</code></td>
+</tr>
+<tr>
+<td><a id="setamount"></a>SetAmount</td>
+<td><code>DealItem:SetAmount(arg1: integer) (or nothing)</code><br><small>args: <code>arg1</code> — A count or amount (named count / num / amount in the scripts). (inferred)</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d05a0</code></td>
+<td><code>0x6d0c40</code></td>
+</tr>
+<tr>
+<td><a id="setduration"></a>SetDuration</td>
+<td><code>DealItem:SetDuration(iDuration: integer) (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d05f0</code></td>
+<td><code>0x6d0c90</code></td>
+</tr>
+<tr>
+<td><a id="setfromplayerid"></a>SetFromPlayerID</td>
+<td><code>DealItem:SetFromPlayerID(arg1?: number) (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0640</code></td>
+<td><code>0x6d0ce0</code></td>
+</tr>
+<tr>
+<td><a id="setlocked"></a>SetLocked</td>
+<td><code>DealItem:SetLocked(arg1: boolean) (or nothing)</code><br><small>args: <code>arg1</code> — A boolean flag (true/false).</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d06a0</code></td>
+<td><code>0x6d0d40</code></td>
+</tr>
+<tr>
+<td><a id="setparametervalue"></a>SetParameterValue</td>
+<td><code>DealItem:SetParameterValue(arg1: number/string, arg2?: any) (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d06f0</code></td>
+<td><code>0x6d0d90</code></td>
+</tr>
+<tr>
+<td><a id="setplayerids"></a>SetPlayerIDs</td>
+<td><code>DealItem:SetPlayerIDs(arg1?: number, arg2: number) (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0800</code></td>
+<td><code>0x6d0ea0</code></td>
+</tr>
+<tr>
+<td><a id="setsubtype"></a>SetSubType</td>
+<td><code>DealItem:SetSubType(arg1: integer) (or nothing)</code><br><small>args: <code>arg1</code> — A constant from the Lua table DealAgreementTypes.</small></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d08a0</code></td>
+<td><code>0x6d0f40</code></td>
+</tr>
+<tr>
+<td><a id="settoplayerid"></a>SetToPlayerID</td>
+<td><code>DealItem:SetToPlayerID(arg1?: number) (or nothing)</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d08f0</code></td>
+<td><code>0x6d0f90</code></td>
+</tr>
+<tr>
+<td><a id="setvaluetype"></a>SetValueType</td>
+<td><code>DealItem:SetValueType() → 1 values ⚠</code></td>
+<td>gameplay</td>
+<td>—</td>
+<td><code>0x6d0950</code></td>
+<td><code>0x6d0ff0</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

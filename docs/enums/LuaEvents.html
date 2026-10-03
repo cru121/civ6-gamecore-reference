@@ -1,0 +1,1669 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Lua events</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Enums</a> › Lua events</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Lua events</h1>
+<p>Events a script can subscribe to with <code>Events.&lt;Name&gt;.Add(handler)</code>. Each handler receives the parameters listed here, in this order.</p>
+<p>The list and the parameters come from the <a href="https://docs.google.com/spreadsheets/d/1EiCTOlPx3IkeAmU0xujGEp9k0v9VuCxe95OcrsyWOVs/edit?usp=sharing">Civilization VI Modding Companion</a> (ChimpanG, expanded and maintained by WildW). We matched each one to an engine event id in the game library, so the event exists; the parameters themselves have <strong>not been checked against the game library</strong>. "none listed" means the Companion lists no parameters, which can also mean it does not document them.</p>
+<p>256 of the 352 engine event ids appear here. The rest are in the <a href="Events.html">engine ids</a> list only: the Companion does not list them as Lua events (some may be, under a different spelling).</p>
+<table>
+<thead>
+<tr>
+<th>Lua event</th>
+<th>Parameters</th>
+<th>Kind</th>
+<th>Engine id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AllianceAvailable</code></td>
+<td><code>playerID</code> (number), <code>otherplayerID</code> (number), <code>allianceIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ALLIANCE_AVAILABLE</a></td>
+</tr>
+<tr>
+<td><code>AllianceEnded</code></td>
+<td><code>playerID</code> (number), <code>otherplayerID</code> (number), <code>allianceIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ALLIANCE_ENDED</a></td>
+</tr>
+<tr>
+<td><code>AnarchyBegins</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ANARCHY_BEGINS</a></td>
+</tr>
+<tr>
+<td><code>AnarchyEnds</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ANARCHY_ENDS</a></td>
+</tr>
+<tr>
+<td><code>BarbarianClanConversionDisabled</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BARBARIAN_CLAN_CONVERSION_DISABLED</a></td>
+</tr>
+<tr>
+<td><code>BarbarianClanConversionEnabled</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BARBARIAN_CLAN_CONVERSION_ENABLED</a></td>
+</tr>
+<tr>
+<td><code>BarbarianRaidStarted</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BARBARIAN_RAID_STARTED</a></td>
+</tr>
+<tr>
+<td><code>BarbarianSpottedCity</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>cityOwner</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BARBARIAN_SPOTTED_CITY</a></td>
+</tr>
+<tr>
+<td><code>BeliefAdded</code></td>
+<td><code>playerID</code> (number), <code>beliefID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BELIEF_ADDED</a></td>
+</tr>
+<tr>
+<td><code>BuildingAddedToMap</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>buildingIndex</code> (number), <code>playerID</code> (number), <code>cityID</code> (number), <code>percentComplete</code> (number), <code>isPillaged</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BUILDING_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>BuildingChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>buildingID</code> (number), <code>playerID</code> (number), <code>percentComplete</code> (number), <code>unknown</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BUILDING_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>BuildingRemovedFromMap</code></td>
+<td><code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BUILDING_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>BuildingVisibilityChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">BUILDING_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CapitalCityChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CAPITAL_CITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityAddedToMap</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>CityChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityCommandStarted</code></td>
+<td><code>cityOwnerID</code> (number), <code>cityID</code> (number), <code>districtOwnerID</code> (number), <code>districtID</code> (number), <code>CityCommandTypes commandType</code> ((enum)), <code>data1</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_COMMAND_STARTED</a></td>
+</tr>
+<tr>
+<td><code>CityDefenseStatusChanged</code></td>
+<td><code>playerID</code> (number), <code>value</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_DEFENSE_STATUS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityFocusChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_FOCUS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityInitialized</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_INITIALIZED</a></td>
+</tr>
+<tr>
+<td><code>CityLiberated</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_LIBERATED</a></td>
+</tr>
+<tr>
+<td><code>CityLoyaltyChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_LOYALTY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityMadePurchase</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>x</code> (number), <code>y</code> (number), <code>EventSubTypes eventSubType</code> ((enum)), <code>purchasableItemIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_MADE_PURCHASE</a></td>
+</tr>
+<tr>
+<td><code>CityNameChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_NAME_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityOccupationChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_OCCUPATION_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityPopulationChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>cityPopulation</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_POPULATION_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityPowerChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_POWER_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityProductionChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>productionID</code> (number), <code>objectID</code> (number), <code>wasCancelled</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_PRODUCTION_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityProductionCompleted</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>constructionType</code> (number), <code>unitID</code> (number), <code>wasCancelled</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_PRODUCTION_COMPLETED</a></td>
+</tr>
+<tr>
+<td><code>CityProductionQueueChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_PRODUCTION_QUEUE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityProductionUpdated</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>objectID</code> (number), <code>productionID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_PRODUCTION_UPDATED</a></td>
+</tr>
+<tr>
+<td><code>CityPropertyChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_PROPERTY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityReligionChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>eVisibility</code> (number), <code>otherCityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_RELIGION_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityReligionFollowersChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>eVisibility</code> (number), <code>influencingCItyID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_RELIGION_FOLLOWERS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityRemovedFromMap</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>CitySiegeStatusChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>isBesieged</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_SIEGE_STATUS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityTileOwnershipChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_TILE_OWNERSHIP_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CityTransfered</code></td>
+<td><code>newOwnerID</code> (number), <code>cityID</code> (number), <code>oldOwnerID</code> (number), <code>CityTransferTypes transferType</code> ((enum))</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_TRANSFERED</a></td>
+</tr>
+<tr>
+<td><code>CityVisibilityChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>eVisibility</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CITY_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CivicBoostTriggered</code></td>
+<td><code>playerID</code> (number), <code>civicIndex</code> (number), <code>unknownA</code> (number), <code>unknownB</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CIVIC_BOOST_TRIGGERED</a></td>
+</tr>
+<tr>
+<td><code>CivicChanged</code></td>
+<td><code>playerID</code> (number), <code>civicIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CIVIC_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CivicCompleted</code></td>
+<td><code>playerID</code> (number), <code>civicIndex</code> (number), <code>isCancelled</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CIVIC_COMPLETED</a></td>
+</tr>
+<tr>
+<td><code>CivicQueueChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CIVIC_QUEUE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CivicsUnlocked</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CIVICS_UNLOCKED</a></td>
+</tr>
+<tr>
+<td><code>ClimateChangeEvent</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CLIMATE_CHANGE_EVENT</a></td>
+</tr>
+<tr>
+<td><code>Combat</code></td>
+<td><code>combatResult</code> (table)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">COMBAT</a></td>
+</tr>
+<tr>
+<td><code>CorporationAdded</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CORPORATION_ADDED</a></td>
+</tr>
+<tr>
+<td><code>CorporationNameChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CORPORATION_NAME_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CorporationRemoved</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CORPORATION_REMOVED</a></td>
+</tr>
+<tr>
+<td><code>CulturalIdentityCitizenConverted</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CULTURAL_IDENTITY_CITIZEN_CONVERTED</a></td>
+</tr>
+<tr>
+<td><code>CulturalIdentityCityConverted</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>influencingPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CULTURAL_IDENTITY_CITY_CONVERTED</a></td>
+</tr>
+<tr>
+<td><code>CulturalIdentityConversionOutcomeChanged</code></td>
+<td><code>playerID</code> (number), <code>cityID</code> (number), <code>IdentityConversionOutcome conversionOutcome</code> ((enum))</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CULTURAL_IDENTITY_CONVERSION_OUTCOME_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CulturalIdentityPerturnFromModifiersChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CULTURAL_IDENTITY_PER_TURN_FROM_MODIFIERS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CultureChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CULTURE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>CultureYieldChanged</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">CULTURE_YIELD_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyDealEnacted</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_DEAL_ENACTED</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyDealExpired</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_DEAL_EXPIRED</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyDeclareWar</code></td>
+<td><code>firstPlayerID</code> (number), <code>secondPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_DECLARE_WAR</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyIncomingDeal</code></td>
+<td><code>fromPlayerID</code> (number), <code>toPlayerID</code> (number), <code>DiplomacyActionTypes actionType</code> ((enum))</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_INCOMING_DEAL</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyMakePeace</code></td>
+<td><code>firstPlayerID</code> (number), <code>secondPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_MAKE_PEACE</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyMeet</code></td>
+<td><code>player1ID</code> (number), <code>player2ID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_MEET</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyMeetMajorMinor</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_MEET_MAJOR_MINOR</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyMeetMajors</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_MEET_MAJORS</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyRefusePeace</code></td>
+<td><code>actingPlayerID</code> (number), <code>reactingPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_REFUSE_PEACE</a></td>
+</tr>
+<tr>
+<td><code>DiplomacyRelationshipChanged</code></td>
+<td><code>player1ID</code> (number), <code>player2ID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_RELATIONSHIP_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>DiplomacySessionClosed</code></td>
+<td><code>sessionID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DIPLOMACY_SESSION_CLOSED</a></td>
+</tr>
+<tr>
+<td><code>DistrictAddedToMap</code></td>
+<td><code>playerID</code> (number), <code>districtID</code> (number), <code>cityID</code> (number), <code>x</code> (number), <code>y</code> (number), <code>districtIndex</code> (number), <code>percentComplete</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DISTRICT_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>DistrictCombatChanged</code></td>
+<td><code>EventSubTypes eventSubType</code> ((enum)), <code>playerID</code> (number), <code>districtID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DISTRICT_COMBAT_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>DistrictDamageChanged</code></td>
+<td><code>playerID</code> (number), <code>districtID</code> (number), <code>DefenseTypes defenseType</code> ((enum)), <code>newDamage</code> (number), <code>oldDamage</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DISTRICT_DAMAGE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>DistrictRemovedFromMap</code></td>
+<td><code>playerID</code> (number), <code>districtID</code> (number), <code>cityID</code> (number), <code>x</code> (number), <code>y</code> (number), <code>districtIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DISTRICT_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>DistrictVisibilityChanged</code></td>
+<td><code>playerID</code> (number), <code>districtID</code> (number), <code>eVisibility</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DISTRICT_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>DroughtAddedToMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DROUGHT_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>DroughtRemovedFromMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">DROUGHT_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>EmergenciesUpdated</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EMERGENCIES_UPDATED</a></td>
+</tr>
+<tr>
+<td><code>EmergencyAvailable</code></td>
+<td><code>targetPlayerID</code> (number), <code>emergencyIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EMERGENCY_AVAILABLE</a></td>
+</tr>
+<tr>
+<td><code>EmergencyAvailableParticipant</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EMERGENCY_AVAILABLE_PARTICIPANT</a></td>
+</tr>
+<tr>
+<td><code>EmergencyCompleteParticipants</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EMERGENCY_COMPLETE_PARTICIPANTS</a></td>
+</tr>
+<tr>
+<td><code>EmergencyRejected</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EMERGENCY_REJECTED</a></td>
+</tr>
+<tr>
+<td><code>EmergencyStarted</code></td>
+<td><code>playerID</code> (number), <code>targetPlayerID</code> (number), <code>turn</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EMERGENCY_STARTED</a></td>
+</tr>
+<tr>
+<td><code>EventPopupRequest</code></td>
+<td><code>popupData</code> (table)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EVENT_POPUP_REQUEST</a></td>
+</tr>
+<tr>
+<td><code>EventPopupResponse</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EVENT_POPUP_RESPONSE</a></td>
+</tr>
+<tr>
+<td><code>EventSoundRequest</code></td>
+<td><code>sound</code> (string), <code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">EVENT_SOUND_REQUEST</a></td>
+</tr>
+<tr>
+<td><code>FaithChanged</code></td>
+<td><code>playerID</code> (number), <code>yield</code> (number), <code>balance</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">FAITH_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>FavorChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">FAVOR_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>FeatureAddedToMap</code></td>
+<td><code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">FEATURE_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>FeatureChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">FEATURE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>FeatureRemovedFromMap</code></td>
+<td><code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">FEATURE_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>FloodplainRevealed</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">FLOODPLAIN_REVEALED</a></td>
+</tr>
+<tr>
+<td><code>GameEraChanged</code></td>
+<td><code>previousEraIndex</code> (number), <code>newEraIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GAME_ERA_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GameHistoryMomentRecorded</code></td>
+<td><code>momentIndex</code> (number), <code>unknown</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GAME_HISTORY_MOMENT_RECORDED</a></td>
+</tr>
+<tr>
+<td><code>GamePropertyChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GAME_PROPERTY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GeothermalFissureRevealed</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GEOTHERMAL_FISSURE_REVEALED</a></td>
+</tr>
+<tr>
+<td><code>GoodyHutReward</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>unknown1</code> (number), <code>unknown2</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOODY_HUT_REWARD</a></td>
+</tr>
+<tr>
+<td><code>GovernmentChanged</code></td>
+<td><code>playerID</code> (number), <code>governmentID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNMENT_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GovernmentPolicyChanged</code></td>
+<td><code>playerID</code> (number), <code>policyID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNMENT_POLICY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GovernmentPolicyObsoleted</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNMENT_POLICY_OBSOLETED</a></td>
+</tr>
+<tr>
+<td><code>GovernorAppointed</code></td>
+<td><code>playerID</code> (number), <code>governorID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNOR_APPOINTED</a></td>
+</tr>
+<tr>
+<td><code>GovernorAssigned</code></td>
+<td><code>cityPlayerID</code> (number), <code>cityID</code> (number), <code>governorPlayerID</code> (number), <code>governorID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNOR_ASSIGNED</a></td>
+</tr>
+<tr>
+<td><code>GovernorChanged</code></td>
+<td><code>playerID</code> (number), <code>governorID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNOR_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GovernorEjected</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNOR_EJECTED</a></td>
+</tr>
+<tr>
+<td><code>GovernorEstablished</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNOR_ESTABLISHED</a></td>
+</tr>
+<tr>
+<td><code>GovernorPointsChanged</code></td>
+<td><code>playerID</code> (number), <code>delta</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNOR_POINTS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GovernorPromoted</code></td>
+<td><code>playerID</code> (number), <code>governorIndex</code> (number), <code>promotionIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GOVERNOR_PROMOTED</a></td>
+</tr>
+<tr>
+<td><code>GreatPeoplePointsChanged</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GREAT_PEOPLE_POINTS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GreatPeopleTimelineChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GREAT_PEOPLE_TIMELINE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>GreatWorkCreated</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>cityPlotX</code> (number), <code>cityPlotY</code> (number), <code>buildingID</code> (number), <code>greatWorkID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GREAT_WORK_CREATED</a></td>
+</tr>
+<tr>
+<td><code>GreatWorkMoved</code></td>
+<td><code>fromCityPlayerID</code> (number), <code>fromCityID</code> (number), <code>toCityPlayerID</code> (number), <code>toCityID</code> (number), <code>buildingID</code> (number), <code>greatWorkTypeIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">GREAT_WORK_MOVED</a></td>
+</tr>
+<tr>
+<td><code>ImprovementActivated</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>unitOwner</code> (unspecified), <code>unitID</code> (number), <code>improvementType</code> (unspecified), <code>improvementOwner</code> (unspecified), <code>activationType</code> (unspecified)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">IMPROVEMENT_ACTIVATED</a></td>
+</tr>
+<tr>
+<td><code>ImprovementAddedToMap</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>improvementIndex</code> (number), <code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">IMPROVEMENT_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>ImprovementChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>improvementIndex</code> (number), <code>improvementPlayerID</code> (number), <code>resourceIndex</code> (number), <code>isPillaged</code> (boolean), <code>isWorked</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">IMPROVEMENT_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>ImprovementOwnershipChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">IMPROVEMENT_OWNERSHIP_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>ImprovementRemovedFromMap</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>owningPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">IMPROVEMENT_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>ImprovementVisibilityChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>improvementIndex</code> (number), <code>eVisibility</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">IMPROVEMENT_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>InfluenceChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">INFLUENCE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>InfluenceGiven</code></td>
+<td><code>citystateID</code> (number), <code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">INFLUENCE_GIVEN</a></td>
+</tr>
+<tr>
+<td><code>LevyCounterChanged</code></td>
+<td><code>originalOwnerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">LEVY_COUNTER_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>LocalPlayerChanged</code></td>
+<td><code>localPlayerID</code> (number), <code>prevLocalPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">LOCAL_PLAYER_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>LocalPlayerTurnBegin</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">LOCAL_PLAYER_TURN_BEGIN</a></td>
+</tr>
+<tr>
+<td><code>LocalPlayerTurnEnd</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">LOCAL_PLAYER_TURN_END</a></td>
+</tr>
+<tr>
+<td><code>LocalPlayerTurnUnready</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">LOCAL_PLAYER_TURN_UNREADY</a></td>
+</tr>
+<tr>
+<td><code>MapYieldsChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">MAP_YIELDS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>MonopolyGained</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">MONOPOLY_GAINED</a></td>
+</tr>
+<tr>
+<td><code>MonopolyLost</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">MONOPOLY_LOST</a></td>
+</tr>
+<tr>
+<td><code>NationalParkVisibilityChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">NATIONAL_PARK_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>NaturalWonderRevealed</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>featureIndex</code> (number), <code>wasFirstToFind</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">NATURAL_WONDER_REVEALED</a></td>
+</tr>
+<tr>
+<td><code>NotificationActivated</code></td>
+<td><code>playerID</code> (number), <code>notificationID</code> (number), <code>wasActivatedByUser</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">NOTIFICATION_ACTIVATED</a></td>
+</tr>
+<tr>
+<td><code>NotificationAdded</code></td>
+<td><code>playerID</code> (number), <code>notificationID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">NOTIFICATION_ADDED</a></td>
+</tr>
+<tr>
+<td><code>NotificationDismissed</code></td>
+<td><code>playerID</code> (number), <code>notificationID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">NOTIFICATION_DISMISSED</a></td>
+</tr>
+<tr>
+<td><code>NotificationRefreshRequested</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">NOTIFICATION_REFRESH_REQUESTED</a></td>
+</tr>
+<tr>
+<td><code>NuclearReactorChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">NUCLEAR_REACTOR_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>ObjectPairing</code></td>
+<td><code>EventSubTypes eventSubType</code> ((enum)), <code>parentOwner</code> (unspecified), <code>parentType</code> (unspecified), <code>parentID</code> (number), <code>childOwner</code> (unspecified), <code>childType</code> (unspecified), <code>childID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">OBJECT_PAIRING</a></td>
+</tr>
+<tr>
+<td><code>PantheonFounded</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PANTHEON_FOUNDED</a></td>
+</tr>
+<tr>
+<td><code>PhaseBegin</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PHASE_BEGIN</a></td>
+</tr>
+<tr>
+<td><code>PhaseEnd</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PHASE_END</a></td>
+</tr>
+<tr>
+<td><code>PlayerAgeChanged</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_AGE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlayerBordersChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_BORDERS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlayerDarkAgeChanged</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_DARK_AGE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlayerDefeat</code></td>
+<td><code>playerID</code> (number), <code>defeatIndex</code> (number), <code>eventID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_DEFEAT</a></td>
+</tr>
+<tr>
+<td><code>PlayerDiscoveredHero</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_DISCOVERED_HERO</a></td>
+</tr>
+<tr>
+<td><code>PlayerEraChanged</code></td>
+<td><code>playerID</code> (number), <code>eraIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_ERA_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlayerEraScoreChanged</code></td>
+<td><code>playerID</code> (number), <code>amountAwarded</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_ERA_SCORE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlayerEraTransitionBegins</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_ERA_TRANSITION_BEGINS</a></td>
+</tr>
+<tr>
+<td><code>PlayerIntroduced</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_INTRODUCED</a></td>
+</tr>
+<tr>
+<td><code>PlayerOperationComplete</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_OPERATION_COMPLETE</a></td>
+</tr>
+<tr>
+<td><code>PlayerResourceChanged</code></td>
+<td><code>ownerPlayerID</code> (number), <code>resourceTypeID</code> (number)</td>
+<td>PlayerGameCoreEvent</td>
+<td><a href="Events.html">PLAYER_RESOURCE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlayerRestored</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_RESTORED</a></td>
+</tr>
+<tr>
+<td><code>PlayerTurnActivated</code></td>
+<td><code>playerID</code> (number), <code>isFirstTurn</code> (boolean)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_TURN_ACTIVATED</a></td>
+</tr>
+<tr>
+<td><code>PlayerTurnCompleteIgnored</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_TURN_COMPLETE_IGNORED</a></td>
+</tr>
+<tr>
+<td><code>PlayerTurnDeactivated</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLAYER_TURN_DEACTIVATED</a></td>
+</tr>
+<tr>
+<td><code>PlotMarkerChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLOT_MARKER_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlotPropertyChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLOT_PROPERTY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlotVisibilityChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>visibilityType</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLOT_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PlotYieldChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PLOT_YIELD_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>PostTourismBomb</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">POST_TOURISM_BOMB</a></td>
+</tr>
+<tr>
+<td><code>PowerGeneratedFromResource</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">POWER_GENERATED_FROM_RESOURCE</a></td>
+</tr>
+<tr>
+<td><code>PreTurnBegin</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">PRE_TURN_BEGIN</a></td>
+</tr>
+<tr>
+<td><code>QuestChanged</code></td>
+<td><code>CityStateID</code> (number), <code>CompletedQuestPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">QUEST_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>RandomEventOccurred</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RANDOM_EVENT_OCCURRED</a></td>
+</tr>
+<tr>
+<td><code>ReligionFounded</code></td>
+<td><code>playerID</code> (number), <code>religionID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RELIGION_FOUNDED</a></td>
+</tr>
+<tr>
+<td><code>RemotePlayerTurnBegin</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">REMOTE_PLAYER_TURN_BEGIN</a></td>
+</tr>
+<tr>
+<td><code>RemotePlayerTurnEnd</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">REMOTE_PLAYER_TURN_END</a></td>
+</tr>
+<tr>
+<td><code>RemotePlayerTurnUnready</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">REMOTE_PLAYER_TURN_UNREADY</a></td>
+</tr>
+<tr>
+<td><code>ResearchChanged</code></td>
+<td><code>playerID</code> (number), <code>technologyIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RESEARCH_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>ResearchCompleted</code></td>
+<td><code>playerID</code> (number), <code>technologyIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RESEARCH_COMPLETED</a></td>
+</tr>
+<tr>
+<td><code>ResearchQueueChanged</code></td>
+<td><code>playerID</code> (number), <code>technologyIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RESEARCH_QUEUE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>ResearchYieldChanged</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RESEARCH_YIELD_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>ResourceAddedToMap</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>resourceIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RESOURCE_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>ResourceRemovedFromMap</code></td>
+<td><code>iX</code> (number), <code>iY</code> (number), <code>resourceIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RESOURCE_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>ResourceVisibilityChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>resourceIndex</code> (number), <code>visibilityType</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RESOURCE_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>RiverAddedToMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RIVER_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>RiverRemovedFromMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">RIVER_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>RouteAddedToMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ROUTE_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>RouteChanged</code></td>
+<td><code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ROUTE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>RouteRemovedFromMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ROUTE_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>RouteVisibilityChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">ROUTE_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>SecretSocietyDiscovered</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SECRET_SOCIETY_DISCOVERED</a></td>
+</tr>
+<tr>
+<td><code>SecretSocietyJoined</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SECRET_SOCIETY_JOINED</a></td>
+</tr>
+<tr>
+<td><code>SecretSocietyLeft</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SECRET_SOCIETY_LEFT</a></td>
+</tr>
+<tr>
+<td><code>SpyAdded</code></td>
+<td><code>spyPlayerID</code> (number), <code>spyUnitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SPY_ADDED</a></td>
+</tr>
+<tr>
+<td><code>SpyMissionCompleted</code></td>
+<td><code>playerID</code> (number), <code>missionID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SPY_MISSION_COMPLETED</a></td>
+</tr>
+<tr>
+<td><code>SpyMissionUpdated</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SPY_MISSION_UPDATED</a></td>
+</tr>
+<tr>
+<td><code>SpyRemoved</code></td>
+<td><code>spyPlayerID</code> (number), <code>counterSpyPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SPY_REMOVED</a></td>
+</tr>
+<tr>
+<td><code>SpyUpdated</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">SPY_UPDATED</a></td>
+</tr>
+<tr>
+<td><code>StormAddedToMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">STORM_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>StormChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">STORM_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>StormRemovedFromMap</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">STORM_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>TeamVictory</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TEAM_VICTORY</a></td>
+</tr>
+<tr>
+<td><code>TechBoostTriggered</code></td>
+<td><code>playerID</code> (number), <code>techBoosted</code> (number), <code>unknownA</code> (number), <code>unknownB</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TECH_BOOST_TRIGGERED</a></td>
+</tr>
+<tr>
+<td><code>TerrainTypeChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TERRAIN_TYPE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>TradeRouteActivityChanged</code></td>
+<td><code>playerID</code> (number), <code>originPlayerID</code> (number), <code>originCityID</code> (number), <code>targetPlayerID</code> (number), <code>targetCityID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TRADE_ROUTE_ACTIVITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>TradeRouteAddedToMap</code></td>
+<td><code>playerID</code> (number), <code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TRADE_ROUTE_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>TradeRouteCapacityChanged</code></td>
+<td><code>playerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TRADE_ROUTE_CAPACITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>TradeRouteRangeChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TRADE_ROUTE_RANGE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>TradeRouteRemovedFromMap</code></td>
+<td><code>playerID</code> (number), <code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TRADE_ROUTE_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>TreasuryChanged</code></td>
+<td><code>playerID</code> (number), <code>yield</code> (number), <code>balance</code> (unspecified)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TREASURY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>TurnBegin</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TURN_BEGIN</a></td>
+</tr>
+<tr>
+<td><code>TurnEnd</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">TURN_END</a></td>
+</tr>
+<tr>
+<td><code>UnitAbilityGained</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>unitAbilityIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ABILITY_GAINED</a></td>
+</tr>
+<tr>
+<td><code>UnitAbilityLost</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>unitAbilityIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ABILITY_LOST</a></td>
+</tr>
+<tr>
+<td><code>UnitActivate</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ACTIVATE</a></td>
+</tr>
+<tr>
+<td><code>UnitActivityChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>ActivityTypes activityType</code> ((enum))</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ACTIVITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitAddedToMap</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ADDED_TO_MAP</a></td>
+</tr>
+<tr>
+<td><code>UnitAirlifted</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_AIRLIFTED</a></td>
+</tr>
+<tr>
+<td><code>UnitArtifactChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ARTIFACT_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitAttacksRemainingChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ATTACKS_REMAINING_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitCaptured</code></td>
+<td><code>currentUnitPlayerID</code> (number), <code>unitID</code> (number), <code>owningPlayerID</code> (number), <code>capturingPlayerID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_CAPTURED</a></td>
+</tr>
+<tr>
+<td><code>UnitChargesChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>newCharges</code> (number), <code>oldCharges</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_CHARGES_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitCommandStarted</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>UnitCommandTypes commandType</code> ((enum)), <code>data1</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_COMMAND_STARTED</a></td>
+</tr>
+<tr>
+<td><code>UnitDamageChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>newDamage</code> (number), <code>prevDamage</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_DAMAGE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitEnteredBarbarianCamp</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ENTERED_BARBARIAN_CAMP</a></td>
+</tr>
+<tr>
+<td><code>UnitEnterFormation</code></td>
+<td><code>firstUnitPlayerID</code> (number), <code>firstUnitID</code> (number), <code>secondUnitPlayerID</code> (number), <code>secondUnitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_ENTER_FORMATION</a></td>
+</tr>
+<tr>
+<td><code>UnitExitFormation</code></td>
+<td><code>firstUnitPlayerID</code> (number), <code>firstUnitID</code> (number), <code>secondUnitPlayerID</code> (number), <code>secondUnitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_EXIT_FORMATION</a></td>
+</tr>
+<tr>
+<td><code>UnitExperienceChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_EXPERIENCE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitFormArmy</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_FORM_ARMY</a></td>
+</tr>
+<tr>
+<td><code>UnitFormationChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_FORMATION_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitFormCorps</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_FORM_CORPS</a></td>
+</tr>
+<tr>
+<td><code>UnitFortificationChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_FORTIFICATION_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitGreatPersonActivated</code></td>
+<td><code>unitPlayerID</code> (number), <code>unitOwner</code> (number), <code>unitID</code> (number), <code>unitID</code> (number), <code>greatPersonClassID</code> (number), <code>greatPersonClassID</code> (number), <code>greatPersonIndividualID</code> (number), <code>greatPersonIndividualID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_GREATPERSON_ACTIVATED</a></td>
+</tr>
+<tr>
+<td><code>UnitGreatPersonChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_GREATPERSON_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitGreatPersonCreated</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>greatPersonClassID</code> (number), <code>greatPersonIndividualID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_GREATPERSON_CREATED</a></td>
+</tr>
+<tr>
+<td><code>UnitHeroCreated</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_HERO_CREATED</a></td>
+</tr>
+<tr>
+<td><code>UnitKilledByFallout</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_KILLED_BY_FALLOUT</a></td>
+</tr>
+<tr>
+<td><code>UnitKilledInCombat</code></td>
+<td><code>killedPlayerID</code> (number), <code>killedUnitID</code> (number), <code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_KILLED_IN_COMBAT</a></td>
+</tr>
+<tr>
+<td><code>UnitKilledLifespanExpired</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_KILLED_LIFESPAN_EXPIRED</a></td>
+</tr>
+<tr>
+<td><code>UnitMoveComplete</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_MOVE_COMPLETE</a></td>
+</tr>
+<tr>
+<td><code>UnitMoved</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>x</code> (number), <code>y</code> (number), <code>locallyVisible</code> (unspecified), <code>stateChange</code> (unspecified)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_MOVED</a></td>
+</tr>
+<tr>
+<td><code>UnitMovementPointsChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>movementPoints</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_MOVEMENT_POINTS_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitMovementPointsCleared</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_MOVEMENT_POINTS_CLEARED</a></td>
+</tr>
+<tr>
+<td><code>UnitMovementPointsRestored</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>MovementPoints</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_MOVEMENT_POINTS_RESTORED</a></td>
+</tr>
+<tr>
+<td><code>UnitOperationAdded</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>unknown</code> (number), <code>UnitOperationTypes operationType</code> ((enum))</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_OPERATION_ADDED</a></td>
+</tr>
+<tr>
+<td><code>UnitOperationDeactivated</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>UnitOperationTypes operationType</code> ((enum)), <code>data1</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_OPERATION_DEACTIVATED</a></td>
+</tr>
+<tr>
+<td><code>UnitOperationsCleared</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>UnitCommandTypes commandType</code> ((enum)), <code>data1</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_OPERATIONS_CLEARED</a></td>
+</tr>
+<tr>
+<td><code>UnitOperationSegmentComplete</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>UnitCommandTypes commandType</code> ((enum)), <code>data1</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_OPERATION_SEGMENT_COMPLETE</a></td>
+</tr>
+<tr>
+<td><code>UnitOperationStarted</code></td>
+<td><code>ownerID</code> (number), <code>unitID</code> (number), <code>operationID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_OPERATION_STARTED</a></td>
+</tr>
+<tr>
+<td><code>UnitParadropped</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_PARADROPPED</a></td>
+</tr>
+<tr>
+<td><code>UnitPromoted</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_PROMOTED</a></td>
+</tr>
+<tr>
+<td><code>UnitPropertyChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_PROPERTY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitRemovedFromMap</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_REMOVED_FROM_MAP</a></td>
+</tr>
+<tr>
+<td><code>UnitTeleported</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number), <code>x</code> (number), <code>y</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_TELEPORTED</a></td>
+</tr>
+<tr>
+<td><code>UnitTourismBomb</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_TOURISM_BOMB</a></td>
+</tr>
+<tr>
+<td><code>UnitTradeChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_TRADE_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>UnitUpgraded</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_UPGRADED</a></td>
+</tr>
+<tr>
+<td><code>UnitVisibilityChanged</code></td>
+<td><code>playerID</code> (number), <code>unitID</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">UNIT_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>VolcanoRevealed</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">VOLCANO_REVEALED</a></td>
+</tr>
+<tr>
+<td><code>WMDCountChanged</code></td>
+<td><code>playerID</code> (number), <code>WMDIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WMD_COUNT_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>WMDDetonated</code></td>
+<td><code>x</code> (number), <code>y</code> (number), <code>playerID</code> (number), <code>WMDIndex</code> (number)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WMD_DETONATED</a></td>
+</tr>
+<tr>
+<td><code>WMDFalloutChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WMD_FALLOUT_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>WMDFalloutVisibilityChanged</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WMD_FALLOUT_VISIBILITY_CHANGED</a></td>
+</tr>
+<tr>
+<td><code>WorldCongressEmergencyReady</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_CONGRESS_EMERGENCY_READY</a></td>
+</tr>
+<tr>
+<td><code>WorldCongressPlayersChoice</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_CONGRESS_PLAYERS_CHOICE</a></td>
+</tr>
+<tr>
+<td><code>WorldCongressRibbonUpdate</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_CONGRESS_RIBBON_UPDATE</a></td>
+</tr>
+<tr>
+<td><code>WorldCongressSpecialSessionBeingCalled</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_CONGRESS_SPECIAL_SESSION_BEING_CALLED</a></td>
+</tr>
+<tr>
+<td><code>WorldCongressStage1</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_CONGRESS_STAGE1</a></td>
+</tr>
+<tr>
+<td><code>WorldCongressStage2</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_CONGRESS_STAGE2</a></td>
+</tr>
+<tr>
+<td><code>WorldCongressStage3</code></td>
+<td>none listed</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_CONGRESS_STAGE3</a></td>
+</tr>
+<tr>
+<td><code>WorldTextMessage</code></td>
+<td><code>ReportingStatusTypes reportingStatusType</code> ((enum)), <code>gossipIndex</code> (number), <code>x</code> (number), <code>y</code> (number), <code>text</code> (string)</td>
+<td>GameCoreEvent</td>
+<td><a href="Events.html">WORLD_TEXT_MESSAGE</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Notes from real use</h2>
+<p>What real handlers show about these events, beyond the Companion list. Source: Gedemon's Civilization Overhaul (Gedemon, https://github.com/Gedemon/Civ6-GCO, state of 2021-05-20) unless the evidence column says the vanilla game's own Lua. Timing and ordering remarks are the mod author's comments, not re-tested here. See also <a href="../event-order-gco.html">event order and patterns from a large mod</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Lua event</th>
+<th>Note</th>
+<th>Evidence</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RemotePlayerTurnBegin</code></td>
+<td>Handlers receive <code>playerID</code>, although the Companion lists no parameters.</td>
+<td>vanilla Lua (DiplomacyRibbon.lua OnTurnBegin(playerID)) and GCO PlayerScript.lua:1363</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><code>RemotePlayerTurnEnd</code></td>
+<td>Handlers receive <code>playerID</code>, although the Companion lists no parameters.</td>
+<td>vanilla Lua (DiplomacyRibbon.lua OnTurnEnd(playerID)) and GCO PlayerScript.lua:1376</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><code>LocalPlayerTurnEnd</code></td>
+<td>GCO's handler reads a <code>playerID</code>; the Companion lists none. Not seen in vanilla handlers (they take no arguments).</td>
+<td>GCO PlayerScript.lua:1394</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>ImprovementActivated</code></td>
+<td>There is an eighth argument, <code>activationValue</code>, after <code>activationType</code>; the Companion lists seven. Also, the first two arguments are the plot x, y.</td>
+<td>vanilla Lua (TutorialUIRoot.lua OnImprovementActivated) and GCO PlotScript.lua:2457</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><code>CityProductionCompleted</code></td>
+<td>GCO's handler declares six arguments <code>(playerID, cityID, productionID, objectID, bCanceled, typeModifier)</code>; the Companion lists five. A sixth value probably exists but its meaning is unconfirmed. Vanilla handlers only use the first two.</td>
+<td>GCO CityScript.lua:8006</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>ResearchCompleted</code></td>
+<td>GCO declares a third argument (a cancelled flag, as CivicCompleted has); the Companion lists two.</td>
+<td>GCO ResearchScript.lua:1636</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>RouteAddedToMap</code></td>
+<td>GCO's handlers read <code>x, y</code>; the Companion lists no parameters (vanilla handler ignores them). Same for RouteRemovedFromMap.</td>
+<td>GCO PlotScript.lua:3973-3984</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>FeatureAddedToMap</code></td>
+<td>Carries only <code>x, y</code>, not the feature type. To know which feature was removed, cache the feature per plot yourself (see the event-order page). Same for FeatureRemovedFromMap.</td>
+<td>GCO PlotScript.lua:3954-3967</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>UnitTeleported</code></td>
+<td>Also fires when a unit moves onto the tile of a unit it has just defeated, so it is not only for real teleports.</td>
+<td>author's comment, GCO AltHistScript.lua:123</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>UnitMoved</code></td>
+<td>Fires once per step of a move; use UnitMoveComplete for once per command. Changing game state from this handler may desync multiplayer (author's warning).</td>
+<td>GCO UnitScript.lua:6915-6950</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>UnitDamageChanged</code></td>
+<td>Fires after the engine has already healed or damaged the unit, with <code>(playerID, unitID, newDamage, prevDamage)</code>. GCO calls <code>unit:SetDamage(prevDamage)</code> in the handler to cancel unwanted healing (it observed that pillaging units are healed by the engine).</td>
+<td>GCO UnitScript.lua:5470</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>UnitOperationStarted</code></td>
+<td>For the REMOVE_FEATURE operation the feature is already gone and the builder may already be off the map when this fires.</td>
+<td>author's comment, GCO UnitScript.lua:6821-6823</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>CityInitialized</code></td>
+<td>Fires after CityAddedToMap; city plots are not initialised yet at CityAddedToMap.</td>
+<td>author's comment, GCO CityScript.lua:8111, ModUtils.lua:1731</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>GovernmentChanged</code></td>
+<td>When this fires, policy queries (such as <code>HasPolicyActive</code> passed from the UI) may still return the old value. GCO delays its recalculation with a coroutine. Same for GovernmentPolicyChanged.</td>
+<td>author's comment, GCO CityScript.lua:8117</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><code>PlayerTurnActivated</code></td>
+<td>The author calls it the first general event after all CityProductionCompleted events of that player.</td>
+<td>author's comment, GCO UnitScript.lua:928</td>
+<td>inferred</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

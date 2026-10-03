@@ -1,0 +1,221 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PlayerGreatPeoplePoints</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › PlayerGreatPeoplePoints</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>PlayerGreatPeoplePoints</h1>
+<p>8 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerGreatPeoplePoints</code> instance resolver (plain).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="changebonuspointsperturn"></a>ChangeBonusPointsPerTurn</td>
+<td><code>PlayerGreatPeoplePoints:ChangeBonusPointsPerTurn(eClass: integer, xChange: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a fixed-point delta to the bonus great person points per turn of a given class.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__changebonuspointsperturn">Player::GreatPeoplePoints::ChangeBonusPointsPerTurn</a></td>
+<td><code>0x2e2e20</code></td>
+</tr>
+<tr>
+<td><a id="changebonuspointsperturnpercent"></a>ChangeBonusPointsPerTurnPercent</td>
+<td><code>PlayerGreatPeoplePoints:ChangeBonusPointsPerTurnPercent(eClass: integer, iChange: integer)</code></td>
+<td>Adds a delta to the percent bonus on per-turn points for a great person class, flooring the result at zero.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__changebonuspointsperturnpercent">Player::GreatPeoplePoints::ChangeBonusPointsPerTurnPercent</a></td>
+<td><code>0x2e2e90</code></td>
+</tr>
+<tr>
+<td><a id="changefreegreatpersonpoints"></a>ChangeFreeGreatPersonPoints</td>
+<td><code>PlayerGreatPeoplePoints:ChangeFreeGreatPersonPoints(iChange: integer)</code></td>
+<td>Adds a signed delta to the player free great person points and fires an update event.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__changefreegreatpersonpoints">Player::GreatPeoplePoints::ChangeFreeGreatPersonPoints</a></td>
+<td><code>0x2e30b0</code></td>
+</tr>
+<tr>
+<td><a id="changepatronagediscountpercent"></a>ChangePatronageDiscountPercent</td>
+<td><code>PlayerGreatPeoplePoints:ChangePatronageDiscountPercent(eYield: integer, iChange: integer)</code></td>
+<td>Adds a delta to the great person patronage discount percent for a yield type, clamped to 0..100.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__changepatronagediscountpercent">Player::GreatPeoplePoints::ChangePatronageDiscountPercent</a></td>
+<td><code>0x2e3110</code></td>
+</tr>
+<tr>
+<td><a id="changepointsrefundpercent"></a>ChangePointsRefundPercent</td>
+<td><code>PlayerGreatPeoplePoints:ChangePointsRefundPercent(iChange: integer)</code></td>
+<td>Adds a delta to the percentage of great person points refunded, clamped to 0..100.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__changepointsrefundpercent">Player::GreatPeoplePoints::ChangePointsRefundPercent</a></td>
+<td><code>0x2e31c0</code></td>
+</tr>
+<tr>
+<td><a id="setgreatpersonclassnopoints"></a>SetGreatPersonClassNoPoints</td>
+<td><code>PlayerGreatPeoplePoints:SetGreatPersonClassNoPoints(eGPClass: integer, bNoPoints: boolean)</code></td>
+<td>Adds or removes a great person class from the list of classes that earn no points for the player.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__setgreatpersonclassnopoints">Player::GreatPeoplePoints::SetGreatPersonClassNoPoints</a></td>
+<td><code>0x2e4550</code></td>
+</tr>
+<tr>
+<td><a id="setnopatronagewith"></a>SetNoPatronageWith</td>
+<td><code>PlayerGreatPeoplePoints:SetNoPatronageWith(eYield: integer, bNewValue: boolean)</code></td>
+<td>Sets a per-yield flag meaning the player cannot use that yield to patronize (buy) Great People. Only gold and faith are supported.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__setnopatronagewith">Player::GreatPeoplePoints::SetNoPatronageWith</a></td>
+<td><code>0x2e4640</code></td>
+</tr>
+<tr>
+<td><a id="setyieldmodifierperearnedgreatperson"></a>SetYieldModifierPerEarnedGreatPerson</td>
+<td><code>PlayerGreatPeoplePoints:SetYieldModifierPerEarnedGreatPerson(eYield: integer, xValue: number (fixed point, 1/256 steps))</code></td>
+<td>Sets the yield modifier granted per earned great person for a yield type.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__greatpeoplepoints__setyieldmodifierperearnedgreatperson">Player::GreatPeoplePoints::SetYieldModifierPerEarnedGreatPerson</a></td>
+<td><code>0x2e47b0</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>ChangeBonusPointsPerTurn</h3>
+<p>Arguments: <code>eClass</code> — great person class index; <code>xChange</code> — delta in raw/256</p>
+<p><strong>Writes</strong>
+- bonus points per turn via SetBonusPointsPerTurn (array at this+0xe8)</p>
+<p><strong>Side effects</strong>
+- calls SetBonusPointsPerTurn</p>
+<p><strong>Input checks:</strong> Range check 0 &lt;= class &lt; array size; otherwise silently returns.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- reads old, adds delta, calls SetBonusPointsPerTurn</p>
+<h3>ChangeBonusPointsPerTurnPercent</h3>
+<p>Arguments: <code>eClass</code> — great person class; <code>iChange</code> — amount added</p>
+<p><strong>Writes</strong>
+- per-class bonus percent array at this+0x118 (value += change, clamped to &gt;= 0)</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> Class index is checked to be non-negative and below the size of the array at 0xf8..0x100; out of range silently ignored. No upper clamp.</p>
+<p><strong>Preconditions</strong>
+- valid class id</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (bounds-checked, clamped at 0). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- adds delta
+- sets to 0 if the result is negative</p>
+<p><strong>Inferred</strong>
+- bounds array (0xf8) and edited array (0x118) are parallel arrays by class</p>
+<h3>ChangeFreeGreatPersonPoints</h3>
+<p>Arguments: <code>iChange</code> — signed delta</p>
+<p><strong>Writes</strong>
+- tracked int at this+0x148 (new value = value at this+0x158 + iChange)</p>
+<p><strong>Side effects</strong>
+- sends event 0x884c48ce with owner id
+- assigns through a FAutoVariable move-assign</p>
+<p><strong>Input checks:</strong> No validation; may go negative.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state
+- valid player</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised state. <strong>Risk:</strong> medium (Unvalidated variable write.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- New value = old + delta
+- Sends event 0x884c48ce</p>
+<p><strong>Inferred</strong>
+- Free points can be spent on any class</p>
+<p><strong>Open questions</strong>
+- The ControlPriority template name is probably an identical-code-folding artefact</p>
+<h3>ChangePatronageDiscountPercent</h3>
+<p>Arguments: <code>eYield</code> — yield used for patronage; <code>iChange</code> — amount added</p>
+<p><strong>Writes</strong>
+- per-yield discount percent array at this+0x178, clamped to 0..100</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> Yield index range-checked; out of range silently ignored. Result clamped between 0 and 100.</p>
+<p><strong>Preconditions</strong>
+- valid yield id</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (bounds-checked and clamped). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- clamp to 100 max and 0 min
+- bounds check on yield index</p>
+<p><strong>Inferred</strong>
+- discount applies to patronage cost</p>
+<h3>ChangePointsRefundPercent</h3>
+<p>Arguments: <code>iChange</code> — amount added</p>
+<p><strong>Writes</strong>
+- points refund percent at this+0x170 (wrapper at this+0x160), clamped to 0..100</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> No input check; result clamped to 0..100 afterward.</p>
+<p><strong>Preconditions</strong>
+- valid GreatPeoplePoints object</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (scalar clamped). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- adds then clamps above 100 to 100 and below 0 to 0</p>
+<p><strong>Inferred</strong>
+- refund applies when a great person is recruited</p>
+<p><strong>Open questions</strong>
+- when refund is applied</p>
+<h3>SetGreatPersonClassNoPoints</h3>
+<p>Arguments: <code>eGPClass</code> — great person class; <code>bNoPoints</code> — true to block points for the class, false to allow again</p>
+<p><strong>Writes</strong>
+- no-points class list at this+0x268 (append on true, erase on false)</p>
+<p><strong>Side effects</strong>
+- none visible</p>
+<p><strong>Input checks:</strong> Class -1 returns silently. No duplicate check on add. Unset of absent class is silent no-op.</p>
+<p><strong>Preconditions</strong>
+- valid class id</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (list edit only). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- list append or memmove-based erase of first match</p>
+<p><strong>Inferred</strong>
+- list consulted when awarding points; vector element type shows as TechTypes only due to template folding</p>
+<p><strong>Open questions</strong>
+- whether existing points are cleared</p>
+<h3>SetNoPatronageWith</h3>
+<p>Arguments: <code>eYield</code> — yield type; only YIELD_GOLD and YIELD_FAITH have an effect; <code>bNewValue</code> — new value of the no-patronage flag</p>
+<p><strong>Writes</strong>
+- bool auto-variable at this+0x220 (gold patronage blocked)
+- bool auto-variable at this+0x208 (faith patronage blocked)</p>
+<p><strong>Side effects</strong>
+- assignment goes through the auto-variable copy helper, which likely marks the variable dirty for sync</p>
+<p><strong>Input checks:</strong> Any yield other than gold or faith is silently ignored. No pointer or range checks.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- must run on the game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write; safe only if called identically on all clients from deterministic game logic. <strong>Risk:</strong> low (simple flag write with silent ignore of other yields). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- only YIELD_GOLD and YIELD_FAITH branches write anything
+- gold writes offset 0x220, faith writes offset 0x208
+- value is copied via the auto-variable copy-assignment helper</p>
+<p><strong>Inferred</strong>
+- the flag is read by the Great People patronage purchase check
+- the helper template name is mis-resolved by symbols, it is just an auto-variable assign</p>
+<p><strong>Open questions</strong>
+- which callers read these flags and exactly how they gate patronage</p>
+<h3>SetYieldModifierPerEarnedGreatPerson</h3>
+<p>Arguments: <code>eYield</code> — yield type index; <code>xValue</code> — new value raw/256</p>
+<p><strong>Writes</strong>
+- array element at VariantMap this+0x1a8 for yield</p>
+<p><strong>Input checks:</strong> Unsigned bound check against array size; out of range silently ignored.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- unsigned bounds check
+- overwrites element with *param</p></main><script>const ROOT="../";</script><script src="../search.js"></script>

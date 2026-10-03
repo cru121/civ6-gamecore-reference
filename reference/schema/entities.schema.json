@@ -1,0 +1,603 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Civ VI GameCore reference: entity records",
+  "$defs": {
+    "status": {
+      "enum": [
+        "verified",
+        "inferred",
+        "unknown"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "dll-registration",
+            "static-analysis",
+            "dwarf",
+            "game-script",
+            "runtime",
+            "community-reference"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "build_ref": {
+      "type": "object",
+      "properties": {
+        "rva": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^0x[0-9a-f]+$"
+        },
+        "map": {
+          "type": "string"
+        }
+      }
+    },
+    "builds": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "$ref": "#/$defs/build_ref"
+        },
+        "current": {
+          "$ref": "#/$defs/build_ref"
+        }
+      }
+    },
+    "note": {
+      "type": "object",
+      "required": [
+        "text",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "curated": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "lua_usage": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/note"
+          }
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "lua_method": {
+      "type": "object",
+      "required": [
+        "id",
+        "object",
+        "method",
+        "registered_on",
+        "builds",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^lua:[A-Za-z0-9_]+\\.[A-Za-z0-9_]+$"
+        },
+        "object": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "registered_on": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "ui-cache",
+              "gameplay"
+            ]
+          }
+        },
+        "in_community_reference": {
+          "type": "boolean"
+        },
+        "signatures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "params",
+              "returns",
+              "confidence"
+            ],
+            "properties": {
+              "params": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "type",
+                    "optional"
+                  ]
+                }
+              },
+              "returns": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "confidence": {
+                "enum": [
+                  "high",
+                  "partial",
+                  "low"
+                ]
+              }
+            }
+          }
+        },
+        "builds": {
+          "$ref": "#/$defs/builds"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "lua",
+        "hash",
+        "handlers",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^op:[a-z-]+\\.[A-Z0-9_]+$"
+        },
+        "kind": {
+          "enum": [
+            "player-operation",
+            "unit-operation",
+            "unit-command",
+            "city-operation",
+            "city-command"
+          ]
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{8}$"
+        },
+        "handlers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "builds"
+            ],
+            "properties": {
+              "builds": {
+                "$ref": "#/$defs/builds"
+              }
+            }
+          }
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ]
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "required": [
+        "id",
+        "cpp",
+        "size",
+        "members",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^layout:"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ]
+          }
+        },
+        "members": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset",
+              "type"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "type": {
+                "type": "string"
+              },
+              "windows": {
+                "type": "object",
+                "required": [
+                  "offset",
+                  "relation",
+                  "status",
+                  "evidence"
+                ],
+                "properties": {
+                  "offset": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]+$"
+                  },
+                  "relation": {
+                    "enum": [
+                      "same",
+                      "minus8",
+                      "differs"
+                    ]
+                  },
+                  "status": {
+                    "$ref": "#/$defs/status"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "#/$defs/evidence"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "global": {
+      "type": "object",
+      "required": [
+        "id",
+        "cpp",
+        "type",
+        "section",
+        "builds",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^global:"
+        },
+        "builds": {
+          "$ref": "#/$defs/builds"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "enum": {
+      "type": "object",
+      "required": [
+        "id",
+        "cpp_type",
+        "members",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^enum:"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "hash"
+            ]
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "ce_method": {
+      "type": "object",
+      "required": [
+        "id",
+        "object",
+        "method",
+        "static",
+        "signatures",
+        "wiki",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ce:"
+        },
+        "signatures": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "params",
+              "returns"
+            ]
+          }
+        },
+        "builds": {
+          "$ref": "#/$defs/builds"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "native": {
+      "type": "object",
+      "required": [
+        "id",
+        "class",
+        "function",
+        "builds",
+        "lua_exposure",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^native:"
+        },
+        "builds": {
+          "$ref": "#/$defs/builds"
+        },
+        "lua_exposure": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "none",
+                "indirect",
+                "ce",
+                "devce"
+              ]
+            }
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "param": {
+      "type": "object",
+      "required": [
+        "id",
+        "table",
+        "name",
+        "summary",
+        "value",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^param:"
+        },
+        "value": {
+          "type": "object",
+          "required": [
+            "kind"
+          ]
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "devce_method": {
+      "type": "object",
+      "required": [
+        "id",
+        "object",
+        "method",
+        "static",
+        "signatures",
+        "status",
+        "evidence",
+        "tests"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^devce:"
+        },
+        "signatures": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "params",
+              "returns"
+            ]
+          }
+        },
+        "builds": {
+          "$ref": "#/$defs/builds"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    }
+  }
+}

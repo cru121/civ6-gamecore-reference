@@ -1,0 +1,199 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>TerrainBuilder</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › TerrainBuilder</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>TerrainBuilder</h1>
+<p>21 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder/">TerrainBuilder</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addcoastallowland"></a>AddCoastalLowland</td>
+<td><code>TerrainBuilder.AddCoastalLowland(iPlotIndex: integer, eLowlandType: integer[CoastalLowlandTypes]) (or nothing)</code><br><small>args: <code>eLowlandType</code> — Value of the CoastalLowlandTypes enum (a type index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.AddCoastalLowland/">yes ↗</a></td>
+<td><code>0x21e50</code></td>
+<td><code>0x22340</code></td>
+</tr>
+<tr>
+<td><a id="addice"></a>AddIce</td>
+<td><code>TerrainBuilder.AddIce(iPlotIndex: integer, eIceLossEvent: integer[RandomEventTypes]) (or nothing)</code><br><small>args: <code>iPlotIndex</code> — Plot index (plot:GetIndex()).; <code>eIceLossEvent</code> — Value of the RandomEventTypes enum (a type index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.AddIce/">yes ↗</a></td>
+<td><code>0x21ea0</code></td>
+<td><code>0x22390</code></td>
+</tr>
+<tr>
+<td><a id="analyzechokepoints"></a>AnalyzeChokepoints</td>
+<td><code>TerrainBuilder.AnalyzeChokepoints() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.AnalyzeChokepoints/">yes ↗</a></td>
+<td><code>0x21ef0</code></td>
+<td><code>0x223e0</code></td>
+</tr>
+<tr>
+<td><a id="canhavefeature"></a>CanHaveFeature</td>
+<td><code>TerrainBuilder:CanHaveFeature(arg1: integer, arg2: table) → boolean</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.CanHaveFeature/">yes ↗</a></td>
+<td><code>0x21f10</code></td>
+<td><code>0x22400</code></td>
+</tr>
+<tr>
+<td><a id="generatefloodplains"></a>GenerateFloodplains</td>
+<td><code>TerrainBuilder.GenerateFloodplains(arg1?: any, iMinSize: integer, iMaxSize: integer) (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.GenerateFloodplains/">yes ↗</a></td>
+<td><code>0x21fd0</code></td>
+<td><code>0x224c0</code></td>
+</tr>
+<tr>
+<td><a id="getadjacentfeaturecount"></a>GetAdjacentFeatureCount</td>
+<td><code>TerrainBuilder:GetAdjacentFeatureCount(arg1: integer) → number</code><br><small>args: <code>arg1</code> — Plot index (named plotIndex / plotID in the scripts). (inferred)</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.GetAdjacentFeatureCount/">yes ↗</a></td>
+<td><code>0x22060</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getfeatureplacementplotlist"></a>GetFeaturePlacementPlotList</td>
+<td><code>TerrainBuilder:GetFeaturePlacementPlotList(arg1: integer, arg2: table)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.GetFeaturePlacementPlotList/">yes ↗</a></td>
+<td><code>0x22190</code></td>
+<td><code>0x22680</code></td>
+</tr>
+<tr>
+<td><a id="getfractalflags"></a>GetFractalFlags</td>
+<td><code>TerrainBuilder.GetFractalFlags() → table{FRAC_WRAP_X: boolean, FRAC_WRAP_Y: boolean}</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.GetFractalFlags/">yes ↗</a></td>
+<td><code>0x22330</code></td>
+<td><code>0x22820</code></td>
+</tr>
+<tr>
+<td><a id="getinlandcorner"></a>GetInlandCorner</td>
+<td><code>TerrainBuilder:GetInlandCorner() → MapPlot</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.GetInlandCorner/">yes ↗</a></td>
+<td><code>0x223e0</code></td>
+<td><code>0x228d0</code></td>
+</tr>
+<tr>
+<td><a id="getrandomnumber"></a>GetRandomNumber</td>
+<td><code>TerrainBuilder.GetRandomNumber(usNum: integer[IntRange], pszLog: string[const char]) → number (IntRange)</code><br><small>args: <code>usNum</code> — A number.; <code>pszLog</code> — A string.</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.GetRandomNumber/">yes ↗</a></td>
+<td><code>0x22430</code></td>
+<td><code>0x22920</code></td>
+</tr>
+<tr>
+<td><a id="setcontinenttype"></a>SetContinentType</td>
+<td><code>TerrainBuilder:SetContinentType(eType: integer[ContinentTypes]) (or nothing)</code><br><small>args: <code>eType</code> — Index of a row of the Continents table (the value of GameInfo.Continents[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetContinentType/">yes ↗</a></td>
+<td><code>0x224a0</code></td>
+<td><code>0x22990</code></td>
+</tr>
+<tr>
+<td><a id="setfeaturetype"></a>SetFeatureType</td>
+<td><code>TerrainBuilder:SetFeatureType(iY: integer[FeatureTypes]) → boolean</code><br><small>args: <code>iY</code> — Index of a row of the Features table (the value of GameInfo.Features[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetFeatureType/">yes ↗</a></td>
+<td><code>0x22500</code></td>
+<td><code>0x229f0</code></td>
+</tr>
+<tr>
+<td><a id="setmultiplotfeaturetype"></a>SetMultiPlotFeatureType</td>
+<td><code>TerrainBuilder.SetMultiPlotFeatureType(arg1?: any, arg2: integer[TechTypes]) → boolean ⚠</code><br><small>args: <code>arg2</code> — Index of a row of the Technologies table (the value of GameInfo.Technologies[...].Index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetMultiPlotFeatureType/">yes ↗</a></td>
+<td><code>0x22590</code></td>
+<td><code>0x22a80</code></td>
+</tr>
+<tr>
+<td><a id="setneofcliff"></a>SetNEOfCliff</td>
+<td><code>TerrainBuilder:SetNEOfCliff(arg1?: boolean) (or nothing)</code><br><small>args: <code>arg1</code> — A Plot object (the scripts pass a variable named pPlot).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetNEOfCliff/">yes ↗</a></td>
+<td><code>0x227f0</code></td>
+<td><code>0x22ce0</code></td>
+</tr>
+<tr>
+<td><a id="setneofriver"></a>SetNEOfRiver</td>
+<td><code>TerrainBuilder:SetNEOfRiver(arg1?: any, arg2: integer[FlowDirectionTypes], iRiverID: integer) (or nothing) ⚠</code><br><small>args: <code>arg2</code> — Value of the FlowDirectionTypes enum (a type index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetNEOfRiver/">yes ↗</a></td>
+<td><code>0x22870</code></td>
+<td><code>0x22d60</code></td>
+</tr>
+<tr>
+<td><a id="setnwofcliff"></a>SetNWOfCliff</td>
+<td><code>TerrainBuilder:SetNWOfCliff(arg1?: boolean) (or nothing)</code><br><small>args: <code>arg1</code> — A Plot object (the scripts pass a variable named pPlot).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetNWOfCliff/">yes ↗</a></td>
+<td><code>0x229c0</code></td>
+<td><code>0x22eb0</code></td>
+</tr>
+<tr>
+<td><a id="setnwofriver"></a>SetNWOfRiver</td>
+<td><code>TerrainBuilder:SetNWOfRiver(arg1?: any, arg2: integer[FlowDirectionTypes], iRiverID: integer) (or nothing) ⚠</code><br><small>args: <code>arg2</code> — Value of the FlowDirectionTypes enum (a type index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetNWOfRiver/">yes ↗</a></td>
+<td><code>0x22a40</code></td>
+<td><code>0x22f30</code></td>
+</tr>
+<tr>
+<td><a id="setterraintype"></a>SetTerrainType</td>
+<td><code>TerrainBuilder.SetTerrainType() (or nothing) ⚠</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetTerrainType/">yes ↗</a></td>
+<td><code>0x22b90</code></td>
+<td><code>0x23080</code></td>
+</tr>
+<tr>
+<td><a id="setwofcliff"></a>SetWOfCliff</td>
+<td><code>TerrainBuilder:SetWOfCliff(arg1?: boolean) (or nothing)</code><br><small>args: <code>arg1</code> — A Plot object (the scripts pass a variable named pPlot).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetWOfCliff/">yes ↗</a></td>
+<td><code>0x22bf0</code></td>
+<td><code>0x230e0</code></td>
+</tr>
+<tr>
+<td><a id="setwofriver"></a>SetWOfRiver</td>
+<td><code>TerrainBuilder:SetWOfRiver(arg1?: any, arg2: integer[FlowDirectionTypes], iRiverID: integer) (or nothing) ⚠</code><br><small>args: <code>arg2</code> — Value of the FlowDirectionTypes enum (a type index).</small></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.SetWOfRiver/">yes ↗</a></td>
+<td><code>0x22c70</code></td>
+<td><code>0x23160</code></td>
+</tr>
+<tr>
+<td><a id="stampcontinents"></a>StampContinents</td>
+<td><code>TerrainBuilder.StampContinents() (or nothing)</code></td>
+<td>gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TerrainBuilder.StampContinents/">yes ↗</a></td>
+<td><code>0x22dc0</code></td>
+<td><code>0x232b0</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

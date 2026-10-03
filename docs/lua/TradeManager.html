@@ -1,0 +1,232 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>TradeManager</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Lua API</a> › TradeManager</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>TradeManager</h1>
+<p>24 methods. Symbol/current columns are function addresses (RVA) of the native wrapper.</p>
+<p>Community reference for this object: <a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager/">TradeManager</a> (Sukrit Tan, external).</p>
+<p><strong>Signatures</strong> are recovered from the game code. ⚠ = partly understood (arguments may be missing or approximate). <code>?</code> after a name = optional argument. Types: <code>integer</code>/<code>number</code> are Lua numbers, enum-typed arguments show the C++ type in brackets. Two signatures mean the method is registered separately for the UI and the gameplay state and each wrapper was decoded on its own. "same code as" in the Symbol column means the compiler merged identical functions: those methods share one wrapper and cannot be told apart by address.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Where</th>
+<th>Reference</th>
+<th>Symbol</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="calculatedestinationreligiouspressurefrompotentialroute"></a>CalculateDestinationReligiousPressureFromPotentialRoute</td>
+<td><code>TradeManager:CalculateDestinationReligiousPressureFromPotentialRoute(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (city:GetID()). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (city:GetID()). (inferred) …</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationReligiousPressureFromPotentialRoute/">yes ↗</a></td>
+<td><code>0x6b9120</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldfromattachingresource"></a>CalculateDestinationYieldFromAttachingResource</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldFromAttachingResource(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes], arg6?: integer[ResourceTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldFromAttachingResource(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number, arg6?: number) → number ⚠</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg5</code> — Index of a row of the Yields table (the value of GameInfo.Yields[...].Index).; <code>arg6</code> — Index of a row of the Resources table (the value of GameInfo.Resources[...].Index).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldFromAttachingResource/">yes ↗</a></td>
+<td><code>0x6b9130</code><br><small>same code as CalculateOriginYieldFromAttachingResource</small></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldfrommodifiers"></a>CalculateDestinationYieldFromModifiers</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldFromModifiers(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes], arg6?: integer[ResourceTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldFromModifiers(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number, arg6?: number) → number (FixedPoint) ⚠</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (named cityID in the scripts). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (named cityID in the scripts). (inferred) …</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldFromModifiers/">yes ↗</a></td>
+<td><code>0x6b9140</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldfrompath"></a>CalculateDestinationYieldFromPath</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldFromPath(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldFromPath(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number) → number ⚠</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (named cityID in the scripts). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (named cityID in the scripts). (inferred) …</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldFromPath/">yes ↗</a></td>
+<td><code>0x6b9150</code><br><small>same code as CalculateDestinationYieldFromPotentialRoute</small></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldfrompotentialroute"></a>CalculateDestinationYieldFromPotentialRoute</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldFromPotentialRoute(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldFromPotentialRoute(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number) → number ⚠</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (named cityID in the scripts). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (named cityID in the scripts). (inferred) …</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldFromPotentialRoute/">yes ↗</a></td>
+<td><code>0x6b9150</code><br><small>same code as CalculateDestinationYieldFromPath</small></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldsfromattachingresource"></a>CalculateDestinationYieldsFromAttachingResource</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldsFromAttachingResource(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldsFromAttachingResource(arg1?: any, arg2: integer, arg3: integer, arg4: integer) → table</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldsFromAttachingResource/">yes ↗</a></td>
+<td><code>0x6b9160</code><br><small>same code as CalculateOriginYieldsFromAttachingResource</small></td>
+<td><code>0x6b96e0</code></td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldsfrommodifiers"></a>CalculateDestinationYieldsFromModifiers</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldsFromModifiers(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldsFromModifiers(arg1?: any[HksObject], arg2: integer, arg3: integer, arg4: integer) → table</code><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldsFromModifiers/">yes ↗</a></td>
+<td><code>0x6b92f0</code></td>
+<td><code>0x6b9870</code></td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldsfrompath"></a>CalculateDestinationYieldsFromPath</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldsFromPath(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldsFromPath(arg1?: any, arg2: integer, arg3: integer, arg4: integer) → table</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldsFromPath/">yes ↗</a></td>
+<td><code>0x6b9490</code><br><small>same code as CalculateDestinationYieldsFromPotentialRoute</small></td>
+<td><code>0x6b9a10</code></td>
+</tr>
+<tr>
+<td><a id="calculatedestinationyieldsfrompotentialroute"></a>CalculateDestinationYieldsFromPotentialRoute</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateDestinationYieldsFromPotentialRoute(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateDestinationYieldsFromPotentialRoute(arg1?: any, arg2: integer, arg3: integer, arg4: integer) → table</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateDestinationYieldsFromPotentialRoute/">yes ↗</a></td>
+<td><code>0x6b9490</code><br><small>same code as CalculateDestinationYieldsFromPath</small></td>
+<td><code>0x6b9a10</code></td>
+</tr>
+<tr>
+<td><a id="calculateoriginreligiouspressurefrompotentialroute"></a>CalculateOriginReligiousPressureFromPotentialRoute</td>
+<td><code>TradeManager:CalculateOriginReligiousPressureFromPotentialRoute(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (city:GetID()). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (city:GetID()). (inferred) …</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginReligiousPressureFromPotentialRoute/">yes ↗</a></td>
+<td><code>0x6b95d0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldfromattachingresource"></a>CalculateOriginYieldFromAttachingResource</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldFromAttachingResource(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes], arg6?: integer[ResourceTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldFromAttachingResource(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number, arg6?: number) → number ⚠</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg5</code> — Index of a row of the Yields table (the value of GameInfo.Yields[...].Index).; <code>arg6</code> — Index of a row of the Resources table (the value of GameInfo.Resources[...].Index).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldFromAttachingResource/">yes ↗</a></td>
+<td><code>0x6b9130</code><br><small>same code as CalculateDestinationYieldFromAttachingResource</small></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldfrommodifiers"></a>CalculateOriginYieldFromModifiers</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldFromModifiers(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes], arg6?: integer[ResourceTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldFromModifiers(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number, arg6?: number) → number (FixedPoint) ⚠</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (named cityID in the scripts). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (named cityID in the scripts). (inferred) …</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldFromModifiers/">yes ↗</a></td>
+<td><code>0x6b95e0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldfrompath"></a>CalculateOriginYieldFromPath</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldFromPath(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldFromPath(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number) → number (FixedPoint) ⚠</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (named cityID in the scripts). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (named cityID in the scripts). (inferred) …</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldFromPath/">yes ↗</a></td>
+<td><code>0x6b95f0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldfrompotentialroute"></a>CalculateOriginYieldFromPotentialRoute</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldFromPotentialRoute(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldFromPotentialRoute(arg1?: any, arg2: integer, arg3: integer, arg4: integer, arg5?: number) → number (FixedPoint) ⚠</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg2</code> — Id of a city (named cityID in the scripts). (inferred); <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg4</code> — Id of a city (named cityID in the scripts). (inferred) …</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldFromPotentialRoute/">yes ↗</a></td>
+<td><code>0x6b9600</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldsfromattachingresource"></a>CalculateOriginYieldsFromAttachingResource</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldsFromAttachingResource(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldsFromAttachingResource(arg1?: any, arg2: integer, arg3: integer, arg4: integer) → table</code> <em>(the wrapper calls a stub that returns a constant (0, 1, false or a table of zeros))</em><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldsFromAttachingResource/">yes ↗</a></td>
+<td><code>0x6b9160</code><br><small>same code as CalculateDestinationYieldsFromAttachingResource</small></td>
+<td><code>0x6b96e0</code></td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldsfrommodifiers"></a>CalculateOriginYieldsFromModifiers</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldsFromModifiers(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldsFromModifiers(arg1?: any[HksObject], arg2: integer, arg3: integer, arg4: integer) → table</code><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>originCityID</code> — Id of a city (named cityID in the scripts). (inferred); <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityID</code> — Id of a city (named cityID in the scripts). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldsFromModifiers/">yes ↗</a></td>
+<td><code>0x6b9610</code></td>
+<td><code>0x6b9b90</code></td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldsfrompath"></a>CalculateOriginYieldsFromPath</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldsFromPath(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldsFromPath(arg1?: any[HksObject], arg2: integer, arg3: integer, arg4: integer) → table</code><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>originCityID</code> — Id of a city (named cityID in the scripts). (inferred); <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityID</code> — Id of a city (named cityID in the scripts). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldsFromPath/">yes ↗</a></td>
+<td><code>0x6b97b0</code></td>
+<td><code>0x6b9d30</code></td>
+</tr>
+<tr>
+<td><a id="calculateoriginyieldsfrompotentialroute"></a>CalculateOriginYieldsFromPotentialRoute</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateOriginYieldsFromPotentialRoute(originCityPlayer?: number[PlayerTypes], originCityID: integer, destinationCityPlayer: integer[PlayerTypes], destinationCityID: integer) → table</code><br><em>gameplay state:</em> <code>TradeManager:CalculateOriginYieldsFromPotentialRoute(arg1?: any[HksObject], arg2: integer, arg3: integer, arg4: integer) → table</code><br><small>args: <code>originCityPlayer</code> — Id of a player (as in Players[id]).; <code>originCityID</code> — Id of a city (named cityID in the scripts). (inferred); <code>destinationCityPlayer</code> — Id of a player (as in Players[id]).; <code>destinationCityID</code> — Id of a city (named cityID in the scripts). (inferred)</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateOriginYieldsFromPotentialRoute/">yes ↗</a></td>
+<td><code>0x6b98f0</code></td>
+<td><code>0x6b9e70</code></td>
+</tr>
+<tr>
+<td><a id="calculateyieldfromincomingroutes"></a>CalculateYieldFromIncomingRoutes</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateYieldFromIncomingRoutes(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateYieldFromIncomingRoutes(arg1?: number, arg2?: number, arg3?: number) → number (FixedPoint)</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg3</code> — Index of a row of the Yields table (the value of GameInfo.Yields[...].Index).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateYieldFromIncomingRoutes/">yes ↗</a></td>
+<td><code>0x6b9a30</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="calculateyieldfromoutgoingroutes"></a>CalculateYieldFromOutgoingRoutes</td>
+<td><em>UI state:</em> <code>TradeManager:CalculateYieldFromOutgoingRoutes(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[YieldTypes]) → FixedPointT&lt;8&gt;</code><br><em>gameplay state:</em> <code>TradeManager:CalculateYieldFromOutgoingRoutes(arg1?: number, arg2?: number, arg3?: number) → number (FixedPoint)</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg3</code> — Index of a row of the Yields table (the value of GameInfo.Yields[...].Index).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CalculateYieldFromOutgoingRoutes/">yes ↗</a></td>
+<td><code>0x6b9a40</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="canstartroute"></a>CanStartRoute</td>
+<td><em>UI state:</em> <code>TradeManager:CanStartRoute(arg1?: number, arg2?: number, arg3?: number, arg4?: number, arg5?: boolean) → boolean</code><br><em>gameplay state:</em> <code>TradeManager:CanStartRoute(arg1?: any[HksObject], arg2: integer, arg3: integer, arg4: integer) → boolean</code><br><small>args: <code>arg1</code> — Id of a player.; <code>arg2</code> — Id of a city (city:GetID()).; <code>arg3</code> — Id of a player.; <code>arg4</code> — Id of a city (city:GetID()). …</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CanStartRoute/">yes ↗</a></td>
+<td><code>0x6b9a50</code></td>
+<td><code>0x6b9fd0</code></td>
+</tr>
+<tr>
+<td><a id="canstartroutewithresource"></a>CanStartRouteWithResource</td>
+<td><em>UI state:</em> <code>TradeManager:CanStartRouteWithResource(arg1?: integer[PlayerTypes], arg2?: integer, arg3?: integer[PlayerTypes], arg4?: integer, arg5?: integer[ResourceTypes]) → boolean</code><br><em>gameplay state:</em> <code>TradeManager:CanStartRouteWithResource(arg1?: any[HksObject], arg2: integer, arg3: integer, arg4: integer, arg5?: number) → boolean</code><br><small>args: <code>arg1</code> — Id of a player (as in Players[id]).; <code>arg3</code> — Id of a player (as in Players[id]).; <code>arg5</code> — Index of a row of the Resources table (the value of GameInfo.Resources[...].Index).</small></td>
+<td>ui-cache, gameplay</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.CanStartRouteWithResource/">yes ↗</a></td>
+<td><code>0x6b9b90</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="gettraderoutepath"></a>GetTradeRoutePath ★</td>
+<td><code>TradeManager:GetTradeRoutePath(arg1?: number, arg2?: number, arg3?: number, arg4?: number) → table ⚠</code><br><small>args: <code>arg1</code> — Id of a player (the scripts name the argument playerID / owner). (inferred); <code>arg2</code> — Id of a city (named cityID in the scripts). (inferred); <code>arg3</code> — Id of a player (the scripts name the argument playerID / owner). (inferred); <code>arg4</code> — Id of a city (named cityID in the scripts). (inferred)</small></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.GetTradeRoutePath/">yes ↗</a></td>
+<td><code>0x6b9ba0</code></td>
+<td><code>0x6ba120</code></td>
+</tr>
+<tr>
+<td><a id="isrouteallowed"></a>IsRouteAllowed</td>
+<td><code>TradeManager:IsRouteAllowed(arg1?: number, arg2?: number, arg3?: number, arg4?: number, arg5?: boolean) → boolean</code></td>
+<td>ui-cache</td>
+<td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TradeManager.IsRouteAllowed/">yes ↗</a></td>
+<td><code>0x6b9f20</code></td>
+<td><code>0x6ba4a0</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Notes (★)</h2>
+<h3>GetTradeRoutePath</h3>
+<p>Returns the plots of a trade route between two cities.</p>
+<ul>
+<li>TradeManager.GetTradeRoutePath is registered on the UI cache state only. Civ6-GCO reaches it through a UI-context wrapper (GCO.GetTradeManager) even though most of its logic runs in gameplay scripts, which fits.
+  <em>[verified; evidence: dll-registration — TradeManager.GetTradeRoutePath is in the ui-cache table only, community-reference — Civ6-GCO Scripts/GCO_CityScript.lua:1835, 2277; InGame/GCO_ContextFunctions.lua ~178; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script]</em></li>
+<li>In GCO's calls the arguments are (originOwner, originCityID, destinationOwner, destinationCityID) and the result is a list of plots.
+  <em>[inferred; evidence: community-reference — Civ6-GCO Scripts/GCO_CityScript.lua:2303; third-party mod Civ6-GCO (Gedemon, 2021), not a Firaxis script]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script>

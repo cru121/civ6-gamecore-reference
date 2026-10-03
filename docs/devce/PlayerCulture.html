@@ -1,0 +1,358 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PlayerCulture</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:6px}#res a{display:block;font-size:13px;margin:2px 0}nav a{display:block}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}}</style><nav><b>GameCore reference</b><input id=q placeholder="search" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › PlayerCulture</p>
+<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>PlayerCulture</h1>
+<p>12 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerCulture</code> instance resolver (virtual).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addtourismatplot"></a>AddTourismAtPlot</td>
+<td><code>PlayerCulture:AddTourismAtPlot(iPlotIndex: integer, iTourism: integer)</code></td>
+<td>Adds tourism to a plot's entry in the player's tourism location list, scaled by a percentage modifier (floor -100%).</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__addtourismatplot">Player::Culture::AddTourismAtPlot</a></td>
+<td><code>0x279f60</code></td>
+</tr>
+<tr>
+<td><a id="changegreatworkobjecttourismmodifier"></a>ChangeGreatWorkObjectTourismModifier</td>
+<td><code>PlayerCulture:ChangeGreatWorkObjectTourismModifier(eGreatWorkObjectType: integer, iModDelta: integer)</code></td>
+<td>Adds a delta to the tourism modifier for a specific great work object type, if that type already has a record.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__changegreatworkobjecttourismmodifier">Player::Culture::ChangeGreatWorkObjectTourismModifier</a></td>
+<td><code>0x27c0b0</code></td>
+</tr>
+<tr>
+<td><a id="changetourismon"></a>ChangeTourismOn</td>
+<td><code>PlayerCulture:ChangeTourismOn(ePlayer: integer, xValue: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to this player's accumulated tourism toward another player.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__changetourismon">Player::Culture::ChangeTourismOn</a></td>
+<td><code>0x27c140</code></td>
+</tr>
+<tr>
+<td><a id="grantrandomboostgoodyhut"></a>GrantRandomBoostGoodyHut</td>
+<td><code>PlayerCulture:GrantRandomBoostGoodyHut(iNumFreeBoosts: integer, eSource: integer)</code></td>
+<td>Grants a number of random civic boosts (from the era of the cheapest not-yet-owned civic) to a player, used by goody huts.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__grantrandomboostgoodyhut">Player::Culture::GrantRandomBoostGoodyHut</a></td>
+<td><code>0x280860</code></td>
+</tr>
+<tr>
+<td><a id="grantrandomboostsbyera"></a>GrantRandomBoostsByEra</td>
+<td><code>PlayerCulture:GrantRandomBoostsByEra(iNumFreeBoosts: integer, eStartEra: integer, eEndEra: integer)</code></td>
+<td>Randomly triggers a number of civic boosts for a player, picking among boostable civics whose era is between a start and end era that are not yet researched or boosted.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__grantrandomboostsbyera">Player::Culture::GrantRandomBoostsByEra</a></td>
+<td><code>0x280c80</code></td>
+</tr>
+<tr>
+<td><a id="recomputetourismon"></a>RecomputeTourismOn</td>
+<td><code>PlayerCulture:RecomputeTourismOn(ePlayer: integer)</code></td>
+<td>Recomputes how many tourists this player receives from another player's culture and updates the stored value and the other player's tourism-related total by the difference.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__recomputetourismon">Player::Culture::RecomputeTourismOn</a></td>
+<td><code>0x282cb0</code></td>
+</tr>
+<tr>
+<td><a id="setallcivicsbypreviousera"></a>SetAllCivicsByPreviousEra</td>
+<td><code>PlayerCulture:SetAllCivicsByPreviousEra(eEraType: integer)</code></td>
+<td>Marks as completed every civic whose era is earlier than the given era (era index &gt;1), notifying listeners for each and once overall.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__setallcivicsbypreviousera">Player::Culture::SetAllCivicsByPreviousEra</a></td>
+<td><code>0x284060</code></td>
+</tr>
+<tr>
+<td><a id="setfavorperturnfrombuilding"></a>SetFavorPerTurnFromBuilding</td>
+<td><code>PlayerCulture:SetFavorPerTurnFromBuilding(eBuilding: integer, iFavor: integer)</code></td>
+<td>Sets the per-turn Favor yield contributed by a building, replacing the existing value or adding a new record.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__setfavorperturnfrombuilding">Player::Culture::SetFavorPerTurnFromBuilding</a></td>
+<td><code>0x284ca0</code></td>
+</tr>
+<tr>
+<td><a id="setfavorperturnfrompolicy"></a>SetFavorPerTurnFromPolicy</td>
+<td><code>PlayerCulture:SetFavorPerTurnFromPolicy(ePolicy: integer, iFavor: integer)</code></td>
+<td>Sets the per-turn Favor yield contributed by a policy, replacing the existing value or adding a new record.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__setfavorperturnfrompolicy">Player::Culture::SetFavorPerTurnFromPolicy</a></td>
+<td><code>0x284d60</code></td>
+</tr>
+<tr>
+<td><a id="setgreatworkobjectnotourism"></a>SetGreatWorkObjectNoTourism</td>
+<td><code>PlayerCulture:SetGreatWorkObjectNoTourism(eGreatWorkObjectType: integer, bNoTourism: boolean)</code></td>
+<td>Sets a flag that makes a great work object type produce no tourism, if the type has a record.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__setgreatworkobjectnotourism">Player::Culture::SetGreatWorkObjectNoTourism</a></td>
+<td><code>0x285030</code></td>
+</tr>
+<tr>
+<td><a id="setnumfreecivicboostonnewera"></a>SetNumFreeCivicBoostOnNewEra</td>
+<td><code>PlayerCulture:SetNumFreeCivicBoostOnNewEra(numBoosts: integer, applyImmediately: boolean)</code></td>
+<td>Adds to the number of free civic boosts granted when a new era begins, optionally granting boosts immediately.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__setnumfreecivicboostonnewera">Player::Culture::SetNumFreeCivicBoostOnNewEra</a></td>
+<td><code>0x285190</code></td>
+</tr>
+<tr>
+<td><a id="setpolicybanned"></a>SetPolicyBanned</td>
+<td><code>PlayerCulture:SetPolicyBanned(ePolicy: integer, bBanned: boolean)</code></td>
+<td>Marks a policy as banned or unbanned for the player; when banning an active policy it removes it from its slot.</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/Player.html#player__culture__setpolicybanned">Player::Culture::SetPolicyBanned</a></td>
+<td><code>0x285230</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>AddTourismAtPlot</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index; <code>iTourism</code> — base tourism before modifier</p>
+<p><strong>Writes</strong>
+- tourism location vector at this+0x648 (existing entry amount increased or new entry appended)</p>
+<p><strong>Input checks:</strong> No plot validation; modifier clamped at -100.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: synced vector. <strong>Risk:</strong> low (append/add only). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- amount = (max(mod,-100)+100)*tourism/100 using integer division
+- finds entry by plot index with find_if
+- adds or appends</p>
+<p><strong>Inferred</strong>
+- modifier pointer chain is the player's tourism modifier</p>
+<p><strong>Open questions</strong>
+- what source is at +0x6f0 -&gt; +0x508</p>
+<h3>ChangeGreatWorkObjectTourismModifier</h3>
+<p>Arguments: <code>eGreatWorkObjectType</code> — great work object type; <code>iModDelta</code> — amount added to the modifier</p>
+<p><strong>Writes</strong>
+- second field of the matching 12-byte record in the vector at this+0x738</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> Type -1 returns silently. If no record exists for the type, nothing happens (no insertion).</p>
+<p><strong>Preconditions</strong>
+- records for object types pre-populated</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (bounded linear search, silent miss). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- searches vector of 12-byte entries by first field
+- adds to second field on match, no insert on miss</p>
+<p><strong>Inferred</strong>
+- third field is the no-tourism flag set by SetGreatWorkObjectNoTourism</p>
+<p><strong>Open questions</strong>
+- where the vector is populated</p>
+<h3>ChangeTourismOn</h3>
+<p>Arguments: <code>ePlayer</code> — player the tourism is directed at; <code>xValue</code> — amount to add (raw/256)</p>
+<p><strong>Writes</strong>
+- tourism-on-player array entry at this+0x480 (index ePlayer)</p>
+<p><strong>Side effects</strong>
+- none beyond marking the game variable edited</p>
+<p><strong>Input checks:</strong> Silently ignores ePlayer &gt;= 0x16 (22); the check is unsigned so negatives are ignored too.</p>
+<p><strong>Preconditions</strong>
+- valid player id &lt; 22
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: edits synchronized state directly. <strong>Risk:</strong> low (bounds-checked simple add). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bound check param &lt; 0x16
+- reads old value, calls edit, writes old+delta
+- delta is read through a pointer (FixedPoint passed by reference)</p>
+<p><strong>Inferred</strong>
+- value is FixedPoint raw int; no clamping</p>
+<p><strong>Open questions</strong>
+- why the limit is 22 rather than 64 (likely only majors)</p>
+<h3>GrantRandomBoostGoodyHut</h3>
+<p>Arguments: <code>iNumFreeBoosts</code> — how many boosts to grant; <code>eSource</code> — source of the boost, passed to TriggerBoost</p>
+<p><strong>Writes</strong>
+- triggers civic boosts through TriggerBoost
+- consumes random numbers</p>
+<p><strong>Side effects</strong>
+- calls Culture::TriggerBoost for each chosen civic
+- advances the game random number generator (label: Choosing random civic boost to grant based on era)
+- heap-allocates a candidate list when it overflows inline storage</p>
+<p><strong>Input checks:</strong> Does nothing if count &lt;= 0 or no candidate boosts. Civic ids of -1 or out of range skip the already-boosted checks.</p>
+<p><strong>Preconditions</strong>
+- valid player
+- game thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> low (uses the game RNG with a fixed label, normal gameplay path). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- picks a lowest-era civic not yet owned/boosted then collects its era's boosts that exist and whose civic is not already owned
+- draws with Game::Instance::GetRandNum using the label 'Choosing random civic boost to grant based on era'
+- removes each chosen entry from the candidate list so no repeats
+- calls TriggerBoost for each selection not already boosted</p>
+<p><strong>Inferred</strong>
+- target era is the lowest era among unowned civics
+- decompiled types are misleading (government/tech names reused for civics)</p>
+<p><strong>Open questions</strong>
+- exact era-selection logic is partly garbled by decompiler type confusion
+- whether the HasBoost check refers to the era's boost objects</p>
+<h3>GrantRandomBoostsByEra</h3>
+<p>Arguments: <code>iNumFreeBoosts</code> — how many boosts to grant; <code>eStartEra</code> — lower era bound (inclusive); <code>eEndEra</code> — upper era bound (inclusive)</p>
+<p><strong>Writes</strong>
+- calls TriggerBoost on this player (source code 2) for each chosen civic</p>
+<p><strong>Side effects</strong>
+- draws random numbers from the game random stream (labelled with a log string including the player id)
+- triggers civic boosts</p>
+<p><strong>Input checks:</strong> if either era is not found in definitions the candidate list stays empty and nothing is granted; loop stops when candidates run out</p>
+<p><strong>Preconditions</strong>
+- valid owning player
+- game thread; deterministic RNG state</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> medium (consumes game RNG and triggers boosts; fine if run on all clients). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- builds a weighted candidate list of civics with weight 1
+- random index chosen via Game::Instance::GetRandNum with a log text including the player id
+- chosen entry removed from list then TriggerBoost(civic, 2) called
+- stops at iNumFreeBoosts or when list is empty</p>
+<p><strong>Inferred</strong>
+- candidate items are civics (names TechTypes in decompile are reused types)
+- era filter compares an era index field at +0x1c</p>
+<p><strong>Open questions</strong>
+- meaning of TriggerBoost source value 2
+- decompile mixes tech/civic type names so list element type is unsure</p>
+<h3>RecomputeTourismOn</h3>
+<p>Arguments: <code>ePlayer</code> — the other player id</p>
+<p><strong>Writes</strong>
+- per-player tourist count array at this+0x5e8 (entry ePlayer)
+- an AI control/priority-style int on the other player's object (+0x6f0 -&gt; +0x5a0) adjusted by the delta</p>
+<p><strong>Side effects</strong>
+- calls ComputeTouristsFrom(ePlayer)</p>
+<p><strong>Input checks:</strong> no bounds check on ePlayer; EditPlayer result not null-checked</p>
+<p><strong>Preconditions</strong>
+- valid player id
+- gameplay thread</p>
+<p><strong>Multiplayer:</strong> safe-deterministic. <strong>Risk:</strong> medium (unchecked index and cross-player write). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- indexes player arrays by ePlayer*4 without bounds check
+- other player's field at +0x6f0 pointer then +0x5b0 minus the delta is stored back through a MoveAssignment on +0x5a0</p>
+<p><strong>Inferred</strong>
+- the +0x6f0 object is the other player's Culture and the field is a running total tied to tourists received (probably lifetime/visiting tourists)
+- the +0x5a0 type name AI::Control::ControlPriority is likely a mis-resolved template</p>
+<p><strong>Open questions</strong>
+- exact meaning of the field updated on the other player</p>
+<h3>SetAllCivicsByPreviousEra</h3>
+<p>Arguments: <code>eEraType</code> — era; civics from earlier eras are granted</p>
+<p><strong>Writes</strong>
+- civic-completed byte array at this+0x348</p>
+<p><strong>Side effects</strong>
+- signal (Unit*,uint) per civic granted (game signal +0x498) with the player and civic id
+- signal (uint) on player object +0x798 with last granted civic</p>
+<p><strong>Input checks:</strong> Era index looked up with bounds check but result used unchecked when out of range (null deref risk); does nothing if era's index &lt;=1.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- valid era type</p>
+<p><strong>Multiplayer:</strong> may-desync: grants civics. <strong>Risk:</strong> medium (bulk grant and unchecked era pointer). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- skips when era value &lt;=1
+- only civics whose era value is below target era
+- dispatches per-civic signal and one final signal if any granted</p>
+<p><strong>Inferred</strong>
+- does not trigger boosts or other civic side effects</p>
+<p><strong>Open questions</strong>
+- whether already-owned civics also re-trigger the signal (no check seen)</p>
+<h3>SetFavorPerTurnFromBuilding</h3>
+<p>Arguments: <code>eBuilding</code> — building type; <code>iFavor</code> — favor per turn value (assigned, not added)</p>
+<p><strong>Writes</strong>
+- (building, favor) pair vector at this+0x798</p>
+<p><strong>Side effects</strong>
+- vector may reallocate</p>
+<p><strong>Input checks:</strong> Type -1 returns silently. No range check on value.</p>
+<p><strong>Preconditions</strong>
+- valid Culture object</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (simple keyed assignment). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- linear search by building; overwrite second int if found, else append 8-byte pair</p>
+<p><strong>Inferred</strong>
+- total favor per turn aggregates these entries (Gathering Storm)</p>
+<p><strong>Open questions</strong>
+- aggregation point</p>
+<h3>SetFavorPerTurnFromPolicy</h3>
+<p>Arguments: <code>ePolicy</code> — policy type; <code>iFavor</code> — favor per turn value (assigned, not added)</p>
+<p><strong>Writes</strong>
+- (policy, favor) pair vector at this+0x768</p>
+<p><strong>Side effects</strong>
+- vector may reallocate</p>
+<p><strong>Input checks:</strong> Type -1 returns silently. No range check.</p>
+<p><strong>Preconditions</strong>
+- valid Culture object</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (simple keyed assignment). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- linear search by policy; overwrite or append 8-byte pair</p>
+<p><strong>Inferred</strong>
+- sums into player's favor income</p>
+<p><strong>Open questions</strong>
+- aggregation point</p>
+<h3>SetGreatWorkObjectNoTourism</h3>
+<p>Arguments: <code>eGreatWorkObjectType</code> — great work object type; <code>bNoTourism</code> — true to suppress tourism</p>
+<p><strong>Writes</strong>
+- bool flag in the third field of the matching record in the vector at this+0x738</p>
+<p><strong>Side effects</strong>
+- none</p>
+<p><strong>Input checks:</strong> Type -1 returns silently. Missing record: silent no-op.</p>
+<p><strong>Preconditions</strong>
+- records for object types pre-populated</p>
+<p><strong>Multiplayer:</strong> may-desync: player state mutation; must run identically on all clients. <strong>Risk:</strong> low (flag write with silent miss). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- same record vector as ChangeGreatWorkObjectTourismModifier
+- writes a bool at offset 8 of the 12-byte record</p>
+<p><strong>Inferred</strong>
+- flag consulted in tourism calculation</p>
+<h3>SetNumFreeCivicBoostOnNewEra</h3>
+<p>Arguments: <code>numBoosts</code> — amount added to the stored counter (despite 'Set' name it is additive); <code>applyImmediately</code> — if true and boosts positive, grant random boosts now</p>
+<p><strong>Writes</strong>
+- free civic boost counter at this+0x7f0 (via wrapper at this+0x7e0)
+- random civic boosts granted through GrantRandomBoostsByEra</p>
+<p><strong>Side effects</strong>
+- may call GrantRandomBoostsByEra, which uses game randomness and awards boosts</p>
+<p><strong>Input checks:</strong> No zero check. Immediate grant requires a valid era (not -1) and a positive amount; otherwise only the counter changes.</p>
+<p><strong>Preconditions</strong>
+- owning player valid with an era set</p>
+<p><strong>Multiplayer:</strong> may-desync: random boost granting must be run identically on all clients (uses synchronized RNG presumably). <strong>Risk:</strong> medium (counter can go negative; immediate grant uses random selection). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- counter = old + param
+- immediate grant only if bool set, era != -1, param &gt; 0
+- calls GrantRandomBoostsByEra with the current era twice</p>
+<p><strong>Inferred</strong>
+- boosts are civic (culture) boosts per the name
+- RNG used inside GrantRandomBoostsByEra</p>
+<p><strong>Open questions</strong>
+- meaning of two era arguments
+- whether counter is consumed or persistent</p>
+<h3>SetPolicyBanned</h3>
+<p>Arguments: <code>ePolicy</code> — policy type; <code>bBanned</code> — true to ban</p>
+<p><strong>Writes</strong>
+- banned flag array entry at this+0x320
+- policy slot cleared via ClearPolicySlot
+- another tracked value at this+0x7c8 set to -1 after a slot clear</p>
+<p><strong>Side effects</strong>
+- removes the active policy from its slot if found; resets a tracked field at this+0x7c8 to -1</p>
+<p><strong>Input checks:</strong> Policy id is range checked against array size (unsigned compare, so -1 is rejected silently). Out of range does nothing.</p>
+<p><strong>Preconditions</strong>
+- valid policy index
+- player culture initialised</p>
+<p><strong>Multiplayer:</strong> may-desync: removes active policies; must run identically on all clients. <strong>Risk:</strong> medium (can evict an active policy and change slots). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- bounds check on policy id
+- writes banned flag
+- clears the slot only when banning and the policy is flagged active
+- scan for slot entry holding that policy</p>
+<p><strong>Inferred</strong>
+- flag at +0x308 means 'currently active'
+- value at +0x7c8 is something like a last-removed-policy marker</p>
+<p><strong>Open questions</strong>
+- what +0x7c8 means
+- if slot not found, +0x7c8 stays unchanged (return before)</p></main><script>const ROOT="../";</script><script src="../search.js"></script>
