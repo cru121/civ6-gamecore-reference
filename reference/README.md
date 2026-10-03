@@ -20,7 +20,7 @@ dangling `related` links and hash collisions.
 
 Every entity carries an availability (vanilla / needs the Community Extension / engine internals); the site colours sections green / amber / grey. CE methods come from the CE wiki tables and source, native functions from the gap analysis, our function notes and the CE offsets.
 
-Scope: Lua methods (1,920), operations and commands (154), enums (7), class layouts (1,915), globals (1,314), 8 curated notes, 25 checked Windows offsets (curated/_windows_offsets.yaml), 2 topic pages. Lua methods link to the community reference by Sukrit Tan (external) instead of copying its text.
+Scope: Lua methods (1,920), operations and commands (154), enums (26), class layouts (1,915), globals (1,314), 28 curated notes, 25 checked Windows offsets (curated/_windows_offsets.yaml), 2 topic pages. Lua methods link to the community reference by Sukrit Tan (external) instead of copying its text.
 What each argument means comes from the C++ parameter type and from the arguments the game's own Lua passes (tools/lua_arg_meanings.py).
 What a returned number means comes from the C++ type the wrapper returns and from how the game's own Lua uses the result (tools/lua_return_usage.py, lua_return_meanings.py).
 Return values are reconstructed by replaying the wrapper's pushes on a model stack (tools/lua_returns.py): table fields, array element types, semantic types from the called C++ function.
