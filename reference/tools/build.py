@@ -698,6 +698,7 @@ def arg_cell(use):
     return '<br>'.join('`%s` = `%s`' % (md_esc(k), md_esc(v)) for k, v in use['a'].items() if not str(v).startswith('LOC_')) or '—'
 
 uses_path = lambda name: 'effects/u/%s.md' % safe(name)
+USES_PARENT = {}   # use page -> (class page, class name) for the breadcrumb
 KEYMAP = {}        # text key -> [[effect name, page]]
 for e in EFF:
     if e['kind'] != 'effect':
@@ -706,11 +707,11 @@ for e in EFF:
     if not us:
         continue
     path = uses_path(e['name'])
+    USES_PARENT[path] = (eff_page('effect', e['class']), e['class'] or 'Other')
     L = ['# %s: where the game uses it\n' % e['name'],
          '%d modifier%s in the game\'s own data %s this effect. Modifier ids, argument values, owners and requirement sets come from the installed game\'s data files '
          '(the base game and every DLC; mods are not included). Text keys are shown as keys: [load your own game text](../../game-text.md) to read the in-game wording here.\n' % (len(us), '' if len(us) == 1 else 's', 'uses' if len(us) == 1 else 'use'),
-         'Back to [%s](../%s.md#%s). Arguments: %s.\n' % (e['class'] or 'Other', safe(e['class'] or 'Other'), e['name'].lower(),
-                                                      ', '.join('`%s` (%s)' % (a['name'], a['type']) for a in e['args']) or 'none listed'),
+         'Arguments: %s.\n' % (', '.join('`%s` (%s)' % (a['name'], a['type']) for a in e['args']) or 'none listed'),
          '| Used by | Modifier | Arguments | Applies to | Conditions | In-game text | From |', '|---|---|---|---|---|---|---|']
     for u in us:
         owners = '<br>'.join(owner_cell(o) for o in u['o']) or '—'
@@ -975,6 +976,8 @@ def parents(path):
         chain.append(('operations/%s.md' % parts[1], pages['operations/%s.md' % parts[1]][0]))
     if parts[0] == 'layouts' and len(parts) == 3:
         chain.append(('layouts/%s.md' % parts[1], parts[1]))
+    if path in USES_PARENT:
+        chain.append(USES_PARENT[path])
     if parts[0] == 'globals' and path != 'globals/index.md':
         pass
     return chain
