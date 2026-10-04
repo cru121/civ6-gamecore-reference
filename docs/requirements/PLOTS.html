@@ -1,0 +1,441 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Requirements: PLOTS</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Requirements</a> › Requirements: PLOTS</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Requirements: PLOTS</h1>
+<p>59 entries. Subject class "PLOTS" is the community list's grouping (what the modifier applies to).</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Arguments</th>
+<th>Engine functions called</th>
+<th>Availability</th>
+<th>Addresses (symbol→current)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="requirement_attacker_plot_has_any_district"></a><code>REQUIREMENT_ATTACKER_PLOT_HAS_ANY_DISTRICT</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_attacker_plot_improvement_defense_strength"></a><code>REQUIREMENT_ATTACKER_PLOT_IMPROVEMENT_DEFENSE_STRENGTH</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td><code>Definitions::GetImprovementDefinitions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x85a700</code>→<code>0x8722e0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_attacker_plot_improvement_type_matches"></a><code>REQUIREMENT_ATTACKER_PLOT_IMPROVEMENT_TYPE_MATCHES</code></td>
+<td><code>ImprovementType</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestPlot <code>0x8bc3f0</code>→<code>0x8d5b60</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_building_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_BUILDING_TYPE_MATCHES</code></td>
+<td><code>BuildingType</code> (String), <code>MaxRange</code> (Integer), <code>MinRange</code> (Integer)</td>
+<td><code>City::CManager::EditCity</code><br><code>City::Buildings::IsPillaged</code><br><code>City::Buildings::GetBuildingLocation</code><br><code>Map::Plot::Instance::GetIndex</code></td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x829ab0</code>→<code>0x842490</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_district_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_DISTRICT_TYPE_MATCHES</code></td>
+<td><code>DistrictType</code> (String), <code>MaxRange</code> (Integer), <code>MinRange</code> (Integer), <code>MustBeFunctioning</code> (Boolean)</td>
+<td><code>Map::Plot::CityAttributes::GetDistrictType</code><br><code>Rules::Districts::Get</code><br><code>Rules::Districts::Shared::Instance::AreSameOrReplacement</code><br><code>Map::Plot::CityAttributes::IsDistrictComplete</code><br><code>Map::Plot::CityAttributes::IsDistrictPillaged</code></td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x84e290</code>→<code>0x867820</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_feature_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_FEATURE_TYPE_MATCHES</code></td>
+<td><code>FeatureType</code> (String), <code>MaxRange</code> (Integer), <code>MinRange</code> (Integer)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x823570</code>→<code>0x83c100</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_friendly_territory"></a><code>REQUIREMENT_PLOT_ADJACENT_FRIENDLY_TERRITORY</code></td>
+<td><code>MaxRange</code> (Integer), <code>MinRange</code> (Integer)</td>
+<td><code>Rules::Movement::Get</code><br><code>Rules::Movement::Instance::GetDiplomaticTerritory</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>TestAdjacentPlot <code>0x833a90</code>→<code>0x84d8c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_friendly_unit_tag_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_FRIENDLY_UNIT_TAG_MATCHES</code></td>
+<td><code>MaxRange</code> (Integer), <code>MinRange</code> (Integer), <code>Tag</code> (String)</td>
+<td><code>Cache::City::Growth::GetAmenitiesLostFromBankruptcy</code><br><code>Map::UnitContainer::GetUnitsByIndex</code><br><code>Unit::CManager::GetUnit</code><br><code>GameEffects::Requirements::PlotAdjacentFriendlyUnitTagMatches::IsFriendlyUnit</code><br><code>Map::IInstance::GetAdjacentPlot</code><br><code>Player::Influence::GetSuzerain</code><br><code>Player::Diplomacy::HasAllied</code><br><code>Tag::Repository::GetTagLookupId</code><br><code>Definitions::GetUnitDefinitions</code><br><code>Tag::Repository::HasTag</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8ae120</code>→<code>0x8c7dd0</code><br>OnInitialize <code>0x8ad990</code>→<code>0x8c7760</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_friendly_unit_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_FRIENDLY_UNIT_TYPE_MATCHES</code></td>
+<td><code>IncludeCenter</code> (Boolean), <code>MaxRange</code> (Integer), <code>MinRange</code> (Integer), <code>UnitType</code> (String)</td>
+<td><code>GameEffects::Requirements::SimpleRequirement::CascadeQueryInterface</code><br><code>Cache::City::Growth::GetAmenitiesLostFromBankruptcy</code><br><code>Map::UnitContainer::GetUnitsByIndex</code><br><code>Unit::CManager::GetUnit</code><br><code>GameEffects::Requirements::PlotAdjacentFriendlyUnitTypeMatches::TestUnit</code><br><code>Map::IInstance::GetAdjacentPlot</code><br><code>Definitions::GetUnitDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8eef90</code>→<code>0x7f4c10</code><br>OnInitialize <code>0x8eeb30</code>→<code>0x7f4400</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_improvement_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_IMPROVEMENT_TYPE_MATCHES</code></td>
+<td><code>ImprovementType</code> (String), <code>MaxRange</code> (Integer), <code>MinRange</code> (Integer)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x883b70</code>→<code>0x89d7f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_resource_class_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_RESOURCE_CLASS_TYPE_MATCHES</code></td>
+<td><code>MaxRange</code> (Integer), <code>MinRange</code> (Integer), <code>ResourceClassType</code> (String)</td>
+<td><code>Definitions::GetResourceDefinitions</code></td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x8e9f20</code>→<code>0x7efb40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_terrain_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_TERRAIN_TYPE_MATCHES</code></td>
+<td><code>TerrainType</code> (String), <code>MinRange</code> (Integer), <code>MaxRange</code> (Integer)</td>
+<td>—</td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>TestAdjacentPlot <code>0x7eef00</code>→<code>0x806e50</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_coast"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_COAST</code></td>
+<td><code>MaxRange</code> (Integer), <code>MinRange</code> (Integer)</td>
+<td><code>Map::Plot::Instance::IsShallowWater</code></td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x8756d0</code>→<code>0x88cf80</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_lake"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_LAKE</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer)</td>
+<td><code>Map::Plot::Instance::IsLake</code></td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x881600</code>→<code>0x89b810</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_mountain"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_MOUNTAIN</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer)</td>
+<td>—</td>
+<td>NFP</td>
+<td>TestAdjacentPlot <code>0x8927f0</code>→<code>0x8aab30</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_natural_wonder"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_NATURAL_WONDER</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer)</td>
+<td><code>Map::Plot::Instance::IsNaturalWonder</code></td>
+<td>NFP</td>
+<td>TestAdjacentPlot <code>0x8a1300</code>→<code>0x8b9740</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_owner"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_OWNER</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer)</td>
+<td><code>Map::IInstance::GetPlotDistance</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>GameEffects::GameEventHandler::WhenUnitMoves</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8aff20</code>→<code>0x8c9c20</code><br>OnInitialize <code>0x8af770</code>→<code>0x8c90d0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_owner_at_war"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_OWNER_AT_WAR</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer)</td>
+<td><code>Map::IInstance::GetPlotDistance</code><br><code>Player::Instance::IsAtWarWith</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>GameEffects::IModifierObject::TryQueryInterface</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8c7620</code>→<code>0x8e1200</code><br>OnInitialize <code>0x8c6f70</code>→<code>0x8e0bc0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_river"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_RIVER</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestPlot <code>0x832880</code>→<code>0x84b010</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_to_wonder"></a><code>REQUIREMENT_PLOT_ADJACENT_TO_WONDER</code></td>
+<td><code>MaxRange</code> (Integer), <code>MinRange</code> (Integer)</td>
+<td><code>City::CManager::GetAttributes</code><br><code>Map::Plot::CityAttributes::IsDistrictPillaged</code><br><code>Map::Plot::CityAttributes::IsWonderComplete</code></td>
+<td>Base game+</td>
+<td>TestAdjacentPlot <code>0x8439e0</code>→<code>0x85d050</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_adjacent_unit_type_matches"></a><code>REQUIREMENT_PLOT_ADJACENT_UNIT_TYPE_MATCHES</code></td>
+<td><code>MaxRange</code> (Integer), <code>MinRange</code> (Integer), <code>UnitType</code> (String)</td>
+<td><code>Map::IInstance::GetAdjacentPlot</code><br><code>Map::UnitContainer::GetUnits</code><br><code>Unit::CManager::GetUnit</code><br><code>Definitions::GetUnitDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8b7160</code>→<code>0x8d0ea0</code><br>OnInitialize <code>0x8b6c00</code>→<code>0x8d07a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_any_adjacent_resource"></a><code>REQUIREMENT_PLOT_ANY_ADJACENT_RESOURCE</code></td>
+<td>—</td>
+<td><code>Player::Resources::IsResourceVisible</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>TestAdjacentPlot <code>0x82f160</code>→<code>0x848690</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_district_is_defended"></a><code>REQUIREMENT_PLOT_DISTRICT_IS_DEFENDED</code></td>
+<td>—</td>
+<td><code>City::CManager::GetDistrict</code><br><code>District::Instance::IsDefensible</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x83a870</code>→<code>0x8532a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_district_is_functioning"></a><code>REQUIREMENT_PLOT_DISTRICT_IS_FUNCTIONING</code> <em>(untested in the community list)</em></td>
+<td><code>Tag</code> (String)</td>
+<td><code>City::CManager::EditDistrictAt</code><br><code>Rules::Districts::Get</code><br><code>Rules::Districts::Instance::IsFunctioning</code><br><code>Definitions::GetDistrictDefinitions</code></td>
+<td>—</td>
+<td>TestPlot <code>0x8eeeb0</code>→<code>0x7f4f30</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_district_tag_matches"></a><code>REQUIREMENT_PLOT_DISTRICT_TAG_MATCHES</code></td>
+<td><code>Tag</code> (String)</td>
+<td><code>City::CManager::EditDistrictAt</code><br><code>Rules::Districts::Get</code><br><code>Rules::Districts::Instance::IsActive</code><br><code>Rules::Districts::Instance::IsFunctioning</code><br><code>District::Instance::GetTypeHash</code><br><code>Tag::Repository::HasTag</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x8dba70</code>→<code>0x8f4230</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_district_type_matches"></a><code>REQUIREMENT_PLOT_DISTRICT_TYPE_MATCHES</code></td>
+<td><code>DistrictType</code> (String)</td>
+<td><code>City::CManager::EditDistrictAt</code><br><code>Rules::Districts::Get</code><br><code>Rules::Districts::Instance::IsActive</code><br><code>Rules::Districts::Shared::Instance::DistrictsMatch</code><br><code>Rules::Districts::Instance::IsFunctioning</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x8cc6f0</code>→<code>0x8e5ce0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_feature_tag_matches"></a><code>REQUIREMENT_PLOT_FEATURE_TAG_MATCHES</code></td>
+<td><code>Tag</code> (String)</td>
+<td><code>Definitions::GetFeatureDefinitions</code><br><code>Tag::Repository::HasTag</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x84d210</code>→<code>0x865f40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_feature_type_matches"></a><code>REQUIREMENT_PLOT_FEATURE_TYPE_MATCHES</code></td>
+<td><code>FeatureType</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestPlot <code>0x8d9dc0</code>→<code>0x8f1970</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_has_any_district"></a><code>REQUIREMENT_PLOT_HAS_ANY_DISTRICT</code></td>
+<td>—</td>
+<td><code>City::CManager::EditDistrictAt</code><br><code>Rules::Districts::Get</code><br><code>Rules::Districts::Instance::IsActive</code><br><code>Definitions::GetDistrictDefinitions</code><br><code>Rules::Districts::Instance::IsFunctioning</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x8ca820</code>→<code>0x8e3f40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_has_any_feature"></a><code>REQUIREMENT_PLOT_HAS_ANY_FEATURE</code></td>
+<td>—</td>
+<td>—</td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x8b8f40</code>→<code>0x8d31a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_has_any_improvement"></a><code>REQUIREMENT_PLOT_HAS_ANY_IMPROVEMENT</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestPlot <code>0x853880</code>→<code>0x86c080</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_has_any_resource"></a><code>REQUIREMENT_PLOT_HAS_ANY_RESOURCE</code></td>
+<td>—</td>
+<td><code>Player::Resources::IsResourceVisible</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x7e3960</code>→<code>0x7fbeb0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_has_fallout"></a><code>REQUIREMENT_PLOT_HAS_FALLOUT</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>Game::Fallout::Manager::GetInstance</code><br><code>Game::Fallout::Manager::HasFallout</code></td>
+<td>—</td>
+<td>Test <code>0x814120</code>→<code>0x82cdb0</code><br>OnInitialize <code>0x813b50</code>→<code>0x82c070</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_improved_resource_class_type_matches"></a><code>REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES</code></td>
+<td><code>ResourceClassType</code> (String)</td>
+<td><code>Player::Resources::GetVisibleResource</code><br><code>Definitions::GetResourceDefinitions</code><br><code>Definitions::GetImprovementDefinitions</code></td>
+<td>—</td>
+<td>TestPlot <code>0x6258e0</code>→<code>0x6261a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_improvement_tag_matches"></a><code>REQUIREMENT_PLOT_IMPROVEMENT_TAG_MATCHES</code></td>
+<td><code>Tag</code> (String)</td>
+<td><code>Definitions::GetImprovementDefinitions</code><br><code>Tag::Repository::HasTag</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x8948d0</code>→<code>0x8ad400</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_improvement_type_matches"></a><code>REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES</code></td>
+<td><code>ImprovementType</code> (String)</td>
+<td><code>Map::Instance::GetImprovementBuilder</code><br><code>Map::Improvement::Builder::CanEverHave</code><br><code>Definitions::GetImprovementDefinitions</code><br><code>GameEffects::GameEventHandler::WhenUnitMoves</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8862f0</code>→<code>0x89f350</code><br>OnInitialize <code>0x8850d0</code>→<code>0x89eae0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_appeal_between"></a><code>REQUIREMENT_PLOT_IS_APPEAL_BETWEEN</code></td>
+<td><code>MaximumAppeal</code> (Integer), <code>MinimumAppeal</code> (Integer)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestPlot <code>0x878f20</code>→<code>0x8917f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_coast"></a><code>REQUIREMENT_PLOT_IS_COAST</code></td>
+<td>—</td>
+<td><code>Map::Plot::Instance::IsShallowWater</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x7f14f0</code>→<code>0x809180</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_coastal_land"></a><code>REQUIREMENT_PLOT_IS_COASTAL_LAND</code></td>
+<td>—</td>
+<td><code>Map::Plot::Instance::IsCoastalLand</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x800230</code>→<code>0x8173d0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_fresh_water"></a><code>REQUIREMENT_PLOT_IS_FRESH_WATER</code></td>
+<td>—</td>
+<td><code>Map::Plot::Instance::IsFreshWater</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x80e3f0</code>→<code>0x827b00</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_hills"></a><code>REQUIREMENT_PLOT_IS_HILLS</code></td>
+<td>—</td>
+<td><code>Map::Plot::Instance::IsHills</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x81cab0</code>→<code>0x834f10</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_impassable"></a><code>REQUIREMENT_PLOT_IS_IMPASSABLE</code></td>
+<td>—</td>
+<td>—</td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x89deb0</code>→<code>0x8b7040</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_lake"></a><code>REQUIREMENT_PLOT_IS_LAKE</code></td>
+<td>—</td>
+<td><code>Map::Plot::Instance::IsLake</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x82ab40</code>→<code>0x844340</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_mountain"></a><code>REQUIREMENT_PLOT_IS_MOUNTAIN</code></td>
+<td>—</td>
+<td>—</td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x8aab20</code>→<code>0x8c4950</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_is_owner_capital_continent"></a><code>REQUIREMENT_PLOT_IS_OWNER_CAPITAL_CONTINENT</code></td>
+<td>—</td>
+<td><code>Player::Cities::GetCapitalCity</code><br><code>Player::Instance::GetCapitalContinent</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x839450</code>→<code>0x852770</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_nearby_unit_tag_matches"></a><code>REQUIREMENT_PLOT_NEARBY_UNIT_TAG_MATCHES</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer), <code>Tag</code> (String)</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>Tag::Repository::HasTag</code><br><code>Map::IInstance::GetPlotDistance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x8bb360</code>→<code>0x8d4a30</code><br>OnInitialize <code>0x8ba850</code>→<code>0x8d4370</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_near_capital"></a><code>REQUIREMENT_PLOT_NEAR_CAPITAL</code></td>
+<td><code>MaxDistance</code> (Integer), <code>MinDistance</code> (Integer)</td>
+<td><code>Player::Cities::GetCapitalCity</code><br><code>City::IInstance::GetPlot</code><br><code>Map::Plot::Instance::GetIndex</code><br><code>Map::IInstance::GetPlotDistance</code></td>
+<td>NFP</td>
+<td>TestPlot <code>0x84c110</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_property_matches"></a><code>REQUIREMENT_PLOT_PROPERTY_MATCHES</code></td>
+<td><code>PropertyName</code> (String), <code>PropertyMinimum</code> (Integer)</td>
+<td>—</td>
+<td>—</td>
+<td>Test <code>0x8dc840</code>→<code>0x8f5060</code><br>OnInitialize <code>0x8dc160</code>→<code>0x8f4a30</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_resource_class_type_matches"></a><code>REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES</code></td>
+<td><code>ResourceClassType</code> (String)</td>
+<td><code>Definitions::GetResourceDefinitions</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x846210</code>→<code>0x860140</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_resource_tag_matches"></a><code>REQUIREMENT_PLOT_RESOURCE_TAG_MATCHES</code></td>
+<td><code>Tag</code> (String)</td>
+<td><code>Definitions::GetResourceDefinitions</code><br><code>Tag::Repository::HasTag</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x808660</code>→<code>0x821520</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_resource_type_matches"></a><code>REQUIREMENT_PLOT_RESOURCE_TYPE_MATCHES</code></td>
+<td><code>ResourceType</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestPlot <code>0x81ca70</code>→<code>0x835560</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_resource_visible"></a><code>REQUIREMENT_PLOT_RESOURCE_VISIBLE</code></td>
+<td>—</td>
+<td><code>Map::Plot::Instance::GetIndex</code><br><code>Map::Instance::EditPlayerVisibility</code><br><code>Map::Player::Visibility::Manager::GetRevealedResourceType</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x821580</code>→<code>0x83a7c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_terrain_class_matches"></a><code>REQUIREMENT_PLOT_TERRAIN_CLASS_MATCHES</code></td>
+<td><code>TerrainClass</code> (String)</td>
+<td><code>Definitions::GetTerrainDefinitions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x8ab6e0</code>→<code>0x8c5620</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_terrain_type_matches"></a><code>REQUIREMENT_PLOT_TERRAIN_TYPE_MATCHES</code></td>
+<td><code>TerrainType</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>TestPlot <code>0x7ee790</code>→<code>0x806750</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_unit_city_has_any_district"></a><code>REQUIREMENT_PLOT_UNIT_CITY_HAS_ANY_DISTRICT</code></td>
+<td>—</td>
+<td><code>City::CManager::EditDistrictAt</code><br><code>Rules::Districts::Get</code><br><code>Rules::Districts::Instance::IsActive</code><br><code>Rules::Districts::Instance::IsFunctioning</code><br><code>Definitions::GetDistrictDefinitions</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x844b90</code>→<code>0x85eac0</code><br>OnInitialize <code>0x844260</code>→<code>0x85e070</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_unit_city_has_district_same_owner"></a><code>REQUIREMENT_PLOT_UNIT_CITY_HAS_DISTRICT_SAME_OWNER</code></td>
+<td><code>DistrictType</code> (String)</td>
+<td><code>City::CManager::EditCity</code><br><code>City::Districts::HasDistrict</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x8b0280</code>→<code>0x8ca6a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_unit_embarked"></a><code>REQUIREMENT_PLOT_UNIT_EMBARKED</code></td>
+<td>—</td>
+<td><code>Map::UnitContainer::GetUnits</code><br><code>Types::Vector</code><br><code>Unit::CManager::GetUnit</code><br><code>Unit::CInstance::IsEmbarked</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>TestPlot <code>0x8a3410</code>→<code>0x8bc200</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_unit_flanked"></a><code>REQUIREMENT_PLOT_UNIT_FLANKED</code></td>
+<td>—</td>
+<td><code>Map::UnitContainer::GetUnits</code><br><code>Types::Vector</code><br><code>Unit::CManager::GetUnit</code><br><code>Unit::Instance::GetCombat</code><br><code>Unit::Instance::GetRangedCombat</code><br><code>Unit::Instance::GetBombardCombat</code></td>
+<td>NFP</td>
+<td>TestPlot <code>0x7ff010</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_unit_type_matches"></a><code>REQUIREMENT_PLOT_UNIT_TYPE_MATCHES</code></td>
+<td><code>LayerIndex</code> (Integer), <code>UnitType</code> (String)</td>
+<td><code>Map::UnitContainer::GetUnits</code><br><code>Unit::CManager::GetUnit</code><br><code>Definitions::GetUnitDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x899060</code>→<code>0x8b1f30</code><br>OnInitialize <code>0x8988c0</code>→<code>0x8b1860</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

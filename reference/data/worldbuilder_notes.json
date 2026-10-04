@@ -1,0 +1,2069 @@
+[
+ {
+  "id": "lua:WorldBuilderCityManager.Create",
+  "summary": "Creates a city for a player at a plot and returns its id pair.",
+  "usage": "local pid, cid = mgr:Create(ePlayer, x, y)  or  mgr:Create(ePlayer, plot)",
+  "args": [
+   {
+    "name": "arg at position 2",
+    "meaning": "Owner player id",
+    "form": "number"
+   },
+   {
+    "name": "plot",
+    "meaning": "Target plot",
+    "form": "plot object, or two numbers x, y (IMapPlot::GetPlotLocation)"
+   }
+  ],
+  "returns": "2 numbers (owner PlayerID, CityID) on success; nothing if fewer than 2 args, invalid plot, or manager returned id -1",
+  "undo": "yes",
+  "side_effects": "Manager::Create constructs CommandCreate and adds it to Command::Manager (recorded).",
+  "cautions": "Wrapper returns nothing (no error) on bad args or failed creation; no check here that plot is free/valid. Player is read via tonumber so nil/strings probably become 0.",
+  "evidence": "lCreate 0x5ee340; WorldBuilder::City::Manager::Create (sym 0x6069b0) -> CommandCreate ctor, Command::Manager::Add",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.CreateBuilding",
+  "summary": "Adds a building to a city (with construction percent, optional plot) and reports success and requirement results.",
+  "usage": "local ok, results = mgr:CreateBuilding(city, eBuilding, uiConstructionPercent [, plot | x, y])",
+  "args": [
+   {
+    "name": "city",
+    "meaning": "Target city",
+    "form": "city object or table {PlayerID=,CityID=} (GetCityID helper not decompiled; accepted forms probably these)"
+   },
+   {
+    "name": "eBuilding",
+    "meaning": "Building type",
+    "form": "number or type-name/hash via GetNumberOrHash"
+   },
+   {
+    "name": "uiConstructionPercent",
+    "meaning": "Construction percent (100 in known mod usage)",
+    "form": "number, defaults to 0 if absent"
+   },
+   {
+    "name": "plot",
+    "meaning": "Optional location passed to the manager",
+    "form": "optional plot object or x, y at arg positions 5 (and 6)"
+   }
+  ],
+  "returns": "2 values: boolean success, and a requirements-results object (PushRequirementsResults)",
+  "undo": "yes",
+  "side_effects": "Manager::CreateBuilding builds CommandCreateBuilding, calls Initialize/Apply, then Command::Manager::Add.",
+  "cautions": "If the city is invalid nothing is attempted but it still returns false plus an empty results object. Plot defaults to invalid (-9999,-9999) when omitted. Always check the first return.",
+  "evidence": "lCreateBuilding 0x5ee450; City::Manager::CreateBuilding (0x606b40); CommandCreateBuilding Initialize/Apply",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.CreateDistrict",
+  "summary": "Adds a district to a city (construction percent, optional plot) and reports success and requirement results.",
+  "usage": "local ok, results = mgr:CreateDistrict(city, eDistrict, uiConstructionPercent [, plot | x, y])",
+  "args": [
+   {
+    "name": "city",
+    "meaning": "Target city",
+    "form": "city object or table {PlayerID=,CityID=} (GetCityID helper not decompiled; accepted forms probably these)"
+   },
+   {
+    "name": "eDistrict",
+    "meaning": "District type",
+    "form": "number or type-name/hash via GetNumberOrHash"
+   },
+   {
+    "name": "uiConstructionPercent",
+    "meaning": "Construction percent",
+    "form": "number, defaults to 0 if absent"
+   },
+   {
+    "name": "plot",
+    "meaning": "Location of the district",
+    "form": "optional plot object or x, y at arg positions 5 (and 6)"
+   }
+  ],
+  "returns": "2 values: boolean success, and requirements-results object",
+  "undo": "yes",
+  "side_effects": "Manager::CreateDistrict builds CommandCreateDistrict, Initialize/Apply, Command::Manager::Add.",
+  "cautions": "A district needs a plot; an omitted plot stays (-9999,-9999) and probably fails. Invalid city returns false without acting.",
+  "evidence": "lCreateDistrict 0x5ee610; City::Manager::CreateDistrict (0x606c50)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.GetCity",
+  "summary": "Returns the City object for a (playerID, cityID) pair.",
+  "usage": "local city = mgr:GetCity(ePlayer, cityID)",
+  "args": [
+   {
+    "name": "arg at position 2",
+    "meaning": "Player id",
+    "form": "number"
+   },
+   {
+    "name": "arg at position 3",
+    "meaning": "City id",
+    "form": "number"
+   }
+  ],
+  "returns": "1 City object, or nothing",
+  "undo": "no",
+  "side_effects": "None.",
+  "cautions": "Only works with exactly 3 stack values (self + 2 args); any other arg count returns nothing. Returns nothing if either id is -1 or the city is not found. Object is an editable City::Instance (EditCity).",
+  "evidence": "lGetCity 0x5ee7d0; City::CManager::EditCity",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.GetCityValue",
+  "summary": "Reads a WorldBuilder value of a city (by value type id) and returns it to Lua.",
+  "usage": "local v = mgr:GetCityValue(city, valueType [, name])",
+  "args": [
+   {
+    "name": "city",
+    "meaning": "City",
+    "form": "city object or table {PlayerID=,CityID=} (GetCityID helper not decompiled; accepted forms probably these)"
+   },
+   {
+    "name": "valueType",
+    "meaning": "Value type id",
+    "form": "number or hash string (GetNumberOrHash)"
+   },
+   {
+    "name": "name",
+    "meaning": "Optional sub-name",
+    "form": "string or number (read via tolstring); used only when a 4th arg of those types is present"
+   }
+  ],
+  "returns": "1 value (converted from the stored ValueEntry variant); nothing if city invalid",
+  "undo": "no",
+  "side_effects": "None.",
+  "cautions": "Returns nothing for an invalid city. Unknown value types probably yield a default entry (FindValueHandler lookup); not verified.",
+  "evidence": "lGetCityValue 0x5ee8a0; City::Manager::GetCityValue x2 (0x606ed0/0x606f20)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.GetDistrictValue",
+  "summary": "Reads a WorldBuilder value of a district and returns it to Lua.",
+  "usage": "local v = mgr:GetDistrictValue(district, valueType [, name])",
+  "args": [
+   {
+    "name": "district",
+    "meaning": "District",
+    "form": "District object (GetDistrictID helper not decompiled; probably also an id table)"
+   },
+   {
+    "name": "valueType",
+    "meaning": "Value type id",
+    "form": "number or hash string"
+   },
+   {
+    "name": "name",
+    "meaning": "Optional sub-name",
+    "form": "string or number"
+   }
+  ],
+  "returns": "1 value; nothing if district id invalid",
+  "undo": "no",
+  "side_effects": "None.",
+  "cautions": "Returns nothing for an invalid district.",
+  "evidence": "lGetDistrictValue 0x5ee9c0; City::Manager::GetDistrictValue (0x606f80/0x607060)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.GetPlotOwner",
+  "summary": "Returns which city owns a plot as a table.",
+  "usage": "local t = mgr:GetPlotOwner(plot)  or  mgr:GetPlotOwner(x, y);  t.PlayerID, t.CityID",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "Target plot",
+    "form": "plot object, or two numbers x, y (IMapPlot::GetPlotLocation)"
+   }
+  ],
+  "returns": "1 value: table {PlayerID=, CityID=}, or nil if out of bounds / unowned / bad args",
+  "undo": "no",
+  "side_effects": "None.",
+  "cautions": "Always returns exactly one value (nil when no owner). Reads the map plot directly.",
+  "evidence": "lGetPlotOwner 0x5eeae0; Map::EditInstance, lua_createtable, setfield PlayerID/CityID",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.Remove",
+  "summary": "Removes a city.",
+  "usage": "mgr:Remove(city)",
+  "args": [
+   {
+    "name": "city",
+    "meaning": "City to remove",
+    "form": "city object or table {PlayerID=,CityID=} (GetCityID helper not decompiled; accepted forms probably these)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Manager::Remove builds CommandRemove and adds it to Command::Manager.",
+  "cautions": "Silent no-op if no arg or city id invalid.",
+  "evidence": "lRemove 0x5eec60; City::Manager::Remove (0x607a80)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.RemoveAll",
+  "summary": "Removes all cities of a player, in one command block.",
+  "usage": "mgr:RemoveAll(ePlayer)",
+  "args": [
+   {
+    "name": "ePlayer",
+    "meaning": "Player id",
+    "form": "number"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Command::Manager::StartBlock/EndBlock around per-city CommandRemove, so probably one undo step.",
+  "cautions": "Does nothing if called without the argument; a non-number arg probably becomes player 0 (tonumber default), unverified.",
+  "evidence": "lRemoveAll 0x5eecd0; City::Manager::RemoveAll (0x607b20)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.RemoveAt",
+  "summary": "Removes the city located on a plot.",
+  "usage": "mgr:RemoveAt(plot)  or  mgr:RemoveAt(x, y)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "Target plot",
+    "form": "plot object, or two numbers x, y (IMapPlot::GetPlotLocation)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Looks up the city at the plot (EditCityAt) then City::Manager::Remove -> CommandRemove.",
+  "cautions": "Silent no-op if no plot arg, bad plot or no city there. Signature marks it static but the plot still starts at argument position 2.",
+  "evidence": "lRemoveAt 0x5eed40; City::CManager::EditCityAt; City::Manager::Remove",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.RemoveBuilding",
+  "summary": "Removes a building from a city.",
+  "usage": "local ok = mgr:RemoveBuilding(city, eBuilding)",
+  "args": [
+   {
+    "name": "city",
+    "meaning": "City",
+    "form": "city object or table {PlayerID=,CityID=} (GetCityID helper not decompiled; accepted forms probably these)"
+   },
+   {
+    "name": "eBuilding",
+    "meaning": "Building type",
+    "form": "number or name/hash (GetNumberOrHash)"
+   }
+  ],
+  "returns": "1 boolean (manager result; false for invalid city)",
+  "undo": "yes",
+  "side_effects": "Manager::RemoveBuilding builds CommandRemoveBuilding, Initialize/Apply, Command::Manager::Add.",
+  "cautions": "Check the return value; false when city invalid, and probably when the building is absent.",
+  "evidence": "lRemoveBuilding 0x5eede0; City::Manager::RemoveBuilding (0x607c90)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.RemoveDistrict",
+  "summary": "Removes a district, given either a district object or city plus district type.",
+  "usage": "mgr:RemoveDistrict(district)  or  mgr:RemoveDistrict(city, eDistrict)",
+  "args": [
+   {
+    "name": "district or city",
+    "meaning": "With 2 stack values (self + 1): a District object (or cached district); with 3 or more: a city",
+    "form": "city object or table {PlayerID=,CityID=} (GetCityID helper not decompiled; accepted forms probably these)"
+   },
+   {
+    "name": "eDistrict",
+    "meaning": "District type (only in the city form)",
+    "form": "number or hash"
+   }
+  ],
+  "returns": "1 boolean, which in this wrapper is always false",
+  "undo": "yes",
+  "side_effects": "Manager::RemoveDistrict builds CommandRemoveDistrict, Initialize/Apply, Command::Manager::Add.",
+  "cautions": "Return value is hard-coded false (the manager bool is discarded); do not use it to detect success. Silent no-op for invalid ids.",
+  "evidence": "lRemoveDistrict 0x5eee90; City::Manager::RemoveDistrict (0x607d90); wrapper stores 0 into the result slot",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.SetCityValue",
+  "summary": "Sets a WorldBuilder value (by type id) on a city.",
+  "usage": "mgr:SetCityValue(city, valueType, value)",
+  "args": [
+   {
+    "name": "city",
+    "meaning": "City",
+    "form": "city object or table {PlayerID=,CityID=} (GetCityID helper not decompiled; accepted forms probably these)"
+   },
+   {
+    "name": "valueType",
+    "meaning": "Value type id",
+    "form": "number or hash string"
+   },
+   {
+    "name": "value",
+    "meaning": "New value",
+    "form": "number (stored as integer-typed variant); anything else goes through the string path"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "FindValueHandler is looked up (the value-change handler runs engine side, not read).",
+  "cautions": "Booleans are not handled specially (string path, probably wrong); use 1/0. Call data shows no Command constructed, so probably not undoable. Silent no-op for invalid city.",
+  "evidence": "lSetCityValue 0x5ef010; City::Manager::SetCityValue (0x607e90/0x607f00); ValueEntry::SetValue",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.SetDistrictValue",
+  "summary": "Sets a WorldBuilder value on a district.",
+  "usage": "mgr:SetDistrictValue(district, valueType, value)",
+  "args": [
+   {
+    "name": "district",
+    "meaning": "District",
+    "form": "District object / id (GetDistrictID)"
+   },
+   {
+    "name": "valueType",
+    "meaning": "Value type id",
+    "form": "number or hash string"
+   },
+   {
+    "name": "value",
+    "meaning": "New value",
+    "form": "boolean (boolean variant), number (integer variant) or string"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "None seen beyond value handler dispatch in the manager.",
+  "cautions": "No Command in call data, so probably not undoable. Silent no-op for invalid district. Booleans are handled here (unlike SetCityValue).",
+  "evidence": "lSetDistrictValue 0x5ef180; City::Manager::SetDistrictValue (0x607fa0)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderCityManager.SetPlotOwner",
+  "summary": "Assigns a plot to a city, or clears ownership.",
+  "usage": "mgr:SetPlotOwner(plot|x,y, city)  or  mgr:SetPlotOwner(plot|x,y, false)  or  mgr:SetPlotOwner(plot|x,y)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "Target plot",
+    "form": "plot object, or two numbers x, y (IMapPlot::GetPlotLocation)"
+   },
+   {
+    "name": "city",
+    "meaning": "New owner city; boolean or absent clears",
+    "form": "city object/table, or false; omitted also clears"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Manager::SetPlotOwner builds CommandSetPlotOwner, Apply, Command::Manager::Add.",
+  "cautions": "A boolean or missing owner arg gives city id (-1,-1) meaning unowned. Silent no-op if plot args invalid. A nil (non-boolean) arg goes to GetCityID, behaviour unknown.",
+  "evidence": "lSetPlotOwner 0x5ef340; IMapPlot::EditPlotInstance; City::Manager::SetPlotOwner (0x6080b0)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderUnitManager.Create",
+  "summary": "Creates a unit of a type for an owner at a plot and returns its id pair.",
+  "usage": "local pid, uid = mgr:Create(eUnitType, ePlayer, x, y)  or  mgr:Create(eUnitType, ePlayer, plot)",
+  "args": [
+   {
+    "name": "eUnitType",
+    "meaning": "Unit type",
+    "form": "number or name/hash (GetNumberOrHash at position 2)"
+   },
+   {
+    "name": "ePlayer",
+    "meaning": "Owner player",
+    "form": "number (tonumber at position 3)"
+   },
+   {
+    "name": "plot",
+    "meaning": "Target plot",
+    "form": "plot object, or two numbers x, y (IMapPlot::GetPlotLocation)"
+   }
+  ],
+  "returns": "2 numbers (owner PlayerID, UnitID); nothing on bad args or failure",
+  "undo": "yes",
+  "side_effects": "Manager::Create constructs Unit::CommandCreate and adds it to Command::Manager.",
+  "cautions": "Arg order inferred from Manager::Create(eUnit, eOwner, loc); the earlier recovered name eOwner for position 2 looks swapped (decompiler parameter mapping is garbled), so medium confidence. Needs more than 3 stack values or returns nothing.",
+  "evidence": "lCreate 0x5f86e0; Unit::Manager::Create (0x61c860) -> Unit::CommandCreate",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderUnitManager.Remove",
+  "summary": "Removes a unit.",
+  "usage": "mgr:Remove(unit)",
+  "args": [
+   {
+    "name": "unit",
+    "meaning": "Unit to remove",
+    "form": "unit object or id table (GetUnitID helper not decompiled)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Unit::Manager::Remove -> CommandRemove -> Command::Manager::Add.",
+  "cautions": "Silent no-op if no arg or invalid id.",
+  "evidence": "lRemove 0x5f8810; Unit::Manager::Remove (0x61cb60)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderUnitManager.RemoveAll",
+  "summary": "Removes all units of a player, in one command block.",
+  "usage": "mgr:RemoveAll(ePlayer)",
+  "args": [
+   {
+    "name": "ePlayer",
+    "meaning": "Player id",
+    "form": "number"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "StartBlock/CommandRemove/EndBlock via Unit::Manager::RemoveAll.",
+  "cautions": "No-op without the arg; a non-number arg probably becomes player 0 (unverified).",
+  "evidence": "lRemoveAll 0x5f8880; Unit::Manager::RemoveAll (0x61cc10)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderUnitManager.RemoveAt",
+  "summary": "Removes units standing on a plot.",
+  "usage": "mgr:RemoveAt(plot)  or  mgr:RemoveAt(x, y)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "Target plot",
+    "form": "plot object, or two numbers x, y (IMapPlot::GetPlotLocation)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Calls Unit::Manager::Remove (CommandRemove) for units found.",
+  "cautions": "Decompile is partly mislabelled (a call named Cache::City::Growth::GetAmenitiesLostFromBankruptcy is probably a unit count at the plot); it iterates unit slots at the plot and removes the first valid unit of each index. Probably removes all units on the plot; unverified.",
+  "evidence": "lRemoveAt 0x5f88f0; Map::UnitContainer::GetUnitsByIndex; Unit::Manager::Remove",
+  "confidence": "low"
+ },
+ {
+  "id": "lua:WorldBuilderConfigurationManager.GetMapValue",
+  "summary": "Looks up a map configuration value entry in WorldBuilder::Configuration::Manager and pushes its stored value to Lua.",
+  "usage": "WorldBuilder.ConfigurationManager():GetMapValue(type [, name])",
+  "args": [
+   {
+    "name": "type",
+    "meaning": "value-type key, read with GetNumberOrHash",
+    "form": "number or hash/type-name string"
+   },
+   {
+    "name": "name",
+    "meaning": "optional extra string key; used only if stack slot 2 is a number/string, then read from slot 4",
+    "form": "string"
+   }
+  ],
+  "returns": "1 value (the ValueEntry's stored variant converted by the script system)",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Code reads the type from stack slot 1 (the object itself on a colon call) while SetMapValue reads slot 2; this looks inconsistent, so the type argument may be ignored or misread (probably a game bug; untested). Optional-name slot logic is odd (slot 2 tested, slot 4 read).",
+  "evidence": "lGetMapValue 0x5ef630; Configuration::Manager::GetMapValue (2 overloads), via Map::Manager::FindValueHandler",
+  "confidence": "low"
+ },
+ {
+  "id": "lua:WorldBuilderConfigurationManager.GetMapValues",
+  "summary": "Returns a table with the current map settings: Width, Height, IsWrapX, IsWrapY, plus MapScript and Ruleset when set.",
+  "usage": "local t = WorldBuilder.ConfigurationManager():GetMapValues()",
+  "args": [],
+  "returns": "1 table {Width, Height, IsWrapX, IsWrapY, MapScript?, Ruleset?}",
+  "undo": "no",
+  "side_effects": "Reads Map::EditInstance and Context::Globals::ms_pkConfiguration.",
+  "cautions": "MapScript key present only if Configuration::Map::Instance::GetScript succeeds; Ruleset only if non-null. Read-only snapshot.",
+  "evidence": "lGetMapValues 0x5ef710; Map::EditInstance, Configuration::Map::Instance::GetScript, Configuration::Game::Instance::GetRuleSet",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderConfigurationManager.SetMapValue",
+  "summary": "Stores a map configuration value (number as integer variant, otherwise string) under a value-type key via WorldBuilder::Configuration::Manager.",
+  "usage": "WorldBuilder.ConfigurationManager():SetMapValue(type, value)",
+  "args": [
+   {
+    "name": "type",
+    "meaning": "value-type key (GetNumberOrHash)",
+    "form": "number or hash/type-name string"
+   },
+   {
+    "name": "value",
+    "meaning": "new value; numbers truncated to unsigned int, anything else converted to string",
+    "form": "number | string"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "unknown",
+  "side_effects": "Dispatches through Map::Manager::FindValueHandler (a handler lookup); handler behavior not visible.",
+  "cautions": "Does nothing if the value argument is missing (needs at least 2 args after self). Numeric values are truncated to integers; no validation in the wrapper. Undo not visible in callee data (no Command seen), but handler is not readable.",
+  "evidence": "lSetMapValue 0x5efb90; ValueEntry::SetValue; Configuration::Manager::SetMapValue -> FindValueHandler",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.CanPlaceFeature",
+  "summary": "Asks the terrain builder whether a feature can be placed on a plot.",
+  "usage": "mgr:CanPlaceFeature(x, y, feature [, params|bool]) or mgr:CanPlaceFeature(plot, feature [, params|bool])",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "feature",
+    "meaning": "feature type, or a table of feature parameters (parsed by IMapTerrainBuilder::GetFeatureParameters)",
+    "form": "number/hash/name string | table"
+   },
+   {
+    "name": "options",
+    "meaning": "optional extra: table or boolean forwarded as check options",
+    "form": "table | boolean"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Returns false (no error) when too few args, plot cannot be parsed, plot is outside map bounds or feature param is -1. Read-only check.",
+  "evidence": "lCanPlaceFeature 0x5f2940; Map::Terrain::Builder::CanHaveFeature, GetFeatureParameters",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.CanPlaceImprovement",
+  "summary": "Asks the improvement builder whether an improvement can be placed on a plot.",
+  "usage": "mgr:CanPlaceImprovement(x, y, improvement [, player [, flag]])",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "improvement",
+    "meaning": "improvement type",
+    "form": "number/hash/name string"
+   },
+   {
+    "name": "player",
+    "meaning": "optional owner player id, default -1",
+    "form": "integer"
+   },
+   {
+    "name": "flag",
+    "meaning": "optional boolean forwarded to CanHaveImprovement (meaning not visible)",
+    "form": "boolean"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Wrapper requires at least 3 args after self (it passes 3 to the plot helper), so the plot-object form needs a further arg or it returns false. Plot pointer not null-checked in wrapper.",
+  "evidence": "lCanPlaceImprovement 0x5f2ad0; Map::Improvement::Builder::CanHaveImprovement",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.CanPlaceResource",
+  "summary": "Asks the resource builder whether a resource can be placed on a plot.",
+  "usage": "mgr:CanPlaceResource(x, y, resource [, flag]) or mgr:CanPlaceResource(plot, resource)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "resource",
+    "meaning": "resource type",
+    "form": "number/hash/name string"
+   },
+   {
+    "name": "flag",
+    "meaning": "optional boolean forwarded to CanHaveResource (meaning not visible)",
+    "form": "boolean"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Form guessed from arg count: exactly 2 args after self is parsed as plot,resource; 3+ as x,y,resource,flag. So plot,resource,flag is read as x,y form. Returns false with <2 args.",
+  "evidence": "lCanPlaceResource 0x5f2c20; Map::Resource::Builder::CanHaveResource",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.DoesPlotBorderRiver",
+  "summary": "Returns whether the plot borders a river (WorldBuilder::Map::Manager::DoesPlotBorderRiver).",
+  "usage": "mgr:DoesPlotBorderRiver(x, y) or mgr:DoesPlotBorderRiver(plot)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Returns false if the plot cannot be parsed.",
+  "evidence": "lDoesPlotBorderRiver 0x5f2d40; Map::Manager::DoesPlotBorderRiver",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.EditCliff",
+  "summary": "Adds or removes a cliff on a plot edge in the given direction through WorldBuilder::Map::Manager::EditCliff.",
+  "usage": "mgr:EditCliff(x, y, direction, bAdd [, flag])",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "direction",
+    "meaning": "edge direction",
+    "form": "number/hash/name string (DirectionTypes)"
+   },
+   {
+    "name": "bAdd",
+    "meaning": "boolean passed as first param to the cliff command (probably add vs remove)",
+    "form": "boolean"
+   },
+   {
+    "name": "flag",
+    "meaning": "optional extra boolean (meaning not visible)",
+    "form": "boolean"
+   }
+  ],
+  "returns": "1 boolean (result of Manager::EditCliff)",
+  "undo": "yes",
+  "side_effects": "",
+  "cautions": "Returns false when args are missing (needs 3+ after self) or plot unparsable. Recorded as CommandEditCliff via Command::Manager::Do.",
+  "evidence": "lEditCliff 0x5f2de0; Map::Manager::EditCliff -> Command::Manager::Do<CommandEditCliff>",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.EditRiver",
+  "summary": "Adds or removes a river segment on a plot edge through WorldBuilder::Map::Manager::EditRiver, returning success and a result code.",
+  "usage": "local ok, code = mgr:EditRiver(x, y, direction, bAdd [, flag])",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "direction",
+    "meaning": "edge direction",
+    "form": "number/hash/name string (DirectionTypes)"
+   },
+   {
+    "name": "bAdd",
+    "meaning": "boolean, probably add vs remove",
+    "form": "boolean"
+   },
+   {
+    "name": "flag",
+    "meaning": "optional extra boolean (meaning not visible)",
+    "form": "boolean"
+   }
+  ],
+  "returns": "2 values: boolean (true when result code == 0), number (IResultCode)",
+  "undo": "yes",
+  "side_effects": "Validation via CommandEditRiver::CanAddRiver and Rivers::SplitsRiverFromMouth before the command.",
+  "cautions": "On bad args returns false, 0. Non-zero code means the edit was refused; code meanings not decoded.",
+  "evidence": "lEditRiver 0x5f2f10; Map::Manager::EditRiver -> CanAddRiver, Command::Manager::Do<CommandEditRiver>",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.GetContinentPlots",
+  "summary": "Returns the plot indices belonging to a continent (land plots and lakes, excluding other water).",
+  "usage": "local plots = mgr:GetContinentPlots(continentIndex)",
+  "args": [
+   {
+    "name": "continentIndex",
+    "meaning": "continent index compared with each plot's continent field; read with tonumber (no hash/name lookup)",
+    "form": "number"
+   }
+  ],
+  "returns": "1 table (array of 0-based plot indices) or nil",
+  "undo": "no",
+  "side_effects": "Reads Map::EditInstance.",
+  "cautions": "Returns nil unless exactly one argument is given and it is a number. Table is empty if the continent has none.",
+  "evidence": "lGetContinentPlots 0x5f3050; Map::Plot::Instance::IsWater/IsLake",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.GetDimensionsFromTiled",
+  "summary": "Reads width and height attributes of the root <map> element of the Tiled XML file set as map import filename.",
+  "usage": "local w, h = mgr:GetDimensionsFromTiled()",
+  "args": [],
+  "returns": "2 numbers (width, height); defaults 64 and 48 when the file/attributes cannot be read",
+  "undo": "no",
+  "side_effects": "Loads and parses the XML file.",
+  "cautions": "Always returns two numbers; failure is silent and yields the 64x48 defaults, so verify the file yourself.",
+  "evidence": "lGetDimensionsFromTiled 0x5f31c0; Configuration::Map::Instance::GetMapImportFilename, XML::Document::Load",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.GetFeaturePlacementPlotList",
+  "summary": "Returns a list of plots (numbers) related to placing a feature at a plot, from the terrain builder.",
+  "usage": "WorldBuilder.MapManager.GetFeaturePlacementPlotList(self, x, y, feature [, params])",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "feature",
+    "meaning": "feature type; if not a parameter table it is read with luaL_checkinteger, so a number is required (no name/hash)",
+    "form": "number | params table"
+   }
+  ],
+  "returns": "1 table of numbers (probably plot indices, inference) or nothing",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Registered as static (no instance check). Returns nothing when plot is invalid or list is empty. luaL_checkinteger raises a Lua error on a non-number feature.",
+  "evidence": "lGetFeaturePlacementPlotList 0x5f33e0; Map::Terrain::Builder::GetFeaturePlacementPlotList",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.GetPlotValue",
+  "summary": "Returns a stored per-plot value entry (value type, optional name) from WorldBuilder::Map::Manager.",
+  "usage": "mgr:GetPlotValue(plotIndex, valueType [, name])",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "plot parsed by IMapPlot::GetPlotIndex starting at slot 2",
+    "form": "plot object or index"
+   },
+   {
+    "name": "valueType",
+    "meaning": "value type key; fixed at stack slot 3",
+    "form": "number or hash/name string"
+   },
+   {
+    "name": "name",
+    "meaning": "optional key name at slot 4, used only if number/string",
+    "form": "string"
+   }
+  ],
+  "returns": "1 value (variant converted by script system) or nothing if plot arg invalid",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Type is read from fixed slot 3, so an x,y plot form would misplace it. Returns nothing on bad plot.",
+  "evidence": "lGetPlotValue 0x5f35d0; Map::Manager::GetPlotValue (2 overloads) -> FindValueHandler",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.IsImprovementPlaceable",
+  "summary": "Checks resource-definition data: true if the resource has valid-feature entries (own list non-empty, or a Resource_ValidFeature row matches its type name).",
+  "usage": "WorldBuilder.MapManager.IsImprovementPlaceable(self, resourceType)",
+  "args": [
+   {
+    "name": "resourceType",
+    "meaning": "index into the resource definitions, via GetNumberOrHash (slot 2)",
+    "form": "number or hash/name string"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Despite the name the code reads Resource definitions, not improvements; the intent is a guess (probably 'resource needs a feature'). Static; false on missing arg or unknown index.",
+  "evidence": "lIsImprovementPlaceable 0x5f36e0; Definitions::GetResourceDefinitions, GetResource_ValidFeatureDefinitions",
+  "confidence": "low"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.IsWonderTooClose",
+  "summary": "Returns true when a plot is too close to another natural wonder for the given feature (inverse of NaturalWonderDistanceCheck).",
+  "usage": "mgr:IsWonderTooClose(plot, feature)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot given as ONE argument; wrapper tells the helper only 1 arg remains",
+    "form": "plot object or index (x,y form probably not accepted - inference)"
+   },
+   {
+    "name": "feature",
+    "meaning": "feature type",
+    "form": "number/hash/name string"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "False if args missing, plot not found, or plot null. Pass a plot object/index.",
+  "evidence": "lIsWonderTooClose 0x5f37e0; Map::Terrain::Builder::NaturalWonderDistanceCheck",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.LoadPlotsFromTiled",
+  "summary": "Loads the Tiled (.tmx XML) map file named by the map import filename and places terrain/feature/resource/improvement/continent/district/building layers onto the map's plots.",
+  "usage": "mgr:LoadPlotsFromTiled()",
+  "args": [],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "Resets the map via FillScratchMap and rewrites plots with PlaceTileOnPlot; handles CSV and per-tile XML layers.",
+  "cautions": "Fails silently (map filled/reset, no error) if the file or <map> root is bad. Visible calls use Context::Globals::EditMap directly, not WorldBuilder commands, so it is probably not undoable. Rewrites the whole map.",
+  "evidence": "lLoadPlotsFromTiled 0x5f38d0; Context::Globals::EditMap, FillScratchMap, PlaceTileOnPlot; call data lists no Command (list may be truncated)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetAllRevealed",
+  "summary": "Reveals or hides the whole map for a player, grouped as one command block.",
+  "usage": "mgr:SetAllRevealed(bRevealed, player)",
+  "args": [
+   {
+    "name": "bRevealed",
+    "meaning": "reveal (true) or hide (false)",
+    "form": "boolean"
+   },
+   {
+    "name": "player",
+    "meaning": "player id",
+    "form": "integer"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "yes",
+  "side_effects": "Wraps per-plot CommandSetRevealed in Command::Manager::StartBlock/EndBlock.",
+  "cautions": "Returns false unless both args given. No player validation in wrapper.",
+  "evidence": "lSetAllRevealed 0x5f4eb0; Map::Manager::SetAllRevealed -> StartBlock, Do<CommandSetRevealed>, EndBlock",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetCoastalLowland",
+  "summary": "Adds a coastal lowland (flood) type to a plot directly through the terrain manager's CoastalLowlandDataHandler.",
+  "usage": "mgr:SetCoastalLowland(x, y, lowlandType) or mgr:SetCoastalLowland(plot, lowlandType)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "lowlandType",
+    "meaning": "coastal lowland type",
+    "form": "number/hash/name string"
+   }
+  ],
+  "returns": "1 boolean, always false",
+  "undo": "no",
+  "side_effects": "Calls Map::Terrain::Manager::Edit()->AddCoastalLowland(plotIndex,type).",
+  "cautions": "Return value is constant false even on success. Plot index computed as width*y+x without bounds check. No undo command.",
+  "evidence": "lSetCoastalLowland 0x5f4f50; Map::Terrain::CoastalLowlandDataHandler::AddCoastalLowland",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetContinentType",
+  "summary": "Sets a plot's continent via WorldBuilder::Map::Manager::SetContinent.",
+  "usage": "mgr:SetContinentType(plot, continent)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot given as ONE argument; wrapper tells the helper only 1 arg remains",
+    "form": "plot object or index (x,y form probably not accepted - inference)"
+   },
+   {
+    "name": "continent",
+    "meaning": "continent type",
+    "form": "number/hash/name string"
+   }
+  ],
+  "returns": "1 boolean (result of SetContinent)",
+  "undo": "yes",
+  "side_effects": "",
+  "cautions": "False when args missing/plot unparsable. Recorded via Do<CommandSetTerrain> (probably terrain unchanged, continent set).",
+  "evidence": "lSetContinentType 0x5f5040; Map::Manager::SetContinent -> Do<CommandSetTerrain,TerrainTypes,ContinentTypes&>",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetFeatureType",
+  "summary": "Sets (or changes) the feature on a plot via WorldBuilder::Map::Manager::SetFeature.",
+  "usage": "mgr:SetFeatureType(x, y, feature [, params|bool]) or mgr:SetFeatureType(plot, feature ...)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "feature",
+    "meaning": "feature type, or params table (IMapTerrainBuilder::GetFeatureParameters); params fill feature and a direction value",
+    "form": "number/hash/name string | table"
+   },
+   {
+    "name": "options",
+    "meaning": "optional boolean/table forwarded as options",
+    "form": "boolean | table"
+   }
+  ],
+  "returns": "1 boolean (result of SetFeature)",
+  "undo": "yes",
+  "side_effects": "",
+  "cautions": "Feature and direction default to -1 when not given. -1 as feature probably clears it (guess). Validity checks are inside Manager::SetFeature (not read).",
+  "evidence": "lSetFeatureType 0x5f5100; Map::Manager::SetFeature -> Do<CommandSetFeature,FeatureTypes,DirectionTypes>",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetImprovementPillaged",
+  "summary": "Sets the pillaged state of the improvement on a plot directly via the improvement builder.",
+  "usage": "mgr:SetImprovementPillaged(x, y, bPillaged) or mgr:SetImprovementPillaged(plot, bPillaged)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "bPillaged",
+    "meaning": "pillaged flag",
+    "form": "boolean"
+   }
+  ],
+  "returns": "1 boolean, always false",
+  "undo": "no",
+  "side_effects": "Calls Map::Improvement::Builder::SetImprovementPillaged(plot, flag, -1).",
+  "cautions": "Always returns false even on success; no WorldBuilder command, so not undoable. Plot-vs-x,y form is guessed from arg count (exactly 2 args after self = plot,bool).",
+  "evidence": "lSetImprovementPillaged 0x5f5260; Context::Globals::EditMap, Map::Improvement::Builder::SetImprovementPillaged",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetImprovementType",
+  "summary": "Sets the improvement on a plot (optionally with owner player) via WorldBuilder::Map::Manager::SetImprovement.",
+  "usage": "mgr:SetImprovementType(x, y, improvement [, player]) or mgr:SetImprovementType(plot, improvement)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "improvement",
+    "meaning": "improvement type",
+    "form": "number/hash/name string"
+   },
+   {
+    "name": "player",
+    "meaning": "optional owner player id, default -1",
+    "form": "integer"
+   }
+  ],
+  "returns": "1 boolean (result of SetImprovement)",
+  "undo": "yes",
+  "side_effects": "",
+  "cautions": "Arg-count heuristic: exactly 2 args after self = plot,improvement; 3+ = x,y,improvement,player, so plot,improvement,player is read as x,y form.",
+  "evidence": "lSetImprovementType 0x5f5360; Map::Manager::SetImprovement -> Do<CommandSetImprovement,ImprovementTypes,PlayerTypes>",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetPlotValue",
+  "summary": "Stores a per-plot value entry (type, optional name, integer or string value) through WorldBuilder::Map::Manager::SetPlotValue.",
+  "usage": "mgr:SetPlotValue(plotIndex, valueType, [name,] value)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "plot parsed by IMapPlot::GetPlotIndex from slot 2",
+    "form": "plot object or index"
+   },
+   {
+    "name": "valueType",
+    "meaning": "value type key at fixed slot 3",
+    "form": "number/hash/name string"
+   },
+   {
+    "name": "name",
+    "meaning": "optional name; present only if 4 args are given",
+    "form": "string"
+   },
+   {
+    "name": "value",
+    "meaning": "number -> integer variant (tointeger), else string",
+    "form": "number | string"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "unknown",
+  "side_effects": "Dispatches through Map::Manager::FindValueHandler (handler not visible).",
+  "cautions": "Silent no-op when plot arg unparsable. Number values truncated to int. Undo not visible in callee data.",
+  "evidence": "lSetPlotValue 0x5f5460; ValueEntry::SetName/SetValue; Map::Manager::SetPlotValue",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetResourceType",
+  "summary": "Sets the resource (with amount) on a plot via WorldBuilder::Map::Manager::SetResource.",
+  "usage": "mgr:SetResourceType(x, y, resource [, amount]) or mgr:SetResourceType(plot, resource)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "resource",
+    "meaning": "resource type",
+    "form": "number/hash/name string"
+   },
+   {
+    "name": "amount",
+    "meaning": "optional integer, default -1 (probably quantity, inference)",
+    "form": "integer"
+   }
+  ],
+  "returns": "1 boolean (result of SetResource)",
+  "undo": "yes",
+  "side_effects": "",
+  "cautions": "Arg-count heuristic as other Set* methods. Placement validity not checked in wrapper; use CanPlaceResource first.",
+  "evidence": "lSetResourceType 0x5f55c0; Map::Manager::SetResource -> Do<CommandSetResource,ResourceTypes,int>",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetRevealed",
+  "summary": "Reveals or hides one plot for a player via WorldBuilder::Map::Manager::SetRevealed.",
+  "usage": "mgr:SetRevealed(x, y, bRevealed, player)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "bRevealed",
+    "meaning": "reveal/hide",
+    "form": "boolean"
+   },
+   {
+    "name": "player",
+    "meaning": "player id",
+    "form": "integer"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "yes",
+  "side_effects": "",
+  "cautions": "Needs 3+ args after self; wrapper tells plot helper 2 args remain, so x,y form is probably required (inference).",
+  "evidence": "lSetRevealed 0x5f56b0; Map::Manager::SetRevealed -> Do<CommandSetRevealed,bool,PlayerTypes,PlotCoord>",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetRouteType",
+  "summary": "Sets the route on a plot via WorldBuilder::Map::Manager::SetRoute.",
+  "usage": "mgr:SetRouteType(x, y, route [, flag]) or mgr:SetRouteType(plot, route)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot: x,y pair, or a plot object/index (parsed by Cache::Lua::Utility::GetPlotLocation)",
+    "form": "integer x + integer y | plot"
+   },
+   {
+    "name": "route",
+    "meaning": "route type",
+    "form": "number/hash/name string"
+   },
+   {
+    "name": "flag",
+    "meaning": "optional boolean passed to SetRoute (meaning not visible, probably pillaged)",
+    "form": "boolean"
+   }
+  ],
+  "returns": "1 boolean (result of SetRoute)",
+  "undo": "yes",
+  "side_effects": "",
+  "cautions": "Arg-count heuristic: plot,route,flag is read as x,y form.",
+  "evidence": "lSetRouteType 0x5f57a0; Map::Manager::SetRoute -> Do<CommandSetRoute,RouteTypes,bool>",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderMapManager.SetTerrainType",
+  "summary": "Sets the terrain of a plot via WorldBuilder::Map::Manager::SetTerrain, and removes the plot's resource if it no longer fits the new terrain.",
+  "usage": "mgr:SetTerrainType(plot, terrain)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot given as ONE argument; wrapper tells the helper only 1 arg remains",
+    "form": "plot object or index (x,y form probably not accepted - inference)"
+   },
+   {
+    "name": "terrain",
+    "meaning": "terrain type",
+    "form": "number/hash/name string"
+   }
+  ],
+  "returns": "1 boolean (result of SetTerrain)",
+  "undo": "yes",
+  "side_effects": "Callee data shows EditRiver and EditCliff invoked inside SetTerrain (probably clears rivers/cliffs); after success wrapper calls CanHaveResource and SetResource(-1,0) if the resource no longer fits.",
+  "cautions": "Several commands are issued for one call. Only the plot-object form is parsed (helper told 1 arg).",
+  "evidence": "lSetTerrainType 0x5f58a0; Map::Manager::SetTerrain -> Do<CommandSetTerrain>, EditRiver, EditCliff; Map::Resource::Builder::CanHaveResource; SetResource",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderModManager.GetKeyStringPairByIndex",
+  "summary": "Returns the Nth (key, string) pair of the mod's localization table for a locale.",
+  "usage": "local key, text = mgr:GetKeyStringPairByIndex(index [, locale])",
+  "args": [
+   {
+    "name": "index",
+    "meaning": "1-based position in the locale's pair list",
+    "form": "integer >= 1"
+   },
+   {
+    "name": "locale",
+    "meaning": "optional locale name, default current game language",
+    "form": "string"
+   }
+  ],
+  "returns": "2 values (key, text; nil for a null pointer) or nothing",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Returns nothing if index < 1, locale not found or index past the end.",
+  "evidence": "lGetKeyStringPairByIndex 0x5f5c80; LocalizationStringTable::FindLocale",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderModManager.GetLanguageByIndex",
+  "summary": "Returns the locale name at the 1-based index in the mod manager's language list.",
+  "usage": "local locale = mgr:GetLanguageByIndex(index)",
+  "args": [
+   {
+    "name": "index",
+    "meaning": "1-based",
+    "form": "integer >= 1"
+   }
+  ],
+  "returns": "1 string (nil if null) or nothing",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Nothing returned for index < 1 or past the end.",
+  "evidence": "lGetLanguageByIndex 0x5f5de0 (iterates list at Mod::Manager+0x80)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderModManager.GetString",
+  "summary": "Returns the localized string stored for a key in a locale.",
+  "usage": "local text = mgr:GetString(key [, locale])",
+  "args": [
+   {
+    "name": "key",
+    "meaning": "localization key",
+    "form": "string"
+   },
+   {
+    "name": "locale",
+    "meaning": "optional, default current game language",
+    "form": "string"
+   }
+  ],
+  "returns": "1 string or nothing",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Nothing if key missing/not found.",
+  "evidence": "lGetString 0x5f5ed0; LocalizationStringTable::Find",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderModManager.RemoveString",
+  "summary": "Removes a key from a locale's localization pairs.",
+  "usage": "mgr:RemoveString(key [, locale])",
+  "args": [
+   {
+    "name": "key",
+    "meaning": "localization key",
+    "form": "string"
+   },
+   {
+    "name": "locale",
+    "meaning": "optional, default current game language",
+    "form": "string"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Needs at least 1 arg. No Command seen in callee data (not undoable).",
+  "evidence": "lRemoveString 0x5f5fe0; LocalizationStringTable::Remove -> LocalizationPairs::Remove",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderModManager.SetKeyStringPairByIndex",
+  "summary": "Replaces the key and string of the Nth entry in a locale's localization table.",
+  "usage": "mgr:SetKeyStringPairByIndex(index, key, text [, locale])",
+  "args": [
+   {
+    "name": "index",
+    "meaning": "1-based position (converted to 0-based)",
+    "form": "integer >= 1"
+   },
+   {
+    "name": "key",
+    "meaning": "new key",
+    "form": "string"
+   },
+   {
+    "name": "text",
+    "meaning": "new string",
+    "form": "string"
+   },
+   {
+    "name": "locale",
+    "meaning": "optional, default current game language",
+    "form": "string"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "False unless 3+ args and index >= 1. Not undoable per callee data.",
+  "evidence": "lSetKeyStringPairByIndex 0x5f60e0; LocalizationStringTable::SetByIndex -> LocalizationPairs::SetByIndex",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderModManager.SetString",
+  "summary": "Adds a (key, text) pair to the mod's localization table for a locale.",
+  "usage": "mgr:SetString(key, text [, locale])",
+  "args": [
+   {
+    "name": "key",
+    "meaning": "localization key",
+    "form": "string"
+   },
+   {
+    "name": "text",
+    "meaning": "localized text",
+    "form": "string"
+   },
+   {
+    "name": "locale",
+    "meaning": "optional, default current game language",
+    "form": "string"
+   }
+  ],
+  "returns": "1 boolean (result of LocalizationStringTable::Add)",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "False unless 2+ args. Whether it overwrites an existing key is not visible. No undo command.",
+  "evidence": "lSetString 0x5f6240; LocalizationStringTable::Add -> LocalizationPairs::Add",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.AddPlayer",
+  "summary": "Adds a new player slot via WorldBuilder::Player::Manager::AddPlayer and returns its player id.",
+  "usage": "mgr:AddPlayer(flag) -> playerID  (exactly one argument)",
+  "args": [
+   {
+    "name": "flag",
+    "meaning": "false/nil gives false, any other value true; meaning inside AddPlayer not decoded (probably major vs minor)",
+    "form": "boolean-like"
+   }
+  ],
+  "returns": "1 number: new player id, or -1 if the argument count is not exactly one",
+  "undo": "unknown",
+  "side_effects": "Call data: Player::Manager::AddPlayer calls Player::Manager::InitializePlayer (which for the Lua InitializePlayer records CommandInitialize). Whether AddPlayer itself is undoable was not decoded.",
+  "cautions": "Wrapper returns -1 without acting when called with no argument or with 2+ arguments. No self check (ScopedInstance::GetInstance not called).",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lAddPlayer @0x5f6a90; Manager::AddPlayer; via Manager::InitializePlayer",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.ClearPlayerStartingPosition",
+  "summary": "Clears the start position assigned to a given player.",
+  "usage": "mgr:ClearPlayerStartingPosition(playerID)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player whose start position is cleared",
+    "form": "number (player id)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Goes via Command::Manager::Do<CommandSetStartPos>.",
+  "cautions": "Silent no-op when called without the argument. Player id not range-checked in the wrapper.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lClearPlayerStartingPosition @0x5f6b50; Manager::ClearPlayerStartingPosition; Command::Manager::Do<CommandSetStartPos>",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.ClearStartingPosition",
+  "summary": "Clears whatever start position (player/leader/civ/random) is set on the given plot.",
+  "usage": "mgr:ClearStartingPosition(plot location)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Goes via Command::Manager::Do<CommandSetStartPos>.",
+  "cautions": "Silent no-op if no args or the plot location cannot be parsed. No feedback whether a start position existed.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lClearStartingPosition @0x5f6bc0; Manager::ClearStartingPosition; IMapPlot::GetPlotLocation (args from index 2)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.GetMaxPlayers",
+  "summary": "Returns the constant maximum player count.",
+  "usage": "mgr:GetMaxPlayers()",
+  "args": [],
+  "returns": "1 number: constant 64 (immediate 0x4050000000000000)",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Hard-coded constant, does not query game config.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lGetMaxPlayers @0x5f6c40; no callees",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.GetPlayerConfig",
+  "summary": "Returns a table describing a player slot's configuration (name, slot status, civ, leader, era, gold, faith).",
+  "usage": "local cfg = mgr:GetPlayerConfig(playerID)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "slot index 0..63",
+    "form": "number only (hash/strings rejected)"
+   }
+  ],
+  "returns": "1 value: table with Name, SlotStatus, IsHuman, IsFullCiv, IsCityState, IsBarbarian, IsFreeCities, Civ, Leader, CivLevel, Era, Gold, Faith; or nil on bad argument",
+  "undo": "no",
+  "side_effects": "Reads Configuration::Player::Instance and Player::Manager::Edit; localization lookup for the name.",
+  "cautions": "Returns nil unless exactly one numeric arg and id < 64. IsHuman is SlotStatus==3. Civ/Leader/CivLevel/Era may be nil. Gold/Faith are 0 if the player is not initialized (fixed-point >>8, whole units). Name falls back to localized text plus id+1 without a civ definition.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lGetPlayerConfig @0x5f6c70; Configuration::Player::Instance::Get*; Player::Manager::Edit; lua_createtable",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.GetSlotStatus",
+  "summary": "Returns the configured slot status number of a player slot.",
+  "usage": "mgr:GetSlotStatus(playerID)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "slot index 0..63",
+    "form": "number only"
+   }
+  ],
+  "returns": "1 number: SlotStatus enum value; returns 2 when arg missing, not a number, or id >= 64",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Fallback value 2 on bad input is indistinguishable from a real status 2. Enum meanings not decoded (GetPlayerConfig treats 3 as human).",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lGetSlotStatus @0x5f7330; Configuration::Player::Instance::GetSlotStatus",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.GetStartPositionInfo",
+  "summary": "Describes the start position marker on a plot, if any.",
+  "usage": "local info = mgr:GetStartPositionInfo(plot location)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "1 value: nil if none/out of map/bad args; else table {Type='Player',Player=id} | {Type='Leader',Leader=n} | {Type='Civilization',Civilization=n} | {Type='RandomMajor'} | {Type='RandomMinor'}",
+  "undo": "no",
+  "side_effects": "Reads Map::StartPositioner::GetStartPosInfo.",
+  "cautions": "Leader/Civilization values are raw numbers (probably type indices, not decoded). Plot is bounds checked against map size.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lGetStartPositionInfo @0x5f7400; Map::EditInstance; StartPositioner::GetStartPosInfo; lua_createtable",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.GetStartPositionPlayer",
+  "summary": "Returns the player id whose start position is on the given plot.",
+  "usage": "mgr:GetStartPositionPlayer(plot location)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "1 number: player id, or -1 if no player start there, bad args or out of map",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "-1 is also returned if the plot holds a leader/civ/random start (only the Player kind is reported).",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lGetStartPositionPlayer @0x5f76a0; Map::StartPositioner::GetStartPosInfo",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.InitializePlayer",
+  "summary": "Initializes (creates the in-game player for) a player slot.",
+  "usage": "mgr:InitializePlayer(playerID) -> true",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "slot to initialize",
+    "form": "number (player id)"
+   }
+  ],
+  "returns": "1 boolean: false if no argument; otherwise always true (result of the C++ call is ignored)",
+  "undo": "yes",
+  "side_effects": "Player::Manager::InitializePlayer constructs CommandInitialize, runs DoInitializePlayer and Command::Manager::Add.",
+  "cautions": "Return value true does not prove success. Player id not range-checked in the wrapper.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lInitializePlayer @0x5f7780; Manager::InitializePlayer; CommandInitialize; DoInitializePlayer; Command::Manager::Add",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.IsPlayerInitialized",
+  "summary": "Tells whether a player slot has been initialized.",
+  "usage": "mgr:IsPlayerInitialized(playerID)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "slot",
+    "form": "number (player id)"
+   }
+  ],
+  "returns": "1 boolean (false if no argument)",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "No argument gives false, not an error.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lIsPlayerInitialized @0x5f7830; Manager::IsPlayerInitialized",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.PlayerHasCivic",
+  "summary": "Checks whether an initialized player has a civic.",
+  "usage": "mgr:PlayerHasCivic(playerID, civicIndex)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "slot 0..63",
+    "form": "number only"
+   },
+   {
+    "name": "civicIndex",
+    "meaning": "civic type index; must not be -1",
+    "form": "number only (no name/hash)"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "Reads Player::Culture::HasCivic via Player::Manager::Edit.",
+  "cautions": "Returns false for wrong arg count, non-number args (a civic name string yields false), id >= 64 or uninitialized player. Does not accept hashes unlike SetPlayerHasCivic.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lPlayerHasCivic @0x5f78d0; Player::Manager::Edit; Player::Culture::HasCivic",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.PlayerHasTech",
+  "summary": "Checks whether an initialized player has a tech.",
+  "usage": "mgr:PlayerHasTech(playerID, techIndex)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "slot 0..63",
+    "form": "number only"
+   },
+   {
+    "name": "techIndex",
+    "meaning": "tech type index; must not be -1",
+    "form": "number only (no name/hash)"
+   }
+  ],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "Reads Player::Techs::HasTech via Player::Manager::Edit.",
+  "cautions": "Returns false for wrong arg count, non-number args, id >= 64 or uninitialized player. Does not accept hashes unlike SetPlayerHasTech.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lPlayerHasTech @0x5f7a30; Player::Manager::Edit; Player::Techs::HasTech",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetCivilizationStartingPosition",
+  "summary": "Places a civilization start marker on a plot.",
+  "usage": "mgr:SetCivilizationStartingPosition(civType, plot location)",
+  "args": [
+   {
+    "name": "civType",
+    "meaning": "civilization to place",
+    "form": "number (hks_obj_tonumber; no hash handling)"
+   },
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Goes via Command::Manager::Do<CommandSetStartPos>.",
+  "cautions": "Silent no-op if too few args or plot cannot be parsed. Civ taken as plain number, not hash.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetCivilizationStartingPosition @0x5f7b90; Manager::SetCivilizationStartingPosition; IMapPlot::GetPlotLocation (args from index 3)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetLeaderStartingPosition",
+  "summary": "Places a leader start marker on a plot.",
+  "usage": "mgr:SetLeaderStartingPosition(leaderType, plot location)",
+  "args": [
+   {
+    "name": "leaderType",
+    "meaning": "leader to place",
+    "form": "number (no hash handling)"
+   },
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Goes via Command::Manager::Do<CommandSetStartPos>.",
+  "cautions": "Silent no-op if too few args or plot unparsable.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetLeaderStartingPosition @0x5f7c50; Manager::SetLeaderStartingPosition; IMapPlot::GetPlotLocation (args from index 3)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerEra",
+  "summary": "Sets a player's era.",
+  "usage": "mgr:SetPlayerEra(playerID, era)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player",
+    "form": "number (player id)"
+   },
+   {
+    "name": "era",
+    "meaning": "era type to set",
+    "form": "number or type-name string/hash via Utility::GetNumberOrHash"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Constructs CommandSetEra and Command::Manager::Add.",
+  "cautions": "Silent no-op if fewer than two args. Behavior for an uninitialized player or invalid era is inside Manager::SetEra (not decoded).",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerEra @0x5f7d10; Manager::SetEra; CommandSetEra; Utility::GetNumberOrHash(index 3)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerFaith",
+  "summary": "Sets a player's faith amount.",
+  "usage": "mgr:SetPlayerFaith(playerID, amount)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player",
+    "form": "number (player id)"
+   },
+   {
+    "name": "amount",
+    "meaning": "new faith, converted to int then shifted <<8 (fixed point)",
+    "form": "number"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Constructs CommandSetFaith and Command::Manager::Add.",
+  "cautions": "Both arguments required else silent no-op. Fractions truncated to integer.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerFaith @0x5f7d90; Manager::SetFaith; CommandSetFaith",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerGold",
+  "summary": "Sets a player's gold amount.",
+  "usage": "mgr:SetPlayerGold(playerID, amount)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player",
+    "form": "number (player id)"
+   },
+   {
+    "name": "amount",
+    "meaning": "new gold, converted to int then shifted <<8 (fixed point)",
+    "form": "number"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Constructs CommandSetGold and Command::Manager::Add.",
+  "cautions": "Both arguments required else silent no-op; fractions truncated. Player validity checks are inside Manager::SetGold (not decoded).",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerGold @0x5f7e40; Manager::SetGold; CommandSetGold",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerHasCivic",
+  "summary": "Grants or removes a civic for a player, with a progress value.",
+  "usage": "mgr:SetPlayerHasCivic(playerID, civic, progress)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player",
+    "form": "number (player id)"
+   },
+   {
+    "name": "civic",
+    "meaning": "civic type to set",
+    "form": "number or type-name string/hash via Utility::GetNumberOrHash"
+   },
+   {
+    "name": "progress",
+    "meaning": "progress value passed through as int",
+    "form": "number"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Constructs CommandSetCivic and Command::Manager::Add.",
+  "cautions": "Wrapper requires all three args (count > 3 with self); with two it silently does nothing even though progress looks optional. Meaning of progress (probably 0 = remove) not decoded.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerHasCivic @0x5f7ef0; Manager::SetHasCivic; CommandSetCivic; GetNumberOrHash(3)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerHasTech",
+  "summary": "Grants or removes a tech for a player, with a progress value.",
+  "usage": "mgr:SetPlayerHasTech(playerID, tech, progress)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player",
+    "form": "number (player id)"
+   },
+   {
+    "name": "tech",
+    "meaning": "tech type to set",
+    "form": "number or type-name string/hash via Utility::GetNumberOrHash"
+   },
+   {
+    "name": "progress",
+    "meaning": "progress value passed through as int",
+    "form": "number"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Constructs CommandSetTech and Command::Manager::Add.",
+  "cautions": "Wrapper requires all three args; with two it silently does nothing. Meaning of progress (probably 0 = remove) not decoded.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerHasTech @0x5f7fb0; Manager::SetHasTech; CommandSetTech; GetNumberOrHash(3)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerLeader",
+  "summary": "Sets a player's leader, and optionally civilization and civilization level.",
+  "usage": "mgr:SetPlayerLeader(playerID, leader [, civ [, civLevel]])",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player",
+    "form": "number (player id)"
+   },
+   {
+    "name": "leader",
+    "meaning": "leader type to set",
+    "form": "number or type-name string/hash via Utility::GetNumberOrHash"
+   },
+   {
+    "name": "civ",
+    "meaning": "civilization (optional, default -1) type to set",
+    "form": "number or type-name string/hash via Utility::GetNumberOrHash"
+   },
+   {
+    "name": "civLevel",
+    "meaning": "civilization level (optional, default -1) type to set",
+    "form": "number or type-name string/hash via Utility::GetNumberOrHash"
+   }
+  ],
+  "returns": "nothing (wrapper pushes a boolean but returns 0 values)",
+  "undo": "yes",
+  "side_effects": "Manager::SetPlayerLeader builds a Command::Instance and calls Command::Manager::Add (call data shows a generic Command::Instance, not CommandSetLeader).",
+  "cautions": "Silent no-op with fewer than 2 args. Omitted civ/level become -1; effect is inside Manager::SetPlayerLeader (not decoded).",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerLeader @0x5f8070; Manager::SetPlayerLeader; Command::Instance::Instance; Command::Manager::Add",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerSlotStatus",
+  "summary": "Sets the configured slot status of a player slot.",
+  "usage": "local ok = mgr:SetPlayerSlotStatus(playerID, status)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "slot",
+    "form": "number (player id)"
+   },
+   {
+    "name": "status",
+    "meaning": "SlotStatus enum value",
+    "form": "number"
+   }
+  ],
+  "returns": "1 boolean: true when two args were given (C++ result ignored), false otherwise",
+  "undo": "no",
+  "side_effects": "Calls Manager::SetPlayerSlotStatus; call data shows no Command, so probably not undoable.",
+  "cautions": "true does not prove the status changed. Valid status values not decoded.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerSlotStatus @0x5f8190; Manager::SetPlayerSlotStatus (no Command callees)",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetPlayerStartingPosition",
+  "summary": "Places a player's start marker on a plot.",
+  "usage": "mgr:SetPlayerStartingPosition(playerID, plot location)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player",
+    "form": "number (player id)"
+   },
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Goes via Command::Manager::Do<CommandSetStartPos>.",
+  "cautions": "Silent no-op if too few args or plot unparsable. Player id not validated in the wrapper.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetPlayerStartingPosition @0x5f8270; Manager::SetPlayerStartingPosition; IMapPlot::GetPlotLocation (args from index 3)",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetRandomMajorStartingPosition",
+  "summary": "Places a random-major-civ start marker on a plot.",
+  "usage": "mgr:SetRandomMajorStartingPosition(plot location)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Goes via Command::Manager::Do<CommandSetStartPos>.",
+  "cautions": "Silent no-op if no args or plot unparsable.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetRandomMajorStartingPosition @0x5f8330; Manager::SetRandomMajorStartingPosition",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.SetRandomMinorStartingPosition",
+  "summary": "Places a random-minor-civ (city-state) start marker on a plot.",
+  "usage": "mgr:SetRandomMinorStartingPosition(plot location)",
+  "args": [
+   {
+    "name": "plot",
+    "meaning": "target plot location, parsed by IMapPlot::GetPlotLocation",
+    "form": "plot location args (probably x,y pair or plot object/index; exact forms not decoded)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Goes via Command::Manager::Do<CommandSetStartPos>.",
+  "cautions": "Silent no-op if no args or plot unparsable.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lSetRandomMinorStartingPosition @0x5f83b0; Manager::SetRandomMinorStartingPosition",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderPlayerManager.UninitializePlayer",
+  "summary": "Uninitializes a player, removing its units and cities first.",
+  "usage": "mgr:UninitializePlayer(playerID)",
+  "args": [
+   {
+    "name": "playerID",
+    "meaning": "player to remove",
+    "form": "number (player id)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "yes",
+  "side_effects": "Inside a command block: Unit::Manager::RemoveAll, City::Manager::RemoveAll, then CommandUninitialize via Command::Manager::Add (StartBlock/EndBlock), so one undo step.",
+  "cautions": "Destructive: deletes all units and cities of the player. Silent no-op without argument.",
+  "evidence": "GameCore::Lua::IWorldBuilderPlayerManager::lUninitializePlayer @0x5f8430; Manager::UninitializePlayer; CommandUninitialize; Command::Manager::StartBlock/EndBlock",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.CanRedo",
+  "summary": "Reports whether the world builder command manager has something to redo.",
+  "usage": "WorldBuilder.CanRedo()",
+  "args": [],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Query only.",
+  "evidence": "lua wrapper 0x5f1810 lCanRedo -> Command::Manager (WorldBuilder::Manager+0x1f0) CanRedo, sym 0x609ad0",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.CanUndo",
+  "summary": "Reports whether the world builder command manager has something to undo.",
+  "usage": "WorldBuilder.CanUndo()",
+  "args": [],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Query only.",
+  "evidence": "lua wrapper 0x5f1860 lCanUndo -> Command::Manager::CanUndo, sym 0x609b10",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.CityManager",
+  "summary": "Returns the CityManager sub-manager object (C++ WorldBuilder::City::Manager at WorldBuilder::Manager+0x20) wrapped via ScopedInstance::Push.",
+  "usage": "local mgr = WorldBuilder.CityManager()",
+  "args": [],
+  "returns": "1 value: sub-manager userdata",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Takes no arguments; the pushed object refers to the singleton's member, not a copy.",
+  "evidence": "lua wrapper 0x5f18b0 lCityManager -> WorldBuilder::Manager::GetInstance; ScopedInstance<...>::Push",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.ClearVisibilityPreviewPlayer",
+  "summary": "Clears the visibility preview player by calling SetVisibilityPreviewPlayer with -1 (0xffffffff).",
+  "usage": "WorldBuilder.ClearVisibilityPreviewPlayer()",
+  "args": [],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "Calls WorldBuilder::Manager::SetVisibilityPreviewPlayer, which changes the visibility preview.",
+  "cautions": "No arguments; not recorded as an undo command in the wrapper.",
+  "evidence": "lua wrapper 0x5f18e0 lClearVisibilityPreviewPlayer -> WorldBuilder::Manager::SetVisibilityPreviewPlayer sym 0x60aef0",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.ConfigurationManager",
+  "summary": "Returns the ConfigurationManager sub-manager object (C++ WorldBuilder::Configuration::Manager at WorldBuilder::Manager+0x228) wrapped via ScopedInstance::Push.",
+  "usage": "local mgr = WorldBuilder.ConfigurationManager()",
+  "args": [],
+  "returns": "1 value: sub-manager userdata",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Takes no arguments; the pushed object refers to the singleton's member, not a copy.",
+  "evidence": "lua wrapper 0x5f1900 lConfigurationManager -> WorldBuilder::Manager::GetInstance; ScopedInstance<...>::Push",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.EndUndoBlock",
+  "summary": "Closes the current undo block on the command manager.",
+  "usage": "WorldBuilder.EndUndoBlock()",
+  "args": [],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "Calls Command::Manager::EndBlock.",
+  "cautions": "Pair with StartUndoBlock; wrapper does no checks, EndBlock internals not read, so behaviour when no block is open is unknown.",
+  "evidence": "lua wrapper 0x5f1930 lEndUndoBlock -> WorldBuilder::Command::Manager::EndBlock sym 0x609bd0",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderManager.GenerateID",
+  "summary": "Creates a new GUID and returns it as a string (Platform::CreateGUID + GUIDToString).",
+  "usage": "local id = WorldBuilder.GenerateID()",
+  "args": [],
+  "returns": "1 string (GUID text)",
+  "undo": "no",
+  "side_effects": "Does not store the ID or change the manager.",
+  "cautions": "Only generates; use SetID to apply it. Exact text format (braces/case) not verified.",
+  "evidence": "lua wrapper 0x5f1950 lGenerateID -> Platform::CreateGUID, Platform::GUIDToString",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.GetID",
+  "summary": "Returns the current world builder ID (GUID) as a string.",
+  "usage": "local id = WorldBuilder.GetID()",
+  "args": [],
+  "returns": "1 string",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Returns whatever GUID the manager holds, even if never set.",
+  "evidence": "lua wrapper 0x5f1a00 lGetID -> WorldBuilder::Manager::GetID sym 0x60a910, Platform::GUIDToString",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.GetWBAdvancedMode",
+  "summary": "Returns whether world builder advanced mode is on.",
+  "usage": "WorldBuilder.GetWBAdvancedMode()",
+  "args": [],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Query only.",
+  "evidence": "lua wrapper 0x5f1ab0 lGetWBAdvancedMode -> WorldBuilder::Manager::IsAdvancedMode sym 0x60aa00",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.IsMod",
+  "summary": "Returns the manager's mod flag.",
+  "usage": "WorldBuilder.IsMod()",
+  "args": [],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Query only.",
+  "evidence": "lua wrapper 0x5f1b30 lIsMod -> WorldBuilder::Manager::IsMod sym 0x60aa20",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.MapManager",
+  "summary": "Returns the MapManager sub-manager object (C++ WorldBuilder::Map::Manager at WorldBuilder::Manager+0xe0) wrapped via ScopedInstance::Push.",
+  "usage": "local mgr = WorldBuilder.MapManager()",
+  "args": [],
+  "returns": "1 value: sub-manager userdata",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Takes no arguments; the pushed object refers to the singleton's member, not a copy.",
+  "evidence": "lua wrapper 0x5f1b70 lMapManager -> WorldBuilder::Manager::GetInstance; ScopedInstance<...>::Push",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.ModManager",
+  "summary": "Returns the ModManager sub-manager object (C++ WorldBuilder::Mod::Manager at WorldBuilder::Manager+0x160) wrapped via ScopedInstance::Push.",
+  "usage": "local mgr = WorldBuilder.ModManager()",
+  "args": [],
+  "returns": "1 value: sub-manager userdata",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Takes no arguments; the pushed object refers to the singleton's member, not a copy.",
+  "evidence": "lua wrapper 0x5f1ba0 lModManager -> WorldBuilder::Manager::GetInstance; ScopedInstance<...>::Push",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.PlayerManager",
+  "summary": "Returns the PlayerManager sub-manager object (C++ WorldBuilder::Player::Manager at WorldBuilder::Manager+0x18) wrapped via ScopedInstance::Push.",
+  "usage": "local mgr = WorldBuilder.PlayerManager()",
+  "args": [],
+  "returns": "1 value: sub-manager userdata",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Takes no arguments; the pushed object refers to the singleton's member, not a copy.",
+  "evidence": "lua wrapper 0x5f1bd0 lPlayerManager -> WorldBuilder::Manager::GetInstance; ScopedInstance<...>::Push",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.Redo",
+  "summary": "Redoes the next undone command via the command manager and returns the result.",
+  "usage": "WorldBuilder.Redo()",
+  "args": [],
+  "returns": "1 boolean (result of Command::Manager::Redo)",
+  "undo": "yes",
+  "side_effects": "Reapplies command(s), changing map/game state.",
+  "cautions": "Check CanRedo first; false presumably means nothing was redone (Redo internals not read).",
+  "evidence": "lua wrapper 0x5f1c00 lRedo -> WorldBuilder::Command::Manager::Redo sym 0x609cd0",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderManager.SetID",
+  "summary": "Parses a GUID string and sets it as the world builder ID and as the mod metadata ID.",
+  "usage": "WorldBuilder.SetID(idString)  (also accepted with 2 args, e.g. colon call)",
+  "args": [
+   {
+    "name": "ID",
+    "meaning": "GUID text (error text: 'Expected argument - ID')",
+    "form": "string; stack index 1 if 1 arg passed, index 2 if 2 passed"
+   }
+  ],
+  "returns": "1 boolean: true if parsed and applied, false otherwise",
+  "undo": "no",
+  "side_effects": "Calls Manager::SetID and Mod::MetaData::SetID on the mod manager metadata (Manager+0x160).",
+  "cautions": "Any other argument count raises an argument error; an unparsable string silently returns false and changes nothing.",
+  "evidence": "lua wrapper 0x5f1c50 lSetID -> Platform::StringToGUID, WorldBuilder::Manager::SetID sym 0x60aed0, Mod::MetaData::SetID",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.SetMod",
+  "summary": "Sets the manager's mod flag from the truthiness of argument 1.",
+  "usage": "WorldBuilder.SetMod(bState)",
+  "args": [
+   {
+    "name": "bState",
+    "meaning": "new mod flag",
+    "form": "boolean (read via hksi_lua_toboolean at index 1)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "Calls WorldBuilder::Manager::SetMod (4-byte setter).",
+  "cautions": "No argument count check; a missing argument acts as false.",
+  "evidence": "lua wrapper 0x5f1d20 lSetMod -> WorldBuilder::Manager::SetMod sym 0x60aee0",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.SetVisibilityPreviewPlayer",
+  "summary": "Sets the player whose visibility is previewed.",
+  "usage": "WorldBuilder.SetVisibilityPreviewPlayer(playerID)",
+  "args": [
+   {
+    "name": "player",
+    "meaning": "player ID (PlayerTypes) to preview",
+    "form": "number (tonumber, cast to int)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "Calls WorldBuilder::Manager::SetVisibilityPreviewPlayer (visibility preview change).",
+  "cautions": "Silently does nothing unless exactly one argument is passed. Use ClearVisibilityPreviewPlayer to clear.",
+  "evidence": "lua wrapper 0x5f1d60 lSetVisibilityPreviewPlayer -> WorldBuilder::Manager::SetVisibilityPreviewPlayer sym 0x60aef0",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager.SetWBAdvancedMode",
+  "summary": "Sets advanced mode: false when arg is nil/false/number 0, otherwise true.",
+  "usage": "WorldBuilder.SetWBAdvancedMode(bAdvanced)",
+  "args": [
+   {
+    "name": "advanced",
+    "meaning": "advanced mode flag",
+    "form": "boolean (nil, false and numeric 0 count as false)"
+   }
+  ],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "Calls WorldBuilder::Manager::SetAdvancedMode (4-byte setter).",
+  "cautions": "Silently does nothing unless exactly one argument is passed.",
+  "evidence": "lua wrapper 0x5f1dc0 lSetWBAdvancedMode -> WorldBuilder::Manager::SetAdvancedMode sym 0x60aec0",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderManager.StartUndoBlock",
+  "summary": "Opens a new undo block on the command manager so following edits can be grouped.",
+  "usage": "WorldBuilder.StartUndoBlock()",
+  "args": [],
+  "returns": "nothing",
+  "undo": "no",
+  "side_effects": "Calls Command::Manager::StartBlock.",
+  "cautions": "Pair with EndUndoBlock; behaviour of an unclosed block was not read (probably later edits stay grouped in the open block).",
+  "evidence": "lua wrapper 0x5f1e30 lStartUndoBlock -> WorldBuilder::Command::Manager::StartBlock sym 0x609e30",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderManager.Undo",
+  "summary": "Undoes the last command (or block) via the command manager and returns the result.",
+  "usage": "WorldBuilder.Undo()",
+  "args": [],
+  "returns": "1 boolean (result of Command::Manager::Undo)",
+  "undo": "yes",
+  "side_effects": "Reverts command(s), changing map/game state.",
+  "cautions": "Check CanUndo first. Several Command classes in the index list no Undo of their own (e.g. CommandEditCliff, EditRiver, SetRoute, SetRevealed), so undo for them is probably handled elsewhere.",
+  "evidence": "lua wrapper 0x5f1e50 lUndo -> WorldBuilder::Command::Manager::Undo sym 0x60a000",
+  "confidence": "medium"
+ },
+ {
+  "id": "lua:WorldBuilderManager.UnitManager",
+  "summary": "Returns the UnitManager sub-manager object (C++ WorldBuilder::Unit::Manager at WorldBuilder::Manager+0x19 as Manager* pointer arithmetic (scaled, offset not byte-literal)) wrapped via ScopedInstance::Push.",
+  "usage": "local mgr = WorldBuilder.UnitManager()",
+  "args": [],
+  "returns": "1 value: sub-manager userdata",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Takes no arguments; the pushed object refers to the singleton's member, not a copy.",
+  "evidence": "lua wrapper 0x5f1ea0 lUnitManager -> WorldBuilder::Manager::GetInstance; ScopedInstance<...>::Push",
+  "confidence": "high"
+ },
+ {
+  "id": "lua:WorldBuilderManager_Inactive.IsActive",
+  "summary": "Returns whether the world builder is active (WorldBuilder::Manager::IsActive).",
+  "usage": "IsActive() on the _Inactive registration; global name not verified",
+  "args": [],
+  "returns": "1 boolean",
+  "undo": "no",
+  "side_effects": "",
+  "cautions": "Separate wrapper class IWorldBuilderManager_Inactive with the same logic; probably registered so the query works when the world builder is not active (not verified).",
+  "evidence": "lua wrapper 0x5f1af0 lIsActive -> WorldBuilder::Manager::IsActive sym 0x60a9e0",
+  "confidence": "medium"
+ },
+ {
+  "id": "model:undo",
+  "summary": "Probably: WorldBuilder::Manager owns a Command::Manager (at +0x1f0) holding eastl lists of shared_ptr<Command::Instance>. Lua StartUndoBlock/EndUndoBlock call Command::Manager::StartBlock/EndBlock, which probably create and close a BlockCommand (it has Add/Undo/Redo/CanUndo/CanRedo/GetName/GetType) so that commands passed to Manager::Add inside the block are grouped as one undo step. Edit code uses Command::Manager::Do<CommandX,...> templates (CommandSetTerrain, SetFeature, SetResource, SetImprovement, SetRoute, EditRiver, EditCliff, SetRevealed, SetStartPos), which probably construct a command, add it and run its Redo. Undo/Redo take commands from the list and call their Undo/Redo; classes include Create/Remove/Initialize/Uninitialize (+ building/district variants with Apply) and property setters (Civic, Era, Faith, Gold, Tech, Leader, PlotOwner). Lua only sees CanUndo/CanRedo and boolean results of Undo/Redo.",
+  "cautions": "Manager-level setters (SetID, SetMod, SetWBAdvancedMode, visibility preview) are plain setters, not commands. Behaviour of EndBlock without StartBlock, nested blocks, and Undo while a block is open was not read; keep Start/End balanced. Class details are inferred from names only.",
+  "evidence": "function_index: Command::Manager::{Add 0x609970, CanRedo, CanUndo, EndBlock 0x609bd0, Redo 0x609cd0, StartBlock 0x609e30, Undo 0x60a000, Uninitialize}, BlockCommand::{Add,CanRedo,CanUndo,Redo,Undo}, Command::Manager::Do<...> 0x60b240-0x615fa0, 25 Command* classes; wrappers 0x5f1810-0x5f1e50",
+  "confidence": "low"
+ }
+]

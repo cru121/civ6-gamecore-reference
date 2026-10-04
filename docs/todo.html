@@ -1,0 +1,195 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Not yet covered</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Not yet covered</p>
+<h1>Not yet covered: ripe for analysis</h1>
+<p>The game library contains more than this reference describes. These are the groups of engine classes we have seen in the function index, counted from the symbol build, that have little or no coverage here. They are leads, not results: <strong>the descriptions below are guesses from class names</strong> and nothing here has been read in detail.</p>
+<p>Most of them follow the same pattern as the <a href="effects/index.html">modifier effects</a> did before they were covered: one class per named type, a small fixed set of functions each, and engine calls that can be followed. If you want to pick one up, see <a href="conventions.html">how to read this reference</a>, then open the group's functions on the <a href="native/all.html">All functions</a> page; corrections and contributions are welcome.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Classes in the DLL</th>
+<th>What it is (inferred)</th>
+<th>In this reference today</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#ai-behavior-tree-nodes">AI behavior tree nodes</a></td>
+<td>87</td>
+<td>The building blocks of the computer players' decision trees: one class per node type (<code>UseGreatPersonNode</code>, <code>SpyChooseMissionNode</code>, <code>BarbarianSpawnRateNode</code>, ...) plus the tree and factory plumbing.</td>
+<td>Only mentioned in passing. No per-node entries.</td>
+</tr>
+<tr>
+<td><a href="#ai-control-contracts-and-operations">AI control contracts and operations</a></td>
+<td>17</td>
+<td>How AI subsystems hand work to each other: contracts such as <code>CivicResearchContract</code>, <code>DiplomaticActionContract</code>, <code>UnitRequestContract</code>, and the AI operation, operation team and operation definition classes.</td>
+<td>Not covered. (Player and unit operations are covered under Operations and commands; these AI-side classes are separate.)</td>
+</tr>
+<tr>
+<td><a href="#gossip-types">Gossip types</a></td>
+<td>64</td>
+<td>One class per gossip event (<code>Denounced</code>, <code>CityFounded</code>, <code>ReligionFounded</code>, <code>SpyCaptured</code>, ...) and the manager that collects them.</td>
+<td>The Lua object <code>GameGossipManager</code> is documented; the individual gossip types, their triggers and parameters are not.</td>
+</tr>
+<tr>
+<td><a href="#historic-moments">Historic moments</a></td>
+<td>54</td>
+<td>The <code>...MomentDispatcher</code> classes that decide when a historic moment is awarded, and the moment manager.</td>
+<td>The Lua object <code>GameHistoryManager</code> is documented. The moment names and hashes are in <code>findings/tables/moments.tsv</code> but have no pages here.</td>
+</tr>
+<tr>
+<td><a href="#notification-types">Notification types</a></td>
+<td>42</td>
+<td>One class per notification type (<code>BoostTech</code>, <code>ChooseCivic</code>, <code>ChooseArtifactPlayer</code>, ...) and the notification manager and pools.</td>
+<td>A name and hash table exists in <code>findings/tables/notifications.tsv</code>. Not a section of this site.</td>
+</tr>
+<tr>
+<td><a href="#diplomacy-statements-and-actions">Diplomacy statements and actions</a></td>
+<td>29</td>
+<td>The diplomatic statements (<code>DeclareFriend</code>, <code>DeclareWar</code>, <code>Denounce</code>, <code>Embassy</code>, <code>Delegation</code>, ...) and the actions that apply their outcome (<code>SetAllied</code>, <code>SetDelegation</code>, <code>RenewAlliance</code>, ...).</td>
+<td>Barely covered. Some diplomacy Lua methods are documented; the statement and action classes are not.</td>
+</tr>
+<tr>
+<td><a href="#quests">Quests</a></td>
+<td>9</td>
+<td>The quest logic classes (<code>ClearBarbarianCamp</code>, <code>SendTradeRoute</code>, <code>TrainUnitType</code>, <code>RecruitGreatPersonClass</code>, <code>TriggerCivicBoost</code>, ...).</td>
+<td>One native function entry; nothing else.</td>
+</tr>
+<tr>
+<td><a href="#climate-events">Climate events</a></td>
+<td>6</td>
+<td>The climate classes (<code>Drought</code>, <code>Storm</code>, <code>OneOff</code>, <code>ClimateData</code>).</td>
+<td>Mentioned only as parts of other pages.</td>
+</tr>
+<tr>
+<td><a href="#modifier-objects">Modifier objects</a></td>
+<td>20</td>
+<td>The kinds of object a modifier can be attached to or can iterate (<code>Improvement</code>, <code>Alliance</code>, <code>ArtifactExtraction</code>, <code>Belief</code>, <code>PlotYields</code>, <code>CombatResults</code>, ...).</td>
+<td>The modifier effects, requirements and collections are covered; this object layer is not.</td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3 id="ai-behavior-tree-nodes">AI behavior tree nodes</h3>
+<p>The building blocks of the computer players' decision trees: one class per node type (<code>UseGreatPersonNode</code>, <code>SpyChooseMissionNode</code>, <code>BarbarianSpawnRateNode</code>, ...) plus the tree and factory plumbing.</p>
+<p><strong>Why it looks ripe.</strong> Node names are the part of AI behaviour a modder can see; what each node reads, decides and calls is undocumented. Each class has a small, regular set of functions, so the method that worked for modifier effects (type name, subject, engine calls) should work here too. Whether the trees and their node parameters can be authored from game data is still to be confirmed.</p>
+<details><summary>87 classes with their function counts (symbol build)</summary>
+
+`AddGoalTechNode` (3), `ArchaeologistDonateNode` (3), `ArcheologistDigNode` (3), `BarbarianRaidingScoreNode` (2), `BarbarianRecruitNode` (2), `BarbarianRecruiter` (1), `BarbarianSpawnRateNode` (2), `BehaviorTree` (33), `BehaviorTreeControlCallbacks` (1), `Blackboard` (8), `BuildFromCityNode` (3), `BuildImprovementNode` (3), `BuildMilitaryImprovementNode` (3), `BuildProductionNode` (3), `CanAlphaStrikeCityNode` (2), `CancelContractNode` (3), `CheckPlotNode` (2), `ChooseCityForBuildingNode` (2), `ChooseImprovementNode` (2), `ChooseRailroadTarget` (2), `CityAttackUnitsNode` (3), `ClearPlotNode` (3), `ConcurrentNode` (2), `ContractManagerDecorator` (4), `DataEntry` (2), `DecodeTriggerNode` (2), `DifficultyDecorator` (3), `Factory` (9), `FindAvailableUnitNode` (2), `FindTargetsNode` (1), `FindUnitsEvaluator` (1), `HasGreatPersonNode` (2), `HasInquisitionNode` (2), `HasPlayerAbilityDecorator` (2), `HasValidTargetNode` (1), `IntervalDecorator` (4), `IsAtWarNode` (2), `IsCityThreatenedNode` (2), `IsNearFalloutNode` (1), `LaunchInquisitionNode` (3), `LaunchNukesNode` (2), `LockUnitsNode` (2), `LuaScriptNode` (1), `MakeFormationNode` (3), `Manager` (23), `MoveUnitNode` (3), `NavalChooseTargetDecorator` (1), `NavalEscortEvaluator` (1), `NavalPatrolNode` (2), `NavalPillageNode` (1), `NearestCityJob` (1), `NodeData` (5), `NotNode` (1), `NotifyOwnerNode` (2), `OpRecruitEvaluator` (1), `OperationAirstrikeCityNode` (3), `OperationAttackCityNode` (2), `OperationAttackTarget` (2), `OperationAttackUnits` (2), `OperationChangeTarget` (2), `OperationDiplomacy` (3), `OperationGarrisonCityNode` (1), `OperationIsReadyNode` (3), `OperationMakeFormation` (2), `OperationMoveNode` (3), `OperationNavalEscort` (3), `OperationPillageCityNode` (3), `OperationProtectUnits` (2), `OperationSiegeCityNode` (2), `PriorityNode` (1), `ProtectUnitNode` (3), `PurchasePlotNode` (3), `RecruitUnitsNode` (3), `ReservePlotNode` (2), `RunBehaviorTreeNode` (2), `SequenceNode` (2), `SettleActionNode` (3), `SpyAtCityEvaluator` (1), `SpyChooseMissionNode` (2), `SpyDoOperationNode` (3), `SpyMoveToCityNode` (3), `StringTable` (3), `TurnLimitDecorator` (3), `UpgradeUnitsNode` (2), `UseGreatPersonNode` (3), `UseScriptedCommand` (1), `WillUseNukesNode` (2)
+
+</details>
+
+<h3 id="ai-control-contracts-and-operations">AI control contracts and operations</h3>
+<p>How AI subsystems hand work to each other: contracts such as <code>CivicResearchContract</code>, <code>DiplomaticActionContract</code>, <code>UnitRequestContract</code>, and the AI operation, operation team and operation definition classes.</p>
+<p><strong>Why it looks ripe.</strong> Small groups with descriptive names. They explain how the AI turns a goal into a request, which is useful to anyone changing AI behaviour.</p>
+<details><summary>17 classes with their function counts (symbol build)</summary>
+
+`Callbacks` (1), `CivicResearchContract` (8), `Contract` (8), `DiplomaticActionContract` (8), `Factory` (6), `Handle` (13), `Instance` (3), `Manager` (28), `PurchasePlotContract` (7), `TechResearchContract` (9), `UnitRequestContract` (19), `Operation` (30), `OperationConditionFunctions` (4), `OperationDef` (5), `OperationEvaluator` (8), `OperationTeam` (17), `OperationsListReader` (1)
+
+</details>
+
+<h3 id="gossip-types">Gossip types</h3>
+<p>One class per gossip event (<code>Denounced</code>, <code>CityFounded</code>, <code>ReligionFounded</code>, <code>SpyCaptured</code>, ...) and the manager that collects them.</p>
+<p><strong>Why it looks ripe.</strong> Each type has a name hash and a handler. Listing every type with the code that raises it would show exactly when gossip fires and what it carries.</p>
+<details><summary>64 classes with their function counts (symbol build)</summary>
+
+`AgendaKudos` (4), `AgendaWarning` (4), `Allied` (4), `AnarchyBegins` (4), `ArtifactExtracted` (4), `BarbarianInvasionStarted` (4), `BarbarianRaidStarted` (4), `BeachResortCreated` (4), `BuildingConstructed` (4), `CampDestroyed` (4), `CityBesieged` (4), `CityFounded` (4), `CityLiberated` (4), `CityRazed` (4), `CityStateInfluence` (4), `ConquerCity` (4), `CulturevateCivic` (4), `DOWMade` (4), `DOWReceived` (4), `DeclaredFriendship` (4), `Delegation` (4), `Denounced` (4), `DistrictConstructed` (4), `Embassy` (4), `EraChanged` (4), `GovernmentChanged` (4), `GreatPersonCreated` (4), `InquisitionLaunched` (4), `LandUnitPromoted` (4), `LaunchingAttack` (4), `Manager` (17), `NationalParkCreated` (4), `NaturalWonderFound` (4), `NavalUnitPromoted` (4), `NewReligiousMajority` (4), `Occurrence` (1), `PantheonCreated` (4), `Pillage` (4), `PolicyEnacted` (4), `PoweredCity` (4), `ProjectStarted` (4), `RandomEvent` (4), `RelicReceived` (4), `ReligionFounded` (4), `ResearchAgreement` (4), `ResearchedTech` (4), `RockConcert` (4), `SettlerCreated` (4), `SpaceRaceProjectCompleted` (4), `SpyBreachDam` (4), `SpyDisruptRocketry` (4), `SpyGreatWorkHeist` (4), `SpyRecruitPartisans` (4), `SpySabotageProduction` (4), `SpySiphonFunds` (4), `SpyStealTechBoost` (4), `TradeDeal` (4), `TradeRenege` (4), `UnitCreated` (4), `VictoryStrategyChanged` (4), `WMDCityStrike` (4), `WMDStrike` (4), `WarPreparation` (4), `WonderStarted` (4)
+
+</details>
+
+<h3 id="historic-moments">Historic moments</h3>
+<p>The <code>...MomentDispatcher</code> classes that decide when a historic moment is awarded, and the moment manager.</p>
+<p><strong>Why it looks ripe.</strong> The trigger conditions are in the dispatcher code. A page per moment (trigger, parameters, engine calls) would answer the most common modder question about moments: why did it (not) fire.</p>
+<details><summary>54 classes with their function counts (symbol build)</summary>
+
+`ArtifactExtracted` (2), `BeliefAddedToReligionMomentDispatcher` (2), `BuildingConstructedMomentDispatcher` (1), `CityBuiltMomentDispatcher` (2), `CityChangesReligionMomentDispatcher` (2), `CityPopulationChangedMomentDispatcher` (2), `CityPowerGeneratedFromResource` (2), `CityTransferredMomentDispatcher` (2), `CivicCompletedMomentDispatcher` (2), `CoastalFloodMitigated` (2), `CombatOccurredMomentDispatcher` (1), `DiplomaticVPChanged` (2), `DisloyalCityKeptMomentDispatcher` (2), `DistrictConstructedMomentDispatcher` (1), `EmergencyEndedMomentDispatcher` (2), `GameEraChangedMomentDispatcher` (2), `GovernmentEnactedMomentDispatcher` (1), `GovernorAppointedMomentDispatcher` (2), `GovernorPromotedMomentDispatcher` (2), `HeroCreated` (2), `HeroExpired` (2), `IHistoricMomentDispatcher` (4), `ImprovementConstructedMomentDispatcher` (1), `InquisitionLaunchedMomentDispatcher` (2), `Manager` (16), `Moment` (15), `NationalParkCreatedDispatcher` (2), `OnFindNewContinent` (2), `OnFindWonder` (2), `OnGreatPersonCreated` (2), `OnImprovementDestroyedByUnit` (2), `OnPantheonFounded` (2), `OnPlayerGaveInfluenceToken` (2), `OnPlayerLevyMilitary` (2), `OnPlayersMet` (2), `OnPlotTriggerGoodyHut` (2), `OnUnitTriggerGoodyHut` (2), `OnWarDeclared` (2), `OnWorldCircumnavigated` (2), `ProjectCompletedMomentDispatcher` (1), `RandomEventSeaLevelDispatcher` (2), `ReligionFoundedMomentDispatcher` (2), `ResourceMonopolyGained` (2), `RiverFloodMitigated` (2), `RouteChangedDispatched` (1), `TechCompletedMomentDispatcher` (2), `TradingPostChangedDispatcher` (2), `UnitArmyFormedMomentDispatcher` (2), `UnitCorpsFormedMomentDispatcher` (2), `UnitCreatedMomentDispatcher` (2), `UnitPromotedMomentDispatcher` (1), `UnitTourismBombMomentDispatcher` (2), `WorldCongressResolutionBidSuccessful` (2), `WorldCongressResolutionVoteSuccessful` (2)
+
+</details>
+
+<h3 id="notification-types">Notification types</h3>
+<p>One class per notification type (<code>BoostTech</code>, <code>ChooseCivic</code>, <code>ChooseArtifactPlayer</code>, ...) and the notification manager and pools.</p>
+<p><strong>Why it looks ripe.</strong> Which engine events raise which notification, and what each one carries, is readable from the classes.</p>
+<details><summary>42 classes with their function counts (symbol build)</summary>
+
+`AcknowledgeEmergency` (5), `BoostCivic` (3), `BoostTech` (4), `ChooseArtifactPlayer` (5), `ChooseBelief` (5), `ChooseCityProduction` (6), `ChooseCivic` (5), `ChooseDragnetPriority` (5), `ChooseEscapeRoute` (5), `ChoosePantheon` (5), `ChooseReligion` (5), `ChooseTech` (5), `CityRangeAttack` (5), `CivicDiscovered` (4), `ClaimGreatPerson` (5), `CommandUnits` (5), `CommemorationAvailable` (5), `CongressInSession` (5), `CongressResults` (4), `ConsiderCongress` (5), `ConsiderDisloyalCity` (5), `ConsiderGovernmentChange` (6), `ConsiderRazeCity` (6), `DedicationQuest` (3), `DiplomacySession` (16), `EmergencyHappenings` (4), `FillCivicSlot` (6), `ForeignCityBecameFreeCity` (4), `GiveInfluenceToken` (5), `GovernorAppointment` (5), `GovernorIdleNotification` (5), `GovernorOpportunity` (4), `GovernorPromotionNotification` (4), `Instance` (30), `Manager` (34), `PlayerDefeated` (7), `PlayerNotifications` (15), `PoolType` (1), `PrideMomentRecorded` (4), `PromoteUnit` (8), `ReciprocalPlayer` (4), `TechDiscovered` (3)
+
+</details>
+
+<h3 id="diplomacy-statements-and-actions">Diplomacy statements and actions</h3>
+<p>The diplomatic statements (<code>DeclareFriend</code>, <code>DeclareWar</code>, <code>Denounce</code>, <code>Embassy</code>, <code>Delegation</code>, ...) and the actions that apply their outcome (<code>SetAllied</code>, <code>SetDelegation</code>, <code>RenewAlliance</code>, ...).</p>
+<p><strong>Why it looks ripe.</strong> Shows what a statement does when accepted and which state changes follow. Matches the AI and Dev CE diplomacy functions already listed.</p>
+<details><summary>29 classes with their function counts (symbol build)</summary>
+
+`Instance` (6), `RenewAlliance` (5), `SetAllied` (3), `SetDelegation` (6), `SetDenounced` (5), `SetEmbassy` (5), `SetFriend` (7), `SetOpenBorders` (4), `SetPromise` (6), `SetWarState` (7), `StatementResult` (6), `DeclareFriend` (5), `DeclareWar` (6), `Defeat` (4), `Delegation` (5), `Denounce` (6), `Embassy` (5), `FirstMeeting` (9), `Greeting` (6), `Instance` (15), `MakeAlliance` (4), `MakeDeal` (17), `MakeDemand` (3), `MakePeace` (5), `OpenBorders` (5), `ProposeAction` (9), `RenewAlliance` (5), `Response` (2), `Warning` (7)
+
+</details>
+
+<h3 id="quests">Quests</h3>
+<p>The quest logic classes (<code>ClearBarbarianCamp</code>, <code>SendTradeRoute</code>, <code>TrainUnitType</code>, <code>RecruitGreatPersonClass</code>, <code>TriggerCivicBoost</code>, ...).</p>
+<p><strong>Why it looks ripe.</strong> Nine classes; the conditions that complete a quest and what it rewards are all in code.</p>
+<details><summary>9 classes with their function counts (symbol build)</summary>
+
+`BaseQuest` (13), `ClearBarbarianCamp` (6), `ConvertCapitalToReligion` (7), `RecruitGreatPersonClass` (12), `SendTradeRoute` (4), `TrainUnitType` (15), `TriggerCivicBoost` (12), `TriggerTechBoost` (12), `ZoneDistrictType` (11)
+
+</details>
+
+<h3 id="climate-events">Climate events</h3>
+<p>The climate classes (<code>Drought</code>, <code>Storm</code>, <code>OneOff</code>, <code>ClimateData</code>).</p>
+<p><strong>Why it looks ripe.</strong> Small, and tied to the Gathering Storm disaster and climate systems, which have few written explanations.</p>
+<details><summary>6 classes with their function counts (symbol build)</summary>
+
+`ClimateData` (50), `ClimateDataHandler` (3), `Drought` (3), `Manager` (48), `OneOff` (2), `Storm` (4)
+
+</details>
+
+<h3 id="modifier-objects">Modifier objects</h3>
+<p>The kinds of object a modifier can be attached to or can iterate (<code>Improvement</code>, <code>Alliance</code>, <code>ArtifactExtraction</code>, <code>Belief</code>, <code>PlotYields</code>, <code>CombatResults</code>, ...).</p>
+<p><strong>Why it looks ripe.</strong> It is the data model behind collections and requirements, and explains the arguments they receive.</p>
+<details><summary>20 classes with their function counts (symbol build)</summary>
+
+`Alliance` (8), `ArtifactExtraction` (11), `Belief` (8), `City` (16), `CombatResults` (12), `Congress` (6), `District` (15), `Emergency` (11), `Game` (6), `Governor` (18), `Improvement` (15), `ModifierObject` (15), `Player` (11), `PlotYields` (15), `PotentialTradeRoute` (10), `ProposedCombat` (11), `Team` (8), `TradeRoute` (12), `Unit` (13), `UnitDeath` (11)
+
+</details>
+
+<h2>Covered, but needs verification</h2>
+<p>These have pages here, but the pages rest on inference. A contributor can add a verified result without starting from scratch.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>What is inferred</th>
+<th>How to verify</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>World Builder command classes (41 classes)</td>
+<td>The undo model on <a href="worldbuilder.html">World Builder from Lua</a> is read from function names and the call graph; the <code>Apply</code>, <code>Redo</code> and <code>Undo</code> bodies were not read.</td>
+<td>Read the functions of each command in the decompiler and replace the "probably" entries; test undo of one method of each kind in game.</td>
+</tr>
+<tr>
+<td>Modifier effect links</td>
+<td>Which engine functions an effect calls comes from the static call graph of the symbol build (<a href="effects/index.html">effects</a>). Calls through helpers or pointers are missing.</td>
+<td>Hook one engine function and apply a modifier that uses it; compare with the page.</td>
+</tr>
+<tr>
+<td>Dev CE functions</td>
+<td>The descriptions on the <a href="devce/index.html">Dev CE</a> pages were written by an AI assistant from decompiled code and are not human-reviewed; most behaviour is untested in game.</td>
+<td>Review a description against the code, or run the function in a scratch game and report what changed.</td>
+</tr>
+<tr>
+<td>World Builder method behaviour</td>
+<td>Argument forms, return values and silent-failure paths are read from wrappers whose helper functions were not decompiled.</td>
+<td>Call the method in a scratch game with each argument form and note the result.</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="";</script><script src="search.js"></script>

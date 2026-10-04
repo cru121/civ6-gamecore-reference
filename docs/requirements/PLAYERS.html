@@ -1,0 +1,1148 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Requirements: PLAYERS</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Requirements</a> › Requirements: PLAYERS</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Requirements: PLAYERS</h1>
+<p>160 entries. Subject class "PLAYERS" is the community list's grouping (what the modifier applies to).</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Arguments</th>
+<th>Engine functions called</th>
+<th>Availability</th>
+<th>Addresses (symbol→current)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="requirement_alliance_at_war_with_combat_target"></a><code>REQUIREMENT_ALLIANCE_AT_WAR_WITH_COMBAT_TARGET</code></td>
+<td>—</td>
+<td><code>District::Instance::GetOwner</code><br><code>Player::Instance::IsMinor</code><br><code>Player::Instance::IsMajor</code><br><code>Player::Diplomacy::IsAtWarWith</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x879e10</code>→<code>0x892de0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_ally"></a><code>REQUIREMENT_ALLY</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasAllied</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8da140</code>→<code>0x8f2190</code><br>OnInitialize <code>0x8d9e30</code>→<code>0x8f1c40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_city_converted"></a><code>REQUIREMENT_CITY_CONVERTED</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasCityConvertedBy</code></td>
+<td>Base game+</td>
+<td>Test <code>0x844680</code>→<code>0x85e490</code><br>OnInitialize <code>0x843d50</code>→<code>0x85dbd0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_civilization_level"></a><code>REQUIREMENT_CIVILIZATION_LEVEL</code></td>
+<td><code>OpponentCivLevel</code> (String), <code>OwnerCivLevel</code> (String)</td>
+<td><code>Player::Instance::GetLevel</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8c4630</code>→<code>0x8ddd40</code><br>OnInitialize <code>0x8c39d0</code>→<code>0x8dd070</code></td>
+</tr>
+<tr>
+<td><a id="requirement_civ_tag_matches"></a><code>REQUIREMENT_CIV_TAG_MATCHES</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_civ_type_matches"></a><code>REQUIREMENT_CIV_TYPE_MATCHES</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_culture_bombed"></a><code>REQUIREMENT_CULTURE_BOMBED</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x814ea0</code>→<code>0x82dc70</code><br>OnInitialize <code>0x8149d0</code>→<code>0x82d8a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_declared_friend"></a><code>REQUIREMENT_DECLARED_FRIEND</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasDeclaredFriendship</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8a8960</code>→<code>0x8c1b90</code><br>OnInitialize <code>0x8a7b90</code>→<code>0x8c0e10</code></td>
+</tr>
+<tr>
+<td><a id="requirement_defensive_pact"></a><code>REQUIREMENT_DEFENSIVE_PACT</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasDefensivePact</code></td>
+<td>Base game+</td>
+<td>Test <code>0x89a0e0</code>→<code>0x8b2cb0</code><br>OnInitialize <code>0x899b80</code>→<code>0x8b2490</code></td>
+</tr>
+<tr>
+<td><a id="requirement_delegation"></a><code>REQUIREMENT_DELEGATION</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasDelegationAt</code></td>
+<td>Base game+</td>
+<td>Test <code>0x816f60</code>→<code>0x82ffa0</code><br>OnInitialize <code>0x816a60</code>→<code>0x82fbe0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_demand_received"></a><code>REQUIREMENT_DEMAND_RECEIVED</code></td>
+<td>—</td>
+<td><code>Diplomacy::Deal::Manager::GetPlayerDeals</code><br><code>Diplomacy::Deal::Instance::GetOtherPlayer</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8073e0</code>→<code>0x8200d0</code><br>OnInitialize <code>0x8070d0</code>→<code>0x81f980</code></td>
+</tr>
+<tr>
+<td><a id="requirement_denounced"></a><code>REQUIREMENT_DENOUNCED</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasDenounced</code></td>
+<td>Base game+</td>
+<td>Test <code>0x895de0</code>→<code>0x8ae9c0</code><br>OnInitialize <code>0x8957c0</code>→<code>0x8ae550</code></td>
+</tr>
+<tr>
+<td><a id="requirement_denounced_friend"></a><code>REQUIREMENT_DENOUNCED_FRIEND</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasDeclaredFriendship</code><br><code>Player::Diplomacy::HasDenounced</code></td>
+<td>Base game+</td>
+<td>Test <code>0x887cb0</code>→<code>0x8a1950</code><br>OnInitialize <code>0x887670</code>→<code>0x8a13e0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_espionage_detected"></a><code>REQUIREMENT_ESPIONAGE_DETECTED</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8cec20</code>→<code>0x8e7ad0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_founded_no_religion"></a><code>REQUIREMENT_FOUNDED_NO_RELIGION</code></td>
+<td>—</td>
+<td><code>Player::Religion::GetReligionTypeCreated</code></td>
+<td>Base game+</td>
+<td>Test <code>0x843360</code>→<code>0x85b960</code><br>OnInitialize <code>0x842f10</code>→<code>0x85b690</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_climate_change_level_at_least"></a><code>REQUIREMENT_GAME_CLIMATE_CHANGE_LEVEL_AT_LEAST</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td><code>Game::Climate::Manager::Get</code><br><code>Game::Climate::ClimateData::GetClimateChangeLevel</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>NFP</td>
+<td>Test <code>0x891b80</code>→<code>0x8aaac0</code><br>OnInitialize <code>0x891830</code>→<code>0x8aa6c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_era_atleast"></a><code>REQUIREMENT_GAME_ERA_ATLEAST</code></td>
+<td><code>MinGameEra</code> (String)</td>
+<td><code>GameEffects::Requirements::GameEraAtLeast::IsEraReached</code><br><code>Definitions::GetEraDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8417d0</code>→<code>0x85a180</code><br>OnInitialize <code>0x841360</code>→<code>0x859c90</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_era_atleast_expansion"></a><code>REQUIREMENT_GAME_ERA_ATLEAST_EXPANSION</code></td>
+<td><code>EraType</code> (String)</td>
+<td><code>Game::Eras::Edit</code><br><code>Definitions::GetEraDefinitions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x8da6c0</code>→<code>0x8f2c60</code><br>OnInitialize <code>0x8da390</code>→<code>0x8f28f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_era_atmost"></a><code>REQUIREMENT_GAME_ERA_ATMOST</code> <em>(untested in the community list)</em></td>
+<td><code>EraType</code> (String)</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_game_era_atmost_expansion"></a><code>REQUIREMENT_GAME_ERA_ATMOST_EXPANSION</code></td>
+<td><code>EraType</code> (String)</td>
+<td><code>Game::Eras::Edit</code><br><code>Definitions::GetEraDefinitions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x856020</code>→<code>0x86ee20</code><br>OnInitialize <code>0x855780</code>→<code>0x86eae0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_era_is"></a><code>REQUIREMENT_GAME_ERA_IS</code></td>
+<td><code>EraType</code> (String)</td>
+<td><code>Game::Eras::Edit</code><br><code>Definitions::GetEraDefinitions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x8e19c0</code>→<code>0x7e7110</code><br>OnInitialize <code>0x8e1020</code>→<code>0x7e6620</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_has_civilization_or_leader_trait"></a><code>REQUIREMENT_GAME_HAS_CIVILIZATION_OR_LEADER_TRAIT</code></td>
+<td><code>TraitType</code> (String)</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Instance::GetConfiguration</code><br><code>Configuration::Player::Instance::GetCivilizationTypeID</code><br><code>Definitions::GetCivilizationDefinitions</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code><br><code>Definitions::GetLeaderDefinitions</code><br><code>Definitions::GetTraitDefinitions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x85f590</code>→<code>0x8774e0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_is_multiplayer"></a><code>REQUIREMENT_GAME_IS_MULTIPLAYER</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>Configuration::Game::Instance::IsAnyMultiplayer</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8da0e0</code>→<code>0x8f2130</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_turn_atleast"></a><code>REQUIREMENT_GAME_TURN_ATLEAST</code></td>
+<td><code>AdjustForGameSpeed</code> (Boolean), <code>MinGameTurn</code> (Integer)</td>
+<td><code>GameEffects::Requirements::GameTurnAtLeast::IsTurnAtLeast</code><br><code>Rules::Economic::Get</code><br><code>Rules::Economic::Instance::AdjustForGameSpeed</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8ed370</code>→<code>0x7f2b40</code><br>OnInitialize <code>0x8ec8c0</code>→<code>0x7f21e0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_turn_max_reached"></a><code>REQUIREMENT_GAME_TURN_MAX_REACHED</code></td>
+<td><code>MaxGameTurn</code> (Integer)</td>
+<td><code>GameEffects::Requirements::GameTurnMaxReached::IsTurnLimitReached</code></td>
+<td>Base game+</td>
+<td>Test <code>0x868180</code>→<code>?</code><br>OnInitialize <code>0x867900</code>→<code>0x87edb0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_game_victory_enabled"></a><code>REQUIREMENT_GAME_VICTORY_ENABLED</code></td>
+<td><code>VictoryType</code> (String)</td>
+<td><code>Definitions::GetVictoryDefinitions</code><br><code>Game::VictoryManager::IsVictoryEnabled</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8f2360</code>→<code>0x7f77a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_had_friendly_meeting"></a><code>REQUIREMENT_HAD_FRIENDLY_MEETING</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HadFriendlyMeeting</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7f9820</code>→<code>0x811d30</code><br>OnInitialize <code>0x7f95f0</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_leader_tag_matches"></a><code>REQUIREMENT_LEADER_TAG_MATCHES</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_leader_type_matches"></a><code>REQUIREMENT_LEADER_TYPE_MATCHES</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_met"></a><code>REQUIREMENT_MET</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x84e870</code>→<code>0x852ee0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_near_culture_border"></a><code>REQUIREMENT_NEAR_CULTURE_BORDER</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::GetIncursionsSince</code><br><code>AI::Targets::GetKnowledgeBase</code><br><code>Definitions::GetUnitDefinitions</code><br><code>Definition::Utility::NameToFormationClassType</code><br><code>Hex::EnumerateNeighborhood</code><br><code>Player::Diplomacy::UpdatePromise</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8c42b0</code>→<code>0x8de3b0</code><br>OnInitialize <code>0x8c3550</code>→<code>0x8dd8c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_near_religious_city"></a><code>REQUIREMENT_NEAR_RELIGIOUS_CITY</code></td>
+<td><code>FriendlyCity</code> (Boolean)</td>
+<td><code>Player::Religion::GetReligionTypeCreated</code><br><code>Player::Religion::GetReligionInMajorityOfCities</code><br><code>City::CManager::EditCity</code></td>
+<td>Base game+</td>
+<td>Test <code>0x85c620</code>→<code>0x874cf0</code><br>OnInitialize <code>0x85bbc0</code>→<code>0x874310</code></td>
+</tr>
+<tr>
+<td><a id="requirement_never_met"></a><code>REQUIREMENT_NEVER_MET</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x860190</code>→<code>0x863d40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_not_met"></a><code>REQUIREMENT_NOT_MET</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x86e010</code>→<code>0x874a40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_open_borders"></a><code>REQUIREMENT_OPEN_BORDERS</code></td>
+<td><code>GracePeriod</code> (Integer)</td>
+<td><code>Player::Diplomacy::HasOpenBordersFrom</code><br><code>Player::Diplomacy::GetTurnsSinceOpenBordersEnded</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x899ff0</code>→<code>0x8b2bc0</code><br>OnInitialize <code>0x899790</code>→<code>0x8b20a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_opponent_era_age_matches"></a><code>REQUIREMENT_OPPONENT_ERA_AGE_MATCHES</code></td>
+<td><code>Type</code> (String)</td>
+<td><code>District::Instance::GetOwner</code><br><code>Game::Eras::Edit</code><br><code>Game::Eras::HasDarkAge</code><br><code>Game::Eras::HasGoldenAge</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x889750</code>→<code>0x8a3460</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_always_allowed_commemoration_quest"></a><code>REQUIREMENT_PLAYER_ALWAYS_ALLOWED_COMMEMORATION_QUEST</code></td>
+<td>—</td>
+<td><code>Game::Eras::Edit</code><br><code>Game::Eras::IsPlayerAlwaysAllowedCommemorationQuest</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x89d290</code>→<code>0x8b68d0</code><br>OnInitialize <code>0x89ce00</code>→<code>0x8b6070</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_attacked_continent"></a><code>REQUIREMENT_PLAYER_ATTACKED_CONTINENT</code></td>
+<td>—</td>
+<td><code>Game::DiplomaticRelations::Edit</code><br><code>Player::Manager::Edit</code><br><code>Game::DiplomaticRelations::StartedWarWith</code><br><code>Game::DiplomaticRelations::GetJointWarTarget</code><br><code>Game::DiplomaticRelations::GetWarType</code><br><code>Player::Instance::GetCapitalContinent</code></td>
+<td>Base game+</td>
+<td>Test <code>0x806a60</code>→<code>0x81f7c0</code><br>OnInitialize <code>0x8065d0</code>→<code>0x81f3c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_at_war_and_has_met"></a><code>REQUIREMENT_PLAYER_AT_WAR_AND_HAS_MET</code></td>
+<td>—</td>
+<td><code>Player::DiplomacyBlackboard::Get</code><br><code>Game::DiplomaticRelations::Edit</code><br><code>Game::DiplomaticRelations::HasMet</code><br><code>Player::Manager::Edit</code><br><code>Game::DiplomaticRelations::IsAtWar</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8298f0</code>→<code>0x842b70</code><br>OnInitialize <code>0x829160</code>→<code>0x8421f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_at_war_with_emergency_member"></a><code>REQUIREMENT_PLAYER_AT_WAR_WITH_EMERGENCY_MEMBER</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Cache::Unit::Experience::GetVeteranName</code><br><code>Player::Diplomacy::IsAtWarWith</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x89aa10</code>→<code>0x8b3760</code><br>OnInitialize <code>0x89a780</code>→<code>0x8b3560</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_at_war_with_neighbor"></a><code>REQUIREMENT_PLAYER_AT_WAR_WITH_NEIGHBOR</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Player::Manager::Edit</code><br><code>Player::Diplomacy::IsAtWarWith</code><br><code>Player::Diplomacy::AreAdjacentEmpires</code><br><code>Player::Diplomacy::IsFightingJointWarAgainst</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Emergency::Instance::ContainsPlayerID</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x8138a0</code>→<code>0x82cb00</code><br>OnInitialize <code>0x812d20</code>→<code>0x82bb40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_average_wall_level_threshold"></a><code>REQUIREMENT_PLAYER_AVERAGE_WALL_LEVEL_THRESHOLD</code></td>
+<td><code>AboveThreshold</code> (Boolean), <code>AverageWallLevelThreshold</code> (Integer)</td>
+<td><code>Definitions::GetBuildingDefinitions</code><br><code>Player::Culture::HasCivic</code><br><code>Player::Techs::HasTech</code><br><code>City::Buildings::HasBuilding</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x88dac0</code>→<code>0x8a76b0</code><br>OnInitialize <code>0x88cce0</code>→<code>0x8a6250</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_built_new_wonder"></a><code>REQUIREMENT_PLAYER_BUILT_NEW_WONDER</code></td>
+<td>—</td>
+<td>—</td>
+<td>NFP, Alexander</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_player_built_wonder"></a><code>REQUIREMENT_PLAYER_BUILT_WONDER</code></td>
+<td><code>WonderRatio</code> (Integer)</td>
+<td><code>Player::Stats::GetNumWonders</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x83c770</code>→<code>0x855230</code><br>OnInitialize <code>0x83c170</code>→<code>0x854c00</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_can_ever_earn_great_person_class"></a><code>REQUIREMENT_PLAYER_CAN_EVER_EARN_GREAT_PERSON_CLASS</code></td>
+<td><code>GreatPersonClass</code> (String)</td>
+<td><code>Game::GreatPeople::Get</code><br><code>Game::GreatPeople::CanEverEarnClass</code><br><code>Definitions::GetGreatPersonClassDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x89ba00</code>→<code>0x8b44c0</code><br>OnInitialize <code>0x89b1f0</code>→<code>0x8b3f00</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_city_state_protector"></a><code>REQUIREMENT_PLAYER_CITY_STATE_PROTECTOR</code></td>
+<td><code>LowerBound</code> (Integer), <code>NoLowerBound</code> (Boolean), <code>NoUpperBound</code> (Boolean), <code>UpperBound</code> (Integer)</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8d12d0</code>→<code>0x8ea5f0</code><br>OnInitialize <code>0x8d03e0</code>→<code>0x8e91b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_civilized"></a><code>REQUIREMENT_PLAYER_CIVILIZED</code></td>
+<td><code>BelowThreshold</code> (Boolean), <code>CampToCityDistance</code> (Integer), <code>ClearedCampValue</code> (Integer), <code>IgnoredCampValue</code> (Integer), <code>TotalScoreThreshold</code> (Integer)</td>
+<td><code>Player::Stats::GetMetOtherPlayerClearedBanditCampCount</code><br><code>AI::Targets::GetKnowledgeBase</code><br><code>Map::IInstance::GetPlotDistance</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x848e90</code>→<code>0x8624d0</code><br>OnInitialize <code>0x8486f0</code>→<code>0x861bc0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_coastal_cities"></a><code>REQUIREMENT_PLAYER_COASTAL_CITIES</code></td>
+<td><code>BelowPercentage</code> (Integer), <code>MinimumCities</code> (Integer), <code>Percentage</code> (Integer)</td>
+<td><code>City::IInstance::GetPlot</code><br><code>Map::Plot::Instance::IsCoastalLand</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x815fb0</code>→<code>0x82f640</code><br>OnInitialize <code>0x8157f0</code>→<code>0x82ead0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_competing_minors"></a><code>REQUIREMENT_PLAYER_COMPETING_MINORS</code></td>
+<td><code>PercentCompeting</code> (Integer)</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Influence::GetTokensReceived</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8861b0</code>→<code>0x8a0190</code><br>OnInitialize <code>0x884e80</code>→<code>0x89f100</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_conquered_x_city_states"></a><code>REQUIREMENT_PLAYER_CONQUERED_X_CITY_STATES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td><code>Player::Cities::GetNumCapturedCityStates</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8df580</code>→<code>0x7e4b90</code><br>OnInitialize <code>0x8defe0</code>→<code>0x7e4620</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_conquering_allying_minors"></a><code>REQUIREMENT_PLAYER_CONQUERING_ALLYING_MINORS</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasActiveDOWOnMinor</code><br><code>Player::Diplomacy::HasConqueredMinor</code><br><code>Player::Manager::Edit</code><br><code>Player::Instance::IsMajor</code><br><code>Player::Instance::IsBarbarian</code><br><code>Player::Influence::GetSuzerain</code></td>
+<td>Base game+</td>
+<td>Test <code>0x80b980</code>→<code>0x8255a0</code><br>OnInitialize <code>0x80b560</code>→<code>0x824810</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_deal_enacted"></a><code>REQUIREMENT_PLAYER_DEAL_ENACTED</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8a47b0</code>→<code>0x8bd200</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_declared_war"></a><code>REQUIREMENT_PLAYER_DECLARED_WAR</code></td>
+<td><code>ExcludeEmergencies</code> (Boolean), <code>WarType</code> (String), <code>WhileMet</code> (Boolean)</td>
+<td><code>Game::DiplomaticRelations::Edit</code><br><code>Player::Diplomacy::HasMet</code><br><code>Player::Manager::Edit</code><br><code>Game::DiplomaticRelations::GetWarType</code><br><code>Player::Diplomacy::IsFightingAnyJointWarWith</code><br><code>Game::DiplomaticRelations::StartedWarWith</code></td>
+<td>Base game+</td>
+<td>Test <code>0x87f2b0</code>→<code>0x899480</code><br>OnInitialize <code>0x87ec70</code>→<code>0x898ee0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_default_defeat"></a><code>REQUIREMENT_PLAYER_DEFAULT_DEFEAT</code></td>
+<td><code>IgnoreCities</code> (Boolean), <code>IgnoreUnits</code> (Boolean), <code>UnitType</code> (String)</td>
+<td><code>Definitions::GetUnitDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x834220</code>→<code>0x84d940</code><br>OnInitialize <code>0x833b10</code>→<code>0x84d2c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_diplo_vp_lead"></a><code>REQUIREMENT_PLAYER_DIPLO_VP_LEAD</code></td>
+<td><code>MinimumDelta</code> (Integer), <code>Ratio</code> (Integer)</td>
+<td><code>Player::Stats::GetDiplomaticVictoryPoints</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x805960</code>→<code>0x81e3d0</code><br>OnInitialize <code>0x805450</code>→<code>0x81dfd0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_district_threshold"></a><code>REQUIREMENT_PLAYER_DISTRICT_THRESHOLD</code></td>
+<td><code>AboveThreshold</code> (Boolean), <code>DistrictPercentThreshold</code> (Integer), <code>MinDistrictsNeeded</code> (Integer)</td>
+<td><code>Player::Stats::GetNumDistrictsCompleted</code><br><code>Player::Stats::GetNumDistrictsPossible</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x886420</code>→<code>0x8a02f0</code><br>OnInitialize <code>0x885810</code>→<code>0x89f7f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_domination_victory"></a><code>REQUIREMENT_PLAYER_DOMINATION_VICTORY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>Player::Instance::IsMajor</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8be880</code>→<code>0x8d8630</code><br>OnInitialize <code>0x8be160</code>→<code>0x8d8030</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_environment"></a><code>REQUIREMENT_PLAYER_ENVIRONMENT</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>Player::Stats::GetMetOtherPlayerPlotFeatureRemovedCount</code><br><code>Player::Stats::GetMetOtherPlayerParkConstructedCount</code><br><code>Player::Stats::GetMetOtherPlayerPlacedForestCount</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x863380</code>→<code>0x87aa90</code><br>OnInitialize <code>0x8628b0</code>→<code>0x87a2d0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_era_at_least"></a><code>REQUIREMENT_PLAYER_ERA_AT_LEAST</code></td>
+<td><code>EraType</code> (String)</td>
+<td><code>Player::Instance::GetEra</code><br><code>Definitions::GetEraDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8ed2d0</code>→<code>0x7f2aa0</code><br>OnInitialize <code>0x8ec720</code>→<code>0x7f2040</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_exploitation"></a><code>REQUIREMENT_PLAYER_EXPLOITATION</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>Player::Stats::CalculateImprovedTilePercentage</code><br><code>Player::Stats::GetMetOtherPlayerPlotFeatureRemovedCount</code><br><code>Player::Stats::GetMetOtherPlayerParkConstructedCount</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x86cd20</code>→<code>0x884890</code><br>OnInitialize <code>0x86c2f0</code>→<code>0x883e40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_exploration_lead"></a><code>REQUIREMENT_PLAYER_EXPLORATION_LEAD</code></td>
+<td><code>ExplorationRatio</code> (Integer), <code>MinimumDelta</code> (Integer)</td>
+<td><code>Player::Instance::GetVisibility</code><br><code>Map::Player::Visibility::Instance::GetNumRevealedHexes</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7e8610</code>→<code>0x7ffbf0</code><br>OnInitialize <code>0x7e7f40</code>→<code>0x7ff6b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_favor_lead"></a><code>REQUIREMENT_PLAYER_FAVOR_LEAD</code></td>
+<td><code>MinimumDelta</code> (Integer), <code>Ratio</code> (Integer)</td>
+<td><code>Player::Congress::Get</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x892e00</code>→<code>0x8abc40</code><br>OnInitialize <code>0x892290</code>→<code>0x8ab0b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_finished_research"></a><code>REQUIREMENT_PLAYER_FINISHED_RESEARCH</code></td>
+<td><code>TechCivicDifferential</code> (Integer)</td>
+<td><code>Player::Culture::GetNumCivicsCompleted</code><br><code>Player::Techs::GetNumTechsResearched</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8b4f30</code>→<code>0x8cea40</code><br>OnInitialize <code>0x8b4700</code>→<code>0x8ce370</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_founded_no_religion"></a><code>REQUIREMENT_PLAYER_FOUNDED_NO_RELIGION</code></td>
+<td>—</td>
+<td><code>Player::Religion::GetReligionTypeCreated</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x8aa190</code>→<code>0x8c34d0</code><br>OnInitialize <code>0x8a9d40</code>→<code>0x8c2df0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_founded_our_religion"></a><code>REQUIREMENT_PLAYER_FOUNDED_OUR_RELIGION</code></td>
+<td>—</td>
+<td><code>Player::Religion::GetReligionTypeCreated</code><br><code>Player::Religion::GetReligionInMajorityOfCities</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8d6330</code>→<code>0x8ee0b0</code><br>OnInitialize <code>0x8d5f50</code>→<code>0x8ed9b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_founded_religion_with_belief"></a><code>REQUIREMENT_PLAYER_FOUNDED_RELIGION_WITH_BELIEF</code></td>
+<td><code>BeliefType</code> (String)</td>
+<td><code>Game::Religion::Get</code><br><code>Game::Religion::GetReligionCreatedByPlayer</code><br><code>Definitions::GetBeliefDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8538a0</code>→<code>0x86c0a0</code><br>OnInitialize <code>0x8531c0</code>→<code>0x86be70</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_got_first_place_in_emergency"></a><code>REQUIREMENT_PLAYER_GOT_FIRST_PLACE_IN_EMERGENCY</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Emergency::Instance::IsPlayerInFirstPlace</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x80c990</code>→<code>0x825ea0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_got_great_person"></a><code>REQUIREMENT_PLAYER_GOT_GREAT_PERSON</code></td>
+<td><code>GreatPersonRatio</code> (Integer), <code>MinimumDelta</code> (Integer)</td>
+<td><code>Player::Stats::GetNumGreatPeopleEarned</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8217f0</code>→<code>0x83a890</code><br>OnInitialize <code>0x821200</code>→<code>0x83a440</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_got_high_tier_score_in_emergency"></a><code>REQUIREMENT_PLAYER_GOT_HIGH_TIER_SCORE_IN_EMERGENCY</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Emergency::Instance::IsPlayerInTopScoreBracket</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x81f2f0</code>→<code>0x838150</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_got_low_tier_score_in_emergency"></a><code>REQUIREMENT_PLAYER_GOT_LOW_TIER_SCORE_IN_EMERGENCY</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Emergency::Instance::IsPlayerInBottomScoreBracket</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x8310a0</code>→<code>0x849e20</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_handicap_at_or_above"></a><code>REQUIREMENT_PLAYER_HANDICAP_AT_OR_ABOVE</code></td>
+<td><code>Handicap</code> (String)</td>
+<td><code>Definitions::GetDifficultyDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7eedf0</code>→<code>0x806770</code><br>OnInitialize <code>0x7ee7b0</code>→<code>0x806480</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_happiness_lead"></a><code>REQUIREMENT_PLAYER_HAPPINESS_LEAD</code></td>
+<td><code>HappinessRatio</code> (Integer), <code>MinimumDelta</code> (Integer)</td>
+<td><code>Player::Stats::GetNumCities</code><br><code>Player::Stats::GetOverallHappiness</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8b33f0</code>→<code>0x8cd880</code><br>OnInitialize <code>0x8b2b00</code>→<code>0x8cd140</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_active_alliance_of_at_least_level"></a><code>REQUIREMENT_PLAYER_HAS_ACTIVE_ALLIANCE_OF_AT_LEAST_LEVEL</code></td>
+<td><code>Level</code> (Integer)</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Diplomacy::GetAllianceLevelWithPlayer</code><br><code>Player::Diplomacy::HasAllied</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x881530</code>→<code>0x89bd30</code><br>OnInitialize <code>0x880de0</code>→<code>0x89b180</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_at_least_diplo_vis_level"></a><code>REQUIREMENT_PLAYER_HAS_AT_LEAST_DIPLO_VIS_LEVEL</code></td>
+<td><code>Level</code> (Integer)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_at_least_number_cities"></a><code>REQUIREMENT_PLAYER_HAS_AT_LEAST_NUMBER_CITIES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td><code>Player::Stats::GetNumCities</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x8ec1a0</code>→<code>0x7f1fd0</code><br>OnInitialize <code>0x8eb8d0</code>→<code>0x7f16f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_at_least_num_buildings"></a><code>REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_BUILDINGS</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String)</td>
+<td><code>Player::Stats::GetNumBuildingsOfType</code><br><code>Definitions::GetBuildingDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x801540</code>→<code>0x819050</code><br>OnInitialize <code>0x8010b0</code>→<code>0x8182a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_at_least_num_military_units"></a><code>REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_MILITARY_UNITS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td><code>Player::Stats::GetNumCombatUnits</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x86df60</code>→<code>0x885540</code><br>OnInitialize <code>0x86d350</code>→<code>0x8850b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_building"></a><code>REQUIREMENT_PLAYER_HAS_BUILDING</code></td>
+<td><code>BuildingType</code> (String)</td>
+<td><code>Player::Cities::GetNumBuildings</code><br><code>Definitions::GetBuildingDefinitions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x845300</code>→<code>0x85f270</code><br>OnInitialize <code>0x844c70</code>→<code>0x85eba0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_city_on_emergency_plot_continent"></a><code>REQUIREMENT_PLAYER_HAS_CITY_ON_EMERGENCY_PLOT_CONTINENT</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Map::EditInstance</code><br><code>Player::Cities::HasCityOnContinent</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x8d5460</code>→<code>0x8ed560</code><br>OnInitialize <code>0x8d50d0</code>→<code>0x8ecff0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_civic"></a><code>REQUIREMENT_PLAYER_HAS_CIVIC</code></td>
+<td><code>CivicType</code> (String)</td>
+<td><code>Player::Culture::HasCivic</code><br><code>Definitions::GetCivicDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8a0450</code>→<code>0x8b8e10</code><br>OnInitialize <code>0x89ed00</code>→<code>0x8b78f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_civilization_or_leader_trait"></a><code>REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT</code></td>
+<td><code>TraitType</code> (String)</td>
+<td><code>Player::Instance::GetConfiguration</code><br><code>Configuration::Player::Instance::GetCivilizationTypeID</code><br><code>Definitions::GetCivilizationDefinitions</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code><br><code>Definitions::GetLeaderDefinitions</code><br><code>Definitions::GetTraitDefinitions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x87bfc0</code>→<code>0x895170</code><br>OnInitialize <code>0x85f060</code>→<code>0x877120</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_completed_project"></a><code>REQUIREMENT_PLAYER_HAS_COMPLETED_PROJECT</code></td>
+<td><code>MinimumCompletions</code> (Integer), <code>ProjectType</code> (String)</td>
+<td><code>Player::Stats::GetNumProjectsAdvanced</code><br><code>Definitions::GetProjectDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x84a640</code>→<code>0x863be0</code><br>OnInitialize <code>0x849fe0</code>→<code>0x863630</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_comp_stomp_victory"></a><code>REQUIREMENT_PLAYER_HAS_COMP_STOMP_VICTORY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::PlayerHasGoldenHordeVictory::CalculatePoints</code><br><code>GameEffects::Requirements::PlayerHasCompStompVictory::FilterByHighestScore</code><br><code>GameEffects::Requirements::PlayerHasCompStompVictory::ScoreTieBreaker</code></td>
+<td>Base game+</td>
+<td>Test <code>0x839cd0</code>→<code>0x852ca0</code><br>OnInitialize <code>0x8394d0</code>→<code>0x8527f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_dark_age"></a><code>REQUIREMENT_PLAYER_HAS_DARK_AGE</code></td>
+<td>—</td>
+<td><code>Game::Eras::Edit</code><br><code>Game::Eras::HasDarkAge</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x850c60</code>→<code>0x869d50</code><br>OnInitialize <code>0x8507f0</code>→<code>0x869640</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_desired_luxury"></a><code>REQUIREMENT_PLAYER_HAS_DESIRED_LUXURY</code></td>
+<td>—</td>
+<td><code>Definitions::GetResourceDefinitions</code><br><code>Player::Resources::GetAvailableResourceAmount</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8e2b80</code>→<code>0x7e8450</code><br>OnInitialize <code>0x8e23b0</code>→<code>0x7e78c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_district"></a><code>REQUIREMENT_PLAYER_HAS_DISTRICT</code></td>
+<td><code>DistrictType</code> (String)</td>
+<td><code>Player::Districts::GetNumDistrictsOfType</code><br><code>Definitions::GetDistrictDefinitions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x8dad60</code>→<code>0x8f34f0</code><br>OnInitialize <code>0x8dab80</code>→<code>0x8f3210</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_envoy_with_emergency_data_player"></a><code>REQUIREMENT_PLAYER_HAS_ENVOY_WITH_EMERGENCY_DATA_PLAYER</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Player::Manager::Edit</code><br><code>Emergency::Manager::GetEmergency</code><br><code>City::CManager::GetCityAt</code><br><code>Player::Instance::IsMinor</code><br><code>Player::Influence::GetMaxTokensReceived</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x853a80</code>→<code>0x86caf0</code><br>OnInitialize <code>0x8537c0</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_feature"></a><code>REQUIREMENT_PLAYER_HAS_FEATURE</code></td>
+<td><code>FeatureType</code> (String)</td>
+<td><code>Map::Instance::GetCityPlots</code><br><code>Map::CityPlots::GetPurchasedPlots</code><br><code>Definitions::GetFeatureDefinitions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x877d50</code>→<code>0x890210</code><br>OnInitialize <code>0x877720</code>→<code>0x88fcf0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_given_influence_tokens"></a><code>REQUIREMENT_PLAYER_HAS_GIVEN_INFLUENCE_TOKENS</code></td>
+<td><code>MinimumTokens</code> (Integer)</td>
+<td><code>Player::Influence::GetTokensReceived</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8de6f0</code>→<code>0x7e4060</code><br>OnInitialize <code>0x8de030</code>→<code>0x8f6950</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_given_most_influence_tokens"></a><code>REQUIREMENT_PLAYER_HAS_GIVEN_MOST_INFLUENCE_TOKENS</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_golden_age"></a><code>REQUIREMENT_PLAYER_HAS_GOLDEN_AGE</code></td>
+<td>—</td>
+<td><code>Game::Eras::Edit</code><br><code>Game::Eras::HasGoldenAge</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x862760</code>→<code>0x87a940</code><br>OnInitialize <code>0x862190</code>→<code>0x879e70</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_golden_horde_victory"></a><code>REQUIREMENT_PLAYER_HAS_GOLDEN_HORDE_VICTORY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::PlayerHasGoldenHordeVictory::CalculatePoints</code><br><code>GameEffects::Requirements::PlayerHasCompStompVictory::FilterByHighestScore</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8e4d40</code>→<code>0x7eac30</code><br>OnInitialize <code>0x8e4920</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_great_person"></a><code>REQUIREMENT_PLAYER_HAS_GREAT_PERSON</code></td>
+<td><code>GreatPersonIndividual</code> (String)</td>
+<td><code>Definitions::GetGreatPersonClassDefinitions</code><br><code>Definitions::GetGreatPersonIndividualDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8e92a0</code>→<code>0x7ef370</code><br>OnInitialize <code>0x8e89e0</code>→<code>0x7eec70</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_highest_score"></a><code>REQUIREMENT_PLAYER_HAS_HIGHEST_SCORE</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::PlayerHasHighestScore::FilterByHighestScore</code><br><code>Definitions::GetScoringLineItemDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8dec40</code>→<code>0x7e4280</code><br>OnInitialize <code>0x8de910</code>→<code>0x8f6d60</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_many_alliances"></a><code>REQUIREMENT_PLAYER_HAS_MANY_ALLIANCES</code></td>
+<td><code>ChecKForFewer</code> (Boolean), <code>MinOwnerAlliances</code> (Integer)</td>
+<td><code>Player::Diplomacy::GetNumAlliances</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x83ef10</code>→<code>0x858270</code><br>OnInitialize <code>0x83e680</code>→<code>0x857bd0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_met"></a><code>REQUIREMENT_PLAYER_HAS_MET</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasMet</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8ca700</code>→<code>0x8e3720</code><br>OnInitialize <code>0x8ca2e0</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_most_promotion_class"></a><code>REQUIREMENT_PLAYER_HAS_MOST_PROMOTION_CLASS</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::PlayerHasMostPromotionClass::CheckUnitCount</code><br><code>Player::Instance::GetScore</code></td>
+<td>Base game+</td>
+<td>Test <code>0x842500</code>→<code>0x85aca0</code><br>OnInitialize <code>0x841d30</code>→<code>0x85a540</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_most_religion_followers"></a><code>REQUIREMENT_PLAYER_HAS_MOST_RELIGION_FOLLOWERS</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::PlayerHasMostReligionFollowers::CheckFollowerCount</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8d2d60</code>→<code>0x8eb4b0</code><br>OnInitialize <code>0x8d2a00</code>→<code>0x8eb2c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_most_territory"></a><code>REQUIREMENT_PLAYER_HAS_MOST_TERRITORY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_most_wmd_city_hits"></a><code>REQUIREMENT_PLAYER_HAS_MOST_WMD_CITY_HITS</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::PlayerHasMostWMDCityHits::CheckWMDHitCount</code><br><code>Player::Instance::GetScore</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x854510</code>→<code>0x86cc90</code><br>OnInitialize <code>0x853c20</code>→<code>0x86c6b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_pantheon"></a><code>REQUIREMENT_PLAYER_HAS_PANTHEON</code></td>
+<td>—</td>
+<td><code>Player::Religion::GetPantheon</code></td>
+<td>Base game+</td>
+<td>Test <code>0x85fc90</code>→<code>0x877a60</code><br>OnInitialize <code>0x85fa20</code>→<code>0x877770</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_resource_improved"></a><code>REQUIREMENT_PLAYER_HAS_RESOURCE_IMPROVED</code></td>
+<td><code>ResourceType</code> (String)</td>
+<td><code>City::Resources::CountLocalResourceTypes</code><br><code>Definitions::GetResourceDefinitions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x847210</code>→<code>0x860d90</code><br>OnInitialize <code>0x846cc0</code>→<code>0x860b40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_resource_owned"></a><code>REQUIREMENT_PLAYER_HAS_RESOURCE_OWNED</code></td>
+<td><code>ResourceType</code> (String)</td>
+<td><code>Player::Resources::HasResource</code><br><code>Definitions::GetResourceDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8ca690</code>→<code>0x8e3ca0</code><br>OnInitialize <code>0x8c9d60</code>→<code>0x8e31a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_resource_visibility"></a><code>REQUIREMENT_PLAYER_HAS_RESOURCE_VISIBILITY</code></td>
+<td><code>ResourceType</code> (String)</td>
+<td><code>Player::Resources::IsResourceVisible</code><br><code>Definitions::GetResourceDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8eae10</code>→<code>0x7f0780</code><br>OnInitialize <code>0x8ea9d0</code>→<code>0x7f0040</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_same_government"></a><code>REQUIREMENT_PLAYER_HAS_SAME_GOVERNMENT</code></td>
+<td>—</td>
+<td><code>Player::Culture::GetCurrentGovernment</code></td>
+<td>Base game+</td>
+<td>Test <code>0x864e30</code>→<code>0x87cb10</code><br>OnInitialize <code>0x864b80</code>→<code>0x87c9f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_science_victory_points"></a><code>REQUIREMENT_PLAYER_HAS_SCIENCE_VICTORY_POINTS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td><code>Player::Stats::GetScienceVictoryPointsTotalNeeded</code><br><code>Player::Stats::GetScienceVictoryPoints</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x8d8760</code>→<code>0x8f0600</code><br>OnInitialize <code>0x8d81e0</code>→<code>0x8f00e0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_technology"></a><code>REQUIREMENT_PLAYER_HAS_TECHNOLOGY</code></td>
+<td><code>TechnologyType</code> (String)</td>
+<td><code>Player::Techs::HasTech</code><br><code>Definitions::GetTechnologyDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7f1f10</code>→<code>0x809780</code><br>OnInitialize <code>0x7f0880</code>→<code>0x808730</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_income_lead"></a><code>REQUIREMENT_PLAYER_INCOME_LEAD</code></td>
+<td><code>MinimumDelta</code> (Integer), <code>YieldRatio</code> (Integer)</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8ddb20</code>→<code>0x8f5da0</code><br>OnInitialize <code>0x8dd1d0</code>→<code>0x8f58b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_in_joint_emergency"></a><code>REQUIREMENT_PLAYER_IN_JOINT_EMERGENCY</code></td>
+<td><code>HostileOnly</code> (Boolean)</td>
+<td><code>Emergency::Instance::ContainsPlayerID</code><br><code>Definitions::GetEmergencyAllianceDefinitions</code><br><code>Definitions::GetEmergencyAlliance_XP2Definitions</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x855200</code>→<code>0x86e0a0</code><br>OnInitialize <code>0x854780</code>→<code>0x86d5d0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_attacking"></a><code>REQUIREMENT_PLAYER_IS_ATTACKING</code></td>
+<td>—</td>
+<td><code>District::Instance::GetOwner</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x85d560</code>→<code>0x875620</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_at_least_alliance_level_with_emergency_player"></a><code>REQUIREMENT_PLAYER_IS_AT_LEAST_ALLIANCE_LEVEL_WITH_EMERGENCY_PLAYER</code></td>
+<td><code>Level</code> (Integer)</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Player::Diplomacy::GetAllianceLevelWithPlayer</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x80b0c0</code>→<code>0x824590</code><br>OnInitialize <code>0x80ac00</code>→<code>0x823de0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_at_peace"></a><code>REQUIREMENT_PLAYER_IS_AT_PEACE</code></td>
+<td><code>Min Turns</code> (Integer)</td>
+<td><code>Player::Instance::IsAtWarWith</code><br><code>Player::Diplomacy::HasMet</code><br><code>Player::Diplomacy::GetAtWarChangeTurn</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8459c0</code>→<code>0x85f840</code><br>OnInitialize <code>0x844f10</code>→<code>0x85ee80</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_at_peace_with_all_majors"></a><code>REQUIREMENT_PLAYER_IS_AT_PEACE_WITH_ALL_MAJORS</code></td>
+<td>—</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Instance::IsAtWarWith</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8af6c0</code>→<code>0x8c9b70</code><br>OnInitialize <code>0x8aee80</code>→<code>0x8c8da0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_at_war"></a><code>REQUIREMENT_PLAYER_IS_AT_WAR</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::IsAtWarWithAnyMajorCiv</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x8a54c0</code>→<code>0x8be0b0</code><br>OnInitialize <code>0x8a4db0</code>→<code>0x8bdcd0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_barbarian"></a><code>REQUIREMENT_PLAYER_IS_BARBARIAN</code></td>
+<td>—</td>
+<td><code>Player::Instance::IsBarbarian</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x86d0f0</code>→<code>0x884dd0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_close_to_victory"></a><code>REQUIREMENT_PLAYER_IS_CLOSE_TO_VICTORY</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x87c710</code>→<code>0x895b10</code><br>OnInitialize <code>0x87c400</code>→<code>0x895930</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_emergency_member_with_score"></a><code>REQUIREMENT_PLAYER_IS_EMERGENCY_MEMBER_WITH_SCORE</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Emergency::Instance::ContainsPlayerID</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x8529a0</code>→<code>0x86bae0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_emergency_target"></a><code>REQUIREMENT_PLAYER_IS_EMERGENCY_TARGET</code></td>
+<td>—</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x80ef70</code>→<code>0x828a30</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_human"></a><code>REQUIREMENT_PLAYER_IS_HUMAN</code></td>
+<td>—</td>
+<td><code>Player::Instance::IsHuman</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7f1050</code>→<code>0x808ce0</code><br>OnInitialize <code>0x7f0d00</code>→<code>0x808a60</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_major"></a><code>REQUIREMENT_PLAYER_IS_MAJOR</code></td>
+<td>—</td>
+<td><code>Player::Instance::IsMajor</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8ef5c0</code>→<code>0x7f5010</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_minor"></a><code>REQUIREMENT_PLAYER_IS_MINOR</code></td>
+<td>—</td>
+<td><code>Player::Instance::IsMajor</code><br><code>Player::Instance::IsBarbarian</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x7ebe30</code>→<code>0x803690</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_neighbor"></a><code>REQUIREMENT_PLAYER_IS_NEIGHBOR</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::AreAdjacentEmpires</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x7fb2d0</code>→<code>0x813970</code><br>OnInitialize <code>0x7fae60</code>→<code>0x8134d0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_not_warmonger"></a><code>REQUIREMENT_PLAYER_IS_NOT_WARMONGER</code></td>
+<td>—</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Diplomacy::HasMet</code><br><code>Player::Diplomacy::GetGrievancesFromPlayer</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7e4e20</code>→<code>0x7fcf50</code><br>OnInitialize <code>0x7e4720</code>→<code>0x7fc970</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_religion_founder"></a><code>REQUIREMENT_PLAYER_IS_RELIGION_FOUNDER</code></td>
+<td>—</td>
+<td><code>Player::Religion::IsReligionCreatedBy</code><br><code>Player::Religion::GetReligionInMajorityOfCities</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8b7770</code>→<code>0x8d1220</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_same_religion"></a><code>REQUIREMENT_PLAYER_IS_SAME_RELIGION</code></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::PlayerIsSameReligion::ArePlayersFollowingSameReligion</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8234a0</code>→<code>0x83c790</code><br>OnInitialize <code>0x8231a0</code>→<code>0x83c010</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_same_sex"></a><code>REQUIREMENT_PLAYER_IS_SAME_SEX</code></td>
+<td>—</td>
+<td><code>Definitions::GetLeaderDefinitions</code><br><code>Player::Instance::GetConfiguration</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x82c8e0</code>→<code>0x845d40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_sharing_info"></a><code>REQUIREMENT_PLAYER_IS_SHARING_INFO</code></td>
+<td><code>SharingInfoWell</code> (Boolean)</td>
+<td><code>Player::Diplomacy::HasDeclaredFriendship</code><br><code>Player::Diplomacy::HasOpenBordersFrom</code><br><code>Player::Diplomacy::HasDelegationAt</code><br><code>Player::Diplomacy::HasEmbassyAt</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x840a90</code>→<code>0x8598a0</code><br>OnInitialize <code>0x840120</code>→<code>0x859120</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_suzerain"></a><code>REQUIREMENT_PLAYER_IS_SUZERAIN</code></td>
+<td>—</td>
+<td><code>Player::Instance::IsMajor</code><br><code>Player::Influence::GetSuzerain</code><br><code>Game::DiplomaticRelations::Edit</code><br><code>Game::DiplomaticRelations::SharesSuzerain</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7ea9c0</code>→<code>0x8022c0</code><br>OnInitialize <code>0x7ea3a0</code>→<code>0x801d50</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_suzerain_bonus_enabled"></a><code>REQUIREMENT_PLAYER_IS_SUZERAIN_BONUS_ENABLED</code></td>
+<td>—</td>
+<td><code>Player::Influence::IsSuzerainUniqueBonusDisabled</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x868f30</code>→<code>0x880880</code><br>OnInitialize <code>0x868ae0</code>→<code>0x8800a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_suzerain_of_x"></a><code>REQUIREMENT_PLAYER_IS_SUZERAIN_OF_X</code></td>
+<td><code>LeaderType</code> (String)</td>
+<td><code>Player::Influence::GetSuzerain</code><br><code>Configuration::Game::Instance::GetPlayerConfiguration</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code><br><code>Definitions::GetLeaderDefinitions</code></td>
+<td>NFP</td>
+<td>Test <code>0x8cd260</code>→<code>0x8e5e10</code><br>OnInitialize <code>0x8cc820</code>→<code>0x8e5980</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_suzerain_x_type"></a><code>REQUIREMENT_PLAYER_IS_SUZERAIN_X_TYPE</code></td>
+<td><code>Amount</code> (Integer), <code>LeaderType</code> (String)</td>
+<td><code>Player::Influence::GetSuzerain</code><br><code>Configuration::Game::Instance::GetPlayerConfiguration</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code><br><code>Definitions::GetLeaderDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x85ea90</code>→<code>0x876bb0</code><br>OnInitialize <code>0x85e680</code>→<code>0x876790</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_team_member"></a><code>REQUIREMENT_PLAYER_IS_TEAM_MEMBER</code></td>
+<td>—</td>
+<td><code>Player::Instance::GetTeam</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x852d10</code>→<code>0x86b400</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_winning_any_victory"></a><code>REQUIREMENT_PLAYER_IS_WINNING_ANY_VICTORY</code></td>
+<td>—</td>
+<td><code>Definitions::GetVictoryDefinitions</code><br><code>Player::Instance::GetTeam</code><br><code>Game::VictoryManager::GetVictoryProgress</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Test <code>0x8e9000</code>→<code>0x7ef0d0</code><br>OnInitialize <code>0x8e8920</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_leader_tag_matches"></a><code>REQUIREMENT_PLAYER_LEADER_TAG_MATCHES</code></td>
+<td><code>Tag</code> (String)</td>
+<td><code>Configuration::Game::Instance::GetPlayerConfiguration</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code><br><code>Definitions::GetLeaderDefinitions</code><br><code>Tag::Repository::HasTag</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x865f30</code>→<code>0x87d9c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_leader_type_matches"></a><code>REQUIREMENT_PLAYER_LEADER_TYPE_MATCHES</code></td>
+<td><code>LeaderType</code> (String)</td>
+<td><code>Configuration::Game::Instance::GetPlayerConfiguration</code><br><code>Configuration::Player::Instance::GetLeaderTypeName</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x878110</code>→<code>0x8909e0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_majority_religion_is_owner"></a><code>REQUIREMENT_PLAYER_MAJORITY_RELIGION_IS_OWNER</code></td>
+<td>—</td>
+<td><code>Player::Religion::GetReligionInMajorityOfCities</code><br><code>Game::Religion::Get</code><br><code>Game::Religion::GetReligion</code></td>
+<td>Base game+</td>
+<td>Test <code>0x88aec0</code>→<code>0x8a4d00</code><br>OnInitialize <code>0x88ac50</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_meets_score_threshold"></a><code>REQUIREMENT_PLAYER_MEETS_SCORE_THRESHOLD</code></td>
+<td><code>ExtraIncrementHighestDifficulty</code> (Integer), <code>IncrementPerDifficulty</code> (Integer), <code>ScoreLowestDifficulty</code> (Integer)</td>
+<td><code>GameEffects::Requirements::PlayerMeetsScoreThreshold::GetRequiredScoreThisDifficulty</code><br><code>Player::Instance::GetScore</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x80d790</code>→<code>0x826ca0</code><br>OnInitialize <code>0x80d190</code>→<code>0x8266f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_met_x_turns_ago"></a><code>REQUIREMENT_PLAYER_MET_X_TURNS_AGO</code></td>
+<td><code>TurnsAgo</code> (Integer)</td>
+<td><code>Player::Diplomacy::HasMet</code><br><code>Player::Diplomacy::GetMetTurn</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8a3610</code>→<code>0x8bbf80</code><br>OnInitialize <code>0x8a2a50</code>→<code>0x8bb6a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_military_strength_lead"></a><code>REQUIREMENT_PLAYER_MILITARY_STRENGTH_LEAD</code></td>
+<td><code>DomainType</code> (String), <code>MinimumDelta</code> (Integer), <code>StrengthRatio</code> (Integer)</td>
+<td><code>Player::Stats::GetMilitaryStrength</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definition::Utility::NameToDomainType</code></td>
+<td>Base game+</td>
+<td>Test <code>0x892f50</code>→<code>0x8ab610</code><br>OnInitialize <code>0x892830</code>→<code>0x8aab70</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_mountain_cities"></a><code>REQUIREMENT_PLAYER_MOUNTAIN_CITIES</code></td>
+<td><code>BelowPercentage</code> (Integer), <code>DistanceToMountain</code> (Integer), <code>MinimumCities</code> (Integer), <code>Percentage</code> (Integer)</td>
+<td><code>City::IInstance::GetPlot</code><br><code>GameEffects::Requirements::PlayerMountainCities::IsMountainWithinXTiles</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x8f3ae0</code>→<code>0x7f9430</code><br>OnInitialize <code>0x8f31f0</code>→<code>0x7f8b90</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_not_competing_minors"></a><code>REQUIREMENT_PLAYER_NOT_COMPETING_MINORS</code></td>
+<td>—</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Instance::IsMajor</code><br><code>Player::Instance::IsBarbarian</code><br><code>Player::Influence::GetTokensReceived</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8597c0</code>→<code>0x871e00</code><br>OnInitialize <code>0x8586b0</code>→<code>0x8711b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_not_involved_minors"></a><code>REQUIREMENT_PLAYER_NOT_INVOLVED_MINORS</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasActiveDOWOnMinor</code><br><code>Player::Diplomacy::HasConqueredMinor</code><br><code>Player::Manager::Edit</code><br><code>Player::Instance::IsMajor</code><br><code>Player::Instance::IsBarbarian</code><br><code>Player::Influence::GetSuzerain</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8edea0</code>→<code>0x7f3cc0</code><br>OnInitialize <code>0x8ed590</code>→<code>0x7f3310</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_nuke_lover"></a><code>REQUIREMENT_PLAYER_NUKE_LOVER</code></td>
+<td><code>BelowThreshold</code> (Boolean), <code>BuiltNukeValue</code> (Integer), <code>TotalScoreThreshold</code> (Integer), <code>UsedNukeValue</code> (Integer)</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Stats::GetOtherPlayerKnownWMDCount</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x80c370</code>→<code>0x825760</code><br>OnInitialize <code>0x80bb40</code>→<code>0x8249f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_on_non_home_continent"></a><code>REQUIREMENT_PLAYER_ON_NON_HOME_CONTINENT</code></td>
+<td>—</td>
+<td><code>Player::Instance::GetCapitalContinent</code><br><code>City::IInstance::GetPlot</code></td>
+<td>Base game+</td>
+<td>Test <code>0x84fd60</code>→<code>0x8686f0</code><br>OnInitialize <code>0x84eff0</code>→<code>0x867e80</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_owns_object"></a><code>REQUIREMENT_PLAYER_OWNS_OBJECT</code></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x898bb0</code>→<code>0x8b12a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_peaceful_on_continent"></a><code>REQUIREMENT_PLAYER_PEACEFUL_ON_CONTINENT</code></td>
+<td>—</td>
+<td><code>Player::Instance::GetCapitalContinent</code><br><code>Game::DiplomaticRelations::Edit</code><br><code>Player::Manager::Edit</code><br><code>Game::DiplomaticRelations::StartedWarWith</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8b5ca0</code>→<code>0x8d0130</code><br>OnInitialize <code>0x8b5a90</code>→<code>0x8cfb00</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_pillage_lead"></a><code>REQUIREMENT_PLAYER_PILLAGE_LEAD</code></td>
+<td><code>MinimumDelta</code> (Integer), <code>Ratio</code> (Integer)</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x832a10</code>→<code>0x84bcf0</code><br>OnInitialize <code>0x8323c0</code>→<code>0x84b480</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_population_lead"></a><code>REQUIREMENT_PLAYER_POPULATION_LEAD</code></td>
+<td><code>MinimumDelta</code> (Integer), <code>PopulationRatio</code> (Integer)</td>
+<td><code>Player::Stats::GetPopulation</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8c0b80</code>→<code>0x8da620</code><br>OnInitialize <code>0x8c01f0</code>→<code>0x8d9e10</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_religion_not_received"></a><code>REQUIREMENT_PLAYER_RELIGION_NOT_RECEIVED</code></td>
+<td><code>FoundingDelay</code> (Integer)</td>
+<td><code>Player::Religion::GetReligionTypeCreated</code><br><code>Game::Religion::Get</code><br><code>Game::Religion::GetReligion</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8a9e30</code>→<code>0x8c2a30</code><br>OnInitialize <code>0x8a9290</code>→<code>0x8c2000</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_religion_received"></a><code>REQUIREMENT_PLAYER_RELIGION_RECEIVED</code></td>
+<td>—</td>
+<td><code>Player::Religion::GetReligionTypeCreated</code></td>
+<td>Base game+</td>
+<td>Test <code>0x82ab70</code>→<code>0x844370</code><br>OnInitialize <code>0x82a680</code>→<code>0x843c30</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_shares_home_continent"></a><code>REQUIREMENT_PLAYER_SHARES_HOME_CONTINENT</code></td>
+<td>—</td>
+<td><code>Player::Instance::GetCapitalContinent</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8ac0b0</code>→<code>0x8c5ee0</code><br>OnInitialize <code>0x8ab780</code>→<code>0x8c5a20</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_standing_army_lead"></a><code>REQUIREMENT_PLAYER_STANDING_ARMY_LEAD</code> <em>(removed)</em></td>
+<td>—</td>
+<td><code>Player::Stats::GetMilitaryStrength</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8bad30</code>→<code>0x8d4060</code><br>OnInitialize <code>0x8ba0e0</code>→<code>0x8d39f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_team_member"></a><code>REQUIREMENT_PLAYER_TEAM_MEMBER</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_player_tourism_lead"></a><code>REQUIREMENT_PLAYER_TOURISM_LEAD</code></td>
+<td><code>MinimumDelta</code> (Integer), <code>Ratio</code> (Integer)</td>
+<td><code>Player::Stats::GetTourism</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Test <code>0x802680</code>→<code>0x81a690</code><br>OnInitialize <code>0x801ee0</code>→<code>0x819e70</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_turn_started"></a><code>REQUIREMENT_PLAYER_TURN_STARTED</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x81c300</code>→<code>0x8349b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_type_matches"></a><code>REQUIREMENT_PLAYER_TYPE_MATCHES</code></td>
+<td><code>LeaderType</code> (String)</td>
+<td><code>Definitions::GetCivilizationDefinitions</code><br><code>Definitions::GetLeaderDefinitions</code><br><code>Player::Instance::GetConfiguration</code><br><code>Configuration::Player::Instance::GetCivilizationTypeID</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>OnInitialize <code>0x8a1350</code>→<code>0x8b9790</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_with_shield_or_on_it"></a><code>REQUIREMENT_PLAYER_WITH_SHIELD_OR_ON_IT</code></td>
+<td><code>AgreementValue</code> (Integer)</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8b7b50</code>→<code>0x8d1a20</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_yield_lead"></a><code>REQUIREMENT_PLAYER_YIELD_LEAD</code></td>
+<td><code>MinimumDelta</code> (Integer), <code>YieldRatio</code> (Integer), <code>YieldType</code> (String)</td>
+<td><code>Player::Stats::GetYield</code><br><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8acd20</code>→<code>0x8c6800</code><br>OnInitialize <code>0x8ac4e0</code>→<code>0x8c5fc0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_resident_embassy"></a><code>REQUIREMENT_RESIDENT_EMBASSY</code></td>
+<td>—</td>
+<td><code>Player::Diplomacy::HasEmbassyAt</code></td>
+<td>Base game+</td>
+<td>Test <code>0x82d9f0</code>→<code>0x847740</code><br>OnInitialize <code>0x82d6e0</code>→<code>0x846db0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_tourists_exceed_staycationers"></a><code>REQUIREMENT_TOURISTS_EXCEED_STAYCATIONERS</code></td>
+<td>—</td>
+<td><code>Player::Instance::IsMajor</code><br><code>Player::Culture::GetTouristsTo</code></td>
+<td>Base game+</td>
+<td>Test <code>0x883a70</code>→<code>0x89dea0</code><br>OnInitialize <code>0x883650</code>→<code>0x89d730</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

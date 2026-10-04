@@ -1,0 +1,238 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Requirements: ANY</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Requirements</a> › Requirements: ANY</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Requirements: ANY</h1>
+<p>30 entries. Subject class "ANY" is the community list's grouping (what the modifier applies to).</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Arguments</th>
+<th>Engine functions called</th>
+<th>Availability</th>
+<th>Addresses (symbol→current)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="requirement_alliance_shares_secret_society"></a><code>REQUIREMENT_ALLIANCE_SHARES_SECRET_SOCIETY</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Game::SecretSocietyManager::Edit</code><br><code>Game::SecretSocietyManager::AreMembersOfSameSociety</code></td>
+<td>Base game+</td>
+<td>Test <code>0x7f1470</code>→<code>0x8093c0</code><br>OnInitialize <code>0x7f0eb0</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_always_met"></a><code>REQUIREMENT_ALWAYS_MET</code></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8d8870</code>→<code>0x8deb50</code></td>
+</tr>
+<tr>
+<td><a id="requirement_building_tag_matches"></a><code>REQUIREMENT_BUILDING_TAG_MATCHES</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_building_type_matches"></a><code>REQUIREMENT_BUILDING_TYPE_MATCHES</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="requirement_city_has_counterspy"></a><code>REQUIREMENT_CITY_HAS_COUNTERSPY</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Unit::IInstance::GetPlot</code></td>
+<td>Base game+</td>
+<td>Test <code>0x886c00</code>→<code>0x8a0f10</code><br>OnInitialize <code>0x8869d0</code>→<code>0x8a0640</code></td>
+</tr>
+<tr>
+<td><a id="requirement_city_is_producing_project"></a><code>REQUIREMENT_CITY_IS_PRODUCING_PROJECT</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x804090</code>→<code>0x81c8a0</code><br>OnInitialize <code>0x803f40</code>→<code>0x81c590</code></td>
+</tr>
+<tr>
+<td><a id="requirement_collection_all_met"></a><code>REQUIREMENT_COLLECTION_ALL_MET</code></td>
+<td><code>CollectionType</code> (String), <code>MinimumCount</code> (Integer), <code>RequirementSetId</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x816910</code>→<code>0x81c420</code></td>
+</tr>
+<tr>
+<td><a id="requirement_collection_any_met"></a><code>REQUIREMENT_COLLECTION_ANY_MET</code></td>
+<td><code>CollectionType</code> (String), <code>RequirementSetId</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x8a54f0</code>→<code>0x8ad1a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_collection_count_atleast"></a><code>REQUIREMENT_COLLECTION_COUNT_ATLEAST</code></td>
+<td><code>CollectionType</code> (String), <code>Count</code> (Integer), <code>RequirementSetId</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x8c9580</code>→<code>0x8cefa0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_collection_count_equals"></a><code>REQUIREMENT_COLLECTION_COUNT_EQUALS</code></td>
+<td><code>CollectionType</code> (String), <code>Count</code> (Integer), <code>RequirementSetId</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x8e5a40</code>→<code>0x8ebd20</code></td>
+</tr>
+<tr>
+<td><a id="requirement_collection_count_greaterthan"></a><code>REQUIREMENT_COLLECTION_COUNT_GREATERTHAN</code></td>
+<td><code>CollectionType</code> (String), <code>RequirementSetId</code> (String)</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Test <code>0x7ef540</code>→<code>0x7f5850</code></td>
+</tr>
+<tr>
+<td><a id="requirement_combat_other_player_is_human"></a><code>REQUIREMENT_COMBAT_OTHER_PLAYER_IS_HUMAN</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>District::Instance::GetOwner</code><br><code>Player::Instance::IsValid</code><br><code>Player::Instance::IsHuman</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8da7f0</code>→<code>0x8f2cc0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_combat_results_attacking_unit_has_tag"></a><code>REQUIREMENT_COMBAT_RESULTS_ATTACKING_UNIT_HAS_TAG</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Types::GetHash</code><br><code>Tag::Repository::HasTag</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8f01f0</code>→<code>0x7f5fd0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_combat_results_defender_is_district"></a><code>REQUIREMENT_COMBAT_RESULTS_DEFENDER_IS_DISTRICT</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Combat::Results::GetDistrict</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x7f1520</code>→<code>0x8091b0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_combat_results_unit_died"></a><code>REQUIREMENT_COMBAT_RESULTS_UNIT_DIED</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Player::Manager::Edit</code><br><code>Player::Manager::IsBarbarian</code><br><code>Player::Manager::IsFreeCities</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8ae950</code>→<code>0x8c8860</code></td>
+</tr>
+<tr>
+<td><a id="requirement_era_is"></a><code>REQUIREMENT_ERA_IS</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Game::Eras::Edit</code><br><code>Definitions::GetEraDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8267b0</code>→<code>0x83f2a0</code><br>OnInitialize <code>0x826240</code>→<code>0x83ea30</code></td>
+</tr>
+<tr>
+<td><a id="requirement_map_has_feature"></a><code>REQUIREMENT_MAP_HAS_FEATURE</code></td>
+<td><code>FeatureType</code> (String)</td>
+<td><code>Definitions::GetFeatureDefinitions</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x883bf0</code>→<code>0x89dfa0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_opponent_is_free_city"></a><code>REQUIREMENT_OPPONENT_IS_FREE_CITY</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>District::Instance::GetOwner</code><br><code>Player::Manager::Edit</code><br><code>Player::Manager::IsFreeCities</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8dfaa0</code>→<code>0x7e5130</code></td>
+</tr>
+<tr>
+<td><a id="requirement_opponent_is_stronger"></a><code>REQUIREMENT_OPPONENT_IS_STRONGER</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>GameEffects::ProposedCombat::PlayerIsAttacking</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8cc990</code>→<code>0x8e5af0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_has_improvement"></a><code>REQUIREMENT_PLAYER_HAS_IMPROVEMENT</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Player::Stats::GetNumImprovementsOfType</code><br><code>Definitions::GetImprovementDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x868280</code>→<code>0x87f9a0</code><br>OnInitialize <code>0x867e60</code>→<code>0x87f0c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_different_secret_society"></a><code>REQUIREMENT_PLAYER_IS_DIFFERENT_SECRET_SOCIETY</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Game::SecretSocietyManager::Edit</code><br><code>Game::SecretSocietyManager::IsKnownMemberOfDifferentSociety</code></td>
+<td>Base game+</td>
+<td>Test <code>0x895d10</code>→<code>0x8aec20</code><br>OnInitialize <code>0x8955f0</code>→<code>0x8ae7f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_player_is_same_secret_society"></a><code>REQUIREMENT_PLAYER_IS_SAME_SECRET_SOCIETY</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Game::SecretSocietyManager::Edit</code><br><code>Game::SecretSocietyManager::AreMembersOfSameSociety</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8b3320</code>→<code>0x8cd7b0</code><br>OnInitialize <code>0x8b29a0</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="requirement_plot_wonder_is_era"></a><code>REQUIREMENT_PLOT_WONDER_IS_ERA</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>City::CManager::GetAttributes</code><br><code>Definitions::GetBuildingDefinitions</code></td>
+<td>Base game+</td>
+<td>TestPlot <code>0x81b270</code>→<code>0x833e10</code></td>
+</tr>
+<tr>
+<td><a id="requirement_random_value_less_than_or_equal_to"></a><code>REQUIREMENT_RANDOM_VALUE_LESS_THAN_OR_EQUAL_TO</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>City::CManager::EditCity</code><br><code>Rules::Economic::Get</code><br><code>Rules::Economic::Instance::AdjustForGameSpeed</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x897530</code>→<code>0x8affd0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_requirementset_is_met"></a><code>REQUIREMENT_REQUIREMENTSET_IS_MET</code></td>
+<td><code>OnlyOwnersCity</code> (Boolean), <code>RequirementSetId</code> (String)</td>
+<td><code>GameEffects::RequirementSystem::GetRequirementSet</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8b4f10</code>→<code>0x8cef80</code><br>OnInitialize <code>0x8b44b0</code>→<code>0x8ce7f0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_specific_leader_eliminated"></a><code>REQUIREMENT_SPECIFIC_LEADER_ELIMINATED</code></td>
+<td><code>LeaderType</code> (String)</td>
+<td><code>Game::Instance::IsInitialized</code><br><code>Player::Instance::GetConfiguration</code><br><code>Configuration::Player::Instance::GetLeaderTypeID</code><br><code>Definitions::GetLeaderDefinitions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8bd5d0</code>→<code>0x8d78a0</code><br>OnInitialize <code>0x8bd200</code>→<code>0x8d74a0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_unitdeath_killed_by_specific_unit_type"></a><code>REQUIREMENT_UNITDEATH_KILLED_BY_SPECIFIC_UNIT_TYPE</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8a2570</code>→<code>0x8bb3c0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_unitdeath_killed_by_unit"></a><code>REQUIREMENT_UNITDEATH_KILLED_BY_UNIT</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8b3e40</code>→<code>0x8cdd40</code></td>
+</tr>
+<tr>
+<td><a id="requirement_unitdeath_specific_unit_type"></a><code>REQUIREMENT_UNITDEATH_SPECIFIC_UNIT_TYPE</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>GameEffects::Requirements::ConstRequirement::SetState</code></td>
+<td>Base game+</td>
+<td>OnInitialize <code>0x8c61a0</code>→<code>0x8dfff0</code></td>
+</tr>
+<tr>
+<td><a id="requirement_unitdeath_x_turns_ago"></a><code>REQUIREMENT_UNITDEATH_X_TURNS_AGO</code> <em>(#N/A)</em></td>
+<td>—</td>
+<td><code>Rules::Economic::Get</code><br><code>Rules::Economic::Instance::AdjustForGameSpeed</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Test <code>0x8d9650</code>→<code>0x8f14c0</code><br>OnInitialize <code>0x8d8b90</code>→<code>0x8f0c50</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

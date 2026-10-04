@@ -8,7 +8,7 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
-code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › Unit</p>
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › Unit</p>
 <div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
 
 <h1>Unit</h1>
@@ -38,7 +38,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x393810</code></td>
 <td><code>0x395d70</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#addespionagetimereduction">Unit.AddEspionageTimeReduction</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_spy_offensive_operation_time">EFFECT_ADJUST_UNIT_SPY_OFFENSIVE_OPERATION_TIME</a>, <a href="../effects/UNITS.html#effect_adjust_unit_spy_operation_time">EFFECT_ADJUST_UNIT_SPY_OPERATION_TIME</a></td>
 </tr>
 <tr>
 <td><a id="unit__espionage__removeespionagetimereduction"></a>Espionage::RemoveEspionageTimeReduction</td>
@@ -46,7 +46,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x393cb0</code></td>
 <td><code>0x396210</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#removeespionagetimereduction">Unit.RemoveEspionageTimeReduction</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_spy_offensive_operation_time">EFFECT_ADJUST_UNIT_SPY_OFFENSIVE_OPERATION_TIME</a>, <a href="../effects/UNITS.html#effect_adjust_unit_spy_operation_time">EFFECT_ADJUST_UNIT_SPY_OPERATION_TIME</a></td>
 </tr>
 <tr>
 <td><a id="unit__experience__changegeneralexperiencemodifier"></a>Experience::ChangeGeneralExperienceModifier</td>
@@ -54,7 +54,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x394810</code></td>
 <td><code>0x396d70</code></td>
 <td>Dev CE (experimental): <a href="../devce/UnitExperience.html#changegeneralexperiencemodifier">UnitExperience.ChangeGeneralExperienceModifier</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_experience_modifier">EFFECT_ADJUST_UNIT_EXPERIENCE_MODIFIER</a></td>
 </tr>
 <tr>
 <td><a id="unit__experience__grantpromotion"></a>Experience::GrantPromotion</td>
@@ -62,7 +62,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x394cd0</code></td>
 <td><code>0x3970f0</code></td>
 <td>Dev CE (experimental): <a href="../devce/UnitExperience.html#grantpromotion">UnitExperience.GrantPromotion</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_grant_promotion">EFFECT_GRANT_PROMOTION</a></td>
 </tr>
 <tr>
 <td><a id="unit__experience__setlevel"></a>Experience::SetLevel</td>
@@ -70,7 +70,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x395080</code></td>
 <td><code>0x3974a0</code></td>
 <td>Dev CE (experimental): <a href="../devce/UnitExperience.html#setlevel">UnitExperience.SetLevel</a></td>
-<td>event, writes</td>
+<td>event, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_experience_level">EFFECT_ADJUST_UNIT_EXPERIENCE_LEVEL</a></td>
 </tr>
 <tr>
 <td><a id="unit__greatperson__changeactioncharges"></a>GreatPerson::ChangeActionCharges</td>
@@ -78,7 +78,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x396b50</code></td>
 <td><code>0x398f70</code></td>
 <td>Dev CE (experimental): <a href="../devce/UnitGreatPerson.html#changeactioncharges">UnitGreatPerson.ChangeActionCharges</a></td>
-<td>event, writes</td>
+<td>event, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_great_person_charges">EFFECT_ADJUST_UNIT_GREAT_PERSON_CHARGES</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__addbypasswallspromotionclass"></a>Instance::AddBypassWallsPromotionClass</td>
@@ -86,7 +86,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x39fb60</code></td>
 <td><code>0x3a1f30</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#addbypasswallspromotionclass">Unit.AddBypassWallsPromotionClass</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_bypass_walls_promotion_class">EFFECT_ADJUST_UNIT_BYPASS_WALLS_PROMOTION_CLASS</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__addenablewallattackpromotionclass"></a>Instance::AddEnableWallAttackPromotionClass</td>
@@ -94,7 +94,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x39fc90</code></td>
 <td><code>0x3a2060</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#addenablewallattackpromotionclass">Unit.AddEnableWallAttackPromotionClass</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_enable_wall_attack_promotion_class">EFFECT_ADJUST_UNIT_ENABLE_WALL_ATTACK_PROMOTION_CLASS</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__changebonuspointsperkill"></a>Instance::ChangeBonusPointsPerKill</td>
@@ -102,7 +102,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a0530</code></td>
 <td><code>0x3a2900</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#changebonuspointsperkill">Unit.ChangeBonusPointsPerKill</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_great_people_points_per_kill">EFFECT_ADJUST_GREAT_PEOPLE_POINTS_PER_KILL</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__changebonuspointsperkillstrength"></a>Instance::ChangeBonusPointsPerKillStrength</td>
@@ -110,7 +110,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a0570</code></td>
 <td><code>0x3a2940</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#changebonuspointsperkillstrength">Unit.ChangeBonusPointsPerKillStrength</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/ANY.html#effect_adjust_great_people_points_per_kill_by_defeated_strength">EFFECT_ADJUST_GREAT_PEOPLE_POINTS_PER_KILL_BY_DEFEATED_STRENGTH</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__changebuildcharges"></a>Instance::ChangeBuildCharges ★</td>
@@ -118,7 +118,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a05b0</code></td>
 <td><code>0x3a2980</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#changebuildcharges">Unit.ChangeBuildCharges</a></td>
-<td>analysed, event, writes</td>
+<td>analysed, event, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_build_charges">EFFECT_ADJUST_UNIT_BUILD_CHARGES</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__changedisastercharges"></a>Instance::ChangeDisasterCharges</td>
@@ -126,7 +126,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a0670</code></td>
 <td><code>0x3a2a40</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#changedisastercharges">Unit.ChangeDisasterCharges</a></td>
-<td>event, writes</td>
+<td>event, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_disaster_charges">EFFECT_ADJUST_UNIT_DISASTER_CHARGES</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__changesightrange"></a>Instance::ChangeSightRange</td>
@@ -134,7 +134,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a08d0</code></td>
 <td><code>0x3a2ca0</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#changesightrange">Unit.ChangeSightRange</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_sight">EFFECT_ADJUST_UNIT_SIGHT</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__changeterritoryhealing"></a>Instance::ChangeTerritoryHealing</td>
@@ -142,7 +142,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a0960</code></td>
 <td><code>0x3a2d30</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#changeterritoryhealing">Unit.ChangeTerritoryHealing</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_healing_modifiers">EFFECT_ADJUST_UNIT_HEALING_MODIFIERS</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__changeterritoryhealingreligion"></a>Instance::ChangeTerritoryHealingReligion</td>
@@ -150,7 +150,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a09e0</code></td>
 <td><code>0x3a2db0</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#changeterritoryhealingreligion">Unit.ChangeTerritoryHealingReligion</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_healing_religion_modifiers">EFFECT_ADJUST_UNIT_HEALING_RELIGION_MODIFIERS</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__removeinvalidterrain"></a>Instance::RemoveInvalidTerrain</td>
@@ -158,7 +158,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a28f0</code></td>
 <td><code>0x3a4cc0</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#removeinvalidterrain">Unit.RemoveInvalidTerrain</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_valid_terrain">EFFECT_ADJUST_UNIT_VALID_TERRAIN</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__setcanmoveafterattacking"></a>Instance::SetCanMoveAfterAttacking</td>
@@ -166,7 +166,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a3610</code></td>
 <td><code>0x3a58d0</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#setcanmoveafterattacking">Unit.SetCanMoveAfterAttacking</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_attack_and_move">EFFECT_ADJUST_UNIT_ATTACK_AND_MOVE</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__setcanseethroughfeatures"></a>Instance::SetCanSeeThroughFeatures</td>
@@ -174,7 +174,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a3680</code></td>
 <td><code>0x3a5940</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#setcanseethroughfeatures">Unit.SetCanSeeThroughFeatures</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_see_through_features">EFFECT_ADJUST_UNIT_SEE_THROUGH_FEATURES</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__setcanseethroughterrain"></a>Instance::SetCanSeeThroughTerrain</td>
@@ -182,7 +182,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a3710</code></td>
 <td><code>0x3a59d0</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#setcanseethroughterrain">Unit.SetCanSeeThroughTerrain</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_see_through_terrain">EFFECT_ADJUST_UNIT_SEE_THROUGH_TERRAIN</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__setformation"></a>Instance::SetFormation</td>
@@ -214,7 +214,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a3b90</code></td>
 <td><code>0x3a5e50</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#setoperationdisabled">Unit.SetOperationDisabled</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_change_unit_operation_availability">EFFECT_CHANGE_UNIT_OPERATION_AVAILABILITY</a></td>
 </tr>
 <tr>
 <td><a id="unit__instance__setprocessedturn"></a>Instance::SetProcessedTurn</td>
@@ -230,7 +230,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a3ca0</code></td>
 <td><code>0x3a5f60</code></td>
 <td>Dev CE (experimental): <a href="../devce/Unit.html#setseehiddentype">Unit.SetSeeHiddenType</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_see_hidden">EFFECT_ADJUST_UNIT_SEE_HIDDEN</a></td>
 </tr>
 <tr>
 <td><a id="unit__manager__changeowner"></a>Manager::ChangeOwner</td>
@@ -254,7 +254,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3b0490</code></td>
 <td><code>0x3b2890</code></td>
 <td>Dev CE (experimental): <a href="../devce/UnitReligion.html#changeinitiationyieldpopulation">UnitReligion.ChangeInitiationYieldPopulation</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/UNITS.html#effect_adjust_unit_initiation_yield_population">EFFECT_ADJUST_UNIT_INITIATION_YIELD_POPULATION</a></td>
 </tr>
 </tbody>
 </table>

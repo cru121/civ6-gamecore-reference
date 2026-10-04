@@ -1,0 +1,1421 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Effects: CITIES</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Effects</a> › Effects: CITIES</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Effects: CITIES</h1>
+<p>174 entries. Subject class "CITIES" is the community list's grouping (what the modifier applies to).</p>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>Arguments</th>
+<th>Applies to (C++)</th>
+<th>Engine functions called</th>
+<th>Availability</th>
+<th>Addresses (symbol→current)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="effect_add_expended_great_person_tiles"></a><code>EFFECT_ADD_EXPENDED_GREAT_PERSON_TILES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7e5b40</code>→<code>0x7eb600</code><br>Remove <code>0x7e5e00</code>→<code>0x7eb900</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_active_building_production"></a><code>EFFECT_ADJUST_ACTIVE_BUILDING_PRODUCTION</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>City</td>
+<td><code>City::BuildQueue::GetCurrentProductionBuilding</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetBuildingDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x815230</code>→<code>0x81bc20</code><br>Remove <code>0x816890</code>→<code>0x81c3a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_add_amenity_per_adjacent_luxury"></a><code>EFFECT_ADJUST_ADD_AMENITY_PER_ADJACENT_LUXURY</code></td>
+<td><code>AddAmenity</code> (Boolean)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x829470</code>→<code>0x8307e0</code><br>Remove <code>0x829f20</code>→<code>0x830f40</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_adjacent_city_river_building_production"></a><code>EFFECT_ADJUST_ADJACENT_CITY_RIVER_BUILDING_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x82f420</code>→<code>0x848950</code><br>Remove <code>0x82f9f0</code>→<code>0x848cd0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_all_building_production_modifier"></a><code>EFFECT_ADJUST_ALL_BUILDING_PRODUCTION_MODIFIER</code></td>
+<td><code>Amount</code> (Integer), <code>IsWonder</code> (Boolean)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8d1710</code>→<code>0x8eaa90</code><br>Remove <code>0x8d2230</code>→<code>0x8ead70</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_all_districts_production"></a><code>EFFECT_ADJUST_ALL_DISTRICTS_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>Definitions::GetDistrictDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x853470</code>→<code>0x857240</code><br>Remove <code>0x8541f0</code>→<code>0x858140</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_all_district_production_modifier"></a><code>EFFECT_ADJUST_ALL_DISTRICT_PRODUCTION_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83dfe0</code>→<code>0x843740</code><br>Remove <code>0x83e4e0</code>→<code>0x844a90</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_all_projects_production"></a><code>EFFECT_ADJUST_ALL_PROJECTS_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>Definitions::GetProjectDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x849090</code>→<code>0x84cee0</code><br>Remove <code>0x8496f0</code>→<code>0x84dac0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_all_units_purchase_cost"></a><code>EFFECT_ADJUST_ALL_UNITS_PURCHASE_COST</code></td>
+<td><code>Amount</code> (Integer), <code>IncludeCivilian</code> (Boolean), <code>UnitDomain</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>Definition::Utility::NameToFormationClassType</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8afe10</code>→<code>0x8c9df0</code><br>Remove <code>0x8b0a20</code>→<code>0x8caf00</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_all_unit_production_modifier"></a><code>EFFECT_ADJUST_ALL_UNIT_PRODUCTION_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7f3030</code>→<code>0x80a930</code><br>Remove <code>0x7f34d0</code>→<code>0x80b170</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_building_amenity"></a><code>EFFECT_ADJUST_BUILDING_AMENITY</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="effect_adjust_building_housing"></a><code>EFFECT_ADJUST_BUILDING_HOUSING</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x87b6b0</code>→<code>0x881940</code><br>Remove <code>0x87bc40</code>→<code>0x882a70</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_building_production"></a><code>EFFECT_ADJUST_BUILDING_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String), <code>DistrictType</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetBuildingDefinitions</code><br><code>Types::Vector</code><br><code>Definitions::GetDistrictDefinitions</code><br><code>Platform::MallocAligned</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x88d760</code>→<code>0x8947a0</code><br>Remove <code>0x88e9d0</code>→<code>0x895460</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_building_purchase_cost"></a><code>EFFECT_ADJUST_BUILDING_PURCHASE_COST</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8b7a20</code>→<code>0x8bd890</code><br>Remove <code>0x8b81f0</code>→<code>0x8bdee0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_building_yield_change"></a><code>EFFECT_ADJUST_BUILDING_YIELD_CHANGE</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String), <code>CityStatesOnly</code> (Boolean), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__buildings__changeyieldchangecitystates">City::Buildings::ChangeYieldChangeCityStates</a><br><a href="../native/City.html#city__buildings__changeyieldchange">City::Buildings::ChangeYieldChange</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetBuildingDefinitions</code><br><code>Definitions::GetYieldDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8598f0</code>→<code>0x871f30</code><br>Remove <code>0x85a660</code>→<code>0x872ea0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_building_yield_modifier"></a><code>EFFECT_ADJUST_BUILDING_YIELD_MODIFIER</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__buildings__changeyieldmodifier">City::Buildings::ChangeYieldModifier</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetBuildingDefinitions</code><br><code>Definitions::GetYieldDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8eb290</code>→<code>0x8f0a40</code><br>Remove <code>0x8ebee0</code>→<code>0x8f1690</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_building_yield_modifiers_for_district"></a><code>EFFECT_ADJUST_BUILDING_YIELD_MODIFIERS_FOR_DISTRICT</code></td>
+<td><code>Amount</code> (Integer), <code>DistrictType</code> (String), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetBuildingDefinitions</code><br><a href="../native/City.html#city__buildings__changeyieldmodifier">City::Buildings::ChangeYieldModifier</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetDistrictDefinitions</code><br><code>Definitions::GetYieldDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8709e0</code>→<code>0x888940</code><br>Remove <code>0x8711a0</code>→<code>0x889170</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_can_faith_purchase_districts"></a><code>EFFECT_ADJUST_CAN_FAITH_PURCHASE_DISTRICTS</code></td>
+<td><code>CanPurchase</code> (Boolean)</td>
+<td>Governor</td>
+<td>—</td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8a6220</code>→<code>0x8bef60</code><br>Remove <code>0x8a65b0</code>→<code>0x8bf400</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_cities_freshwater_housing_bonus"></a><code>EFFECT_ADJUST_CITIES_FRESHWATER_HOUSING_BONUS</code></td>
+<td><code>HasBonus</code> (Boolean)</td>
+<td>Player</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Apply <code>0x7ee6d0</code>→<code>0x7f3780</code><br>Remove <code>0x7eeec0</code>→<code>0x7f4640</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_cities_has_urban_defenses"></a><code>EFFECT_ADJUST_CITIES_HAS_URBAN_DEFENSES</code></td>
+<td><code>DefenseValue</code> (Integer)</td>
+<td>Player</td>
+<td><a href="../native/Player.html#player__cities__setcityurbandefenses">Player::Cities::SetCityUrbanDefenses</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x800090</code>→<code>0x805bb0</code><br>Remove <code>0x8009f0</code>→<code>0x806840</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_air_defense_bonus"></a><code>EFFECT_ADJUST_CITY_AIR_DEFENSE_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x891340</code>→<code>0x8aa300</code><br>Remove <code>0x891a90</code>→<code>0x8aa920</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_allowed_improvement"></a><code>EFFECT_ADJUST_CITY_ALLOWED_IMPROVEMENT</code></td>
+<td><code>ImprovementType</code> (String)</td>
+<td>City</td>
+<td><code>City::Instance::AddCityAllowedImprovement</code><br><code>City::Instance::RemoveCityAllowedImprovement</code><br><code>Definitions::GetImprovementDefinitions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8c4610</code>→<code>0x8de710</code><br>Remove <code>0x8c4b20</code>→<code>0x8dee10</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_allowed_incoming_regional_stacking"></a><code>EFFECT_ADJUST_CITY_ALLOWED_INCOMING_REGIONAL_STACKING</code></td>
+<td><code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__changeallowincomingregionalstackingcount">City::Instance::ChangeAllowIncomingRegionalStackingCount</a></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8d7d10</code>→<code>0x8ef890</code><br>Remove <code>0x8d87f0</code>→<code>0x8f0690</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_all_military_units_production"></a><code>EFFECT_ADJUST_CITY_ALL_MILITARY_UNITS_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>EndEra</code> (String), <code>PromotionClass</code> (String), <code>StartEra</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetEraDefinitions</code><br><code>Definitions::GetUnitDefinitions</code><br><code>Definition::Utility::NameToFormationClassType</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x811130</code>→<code>0x817810</code><br>Remove <code>0x811fc0</code>→<code>0x8188a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_all_yields_change"></a><code>EFFECT_ADJUST_CITY_ALL_YIELDS_CHANGE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>Definitions::GetYieldDefinitions</code><br><a href="../native/City.html#city__instance__changeyieldchange">City::Instance::ChangeYieldChange</a></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8a3580</code>→<code>0x8bc370</code><br>Remove <code>0x8a3f90</code>→<code>0x8bc910</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_always_loyal"></a><code>EFFECT_ADJUST_CITY_ALWAYS_LOYAL</code></td>
+<td><code>AlwaysLoyal</code> (Boolean)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__culturalidentity__changecountalwaysloyalflags">City::CulturalIdentity::ChangeCountAlwaysLoyalFlags</a></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e9b10</code>→<code>0x7efb20</code><br>Remove <code>0x8ea8d0</code>→<code>0x7f0760</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_amenities_from_city_states"></a><code>EFFECT_ADJUST_CITY_AMENITIES_FROM_CITY_STATES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x81be30</code>→<code>0x823380</code><br>Remove <code>0x81cae0</code>→<code>0x823c40</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_amenities_from_governors"></a><code>EFFECT_ADJUST_CITY_AMENITIES_FROM_GOVERNORS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7eb410</code>→<code>0x802ee0</code><br>Remove <code>0x7ebb90</code>→<code>0x803660</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_amenities_from_great_people"></a><code>EFFECT_ADJUST_CITY_AMENITIES_FROM_GREAT_PEOPLE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x82ea60</code>→<code>0x834aa0</code><br>Remove <code>0x82f270</code>→<code>0x8355d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_amenities_from_religion"></a><code>EFFECT_ADJUST_CITY_AMENITIES_FROM_RELIGION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x842bc0</code>→<code>0x848250</code><br>Remove <code>0x8433f0</code>→<code>0x8487a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_appeal"></a><code>EFFECT_ADJUST_CITY_APPEAL</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x857890</code>→<code>0x85b7b0</code><br>Remove <code>0x859470</code>→<code>0x85ce20</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_attacks_per_turn"></a><code>EFFECT_ADJUST_CITY_ATTACKS_PER_TURN</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>City::Instance::EditDistrict</code><br><a href="../native/District.html#district__instance__changeremainingattackcount">District::Instance::ChangeRemainingAttackCount</a></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7fcff0</code>→<code>0x814d60</code><br>Remove <code>0x7fd830</code>→<code>0x815520</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_can_purchase_districts"></a><code>EFFECT_ADJUST_CITY_CAN_PURCHASE_DISTRICTS</code></td>
+<td><code>CanPurchase</code> (Boolean)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x80f7a0</code>→<code>0x829290</code><br>Remove <code>0x80fa50</code>→<code>0x829770</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_combat_bonus"></a><code>EFFECT_ADJUST_CITY_COMBAT_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x822700</code>→<code>0x83ba50</code><br>Remove <code>0x823260</code>→<code>0x83c0d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_corps_army_production"></a><code>EFFECT_ADJUST_CITY_CORPS_ARMY_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>UnitDomain</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x86b7e0</code>→<code>0x870830</code><br>Remove <code>0x86bef0</code>→<code>0x871810</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_culture_border_expansion"></a><code>EFFECT_ADJUST_CITY_CULTURE_BORDER_EXPANSION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x86a220</code>→<code>0x86f380</code><br>Remove <code>0x86ae10</code>→<code>0x86f860</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_entertainment"></a><code>EFFECT_ADJUST_CITY_ENTERTAINMENT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8cf220</code>→<code>0x8e8920</code><br>Remove <code>0x8cfa10</code>→<code>0x8e90c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_entertainment_from_wonder_adjacent_to_lake"></a><code>EFFECT_ADJUST_CITY_ENTERTAINMENT_FROM_WONDER_ADJACENT_TO_LAKE</code></td>
+<td><code>BuildingType</code> (String)</td>
+<td>City</td>
+<td><code>City::Buildings::GetBuildingLocation</code><br><code>Map::Plot::Instance::IsLake</code><br><code>Definitions::GetBuildingDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x890eb0</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_extra_accumulation"></a><code>EFFECT_ADJUST_CITY_EXTRA_ACCUMULATION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e3740</code>→<code>0x7e9500</code><br>Remove <code>0x8e3db0</code>→<code>0x7e9bd0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_extra_accumulation_for_strategic_diversity"></a><code>EFFECT_ADJUST_CITY_EXTRA_ACCUMULATION_FOR_STRATEGIC_DIVERSITY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7e4150</code>→<code>0x7fc850</code><br>Remove <code>0x7e4670</code>→<code>0x7fcea0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_extra_accumulation_specific_resource"></a><code>EFFECT_ADJUST_CITY_EXTRA_ACCUMULATION_SPECIFIC_RESOURCE</code></td>
+<td><code>Amount</code> (Integer), <code>ResourceType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7f68d0</code>→<code>0x80e270</code><br>Remove <code>0x7f6fc0</code>→<code>0x80eab0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_extra_amenity_for_luxury_diversity"></a><code>EFFECT_ADJUST_CITY_EXTRA_AMENITY_FOR_LUXURY_DIVERSITY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x80a690</code>→<code>0x8235e0</code><br>Remove <code>0x80abd0</code>→<code>0x823db0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_extra_districts"></a><code>EFFECT_ADJUST_CITY_EXTRA_DISTRICTS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8a6ae0</code>→<code>0x8af2c0</code><br>Remove <code>0x8a7100</code>→<code>0x8af6b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_free_power"></a><code>EFFECT_ADJUST_CITY_FREE_POWER</code></td>
+<td><code>Amount</code> (Integer), <code>SourceType</code> (String)</td>
+<td>modifier object</td>
+<td><a href="../native/City.html#city__power__changefreepower">City::Power::ChangeFreePower</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definition::Utility::NameToFreePowerSourceType</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x81c6e0</code>→<code>0x8351d0</code><br>Remove <code>0x81daf0</code>→<code>0x836560</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_friendly_combat_bonus"></a><code>EFFECT_ADJUST_CITY_FRIENDLY_COMBAT_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x837aa0</code>→<code>0x850fe0</code><br>Remove <code>0x8380d0</code>→<code>0x8514c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_gold_from_citizens"></a><code>EFFECT_ADJUST_CITY_GOLD_FROM_CITIZENS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x834750</code>→<code>0x84e080</code><br>Remove <code>0x834c70</code>→<code>0x84e300</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_greatwork_yield"></a><code>EFFECT_ADJUST_CITY_GREATWORK_YIELD</code></td>
+<td><code>GreatWorkObjectType</code> (String), <code>ScalingFactor</code> (Integer), <code>YieldChange</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__culture__changegreatworkyieldmodifier">City::Culture::ChangeGreatWorkYieldModifier</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definition::Utility::NameToGreatWorkObjectType</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8bb1f0</code>→<code>0x8c0130</code><br>Remove <code>0x8bba30</code>→<code>0x8c08b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_great_person_points_modifier"></a><code>EFFECT_ADJUST_CITY_GREAT_PERSON_POINTS_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>—</td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x849fb0</code>→<code>0x863b70</code><br>Remove <code>0x84a9f0</code>→<code>0x864250</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_growth"></a><code>EFFECT_ADJUST_CITY_GROWTH</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8d3f20</code>→<code>?</code><br>Remove <code>0x8d49d0</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_happiness_great_person"></a><code>EFFECT_ADJUST_CITY_HAPPINESS_GREAT_PERSON</code></td>
+<td><code>Amount</code> (Integer), <code>GreatPersonClassType</code> (String), <code>HappinessType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__addcityhappinessmodifier">City::Instance::AddCityHappinessModifier</a><br><a href="../native/City.html#city__instance__removecityhappinessmodifier">City::Instance::RemoveCityHappinessModifier</a><br><code>Definitions::GetHappinessDefinitions</code><br><code>Definitions::GetGreatPersonClassDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e6950</code>→<code>0x8ecad0</code><br>Remove <code>0x8e6bc0</code>→<code>0x8ece20</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_happiness_yield"></a><code>EFFECT_ADJUST_CITY_HAPPINESS_YIELD</code></td>
+<td><code>Amount</code> (Integer), <code>HappinessType</code> (String), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__addcityhappinessmodifier">City::Instance::AddCityHappinessModifier</a><br><a href="../native/City.html#city__instance__removecityhappinessmodifier">City::Instance::RemoveCityHappinessModifier</a><br><code>Definitions::GetHappinessDefinitions</code><br><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x800060</code>→<code>0x805b80</code><br>Remove <code>0x8009c0</code>→<code>0x806810</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_hit_points"></a><code>EFFECT_ADJUST_CITY_HIT_POINTS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8a5010</code>→<code>0x8acd20</code><br>Remove <code>0x8a5580</code>→<code>0x8ad480</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_housing_from_great_people"></a><code>EFFECT_ADJUST_CITY_HOUSING_FROM_GREAT_PEOPLE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x813300</code>→<code>0x819870</code><br>Remove <code>0x814220</code>→<code>0x81a5e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_housing_per_district"></a><code>EFFECT_ADJUST_CITY_HOUSING_PER_DISTRICT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x860170</code>→<code>0x878210</code><br>Remove <code>0x860810</code>→<code>0x8785a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_identity_per_citizen"></a><code>EFFECT_ADJUST_CITY_IDENTITY_PER_CITIZEN</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__culturalidentity__changeextraidentityperturnpercitizen">City::CulturalIdentity::ChangeExtraIdentityPerTurnPerCitizen</a></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8717b0</code>→<code>0x889790</code><br>Remove <code>0x872170</code>→<code>0x889ac0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_identity_per_turn"></a><code>EFFECT_ADJUST_CITY_IDENTITY_PER_TURN</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>City::CulturalIdentity::ChangeIdentityPerTurnFromModifiers</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x881b90</code>→<code>0x89c000</code><br>Remove <code>0x882620</code>→<code>0x89c6a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_identity_pressure"></a><code>EFFECT_ADJUST_CITY_IDENTITY_PRESSURE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__culturalidentity__changeidentitypressurefrommodifiers">City::CulturalIdentity::ChangeIdentityPressureFromModifiers</a></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x898120</code>→<code>0x8b0600</code><br>Remove <code>0x898570</code>→<code>0x8b0b30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_identity_pressure_from_ages"></a><code>EFFECT_ADJUST_CITY_IDENTITY_PRESSURE_FROM_AGES</code> <em>(untested in the community list)</em></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__culturalidentity__changeidentitypressurefromages">City::CulturalIdentity::ChangeIdentityPressureFromAges</a></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8a9e00</code>→<code>0x8c2eb0</code><br>Remove <code>0x8aa630</code>→<code>0x8c39b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_ignore_strategic_resource_requirements"></a><code>EFFECT_ADJUST_CITY_IGNORE_STRATEGIC_RESOURCE_REQUIREMENTS</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8be9f0</code>→<code>0x8d87a0</code><br>Remove <code>0x8bf4f0</code>→<code>0x8d8d30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_improvement_tourism"></a><code>EFFECT_ADJUST_CITY_IMPROVEMENT_TOURISM</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8632e0</code>→<code>0x87aef0</code><br>Remove <code>0x864270</code>→<code>0x87b650</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_inner_defense"></a><code>EFFECT_ADJUST_CITY_INNER_DEFENSE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x838af0</code>→<code>0x83ebd0</code><br>Remove <code>0x839890</code>→<code>0x83f830</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_national_park_tourism"></a><code>EFFECT_ADJUST_CITY_NATIONAL_PARK_TOURISM</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x874090</code>→<code>0x88bc00</code><br>Remove <code>0x874840</code>→<code>0x88cab0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_no_culture_border_expansion"></a><code>EFFECT_ADJUST_CITY_NO_CULTURE_BORDER_EXPANSION</code></td>
+<td>—</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x853980</code>→<code>0x86c9f0</code><br>Remove <code>0x854990</code>→<code>0x86d7e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_outer_defense"></a><code>EFFECT_ADJUST_CITY_OUTER_DEFENSE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x84e350</code>→<code>0x852080</code><br>Remove <code>0x84e840</code>→<code>0x852eb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_population"></a><code>EFFECT_ADJUST_CITY_POPULATION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>City::Instance::ChangePopulation</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x864460</code>→<code>0x8678c0</code><br>Remove <code>0x8647a0</code>→<code>0x867ad0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_population_unit_created"></a><code>EFFECT_ADJUST_CITY_POPULATION_UNIT_CREATED</code></td>
+<td><code>Amount</code> (Integer), <code>UnitType</code> (String)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetUnitDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8841b0</code>→<code>0x89e4a0</code><br>Remove <code>0x8848a0</code>→<code>0x89eab0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_prevent_bypass_outer_defenses"></a><code>EFFECT_ADJUST_CITY_PREVENT_BYPASS_OUTER_DEFENSES</code></td>
+<td>—</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x899040</code>→<code>0x8b1f10</code><br>Remove <code>0x899f90</code>→<code>0x8b30e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_prevent_melee_attack_outer_defenses"></a><code>EFFECT_ADJUST_CITY_PREVENT_MELEE_ATTACK_OUTER_DEFENSES</code></td>
+<td>—</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x8a8940</code>→<code>0x8c1e10</code><br>Remove <code>0x8a9270</code>→<code>0x8c2a10</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_production_building"></a><code>EFFECT_ADJUST_CITY_PRODUCTION_BUILDING</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x875000</code>→<code>0x87b7d0</code><br>Remove <code>0x8759a0</code>→<code>0x87bf00</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_production_district"></a><code>EFFECT_ADJUST_CITY_PRODUCTION_DISTRICT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x886550</code>→<code>0x88d6b0</code><br>Remove <code>0x886b30</code>→<code>0x88e3b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_production_unit"></a><code>EFFECT_ADJUST_CITY_PRODUCTION_UNIT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x89a950</code>→<code>0x8a1050</code><br>Remove <code>0x89b780</code>→<code>0x8a16f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_property"></a><code>EFFECT_ADJUST_CITY_PROPERTY</code> <em>(untested in the community list)</em></td>
+<td><code>PropertyName</code> (String)</td>
+<td>City</td>
+<td><code>Game::Instance::Edit</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8abc50</code>→<code>0x8b41d0</code><br>Remove <code>0x8ac9f0</code>→<code>0x8b4a30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_ranged_strike"></a><code>EFFECT_ADJUST_CITY_RANGED_STRIKE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c54a0</code>→<code>0x8cb650</code><br>Remove <code>0x8c5ff0</code>→<code>0x8cc280</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_religion_extra_promotions"></a><code>EFFECT_ADJUST_CITY_RELIGION_EXTRA_PROMOTIONS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8d9b00</code>→<code>0x8df880</code><br>Remove <code>0x8d9ef0</code>→<code>0x8dfe50</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_religion_ignore_combat"></a><code>EFFECT_ADJUST_CITY_RELIGION_IGNORE_COMBAT</code></td>
+<td><code>Enable</code> (Boolean)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8d31b0</code>→<code>0x8eba30</code><br>Remove <code>0x8d34b0</code>→<code>0x8ebef0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_religion_ignore_pressure"></a><code>EFFECT_ADJUST_CITY_RELIGION_IGNORE_PRESSURE</code></td>
+<td><code>Enable</code> (Boolean)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e4ca0</code>→<code>0x7eb460</code><br>Remove <code>0x8e54f0</code>→<code>0x7eb830</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_religion_on_capture"></a><code>EFFECT_ADJUST_CITY_RELIGION_ON_CAPTURE</code></td>
+<td><code>Enable</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8ec480</code>→<code>0x8f1a20</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_religion_pressure"></a><code>EFFECT_ADJUST_CITY_RELIGION_PRESSURE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7e5210</code>→<code>0x7fd760</code><br>Remove <code>0x7e59a0</code>→<code>0x7fda90</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_religious_combat_bonus"></a><code>EFFECT_ADJUST_CITY_RELIGIOUS_COMBAT_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7f7530</code>→<code>0x80f470</code><br>Remove <code>0x7f7ab0</code>→<code>0x80fce0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_religious_heal"></a><code>EFFECT_ADJUST_CITY_RELIGIOUS_HEAL</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x80aa50</code>→<code>0x823a20</code><br>Remove <code>0x80b200</code>→<code>0x8246d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_required_power"></a><code>EFFECT_ADJUST_CITY_REQUIRED_POWER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>City::Power::ChangeRequiredPowerFromModifiers</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8bb330</code>→<code>0x8d4a00</code><br>Remove <code>0x8bbc20</code>→<code>0x8d5420</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_resource_harvest_bonus"></a><code>EFFECT_ADJUST_CITY_RESOURCE_HARVEST_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x81ca40</code>→<code>0x835530</code><br>Remove <code>0x81d570</code>→<code>0x836090</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_settler_consume_pop"></a><code>EFFECT_ADJUST_CITY_SETTLER_CONSUME_POP</code></td>
+<td><code>Enabled</code> (Boolean), <code>Religious</code> (Boolean)</td>
+<td>City</td>
+<td>—</td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x82f210</code>→<code>0x848740</code><br>Remove <code>0x82f8f0</code>→<code>0x848c40</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_siege_protection"></a><code>EFFECT_ADJUST_CITY_SIEGE_PROTECTION</code></td>
+<td><code>Protected</code> (Boolean)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__combat__setsiegeprotection">City::Combat::SetSiegeProtection</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x842d00</code>→<code>0x85b930</code><br>Remove <code>0x8435a0</code>→<code>0x85d020</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_spy_bonus"></a><code>EFFECT_ADJUST_CITY_SPY_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>—</td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7ee6a0</code>→<code>0x7f3750</code><br>Remove <code>0x7eee90</code>→<code>0x7f4610</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_state_trade_route_district_yield"></a><code>EFFECT_ADJUST_CITY_STATE_TRADE_ROUTE_DISTRICT_YIELD</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Player</td>
+<td><a href="../native/Player.html#player__trade__changecitystatedistricttraderoutebonus">Player::Trade::ChangeCityStateDistrictTradeRouteBonus</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x800500</code>→<code>0x806580</code><br>Remove <code>0x800f30</code>→<code>0x806dd0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_strategic_resource_requirement_modifier"></a><code>EFFECT_ADJUST_CITY_STRATEGIC_RESOURCE_REQUIREMENT_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8d16a0</code>→<code>0x8eaa20</code><br>Remove <code>0x8d21b0</code>→<code>0x8eacf0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_tourism"></a><code>EFFECT_ADJUST_CITY_TOURISM</code></td>
+<td><code>BoostsWonders</code> (Boolean), <code>GreatWorkObjectType</code> (String), <code>ImprovementType</code> (String), <code>Religious</code> (Boolean), <code>ScalingFactor</code> (Integer)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__culture__changetourism">City::Culture::ChangeTourism</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetImprovementDefinitions</code><br><code>Definition::Utility::NameToGreatWorkObjectType</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x85b1e0</code>→<code>0x873930</code><br>Remove <code>0x85c580</code>→<code>0x874c50</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_tourism_late_eras"></a><code>EFFECT_ADJUST_CITY_TOURISM_LATE_ERAS</code></td>
+<td><code>MinimumEra</code> (String), <code>Modifier</code> (Integer)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetEraDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8050f0</code>→<code>0x809f70</code><br>Remove <code>0x805d30</code>→<code>0x80a670</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_tourism_per_feature"></a><code>EFFECT_ADJUST_CITY_TOURISM_PER_FEATURE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e46a0</code>→<code>0x7ea550</code><br>Remove <code>0x8e4a60</code>→<code>0x7eb220</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_for_domestic"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_FOR_DOMESTIC</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>City::Trade::ChangeFlatYieldBonusForDomestic</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8182d0</code>→<code>0x81f000</code><br>Remove <code>0x818bf0</code>→<code>0x81fa70</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_for_international"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_FOR_INTERNATIONAL</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeflatyieldbonusforinternational">City::Trade::ChangeFlatYieldBonusForInternational</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x82cf80</code>→<code>0x832f20</code><br>Remove <code>0x82d4c0</code>→<code>0x8337a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_per_destination_luxury_resource_for_international"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_DESTINATION_LUXURY_RESOURCE_FOR_INTERNATIONAL</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldperdestinationluxuryresourceforinternational">City::Trade::ChangeYieldPerDestinationLuxuryResourceForInternational</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8422d0</code>→<code>0x847a60</code><br>Remove <code>0x842b80</code>→<code>0x848210</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_per_destination_strategic_resource_for_domestic"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_DESTINATION_STRATEGIC_RESOURCE_FOR_DOMESTIC</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldperdestinationstrategicresourcefordomestic">City::Trade::ChangeYieldPerDestinationStrategicResourceForDomestic</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x85a2d0</code>→<code>0x85d990</code><br>Remove <code>0x85ac80</code>→<code>0x85e8e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_per_destination_strategic_resource_for_international"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_DESTINATION_STRATEGIC_RESOURCE_FOR_INTERNATIONAL</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldperdestinationstrategicresourceforinternational">City::Trade::ChangeYieldPerDestinationStrategicResourceForInternational</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x86dfd0</code>→<code>0x874a00</code><br>Remove <code>0x86e530</code>→<code>0x875360</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_per_local_bonus_resource_for_domestic"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_BONUS_RESOURCE_FOR_DOMESTIC</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalbonusresourcefordomestic">City::Trade::ChangeYieldPerLocalBonusResourceForDomestic</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x87ea90</code>→<code>0x886cf0</code><br>Remove <code>0x87f460</code>→<code>0x887420</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_per_local_bonus_resource_for_international"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_BONUS_RESOURCE_FOR_INTERNATIONAL</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalbonusresourceforinternational">City::Trade::ChangeYieldPerLocalBonusResourceForInternational</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x894830</code>→<code>0x899f30</code><br>Remove <code>0x8952b0</code>→<code>0x89a300</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_per_local_luxury_resource_for_international"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_LUXURY_RESOURCE_FOR_INTERNATIONAL</code> <em>(untested in the community list)</em></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalluxuryresourceforinternational">City::Trade::ChangeYieldPerLocalLuxuryResourceForInternational</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x8a6790</code>→<code>0x8aefa0</code><br>Remove <code>0x8a6c70</code>→<code>0x8af4b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_trade_route_yield_per_local_strategic_resource_for_international"></a><code>EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_STRATEGIC_RESOURCE_FOR_INTERNATIONAL</code> <em>(untested in the community list)</em></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldperlocalstrategicresourceforinternational">City::Trade::ChangeYieldPerLocalStrategicResourceForInternational</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x8bc720</code>→<code>0x8c19d0</code><br>Remove <code>0x8bcf60</code>→<code>0x8c1e30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_unit_max_level"></a><code>EFFECT_ADJUST_CITY_UNIT_MAX_LEVEL</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>City</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Apply <code>0x869200</code>→<code>0x86e840</code><br>Remove <code>0x869980</code>→<code>0x86eef0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_change"></a><code>EFFECT_ADJUST_CITY_YIELD_CHANGE</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__changeyieldchange">City::Instance::ChangeYieldChange</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x8d3340</code>→<code>0x8d85a0</code><br>Remove <code>0x8d3bd0</code>→<code>0x8d8930</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_from_foreign_trade_routes_passing_through"></a><code>EFFECT_ADJUST_CITY_YIELD_FROM_FOREIGN_TRADE_ROUTES_PASSING_THROUGH</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldfromforeignroutespassingthrough">City::Trade::ChangeYieldFromForeignRoutesPassingThrough</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x820e80</code>→<code>0x8276f0</code><br>Remove <code>0x821640</code>→<code>0x828170</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_from_powered_building"></a><code>EFFECT_ADJUST_CITY_YIELD_FROM_POWERED_BUILDING</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7e51c0</code>→<code>0x7fd710</code><br>Remove <code>0x7e5950</code>→<code>0x7fda40</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_modifier"></a><code>EFFECT_ADJUST_CITY_YIELD_MODIFIER</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__changeyieldmodifier">City::Instance::ChangeYieldModifier</a><br><code>Definitions::GetYieldDefinitions</code><br><code>Types::Vector</code><br><code>Platform::MallocAligned</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x833930</code>→<code>0x83b220</code><br>Remove <code>0x8343a0</code>→<code>0x83b5a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_modifier_from_faith"></a><code>EFFECT_ADJUST_CITY_YIELD_MODIFIER_FROM_FAITH</code> <em>(untested in the community list)</em></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x858530</code>→<code>0x85b9c0</code><br>Remove <code>0x85a0c0</code>→<code>0x85d0d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_modifier_per_governor_title"></a><code>EFFECT_ADJUST_CITY_YIELD_MODIFIER_PER_GOVERNOR_TITLE</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__changeyieldmodifierpergovernortitle">City::Instance::ChangeYieldModifierPerGovernorTitle</a><br><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x876520</code>→<code>0x88e600</code><br>Remove <code>0x876c70</code>→<code>0x88f4d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_per_district"></a><code>EFFECT_ADJUST_CITY_YIELD_PER_DISTRICT</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x86cae0</code>→<code>0x872350</code><br>Remove <code>0x86ced0</code>→<code>0x873430</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_per_flood"></a><code>EFFECT_ADJUST_CITY_YIELD_PER_FLOOD</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7f7b60</code>→<code>0x810370</code><br>Remove <code>0x7f84f0</code>→<code>0x810a00</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_per_major_trade_partner"></a><code>EFFECT_ADJUST_CITY_YIELD_PER_MAJOR_TRADE_PARTNER</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__changeyieldpermajortradepartner">City::Trade::ChangeYieldPerMajorTradePartner</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x87db60</code>→<code>0x885390</code><br>Remove <code>0x87e1a0</code>→<code>0x886080</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_per_population"></a><code>EFFECT_ADJUST_CITY_YIELD_PER_POPULATION</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetYieldDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8889c0</code>→<code>0x8a25d0</code><br>Remove <code>0x889470</code>→<code>0x8a2fa0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_per_terrain_class_cities"></a><code>EFFECT_ADJUST_CITY_YIELD_PER_TERRAIN_CLASS_CITIES</code></td>
+<td>—</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x80c700</code>→<code>0x825af0</code><br>Remove <code>0x80cd80</code>→<code>0x826630</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_per_terrain_class_cities_improvement"></a><code>EFFECT_ADJUST_CITY_YIELD_PER_TERRAIN_CLASS_CITIES_IMPROVEMENT</code></td>
+<td><code>Amount</code> (Integer), <code>ImprovementType</code> (String), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>City::Instance::AddYieldPerTerrainClassCitiesImprovement</code><br><code>City::Instance::RemoveYieldPerTerrainClassCitiesImprovement</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetYieldDefinitions</code><br><code>Definitions::GetImprovementDefinitions</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x81fe80</code>→<code>0x838c10</code><br>Remove <code>0x820960</code>→<code>0x8397c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_city_yield_per_terrain_type"></a><code>EFFECT_ADJUST_CITY_YIELD_PER_TERRAIN_TYPE</code> <em>(untested in the community list)</em></td>
+<td><code>Amount</code> (Integer), <code>TerrainType</code> (String), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>City::Instance::AddYieldPerTerrainType</code><br><code>City::Instance::RemoveYieldPerTerrainType</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetYieldDefinitions</code><br><code>Definitions::GetTerrainDefinitions</code></td>
+<td>—</td>
+<td>Apply <code>0x893090</code>→<code>0x898d60</code><br>Remove <code>0x893760</code>→<code>0x899630</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_district_yield_based_on_appeal"></a><code>EFFECT_ADJUST_DISTRICT_YIELD_BASED_ON_APPEAL</code></td>
+<td><code>Description</code> (String), <code>DistrictType</code> (String), <code>RequiredAppeal</code> (Integer), <code>YieldChange</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__adddynamicadjacencybonus">City::Instance::AddDynamicAdjacencyBonus</a><br><a href="../native/City.html#city__instance__removedynamicadjacencybonus">City::Instance::RemoveDynamicAdjacencyBonus</a><br><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetDistrictDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x826920</code>→<code>0x83f9d0</code><br>Remove <code>0x827470</code>→<code>0x8406d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_extra_great_work_slots"></a><code>EFFECT_ADJUST_EXTRA_GREAT_WORK_SLOTS</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String), <code>GreatWorkSlotType</code> (String)</td>
+<td>City</td>
+<td><code>City::Buildings::ChangeExtraGreatWorkSlots</code><br><code>Definitions::GetBuildingDefinitions</code><br><code>Definition::Utility::NameToGreatWorkSlotType</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83d9e0</code>→<code>0x843560</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_extra_unit_copy"></a><code>EFFECT_ADJUST_EXTRA_UNIT_COPY</code></td>
+<td><code>Amount</code> (Integer), <code>UnitType</code> (String)</td>
+<td>modifier object</td>
+<td><code>City::BuildQueue::ChangeExtraUnitCopy</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetUnitDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x85e210</code>→<code>0x8617f0</code><br>Remove <code>0x85f1a0</code>→<code>0x862700</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_extra_unit_copy_tag"></a><code>EFFECT_ADJUST_EXTRA_UNIT_COPY_TAG</code></td>
+<td><code>Amount</code> (Integer), <code>Tag</code> (String)</td>
+<td>modifier object</td>
+<td><a href="../native/Player.html#player__units__changeextraunitcopytag">Player::Units::ChangeExtraUnitCopyTag</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x943cc0</code>→<code>0x944480</code><br>Remove <code>0x973450</code>→<code>0x973bb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_feature_appeal_modifier"></a><code>EFFECT_ADJUST_FEATURE_APPEAL_MODIFIER</code></td>
+<td><code>Amount</code> (Integer), <code>FeatureType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__growth__changefeatureappealmodifier">City::Growth::ChangeFeatureAppealModifier</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7ecd60</code>→<code>0x7f2490</code><br>Remove <code>0x7edf40</code>→<code>0x7f3070</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_improvement_amenity"></a><code>EFFECT_ADJUST_IMPROVEMENT_AMENITY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x88abe0</code>→<code>0x8a4c90</code><br>Remove <code>0x88b450</code>→<code>0x8a50c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_improvement_housing"></a><code>EFFECT_ADJUST_IMPROVEMENT_HOUSING</code></td>
+<td><code>Amount</code> (Integer), <code>ImprovementType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7f8c80</code>→<code>0x7fee50</code><br>Remove <code>0x7f9420</code>→<code>0x7ff160</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_natural_wonder_amenity"></a><code>EFFECT_ADJUST_NATURAL_WONDER_AMENITY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x837a40</code>→<code>0x850f80</code><br>Remove <code>0x8380a0</code>→<code>0x851490</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_no_fresh_water_housing"></a><code>EFFECT_ADJUST_NO_FRESH_WATER_HOUSING</code></td>
+<td><code>NoHousing</code> (Boolean)</td>
+<td>—</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Remove <code>0x8520d0</code>→<code>0x855df0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_num_units_supported"></a><code>EFFECT_ADJUST_NUM_UNITS_SUPPORTED</code></td>
+<td><code>Amount</code> (Integer), <code>BuildingType</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetBuildingDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x866ad0</code>→<code>0x86b560</code><br>Remove <code>0x867780</code>→<code>0x86c220</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_player_no_occupation_penalties"></a><code>EFFECT_ADJUST_PLAYER_NO_OCCUPATION_PENALTIES</code></td>
+<td><code>NoPenalties</code> (Boolean)</td>
+<td>Player</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Apply <code>0x8eb530</code>→<code>0x8f1210</code><br>Remove <code>0x8ec400</code>→<code>0x8f19a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_plot_purchase_cost"></a><code>EFFECT_ADJUST_PLOT_PURCHASE_COST</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7e7d90</code>→<code>0x7ecb70</code><br>Remove <code>0x7e88e0</code>→<code>0x7ecd30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_plot_purchase_cost_terrain"></a><code>EFFECT_ADJUST_PLOT_PURCHASE_COST_TERRAIN</code></td>
+<td><code>Amount</code> (Integer), <code>TerrainType</code> (String)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetTerrainDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8ce090</code>→<code>0x8e7610</code><br>Remove <code>0x8ce880</code>→<code>0x8e7f30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_policy_amenity"></a><code>EFFECT_ADJUST_POLICY_AMENITY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x82f920</code>→<code>0x8360c0</code><br>Remove <code>0x8301d0</code>→<code>0x836f30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_policy_housing"></a><code>EFFECT_ADJUST_POLICY_HOUSING</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x843a60</code>→<code>0x848c70</code><br>Remove <code>0x8447a0</code>→<code>0x849260</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_population_after_conquest"></a><code>EFFECT_ADJUST_POPULATION_AFTER_CONQUEST</code></td>
+<td><code>Percent</code> (Integer)</td>
+<td>Player</td>
+<td><a href="../native/Player.html#player__cities__setpopulationafterconquest">Player::Cities::SetPopulationAfterConquest</a></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e20d0</code>→<code>0x7e8170</code><br>Remove <code>0x8e2ce0</code>→<code>0x7e8d20</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_prevent_structural_damage"></a><code>EFFECT_ADJUST_PREVENT_STRUCTURAL_DAMAGE</code></td>
+<td><code>Prevent</code> (Boolean)</td>
+<td>Governor</td>
+<td>—</td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8f58c0</code>→<code>0x7fadd0</code><br>Remove <code>0x8f6230</code>→<code>0x7fb7b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_project_production"></a><code>EFFECT_ADJUST_PROJECT_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>ProjectType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__buildqueue__changeproductionmodifier">City::BuildQueue::ChangeProductionModifier</a><br><code>Definitions::GetProjectDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83ce10</code>→<code>0x855ce0</code><br>Remove <code>0x83d6f0</code>→<code>0x8566d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_religion_amenities_for_minimum_followers"></a><code>EFFECT_ADJUST_RELIGION_AMENITIES_FOR_MINIMUM_FOLLOWERS</code></td>
+<td><code>Amenities</code> (Integer), <code>Followers</code> (Integer)</td>
+<td>City</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x81dab0</code>→<code>0x836520</code><br>Remove <code>0x81e370</code>→<code>0x8372c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_river_district_production"></a><code>EFFECT_ADJUST_RIVER_DISTRICT_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x829400</code>→<code>0x830770</code><br>Remove <code>0x829ea0</code>→<code>0x830ec0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_river_wonder_production"></a><code>EFFECT_ADJUST_RIVER_WONDER_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83df70</code>→<code>0x8436d0</code><br>Remove <code>0x83e460</code>→<code>0x844a10</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_space_race_projects_production"></a><code>EFFECT_ADJUST_SPACE_RACE_PROJECTS_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>Definitions::GetProjectDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x853360</code>→<code>0x857130</code><br>Remove <code>0x853f10</code>→<code>0x857e60</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_trade_route_yield_from_others"></a><code>EFFECT_ADJUST_TRADE_ROUTE_YIELD_FROM_OTHERS</code></td>
+<td><code>Amount</code> (Integer), <code>Domestic</code> (Boolean), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>City::Trade::ChangeFlatYieldBonusFromOthers</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83e0d0</code>→<code>0x843fc0</code><br>Remove <code>0x83e5b0</code>→<code>0x844ff0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_trade_route_yield_per_specialty_district_for_domestic"></a><code>EFFECT_ADJUST_TRADE_ROUTE_YIELD_PER_SPECIALTY_DISTRICT_FOR_DOMESTIC</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Player</td>
+<td><a href="../native/Player.html#player__trade__changeperspecialtydistrictyieldbonusfordomestic">Player::Trade::ChangePerSpecialtyDistrictYieldBonusForDomestic</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x8553a0</code>→<code>0x858720</code><br>Remove <code>0x855e10</code>→<code>0x8589d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_trade_route_yield_per_specialty_district_for_international"></a><code>EFFECT_ADJUST_TRADE_ROUTE_YIELD_PER_SPECIALTY_DISTRICT_FOR_INTERNATIONAL</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Player</td>
+<td><a href="../native/Player.html#player__trade__changeperspecialtydistrictyieldbonusforinternational">Player::Trade::ChangePerSpecialtyDistrictYieldBonusForInternational</a></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8a6680</code>→<code>0x8bfa10</code><br>Remove <code>0x8a6b40</code>→<code>0x8c0180</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_trade_route_yield_to_others"></a><code>EFFECT_ADJUST_TRADE_ROUTE_YIELD_TO_OTHERS</code></td>
+<td><code>Amount</code> (Integer), <code>Domestic</code> (Boolean), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>City::Trade::ChangeFlatYieldBonusToOthersForDomestic</code><br><code>City::Trade::ChangeFlatYieldBonusToOthers</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetYieldDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8bc600</code>→<code>0x8d66f0</code><br>Remove <code>0x8bcec0</code>→<code>0x8d6fa0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_production"></a><code>EFFECT_ADJUST_UNIT_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>UnitType</code> (String)</td>
+<td>modifier object</td>
+<td><a href="../native/Player.html#player__units__changeproductionmodifier">Player::Units::ChangeProductionModifier</a><br><code>Definitions::GetUnitDefinitions</code><br><code>Types::Vector</code><br><code>Platform::MallocAligned</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x943e50</code>→<code>0x944610</code><br>Remove <code>0x9735f0</code>→<code>0x973d50</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_purchase_cost"></a><code>EFFECT_ADJUST_UNIT_PURCHASE_COST</code></td>
+<td><code>Amount</code> (Integer), <code>UnitType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8d91c0</code>→<code>0x8f0970</code><br>Remove <code>0x8d9a30</code>→<code>0x8f15c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_valid_features_districts"></a><code>EFFECT_ADJUST_VALID_FEATURES_DISTRICTS</code></td>
+<td><code>DistrictType</code> (String), <code>FeatureType</code> (String)</td>
+<td>City</td>
+<td><code>City::BuildQueue::SetModifierValidFeatureDistricts</code><br><code>City::BuildQueue::RemoveModifierValidFeatureDistricts</code><br><code>Definitions::GetDistrictDefinitions</code><br><code>Definitions::GetFeatureDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x82d460</code>→<code>0x8465f0</code><br>Remove <code>0x82dfe0</code>→<code>0x847430</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_valid_features_wonders"></a><code>EFFECT_ADJUST_VALID_FEATURES_WONDERS</code></td>
+<td><code>FeatureType</code> (String)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x842710</code>→<code>0x85aeb0</code><br>Remove <code>0x842fd0</code>→<code>0x85b750</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_water_housing"></a><code>EFFECT_ADJUST_WATER_HOUSING</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x871850</code>→<code>0x8892b0</code><br>Remove <code>0x8721a0</code>→<code>0x889800</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_wonder_era_production"></a><code>EFFECT_ADJUST_WONDER_ERA_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>EndEra</code> (String), <code>IsWonder</code> (Boolean), <code>StartEra</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetBuildingDefinitions</code><br><code>Definitions::GetEraDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x880a00</code>→<code>0x89ab00</code><br>Remove <code>0x881650</code>→<code>0x89b860</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_wonder_production"></a><code>EFFECT_ADJUST_WONDER_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8abbe0</code>→<code>0x8c58c0</code><br>Remove <code>0x8ac910</code>→<code>0x8c63f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_wonder_yield_change"></a><code>EFFECT_ADJUST_WONDER_YIELD_CHANGE</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__buildings__changewonderyieldchange">City::Buildings::ChangeWonderYieldChange</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c14d0</code>→<code>0x8dacf0</code><br>Remove <code>0x8c1ea0</code>→<code>0x8db600</code></td>
+</tr>
+<tr>
+<td><a id="effect_assign_city_property"></a><code>EFFECT_ASSIGN_CITY_PROPERTY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>City</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7ea7f0</code>→<code>0x8014a0</code><br>Remove <code>0x7eafb0</code>→<code>0x802400</code></td>
+</tr>
+<tr>
+<td><a id="effect_city_recommission_reactor"></a><code>EFFECT_CITY_RECOMMISSION_REACTOR</code></td>
+<td>—</td>
+<td>City</td>
+<td><code>Game::Fallout::Manager::GetInstance</code><br><code>Definitions::GetBuilding_XP2Definitions</code><br><code>Definitions::GetBuildingDefinitions</code><br><code>City::Buildings::GetBuildingLocation</code><br><code>Game::Fallout::Manager::ResetReactorAge</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x876b00</code>→<code>0x88f360</code></td>
+</tr>
+<tr>
+<td><a id="effect_district_adjacency"></a><code>EFFECT_DISTRICT_ADJACENCY</code></td>
+<td><code>Amount</code> (Integer), <code>Description</code> (String), <code>DistrictType</code> (String), <code>TilesRequired</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__adddynamicadjacencybonus">City::Instance::AddDynamicAdjacencyBonus</a><br><a href="../native/City.html#city__instance__removedynamicadjacencybonus">City::Instance::RemoveDynamicAdjacencyBonus</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7ed510</code>→<code>0x805060</code><br>Remove <code>0x7ee630</code>→<code>0x806440</code></td>
+</tr>
+<tr>
+<td><a id="effect_enable_building_faith_purchase"></a><code>EFFECT_ENABLE_BUILDING_FAITH_PURCHASE</code></td>
+<td><code>DistrictType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__gold__setbuildingfaithpurchasebydistrict">City::Gold::SetBuildingFaithPurchaseByDistrict</a><br><code>Definitions::GetDistrictDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8b8d70</code>→<code>0x8d2aa0</code><br>Remove <code>0x8b8f60</code>→<code>0x8d3040</code></td>
+</tr>
+<tr>
+<td><a id="effect_enable_specific_building_faith_purchase"></a><code>EFFECT_ENABLE_SPECIFIC_BUILDING_FAITH_PURCHASE</code> <em>(untested in the community list)</em></td>
+<td><code>BuildingType</code> (String)</td>
+<td>City</td>
+<td><code>City::Gold::SetBuildingFaithPurchaseEnabled</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x8ce240</code>→<code>0x8e71f0</code><br>Remove <code>0x8cece0</code>→<code>0x8e7b90</code></td>
+</tr>
+<tr>
+<td><a id="effect_enable_unit_faith_purchase"></a><code>EFFECT_ENABLE_UNIT_FAITH_PURCHASE</code></td>
+<td><code>Tag</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__gold__setunitfaithpurchasebytag">City::Gold::SetUnitFaithPurchaseByTag</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8e1600</code>→<code>0x7e6580</code><br>Remove <code>0x8e1e50</code>→<code>0x7e7170</code></td>
+</tr>
+<tr>
+<td><a id="effect_feature_adjacency"></a><code>EFFECT_FEATURE_ADJACENCY</code></td>
+<td><code>Amount</code> (Integer), <code>Description</code> (String), <code>DistrictType</code> (String), <code>FeatureType</code> (String), <code>TilesRequired</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__adddynamicadjacencybonus">City::Instance::AddDynamicAdjacencyBonus</a><br><a href="../native/City.html#city__instance__removedynamicadjacencybonus">City::Instance::RemoveDynamicAdjacencyBonus</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x803340</code>→<code>0x81bcd0</code><br>Remove <code>0x803d70</code>→<code>0x81c4f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_building_in_city"></a><code>EFFECT_GRANT_BUILDING_IN_CITY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>City</td>
+<td><code>City::BuildQueue::CanConstruct</code><br><code>City::BuildQueue::CreateBuilding</code><br><code>Definitions::GetBuildingDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c5f10</code>→<code>0x8dfa20</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_building_in_city_ignore"></a><code>EFFECT_GRANT_BUILDING_IN_CITY_IGNORE</code></td>
+<td><code>BuildingType</code> (String)</td>
+<td>City</td>
+<td><code>City::BuildQueue::CanConstruct</code><br><code>City::BuildQueue::CreateBuilding</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8db900</code>→<code>0x8f3f30</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_cheapest_building_in_city"></a><code>EFFECT_GRANT_CHEAPEST_BUILDING_IN_CITY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>Definitions::GetBuildingDefinitions</code><br><code>City::Buildings::HasBuilding</code><br><code>City::IInstance::GetPlot</code><br><code>City::BuildQueue::CanConstruct</code><br><code>Definitions::GetCivicDefinitions</code><br><code>Player::Culture::HasCivic</code><br><code>Definitions::GetTechnologyDefinitions</code><br><code>Player::Techs::HasTech</code><br><code>Platform::MallocAligned</code><br><code>City::BuildQueue::CreateBuilding</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8f0e40</code>→<code>0x7f6990</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_city_loyalty"></a><code>EFFECT_GRANT_CITY_LOYALTY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>City</td>
+<td><code>City::CulturalIdentity::ChangeLoyalty</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x888c20</code>→<code>0x8a2a40</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_city_road_to_capital"></a><code>EFFECT_GRANT_CITY_ROAD_TO_CAPITAL</code></td>
+<td>—</td>
+<td>City</td>
+<td><code>Player::Cities::GetCapitalCity</code><br><code>Map::Instance::GetRouteBuilder</code><br><code>Map::Route::Builder::PlaceRouteForPlayer</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x866460</code>→<code>0x87dea0</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_city_trading_post"></a><code>EFFECT_GRANT_CITY_TRADING_POST</code></td>
+<td>—</td>
+<td>City</td>
+<td><a href="../native/City.html#city__trade__sethasconstructedtradingpost">City::Trade::SetHasConstructedTradingPost</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8783e0</code>→<code>0x891030</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_city_yield_percent_building_created_cost"></a><code>EFFECT_GRANT_CITY_YIELD_PERCENT_BUILDING_CREATED_COST</code></td>
+<td><code>BuildingProductionPercent</code> (Integer), <code>IncludeWonder</code> (Boolean), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x888490</code>→<code>0x8a1c10</code><br>Remove <code>0x888a40</code>→<code>0x8a2040</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_city_yield_percent_unit_created_cost"></a><code>EFFECT_GRANT_CITY_YIELD_PERCENT_UNIT_CREATED_COST</code></td>
+<td><code>UnitProductionPercent</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x89e250</code>→<code>0x8b6d00</code><br>Remove <code>0x89e6b0</code>→<code>0x8b75f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_free_resource_in_city"></a><code>EFFECT_GRANT_FREE_RESOURCE_IN_CITY</code></td>
+<td><code>Amount</code> (Integer), <code>ResourceType</code> (String)</td>
+<td>City</td>
+<td><code>Player::Resources::ChangeFreeResources</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetResourceDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83bb70</code>→<code>0x854aa0</code><br>Remove <code>0x83c890</code>→<code>0x855350</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_great_person_class_in_city"></a><code>EFFECT_GRANT_GREAT_PERSON_CLASS_IN_CITY</code></td>
+<td><code>Amount</code> (Integer), <code>GreatPersonClassType</code> (String)</td>
+<td>City</td>
+<td><code>Game::GreatPeople::Get</code><br><a href="../native/Game.html#game__greatpeople__awardfreepersonbyclass">Game::GreatPeople::AwardFreePersonByClass</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetGreatPersonClassDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x80ecd0</code>→<code>0x828400</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_production_in_city"></a><code>EFFECT_GRANT_PRODUCTION_IN_CITY</code></td>
+<td><code>Amount</code> (Integer), <code>KeepOverflow</code> (Boolean)</td>
+<td>City</td>
+<td><code>City::BuildQueue::AddProgress</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8ac8c0</code>→<code>0x8c63a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_religious_pressure_burst"></a><code>EFFECT_GRANT_RELIGIOUS_PRESSURE_BURST</code></td>
+<td><code>Amount</code> (Integer), <code>Range</code> (Integer)</td>
+<td>City</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>Player::Religion::GetReligionTypeCreated</code><br><code>Cache::Unit::Experience::GetVeteranName</code><br><code>Platform::MallocAligned</code><br><code>Player::Manager::Edit</code><br><code>Map::IInstance::GetPlotDistance</code><br><code>City::Religion::AddReligiousPressure</code><br><code>City::Religion::RemovePressureOneReligion</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8c7820</code>→<code>0x8e1400</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_unit_by_class"></a><code>EFFECT_GRANT_UNIT_BY_CLASS</code></td>
+<td><code>UnitPromotionClassType</code> (String)</td>
+<td>City</td>
+<td><code>Player::Stats::GetBestUnitOfPromotionClass</code><br><code>City::Manager::CreateUnit</code><br><code>Definitions::GetUnitPromotionClassDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8679c0</code>→<code>0x87ee70</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_unit_by_domain"></a><code>EFFECT_GRANT_UNIT_BY_DOMAIN</code></td>
+<td><code>UnitDomain</code> (String)</td>
+<td>Unit</td>
+<td><code>Definition::Utility::NameToDomainType</code><br><code>Player::Stats::GetBestUnitOfDomain</code><br><code>Unit::IInstance::GetPlot</code><br><code>Definitions::GetUnitDefinitions</code><br><code>Unit::Manager::Get</code><br><code>Player::Stats::UnitConstructed</code></td>
+<td>NFP</td>
+<td>Apply <code>0x87c150</code>→<code>0x895300</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_unit_in_city"></a><code>EFFECT_GRANT_UNIT_IN_CITY</code></td>
+<td><code>AllowUniqueOverride</code> (Boolean), <code>Amount</code> (Integer), <code>UnitType</code> (String)</td>
+<td>City</td>
+<td><code>City::Manager::CreateUnit</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetUnitDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x893d50</code>→<code>0x8ac390</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_unit_of_class_and_apply_ability"></a><code>EFFECT_GRANT_UNIT_OF_CLASS_AND_APPLY_ABILITY</code></td>
+<td><code>ModifierId</code> (String), <code>UnitPromotionClassType</code> (String)</td>
+<td>modifier object</td>
+<td><code>Player::Cities::GetCapitalCity</code><br><code>Player::Stats::GetBestUnitOfPromotionClass</code><br><code>Definitions::GetUnitDefinitions</code><br><code>City::Manager::CreateUnit</code><br><code>GameEffects::ModifierSystem::AttachModifier</code><br><code>Definitions::GetUnitPromotionClassDefinitions</code></td>
+<td>NFP</td>
+<td>Apply <code>0x87a040</code>→<code>0x8925e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_yield_per_great_work_in_city"></a><code>EFFECT_GRANT_YIELD_PER_GREAT_WORK_IN_CITY</code></td>
+<td><code>Amount</code> (Integer), <code>GreatWorkObjectType</code> (String), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><code>City::Buildings::GetNumGreatWorks</code><br><code>Player::Instance::GrantYield</code><br><code>Definition::Utility::NameToGreatWorkObjectType</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8a04c0</code>→<code>0x8b8e80</code></td>
+</tr>
+<tr>
+<td><a id="effect_kill_emergency_target_spies_in_city"></a><code>EFFECT_KILL_EMERGENCY_TARGET_SPIES_IN_CITY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>City</td>
+<td><code>Emergency::Manager::Get</code><br><code>Emergency::Manager::GetEmergency</code><br><code>City::IInstance::GetPlot</code><br><code>Map::UnitContainer::GetUnits</code><br><code>Player::Districts::Find</code><br><code>Rules::Espionage::Get</code><br><a href="../native/Rules.html#rules__espionage__instance__capturespy">Rules::Espionage::Instance::CaptureSpy</a></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8ee970</code>→<code>0x7f4a50</code></td>
+</tr>
+<tr>
+<td><a id="effect_river_adjacency"></a><code>EFFECT_RIVER_ADJACENCY</code></td>
+<td><code>Amount</code> (Integer), <code>Description</code> (String), <code>DistrictType</code> (String), <code>TilesRequired</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__adddynamicadjacencybonus">City::Instance::AddDynamicAdjacencyBonus</a><br><a href="../native/City.html#city__instance__removedynamicadjacencybonus">City::Instance::RemoveDynamicAdjacencyBonus</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x81e3b0</code>→<code>0x837300</code><br>Remove <code>0x81ec30</code>→<code>0x837bb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_terrain_adjacency"></a><code>EFFECT_TERRAIN_ADJACENCY</code></td>
+<td><code>Amount</code> (Integer), <code>Description</code> (String), <code>DistrictType</code> (String), <code>TerrainType</code> (String), <code>TilesRequired</code> (Integer), <code>YieldType</code> (String)</td>
+<td>City</td>
+<td><a href="../native/City.html#city__instance__adddynamicadjacencybonus">City::Instance::AddDynamicAdjacencyBonus</a><br><a href="../native/City.html#city__instance__removedynamicadjacencybonus">City::Instance::RemoveDynamicAdjacencyBonus</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x832b50</code>→<code>0x84be30</code><br>Remove <code>0x833330</code>→<code>0x84cbb0</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

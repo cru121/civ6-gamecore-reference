@@ -9,8 +9,10 @@ I made it because the engine knows far more than the Lua API shows, and the exis
 ## What is in it
 - **Lua API**: 1,920 methods on 124 objects, with recovered signatures, argument and return meanings.
 - **Operations, commands, enums, events**: identified with handlers, parameters and hashes.
+- **Modifier effects, requirements and collections**: the database side (`EFFECT_...`, `REQUIREMENT_...`, `COLLECTION_...`), with the engine class, addresses and the engine functions each one calls.
 - **Class layouts and globals**: member offsets and typed global addresses, for raw memory access (`Mem`, `ObjMem`) via the Community Extension.
 - **Native functions** that have no Lua route today, and a **Dev CE (experimental)** section describing engine functions that a development fork of the Community Extension could expose to Lua. No Dev CE DLL is published yet; the section is documentation only.
+- **World Builder from Lua**: all 99 World Builder methods grouped by manager, with call forms, return values and undo behaviour.
 - **findings/**: per-function analysis notes and topic pages (great works, events, the identifier hash, build differences).
 
 Every entry is labelled by how you can use it: available in the vanilla game, needs the Community Extension, or engine internals.

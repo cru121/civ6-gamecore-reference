@@ -1,0 +1,1157 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Effects: UNITS</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Effects</a> › Effects: UNITS</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>Effects: UNITS</h1>
+<p>141 entries. Subject class "UNITS" is the community list's grouping (what the modifier applies to).</p>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>Arguments</th>
+<th>Applies to (C++)</th>
+<th>Engine functions called</th>
+<th>Availability</th>
+<th>Addresses (symbol→current)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="effect_adjust_building_spread_charges"></a><code>EFFECT_ADJUST_BUILDING_SPREAD_CHARGES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Religion::ChangeSpreadCharges</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8d8840</code>→<code>0x8deb20</code><br>Remove <code>0x8d99e0</code>→<code>0x8df360</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_great_people_points_per_kill"></a><code>EFFECT_ADJUST_GREAT_PEOPLE_POINTS_PER_KILL</code></td>
+<td><code>Amount</code> (Integer), <code>GreatPersonClassType</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__changebonuspointsperkill">Unit::Instance::ChangeBonusPointsPerKill</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetGreatPersonClassDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x814700</code>→<code>0x81aa60</code><br>Remove <code>0x814f50</code>→<code>0x81b830</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_heal_charges"></a><code>EFFECT_ADJUST_HEAL_CHARGES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Religion::ChangeReligiousHealCharges</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8e5520</code>→<code>0x8ebae0</code><br>Remove <code>0x8e5c10</code>→<code>0x8ec460</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_advanced_coastal_raid"></a><code>EFFECT_ADJUST_UNIT_ADVANCED_COASTAL_RAID</code></td>
+<td><code>UseAdvancedCoastalRaid</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x846e30</code>→<code>0x860cb0</code><br>Remove <code>0x847670</code>→<code>0x8612d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_advanced_pillaging"></a><code>EFFECT_ADJUST_UNIT_ADVANCED_PILLAGING</code></td>
+<td><code>UseAdvancedPillaging</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x86a4c0</code>→<code>0x86f3e0</code><br>Remove <code>0x86af10</code>→<code>0x86fde0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_against_district_combat_bonus"></a><code>EFFECT_ADJUST_UNIT_AGAINST_DISTRICT_COMBAT_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x85ddb0</code>→<code>0x875f00</code><br>Remove <code>0x85e510</code>→<code>0x876620</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_anti_air_strength"></a><code>EFFECT_ADJUST_UNIT_ANTI_AIR_STRENGTH</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x86f260</code>→<code>0x887230</code><br>Remove <code>0x86fae0</code>→<code>0x887b80</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_attack_and_move"></a><code>EFFECT_ADJUST_UNIT_ATTACK_AND_MOVE</code></td>
+<td><code>CanMove</code> (Boolean)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__setcanmoveafterattacking">Unit::Instance::SetCanMoveAfterAttacking</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x87b640</code>→<code>0x8818d0</code><br>Remove <code>0x87bbe0</code>→<code>0x882a10</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_attack_experience_modifier"></a><code>EFFECT_ADJUST_UNIT_ATTACK_EXPERIENCE_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Experience::ChangeAttackingExperienceModifier</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x88e660</code>→<code>0x894dd0</code><br>Remove <code>0x88ec20</code>→<code>0x8959f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_attack_range"></a><code>EFFECT_ADJUST_UNIT_ATTACK_RANGE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Instance::ChangeAttackRange</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8a0a00</code>→<code>0x8a7910</code><br>Remove <code>0x8a1120</code>→<code>0x8a7c90</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_barbarian_combat"></a><code>EFFECT_ADJUST_UNIT_BARBARIAN_COMBAT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8b2380</code>→<code>0x8b93f0</code><br>Remove <code>0x8b2500</code>→<code>0x8b9960</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_boost_all_spies"></a><code>EFFECT_ADJUST_UNIT_BOOST_ALL_SPIES</code></td>
+<td><code>Amount</code> (Integer), <code>Defense</code> (Boolean)</td>
+<td>Unit</td>
+<td><code>Definitions::GetUnitOperationDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x87e350</code>→<code>0x8980c0</code><br>Remove <code>0x87e680</code>→<code>0x8985d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_build_charges"></a><code>EFFECT_ADJUST_UNIT_BUILD_CHARGES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__changebuildcharges">Unit::Instance::ChangeBuildCharges</a><br><code>Unit::Instance::GetCombat</code><br><code>Unit::Manager::Get</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br><code>Definitions::GetUnitDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c7f90</code>→<code>0x8cda90</code><br>Remove <code>0x8c8410</code>→<code>0x8cdec0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_bypass_combat_unit"></a><code>EFFECT_ADJUST_UNIT_BYPASS_COMBAT_UNIT</code></td>
+<td><code>Bypass</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8e4420</code>→<code>0x8eaf40</code><br>Remove <code>0x8e49e0</code>→<code>0x8eb380</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_bypass_walls"></a><code>EFFECT_ADJUST_UNIT_BYPASS_WALLS</code></td>
+<td><code>Enable</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7e4930</code>→<code>0x7ea0a0</code><br>Remove <code>0x7e5240</code>→<code>0x7ea640</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_bypass_walls_promotion_class"></a><code>EFFECT_ADJUST_UNIT_BYPASS_WALLS_PROMOTION_CLASS</code></td>
+<td><code>PromotionClass</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__addbypasswallspromotionclass">Unit::Instance::AddBypassWallsPromotionClass</a><br><code>Unit::Instance::RemoveBypassWallsPromotionClass</code><br><code>Definitions::GetUnitPromotionClassDefinitions</code></td>
+<td>NFP</td>
+<td>Apply <code>0x87f290</code>→<code>0x899460</code><br>Remove <code>0x87f8d0</code>→<code>0x899c00</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_cannot_attack"></a><code>EFFECT_ADJUST_UNIT_CANNOT_ATTACK</code></td>
+<td><code>Disable</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7f6900</code>→<code>0x7fc880</code><br>Remove <code>0x7f6ff0</code>→<code>0x7fd190</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_clear_terrain_start_movement"></a><code>EFFECT_ADJUST_UNIT_CLEAR_TERRAIN_START_MOVEMENT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x809580</code>→<code>0x80dff0</code><br>Remove <code>0x809f00</code>→<code>0x80e900</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_combat_capture"></a><code>EFFECT_ADJUST_UNIT_COMBAT_CAPTURE</code></td>
+<td><code>CanCapture</code> (Boolean), <code>UnitType</code> (String)</td>
+<td>Unit</td>
+<td><code>Definitions::GetUnitDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x81b140</code>→<code>0x8224a0</code><br>Remove <code>0x81b880</code>→<code>0x822fa0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_combat_strength"></a><code>EFFECT_ADJUST_UNIT_COMBAT_STRENGTH</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x830560</code>→<code>0x837380</code><br>Remove <code>0x830950</code>→<code>0x837dc0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_combat_unit_capture"></a><code>EFFECT_ADJUST_UNIT_COMBAT_UNIT_CAPTURE</code></td>
+<td><code>CanCapture</code> (Boolean), <code>UnitType</code> (String)</td>
+<td>modifier object</td>
+<td><code>Definitions::GetUnitDefinitions</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8ea830</code>→<code>0x7f06c0</code><br>Remove <code>0x8ebcc0</code>→<code>0x7f1ae0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_converts_barbarians"></a><code>EFFECT_ADJUST_UNIT_CONVERTS_BARBARIANS</code></td>
+<td><code>Converts</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8cf0e0</code>→<code>0x8d3700</code><br>Remove <code>0x8cf9e0</code>→<code>0x8d42e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_damage"></a><code>EFFECT_ADJUST_UNIT_DAMAGE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Manager::Get</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8e29d0</code>→<code>0x8e8890</code><br>Remove <code>0x8e2e40</code>→<code>0x8e8dd0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_defense"></a><code>EFFECT_ADJUST_UNIT_DEFENSE</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_diplo_visibility_combat_modifier"></a><code>EFFECT_ADJUST_UNIT_DIPLO_VISIBILITY_COMBAT_MODIFIER</code></td>
+<td><code>Amount</code> (Integer), <code>DeltaWithOpponent</code> (Boolean)</td>
+<td>Unit</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7efd30</code>→<code>0x807e30</code><br>Remove <code>0x7f0530</code>→<code>0x8084d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_disaster_charges"></a><code>EFFECT_ADJUST_UNIT_DISASTER_CHARGES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__changedisastercharges">Unit::Instance::ChangeDisasterCharges</a><br><code>Unit::Manager::Get</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>NFP</td>
+<td>Apply <code>0x893200</code>→<code>0x8ac010</code><br>Remove <code>0x893920</code>→<code>0x8ac620</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_domain_production"></a><code>EFFECT_ADJUST_UNIT_DOMAIN_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>Domain</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetUnitDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8f5a60</code>→<code>0x7e8560</code><br>Remove <code>0x8f62d0</code>→<code>0x7e8db0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enable_wall_attack"></a><code>EFFECT_ADJUST_UNIT_ENABLE_WALL_ATTACK</code></td>
+<td><code>Enable</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x809ed0</code>→<code>0x80e8d0</code><br>Remove <code>0x80a6c0</code>→<code>0x80f040</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enable_wall_attack_promotion_class"></a><code>EFFECT_ADJUST_UNIT_ENABLE_WALL_ATTACK_PROMOTION_CLASS</code></td>
+<td><code>PromotionClass</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__addenablewallattackpromotionclass">Unit::Instance::AddEnableWallAttackPromotionClass</a><br><code>Unit::Instance::RemoveEnableWallAttackPromotionClass</code></td>
+<td>—</td>
+<td>Apply <code>0x8a5560</code>→<code>0x8be140</code><br>Remove <code>0x8a5d30</code>→<code>0x8beb80</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enable_wall_attack_whole_game"></a><code>EFFECT_ADJUST_UNIT_ENABLE_WALL_ATTACK_WHOLE_GAME</code></td>
+<td>—</td>
+<td>Player</td>
+<td>—</td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8b8320</code>→<code>0x8d2640</code><br>Remove <code>0x8b8a70</code>→<code>0x8d2b80</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enable_wall_attack_whole_game_promotion_class"></a><code>EFFECT_ADJUST_UNIT_ENABLE_WALL_ATTACK_WHOLE_GAME_PROMOTION_CLASS</code></td>
+<td><code>PromotionClass</code> (String)</td>
+<td>Player</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8ce050</code>→<code>0x8e75d0</code><br>Remove <code>0x8ce840</code>→<code>0x8e7ef0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enable_wall_attack_whole_game_same_religion"></a><code>EFFECT_ADJUST_UNIT_ENABLE_WALL_ATTACK_WHOLE_GAME_SAME_RELIGION</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>Player</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x81b120</code>→<code>0x822480</code><br>Remove <code>0x81b860</code>→<code>0x822f80</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enemy_heal"></a><code>EFFECT_ADJUST_UNIT_ENEMY_HEAL</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enemy_territory_start_movement"></a><code>EFFECT_ADJUST_UNIT_ENEMY_TERRITORY_START_MOVEMENT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e0c60</code>→<code>0x7e6330</code><br>Remove <code>0x8e1980</code>→<code>0x7e6f10</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_enter_foreign_lands"></a><code>EFFECT_ADJUST_UNIT_ENTER_FOREIGN_LANDS</code></td>
+<td><code>Enter</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8170c0</code>→<code>0x81d3c0</code><br>Remove <code>0x817800</code>→<code>0x81dcb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_escape_boost"></a><code>EFFECT_ADJUST_UNIT_ESCAPE_BOOST</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x829c00</code>→<code>0x8308a0</code><br>Remove <code>0x82a130</code>→<code>0x831280</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_escort_mobility"></a><code>EFFECT_ADJUST_UNIT_ESCORT_MOBILITY</code></td>
+<td><code>EscortMobility</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83ee00</code>→<code>0x845140</code><br>Remove <code>0x83f1f0</code>→<code>0x845470</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_evict_percent"></a><code>EFFECT_ADJUST_UNIT_EVICT_PERCENT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x853950</code>→<code>0x857850</code><br>Remove <code>0x854720</code>→<code>0x858390</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_exert_zoc"></a><code>EFFECT_ADJUST_UNIT_EXERT_ZOC</code></td>
+<td><code>Exert</code> (Boolean)</td>
+<td>Unit</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Apply <code>0x868190</code>→<code>0x86cea0</code><br>Remove <code>0x868960</code>→<code>0x86de40</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_experience_level"></a><code>EFFECT_ADJUST_UNIT_EXPERIENCE_LEVEL</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Cache::Player::Trade::CalcFavorPerTurnFromTradePartners</code><br><a href="../native/Unit.html#unit__experience__setlevel">Unit::Experience::SetLevel</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x878f60</code>→<code>0x87f3f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_experience_modifier"></a><code>EFFECT_ADJUST_UNIT_EXPERIENCE_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__experience__changegeneralexperiencemodifier">Unit::Experience::ChangeGeneralExperienceModifier</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x88bf80</code>→<code>0x893a70</code><br>Remove <code>0x88d730</code>→<code>0x894770</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_extract_sea_artifacts"></a><code>EFFECT_ADJUST_UNIT_EXTRACT_SEA_ARTIFACTS</code></td>
+<td><code>Extract</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x89fdd0</code>→<code>0x8a5ec0</code><br>Remove <code>0x8a0580</code>→<code>0x8a7640</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_faith_on_district_plunder"></a><code>EFFECT_ADJUST_UNIT_FAITH_ON_DISTRICT_PLUNDER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x816a30</code>→<code>0x82ff70</code><br>Remove <code>0x817090</code>→<code>0x830740</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_faith_on_improvement_plunder"></a><code>EFFECT_ADJUST_UNIT_FAITH_ON_IMPROVEMENT_PLUNDER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x828930</code>→<code>0x841f80</code><br>Remove <code>0x8293d0</code>→<code>0x842460</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_fight_while_embarked"></a><code>EFFECT_ADJUST_UNIT_FIGHT_WHILE_EMBARKED</code></td>
+<td><code>CanFight</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8f44d0</code>→<code>?</code><br>Remove <code>0x8f4b20</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_flanking_bonus_modifier"></a><code>EFFECT_ADJUST_UNIT_FLANKING_BONUS_MODIFIER</code></td>
+<td><code>Percent</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8b1cf0</code>→<code>0x8b8760</code><br>Remove <code>0x8b1f40</code>→<code>0x8b8ee0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_force_retreat"></a><code>EFFECT_ADJUST_UNIT_FORCE_RETREAT</code></td>
+<td><code>ForceRetreat</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c5fc0</code>→<code>0x8cc250</code><br>Remove <code>0x8c6640</code>→<code>0x8cc480</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_foreign_spread_modifier"></a><code>EFFECT_ADJUST_UNIT_FOREIGN_SPREAD_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8d9df0</code>→<code>0x8dfad0</code><br>Remove <code>0x8da210</code>→<code>0x8e01f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_friendly_heal"></a><code>EFFECT_ADJUST_UNIT_FRIENDLY_HEAL</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_friendly_territory_combat"></a><code>EFFECT_ADJUST_UNIT_FRIENDLY_TERRITORY_COMBAT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8ed390</code>→<code>0x8f2260</code><br>Remove <code>0x8ee0b0</code>→<code>0x8f2b00</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_friendly_territory_start_movement"></a><code>EFFECT_ADJUST_UNIT_FRIENDLY_TERRITORY_START_MOVEMENT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7edf00</code>→<code>0x7f3030</code><br>Remove <code>0x7ee880</code>→<code>0x7f3eb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_grant_experience"></a><code>EFFECT_ADJUST_UNIT_GRANT_EXPERIENCE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Experience::CanEarnExperience</code><br><code>Unit::Experience::GetExperienceForNextLevel</code><br><code>Cache::City::Growth::GetTurnsUntilStarvation</code><br><code>Unit::Experience::ChangeExperience</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7fffe0</code>→<code>0x805b00</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_great_person_charges"></a><code>EFFECT_ADJUST_UNIT_GREAT_PERSON_CHARGES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__greatperson__changeactioncharges">Unit::GreatPerson::ChangeActionCharges</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83e0a0</code>→<code>0x843f90</code><br>Remove <code>0x83e580</code>→<code>0x844fc0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_heal"></a><code>EFFECT_ADJUST_UNIT_HEAL</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Instance::SetDamage</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x852e80</code>→<code>0x856eb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_healing_modifiers"></a><code>EFFECT_ADJUST_UNIT_HEALING_MODIFIERS</code></td>
+<td><code>Amount</code> (Integer), <code>Type</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__changeterritoryhealing">Unit::Instance::ChangeTerritoryHealing</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x869540</code>→<code>0x86ed30</code><br>Remove <code>0x869da0</code>→<code>0x86f230</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_healing_religion_modifiers"></a><code>EFFECT_ADJUST_UNIT_HEALING_RELIGION_MODIFIERS</code></td>
+<td><code>Amount</code> (Integer), <code>Type</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__changeterritoryhealingreligion">Unit::Instance::ChangeTerritoryHealingReligion</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x887950</code>→<code>0x88f560</code><br>Remove <code>0x888520</code>→<code>0x88fa90</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_hidden_visibility"></a><code>EFFECT_ADJUST_UNIT_HIDDEN_VISIBILITY</code></td>
+<td><code>Hidden</code> (Boolean)</td>
+<td>Unit</td>
+<td><code>Unit::Manager::Get</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8a66f0</code>→<code>0x8aecf0</code><br>Remove <code>0x8a6c00</code>→<code>0x8af440</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_holy_cities_combat_modifier"></a><code>EFFECT_ADJUST_UNIT_HOLY_CITIES_COMBAT_MODIFIER</code> <em>(untested in the community list)</em></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x8b9a00</code>→<code>0x8bf4b0</code><br>Remove <code>0x8bafb0</code>→<code>0x8c0100</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_cliff_walls"></a><code>EFFECT_ADJUST_UNIT_IGNORE_CLIFF_WALLS</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8cf700</code>→<code>0x8d4020</code><br>Remove <code>0x8cfbe0</code>→<code>0x8d48c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_ranged_vs_district_penalty"></a><code>EFFECT_ADJUST_UNIT_IGNORE_RANGED_VS_DISTRICT_PENALTY</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7f34a0</code>→<code>0x8f4100</code><br>Remove <code>0x7f3910</code>→<code>0x8f49f0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_resource_maintenance"></a><code>EFFECT_ADJUST_UNIT_IGNORE_RESOURCE_MAINTENANCE</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x8e29b0</code>→<code>0x8e8870</code><br>Remove <code>0x8e2e10</code>→<code>0x8e8da0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_rivers"></a><code>EFFECT_ADJUST_UNIT_IGNORE_RIVERS</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8f6190</code>→<code>0x7e89a0</code><br>Remove <code>0x7e3ad0</code>→<code>0x7e90d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_shores"></a><code>EFFECT_ADJUST_UNIT_IGNORE_SHORES</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7f47d0</code>→<code>0x7fad80</code><br>Remove <code>0x7f5730</code>→<code>0x7fb5c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_shoresforesthills"></a><code>EFFECT_ADJUST_UNIT_IGNORE_SHORESFORESTHILLS</code> <em>(untested in the community list)</em></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_strategic_resource_levied"></a><code>EFFECT_ADJUST_UNIT_IGNORE_STRATEGIC_RESOURCE_LEVIED</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>Player</td>
+<td>—</td>
+<td>GS, NFP, BlackDeath, WarMachine</td>
+<td>Apply <code>0x805e80</code>→<code>0x81e870</code><br>Remove <code>0x806430</code>→<code>0x81ee50</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_terrain_cost"></a><code>EFFECT_ADJUST_UNIT_IGNORE_TERRAIN_COST</code></td>
+<td><code>Ignore</code> (Boolean), <code>Type</code> (String)</td>
+<td>Unit</td>
+<td><code>Definitions::GetTerrainDefinitions</code><br><code>Definitions::GetFeatureDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x808190</code>→<code>0x80d5d0</code><br>Remove <code>0x808c40</code>→<code>0x80dc20</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_ignore_zoc"></a><code>EFFECT_ADJUST_UNIT_IGNORE_ZOC</code></td>
+<td><code>Ignore</code> (Boolean)</td>
+<td>Unit</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Apply <code>0x818bc0</code>→<code>0x81fa40</code><br>Remove <code>0x819700</code>→<code>0x820410</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_initiation_yield"></a><code>EFFECT_ADJUST_UNIT_INITIATION_YIELD</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x82ba20</code>→<code>0x8317b0</code><br>Remove <code>0x82be50</code>→<code>0x831e10</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_initiation_yield_population"></a><code>EFFECT_ADJUST_UNIT_INITIATION_YIELD_POPULATION</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__religion__changeinitiationyieldpopulation">Unit::Religion::ChangeInitiationYieldPopulation</a><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8181d0</code>→<code>0x831780</code><br>Remove <code>0x818940</code>→<code>0x831bd0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_jump_ability"></a><code>EFFECT_ADJUST_UNIT_JUMP_ABILITY</code></td>
+<td><code>Range</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x82bff0</code>→<code>0x845990</code><br>Remove <code>0x82ccb0</code>→<code>0x846110</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_land_victory_spread"></a><code>EFFECT_ADJUST_UNIT_LAND_VICTORY_SPREAD</code></td>
+<td><code>LandVictorySpread</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83f7a0</code>→<code>0x845f80</code><br>Remove <code>0x8407b0</code>→<code>0x846620</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_maintenance_discount"></a><code>EFFECT_ADJUST_UNIT_MAINTENANCE_DISCOUNT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Player</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8556b0</code>→<code>0x8588e0</code><br>Remove <code>0x856100</code>→<code>0x858d40</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_military_formation"></a><code>EFFECT_ADJUST_UNIT_MILITARY_FORMATION</code></td>
+<td><code>MilitaryFormationType</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::Instance::SetMilitaryFormation</code><br><code>Definition::Utility::NameToMilitaryFormationType</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x87a960</code>→<code>0x8808e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_movement"></a><code>EFFECT_ADJUST_UNIT_MOVEMENT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8b3660</code>→<code>0x8ba000</code><br>Remove <code>0x8b3f90</code>→<code>0x8ba500</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_move_and_attack"></a><code>EFFECT_ADJUST_UNIT_MOVE_AND_ATTACK</code></td>
+<td><code>CanAttack</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8a1cc0</code>→<code>0x8a87a0</code><br>Remove <code>0x8a20d0</code>→<code>0x8a9200</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_natural_wonder_deferred_charges"></a><code>EFFECT_ADJUST_UNIT_NATURAL_WONDER_DEFERRED_CHARGES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c7f60</code>→<code>0x8cda60</code><br>Remove <code>0x8c83e0</code>→<code>0x8cde90</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_neighbor_combat_modifier"></a><code>EFFECT_ADJUST_UNIT_NEIGHBOR_COMBAT_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x8db9b0</code>→<code>0x8e1c30</code><br>Remove <code>0x8dc070</code>→<code>0x8e2310</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_neutral_heal"></a><code>EFFECT_ADJUST_UNIT_NEUTRAL_HEAL</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_no_foreign_spread"></a><code>EFFECT_ADJUST_UNIT_NO_FOREIGN_SPREAD</code></td>
+<td><code>NoSpread</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8effe0</code>→<code>0x7f5b90</code><br>Remove <code>0x8f03c0</code>→<code>0x7f61a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_no_move_terrain"></a><code>EFFECT_ADJUST_UNIT_NO_MOVE_TERRAIN</code> <em>(removed)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_no_reduction_damage"></a><code>EFFECT_ADJUST_UNIT_NO_REDUCTION_DAMAGE</code></td>
+<td><code>NoReduction</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7efdb0</code>→<code>0x807a90</code><br>Remove <code>0x7f05b0</code>→<code>0x808260</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_num_attacks"></a><code>EFFECT_ADJUST_UNIT_NUM_ATTACKS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x802640</code>→<code>0x819cc0</code><br>Remove <code>0x802950</code>→<code>0x81aa30</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_owner"></a><code>EFFECT_ADJUST_UNIT_OWNER</code></td>
+<td><code>NewOwner</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::Manager::Get</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8141d0</code>→<code>0x82ce60</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_paradrop_ability"></a><code>EFFECT_ADJUST_UNIT_PARADROP_ABILITY</code></td>
+<td><code>CanDrop</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x83c410</code>→<code>0x855410</code><br>Remove <code>0x83cde0</code>→<code>0x855cb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_per_luxury_attack_modifier"></a><code>EFFECT_ADJUST_UNIT_PER_LUXURY_ATTACK_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x827500</code>→<code>0x840460</code><br>Remove <code>0x828270</code>→<code>0x841270</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_per_unused_movement_combat_bonus"></a><code>EFFECT_ADJUST_UNIT_PER_UNUSED_MOVEMENT_COMBAT_BONUS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x83f540</code>→<code>0x8587a0</code><br>Remove <code>0x83fbb0</code>→<code>0x858b20</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_pillage_district_modifier"></a><code>EFFECT_ADJUST_UNIT_PILLAGE_DISTRICT_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Player</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8508b0</code>→<code>0x869700</code><br>Remove <code>0x850ed0</code>→<code>0x86a170</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_pillage_improvement_modifier"></a><code>EFFECT_ADJUST_UNIT_PILLAGE_IMPROVEMENT_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Player</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x865e90</code>→<code>0x87d9a0</code><br>Remove <code>0x866320</code>→<code>0x87de00</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_plunder_yields"></a><code>EFFECT_ADJUST_UNIT_PLUNDER_YIELDS</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x83a9f0</code>→<code>0x853420</code><br>Remove <code>0x83b9b0</code>→<code>0x854390</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_post_combat_heal"></a><code>EFFECT_ADJUST_UNIT_POST_COMBAT_HEAL</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x84fee0</code>→<code>0x8680d0</code><br>Remove <code>0x8506f0</code>→<code>0x868ee0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_post_combat_yield"></a><code>EFFECT_ADJUST_UNIT_POST_COMBAT_YIELD</code></td>
+<td><code>OnlyWhenDefeatedEarlierEraUnit</code> (Boolean), <code>PercentDefeatedStrength</code> (Integer), <code>ReligiousCombat</code> (Boolean), <code>YieldType</code> (String)</td>
+<td>modifier object</td>
+<td><code>GameEffects::ProposedCombat::AddPostCombatYield</code><br><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x85c4b0</code>→<code>0x874b80</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_post_tourism_bomb_loyalty"></a><code>EFFECT_ADJUST_UNIT_POST_TOURISM_BOMB_LOYALTY</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x87dde0</code>→<code>0x897980</code><br>Remove <code>0x87e320</code>→<code>0x898090</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_promote_no_finish_moves"></a><code>EFFECT_ADJUST_UNIT_PROMOTE_NO_FINISH_MOVES</code></td>
+<td><code>NoFinishMoves</code> (Boolean)</td>
+<td>—</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Remove <code>0x8aa1f0</code>→<code>0x8c39e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_property"></a><code>EFFECT_ADJUST_UNIT_PROPERTY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c06c0</code>→<code>0x8d9d00</code><br>Remove <code>0x8c11d0</code>→<code>0x8da950</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_raiding"></a><code>EFFECT_ADJUST_UNIT_RAIDING</code></td>
+<td><code>Bonus</code> (Integer), <code>CanRaid</code> (Boolean)</td>
+<td>Unit</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7ea0b0</code>→<code>0x801040</code><br>Remove <code>0x7eab00</code>→<code>0x8021a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_relic_upon_death"></a><code>EFFECT_ADJUST_UNIT_RELIC_UPON_DEATH</code></td>
+<td><code>RelicUponDeath</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7fca80</code>→<code>0x814870</code><br>Remove <code>0x7fd660</code>→<code>0x814f50</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_rock_band_level_district"></a><code>EFFECT_ADJUST_UNIT_ROCK_BAND_LEVEL_DISTRICT</code></td>
+<td><code>Amount</code> (Integer), <code>DistrictType</code> (String)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8311b0</code>→<code>0x849f30</code><br>Remove <code>0x831970</code>→<code>0x84a2a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_rock_band_level_improvement"></a><code>EFFECT_ADJUST_UNIT_ROCK_BAND_LEVEL_IMPROVEMENT</code></td>
+<td><code>Amount</code> (Integer), <code>ImprovementType</code> (String)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8472c0</code>→<code>0x860e40</code><br>Remove <code>0x847870</code>→<code>0x861470</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_rock_band_level_national_park"></a><code>EFFECT_ADJUST_UNIT_ROCK_BAND_LEVEL_NATIONAL_PARK</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x85e050</code>→<code>0x876200</code><br>Remove <code>0x85ea60</code>→<code>0x876b80</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_rock_band_level_natural_wonder"></a><code>EFFECT_ADJUST_UNIT_ROCK_BAND_LEVEL_NATURAL_WONDER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x86f720</code>→<code>0x887710</code><br>Remove <code>0x86fd40</code>→<code>0x887ce0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_rock_band_tourism_bomb_value_peace"></a><code>EFFECT_ADJUST_UNIT_ROCK_BAND_TOURISM_BOMB_VALUE_PEACE</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>—</td>
+<td>Apply <code>0x87f4c0</code>→<code>0x8996c0</code><br>Remove <code>0x87fb90</code>→<code>0x899dc0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_sea_movement"></a><code>EFFECT_ADJUST_UNIT_SEA_MOVEMENT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x812580</code>→<code>0x82ae30</code><br>Remove <code>0x813250</code>→<code>0x82b370</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_see_hidden"></a><code>EFFECT_ADJUST_UNIT_SEE_HIDDEN</code></td>
+<td><code>SeeHidden</code> (Boolean)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__setseehiddentype">Unit::Instance::SetSeeHiddenType</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x825b80</code>→<code>0x83e5f0</code><br>Remove <code>0x826820</code>→<code>0x83f310</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_see_through_features"></a><code>EFFECT_ADJUST_UNIT_SEE_THROUGH_FEATURES</code></td>
+<td><code>CanSee</code> (Boolean)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__setcanseethroughfeatures">Unit::Instance::SetCanSeeThroughFeatures</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x8381d0</code>→<code>0x851280</code><br>Remove <code>0x839260</code>→<code>0x852060</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_see_through_terrain"></a><code>EFFECT_ADJUST_UNIT_SEE_THROUGH_TERRAIN</code></td>
+<td><code>CanSee</code> (Boolean)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__setcanseethroughterrain">Unit::Instance::SetCanSeeThroughTerrain</a></td>
+<td>—</td>
+<td>Apply <code>0x84db50</code>→<code>0x866a60</code><br>Remove <code>0x84e330</code>→<code>0x867220</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_sight"></a><code>EFFECT_ADJUST_UNIT_SIGHT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__changesightrange">Unit::Instance::ChangeSightRange</a></td>
+<td>Base game+</td>
+<td>Apply <code>0x862e70</code>→<code>0x87a890</code><br>Remove <code>0x8635a0</code>→<code>0x87af90</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_spread_charges"></a><code>EFFECT_ADJUST_UNIT_SPREAD_CHARGES</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Religion::ChangeSpreadCharges</code><br><code>Unit::Manager::Get</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x874fc0</code>→<code>0x88cae0</code><br>Remove <code>0x875720</code>→<code>0x88cfd0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_spy_counterspy_adjacent_level_boost"></a><code>EFFECT_ADJUST_UNIT_SPY_COUNTERSPY_ADJACENT_LEVEL_BOOST</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Definitions::GetUnitOperationDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8a56e0</code>→<code>0x8be290</code><br>Remove <code>0x8a6140</code>→<code>0x8bee80</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_spy_counterspy_entire_city"></a><code>EFFECT_ADJUST_UNIT_SPY_COUNTERSPY_ENTIRE_CITY</code></td>
+<td><code>EntireCity</code> (Boolean)</td>
+<td>Unit</td>
+<td><code>Definitions::GetUnitOperationDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8b8ef0</code>→<code>0x8d3000</code><br>Remove <code>0x8b92b0</code>→<code>0x8d3310</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_spy_establish_time"></a><code>EFFECT_ADJUST_UNIT_SPY_ESTABLISH_TIME</code></td>
+<td><code>ReductionPercent</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Definitions::GetUnitOperationDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8733f0</code>→<code>0x878fe0</code><br>Remove <code>0x873a30</code>→<code>0x879b40</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_spy_offensive_operation_time"></a><code>EFFECT_ADJUST_UNIT_SPY_OFFENSIVE_OPERATION_TIME</code></td>
+<td><code>ReductionPercent</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Definitions::GetUnitOperationDefinitions</code><br><a href="../native/Unit.html#unit__espionage__addespionagetimereduction">Unit::Espionage::AddEspionageTimeReduction</a><br><a href="../native/Unit.html#unit__espionage__removeespionagetimereduction">Unit::Espionage::RemoveEspionageTimeReduction</a><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>R&amp;F, GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x86ae70</code>→<code>0x882f80</code><br>Remove <code>0x86b6a0</code>→<code>0x883440</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_spy_operation_chance"></a><code>EFFECT_ADJUST_UNIT_SPY_OPERATION_CHANCE</code></td>
+<td><code>Amount</code> (Integer), <code>Offensive</code> (Boolean), <code>OperationType</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::Espionage::AddEspionageBonus</code><br><code>Unit::Espionage::RemoveEspionageBonus</code><br><code>Definitions::GetUnitOperationDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x883300</code>→<code>0x88b100</code><br>Remove <code>0x883b90</code>→<code>0x88b8d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_spy_operation_time"></a><code>EFFECT_ADJUST_UNIT_SPY_OPERATION_TIME</code></td>
+<td><code>OperationType</code> (String), <code>ReductionPercent</code> (Integer)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__espionage__addespionagetimereduction">Unit::Espionage::AddEspionageTimeReduction</a><br><a href="../native/Unit.html#unit__espionage__removeespionagetimereduction">Unit::Espionage::RemoveEspionageTimeReduction</a><br><code>Definitions::GetUnitOperationDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x89ab50</code>→<code>0x8a1270</code><br>Remove <code>0x89bc30</code>→<code>0x8a1a70</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_strength_reduction_for_damage_modifier"></a><code>EFFECT_ADJUST_UNIT_STRENGTH_REDUCTION_FOR_DAMAGE_MODIFIER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x88b650</code>→<code>0x8a51a0</code><br>Remove <code>0x88bb50</code>→<code>0x8a5530</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_support_bonus_modifier"></a><code>EFFECT_ADJUST_UNIT_SUPPORT_BONUS_MODIFIER</code></td>
+<td><code>Percent</code> (Integer), <code>DomainType</code> (String)</td>
+<td>Unit</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x89f140</code>→<code>0x8b7e30</code><br>Remove <code>0x89f800</code>→<code>0x8b8360</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_tag_era_production"></a><code>EFFECT_ADJUST_UNIT_TAG_ERA_PRODUCTION</code></td>
+<td><code>Amount</code> (Integer), <code>EraType</code> (String), <code>UnitPromotionClass</code> (String)</td>
+<td>City</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>Unit::Manager::Get</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8b12b0</code>→<code>0x8cb350</code><br>Remove <code>0x8b1b70</code>→<code>0x8cb870</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_tourism_bomb_convert_city"></a><code>EFFECT_ADJUST_UNIT_TOURISM_BOMB_CONVERT_CITY</code></td>
+<td><code>Convert</code> (Boolean)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8e3d80</code>→<code>0x7e9ba0</code><br>Remove <code>0x8e4460</code>→<code>0x7ea520</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_tourism_bomb_district"></a><code>EFFECT_ADJUST_UNIT_TOURISM_BOMB_DISTRICT</code></td>
+<td><code>Amount</code> (Integer), <code>DistrictType</code> (String)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7e56f0</code>→<code>0x7fda00</code><br>Remove <code>0x7e5bd0</code>→<code>0x7fdac0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_tourism_bomb_improvement"></a><code>EFFECT_ADJUST_UNIT_TOURISM_BOMB_IMPROVEMENT</code></td>
+<td><code>Amount</code> (Integer), <code>ImprovementType</code> (String)</td>
+<td>Unit</td>
+<td><code>Definitions::GetImprovementDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x830da0</code>→<code>0x849d40</code><br>Remove <code>0x8314f0</code>→<code>0x84a1b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_tourism_bomb_national_park"></a><code>EFFECT_ADJUST_UNIT_TOURISM_BOMB_NATIONAL_PARK</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x7f80a0</code>→<code>0x8107d0</code><br>Remove <code>0x7f86f0</code>→<code>0x810d10</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_tourism_bomb_natural_wonder"></a><code>EFFECT_ADJUST_UNIT_TOURISM_BOMB_NATURAL_WONDER</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x80b950</code>→<code>0x825570</code><br>Remove <code>0x80c6d0</code>→<code>0x825ac0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_tourism_bomb_range"></a><code>EFFECT_ADJUST_UNIT_TOURISM_BOMB_RANGE</code></td>
+<td><code>Modifier</code> (Integer), <code>Range</code> (Integer)</td>
+<td>Unit</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x81df20</code>→<code>0x836d30</code><br>Remove <code>0x81e800</code>→<code>0x8374d0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_trade_route_plunder_immunity"></a><code>EFFECT_ADJUST_UNIT_TRADE_ROUTE_PLUNDER_IMMUNITY</code></td>
+<td><code>DomainType</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::Trade::IncrementPlunderImmunity</code><br><code>Unit::Trade::DecrementPlunderImmunity</code><br><code>Definition::Utility::NameToDomainType</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8e2de0</code>→<code>0x7e8970</code><br>Remove <code>0x8e3370</code>→<code>0x7e90a0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_upgrade_goody_hut"></a><code>EFFECT_ADJUST_UNIT_UPGRADE_GOODY_HUT</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Upgrade::Manager::Get</code><br><code>Unit::Upgrade::Manager::GoodyHutUpgradeUnit</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8f6280</code>→<code>0x7fb570</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_valid_terrain"></a><code>EFFECT_ADJUST_UNIT_VALID_TERRAIN</code></td>
+<td><code>TerrainType</code> (String), <code>Valid</code> (Boolean)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__removeinvalidterrain">Unit::Instance::RemoveInvalidTerrain</a><br><code>Unit::Instance::GetInvalidTerrain</code><br><code>Definitions::GetTerrainDefinitions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x89c130</code>→<code>0x8b5310</code><br>Remove <code>0x89c6b0</code>→<code>0x8b58e0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_water_damage_protection"></a><code>EFFECT_ADJUST_UNIT_WATER_DAMAGE_PROTECTION</code></td>
+<td><code>UnitType</code> (String), <code>WaterDamage</code> (Integer)</td>
+<td>Unit</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x8196d0</code>→<code>0x832750</code><br>Remove <code>0x81a240</code>→<code>0x832ec0</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_wmd_protection"></a><code>EFFECT_ADJUST_UNIT_WMD_PROTECTION</code></td>
+<td><code>Blast</code> (Integer), <code>Fallout</code> (Integer)</td>
+<td>Unit</td>
+<td><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x804e80</code>→<code>0x81dab0</code><br>Remove <code>0x8057e0</code>→<code>0x81dd90</code></td>
+</tr>
+<tr>
+<td><a id="effect_adjust_unit_yield_per_tourism_bomb"></a><code>EFFECT_ADJUST_UNIT_YIELD_PER_TOURISM_BOMB</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>GS, BlackDeath, WarMachine</td>
+<td>Apply <code>0x8b82e0</code>→<code>0x8d2600</code><br>Remove <code>0x8b8a30</code>→<code>0x8d2b40</code></td>
+</tr>
+<tr>
+<td><a id="effect_assign_unit_property"></a><code>EFFECT_ASSIGN_UNIT_PROPERTY</code> <em>(untested in the community list)</em></td>
+<td>—</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x85bec0</code>→<code>0x873f70</code><br>Remove <code>0x85cd90</code>→<code>0x874eb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_attach_modifier_if_promotion_class_matches"></a><code>EFFECT_ATTACH_MODIFIER_IF_PROMOTION_CLASS_MATCHES</code></td>
+<td><code>ModifierId</code> (String), <code>Amount</code> (Integer), <code>UnitPromotionClassType</code> (String)</td>
+<td>Unit</td>
+<td><code>Definitions::GetUnitDefinitions</code><br><code>GameEffects::ModifierSystem::AttachModifier</code><br><code>GameEffects::ModifierSystem::GetModifiersOwnedBy</code><br><code>GameEffects::ModifierSystem::ClearModifier</code><br><code>Definitions::GetUnitPromotionClassDefinitions</code></td>
+<td>—</td>
+<td>Apply <code>0x8edbd0</code>→<code>0x7f39f0</code><br>Remove <code>0x8ee7e0</code>→<code>0x7f48c0</code></td>
+</tr>
+<tr>
+<td><a id="effect_change_unit_operation_availability"></a><code>EFFECT_CHANGE_UNIT_OPERATION_AVAILABILITY</code></td>
+<td><code>Available</code> (Boolean), <code>OperationType</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__instance__setoperationdisabled">Unit::Instance::SetOperationDisabled</a><br><code>Definitions::GetUnitOperationDefinitions</code></td>
+<td>GS, NFP</td>
+<td>Apply <code>0x864e00</code>→<code>0x87cdd0</code><br>Remove <code>0x8651c0</code>→<code>0x87d0b0</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_ability"></a><code>EFFECT_GRANT_ABILITY</code></td>
+<td><code>AbilityType</code> (String), <code>ModifierId</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::Instance::AddAbilityCount</code><br><code>Unit::Instance::RemoveAbilityCount</code><br><code>Definitions::GetUnitAbilityDefinitions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x839170</code>→<code>0x851f70</code><br>Remove <code>0x839ec0</code>→<code>0x852e90</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_air_slots"></a><code>EFFECT_GRANT_AIR_SLOTS</code></td>
+<td><code>Amount</code> (Integer)</td>
+<td>Unit</td>
+<td>—</td>
+<td>Base game+</td>
+<td>Apply <code>0x828130</code>→<code>0x841130</code><br>Remove <code>0x828440</code>→<code>0x841800</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_heal_after_action"></a><code>EFFECT_GRANT_HEAL_AFTER_ACTION</code></td>
+<td>—</td>
+<td>Unit</td>
+<td>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8cb470</code>→<code>0x8e44a0</code><br>Remove <code>0x8cb730</code>→<code>0x8e4900</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_promotion"></a><code>EFFECT_GRANT_PROMOTION</code></td>
+<td><code>PromotionType</code> (String)</td>
+<td>Unit</td>
+<td><a href="../native/Unit.html#unit__experience__grantpromotion">Unit::Experience::GrantPromotion</a><br><code>Definitions::GetUnitPromotionDefinitions</code><br><code>Types::Vector</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8c3bc0</code>→<code>0x8dd260</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_random_base_promotion"></a><code>EFFECT_GRANT_RANDOM_BASE_PROMOTION</code></td>
+<td><code>UnitType</code> (String)</td>
+<td>Player</td>
+<td><code>Player::Units::AddRandomBasePromotion</code></td>
+<td>NFP</td>
+<td>Apply <code>0x829e80</code>→<code>0x842d30</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_unit_yield_adjacent_features"></a><code>EFFECT_GRANT_UNIT_YIELD_ADJACENT_FEATURES</code></td>
+<td><code>Amount</code> (Integer), <code>FeatureType</code> (String), <code>YieldType</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::IInstance::GetPlot</code><br><code>Player::Instance::GrantYield</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x8bae70</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_unit_yield_adjacent_natural_wonders"></a><code>EFFECT_GRANT_UNIT_YIELD_ADJACENT_NATURAL_WONDERS</code></td>
+<td><code>Amount</code> (Integer), <code>YieldType</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::IInstance::GetPlot</code><br><code>Map::Plot::Instance::IsNaturalWonder</code><br><code>Player::Instance::GrantYield</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7e4f20</code>→<code>0x7fd050</code></td>
+</tr>
+<tr>
+<td><a id="effect_grant_unit_yield_adjacent_terrains"></a><code>EFFECT_GRANT_UNIT_YIELD_ADJACENT_TERRAINS</code></td>
+<td><code>Amount</code> (Integer), <code>TerrainType</code> (String), <code>YieldType</code> (String)</td>
+<td>Unit</td>
+<td><code>Unit::IInstance::GetPlot</code><br><code>Player::Instance::GrantYield</code><br><code>Definitions::GetTerrainDefinitions</code><br><code>Definitions::GetYieldDefinitions</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code></td>
+<td>Base game+</td>
+<td>Apply <code>0x7fc570</code>→<code>?</code></td>
+</tr>
+<tr>
+<td><a id="effect_restore_unit_movement"></a><code>EFFECT_RESTORE_UNIT_MOVEMENT</code></td>
+<td><code>MovementOnly</code> (Boolean)</td>
+<td>Unit</td>
+<td><code>Unit::Manager::Get</code></td>
+<td>NFP</td>
+<td>Apply <code>0x856080</code>→<code>0x86ecb0</code></td>
+</tr>
+<tr>
+<td><a id="effect_unit_teleport"></a><code>EFFECT_UNIT_TELEPORT</code></td>
+<td><code>MinRange</code> (Integer), <code>MaxRange</code> (Integer)</td>
+<td>Unit</td>
+<td><code>Unit::Operations::TeleportTo::CanUnitEverTeleport</code><br><code>ObjectPairing::Manager::Get</code><br><code>ObjectPairing::Manager::GetParent</code><br><code>Unit::Operations::Manager::Get</code><br><code>Map::EditInstance</code><br><code>Map::IInstance::IterateRing</code><br><code>Game::Instance::Edit</code><br><code>Random::Get</code><br><code>Unit::Operations::TeleportTo::MakeRequest</code><br><code>GameEffects::ArgumentFunction::GetFunctions</code><br>edits <code>Data::VariantMap on Game::Instance</code></td>
+<td>NFP</td>
+<td>Apply <code>0x9442b0</code>→<code>0x944a70</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script>

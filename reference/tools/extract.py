@@ -1,9 +1,9 @@
-"""Generate data/*.json from the analysis artifacts in C:/stuff/claude/DLL. Never hand-edit the output."""
+"""Generate data/*.json from the analysis artifacts in the analysis workspace. Never hand-edit the output."""
 import json, re, collections, os, zlib
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 OUT = os.path.join(ROOT, 'docs_proto', 'data')
-REF_SIG = 'C:/stuff/claude/wheat-gpp/civ6-lua-signature-index.md'
+REF_SIG = '<workspace>/community-reference/civ6-lua-signature-index.md'
 
 
 def P(*a):

@@ -8,7 +8,7 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
-code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › City</p>
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Native functions</a> › City</p>
 <div class="zone zone-engine"><b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.</div>
 
 <h1>City</h1>
@@ -46,7 +46,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x948f70</code></td>
 <td><code>0x949730</code></td>
 <td>Dev CE (experimental): <a href="../devce/CityBuildQueue.html#changeproductionmodifier">CityBuildQueue.ChangeProductionModifier</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_project_production">EFFECT_ADJUST_PROJECT_PRODUCTION</a></td>
 </tr>
 <tr>
 <td><a id="city__buildqueue__removedistrictprogress"></a>BuildQueue::RemoveDistrictProgress</td>
@@ -86,7 +86,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x1095e0</code></td>
 <td><code>0x109d30</code></td>
 <td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changewonderyieldchange">CityBuildings.ChangeWonderYieldChange</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_wonder_yield_change">EFFECT_ADJUST_WONDER_YIELD_CHANGE</a></td>
 </tr>
 <tr>
 <td><a id="city__buildings__changeyieldchange"></a>Buildings::ChangeYieldChange</td>
@@ -94,7 +94,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x109670</code></td>
 <td><code>0x109dc0</code></td>
 <td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldchange">CityBuildings.ChangeYieldChange</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_building_yield_change">EFFECT_ADJUST_BUILDING_YIELD_CHANGE</a></td>
 </tr>
 <tr>
 <td><a id="city__buildings__changeyieldchangecitystates"></a>Buildings::ChangeYieldChangeCityStates</td>
@@ -102,7 +102,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x1097c0</code></td>
 <td><code>0x109f10</code></td>
 <td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldchangecitystates">CityBuildings.ChangeYieldChangeCityStates</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_building_yield_change">EFFECT_ADJUST_BUILDING_YIELD_CHANGE</a></td>
 </tr>
 <tr>
 <td><a id="city__buildings__changeyieldchangefromfeature"></a>Buildings::ChangeYieldChangeFromFeature</td>
@@ -110,7 +110,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x109910</code></td>
 <td><code>0x10a060</code></td>
 <td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldchangefromfeature">CityBuildings.ChangeYieldChangeFromFeature</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/ANY.html#effect_adjust_building_feature_yield_change">EFFECT_ADJUST_BUILDING_FEATURE_YIELD_CHANGE</a></td>
 </tr>
 <tr>
 <td><a id="city__buildings__changeyieldmodifier"></a>Buildings::ChangeYieldModifier</td>
@@ -118,7 +118,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x109a80</code></td>
 <td><code>0x10a1d0</code></td>
 <td>Dev CE (experimental): <a href="../devce/CityBuildings.html#changeyieldmodifier">CityBuildings.ChangeYieldModifier</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_building_yield_modifier">EFFECT_ADJUST_BUILDING_YIELD_MODIFIER</a>, <a href="../effects/CITIES.html#effect_adjust_building_yield_modifiers_for_district">EFFECT_ADJUST_BUILDING_YIELD_MODIFIERS_FOR_DISTRICT</a></td>
 </tr>
 <tr>
 <td><a id="city__buildings__isincity"></a>Buildings::IsInCity ★</td>
@@ -158,7 +158,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x111580</code></td>
 <td><code>0x111b10</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#setsiegeprotection">City.SetSiegeProtection</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_siege_protection">EFFECT_ADJUST_CITY_SIEGE_PROTECTION</a></td>
 </tr>
 <tr>
 <td><a id="city__culturalidentity__changeaccumulatedidentity"></a>CulturalIdentity::ChangeAccumulatedIdentity</td>
@@ -174,7 +174,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x114b30</code></td>
 <td><code>0x1150c0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changecountalwaysloyalflags">City.ChangeCountAlwaysLoyalFlags</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_always_loyal">EFFECT_ADJUST_CITY_ALWAYS_LOYAL</a></td>
 </tr>
 <tr>
 <td><a id="city__culturalidentity__changeextraidentityperturnpercitizen"></a>CulturalIdentity::ChangeExtraIdentityPerTurnPerCitizen</td>
@@ -182,7 +182,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x114b70</code></td>
 <td><code>0x115100</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeextraidentityperturnpercitizen">City.ChangeExtraIdentityPerTurnPerCitizen</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_identity_per_citizen">EFFECT_ADJUST_CITY_IDENTITY_PER_CITIZEN</a></td>
 </tr>
 <tr>
 <td><a id="city__culturalidentity__changeidentitypressurefromages"></a>CulturalIdentity::ChangeIdentityPressureFromAges</td>
@@ -190,7 +190,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x114c20</code></td>
 <td><code>0x1151b0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeidentitypressurefromages">City.ChangeIdentityPressureFromAges</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_identity_pressure_from_ages">EFFECT_ADJUST_CITY_IDENTITY_PRESSURE_FROM_AGES</a></td>
 </tr>
 <tr>
 <td><a id="city__culturalidentity__changeidentitypressurefrommodifiers"></a>CulturalIdentity::ChangeIdentityPressureFromModifiers</td>
@@ -198,7 +198,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x114c50</code></td>
 <td><code>0x1151e0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeidentitypressurefrommodifiers">City.ChangeIdentityPressureFromModifiers</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_identity_pressure">EFFECT_ADJUST_CITY_IDENTITY_PRESSURE</a></td>
 </tr>
 <tr>
 <td><a id="city__culture__changegreatworkyieldmodifier"></a>Culture::ChangeGreatWorkYieldModifier</td>
@@ -206,7 +206,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x11b650</code></td>
 <td><code>0x11b800</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changegreatworkyieldmodifier">City.ChangeGreatWorkYieldModifier</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_greatwork_yield">EFFECT_ADJUST_CITY_GREATWORK_YIELD</a></td>
 </tr>
 <tr>
 <td><a id="city__culture__changetourism"></a>Culture::ChangeTourism</td>
@@ -214,7 +214,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x11b7b0</code></td>
 <td><code>0x11b960</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changetourism">City.ChangeTourism</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_tourism">EFFECT_ADJUST_CITY_TOURISM</a></td>
 </tr>
 <tr>
 <td><a id="city__districts__destroyall"></a>Districts::DestroyAll</td>
@@ -230,7 +230,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x121ac0</code></td>
 <td><code>0x121c20</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#setbuildingfaithpurchasebydistrict">City.SetBuildingFaithPurchaseByDistrict</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_enable_building_faith_purchase">EFFECT_ENABLE_BUILDING_FAITH_PURCHASE</a></td>
 </tr>
 <tr>
 <td><a id="city__gold__setunitfaithpurchasebytag"></a>Gold::SetUnitFaithPurchaseByTag</td>
@@ -238,7 +238,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x121ba0</code></td>
 <td><code>0x121d00</code></td>
 <td>no</td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_enable_unit_faith_purchase">EFFECT_ENABLE_UNIT_FAITH_PURCHASE</a></td>
 </tr>
 <tr>
 <td><a id="city__growth__addgrowth"></a>Growth::AddGrowth</td>
@@ -254,7 +254,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x123210</code></td>
 <td><code>0x123370</code></td>
 <td>Dev CE (experimental): <a href="../devce/CityGrowth.html#changefeatureappealmodifier">CityGrowth.ChangeFeatureAppealModifier</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_feature_appeal_modifier">EFFECT_ADJUST_FEATURE_APPEAL_MODIFIER</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__addcityhappinessmodifier"></a>Instance::AddCityHappinessModifier</td>
@@ -262,7 +262,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x12f490</code></td>
 <td><code>0x12f320</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#addcityhappinessmodifier">City.AddCityHappinessModifier</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/CITIES.html#effect_adjust_city_happiness_great_person">EFFECT_ADJUST_CITY_HAPPINESS_GREAT_PERSON</a>, <a href="../effects/CITIES.html#effect_adjust_city_happiness_yield">EFFECT_ADJUST_CITY_HAPPINESS_YIELD</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__adddynamicadjacencybonus"></a>Instance::AddDynamicAdjacencyBonus</td>
@@ -270,7 +270,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x12f5e0</code></td>
 <td><code>0x12f470</code></td>
 <td>no</td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/CITIES.html#effect_adjust_district_yield_based_on_appeal">EFFECT_ADJUST_DISTRICT_YIELD_BASED_ON_APPEAL</a>, <a href="../effects/CITIES.html#effect_district_adjacency">EFFECT_DISTRICT_ADJACENCY</a>, <a href="../effects/CITIES.html#effect_feature_adjacency">EFFECT_FEATURE_ADJACENCY</a> +2 more</td>
 </tr>
 <tr>
 <td><a id="city__instance__changeallowincomingregionalstackingcount"></a>Instance::ChangeAllowIncomingRegionalStackingCount</td>
@@ -278,7 +278,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x131c00</code></td>
 <td><code>0x131a90</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeallowincomingregionalstackingcount">City.ChangeAllowIncomingRegionalStackingCount</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/CITIES.html#effect_adjust_city_allowed_incoming_regional_stacking">EFFECT_ADJUST_CITY_ALLOWED_INCOMING_REGIONAL_STACKING</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__changefolloweryieldmodifier"></a>Instance::ChangeFollowerYieldModifier</td>
@@ -286,7 +286,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x131c60</code></td>
 <td><code>0x131af0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changefolloweryieldmodifier">City.ChangeFollowerYieldModifier</a></td>
-<td>edit_call, event, writes</td>
+<td>edit_call, event, writes; called by <a href="../effects/PLAYERS.html#effect_adjust_follower_yield_modifier">EFFECT_ADJUST_FOLLOWER_YIELD_MODIFIER</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__changeyieldchange"></a>Instance::ChangeYieldChange</td>
@@ -294,7 +294,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x131dd0</code></td>
 <td><code>0x131c60</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldchange">City.ChangeYieldChange</a></td>
-<td>edit_call, event, writes</td>
+<td>edit_call, event, writes; called by <a href="../effects/CITIES.html#effect_adjust_city_all_yields_change">EFFECT_ADJUST_CITY_ALL_YIELDS_CHANGE</a>, <a href="../effects/CITIES.html#effect_adjust_city_yield_change">EFFECT_ADJUST_CITY_YIELD_CHANGE</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__changeyieldmodifier"></a>Instance::ChangeYieldModifier</td>
@@ -302,7 +302,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x131e60</code></td>
 <td><code>0x131cf0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldmodifier">City.ChangeYieldModifier</a></td>
-<td>edit_call, event, writes</td>
+<td>edit_call, event, writes; called by <a href="../effects/CITIES.html#effect_adjust_city_yield_modifier">EFFECT_ADJUST_CITY_YIELD_MODIFIER</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__changeyieldmodifierpergovernortitle"></a>Instance::ChangeYieldModifierPerGovernorTitle</td>
@@ -310,7 +310,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x131ef0</code></td>
 <td><code>0x131d80</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldmodifierpergovernortitle">City.ChangeYieldModifierPerGovernorTitle</a></td>
-<td>edit_call, event, writes</td>
+<td>edit_call, event, writes; called by <a href="../effects/CITIES.html#effect_adjust_city_yield_modifier_per_governor_title">EFFECT_ADJUST_CITY_YIELD_MODIFIER_PER_GOVERNOR_TITLE</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__removecityhappinessmodifier"></a>Instance::RemoveCityHappinessModifier</td>
@@ -318,7 +318,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x134c40</code></td>
 <td><code>0x1349b0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#removecityhappinessmodifier">City.RemoveCityHappinessModifier</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/CITIES.html#effect_adjust_city_happiness_great_person">EFFECT_ADJUST_CITY_HAPPINESS_GREAT_PERSON</a>, <a href="../effects/CITIES.html#effect_adjust_city_happiness_yield">EFFECT_ADJUST_CITY_HAPPINESS_YIELD</a></td>
 </tr>
 <tr>
 <td><a id="city__instance__removedynamicadjacencybonus"></a>Instance::RemoveDynamicAdjacencyBonus</td>
@@ -326,7 +326,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x135020</code></td>
 <td><code>0x134d90</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#removedynamicadjacencybonus">City.RemoveDynamicAdjacencyBonus</a></td>
-<td>edit_call, writes</td>
+<td>edit_call, writes; called by <a href="../effects/CITIES.html#effect_adjust_district_yield_based_on_appeal">EFFECT_ADJUST_DISTRICT_YIELD_BASED_ON_APPEAL</a>, <a href="../effects/CITIES.html#effect_district_adjacency">EFFECT_DISTRICT_ADJACENCY</a>, <a href="../effects/CITIES.html#effect_feature_adjacency">EFFECT_FEATURE_ADJACENCY</a> +2 more</td>
 </tr>
 <tr>
 <td><a id="city__instance__resetcache"></a>Instance::ResetCache</td>
@@ -366,7 +366,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x148310</code></td>
 <td><code>0x146f30</code></td>
 <td>no</td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_free_power">EFFECT_ADJUST_CITY_FREE_POWER</a></td>
 </tr>
 <tr>
 <td><a id="city__power__recalculatepower"></a>Power::RecalculatePower</td>
@@ -382,7 +382,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ec30</code></td>
 <td><code>0x14da50</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeflatyieldbonusforinternational">City.ChangeFlatYieldBonusForInternational</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_for_international">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_FOR_INTERNATIONAL</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldfromforeignroutespassingthrough"></a>Trade::ChangeYieldFromForeignRoutesPassingThrough</td>
@@ -390,7 +390,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ece0</code></td>
 <td><code>0x14db00</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldfromforeignroutespassingthrough">City.ChangeYieldFromForeignRoutesPassingThrough</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_yield_from_foreign_trade_routes_passing_through">EFFECT_ADJUST_CITY_YIELD_FROM_FOREIGN_TRADE_ROUTES_PASSING_THROUGH</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldperdestinationluxuryresourceforinternational"></a>Trade::ChangeYieldPerDestinationLuxuryResourceForInternational</td>
@@ -398,7 +398,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ed10</code></td>
 <td><code>0x14db30</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperdestinationluxuryresourceforinternational">City.ChangeYieldPerDestinationLuxuryResourceForInternational</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_per_destination_luxury_resource_for_international">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_DESTINATION_LUXURY_RESOURCE_FOR_INTERNATIONAL</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldperdestinationstrategicresourcefordomestic"></a>Trade::ChangeYieldPerDestinationStrategicResourceForDomestic</td>
@@ -406,7 +406,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ed40</code></td>
 <td><code>0x14db60</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperdestinationstrategicresourcefordomestic">City.ChangeYieldPerDestinationStrategicResourceForDomestic</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_per_destination_strategic_resource_for_domestic">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_DESTINATION_STRATEGIC_RESOURCE_FOR_DOMESTIC</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldperdestinationstrategicresourceforinternational"></a>Trade::ChangeYieldPerDestinationStrategicResourceForInternational</td>
@@ -414,7 +414,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ed70</code></td>
 <td><code>0x14db90</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperdestinationstrategicresourceforinternational">City.ChangeYieldPerDestinationStrategicResourceForInternational</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_per_destination_strategic_resource_for_international">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_DESTINATION_STRATEGIC_RESOURCE_FOR_INTERNATIONAL</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldperlocalbonusresourcefordomestic"></a>Trade::ChangeYieldPerLocalBonusResourceForDomestic</td>
@@ -422,7 +422,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14eda0</code></td>
 <td><code>0x14dbc0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalbonusresourcefordomestic">City.ChangeYieldPerLocalBonusResourceForDomestic</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_per_local_bonus_resource_for_domestic">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_BONUS_RESOURCE_FOR_DOMESTIC</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldperlocalbonusresourceforinternational"></a>Trade::ChangeYieldPerLocalBonusResourceForInternational</td>
@@ -430,7 +430,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14edd0</code></td>
 <td><code>0x14dbf0</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalbonusresourceforinternational">City.ChangeYieldPerLocalBonusResourceForInternational</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_per_local_bonus_resource_for_international">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_BONUS_RESOURCE_FOR_INTERNATIONAL</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldperlocalluxuryresourceforinternational"></a>Trade::ChangeYieldPerLocalLuxuryResourceForInternational</td>
@@ -438,7 +438,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ee00</code></td>
 <td><code>0x14dc20</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalluxuryresourceforinternational">City.ChangeYieldPerLocalLuxuryResourceForInternational</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_per_local_luxury_resource_for_international">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_LUXURY_RESOURCE_FOR_INTERNATIONAL</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldperlocalstrategicresourceforinternational"></a>Trade::ChangeYieldPerLocalStrategicResourceForInternational</td>
@@ -446,7 +446,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ee30</code></td>
 <td><code>0x14dc50</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldperlocalstrategicresourceforinternational">City.ChangeYieldPerLocalStrategicResourceForInternational</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_trade_route_yield_per_local_strategic_resource_for_international">EFFECT_ADJUST_CITY_TRADE_ROUTE_YIELD_PER_LOCAL_STRATEGIC_RESOURCE_FOR_INTERNATIONAL</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__changeyieldpermajortradepartner"></a>Trade::ChangeYieldPerMajorTradePartner</td>
@@ -454,7 +454,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14ee60</code></td>
 <td><code>0x14dc80</code></td>
 <td>Dev CE (experimental): <a href="../devce/City.html#changeyieldpermajortradepartner">City.ChangeYieldPerMajorTradePartner</a></td>
-<td>writes</td>
+<td>writes; called by <a href="../effects/CITIES.html#effect_adjust_city_yield_per_major_trade_partner">EFFECT_ADJUST_CITY_YIELD_PER_MAJOR_TRADE_PARTNER</a></td>
 </tr>
 <tr>
 <td><a id="city__trade__sethasconstructedtradingpost"></a>Trade::SetHasConstructedTradingPost</td>
@@ -462,7 +462,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14fa50</code></td>
 <td><code>0x14e720</code></td>
 <td>via CE: <a href="../ce/CityTradeManager.html#sethasconstructedtradingpost">CityTradeManager.SetHasConstructedTradingPost</a></td>
-<td>signal, writes</td>
+<td>signal, writes; called by <a href="../effects/CITIES.html#effect_grant_city_trading_post">EFFECT_GRANT_CITY_TRADING_POST</a></td>
 </tr>
 </tbody>
 </table>

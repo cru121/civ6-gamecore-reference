@@ -1,0 +1,958 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>World Builder from Lua</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › World Builder from Lua</p>
+<h1>World Builder from Lua</h1>
+<blockquote>
+<p><strong>Status.</strong> Everything on this page was read from the decompiled C++ of the Lua wrappers and from the static call graph of the symbol build. The per-method notes were written by an AI assistant and are <strong>inferred</strong>; nothing here was run by us in a game. A "confidence" column says how sure the reading is. Real mod code that uses these calls is quoted only where it is public (Gedemon's Civ6-GCO).</p>
+</blockquote>
+<h2>What it is</h2>
+<p>The World Builder is the game's map and scenario editor. Its engine side is a set of managers (cities, units, map, players, configuration, mod metadata) and a family of <strong>command objects</strong> that give the editor undo and redo. The game also registers <strong>99 Lua methods</strong> for these managers on 8 objects, in the <strong>gameplay</strong> Lua state. None of them appear in the community reference, so this page groups them by task.</p>
+<p>They reach editor code paths that ordinary gameplay Lua has no method for: placing a building in a city directly, setting the owner of any plot, initializing or removing a player. Mods use them as a workaround where an ordinary method does not exist or does not work (for example the two-step plot owner flip: clear with <code>SetPlotOwner(x, y, false)</code>, then assign <code>SetPlotOwner(x, y, city)</code>; see also <code>Plot.SetOwner</code>).</p>
+<pre><code class="language-lua">local city = Players[playerID]:GetCities():FindID(cityID)     -- an ordinary city object
+WorldBuilder.CityManager():CreateBuilding(city, buildingType, 100)
+WorldBuilder.CityManager():SetPlotOwner(x, y, false)           -- clear
+WorldBuilder.CityManager():SetPlotOwner(x, y, city)            -- assign
+</code></pre>
+<h2>The undo model</h2>
+<p>Probably: WorldBuilder::Manager owns a Command::Manager (at +0x1f0) holding eastl lists of shared_ptr<Command::Instance>. Lua StartUndoBlock/EndUndoBlock call Command::Manager::StartBlock/EndBlock, which probably create and close a BlockCommand (it has Add/Undo/Redo/CanUndo/CanRedo/GetName/GetType) so that commands passed to Manager::Add inside the block are grouped as one undo step. Edit code uses Command::Manager::Do<CommandX,...> templates (CommandSetTerrain, SetFeature, SetResource, SetImprovement, SetRoute, EditRiver, EditCliff, SetRevealed, SetStartPos), which probably construct a command, add it and run its Redo. Undo/Redo take commands from the list and call their Undo/Redo; classes include Create/Remove/Initialize/Uninitialize (+ building/district variants with Apply) and property setters (Civic, Era, Faith, Gold, Tech, Leader, PlotOwner). Lua only sees CanUndo/CanRedo and boolean results of Undo/Redo.</p>
+<p><em>Inferred.</em> Manager-level setters (SetID, SetMod, SetWBAdvancedMode, visibility preview) are plain setters, not commands. Behaviour of EndBlock without StartBlock, nested blocks, and Undo while a block is open was not read; keep Start/End balanced. Class details are inferred from names only.</p>
+<p>Methods marked <strong>undo: yes</strong> below construct a command (so they appear in the editor's undo history and are reversible with <code>WorldBuilder.Undo()</code>); <strong>no</strong> means the call edits state directly or only reads. Whether a missing command means "not undoable" is itself inferred from the call data.</p>
+<h2>Things to know before you rely on it</h2>
+<ul>
+<li><strong>Silent failure.</strong> Several wrappers return without doing anything when an argument is missing, instead of raising an error. Example: <code>PlayerManager:SetPlayerHasCivic</code> and <code>SetPlayerHasTech</code> need <strong>all</strong> arguments, including the progress value; with one fewer they do nothing.</li>
+<li><strong>Return values do not always report success.</strong> <code>CityManager:RemoveDistrict</code> always returns <code>false</code> (the wrapper pushes a constant), and <code>MapManager:SetCoastalLowland</code> and <code>SetImprovementPillaged</code> also always return <code>false</code>, even when they worked. <code>PlayerManager:InitializePlayer</code> and <code>SetPlayerSlotStatus</code> return <code>true</code> whenever arguments were present, ignoring the engine's result.</li>
+<li><strong>Not everything is undoable.</strong> Several setters write state directly (see the <em>Undo</em> column). <code>PlayerManager:UninitializePlayer</code> removes all units and cities of the player, grouped in one undo block.</li>
+<li><strong>Argument forms vary.</strong> Plots can usually be given as <code>(x, y)</code> or as a plot object; cities and districts as objects or id pairs; types as numbers or type-name strings. The helper functions that decide this were not decompiled, so those forms are inferred from argument counts.</li>
+<li><strong>Fixed point.</strong> <code>SetPlayerGold</code> and <code>SetPlayerFaith</code> store their argument shifted left by 8 bits (fixed point), as the wrapper code shows.</li>
+<li><strong>Possible bug.</strong> <code>ConfigurationManager:GetMapValue</code> reads its type argument from the first stack slot (the object itself on a colon call), <code>SetMapValue</code> from the second; call <code>GetMapValue</code> carefully.</li>
+</ul>
+<h2>WorldBuilder (the global)</h2>
+<p>Entry point and undo control. <code>WorldBuilder.CityManager()</code>, <code>MapManager()</code>, <code>PlayerManager()</code>, <code>UnitManager()</code>, <code>ModManager()</code> and <code>ConfigurationManager()</code> return the sub-managers below. 21 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="canredo"></a><a href="lua/WorldBuilderManager.html#canredo">CanRedo</a></td>
+<td><code>WorldBuilder.CanRedo()</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Reports whether the world builder command manager has something to redo. Query only.</td>
+</tr>
+<tr>
+<td><a id="canundo"></a><a href="lua/WorldBuilderManager.html#canundo">CanUndo</a></td>
+<td><code>WorldBuilder.CanUndo()</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Reports whether the world builder command manager has something to undo. Query only.</td>
+</tr>
+<tr>
+<td><a id="citymanager"></a><a href="lua/WorldBuilderManager.html#citymanager">CityManager</a></td>
+<td><code>local mgr = WorldBuilder.CityManager()</code></td>
+<td>1 value: sub-manager userdata</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the CityManager sub-manager object (C++ WorldBuilder::City::Manager at WorldBuilder::Manager+0x20) wrapped via ScopedInstance::Push. Takes no arguments; the pushed object refers to the singleton's member, not a copy.</td>
+</tr>
+<tr>
+<td><a id="clearvisibilitypreviewplayer"></a><a href="lua/WorldBuilderManager.html#clearvisibilitypreviewplayer">ClearVisibilityPreviewPlayer</a></td>
+<td><code>WorldBuilder.ClearVisibilityPreviewPlayer()</code></td>
+<td>nothing</td>
+<td>no</td>
+<td>high</td>
+<td>Clears the visibility preview player by calling SetVisibilityPreviewPlayer with -1 (0xffffffff). No arguments; not recorded as an undo command in the wrapper.</td>
+</tr>
+<tr>
+<td><a id="configurationmanager"></a><a href="lua/WorldBuilderManager.html#configurationmanager">ConfigurationManager</a></td>
+<td><code>local mgr = WorldBuilder.ConfigurationManager()</code></td>
+<td>1 value: sub-manager userdata</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the ConfigurationManager sub-manager object (C++ WorldBuilder::Configuration::Manager at WorldBuilder::Manager+0x228) wrapped via ScopedInstance::Push. Takes no arguments; the pushed object refers to the singleton's member, not a copy.</td>
+</tr>
+<tr>
+<td><a id="endundoblock"></a><a href="lua/WorldBuilderManager.html#endundoblock">EndUndoBlock</a></td>
+<td><code>WorldBuilder.EndUndoBlock()</code></td>
+<td>nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Closes the current undo block on the command manager. Pair with StartUndoBlock; wrapper does no checks, EndBlock internals not read, so behaviour when no block is open is unknown.</td>
+</tr>
+<tr>
+<td><a id="generateid"></a><a href="lua/WorldBuilderManager.html#generateid">GenerateID</a></td>
+<td><code>local id = WorldBuilder.GenerateID()</code></td>
+<td>1 string (GUID text)</td>
+<td>no</td>
+<td>high</td>
+<td>Creates a new GUID and returns it as a string (Platform::CreateGUID + GUIDToString). Only generates; use SetID to apply it. Exact text format (braces/case) not verified.</td>
+</tr>
+<tr>
+<td><a id="getid"></a><a href="lua/WorldBuilderManager.html#getid">GetID</a></td>
+<td><code>local id = WorldBuilder.GetID()</code></td>
+<td>1 string</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the current world builder ID (GUID) as a string. Returns whatever GUID the manager holds, even if never set.</td>
+</tr>
+<tr>
+<td><a id="getwbadvancedmode"></a><a href="lua/WorldBuilderManager.html#getwbadvancedmode">GetWBAdvancedMode</a></td>
+<td><code>WorldBuilder.GetWBAdvancedMode()</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Returns whether world builder advanced mode is on. Query only.</td>
+</tr>
+<tr>
+<td><a id="ismod"></a><a href="lua/WorldBuilderManager.html#ismod">IsMod</a></td>
+<td><code>WorldBuilder.IsMod()</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the manager's mod flag. Query only.</td>
+</tr>
+<tr>
+<td><a id="mapmanager"></a><a href="lua/WorldBuilderManager.html#mapmanager">MapManager</a></td>
+<td><code>local mgr = WorldBuilder.MapManager()</code></td>
+<td>1 value: sub-manager userdata</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the MapManager sub-manager object (C++ WorldBuilder::Map::Manager at WorldBuilder::Manager+0xe0) wrapped via ScopedInstance::Push. Takes no arguments; the pushed object refers to the singleton's member, not a copy.</td>
+</tr>
+<tr>
+<td><a id="modmanager"></a><a href="lua/WorldBuilderManager.html#modmanager">ModManager</a></td>
+<td><code>local mgr = WorldBuilder.ModManager()</code></td>
+<td>1 value: sub-manager userdata</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the ModManager sub-manager object (C++ WorldBuilder::Mod::Manager at WorldBuilder::Manager+0x160) wrapped via ScopedInstance::Push. Takes no arguments; the pushed object refers to the singleton's member, not a copy.</td>
+</tr>
+<tr>
+<td><a id="playermanager"></a><a href="lua/WorldBuilderManager.html#playermanager">PlayerManager</a></td>
+<td><code>local mgr = WorldBuilder.PlayerManager()</code></td>
+<td>1 value: sub-manager userdata</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the PlayerManager sub-manager object (C++ WorldBuilder::Player::Manager at WorldBuilder::Manager+0x18) wrapped via ScopedInstance::Push. Takes no arguments; the pushed object refers to the singleton's member, not a copy.</td>
+</tr>
+<tr>
+<td><a id="redo"></a><a href="lua/WorldBuilderManager.html#redo">Redo</a></td>
+<td><code>WorldBuilder.Redo()</code></td>
+<td>1 boolean (result of Command::Manager::Redo)</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Redoes the next undone command via the command manager and returns the result. Check CanRedo first; false presumably means nothing was redone (Redo internals not read).</td>
+</tr>
+<tr>
+<td><a id="setid"></a><a href="lua/WorldBuilderManager.html#setid">SetID</a></td>
+<td><code>WorldBuilder.SetID(idString)  (also accepted with 2 args, e.g. colon call)</code></td>
+<td>1 boolean: true if parsed and applied, false otherwise</td>
+<td>no</td>
+<td>high</td>
+<td>Parses a GUID string and sets it as the world builder ID and as the mod metadata ID. Any other argument count raises an argument error; an unparsable string silently returns false and changes nothing.</td>
+</tr>
+<tr>
+<td><a id="setmod"></a><a href="lua/WorldBuilderManager.html#setmod">SetMod</a></td>
+<td><code>WorldBuilder.SetMod(bState)</code></td>
+<td>nothing</td>
+<td>no</td>
+<td>high</td>
+<td>Sets the manager's mod flag from the truthiness of argument 1. No argument count check; a missing argument acts as false.</td>
+</tr>
+<tr>
+<td><a id="setvisibilitypreviewplayer"></a><a href="lua/WorldBuilderManager.html#setvisibilitypreviewplayer">SetVisibilityPreviewPlayer</a></td>
+<td><code>WorldBuilder.SetVisibilityPreviewPlayer(playerID)</code></td>
+<td>nothing</td>
+<td>no</td>
+<td>high</td>
+<td>Sets the player whose visibility is previewed. Silently does nothing unless exactly one argument is passed. Use ClearVisibilityPreviewPlayer to clear.</td>
+</tr>
+<tr>
+<td><a id="setwbadvancedmode"></a><a href="lua/WorldBuilderManager.html#setwbadvancedmode">SetWBAdvancedMode</a></td>
+<td><code>WorldBuilder.SetWBAdvancedMode(bAdvanced)</code></td>
+<td>nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Sets advanced mode: false when arg is nil/false/number 0, otherwise true. Silently does nothing unless exactly one argument is passed.</td>
+</tr>
+<tr>
+<td><a id="startundoblock"></a><a href="lua/WorldBuilderManager.html#startundoblock">StartUndoBlock</a></td>
+<td><code>WorldBuilder.StartUndoBlock()</code></td>
+<td>nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Opens a new undo block on the command manager so following edits can be grouped. Pair with EndUndoBlock; behaviour of an unclosed block was not read (probably later edits stay grouped in the open block).</td>
+</tr>
+<tr>
+<td><a id="undo"></a><a href="lua/WorldBuilderManager.html#undo">Undo</a></td>
+<td><code>WorldBuilder.Undo()</code></td>
+<td>1 boolean (result of Command::Manager::Undo)</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Undoes the last command (or block) via the command manager and returns the result. Check CanUndo first. Several Command classes in the index list no Undo of their own (e.g. CommandEditCliff, EditRiver, SetRoute, SetRevealed), so undo for them is probably handled elsewhere.</td>
+</tr>
+<tr>
+<td><a id="unitmanager"></a><a href="lua/WorldBuilderManager.html#unitmanager">UnitManager</a></td>
+<td><code>local mgr = WorldBuilder.UnitManager()</code></td>
+<td>1 value: sub-manager userdata</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the UnitManager sub-manager object (C++ WorldBuilder::Unit::Manager at WorldBuilder::Manager+0x19 as Manager* pointer arithmetic (scaled, offset not byte-literal)) wrapped via ScopedInstance::Push. Takes no arguments; the pushed object refers to the singleton's member, not a copy.</td>
+</tr>
+</tbody>
+</table>
+<h2>WorldBuilderManager_Inactive</h2>
+<p>A separate registration with one method. 1 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="isactive"></a><a href="lua/WorldBuilderManager_Inactive.html#isactive">IsActive</a></td>
+<td><code>IsActive() on the _Inactive registration; global name not verified</code></td>
+<td>1 boolean</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns whether the world builder is active (WorldBuilder::Manager::IsActive). Separate wrapper class IWorldBuilderManager_Inactive with the same logic; probably registered so the query works when the world builder is not active (not verified).</td>
+</tr>
+</tbody>
+</table>
+<h2>City manager</h2>
+<p>Create and remove cities, buildings and districts, move plot ownership, read and write city and district values. 15 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="create"></a><a href="lua/WorldBuilderCityManager.html#create">Create</a></td>
+<td><code>local pid, cid = mgr:Create(ePlayer, x, y)  or  mgr:Create(ePlayer, plot)</code></td>
+<td>2 numbers (owner PlayerID, CityID) on success; nothing if fewer than 2 args, invalid plot, or manager returned id -1</td>
+<td>yes</td>
+<td>high</td>
+<td>Creates a city for a player at a plot and returns its id pair. Wrapper returns nothing (no error) on bad args or failed creation; no check here that plot is free/valid. Player is read via tonumber so nil/strings probably become 0.</td>
+</tr>
+<tr>
+<td><a id="createbuilding"></a><a href="lua/WorldBuilderCityManager.html#createbuilding">CreateBuilding</a></td>
+<td><code>local ok, results = mgr:CreateBuilding(city, eBuilding, uiConstructionPercent [, plot / x, y])</code></td>
+<td>2 values: boolean success, and a requirements-results object (PushRequirementsResults)</td>
+<td>yes</td>
+<td>high</td>
+<td>Adds a building to a city (with construction percent, optional plot) and reports success and requirement results. If the city is invalid nothing is attempted but it still returns false plus an empty results object. Plot defaults to invalid (-9999,-9999) when omitted. Always check the first return.</td>
+</tr>
+<tr>
+<td><a id="createdistrict"></a><a href="lua/WorldBuilderCityManager.html#createdistrict">CreateDistrict</a></td>
+<td><code>local ok, results = mgr:CreateDistrict(city, eDistrict, uiConstructionPercent [, plot / x, y])</code></td>
+<td>2 values: boolean success, and requirements-results object</td>
+<td>yes</td>
+<td>high</td>
+<td>Adds a district to a city (construction percent, optional plot) and reports success and requirement results. A district needs a plot; an omitted plot stays (-9999,-9999) and probably fails. Invalid city returns false without acting.</td>
+</tr>
+<tr>
+<td><a id="getcity"></a><a href="lua/WorldBuilderCityManager.html#getcity">GetCity</a></td>
+<td><code>local city = mgr:GetCity(ePlayer, cityID)</code></td>
+<td>1 City object, or nothing</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the City object for a (playerID, cityID) pair. Only works with exactly 3 stack values (self + 2 args); any other arg count returns nothing. Returns nothing if either id is -1 or the city is not found. Object is an editable City::Instance (EditCity).</td>
+</tr>
+<tr>
+<td><a id="getcityvalue"></a><a href="lua/WorldBuilderCityManager.html#getcityvalue">GetCityValue</a></td>
+<td><code>local v = mgr:GetCityValue(city, valueType [, name])</code></td>
+<td>1 value (converted from the stored ValueEntry variant); nothing if city invalid</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Reads a WorldBuilder value of a city (by value type id) and returns it to Lua. Returns nothing for an invalid city. Unknown value types probably yield a default entry (FindValueHandler lookup); not verified.</td>
+</tr>
+<tr>
+<td><a id="getdistrictvalue"></a><a href="lua/WorldBuilderCityManager.html#getdistrictvalue">GetDistrictValue</a></td>
+<td><code>local v = mgr:GetDistrictValue(district, valueType [, name])</code></td>
+<td>1 value; nothing if district id invalid</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Reads a WorldBuilder value of a district and returns it to Lua. Returns nothing for an invalid district.</td>
+</tr>
+<tr>
+<td><a id="getplotowner"></a><a href="lua/WorldBuilderCityManager.html#getplotowner">GetPlotOwner</a></td>
+<td><code>local t = mgr:GetPlotOwner(plot)  or  mgr:GetPlotOwner(x, y);  t.PlayerID, t.CityID</code></td>
+<td>1 value: table {PlayerID=, CityID=}, or nil if out of bounds / unowned / bad args</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns which city owns a plot as a table. Always returns exactly one value (nil when no owner). Reads the map plot directly.</td>
+</tr>
+<tr>
+<td><a id="remove"></a><a href="lua/WorldBuilderCityManager.html#remove">Remove</a></td>
+<td><code>mgr:Remove(city)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Removes a city. Silent no-op if no arg or city id invalid.</td>
+</tr>
+<tr>
+<td><a id="removeall"></a><a href="lua/WorldBuilderCityManager.html#removeall">RemoveAll</a></td>
+<td><code>mgr:RemoveAll(ePlayer)</code></td>
+<td>nothing</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Removes all cities of a player, in one command block. Does nothing if called without the argument; a non-number arg probably becomes player 0 (tonumber default), unverified.</td>
+</tr>
+<tr>
+<td><a id="removeat"></a><a href="lua/WorldBuilderCityManager.html#removeat">RemoveAt</a></td>
+<td><code>mgr:RemoveAt(plot)  or  mgr:RemoveAt(x, y)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Removes the city located on a plot. Silent no-op if no plot arg, bad plot or no city there. Signature marks it static but the plot still starts at argument position 2.</td>
+</tr>
+<tr>
+<td><a id="removebuilding"></a><a href="lua/WorldBuilderCityManager.html#removebuilding">RemoveBuilding</a></td>
+<td><code>local ok = mgr:RemoveBuilding(city, eBuilding)</code></td>
+<td>1 boolean (manager result; false for invalid city)</td>
+<td>yes</td>
+<td>high</td>
+<td>Removes a building from a city. Check the return value; false when city invalid, and probably when the building is absent.</td>
+</tr>
+<tr>
+<td><a id="removedistrict"></a><a href="lua/WorldBuilderCityManager.html#removedistrict">RemoveDistrict</a></td>
+<td><code>mgr:RemoveDistrict(district)  or  mgr:RemoveDistrict(city, eDistrict)</code></td>
+<td>1 boolean, which in this wrapper is always false</td>
+<td>yes</td>
+<td>high</td>
+<td>Removes a district, given either a district object or city plus district type. Return value is hard-coded false (the manager bool is discarded); do not use it to detect success. Silent no-op for invalid ids.</td>
+</tr>
+<tr>
+<td><a id="setcityvalue"></a><a href="lua/WorldBuilderCityManager.html#setcityvalue">SetCityValue</a></td>
+<td><code>mgr:SetCityValue(city, valueType, value)</code></td>
+<td>nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Sets a WorldBuilder value (by type id) on a city. Booleans are not handled specially (string path, probably wrong); use 1/0. Call data shows no Command constructed, so probably not undoable. Silent no-op for invalid city.</td>
+</tr>
+<tr>
+<td><a id="setdistrictvalue"></a><a href="lua/WorldBuilderCityManager.html#setdistrictvalue">SetDistrictValue</a></td>
+<td><code>mgr:SetDistrictValue(district, valueType, value)</code></td>
+<td>nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Sets a WorldBuilder value on a district. No Command in call data, so probably not undoable. Silent no-op for invalid district. Booleans are handled here (unlike SetCityValue).</td>
+</tr>
+<tr>
+<td><a id="setplotowner"></a><a href="lua/WorldBuilderCityManager.html#setplotowner">SetPlotOwner</a></td>
+<td><code>mgr:SetPlotOwner(plot/x,y, city)  or  mgr:SetPlotOwner(plot/x,y, false)  or  mgr:SetPlotOwner(plot/x,y)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Assigns a plot to a city, or clears ownership. A boolean or missing owner arg gives city id (-1,-1) meaning unowned. Silent no-op if plot args invalid. A nil (non-boolean) arg goes to GetCityID, behaviour unknown.</td>
+</tr>
+</tbody>
+</table>
+<h2>Unit manager</h2>
+<p>Create and remove units. 4 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="create"></a><a href="lua/WorldBuilderUnitManager.html#create">Create</a></td>
+<td><code>local pid, uid = mgr:Create(eUnitType, ePlayer, x, y)  or  mgr:Create(eUnitType, ePlayer, plot)</code></td>
+<td>2 numbers (owner PlayerID, UnitID); nothing on bad args or failure</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Creates a unit of a type for an owner at a plot and returns its id pair. Arg order inferred from Manager::Create(eUnit, eOwner, loc); the earlier recovered name eOwner for position 2 looks swapped (decompiler parameter mapping is garbled), so medium confidence. Needs more than 3 stack values or returns nothing.</td>
+</tr>
+<tr>
+<td><a id="remove"></a><a href="lua/WorldBuilderUnitManager.html#remove">Remove</a></td>
+<td><code>mgr:Remove(unit)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Removes a unit. Silent no-op if no arg or invalid id.</td>
+</tr>
+<tr>
+<td><a id="removeall"></a><a href="lua/WorldBuilderUnitManager.html#removeall">RemoveAll</a></td>
+<td><code>mgr:RemoveAll(ePlayer)</code></td>
+<td>nothing</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Removes all units of a player, in one command block. No-op without the arg; a non-number arg probably becomes player 0 (unverified).</td>
+</tr>
+<tr>
+<td><a id="removeat"></a><a href="lua/WorldBuilderUnitManager.html#removeat">RemoveAt</a></td>
+<td><code>mgr:RemoveAt(plot)  or  mgr:RemoveAt(x, y)</code></td>
+<td>nothing</td>
+<td>yes (probably)</td>
+<td>low</td>
+<td>Removes units standing on a plot. Decompile is partly mislabelled (a call named Cache::City::Growth::GetAmenitiesLostFromBankruptcy is probably a unit count at the plot); it iterates unit slots at the plot and removes the first valid unit of each index. Probably removes all units on the plot; unverified.</td>
+</tr>
+</tbody>
+</table>
+<h2>Map manager</h2>
+<p>Terrain, features, resources, improvements, routes, rivers, cliffs, continents, reveal state and the placement checks. 24 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="canplacefeature"></a><a href="lua/WorldBuilderMapManager.html#canplacefeature">CanPlaceFeature</a></td>
+<td><code>mgr:CanPlaceFeature(x, y, feature [, params/bool]) or mgr:CanPlaceFeature(plot, feature [, params/bool])</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Asks the terrain builder whether a feature can be placed on a plot. Returns false (no error) when too few args, plot cannot be parsed, plot is outside map bounds or feature param is -1. Read-only check.</td>
+</tr>
+<tr>
+<td><a id="canplaceimprovement"></a><a href="lua/WorldBuilderMapManager.html#canplaceimprovement">CanPlaceImprovement</a></td>
+<td><code>mgr:CanPlaceImprovement(x, y, improvement [, player [, flag]])</code></td>
+<td>1 boolean</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Asks the improvement builder whether an improvement can be placed on a plot. Wrapper requires at least 3 args after self (it passes 3 to the plot helper), so the plot-object form needs a further arg or it returns false. Plot pointer not null-checked in wrapper.</td>
+</tr>
+<tr>
+<td><a id="canplaceresource"></a><a href="lua/WorldBuilderMapManager.html#canplaceresource">CanPlaceResource</a></td>
+<td><code>mgr:CanPlaceResource(x, y, resource [, flag]) or mgr:CanPlaceResource(plot, resource)</code></td>
+<td>1 boolean</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Asks the resource builder whether a resource can be placed on a plot. Form guessed from arg count: exactly 2 args after self is parsed as plot,resource; 3+ as x,y,resource,flag. So plot,resource,flag is read as x,y form. Returns false with &lt;2 args.</td>
+</tr>
+<tr>
+<td><a id="doesplotborderriver"></a><a href="lua/WorldBuilderMapManager.html#doesplotborderriver">DoesPlotBorderRiver</a></td>
+<td><code>mgr:DoesPlotBorderRiver(x, y) or mgr:DoesPlotBorderRiver(plot)</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Returns whether the plot borders a river (WorldBuilder::Map::Manager::DoesPlotBorderRiver). Returns false if the plot cannot be parsed.</td>
+</tr>
+<tr>
+<td><a id="editcliff"></a><a href="lua/WorldBuilderMapManager.html#editcliff">EditCliff</a></td>
+<td><code>mgr:EditCliff(x, y, direction, bAdd [, flag])</code></td>
+<td>1 boolean (result of Manager::EditCliff)</td>
+<td>yes</td>
+<td>high</td>
+<td>Adds or removes a cliff on a plot edge in the given direction through WorldBuilder::Map::Manager::EditCliff. Returns false when args are missing (needs 3+ after self) or plot unparsable. Recorded as CommandEditCliff via Command::Manager::Do.</td>
+</tr>
+<tr>
+<td><a id="editriver"></a><a href="lua/WorldBuilderMapManager.html#editriver">EditRiver</a></td>
+<td><code>local ok, code = mgr:EditRiver(x, y, direction, bAdd [, flag])</code></td>
+<td>2 values: boolean (true when result code == 0), number (IResultCode)</td>
+<td>yes</td>
+<td>high</td>
+<td>Adds or removes a river segment on a plot edge through WorldBuilder::Map::Manager::EditRiver, returning success and a result code. On bad args returns false, 0. Non-zero code means the edit was refused; code meanings not decoded.</td>
+</tr>
+<tr>
+<td><a id="getcontinentplots"></a><a href="lua/WorldBuilderMapManager.html#getcontinentplots">GetContinentPlots</a></td>
+<td><code>local plots = mgr:GetContinentPlots(continentIndex)</code></td>
+<td>1 table (array of 0-based plot indices) or nil</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the plot indices belonging to a continent (land plots and lakes, excluding other water). Returns nil unless exactly one argument is given and it is a number. Table is empty if the continent has none.</td>
+</tr>
+<tr>
+<td><a id="getdimensionsfromtiled"></a><a href="lua/WorldBuilderMapManager.html#getdimensionsfromtiled">GetDimensionsFromTiled</a></td>
+<td><code>local w, h = mgr:GetDimensionsFromTiled()</code></td>
+<td>2 numbers (width, height); defaults 64 and 48 when the file/attributes cannot be read</td>
+<td>no</td>
+<td>high</td>
+<td>Reads width and height attributes of the root <map> element of the Tiled XML file set as map import filename. Always returns two numbers; failure is silent and yields the 64x48 defaults, so verify the file yourself.</td>
+</tr>
+<tr>
+<td><a id="getfeatureplacementplotlist"></a><a href="lua/WorldBuilderMapManager.html#getfeatureplacementplotlist">GetFeaturePlacementPlotList</a></td>
+<td><code>WorldBuilder.MapManager.GetFeaturePlacementPlotList(self, x, y, feature [, params])</code></td>
+<td>1 table of numbers (probably plot indices, inference) or nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns a list of plots (numbers) related to placing a feature at a plot, from the terrain builder. Registered as static (no instance check). Returns nothing when plot is invalid or list is empty. luaL_checkinteger raises a Lua error on a non-number feature.</td>
+</tr>
+<tr>
+<td><a id="getplotvalue"></a><a href="lua/WorldBuilderMapManager.html#getplotvalue">GetPlotValue</a></td>
+<td><code>mgr:GetPlotValue(plotIndex, valueType [, name])</code></td>
+<td>1 value (variant converted by script system) or nothing if plot arg invalid</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns a stored per-plot value entry (value type, optional name) from WorldBuilder::Map::Manager. Type is read from fixed slot 3, so an x,y plot form would misplace it. Returns nothing on bad plot.</td>
+</tr>
+<tr>
+<td><a id="isimprovementplaceable"></a><a href="lua/WorldBuilderMapManager.html#isimprovementplaceable">IsImprovementPlaceable</a></td>
+<td><code>WorldBuilder.MapManager.IsImprovementPlaceable(self, resourceType)</code></td>
+<td>1 boolean</td>
+<td>no (probably)</td>
+<td>low</td>
+<td>Checks resource-definition data: true if the resource has valid-feature entries (own list non-empty, or a Resource_ValidFeature row matches its type name). Despite the name the code reads Resource definitions, not improvements; the intent is a guess (probably 'resource needs a feature'). Static; false on missing arg or unknown index.</td>
+</tr>
+<tr>
+<td><a id="iswondertooclose"></a><a href="lua/WorldBuilderMapManager.html#iswondertooclose">IsWonderTooClose</a></td>
+<td><code>mgr:IsWonderTooClose(plot, feature)</code></td>
+<td>1 boolean</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns true when a plot is too close to another natural wonder for the given feature (inverse of NaturalWonderDistanceCheck). False if args missing, plot not found, or plot null. Pass a plot object/index.</td>
+</tr>
+<tr>
+<td><a id="loadplotsfromtiled"></a><a href="lua/WorldBuilderMapManager.html#loadplotsfromtiled">LoadPlotsFromTiled</a></td>
+<td><code>mgr:LoadPlotsFromTiled()</code></td>
+<td>nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Loads the Tiled (.tmx XML) map file named by the map import filename and places terrain/feature/resource/improvement/continent/district/building layers onto the map's plots. Fails silently (map filled/reset, no error) if the file or <map> root is bad. Visible calls use Context::Globals::EditMap directly, not WorldBuilder commands, so it is probably not undoable. Rewrites the whole map.</td>
+</tr>
+<tr>
+<td><a id="setallrevealed"></a><a href="lua/WorldBuilderMapManager.html#setallrevealed">SetAllRevealed</a></td>
+<td><code>mgr:SetAllRevealed(bRevealed, player)</code></td>
+<td>1 boolean</td>
+<td>yes</td>
+<td>high</td>
+<td>Reveals or hides the whole map for a player, grouped as one command block. Returns false unless both args given. No player validation in wrapper.</td>
+</tr>
+<tr>
+<td><a id="setcoastallowland"></a><a href="lua/WorldBuilderMapManager.html#setcoastallowland">SetCoastalLowland</a></td>
+<td><code>mgr:SetCoastalLowland(x, y, lowlandType) or mgr:SetCoastalLowland(plot, lowlandType)</code></td>
+<td>1 boolean, always false</td>
+<td>no</td>
+<td>high</td>
+<td>Adds a coastal lowland (flood) type to a plot directly through the terrain manager's CoastalLowlandDataHandler. Return value is constant false even on success. Plot index computed as width*y+x without bounds check. No undo command.</td>
+</tr>
+<tr>
+<td><a id="setcontinenttype"></a><a href="lua/WorldBuilderMapManager.html#setcontinenttype">SetContinentType</a></td>
+<td><code>mgr:SetContinentType(plot, continent)</code></td>
+<td>1 boolean (result of SetContinent)</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Sets a plot's continent via WorldBuilder::Map::Manager::SetContinent. False when args missing/plot unparsable. Recorded via Do<CommandSetTerrain> (probably terrain unchanged, continent set).</td>
+</tr>
+<tr>
+<td><a id="setfeaturetype"></a><a href="lua/WorldBuilderMapManager.html#setfeaturetype">SetFeatureType</a></td>
+<td><code>mgr:SetFeatureType(x, y, feature [, params/bool]) or mgr:SetFeatureType(plot, feature ...)</code></td>
+<td>1 boolean (result of SetFeature)</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Sets (or changes) the feature on a plot via WorldBuilder::Map::Manager::SetFeature. Feature and direction default to -1 when not given. -1 as feature probably clears it (guess). Validity checks are inside Manager::SetFeature (not read).</td>
+</tr>
+<tr>
+<td><a id="setimprovementpillaged"></a><a href="lua/WorldBuilderMapManager.html#setimprovementpillaged">SetImprovementPillaged</a></td>
+<td><code>mgr:SetImprovementPillaged(x, y, bPillaged) or mgr:SetImprovementPillaged(plot, bPillaged)</code></td>
+<td>1 boolean, always false</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Sets the pillaged state of the improvement on a plot directly via the improvement builder. Always returns false even on success; no WorldBuilder command, so not undoable. Plot-vs-x,y form is guessed from arg count (exactly 2 args after self = plot,bool).</td>
+</tr>
+<tr>
+<td><a id="setimprovementtype"></a><a href="lua/WorldBuilderMapManager.html#setimprovementtype">SetImprovementType</a></td>
+<td><code>mgr:SetImprovementType(x, y, improvement [, player]) or mgr:SetImprovementType(plot, improvement)</code></td>
+<td>1 boolean (result of SetImprovement)</td>
+<td>yes</td>
+<td>high</td>
+<td>Sets the improvement on a plot (optionally with owner player) via WorldBuilder::Map::Manager::SetImprovement. Arg-count heuristic: exactly 2 args after self = plot,improvement; 3+ = x,y,improvement,player, so plot,improvement,player is read as x,y form.</td>
+</tr>
+<tr>
+<td><a id="setplotvalue"></a><a href="lua/WorldBuilderMapManager.html#setplotvalue">SetPlotValue</a></td>
+<td><code>mgr:SetPlotValue(plotIndex, valueType, [name,] value)</code></td>
+<td>nothing</td>
+<td>unknown</td>
+<td>medium</td>
+<td>Stores a per-plot value entry (type, optional name, integer or string value) through WorldBuilder::Map::Manager::SetPlotValue. Silent no-op when plot arg unparsable. Number values truncated to int. Undo not visible in callee data.</td>
+</tr>
+<tr>
+<td><a id="setresourcetype"></a><a href="lua/WorldBuilderMapManager.html#setresourcetype">SetResourceType</a></td>
+<td><code>mgr:SetResourceType(x, y, resource [, amount]) or mgr:SetResourceType(plot, resource)</code></td>
+<td>1 boolean (result of SetResource)</td>
+<td>yes</td>
+<td>high</td>
+<td>Sets the resource (with amount) on a plot via WorldBuilder::Map::Manager::SetResource. Arg-count heuristic as other Set* methods. Placement validity not checked in wrapper; use CanPlaceResource first.</td>
+</tr>
+<tr>
+<td><a id="setrevealed"></a><a href="lua/WorldBuilderMapManager.html#setrevealed">SetRevealed</a></td>
+<td><code>mgr:SetRevealed(x, y, bRevealed, player)</code></td>
+<td>1 boolean</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Reveals or hides one plot for a player via WorldBuilder::Map::Manager::SetRevealed. Needs 3+ args after self; wrapper tells plot helper 2 args remain, so x,y form is probably required (inference).</td>
+</tr>
+<tr>
+<td><a id="setroutetype"></a><a href="lua/WorldBuilderMapManager.html#setroutetype">SetRouteType</a></td>
+<td><code>mgr:SetRouteType(x, y, route [, flag]) or mgr:SetRouteType(plot, route)</code></td>
+<td>1 boolean (result of SetRoute)</td>
+<td>yes</td>
+<td>high</td>
+<td>Sets the route on a plot via WorldBuilder::Map::Manager::SetRoute. Arg-count heuristic: plot,route,flag is read as x,y form.</td>
+</tr>
+<tr>
+<td><a id="setterraintype"></a><a href="lua/WorldBuilderMapManager.html#setterraintype">SetTerrainType</a></td>
+<td><code>mgr:SetTerrainType(plot, terrain)</code></td>
+<td>1 boolean (result of SetTerrain)</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Sets the terrain of a plot via WorldBuilder::Map::Manager::SetTerrain, and removes the plot's resource if it no longer fits the new terrain. Several commands are issued for one call. Only the plot-object form is parsed (helper told 1 arg).</td>
+</tr>
+</tbody>
+</table>
+<h2>Player manager</h2>
+<p>Initialize and remove players, set leader, era, gold, faith, civics, technologies and start positions. 25 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addplayer"></a><a href="lua/WorldBuilderPlayerManager.html#addplayer">AddPlayer</a></td>
+<td><code>mgr:AddPlayer(flag) -&gt; playerID  (exactly one argument)</code></td>
+<td>1 number: new player id, or -1 if the argument count is not exactly one</td>
+<td>unknown</td>
+<td>medium</td>
+<td>Adds a new player slot via WorldBuilder::Player::Manager::AddPlayer and returns its player id. Wrapper returns -1 without acting when called with no argument or with 2+ arguments. No self check (ScopedInstance::GetInstance not called).</td>
+</tr>
+<tr>
+<td><a id="clearplayerstartingposition"></a><a href="lua/WorldBuilderPlayerManager.html#clearplayerstartingposition">ClearPlayerStartingPosition</a></td>
+<td><code>mgr:ClearPlayerStartingPosition(playerID)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Clears the start position assigned to a given player. Silent no-op when called without the argument. Player id not range-checked in the wrapper.</td>
+</tr>
+<tr>
+<td><a id="clearstartingposition"></a><a href="lua/WorldBuilderPlayerManager.html#clearstartingposition">ClearStartingPosition</a></td>
+<td><code>mgr:ClearStartingPosition(plot location)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Clears whatever start position (player/leader/civ/random) is set on the given plot. Silent no-op if no args or the plot location cannot be parsed. No feedback whether a start position existed.</td>
+</tr>
+<tr>
+<td><a id="getmaxplayers"></a><a href="lua/WorldBuilderPlayerManager.html#getmaxplayers">GetMaxPlayers</a></td>
+<td><code>mgr:GetMaxPlayers()</code></td>
+<td>1 number: constant 64 (immediate 0x4050000000000000)</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the constant maximum player count. Hard-coded constant, does not query game config.</td>
+</tr>
+<tr>
+<td><a id="getplayerconfig"></a><a href="lua/WorldBuilderPlayerManager.html#getplayerconfig">GetPlayerConfig</a></td>
+<td><code>local cfg = mgr:GetPlayerConfig(playerID)</code></td>
+<td>1 value: table with Name, SlotStatus, IsHuman, IsFullCiv, IsCityState, IsBarbarian, IsFreeCities, Civ, Leader, CivLevel, Era, Gold, Faith; or nil on bad argument</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns a table describing a player slot's configuration (name, slot status, civ, leader, era, gold, faith). Returns nil unless exactly one numeric arg and id &lt; 64. IsHuman is SlotStatus==3. Civ/Leader/CivLevel/Era may be nil. Gold/Faith are 0 if the player is not initialized (fixed-point &gt;&gt;8, whole units). Name falls back to localized text plus id+1 without a civ definition.</td>
+</tr>
+<tr>
+<td><a id="getslotstatus"></a><a href="lua/WorldBuilderPlayerManager.html#getslotstatus">GetSlotStatus</a></td>
+<td><code>mgr:GetSlotStatus(playerID)</code></td>
+<td>1 number: SlotStatus enum value; returns 2 when arg missing, not a number, or id &gt;= 64</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the configured slot status number of a player slot. Fallback value 2 on bad input is indistinguishable from a real status 2. Enum meanings not decoded (GetPlayerConfig treats 3 as human).</td>
+</tr>
+<tr>
+<td><a id="getstartpositioninfo"></a><a href="lua/WorldBuilderPlayerManager.html#getstartpositioninfo">GetStartPositionInfo</a></td>
+<td><code>local info = mgr:GetStartPositionInfo(plot location)</code></td>
+<td>1 value: nil if none/out of map/bad args; else table {Type='Player',Player=id} / {Type='Leader',Leader=n} / {Type='Civilization',Civilization=n} / {Type='RandomMajor'} / {Type='RandomMinor'}</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Describes the start position marker on a plot, if any. Leader/Civilization values are raw numbers (probably type indices, not decoded). Plot is bounds checked against map size.</td>
+</tr>
+<tr>
+<td><a id="getstartpositionplayer"></a><a href="lua/WorldBuilderPlayerManager.html#getstartpositionplayer">GetStartPositionPlayer</a></td>
+<td><code>mgr:GetStartPositionPlayer(plot location)</code></td>
+<td>1 number: player id, or -1 if no player start there, bad args or out of map</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the player id whose start position is on the given plot. -1 is also returned if the plot holds a leader/civ/random start (only the Player kind is reported).</td>
+</tr>
+<tr>
+<td><a id="initializeplayer"></a><a href="lua/WorldBuilderPlayerManager.html#initializeplayer">InitializePlayer</a></td>
+<td><code>mgr:InitializePlayer(playerID) -&gt; true</code></td>
+<td>1 boolean: false if no argument; otherwise always true (result of the C++ call is ignored)</td>
+<td>yes</td>
+<td>high</td>
+<td>Initializes (creates the in-game player for) a player slot. Return value true does not prove success. Player id not range-checked in the wrapper.</td>
+</tr>
+<tr>
+<td><a id="isplayerinitialized"></a><a href="lua/WorldBuilderPlayerManager.html#isplayerinitialized">IsPlayerInitialized</a></td>
+<td><code>mgr:IsPlayerInitialized(playerID)</code></td>
+<td>1 boolean (false if no argument)</td>
+<td>no</td>
+<td>high</td>
+<td>Tells whether a player slot has been initialized. No argument gives false, not an error.</td>
+</tr>
+<tr>
+<td><a id="playerhascivic"></a><a href="lua/WorldBuilderPlayerManager.html#playerhascivic">PlayerHasCivic</a></td>
+<td><code>mgr:PlayerHasCivic(playerID, civicIndex)</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Checks whether an initialized player has a civic. Returns false for wrong arg count, non-number args (a civic name string yields false), id &gt;= 64 or uninitialized player. Does not accept hashes unlike SetPlayerHasCivic.</td>
+</tr>
+<tr>
+<td><a id="playerhastech"></a><a href="lua/WorldBuilderPlayerManager.html#playerhastech">PlayerHasTech</a></td>
+<td><code>mgr:PlayerHasTech(playerID, techIndex)</code></td>
+<td>1 boolean</td>
+<td>no</td>
+<td>high</td>
+<td>Checks whether an initialized player has a tech. Returns false for wrong arg count, non-number args, id &gt;= 64 or uninitialized player. Does not accept hashes unlike SetPlayerHasTech.</td>
+</tr>
+<tr>
+<td><a id="setcivilizationstartingposition"></a><a href="lua/WorldBuilderPlayerManager.html#setcivilizationstartingposition">SetCivilizationStartingPosition</a></td>
+<td><code>mgr:SetCivilizationStartingPosition(civType, plot location)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Places a civilization start marker on a plot. Silent no-op if too few args or plot cannot be parsed. Civ taken as plain number, not hash.</td>
+</tr>
+<tr>
+<td><a id="setleaderstartingposition"></a><a href="lua/WorldBuilderPlayerManager.html#setleaderstartingposition">SetLeaderStartingPosition</a></td>
+<td><code>mgr:SetLeaderStartingPosition(leaderType, plot location)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Places a leader start marker on a plot. Silent no-op if too few args or plot unparsable.</td>
+</tr>
+<tr>
+<td><a id="setplayerera"></a><a href="lua/WorldBuilderPlayerManager.html#setplayerera">SetPlayerEra</a></td>
+<td><code>mgr:SetPlayerEra(playerID, era)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Sets a player's era. Silent no-op if fewer than two args. Behavior for an uninitialized player or invalid era is inside Manager::SetEra (not decoded).</td>
+</tr>
+<tr>
+<td><a id="setplayerfaith"></a><a href="lua/WorldBuilderPlayerManager.html#setplayerfaith">SetPlayerFaith</a></td>
+<td><code>mgr:SetPlayerFaith(playerID, amount)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Sets a player's faith amount. Both arguments required else silent no-op. Fractions truncated to integer.</td>
+</tr>
+<tr>
+<td><a id="setplayergold"></a><a href="lua/WorldBuilderPlayerManager.html#setplayergold">SetPlayerGold</a></td>
+<td><code>mgr:SetPlayerGold(playerID, amount)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Sets a player's gold amount. Both arguments required else silent no-op; fractions truncated. Player validity checks are inside Manager::SetGold (not decoded).</td>
+</tr>
+<tr>
+<td><a id="setplayerhascivic"></a><a href="lua/WorldBuilderPlayerManager.html#setplayerhascivic">SetPlayerHasCivic</a></td>
+<td><code>mgr:SetPlayerHasCivic(playerID, civic, progress)</code></td>
+<td>nothing</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Grants or removes a civic for a player, with a progress value. Wrapper requires all three args (count &gt; 3 with self); with two it silently does nothing even though progress looks optional. Meaning of progress (probably 0 = remove) not decoded.</td>
+</tr>
+<tr>
+<td><a id="setplayerhastech"></a><a href="lua/WorldBuilderPlayerManager.html#setplayerhastech">SetPlayerHasTech</a></td>
+<td><code>mgr:SetPlayerHasTech(playerID, tech, progress)</code></td>
+<td>nothing</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Grants or removes a tech for a player, with a progress value. Wrapper requires all three args; with two it silently does nothing. Meaning of progress (probably 0 = remove) not decoded.</td>
+</tr>
+<tr>
+<td><a id="setplayerleader"></a><a href="lua/WorldBuilderPlayerManager.html#setplayerleader">SetPlayerLeader</a></td>
+<td><code>mgr:SetPlayerLeader(playerID, leader [, civ [, civLevel]])</code></td>
+<td>nothing (wrapper pushes a boolean but returns 0 values)</td>
+<td>yes (probably)</td>
+<td>medium</td>
+<td>Sets a player's leader, and optionally civilization and civilization level. Silent no-op with fewer than 2 args. Omitted civ/level become -1; effect is inside Manager::SetPlayerLeader (not decoded).</td>
+</tr>
+<tr>
+<td><a id="setplayerslotstatus"></a><a href="lua/WorldBuilderPlayerManager.html#setplayerslotstatus">SetPlayerSlotStatus</a></td>
+<td><code>local ok = mgr:SetPlayerSlotStatus(playerID, status)</code></td>
+<td>1 boolean: true when two args were given (C++ result ignored), false otherwise</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Sets the configured slot status of a player slot. true does not prove the status changed. Valid status values not decoded.</td>
+</tr>
+<tr>
+<td><a id="setplayerstartingposition"></a><a href="lua/WorldBuilderPlayerManager.html#setplayerstartingposition">SetPlayerStartingPosition</a></td>
+<td><code>mgr:SetPlayerStartingPosition(playerID, plot location)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Places a player's start marker on a plot. Silent no-op if too few args or plot unparsable. Player id not validated in the wrapper.</td>
+</tr>
+<tr>
+<td><a id="setrandommajorstartingposition"></a><a href="lua/WorldBuilderPlayerManager.html#setrandommajorstartingposition">SetRandomMajorStartingPosition</a></td>
+<td><code>mgr:SetRandomMajorStartingPosition(plot location)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Places a random-major-civ start marker on a plot. Silent no-op if no args or plot unparsable.</td>
+</tr>
+<tr>
+<td><a id="setrandomminorstartingposition"></a><a href="lua/WorldBuilderPlayerManager.html#setrandomminorstartingposition">SetRandomMinorStartingPosition</a></td>
+<td><code>mgr:SetRandomMinorStartingPosition(plot location)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Places a random-minor-civ (city-state) start marker on a plot. Silent no-op if no args or plot unparsable.</td>
+</tr>
+<tr>
+<td><a id="uninitializeplayer"></a><a href="lua/WorldBuilderPlayerManager.html#uninitializeplayer">UninitializePlayer</a></td>
+<td><code>mgr:UninitializePlayer(playerID)</code></td>
+<td>nothing</td>
+<td>yes</td>
+<td>high</td>
+<td>Uninitializes a player, removing its units and cities first. Destructive: deletes all units and cities of the player. Silent no-op without argument.</td>
+</tr>
+</tbody>
+</table>
+<h2>Configuration manager</h2>
+<p>Map-level configuration values. 3 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getmapvalue"></a><a href="lua/WorldBuilderConfigurationManager.html#getmapvalue">GetMapValue</a></td>
+<td><code>WorldBuilder.ConfigurationManager():GetMapValue(type [, name])</code></td>
+<td>1 value (the ValueEntry's stored variant converted by the script system)</td>
+<td>no (probably)</td>
+<td>low</td>
+<td>Looks up a map configuration value entry in WorldBuilder::Configuration::Manager and pushes its stored value to Lua. Code reads the type from stack slot 1 (the object itself on a colon call) while SetMapValue reads slot 2; this looks inconsistent, so the type argument may be ignored or misread (probably a game bug; untested). Optional-name slot logic is odd (slot 2 tested, slot 4 read).</td>
+</tr>
+<tr>
+<td><a id="getmapvalues"></a><a href="lua/WorldBuilderConfigurationManager.html#getmapvalues">GetMapValues</a></td>
+<td><code>local t = WorldBuilder.ConfigurationManager():GetMapValues()</code></td>
+<td Height_="Height," IsWrapX_="IsWrapX," IsWrapY_="IsWrapY," MapScript_="MapScript?," Ruleset_="Ruleset?" Width_="Width,">1 table</td>
+<td>no</td>
+<td>high</td>
+<td>Returns a table with the current map settings: Width, Height, IsWrapX, IsWrapY, plus MapScript and Ruleset when set. MapScript key present only if Configuration::Map::Instance::GetScript succeeds; Ruleset only if non-null. Read-only snapshot.</td>
+</tr>
+<tr>
+<td><a id="setmapvalue"></a><a href="lua/WorldBuilderConfigurationManager.html#setmapvalue">SetMapValue</a></td>
+<td><code>WorldBuilder.ConfigurationManager():SetMapValue(type, value)</code></td>
+<td>nothing</td>
+<td>unknown</td>
+<td>medium</td>
+<td>Stores a map configuration value (number as integer variant, otherwise string) under a value-type key via WorldBuilder::Configuration::Manager. Does nothing if the value argument is missing (needs at least 2 args after self). Numeric values are truncated to integers; no validation in the wrapper. Undo not visible in callee data (no Command seen), but handler is not readable.</td>
+</tr>
+</tbody>
+</table>
+<h2>Mod manager</h2>
+<p>The mod metadata strings of a World Builder map. 6 methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Call</th>
+<th>Returns</th>
+<th>Undo</th>
+<th>Confidence</th>
+<th>What it does, and cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getkeystringpairbyindex"></a><a href="lua/WorldBuilderModManager.html#getkeystringpairbyindex">GetKeyStringPairByIndex</a></td>
+<td><code>local key, text = mgr:GetKeyStringPairByIndex(index [, locale])</code></td>
+<td>2 values (key, text; nil for a null pointer) or nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns the Nth (key, string) pair of the mod's localization table for a locale. Returns nothing if index &lt; 1, locale not found or index past the end.</td>
+</tr>
+<tr>
+<td><a id="getlanguagebyindex"></a><a href="lua/WorldBuilderModManager.html#getlanguagebyindex">GetLanguageByIndex</a></td>
+<td><code>local locale = mgr:GetLanguageByIndex(index)</code></td>
+<td>1 string (nil if null) or nothing</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Returns the locale name at the 1-based index in the mod manager's language list. Nothing returned for index &lt; 1 or past the end.</td>
+</tr>
+<tr>
+<td><a id="getstring"></a><a href="lua/WorldBuilderModManager.html#getstring">GetString</a></td>
+<td><code>local text = mgr:GetString(key [, locale])</code></td>
+<td>1 string or nothing</td>
+<td>no</td>
+<td>high</td>
+<td>Returns the localized string stored for a key in a locale. Nothing if key missing/not found.</td>
+</tr>
+<tr>
+<td><a id="removestring"></a><a href="lua/WorldBuilderModManager.html#removestring">RemoveString</a></td>
+<td><code>mgr:RemoveString(key [, locale])</code></td>
+<td>1 boolean</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Removes a key from a locale's localization pairs. Needs at least 1 arg. No Command seen in callee data (not undoable).</td>
+</tr>
+<tr>
+<td><a id="setkeystringpairbyindex"></a><a href="lua/WorldBuilderModManager.html#setkeystringpairbyindex">SetKeyStringPairByIndex</a></td>
+<td><code>mgr:SetKeyStringPairByIndex(index, key, text [, locale])</code></td>
+<td>1 boolean</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Replaces the key and string of the Nth entry in a locale's localization table. False unless 3+ args and index &gt;= 1. Not undoable per callee data.</td>
+</tr>
+<tr>
+<td><a id="setstring"></a><a href="lua/WorldBuilderModManager.html#setstring">SetString</a></td>
+<td><code>mgr:SetString(key, text [, locale])</code></td>
+<td>1 boolean (result of LocalizationStringTable::Add)</td>
+<td>no (probably)</td>
+<td>medium</td>
+<td>Adds a (key, text) pair to the mod's localization table for a locale. False unless 2+ args. Whether it overwrites an existing key is not visible. No undo command.</td>
+</tr>
+</tbody>
+</table>
+<h2>Provenance</h2>
+<p>Method names, registration state and addresses come from the Lua registration tables of the GameCore DLL. Argument forms, return values and undo behaviour come from reading each wrapper's decompilation and the direct and second-level callees in the call graph; where the code was not visible the entry says "probably" and carries a lower confidence. Test these in a scratch game before using them in a release, and report what you observe.</p></main><script>const ROOT="";</script><script src="search.js"></script>

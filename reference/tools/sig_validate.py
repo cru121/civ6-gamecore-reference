@@ -1,7 +1,7 @@
 """Compare recovered signatures with the parameter counts in the community signature index (validation only; nothing is copied)."""
 import json, re, os, collections
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-REF = 'C:/stuff/claude/wheat-gpp/civ6-lua-signature-index.md'
+REF = '<workspace>/community-reference/civ6-lua-signature-index.md'
 sig = json.load(open(os.path.join(ROOT, 'docs_proto', 'data', 'lua_signatures.json'), encoding='utf8'))
 reg = [l.rstrip('\n').split('\t') for l in open(os.path.join(ROOT, 'lua_registry.tsv'), encoding='utf8') if l[0] != '#' and not l.startswith('interface')]
 alias = json.load(open(os.path.join(ROOT, 'linux_depot', 'out', 'lua_compare.json')))['alias']
@@ -24,7 +24,7 @@ for l in open(REF, encoding='utf8'):
             depth += ch in '[(<'; depth -= ch in '])>'
             if ch == ',' and depth == 0: n += 1
         ref[(obj, m.group(3))] = (n, m.group(2), m.group(5) or '')
-for l in open('C:/stuff/claude/wheat-gpp/civ6-lua-reference.md', encoding='utf8'):
+for l in open('<workspace>/community-reference/civ6-lua-reference.md', encoding='utf8'):
     m = re.match(r'^\*\*`(\w+)([:.])(\w+)\((.*?)\)(?:\s*->\s*(.*?))?\s+\[(\w+)\]`\*\*', l)
     if m:
         args = m.group(4).strip(); depth = 0; n = 0 if not args else 1

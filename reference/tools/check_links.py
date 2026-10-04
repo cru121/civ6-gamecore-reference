@@ -25,7 +25,7 @@ for p, text in pages.items():
             continue
         if anchor:
             t = pages[tp]
-            ids = set(a.lower() for a in re.findall(r'<a id="([^"]+)"', t))
+            ids = set(a.lower() for a in re.findall(r'<a id="([^"]+)"', t)) | set(a.lower() for a in re.findall(r'{#([A-Za-z0-9_-]+)}', t))
             heads = set(re.sub(r'[^a-z0-9_ -]', '', h.lower()).strip().replace(' ', '-') for h in re.findall(r'^#+ (.+)$', t, re.M))
             if anchor.lower() not in ids and anchor.lower() not in heads:
                 bad.append((p, href, 'missing anchor'))

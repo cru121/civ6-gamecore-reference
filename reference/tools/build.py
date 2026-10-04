@@ -560,6 +560,88 @@ for o, ms in sorted(devce_by_obj.items()):
         L += bl('Verified from the code', an.get('verified_facts')) + bl('Inferred', an.get('inferred_facts')) + bl('Open questions', an.get('open_questions'))
     add(path, o, '\n'.join(L))
 
+# ---------------------------------------------------------------- modifier system: effects, requirements, collections
+EFF = load('effects.json')
+EFF_KIND = {'effect': ('effects', 'Effects', 'EFFECT'), 'requirement': ('requirements', 'Requirements', 'REQUIREMENT'),
+            'collection': ('collections', 'Collections', 'COLLECTION')}
+EFF_METHOD_ORDER = {'effect': ('Apply', 'Remove'), 'requirement': ('Test', 'TestPlot', 'TestAdjacentPlot', 'OnInitialize'),
+                    'collection': ('GetItems', 'OnInitialize')}
+eff_by_native = {}          # native id -> [effect names]
+for e in EFF:
+    for c in e['calls']:
+        if c['native']:
+            eff_by_native.setdefault(c['native'], []).append(e)
+
+def eff_page(kind, cls):
+    return '%s/%s.md' % (EFF_KIND[kind][0], safe(cls or 'Other'))
+
+def eff_link(from_page, e, label=None):
+    return '[%s](%s#%s)' % (label or e['name'], os.path.relpath(eff_page(e['kind'], e['class']), os.path.dirname(from_page)).replace('\\', '/'), e['name'].lower())
+
+def avail_short(a):
+    if not a or a == '—':
+        return '—'
+    a = re.sub(r'^Base game\+ \([^)]*\)', 'Base game+', a)
+    return a if len(a) < 70 else a[:67] + '...'
+
+def eff_row(path, e):
+    kind = e['kind']
+    tag = {'REMOVED': ' _(removed)_', 'UNTESTED': ' _(untested in the community list)_'}.get(e['tag'] or '', '')
+    if e['tag'] and e['tag'] not in ('REMOVED', 'UNTESTED'):
+        tag = ' _(%s)_' % e['tag']
+    cells = ['<a id="%s"></a>`%s`%s' % (e['name'].lower(), e['name'], tag)]
+    if kind != 'collection':
+        cells.append(', '.join('`%s` (%s)' % (a['name'], a['type']) for a in e['args']) or '—')
+    if kind == 'effect':
+        cells.append(e['subject'] or '—')
+    calls = []
+    for c in e['calls']:
+        if c['native'] and c['native'] in nat_ids:
+            calls.append(link(c['native'], path, c['name']))
+        else:
+            calls.append('`%s`' % c['name'])
+    if e['calls_more']:
+        calls.append('+%d more' % e['calls_more'])
+    for ed in e['edits']:
+        calls.append('edits `%s`' % ed)
+    cells.append('<br>'.join(calls) or '—')
+    cells.append(avail_short(e['availability']))
+    ms = [(m, e['methods'][m]) for m in EFF_METHOD_ORDER[kind] if m in e['methods']]
+    cells.append('<br>'.join('%s `%s`→`%s`' % (m, v['symbol'], v['current'] or '?') for m, v in ms[:2]) or '—')
+    return '| ' + ' | '.join(cells) + ' |'
+
+EFF_HEAD = {
+    'effect': ('Effect', 'Arguments', 'Applies to (C++)', 'Engine functions called', 'Availability', 'Addresses (symbol→current)'),
+    'requirement': ('Requirement', 'Arguments', 'Engine functions called', 'Availability', 'Addresses (symbol→current)'),
+    'collection': ('Collection', 'Engine functions called', 'Availability', 'Addresses (symbol→current)')}
+EFF_BLURB = {
+    'effect': 'An **effect** is what a modifier does. A database modifier names one effect type, one subject collection and optional requirements; the engine calls the effect\'s `Apply` when the modifier becomes active for an object and `Remove` when it stops.',
+    'requirement': 'A **requirement** is a condition in a requirement set that decides whether a modifier is active. The engine evaluates it through its `Test` function (plot requirements through `TestPlot`).',
+    'collection': 'A **collection** chooses the objects a modifier applies to (for example all cities of the owner). The engine builds the list through `GetItems` and keeps it up to date with event handlers.'}
+
+eff_groups = {}
+for e in EFF:
+    eff_groups.setdefault((e['kind'], e['class'] or 'Other'), []).append(e)
+for kind, (d, plural, pre) in EFF_KIND.items():
+    idx = ['# %s (modifier system)\n' % plural, EFF_BLURB[kind] + '\n',
+           'Names, arguments and availability follow the community list (see Credits on the home page); the DLL provides the C++ class, the addresses and the engine functions each %s calls. '
+           'Engine functions come from the **static call graph** of the symbol build (direct calls only) and are **inferred**, not observed in a running game. '
+           'A function in plain code font has no entry on the native functions pages; a linked one has.\n' % kind,
+           'Entries without addresses are listed in the community list but have no class in this build (removed or from another game version). The group "Other" holds entries this build\'s DLL implements that the community list does not have.\n',
+           '| Subject class | %s | With engine calls |' % plural, '|---|---|---|']
+    for (k, cls), es in sorted(eff_groups.items()):
+        if k != kind:
+            continue
+        es.sort(key=lambda x: x['name'])
+        path = eff_page(kind, cls)
+        idx.append('| [%s](%s) | %d | %d |' % (cls, os.path.basename(path), len(es), sum(1 for x in es if x['calls'])))
+        hdr = EFF_HEAD[kind]
+        L = ['# %s: %s\n' % (plural, cls), '%d entries. Subject class "%s" is the community list\'s grouping (what the modifier applies to).\n' % (len(es), cls),
+             '| ' + ' | '.join(hdr) + ' |', '|' + '---|' * len(hdr)]
+        L += [eff_row(path, x) for x in es]
+        add(path, '%s: %s' % (plural, cls), '\n'.join(L))
+    add('%s/index.md' % d, plural, '\n'.join(idx))
+
 # ---------------------------------------------------------------- native functions
 LUA_TXT = {'none': 'no', 'indirect': 'only indirectly', 'ce': 'via the Community Extension', 'devce': 'via the Dev CE test build (experimental)'}
 nby = {}
@@ -601,6 +683,10 @@ for ns, v in sorted(nby.items()):
         elif le['status'] == 'indirect' and le.get('via'):
             lua = 'only indirectly (' + ', '.join('`%s`' % x for x in le['via'][:2]) + ')'
         tags = ', '.join(n.get('tags', []))
+        used = sorted({e['name'] for e in eff_by_native.get(n['id'], [])})
+        if used:
+            ue = {e['name']: e for e in eff_by_native[n['id']]}
+            tags = (tags + '; ' if tags else '') + 'called by ' + ', '.join(eff_link(path, ue[u]) for u in used[:3]) + (' +%d more' % (len(used) - 3) if len(used) > 3 else '')
         L.append('| <a id="%s"></a>%s%s | %s | %s | %s | %s | %s |' % (safe(nm).lower(), nm.split('::', 1)[-1] if '::' in nm else nm, ' ★' if 'analysis' in n else '', sigtxt,
                  rva(n['builds'], 'symbol'), rva(n['builds'], 'current'), lua, tags))
     an = [n for n in v if 'analysis' in n]
@@ -748,6 +834,7 @@ A reference for what Civ VI's GameCore contains, generated from analysis data pl
 - [Lua API](lua/index.md): %d methods on %d objects (%d also appear in the community reference, %d do not).
 - [Operations and commands](operations/index.md): %d identified, with handlers, parameters and addresses.
 - [Enums and constants](enums/index.md): Lua constant tables with their hashes, and [Lua events](enums/LuaEvents.md) with their parameters.
+- [Modifier effects](effects/index.md), [requirements](requirements/index.md) and [collections](collections/index.md): the database modding side (`EFFECT_...`, `REQUIREMENT_...`, `COLLECTION_...`), with the engine class, addresses and the engine functions each one calls.
 
 <div class="zone zone-ce"><b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active.</div>
 
@@ -768,7 +855,7 @@ A reference for what Civ VI's GameCore contains, generated from analysis data pl
 This reference exists because other people did the hard part first.
 
 - **[Sukrit Tan's Civilization VI Modding Wiki](https://sukritact.github.io/civilization-modding-wiki/)** (built from the [Civilization VI Modding Knowledge Base](https://github.com/Sukritact/Civilization-VI-Modding-Knowledge-Base)) is the community's Lua reference and the standard to match. We use it to mark which Lua methods it already documents, to check our recovered signatures against it, and as the target of the "community reference" links. **We do not copy its descriptions.** Where it has a page for a method we link to it, so the explanation is one click away. To learn what a method is for, start there.
-- **[The Civilization VI Modding Companion 2.0](https://docs.google.com/spreadsheets/d/1EiCTOlPx3IkeAmU0xujGEp9k0v9VuCxe95OcrsyWOVs/edit?usp=sharing)**, created by **ChimpanG** and expanded and maintained by **WildW**, is a long-standing spreadsheet of Lua objects, events and constants. We take two things from it: the parameter names and types of Lua events, and the Lua names of 19 constant tables (matched to engine enums by value). Both are credited on their pages. The Companion also covers UI, input and network tables that live outside GameCore, which we do not; use it for those.
+- **[The Civilization VI Modding Companion 2.0](https://docs.google.com/spreadsheets/d/1EiCTOlPx3IkeAmU0xujGEp9k0v9VuCxe95OcrsyWOVs/edit?usp=sharing)**, created by **ChimpanG** and expanded and maintained by **WildW**, is a long-standing spreadsheet of Lua objects, events and constants. We take three things from it: the parameter names and types of Lua events, the Lua names of 19 constant tables (matched to engine enums by value), and the argument names, types and availability of modifier effects, requirements and collections (its descriptions are not copied). Both are credited on their pages. The Companion also covers UI, input and network tables that live outside GameCore, which we do not; use it for those.
 - **The [Civilization VI Community Extension](https://github.com/Wild-W/CivilizationVI_CommunityExtension)** by Wild-W and contributors showed that GameCore can be extended, and documents its additions on its [wiki](https://github.com/Wild-W/CivilizationVI_CommunityExtension/wiki). We read its source and wiki for the function list and the engine addresses it targets, and link each of its functions to the engine function it wraps. Descriptions stay on their wiki.
 - **The game's own Lua scripts** are read to work out what arguments and return values mean. We publish only short call-site snippets, not the scripts.
 - **Tools:** the NSA's Ghidra, pyelftools and pefile, and Steam's depot downloads, which gave us an older Linux build that still carries debug symbols.
@@ -783,7 +870,8 @@ Errors in this reference are ours. Corrections and pointers to better sources ar
 # ---------------------------------------------------------------- breadcrumbs
 SECTION = {'lua': ('lua/index.md', 'Lua API'), 'operations': ('operations/index.md', 'Operations'), 'enums': ('enums/index.md', 'Enums'),
            'layouts': ('layouts/index.md', 'Class layouts'), 'globals': ('globals/index.md', 'Globals'),
-           'ce': ('ce/index.md', 'Community Extension'), 'devce': ('devce/index.md', 'Dev CE (experimental)'), 'native': ('native/index.md', 'Native functions')}
+           'ce': ('ce/index.md', 'Community Extension'), 'devce': ('devce/index.md', 'Dev CE (experimental)'), 'native': ('native/index.md', 'Native functions'),
+           'effects': ('effects/index.md', 'Effects'), 'requirements': ('requirements/index.md', 'Requirements'), 'collections': ('collections/index.md', 'Collections')}
 
 
 def parents(path):
@@ -813,7 +901,7 @@ def zone_of(path):
     top = path.split('/')[0]
     if path == 'enums/Events.md':
         return 'engine'
-    return {'lua': 'vanilla', 'operations': 'vanilla', 'enums': 'vanilla', 'ce': 'ce', 'devce': 'devce', 'layouts': 'ce', 'globals': 'ce', 'native': 'engine'}.get(top)
+    return {'lua': 'vanilla', 'operations': 'vanilla', 'enums': 'vanilla', 'ce': 'ce', 'devce': 'devce', 'layouts': 'ce', 'globals': 'ce', 'native': 'engine', 'effects': 'vanilla', 'requirements': 'vanilla', 'collections': 'vanilla'}.get(top)
 
 
 def banner_md(path):
@@ -875,7 +963,7 @@ for p, (t, text) in pages.items():
     def grp(cls, title, items):
         return '<div class="grp %s">%s</div>' % (cls, title) + ''.join('<a href="%s%s">%s</a>' % (root, l, n) for l, n in items)
     nav = (grp('', 'Start', (('index.html', 'Home'), ('conventions.html', 'How to read'), ('hash-function.html', 'Identifier hash')))
-           + grp('g-vanilla', 'Available now', (('lua/index.html', 'Lua API'), ('operations/index.html', 'Operations'), ('enums/index.html', 'Enums')))
+           + grp('g-vanilla', 'Available now', (('lua/index.html', 'Lua API'), ('operations/index.html', 'Operations'), ('enums/index.html', 'Enums'), ('effects/index.html', 'Modifier effects'), ('requirements/index.html', 'Requirements'), ('collections/index.html', 'Collections')))
            + grp('g-ce', 'Needs the Community Extension', (('ce/index.html', 'CE Lua API'), ('layouts/index.html', 'Class layouts'), ('globals/index.html', 'Globals')))
            + grp('g-devce', 'Experimental', (('devce/index.html', 'Dev CE Lua API'),))
            + grp('g-engine', 'Engine internals', (('native/index.html', 'Native functions'), ('native/all.html', 'All functions (search)'))))
@@ -886,14 +974,15 @@ for p, (t, text) in pages.items():
     fp = B('site', p[:-3] + '.html'); os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w', encoding='utf8').write(page)
     search.append({'t': t, 'u': p[:-3] + '.html', 'k': re.sub(r'[#|`*\[\]()]', ' ', text[:300]).lower()})
-    sect = {'lua': 'Lua API', 'ce': 'CE', 'devce': 'Dev CE', 'native': 'Native', 'operations': 'Operation', 'enums': 'Enum', 'globals': 'Global'}.get(p.split('/')[0])
+    sect = {'lua': 'Lua API', 'ce': 'CE', 'devce': 'Dev CE', 'native': 'Native', 'operations': 'Operation', 'enums': 'Enum', 'globals': 'Global', 'effects': 'Effect', 'requirements': 'Requirement', 'collections': 'Collection'}.get(p.split('/')[0])
     if sect and p.count('/') and not p.endswith('index.md') and not p.startswith('layouts'):
         for row in re.findall(r'<tr>\s*<td>(.*?)</td>', body, re.S):
             m = re.match(r'<a id="([^"]+)"></a>', row)
             name = html.unescape(re.sub(r'<[^>]+>', '', row)).strip()
+            name = re.sub(r'\s*\((untested|removed)[^)]*\)$', '', name)
             if not name or len(name) > 120: continue
             u = p[:-3] + '.html' + ('#' + m.group(1) if m else '?find=' + urllib.parse.quote(name))
-            search.append({'t': name, 'u': u, 's': t if sect in ('Lua API', 'Native', 'Enum') or p.count('/') > 1 else sect})
+            search.append({'t': name, 'u': u, 's': t if sect in ('Lua API', 'Native', 'Enum') or p.count('/') > 1 else (sect + ' - ' + t.split(': ')[-1] if sect in ('Effect', 'Requirement', 'Collection') else sect)})
 json.dump(search, open(B('site', 'search.json'), 'w'))
 shutil.copy(B('data', 'function_index.json'), B('site', 'function_index.json'))
 open(B('site', 'fnsearch.js'), 'w', encoding='utf8').write(FNJS)
@@ -906,6 +995,12 @@ for name, data in (('lua_methods.json', methods), ('operations.json', ops), ('en
 json.dump({'generated': datetime.date.today().isoformat(), 'builds': builds, 'schema': 'schema/entities.schema.json',
            'counts': {'lua_methods': len(methods), 'operations': len(ops), 'enums': len(enums), 'layouts': len(layouts), 'globals': len(globs), 'ce_methods': len(ce_methods), 'native': len(natives)}},
           open(B('dist', 'manifest.json'), 'w'), indent=1)
+json.dump(EFF, open(B('dist', 'effects.json'), 'w', encoding='utf8'), indent=1, ensure_ascii=False)
+with open(B('dist', 'ai', 'effects.txt'), 'w', encoding='utf8') as f:
+    f.write('# Modifier system. One line per entry: name | subject class | C++ class | args | subject (C++) | engine functions called | availability | status\n')
+    for e in EFF:
+        f.write('%s | %s | %s | %s | %s | %s | %s | inferred (static call graph)\n' % (e['name'], e['class'] or '-', (e['cpp_class'] or '-').replace('GameEffects::', ''),
+                ', '.join('%s:%s' % (a['name'], a['type']) for a in e['args']) or '-', e['subject'] or '-', ', '.join(c['name'] for c in e['calls']) or '-', e['availability'] or '-'))
 with open(B('dist', 'ai', 'operations.txt'), 'w', encoding='utf8') as f:
     f.write('# Civ VI operations and commands. One line per entry: id | lua | hash | handler | parameters | events | status | summary\n')
     for o in ops:

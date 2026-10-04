@@ -1,4 +1,4 @@
-# Lua API: what the DLL registers vs the community reference (Sukritact knowledge base, `wheat-gpp/civ6-lua-*.md`)
+# Lua API: what the DLL registers vs the community reference (Sukritact knowledge base, local copies of its Lua reference pages)
 
 Sources: `lua_registry.tsv` (2,320 registrations read from GameCore's registration tables, symbol build, 95 % mapped to the current build) and
 `civ6-lua-signature-index.md` (82 objects, 1,689 methods; parsed 81 objects, 1,607 methods). Script: `tools/lua_compare.py`.
