@@ -15,7 +15,9 @@ You can make the text appear anyway, from **your own copy of the game**:
 
 ## Build the file in the browser
 
-Choose the Civilization VI folder (the one that contains `Base` and `DLC`), or only its `Text` folders. Reading takes a few seconds to a minute. Works in Chrome, Edge and Firefox.
+Choose the Civilization VI folder (the one that contains `Base` and `DLC`), or only its `Text` folders. Works in Chrome, Edge and Firefox.
+
+**Expect a wait.** After you confirm the folder, the browser first reads the list of all its files (about 56,000 for the whole game folder) before the page hears anything, which can take up to a minute with no sign of activity. Then a progress bar shows the reading of the game text (about 500 files, 110 MB), which takes a few more seconds to a minute. The Python script below skips the browser's file listing and is faster.
 
 <div id="gt-builder"></div>
 

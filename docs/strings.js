@@ -153,26 +153,41 @@
   function buildUI(host) {
     var root = getRoot();
     host.innerHTML = '';
-    var st = el('div', { class: 'gt-status', text: 'Choose your Civilization VI game folder (the one that contains Base and DLC), or just its Text folders.' });
+    var HINT = 'Choose your Civilization VI game folder (the one that contains Base and DLC), or just its Text folders.';
+    var st = el('div', { class: 'gt-status', text: HINT });
     var inp = el('input', { type: 'file', id: 'gt-dir', multiple: '' });
     inp.setAttribute('webkitdirectory', ''); inp.setAttribute('directory', '');
+    var bar = el('progress', { value: '0', max: '1', style: 'display:none;width:100%;margin:6px 0' });
     var out = el('div', { class: 'gt-out' });
-    host.appendChild(inp); host.appendChild(st); host.appendChild(out);
+    host.appendChild(inp); host.appendChild(st); host.appendChild(bar); host.appendChild(out);
     var result = null;
+    // the browser lists every file of the chosen folder before it tells the page anything; say so, so the wait is not a mystery
+    inp.addEventListener('click', function () {
+      st.textContent = 'After you confirm the folder, the browser first reads its file list. For the whole game folder (about 56,000 files) that can take up to a minute with no sign of activity. Please wait; a progress bar appears next.';
+    });
+    inp.addEventListener('cancel', function () { st.textContent = HINT; });
     inp.addEventListener('change', function () {
-      var files = Array.prototype.slice.call(inp.files).filter(function (f) { return isTextFile(f.webkitRelativePath || f.name); });
-      if (!files.length) { st.textContent = 'No game text files found in that folder. Pick the game folder or a Text folder.'; return; }
+      var all = Array.prototype.slice.call(inp.files);
+      var files = all.filter(function (f) { return isTextFile(f.webkitRelativePath || f.name); });
+      out.innerHTML = '';
+      if (!files.length) { st.textContent = 'No game text files found in that folder (' + all.length + ' files looked at). Pick the game folder or a Text folder.'; return; }
       files.sort(function (a, b) { return priority(a.webkitRelativePath) - priority(b.webkitRelativePath) || (a.webkitRelativePath < b.webkitRelativePath ? -1 : 1); });
+      var total = 0; files.forEach(function (f) { total += f.size; });
+      st.textContent = 'Found ' + files.length + ' text files (' + Math.round(total / 1048576) + ' MB) among ' + all.length + ' files. Loading the key list...';
+      bar.style.display = 'block'; bar.max = total || 1; bar.value = 0;
       fetch(root + 'strings_keys.json').then(function (r) { return r.json(); }).then(function (keys) {
         var needed = {}; keys.forEach(function (k) { needed[k] = true; });
-        var langs = {}, i = 0;
+        var langs = {}, i = 0, doneBytes = 0, t0 = Date.now();
         function step() {
-          if (i >= files.length) return done(keys.length, langs);
-          st.textContent = 'Reading ' + (i + 1) + ' / ' + files.length + ': ' + files[i].name;
-          files[i].text().then(function (t) { extractText(t, needed, langs, files[i].webkitRelativePath); i++; setTimeout(step, 0); });
+          if (i >= files.length) { bar.style.display = 'none'; return done(keys.length, langs); }
+          var secs = Math.round((Date.now() - t0) / 1000);
+          st.textContent = 'Reading game text: ' + Math.round(100 * doneBytes / (total || 1)) + '% (file ' + (i + 1) + ' of ' + files.length + ', ' + secs + ' s). Please wait.';
+          bar.value = doneBytes;
+          var f = files[i];
+          f.text().then(function (t) { extractText(t, needed, langs, f.webkitRelativePath); doneBytes += f.size; i++; setTimeout(step, 0); });
         }
         step();
-      }).catch(function (e) { st.textContent = 'Could not load the key list: ' + e; });
+      }).catch(function (e) { bar.style.display = 'none'; st.textContent = 'Could not load the key list: ' + e; });
     });
     function done(nkeys, langs) {
       result = langs;
