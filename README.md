@@ -12,6 +12,7 @@ I made it because the engine knows far more than the Lua API shows, and the exis
 - **Modifier effects, requirements and collections**: the database side (`EFFECT_...`, `REQUIREMENT_...`, `COLLECTION_...`), with the engine class, addresses and the engine functions each one calls.
 - **Class layouts and globals**: member offsets and typed global addresses, for raw memory access (`Mem`, `ObjMem`) via the Community Extension.
 - **Native functions** that have no Lua route today, and a **Dev CE (experimental)** section describing engine functions that a development fork of the Community Extension could expose to Lua. No Dev CE DLL is published yet; the section is documentation only.
+- **Game text (bring your own)**: each modifier effect has a "where the game uses it" page. Build a strings file from your own copy of the game and the pages show the in-game wording, in your language, and search finds entries by it. Nothing is uploaded and no game text is published.
 - **World Builder from Lua**: all 99 World Builder methods grouped by manager, with call forms, return values and undo behaviour.
 - **findings/**: per-function analysis notes and topic pages (great works, events, the identifier hash, build differences).
 

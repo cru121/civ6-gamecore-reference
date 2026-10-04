@@ -1,0 +1,1444 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>EFFECT_DIPLOMACY_SIMPLE_EFFECT uses</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../../index.html">Home</a><a href="../../conventions.html">How to read</a><a href="../../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../../lua/index.html">Lua API</a><a href="../../operations/index.html">Operations</a><a href="../../enums/index.html">Enums</a><a href="../../effects/index.html">Modifier effects</a><a href="../../requirements/index.html">Requirements</a><a href="../../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../../ce/index.html">CE Lua API</a><a href="../../layouts/index.html">Class layouts</a><a href="../../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../../native/index.html">Native functions</a><a href="../../native/all.html">All functions (search)</a></nav><main><p><a href="../../index.html">Home</a> › <a href="../index.html">Effects</a> › EFFECT_DIPLOMACY_SIMPLE_EFFECT uses</p>
+<div class="zone zone-vanilla"><b>Available out of the box.</b> Usable from Lua in the unmodified game.</div>
+
+<h1>EFFECT_DIPLOMACY_SIMPLE_EFFECT: where the game uses it</h1>
+<p>157 modifiers in the game's own data use this effect. Modifier ids, argument values, owners and requirement sets come from the installed game's data files (the base game and every DLC; mods are not included). Text keys are shown as keys: <a href="../../game-text.html">load your own game text</a> to read the in-game wording here.</p>
+<p>Back to <a href="../PLAYERS.html#effect_diplomacy_simple_effect">PLAYERS</a>. Arguments: <code>Accumulates</code> (Boolean), <code>DiplomacyKey</code> (String), <code>HiddenAgenda</code> (Boolean), <code>IncrementTurns</code> (Integer), <code>IncrementValue</code> (Integer), <code>InitialValue</code> (Integer), <code>MaxValue</code> (Integer), <code>MessageThrottle</code> (Integer), <code>OnlyOwnersCity</code> (Boolean), <code>ReductionTurns</code> (Integer), <code>ReductionValue</code> (Integer), <code>SimpleModifierDescription</code> (String), <code>StatementKey</code> (String).</p>
+<table>
+<thead>
+<tr>
+<th>Used by</th>
+<th>Modifier</th>
+<th>Arguments</th>
+<th>Applies to</th>
+<th>Conditions</th>
+<th>In-game text</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_ALLY_OF_ENKIDU</code></td>
+<td><code>AGENDA_ALLY_OF_ENKIDU_DENOUNCED_FRIEND</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code><br><code>MessageThrottle</code> = <code>20</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>DENOUNCED_FRIEND</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_GILGAMESH_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_GILGAMESH_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_ALLY_OF_ENKIDU_DENOUNCED_FRIEND"><code>LOC_DIPLO_MODIFIER_ALLY_OF_ENKIDU_DENOUNCED_FRIEND</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_ALLY_OF_ENKIDU</code></td>
+<td><code>AGENDA_ALLY_OF_ENKIDU_FRIEND</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>12</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>1</code><br><code>MessageThrottle</code> = <code>20</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>DECLARED_FRIEND</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_GILGAMESH_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_GILGAMESH_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_ALLY_OF_ENKIDU_DECLARED_FRIEND"><code>LOC_DIPLO_MODIFIER_ALLY_OF_ENKIDU_DECLARED_FRIEND</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_BACKSTAB_AVERSE</code></td>
+<td><code>AGENDA_BACKSTAB_AVERSE_FRIEND</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>1</code><br><code>MaxValue</code> = <code>12</code><br><code>IncrementValue</code> = <code>1</code><br><code>IncrementTurns</code> = <code>10</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>DECLARED_FRIEND</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_TOMYRIS_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_TOMYRIS_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_BACKSTAB_AVERSE_FRIEND"><code>LOC_DIPLO_MODIFIER_BACKSTAB_AVERSE_FRIEND</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_BACKSTAB_AVERSE</code></td>
+<td><code>AGENDA_BACKSTAB_AVERSE_SURPRISE_WAR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-10</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>PLAYER_DECLARED_WAR</code> (WarType=SURPRISE_WAR, WhileMet=true)<br><code>PLAYER_HAS_MET</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_TOMYRIS_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_TOMYRIS_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_BACKSTAB_AVERSE_SURPRISE_WAR"><code>LOC_DIPLO_MODIFIER_BACKSTAB_AVERSE_SURPRISE_WAR</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_CHEOMSEONGDAE</code></td>
+<td><code>AGENDA_CHEOMSEONGDAE_HIGH_SCIENCE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_SCIENCE, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_SEONDEOK_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_SEONDEOK_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CHEOMSEONGDAE_HIGH_SCIENCE"><code>LOC_DIPLO_MODIFIER_CHEOMSEONGDAE_HIGH_SCIENCE</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_CHEOMSEONGDAE</code></td>
+<td><code>AGENDA_CHEOMSEONGDAE_LOW_SCIENCE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_SCIENCE, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_SEONDEOK_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_SEONDEOK_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CHEOMSEONGDAE_LOW_SCIENCE"><code>LOC_DIPLO_MODIFIER_CHEOMSEONGDAE_LOW_SCIENCE</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CLEAR_BANDIT_CAMPS</code></td>
+<td><code>AGENDA_CLEARS_BARBARIAN_CAMPS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code><br><code>PLAYER_CIVILIZED</code> (ClearedCampValue=1, IgnoredCampValue=1, CampToCityDistance=10, TotalScoreThreshold=0)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_ATTACKS_BARBARIANS"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_ATTACKS_BARBARIANS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_ATTACKS_BARBARIANS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_ATTACKS_BARBARIANS</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GALLIC_WARS</code></td>
+<td><code>AGENDA_CLEARS_BARBARIAN_CAMPS_CAESAR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code><br><code>PLAYER_CIVILIZED</code> (ClearedCampValue=1, IgnoredCampValue=1, CampToCityDistance=10, TotalScoreThreshold=0)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_ATTACKS_BARBARIANS"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_ATTACKS_BARBARIANS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_ATTACKS_BARBARIANS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_ATTACKS_BARBARIANS</code></span></td>
+<td>JuliusCaesar</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_BIG_STICK_POLICY</code></td>
+<td><code>AGENDA_CONTINENT_ATTACKED</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code><br><code>PLAYER_ATTACKED_CONTINENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_T_ROOSEVELT_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_T_ROOSEVELT_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_BIG_STICK_CONTINENT_ATTACKED"><code>LOC_DIPLO_MODIFIER_BIG_STICK_CONTINENT_ATTACKED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_BIG_STICK_POLICY</code></td>
+<td><code>AGENDA_CONTINENT_PEACEFUL</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_PEACEFUL_ON_CONTINENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_T_ROOSEVELT_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_T_ROOSEVELT_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_BIG_STICK_CONTINENT_PEACEFUL"><code>LOC_DIPLO_MODIFIER_BIG_STICK_CONTINENT_PEACEFUL</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_DECOLONIZATION</code></td>
+<td><code>AGENDA_DECOLONIZATION_HOME_CONTINENT</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_SHARES_HOME_CONTINENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_VICTORIA_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_VICTORIA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DECOLONIZATION_HOME_CONTINENT"><code>LOC_DIPLO_MODIFIER_DECOLONIZATION_HOME_CONTINENT</code></span></td>
+<td>GreatNegotiators</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_DECOLONIZATION</code></td>
+<td><code>AGENDA_DECOLONIZATION_NEW_CONTINENT</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>5</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_ON_NON_HOME_CONTINENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_VICTORIA_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_VICTORIA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DECOLONIZATION_NEW_CONTINENT"><code>LOC_DIPLO_MODIFIER_DECOLONIZATION_NEW_CONTINENT</code></span></td>
+<td>GreatNegotiators</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_SAME_GOVERNMENT</code></td>
+<td><code>AGENDA_DIFFERENT_GOVERNMENT</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br>not <code>PLAYER_HAS_SAME_GOVERNMENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_DIFFERENT_GOVERNMENT"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_DIFFERENT_GOVERNMENT</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_DIFFERENT_GOVERNMENT"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_DIFFERENT_GOVERNMENT</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_LINCOLN</code></td>
+<td><code>AGENDA_DIFFERENT_GOVERNMENT_LINCOLN</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br>not <code>PLAYER_HAS_SAME_GOVERNMENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_DIFFERENT_GOVERNMENT"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_DIFFERENT_GOVERNMENT</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_DIFFERENT_GOVERNMENT"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_DIFFERENT_GOVERNMENT</code></span></td>
+<td>GreatNegotiators</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>AGENDA_ENJOYS_WAR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>PLAYER_DECLARED_WAR</code><br><code>PLAYER_HAS_MET</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_ENJOYS_WAR"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_ENJOYS_WAR</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_ENJOYS_WAR"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_ENJOYS_WAR</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_FLOWER_OF_SCOTLAND</code></td>
+<td><code>AGENDA_FLOWER_OF_SCOTLAND_PEACE_NEIGHBORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>2</code><br><code>MaxValue</code> = <code>10</code><br><code>IncrementTurns</code> = <code>10</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 6 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br>not <code>PLAYER_AT_WAR_WITH_NEIGHBOR</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br>not <code>PLAYER_AT_WAR_WITH_NEIGHBOR</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ROBERT_THE_BRUCE_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_ROBERT_THE_BRUCE_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_FLOWER_SCOTLAND_PEACEFUL"><code>LOC_DIPLO_MODIFIER_FLOWER_SCOTLAND_PEACEFUL</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_FLOWER_OF_SCOTLAND</code></td>
+<td><code>AGENDA_FLOWER_OF_SCOTLAND_WAR_NEIGHBORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-2</code><br><code>MaxValue</code> = <code>-10</code><br><code>IncrementTurns</code> = <code>3</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 6 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_AT_WAR_WITH_NEIGHBOR</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_AT_WAR_WITH_NEIGHBOR</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ROBERT_THE_BRUCE_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_ROBERT_THE_BRUCE_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_FLOWER_SCOTLAND_WARLIKE"><code>LOC_DIPLO_MODIFIER_FLOWER_SCOTLAND_WARLIKE</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GOSSIP</code></td>
+<td><code>AGENDA_GOSSIP_NEGATIVE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>PLAYER_IS_SHARING_INFO</code> (SharingInfoWell=false)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_IS_SHARING_INFO</code> (SharingInfoWell=false)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_GOSSIP_NEGATIVE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_GOSSIP_NEGATIVE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_GOSSIP_NEGATIVE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_GOSSIP_NEGATIVE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GOSSIP</code></td>
+<td><code>AGENDA_GOSSIP_POSITIVE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>PLAYER_IS_SHARING_INFO</code> (SharingInfoWell=true)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_IS_SHARING_INFO</code> (SharingInfoWell=true)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_GOSSIP_POSITIVE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_GOSSIP_POSITIVE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_GOSSIP_POSITIVE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_GOSSIP_POSITIVE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_TLATOANI</code></td>
+<td><code>AGENDA_HAS_DESIRED_LUXURY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_HAS_DESIRED_LUXURY</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_MONTEZUMA_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_MONTEZUMA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_TLATOANI_HAS_DESIRED_LUXURY"><code>LOC_DIPLO_MODIFIER_TLATOANI_HAS_DESIRED_LUXURY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_TLATOANI</code></td>
+<td><code>AGENDA_HAS_NO_DESIRED_LUXURY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br>not <code>PLAYER_HAS_DESIRED_LUXURY</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_MONTEZUMA_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_MONTEZUMA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_TLATOANI_HAS_NO_DESIRED_LUXURY"><code>LOC_DIPLO_MODIFIER_TLATOANI_HAS_NO_DESIRED_LUXURY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_AIRPOWER</code></td>
+<td><code>AGENDA_HIGH_AIRPOWER</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_HAS_TECHNOLOGY</code> (TechnologyType=TECH_FLIGHT)<br><code>PLAYER_MILITARY_STRENGTH_LEAD</code> (MinimumDelta=5, StrengthRatio=1.2, DomainType=DOMAIN_AIR)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_AIRPOWER"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_AIRPOWER</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_AIRPOWER"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_AIRPOWER</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CITY_STATE_PROTECTOR</code></td>
+<td><code>AGENDA_HIGH_ATTACK_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (NoLowerBound=true, UpperBound=-2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_CITY_STATES"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_CITY_STATES</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_AGGRESSION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_AGGRESSION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CULTURE</code></td>
+<td><code>AGENDA_HIGH_CULTURE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_CULTURE, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_CULTURE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_CULTURE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CULTURE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CULTURE</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_NEW_ROME</code></td>
+<td><code>AGENDA_HIGH_CULTURE_NEW_ROME</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_CULTURE, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_THEODORA"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_THEODORA</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CULTURE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CULTURE</code></span></td>
+<td>GreatBuilders</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NODIPLOVP</code></td>
+<td><code>AGENDA_HIGH_DIPLOVP</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_DIPLO_VP_LEAD</code> (MinimumDelta=1, Ratio=1.5)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_DIPLOVP"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_DIPLOVP</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_DIPLOVP"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_DIPLOVP</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_CITY_PLANNER</code></td>
+<td><code>AGENDA_HIGH_DISTRICTS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_DISTRICT_THRESHOLD</code> (DistrictPercentThreshold=80, MinDistrictsNeeded=3, AboveThreshold=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_AMANITORE_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_AMANITORE_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CITY_PLANNER_LEADING"><code>LOC_DIPLO_MODIFIER_CITY_PLANNER_LEADING</code></span></td>
+<td>Nubia_Amanitore</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_ETERNAL</code></td>
+<td><code>AGENDA_HIGH_DISTRICTS_LUDWIG</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_DISTRICT_THRESHOLD</code> (DistrictPercentThreshold=80, MinDistrictsNeeded=3, AboveThreshold=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_LUDWIG_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_LUDWIG_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_ETERNAL_LEADING"><code>LOC_DIPLO_MODIFIER_ETERNAL_LEADING</code></span></td>
+<td>GreatBuilders</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_EXPLORATION_OBSESSED</code></td>
+<td><code>AGENDA_HIGH_EXPLORATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_EXPLORATION_LEAD</code> (MinimumDelta=5, ExplorationRatio=1.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_EXPLORATION"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_EXPLORATION</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_EXPLORATION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_EXPLORATION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_FAITH</code></td>
+<td><code>AGENDA_HIGH_FAITH</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_FAITH, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_FAITH"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_FAITH</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_FAITH"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_FAITH</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NOFAVOR</code></td>
+<td><code>AGENDA_HIGH_FAVOR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_FAVOR_LEAD</code> (MinimumDelta=10, Ratio=1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_FAVOR"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_FAVOR</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_FAVOR"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_FAVOR</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_FOOD</code></td>
+<td><code>AGENDA_HIGH_FOOD</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_FOOD, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_FOOD"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_FOOD</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_FOOD"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_FOOD</code></span></td>
+<td>RulersOfTheSahara</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_HAPPINESS</code></td>
+<td><code>AGENDA_HIGH_HAPPINESS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_HAPPINESS_LEAD</code> (MinimumDelta=2, HappinessRatio=1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_HAPPINESS"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_HAPPINESS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_HAPPINESS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_HAPPINESS</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_INCOME</code></td>
+<td><code>AGENDA_HIGH_INCOME</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_INCOME_LEAD</code> (MinimumDelta=10, YieldRatio=1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_INCOME"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_INCOME</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_INCOME"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_INCOME</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_INDUSTRY</code></td>
+<td><code>AGENDA_HIGH_INDUSTRY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_PRODUCTION, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_INDUSTRY"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_INDUSTRY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_INDUSTRY"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_INDUSTRY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_INDUSTRIAL_REVOLUTION</code></td>
+<td><code>AGENDA_HIGH_INDUSTRY_ENGLAND</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_PRODUCTION, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_INDUSTRY"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_INDUSTRY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_INDUSTRY"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_INDUSTRY</code></span></td>
+<td>RulersOfEngland</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_LANDPOWER</code></td>
+<td><code>AGENDA_HIGH_LANDPOWER</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_MILITARY_STRENGTH_LEAD</code> (MinimumDelta=5, StrengthRatio=1.2, DomainType=DOMAIN_LAND)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_NADER_SHAH_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_NADER_SHAH_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_LANDPOWER_LEADING"><code>LOC_DIPLO_MODIFIER_LANDPOWER_LEADING</code></span></td>
+<td>GreatWarlords</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NUKES</code></td>
+<td><code>AGENDA_HIGH_NUKE_LOVE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_NUKE_LOVER</code> (UsedNukeValue=1, BuiltNukeValue=1, TotalScoreThreshold=0)</details><details><summary>only if owner: 1 requirement</summary><code>PLAYER_HAS_TECHNOLOGY</code> (TechnologyType=TECH_NUCLEAR_FISSION)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_NUKE_LOVE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_NUKE_LOVE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_NUKE_LOVE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_NUKE_LOVE</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_PILLAGE</code></td>
+<td><code>AGENDA_HIGH_PILLAGE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_PILLAGE_LEAD</code> (MinimumDelta=5, Ratio=1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_PILLAGE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_PILLAGE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_PILLAGE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_PILLAGE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_POPULATION</code></td>
+<td><code>AGENDA_HIGH_POPULATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_POPULATION_LEAD</code> (MinimumDelta=3, PopulationRatio=1.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_POPULATION"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_POPULATION</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_POPULATION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_POPULATION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CITY_STATE_PROTECTOR</code></td>
+<td><code>AGENDA_HIGH_PROTECT_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (NoUpperBound=true, LowerBound=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_PROTECTS_CITY_STATES"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_PROTECTS_CITY_STATES</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_PROTECTION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_PROTECTION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_SCIENCE</code></td>
+<td><code>AGENDA_HIGH_SCIENCE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_SCIENCE, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_SCIENCE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_SCIENCE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_SCIENCE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_SCIENCE</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_STANDING_ARMY</code></td>
+<td><code>AGENDA_HIGH_STANDING_ARMY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_MILITARY_STRENGTH_LEAD</code> (MinimumDelta=5, StrengthRatio=1.2, DomainType=DOMAIN_LAND)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_STANDING_ARMY"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_HIGH_STANDING_ARMY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_STANDING_ARMY"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_STANDING_ARMY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NOTOURISM</code></td>
+<td><code>AGENDA_HIGH_TOURISM</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_TOURISM_LEAD</code> (MinimumDelta=100, Ratio=1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_TOURISM"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_TOURISM</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_TOURISM"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_TOURISM</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_LION_OF_MALI</code></td>
+<td><code>AGENDA_HIGH_TOURISM_MALI</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_TOURISM_LEAD</code> (MinimumDelta=100, Ratio=1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_TOURISM"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_HIGH_TOURISM</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_TOURISM"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_TOURISM</code></span></td>
+<td>RulersOfTheSahara</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CLEAR_BANDIT_CAMPS</code></td>
+<td><code>AGENDA_IGNORES_BARBARIAN_CAMPS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CIVILIZED</code> (ClearedCampValue=1, IgnoredCampValue=1, CampToCityDistance=10, TotalScoreThreshold=1, BelowThreshold=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_IGNORES_BARBARIANS"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_IGNORES_BARBARIANS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_IGNORES_BARBARIANS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_IGNORES_BARBARIANS</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GALLIC_WARS</code></td>
+<td><code>AGENDA_IGNORES_BARBARIAN_CAMPS_CAESAR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CIVILIZED</code> (ClearedCampValue=1, IgnoredCampValue=1, CampToCityDistance=10, TotalScoreThreshold=1, BelowThreshold=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_IGNORES_BARBARIANS"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_IGNORES_BARBARIANS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_IGNORES_BARBARIANS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_IGNORES_BARBARIANS</code></span></td>
+<td>JuliusCaesar</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_INTOLERANT</code></td>
+<td><code>AGENDA_INTOLERANT_ENCROACHING_RELIGION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>CITY_CONVERTED</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_INTOLERANT_ENCROACHING_RELIGION"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_INTOLERANT_ENCROACHING_RELIGION</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_INTOLERANT_ENCROACHING"><code>LOC_DIPLO_MODIFIER_INTOLERANT_ENCROACHING</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_INTOLERANT</code></td>
+<td><code>AGENDA_INTOLERANT_SAME_RELIGION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_IS_SAME_RELIGION</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_INTOLERANT_SAME_RELIGION"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_INTOLERANT_SAME_RELIGION</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_INTOLERANT_SAME"><code>LOC_DIPLO_MODIFIER_INTOLERANT_SAME</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_IRON_CONFEDERACY</code></td>
+<td><code>AGENDA_IRON_CONFEDERACY_FEW_ALLIANCES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code><br><code>MaxValue</code> = <code>-8</code><br><code>IncrementTurns</code> = <code>4</code><br><code>IncrementValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 6 requirements</summary><code>PLAYER_HAS_MANY_ALLIANCES</code> (MinOwnerAlliances=1, ChecKForFewer=true)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_HAS_MANY_ALLIANCES</code> (MinOwnerAlliances=1, ChecKForFewer=true)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ROBERT_THE_BRUCE_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_ROBERT_THE_BRUCE_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_IRON_CONFEDERACY_FEW_ALLIANCES"><code>LOC_DIPLO_MODIFIER_IRON_CONFEDERACY_FEW_ALLIANCES</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_IRON_CONFEDERACY</code></td>
+<td><code>AGENDA_IRON_CONFEDERACY_MANY_ALLIANCES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code><br><code>MaxValue</code> = <code>8</code><br><code>ReductionTurns</code> = <code>4</code><br><code>ReductionValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 6 requirements</summary><code>PLAYER_HAS_MANY_ALLIANCES</code> (MinOwnerAlliances=1)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_HAS_MANY_ALLIANCES</code> (MinOwnerAlliances=1)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ROBERT_THE_BRUCE_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_ROBERT_THE_BRUCE_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_IRON_CONFEDERACY_MANY_ALLIANCES"><code>LOC_DIPLO_MODIFIER_IRON_CONFEDERACY_MANY_ALLIANCES</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_JOAO_EXPLORATION_AGENDA</code></td>
+<td><code>AGENDA_JOAO_HIGH_EXPLORATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_EXPLORATION_LEAD</code> (MinimumDelta=5, ExplorationRatio=1.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_JOAO_AGENDA_HIGH_EXPLORATION"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_JOAO_AGENDA_HIGH_EXPLORATION</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_JOAO_AGENDA_HIGH_EXPLORATION"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_JOAO_AGENDA_HIGH_EXPLORATION</code></span></td>
+<td>Portugal</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_JOAO_EXPLORATION_AGENDA</code></td>
+<td><code>AGENDA_JOAO_LOW_EXPLORATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_EXPLORATION_LEAD</code> (MinimumDelta=5, ExplorationRatio=-1.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_JOAO_AGENDA_LOW_EXPLORATION"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_JOAO_AGENDA_LOW_EXPLORATION</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_JOAO_AGENDA_LOW_EXPLORATION"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_JOAO_AGENDA_LOW_EXPLORATION</code></span></td>
+<td>Portugal</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_AIRPOWER</code></td>
+<td><code>AGENDA_LOW_AIRPOWER</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_HAS_TECHNOLOGY</code> (TechnologyType=TECH_FLIGHT)<br><code>PLAYER_MILITARY_STRENGTH_LEAD</code> (MinimumDelta=5, StrengthRatio=-1.2, DomainType=DOMAIN_AIR)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_AIRPOWER"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_AIRPOWER</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_AIRPOWER"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_AIRPOWER</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CULTURE</code></td>
+<td><code>AGENDA_LOW_CULTURE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_CULTURE, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_CULTURE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_CULTURE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_CULTURE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_CULTURE</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_NEW_ROME</code></td>
+<td><code>AGENDA_LOW_CULTURE_NEW_ROME</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_CULTURE, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_THEODORA"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_THEODORA</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_CULTURE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_CULTURE</code></span></td>
+<td>GreatBuilders</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NODIPLOVP</code></td>
+<td><code>AGENDA_LOW_DIPLOVP</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_DIPLO_VP_LEAD</code> (MinimumDelta=1, Ratio=-1.5)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_DIPLOVP"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_DIPLOVP</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_DIPLOVP"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_DIPLOVP</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_CITY_PLANNER</code></td>
+<td><code>AGENDA_LOW_DISTRICTS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_DISTRICT_THRESHOLD</code> (DistrictPercentThreshold=60, MinDistrictsNeeded=3, AboveThreshold=false)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_AMANITORE_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_AMANITORE_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CITY_PLANNER_LAGGING"><code>LOC_DIPLO_MODIFIER_CITY_PLANNER_LAGGING</code></span></td>
+<td>Nubia_Amanitore</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_ETERNAL</code></td>
+<td><code>AGENDA_LOW_DISTRICTS_LUDWIG</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_DISTRICT_THRESHOLD</code> (DistrictPercentThreshold=60, MinDistrictsNeeded=3, AboveThreshold=false)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_LUDWIG_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_LUDWIG_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_ETERNAL_LAGGING"><code>LOC_DIPLO_MODIFIER_ETERNAL_LAGGING</code></span></td>
+<td>GreatBuilders</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_EXPLORATION_OBSESSED</code></td>
+<td><code>AGENDA_LOW_EXPLORATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_EXPLORATION_LEAD</code> (MinimumDelta=5, ExplorationRatio=-1.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_EXPLORATION"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_EXPLORATION</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_EXPLORATION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_EXPLORATION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_FAITH</code></td>
+<td><code>AGENDA_LOW_FAITH</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_FAITH, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_FAITH"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_FAITH</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_FAITH"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_FAITH</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NOFAVOR</code></td>
+<td><code>AGENDA_LOW_FAVOR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_FAVOR_LEAD</code> (MinimumDelta=10, Ratio=-1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_FAVOR"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_FAVOR</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_FAVOR"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_FAVOR</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_FOOD</code></td>
+<td><code>AGENDA_LOW_FOOD</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_FOOD, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_FOOD"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_FOOD</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_FOOD"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_FOOD</code></span></td>
+<td>RulersOfTheSahara</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_HAPPINESS</code></td>
+<td><code>AGENDA_LOW_HAPPINESS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_HAPPINESS_LEAD</code> (MinimumDelta=2, HappinessRatio=-1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_HAPPINESS"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_HAPPINESS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_HAPPINESS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_HAPPINESS</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_INCOME</code></td>
+<td><code>AGENDA_LOW_INCOME</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_INCOME_LEAD</code> (MinimumDelta=10, YieldRatio=-1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_INCOME"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_INCOME</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_INCOME"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_INCOME</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_INDUSTRY</code></td>
+<td><code>AGENDA_LOW_INDUSTRY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_PRODUCTION, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_INDUSTRY"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_INDUSTRY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_INDUSTRY"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_INDUSTRY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_INDUSTRIAL_REVOLUTION</code></td>
+<td><code>AGENDA_LOW_INDUSTRY_ENGLAND</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_PRODUCTION, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_INDUSTRY"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_INDUSTRY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_INDUSTRY"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_INDUSTRY</code></span></td>
+<td>RulersOfEngland</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_LANDPOWER</code></td>
+<td><code>AGENDA_LOW_LANDPOWER</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_MILITARY_STRENGTH_LEAD</code> (MinimumDelta=5, StrengthRatio=-1.2, DomainType=DOMAIN_LAND)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_NADER_SHAH_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_NADER_SHAH_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_LANDPOWER_LAGGING"><code>LOC_DIPLO_MODIFIER_LANDPOWER_LAGGING</code></span></td>
+<td>GreatWarlords</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NUKES</code></td>
+<td><code>AGENDA_LOW_NUKE_LOVE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_NUKE_LOVER</code> (UsedNukeValue=1, BuiltNukeValue=1, TotalScoreThreshold=1, BelowThreshold=true)</details><details><summary>only if owner: 1 requirement</summary><code>PLAYER_HAS_TECHNOLOGY</code> (TechnologyType=TECH_NUCLEAR_FISSION)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_NUKE_LOVE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_NUKE_LOVE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_NUKE_LOVE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_NUKE_LOVE</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_PILLAGE</code></td>
+<td><code>AGENDA_LOW_PILLAGE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_PILLAGE_LEAD</code> (MinimumDelta=5, Ratio=-1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_PILLAGE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_PILLAGE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_PILLAGE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_PILLAGE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_POPULATION</code></td>
+<td><code>AGENDA_LOW_POPULATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_POPULATION_LEAD</code> (MinimumDelta=3, PopulationRatio=-1.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_POPULATION"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_POPULATION</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_POPULATION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_POPULATION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_SCIENCE</code></td>
+<td><code>AGENDA_LOW_SCIENCE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_SCIENCE, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_SCIENCE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_SCIENCE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_SCIENCE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_SCIENCE</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_STANDING_ARMY</code></td>
+<td><code>AGENDA_LOW_STANDING_ARMY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_MILITARY_STRENGTH_LEAD</code> (MinimumDelta=5, StrengthRatio=-1.2, DomainType=DOMAIN_LAND)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_STANDING_ARMY"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_LOW_STANDING_ARMY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_STANDING_ARMY"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_STANDING_ARMY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_NOTOURISM</code></td>
+<td><code>AGENDA_LOW_TOURISM</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_TOURISM_LEAD</code> (MinimumDelta=100, Ratio=-1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_TOURISM"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_TOURISM</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_TOURISM"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_TOURISM</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_LION_OF_MALI</code></td>
+<td><code>AGENDA_LOW_TOURISM_MALI</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_TOURISM_LEAD</code> (MinimumDelta=100, Ratio=-1.3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_TOURISM"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_LOW_TOURISM</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_TOURISM"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_LOW_TOURISM</code></span></td>
+<td>RulersOfTheSahara</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_MAURYA_EMPIRE</code></td>
+<td><code>AGENDA_MAURYA_EMPIRE_NEIGHBORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-5</code><br><code>MaxValue</code> = <code>-25</code><br><code>IncrementValue</code> = <code>-1</code><br><code>IncrementTurns</code> = <code>10</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_IS_NEIGHBOR</code><br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_EXIT_LEADER_CHANDRAGUPTA_ANY"><code>LOC_DIPLO_WARNING_EXIT_LEADER_CHANDRAGUPTA_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CHANDRAGUPTA_NEIGHBOR"><code>LOC_DIPLO_MODIFIER_CHANDRAGUPTA_NEIGHBOR</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_MAURYA_EMPIRE</code></td>
+<td><code>AGENDA_MAURYA_EMPIRE_NOT_NEIGHBORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>5</code><br><code>MaxValue</code> = <code>15</code><br><code>IncrementValue</code> = <code>1</code><br><code>IncrementTurns</code> = <code>5</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br>not <code>PLAYER_IS_NEIGHBOR</code><br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_EXIT_LEADER_CHANDRAGUPTA_ANY"><code>LOC_DIPLO_KUDO_EXIT_LEADER_CHANDRAGUPTA_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CHANDRAGUPTA_NOT_NEIGHBOR"><code>LOC_DIPLO_MODIFIER_CHANDRAGUPTA_NOT_NEIGHBOR</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CITY_STATE_PROTECTOR</code></td>
+<td><code>AGENDA_MED_ATTACK_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-3</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (UpperBound=-1, LowerBound=-1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_AGGRESSION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_AGGRESSION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_CITY_STATE_PROTECTOR</code></td>
+<td><code>AGENDA_MED_PROTECT_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>3</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (UpperBound=1, LowerBound=1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_PROTECTION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_PROTECTION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_CITY_STATE_ALLY</code></td>
+<td><code>AGENDA_MODIFIER_COMPETING_MINORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_COMPETING_MINORS</code> (PercentCompeting=50)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_MODIFIER_COMPETING_MINORS"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_MODIFIER_COMPETING_MINORS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CITY_STATE_COMPETING"><code>LOC_DIPLO_MODIFIER_CITY_STATE_COMPETING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_IRON_CROWN</code></td>
+<td><code>AGENDA_MODIFIER_CONQUERING_ALLYING_MINORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-5</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_CONQUERING_ALLYING_MINORS</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_BARBAROSSA_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_BARBAROSSA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_IRON_CROWN_INVOLVED"><code>LOC_DIPLO_MODIFIER_IRON_CROWN_INVOLVED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_DELIAN_LEAGUE</code></td>
+<td><code>AGENDA_MODIFIER_DELIAN_COMPETING_MINORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_COMPETING_MINORS</code> (PercentCompeting=50)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_PERICLES_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_PERICLES_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DELIAN_COMPETING"><code>LOC_DIPLO_MODIFIER_DELIAN_COMPETING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_DELIAN_LEAGUE</code></td>
+<td><code>AGENDA_MODIFIER_DELIAN_NOT_COMPETING_MINORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_NOT_COMPETING_MINORS</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_PERICLES_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_PERICLES_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DELIAN_NOT_COMPETING"><code>LOC_DIPLO_MODIFIER_DELIAN_NOT_COMPETING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_COUNTER_REFORMER</code></td>
+<td><code>AGENDA_MODIFIER_ENCROACHING_RELIGION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>CITY_CONVERTED</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_PHILIP_II_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_PHILIP_II_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_COUNTER_REFORMER_ENCROACHING"><code>LOC_DIPLO_MODIFIER_COUNTER_REFORMER_ENCROACHING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GREAT_PERSON_ADVOCATE</code></td>
+<td><code>AGENDA_MODIFIER_GREAT_PERSON_ADVOCATE_LAG</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_GOT_GREAT_PERSON</code> (GreatPersonRatio=-1.2, MinimumDelta=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_ AGENDA_GREAT_PERSON_ADVOCATE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_ AGENDA_GREAT_PERSON_ADVOCATE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_GREAT_PEOPLE_ADVOCATE_LAGGING"><code>LOC_DIPLO_MODIFIER_GREAT_PEOPLE_ADVOCATE_LAGGING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GREAT_PERSON_ADVOCATE</code></td>
+<td><code>AGENDA_MODIFIER_GREAT_PERSON_ADVOCATE_LEAD</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_GOT_GREAT_PERSON</code> (GreatPersonRatio=1.2, MinimumDelta=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_GREAT_PERSON_ADVOCATE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_GREAT_PERSON_ADVOCATE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_GREAT_PEOPLE_ADVOCATE_LEADING"><code>LOC_DIPLO_MODIFIER_GREAT_PEOPLE_ADVOCATE_LEADING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_LADY_SIX_SKY</code></td>
+<td><code>AGENDA_MODIFIER_LADY_SIX_SKY_NEIGHBORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_IS_NEIGHBOR</code><br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_EXIT_LEADER_LADY_SIX_SKY_ANY"><code>LOC_DIPLO_WARNING_EXIT_LEADER_LADY_SIX_SKY_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_LADY_SIX_SKY_NEIGHBOR"><code>LOC_DIPLO_MODIFIER_LADY_SIX_SKY_NEIGHBOR</code></span></td>
+<td>GranColombia_Maya</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_LADY_SIX_SKY</code></td>
+<td><code>AGENDA_MODIFIER_LADY_SIX_SKY_NOT_NEIGHBORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br>not <code>PLAYER_IS_NEIGHBOR</code><br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_EXIT_LEADER_LADY_SIX_SKY_ANY"><code>LOC_DIPLO_KUDO_EXIT_LEADER_LADY_SIX_SKY_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_LADY_SIX_SKY_NOT_NEIGHBOR"><code>LOC_DIPLO_MODIFIER_LADY_SIX_SKY_NOT_NEIGHBOR</code></span></td>
+<td>GranColombia_Maya</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GREAT_PERSON_OBSESSED</code></td>
+<td><code>AGENDA_MODIFIER_LAGS_GREAT_PEOPLE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_GOT_GREAT_PERSON</code> (GreatPersonRatio=-1.2, MinimumDelta=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_PEDRO_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_PEDRO_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_GREAT_PEOPLE_OBSESSED_LAGGING"><code>LOC_DIPLO_MODIFIER_GREAT_PEOPLE_OBSESSED_LAGGING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_WESTERNIZER</code></td>
+<td><code>AGENDA_MODIFIER_LAGS_PROGRESS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-7</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_FINISHED_RESEARCH</code> (TechCivicDifferential=-3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_PETER_GREAT_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_PETER_GREAT_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_WESTERNIZER_LAGGING"><code>LOC_DIPLO_MODIFIER_WESTERNIZER_LAGGING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SEJONG</code></td>
+<td><code>AGENDA_MODIFIER_LAGS_PROGRESS_SEJONG</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>7</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_FINISHED_RESEARCH</code> (TechCivicDifferential=-3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_SEJONG_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_SEJONG_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SEJONG_LAGGING"><code>LOC_DIPLO_MODIFIER_SEJONG_LAGGING</code></span></td>
+<td>GreatBuilders</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_WONDER_OBSESSED</code></td>
+<td><code>AGENDA_MODIFIER_LAGS_WONDERS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_BUILT_WONDER</code> (WonderRatio=-1.2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_QIN_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_QIN_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_WONDER_OBSESSED_LAGGING"><code>LOC_DIPLO_MODIFIER_WONDER_OBSESSED_LAGGING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_GREAT_PERSON_OBSESSED</code></td>
+<td><code>AGENDA_MODIFIER_LEADS_GREAT_PEOPLE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_GOT_GREAT_PERSON</code> (GreatPersonRatio=1.2, MinimumDelta=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_PEDRO_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_PEDRO_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_GREAT_PEOPLE_OBSESSED_LEADING"><code>LOC_DIPLO_MODIFIER_GREAT_PEOPLE_OBSESSED_LEADING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_WESTERNIZER</code></td>
+<td><code>AGENDA_MODIFIER_LEADS_PROGRESS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>7</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_FINISHED_RESEARCH</code> (TechCivicDifferential=3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_PETER_GREAT_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_PETER_GREAT_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_WESTERNIZER_LEADING"><code>LOC_DIPLO_MODIFIER_WESTERNIZER_LEADING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SEJONG</code></td>
+<td><code>AGENDA_MODIFIER_LEADS_PROGRESS_SEJONG</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-7</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_FINISHED_RESEARCH</code> (TechCivicDifferential=3)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_SEJONG_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_SEJONG_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SEJONG_LEADING"><code>LOC_DIPLO_MODIFIER_SEJONG_LEADING</code></span></td>
+<td>GreatBuilders</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_WONDER_OBSESSED</code></td>
+<td><code>AGENDA_MODIFIER_LEADS_WONDERS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_BUILT_WONDER</code> (WonderRatio=1.2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_QIN_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_QIN_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_WONDER_OBSESSED_LEADING"><code>LOC_DIPLO_MODIFIER_WONDER_OBSESSED_LEADING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>AGENDA_MODIFIER_NEVER_AT_WAR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-4</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code><br>not <code>PLAYER_AT_WAR_AND_HAS_MET</code><br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_GORGO_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_GORGO_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_WITH_SHIELD_NEVER_WARRED"><code>LOC_DIPLO_MODIFIER_WITH_SHIELD_NEVER_WARRED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_CITY_STATE_ALLY</code></td>
+<td><code>AGENDA_MODIFIER_NOT_COMPETING_MINORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>12</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_NOT_COMPETING_MINORS</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_MODIFIER_NOT_COMPETING_MINORS"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_MODIFIER_NOT_COMPETING_MINORS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CITY_STATE_NOT_COMPETING"><code>LOC_DIPLO_MODIFIER_CITY_STATE_NOT_COMPETING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_IRON_CROWN</code></td>
+<td><code>AGENDA_MODIFIER_NOT_INVOLVED_MINORS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_NOT_INVOLVED_MINORS</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_BARBAROSSA_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_BARBAROSSA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_IRON_CROWN_NOT_INVOLVED"><code>LOC_DIPLO_MODIFIER_IRON_CROWN_NOT_INVOLVED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PEACEKEEPER</code></td>
+<td><code>AGENDA_MODIFIER_NOT_WARMONGER</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>5</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_IS_NOT_WARMONGER</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_GANDHI_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_GANDHI_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_PEACEKEEPER_NOT_WARMONGER"><code>LOC_DIPLO_MODIFIER_PEACEKEEPER_NOT_WARMONGER</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_ENTHUSIASTIC_DISCIPLE</code></td>
+<td><code>AGENDA_MODIFIER_RELIGION_NOT_RECEIVED</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-7</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_RELIGION_NOT_RECEIVED</code> (FoundingDelay=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_MVEMBA_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_MVEMBA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DISCIPLE_NOT_RECEIVED"><code>LOC_DIPLO_MODIFIER_DISCIPLE_NOT_RECEIVED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_ENTHUSIASTIC_DISCIPLE</code></td>
+<td><code>AGENDA_MODIFIER_RELIGION_RECEIVED</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_RELIGION_RECEIVED</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_MVEMBA_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_MVEMBA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DISCIPLE_RECEIVED"><code>LOC_DIPLO_MODIFIER_DISCIPLE_RECEIVED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_COUNTER_REFORMER</code></td>
+<td><code>AGENDA_MODIFIER_SAME_RELIGION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_IS_SAME_RELIGION</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_PHILIP_II_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_PHILIP_II_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_COUNTER_REFORMER_SAME"><code>LOC_DIPLO_MODIFIER_COUNTER_REFORMER_SAME</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PEACEKEEPER</code></td>
+<td><code>AGENDA_MODIFIER_WARMONGER</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code><br><code>REQUIREMENTSET_IS_MET</code> (RequirementSetId=WARMONGER_TRIGGERS, OnlyOwnersCity=False)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_GANDHI_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_GANDHI_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_PEACEKEEPER_WARMONGER"><code>LOC_DIPLO_MODIFIER_PEACEKEEPER_WARMONGER</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_WONDER_ADVOCATE</code></td>
+<td><code>AGENDA_MODIFIER_WONDER_ADVOCATE_LAG</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_BUILT_WONDER</code> (WonderRatio=-1.2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_WONDER_ADVOCATE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_WONDER_ADVOCATE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_WONDER_ADVOCATE_LAGGING"><code>LOC_DIPLO_MODIFIER_WONDER_ADVOCATE_LAGGING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_WONDER_ADVOCATE</code></td>
+<td><code>AGENDA_MODIFIER_WONDER_ADVOCATE_LEAD</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_BUILT_WONDER</code> (WonderRatio=1.2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_WONDER_ADVOCATE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_WONDER_ADVOCATE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_WONDER_ADVOCATE_LEADING"><code>LOC_DIPLO_MODIFIER_WONDER_ADVOCATE_LEADING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_NARIKALA_FORTRESS</code></td>
+<td><code>AGENDA_NARIKALA_FORTRESS_HIGH_WALLS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 6 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_AVERAGE_WALL_LEVEL_THRESHOLD</code> (AverageWallLevelThreshold=1.0, AboveThreshold=true)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_AVERAGE_WALL_LEVEL_THRESHOLD</code> (AverageWallLevelThreshold=1.0, AboveThreshold=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_TAMAR_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_TAMAR_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_NARIKALA_FORTRESS_HIGH_WALLS"><code>LOC_DIPLO_MODIFIER_NARIKALA_FORTRESS_HIGH_WALLS</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_NARIKALA_FORTRESS</code></td>
+<td><code>AGENDA_NARIKALA_FORTRESS_LOW_WALLS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 6 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_AVERAGE_WALL_LEVEL_THRESHOLD</code> (AverageWallLevelThreshold=0.5, AboveThreshold=false)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_AVERAGE_WALL_LEVEL_THRESHOLD</code> (AverageWallLevelThreshold=0.5, AboveThreshold=false)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_TAMAR_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_TAMAR_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_NARIKALA_FORTRESS_LOW_WALLS"><code>LOC_DIPLO_MODIFIER_NARIKALA_FORTRESS_LOW_WALLS</code></span></td>
+<td>Expansion1</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PERPETUALLY_ON_GUARD</code></td>
+<td><code>AGENDA_PERPETUALLY_ON_GUARD_LIBERATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>15</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CITY_LIBERATED</code> (OnlyOwnersCity=False)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_JOHN_CURTIN_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_JOHN_CURTIN_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_ON_GUARD_LIBERATE"><code>LOC_DIPLO_MODIFIER_ON_GUARD_LIBERATE</code></span></td>
+<td>Australia</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAGA</code></td>
+<td><code>AGENDA_SAGA_HIGH_ATTACK_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (NoLowerBound=true, UpperBound=-2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_CITY_STATES"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_CITY_STATES</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_AGGRESSION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_AGGRESSION</code></span></td>
+<td>RulersOfEngland</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAGA</code></td>
+<td><code>AGENDA_SAGA_HIGH_PROTECT_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (NoUpperBound=true, LowerBound=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_PROTECTS_CITY_STATES"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_PROTECTS_CITY_STATES</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_PROTECTION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_HIGH_CITY_STATE_PROTECTION</code></span></td>
+<td>RulersOfEngland</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAGA</code></td>
+<td><code>AGENDA_SAGA_MED_ATTACK_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-3</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (UpperBound=-1, LowerBound=-1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_CITY_STATES"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_CITY_STATES</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_AGGRESSION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_AGGRESSION</code></span></td>
+<td>RulersOfEngland</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAGA</code></td>
+<td><code>AGENDA_SAGA_MED_PROTECT_CITY_STATES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>3</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CITY_STATE_PROTECTOR</code> (UpperBound=1, LowerBound=1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_PROTECTS_CITY_STATES"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_PROTECTS_CITY_STATES</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_PROTECTION"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_MED_CITY_STATE_PROTECTION</code></span></td>
+<td>RulersOfEngland</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAINT</code></td>
+<td><code>AGENDA_SAINT_HIGH_FAITH</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_FAITH, YieldRatio=1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_JADWIGA_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_JADWIGA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SAINT_HIGH_FAITH"><code>LOC_DIPLO_MODIFIER_SAINT_HIGH_FAITH</code></span></td>
+<td>Poland_Jadwiga</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAINT</code></td>
+<td><code>AGENDA_SAINT_LOW_FAITH</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_YIELD_LEAD</code> (MinimumDelta=5, YieldType=YIELD_FAITH, YieldRatio=-1.15)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_JADWIGA_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_JADWIGA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SAINT_LOW_FAITH"><code>LOC_DIPLO_MODIFIER_SAINT_LOW_FAITH</code></span></td>
+<td>Poland_Jadwiga</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_PREFER_SAME_GOVERNMENT</code></td>
+<td><code>AGENDA_SAME_GOVERNMENT</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_HAS_SAME_GOVERNMENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SAME_GOVERNMENT"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SAME_GOVERNMENT</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SAME_GOVERNMENT"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SAME_GOVERNMENT</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_LINCOLN</code></td>
+<td><code>AGENDA_SAME_GOVERNMENT_LINCOLN</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_HAS_SAME_GOVERNMENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SAME_GOVERNMENT"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SAME_GOVERNMENT</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SAME_GOVERNMENT"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SAME_GOVERNMENT</code></span></td>
+<td>GreatNegotiators</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAPA_INCA</code></td>
+<td><code>AGENDA_SAPA_INCA_HIGH_MOUNTAIN_CITIES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_MOUNTAIN_CITIES</code> (MinimumCities=3, Percentage=65, BelowPercentage=false, DistanceToMountain=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_PACHACUTI_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_PACHACUTI_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SAPA_INCA_HIGH_MOUNTAIN_CITIES"><code>LOC_DIPLO_MODIFIER_SAPA_INCA_HIGH_MOUNTAIN_CITIES</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SAPA_INCA</code></td>
+<td><code>AGENDA_SAPA_INCA_LOW_MOUNTAIN_CITIES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_MOUNTAIN_CITIES</code> (MinimumCities=3, Percentage=35, BelowPercentage=true, DistanceToMountain=2)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_PACHACUTI_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_PACHACUTI_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SAPA_INCA_LOW_MOUNTAIN_CITIES"><code>LOC_DIPLO_MODIFIER_SAPA_INCA_LOW_MOUNTAIN_CITIES</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SICILIAN_WARS</code></td>
+<td><code>AGENDA_SICILIAN_WARS_HIGH_COASTAL_CITIES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_COASTAL_CITIES</code> (MinimumCities=3, Percentage=70, BelowPercentage=false)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_DIDO_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_DIDO_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SICILIAN_WARS_HIGH_COASTAL_CITIES"><code>LOC_DIPLO_MODIFIER_SICILIAN_WARS_HIGH_COASTAL_CITIES</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SICILIAN_WARS</code></td>
+<td><code>AGENDA_SICILIAN_WARS_LOW_COASTAL_CITES</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_COASTAL_CITIES</code> (MinimumCities=3, Percentage=40, BelowPercentage=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_DIDO_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_DIDO_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SICILIAN_WARS_LOW_COASTAL_CITES"><code>LOC_DIPLO_MODIFIER_SICILIAN_WARS_LOW_COASTAL_CITES</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SIHAI</code></td>
+<td><code>AGENDA_SIHAI_CLEARS_BARBARIAN_CAMPS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code><br><code>PLAYER_CIVILIZED</code> (ClearedCampValue=1, IgnoredCampValue=1, CampToCityDistance=10, TotalScoreThreshold=0)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_BARBARIANS"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_ATTACKS_BARBARIANS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SIHAI_ATTACKS_BARBARIANS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SIHAI_ATTACKS_BARBARIANS</code></span></td>
+<td>RulersOfChina</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SIHAI</code></td>
+<td><code>AGENDA_SIHAI_IGNORES_BARBARIAN_CAMPS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_CIVILIZED</code> (ClearedCampValue=1, IgnoredCampValue=1, CampToCityDistance=10, TotalScoreThreshold=1, BelowThreshold=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDOS_LEADER_ANY_REASON_AGENDA_IGNORES_BARBARIANS"><code>LOC_DIPLO_KUDOS_LEADER_ANY_REASON_AGENDA_IGNORES_BARBARIANS</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SIHAI_IGNORES_BARBARIANS"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SIHAI_IGNORES_BARBARIANS</code></span></td>
+<td>RulersOfChina</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SULTAN</code></td>
+<td><code>AGENDA_SULTAN_RELIGION_NOT_RECEIVED</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>7</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_RELIGION_NOT_RECEIVED</code> (FoundingDelay=10)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDOS_LEADER_SALADIN_ALT_REASON_ANY"><code>LOC_DIPLO_KUDOS_LEADER_SALADIN_ALT_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SULTAN_NOT_RECEIVED"><code>LOC_DIPLO_MODIFIER_SULTAN_NOT_RECEIVED</code></span></td>
+<td>GreatNegotiators</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SULTAN</code></td>
+<td><code>AGENDA_SULTAN_RELIGION_RECEIVED</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_RELIGION_RECEIVED</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_SALADIN_ALT_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_SALADIN_ALT_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SULTAN_RECEIVED"><code>LOC_DIPLO_MODIFIER_SULTAN_RECEIVED</code></span></td>
+<td>GreatNegotiators</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SUN_NEVER_SETS</code></td>
+<td><code>AGENDA_SUN_SETS_HOME_CONTINENT</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_SHARES_HOME_CONTINENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_VICTORIA_REASON_ANY"><code>LOC_DIPLO_KUDO_LEADER_VICTORIA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SUN_SETS_HOME_CONTINENT"><code>LOC_DIPLO_MODIFIER_SUN_SETS_HOME_CONTINENT</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SUN_NEVER_SETS</code></td>
+<td><code>AGENDA_SUN_SETS_NEW_CONTINENT</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-5</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=10)<br><code>PLAYER_ON_NON_HOME_CONTINENT</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_VICTORIA_REASON_ANY"><code>LOC_DIPLO_WARNING_LEADER_VICTORIA_REASON_ANY</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SUN_SETS_NEW_CONTINENT"><code>LOC_DIPLO_MODIFIER_SUN_SETS_NEW_CONTINENT</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SYCOPHANT</code></td>
+<td><code>AGENDA_SYCOPHANT_DARK_AGE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>PLAYER_HAS_DARK_AGE</code><br><code>PLAYER_HAS_MET</code><br><code>PLAYER_HAS_DARK_AGE</code><br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_SYCOPHANT_DARK_AGE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_SYCOPHANT_DARK_AGE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SYCOPHANT_DARK_AGE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SYCOPHANT_DARK_AGE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SYCOPHANT</code></td>
+<td><code>AGENDA_SYCOPHANT_GOLDEN_AGE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>PLAYER_HAS_GOLDEN_AGE</code><br><code>PLAYER_HAS_MET</code><br><code>PLAYER_HAS_GOLDEN_AGE</code><br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SYCOPHANT_GOLDEN_AGE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SYCOPHANT_GOLDEN_AGE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SYCOPHANT_GOLDEN_AGE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SYCOPHANT_GOLDEN_AGE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SYMPATHIZER</code></td>
+<td><code>AGENDA_SYMPATHIZER_DARK_AGE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>PLAYER_HAS_DARK_AGE</code><br><code>PLAYER_HAS_MET</code><br><code>PLAYER_HAS_DARK_AGE</code><br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SYMPATHIZER_DARK_AGE"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_SYMPATHIZER_DARK_AGE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SYMPATHIZER_DARK_AGE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SYMPATHIZER_DARK_AGE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_SYMPATHIZER</code></td>
+<td><code>AGENDA_SYMPATHIZER_GOLDEN_AGE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-6</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>PLAYER_HAS_GOLDEN_AGE</code><br><code>PLAYER_HAS_MET</code><br><code>PLAYER_HAS_GOLDEN_AGE</code><br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_SYMPATHIZER_GOLDEN_AGE"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_SYMPATHIZER_GOLDEN_AGE</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_SYMPATHIZER_GOLDEN_AGE"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_SYMPATHIZER_GOLDEN_AGE</code></span></td>
+<td>Expansion2</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_YINDING</code></td>
+<td><code>AGENDA_YINDING_NEGATIVE_INCOME</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-12</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br>not <code>PLAYER_INCOME_LEAD</code> (MinimumDelta=0, YieldRatio=0.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_NEGATIVE_INCOME"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_NEGATIVE_INCOME</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_NEGATIVE_INCOME"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_NEGATIVE_INCOME</code></span></td>
+<td>RulersOfChina</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_AGENDA_YINDING</code></td>
+<td><code>AGENDA_YINDING_POSITIVE_INCOME</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>3</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_MET_X_TURNS_AGO</code> (TurnsAgo=30)<br><code>PLAYER_INCOME_LEAD</code> (MinimumDelta=0, YieldRatio=0.1)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_POSITIVE_INCOME"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_POSITIVE_INCOME</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DESCRIPTION_POSITIVE_INCOME"><code>LOC_DIPLO_MODIFIER_DESCRIPTION_POSITIVE_INCOME</code></span></td>
+<td>RulersOfChina</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMACY_JOINT_WAR</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>5</code><br><code>ReductionTurns</code> = <code>20</code><br><code>ReductionValue</code> = <code>1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>PLAYER_DECLARED_WAR</code> (WarType=JOINT_WAR)<br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_JOINT_WAR"><code>LOC_DIPLO_MODIFIER_JOINT_WAR</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMACY_PEACE</code><br><code>MODIFIER_PLAYER_DIPLOMACY_PEACEFUL</code></td>
+<td><code>InitialValue</code> = <code>0</code><br><code>MaxValue</code> = <code>5</code><br><code>IncrementValue</code> = <code>1</code><br><code>IncrementTurns</code> = <code>25</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_PEACE"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_PEACE</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMACY_RESIDENT_EMBASSY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>5</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>RESIDENT_EMBASSY</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_RESIDENT_EMBASSY"><code>LOC_DIPLO_MODIFIER_RESIDENT_EMBASSY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_ALLY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>18</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>ALLY</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_ALLY"><code>LOC_DIPLO_MODIFIER_ALLY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_CLOSE_TO_VICTORY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>MaxValue</code> = <code>-500</code><br><code>InitialValue</code> = <code>-1</code><br><code>IncrementTurns</code> = <code>2</code><br><code>IncrementValue</code> = <code>-1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code><br><code>PLAYER_IS_CLOSE_TO_VICTORY</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CLOSE_TO_VICTORY"><code>LOC_DIPLO_MODIFIER_CLOSE_TO_VICTORY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_CONVERTED_CITY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-9</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code><br><code>DiplomacyKey</code> = <code>WARNING_STOP_CONVERTING_MY_CITIES</code><br><code>MessageThrottle</code> = <code>20</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>CITY_CONVERTED</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CITY_CONVERTED"><code>LOC_DIPLO_MODIFIER_CITY_CONVERTED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_CULTURE_BOMBED</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-10</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code><br><code>Accumulates</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>CULTURE_BOMBED</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CULTURE_BOMBED"><code>LOC_DIPLO_MODIFIER_CULTURE_BOMBED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_DECLARED_FRIEND</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>9</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>DECLARED_FRIEND</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DECLARED_FRIEND"><code>LOC_DIPLO_MODIFIER_DECLARED_FRIEND</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_DEFENSIVE_PACT</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>9</code><br><code>ReductionTurns</code> = <code>-1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 5 requirements</summary><code>DEFENSIVE_PACT</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br>not <code>ALLY</code><br>not <code>ALLY</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DEFENSIVE_PACT"><code>LOC_DIPLO_MODIFIER_DEFENSIVE_PACT</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_DELEGATION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>3</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>DELEGATION</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DELEGATION"><code>LOC_DIPLO_MODIFIER_DELEGATION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_DEMAND</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-5</code><br><code>Accumulates</code> = <code>true</code><br><code>ReductionTurns</code> = <code>5</code><br><code>ReductionValue</code> = <code>1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 1 requirement</summary><code>DEMAND_RECEIVED</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DEMAND"><code>LOC_DIPLO_MODIFIER_DEMAND</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_DENOUNCED</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-9</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>DENOUNCED</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_DENOUNCED"><code>LOC_DIPLO_MODIFIER_DENOUNCED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_DIFFERENT_SECRET_SOCIETY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-5</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>PLAYER_IS_DIFFERENT_SECRET_SOCIETY</code><br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_DIFFERENT_SECRET_SOCIETY"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_DIFFERENT_SECRET_SOCIETY</code></span><br><span class="loc" data-loc="LOC_DIPLO_WARNING_LEADER_ANY_REASON_STANDARD_DIPLOMATIC_DIFFERENT_SECRET_SOCIETY"><code>LOC_DIPLO_WARNING_LEADER_ANY_REASON_STANDARD_DIPLOMATIC_DIFFERENT_SECRET_SOCIETY</code></span></td>
+<td>Ethiopia</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_HAD_FRIENDLY_MEETING</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>2</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>HAD_FRIENDLY_MEETING</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_HAD_FRIENDLY_MEETING"><code>LOC_DIPLO_MODIFIER_HAD_FRIENDLY_MEETING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_LIBERATED_CITY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>5</code><br><code>ReductionTurns</code> = <code>20</code><br><code>ReductionValue</code> = <code>1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CITY_LIBERATED</code> (OnlyOwnersCity=False)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_LIBERATED_CITY"><code>LOC_DIPLO_MODIFIER_LIBERATED_CITY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_LIBERATED_MY_CITY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>20</code><br><code>ReductionTurns</code> = <code>20</code><br><code>ReductionValue</code> = <code>1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>CITY_LIBERATED</code> (OnlyOwnersCity=True)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_LIBERATED_MY_CITY"><code>LOC_DIPLO_MODIFIER_LIBERATED_MY_CITY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_NEAR_BORDER_WARNING</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-2</code><br><code>ReductionTurns</code> = <code>10</code><br><code>ReductionValue</code> = <code>-1</code><br><code>DiplomacyKey</code> = <code>WARNING_TOO_MANY_TROOPS_NEAR_ME</code><br><code>MessageThrottle</code> = <code>20</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>NEAR_CULTURE_BORDER</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br>not <code>ALLY</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_NEAR_BORDER_WARNING"><code>LOC_DIPLO_MODIFIER_NEAR_BORDER_WARNING</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_OCCUPIED_CITY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-18</code><br><code>OnlyOwnersCity</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>CITY_OCCUPIED</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CITY_OCCUPIED"><code>LOC_DIPLO_MODIFIER_CITY_OCCUPIED</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_OCCUPIED_FRIENDLY_CITY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-9</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>CITY_OCCUPIED_FRIEND</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_CITY_OCCUPIED_FRIEND"><code>LOC_DIPLO_MODIFIER_CITY_OCCUPIED_FRIEND</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_OPEN_BORDERS</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>3</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 3 requirements</summary><code>OPEN_BORDERS</code><br><code>PLAYER_IS_AT_PEACE</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_OPEN_BORDERS"><code>LOC_DIPLO_MODIFIER_OPEN_BORDERS</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_RAZED_MY_CITY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>-20</code><br><code>ReductionTurns</code> = <code>20</code><br><code>Accumulates</code> = <code>true</code><br><code>ReductionValue</code> = <code>-1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>CITY_RAZED</code> (OnlyOwnersCity=True)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_RAZED_MY_CITY"><code>LOC_DIPLO_MODIFIER_RAZED_MY_CITY</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_RELIGION_ACCEPT_CONVERSION</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>5</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>PLAYER_FOUNDED_OUR_RELIGION</code><br><code>FOUNDED_NO_RELIGION</code><br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SHARED_RELIGION"><code>LOC_DIPLO_MODIFIER_SHARED_RELIGION</code></span></td>
+<td>Base</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_SAME_SECRET_SOCIETY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>8</code><br><code>HiddenAgenda</code> = <code>true</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 2 requirements</summary><code>PLAYER_IS_SAME_SECRET_SOCIETY</code><br><code>PLAYER_HAS_MET</code></details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_SAME_SECRET_SOCIETY"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_SAME_SECRET_SOCIETY</code></span><br><span class="loc" data-loc="LOC_DIPLO_KUDO_LEADER_ANY_REASON_STANDARD_DIPLOMATIC_SAME_SECRET_SOCIETY"><code>LOC_DIPLO_KUDO_LEADER_ANY_REASON_STANDARD_DIPLOMATIC_SAME_SECRET_SOCIETY</code></span></td>
+<td>Ethiopia</td>
+</tr>
+<tr>
+<td><strong>Trait</strong> <code>TRAIT_LEADER_MAJOR_CIV</code></td>
+<td><code>STANDARD_DIPLOMATIC_SHARED_EMERGENCY</code><br><code>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</code></td>
+<td><code>InitialValue</code> = <code>4</code><br><code>ReductionTurns</code> = <code>6</code><br><code>ReductionValue</code> = <code>-1</code></td>
+<td><code>MAJOR_PLAYERS</code></td>
+<td><details><summary>applies to: 4 requirements</summary><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_IN_JOINT_EMERGENCY</code> (HostileOnly=true)<br><code>CIVILIZATION_LEVEL</code> (OpponentCivLevel=CIVILIZATION_LEVEL_FULL_CIV)<br><code>PLAYER_IN_JOINT_EMERGENCY</code> (HostileOnly=true)</details></td>
+<td><span class="loc" data-loc="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"><code>LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL</code></span><br><span class="loc" data-loc="LOC_DIPLO_MODIFIER_SHARED_EMERGENCY"><code>LOC_DIPLO_MODIFIER_SHARED_EMERGENCY</code></span></td>
+<td>Expansion2</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../../";</script><script src="../../search.js"></script><script src="../../strings.js"></script>

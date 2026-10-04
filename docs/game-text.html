@@ -1,0 +1,48 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game text</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Game text</p>
+<h1>Game text: read the in-game wording here</h1>
+<p>Many entries in this reference point at text that the game shows to players: the description of a policy, a governor promotion, a moment. The reference shows these as <strong>text keys</strong> (such as <code>LOC_EMERGENCY_TARGET_REWARD_DESCRIPTION_NUCLEAR_CULTURE_SCARE</code>), because the text itself is Firaxis' and is not published here.</p>
+<p>You can make the text appear anyway, from <strong>your own copy of the game</strong>:</p>
+<ol>
+<li>Build a small <strong>strings file</strong> from your game folder (below). It contains only the text of the keys this reference uses.</li>
+<li>Load it with <strong>Load strings file</strong> in the sidebar. From then on every key shows your text, in the language you choose, and the search finds entries by their in-game wording.</li>
+</ol>
+<p><strong>Everything stays on your computer.</strong> The file is read by the page in your browser and kept in the browser's local storage. Nothing is uploaded, and the site cannot see it. <strong>Clear</strong> in the sidebar removes it. The file contains game text, so keep it for your own use and do not redistribute it.</p>
+<h2>Build the file in the browser</h2>
+<p>Choose the Civilization VI folder (the one that contains <code>Base</code> and <code>DLC</code>), or only its <code>Text</code> folders. Reading takes a few seconds to a minute. Works in Chrome, Edge and Firefox.</p>
+<div id="gt-builder"></div>
+
+<h2>Or build it with the Python script</h2>
+<p>If you prefer a command line, <a href="https://github.com/cru121/civ6-gamecore-reference/blob/main/reference/tools/make_strings_file.py"><code>make_strings_file.py</code></a> (standard library only) does the same:</p>
+<pre><code>python make_strings_file.py &quot;C:/Program Files (x86)/Steam/steamapps/common/Sid Meier's Civilization VI&quot; --lang en_US --lang zh_Hans_CN
+</code></pre>
+<p>It writes <code>civ6-strings.json</code>. One file is all you need: copy it to another computer and load it there.</p>
+<h2>Languages</h2>
+<p>The game ships text for English (<code>en_US</code>), German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian and Chinese (simplified <code>zh_Hans_CN</code> and traditional <code>zh_Hant_HK</code>). A strings file can hold several; pick the one to show in the sidebar. Search matches any loaded language, so you can search in Chinese for an effect described in this English reference.</p>
+<h2>What you get</h2>
+<ul>
+<li>On the <strong>where the game uses it</strong> page of each <a href="effects/index.html">modifier effect</a>: the description of whatever uses the effect, in the game's words.</li>
+<li><strong>Search by wording.</strong> Type part of an in-game sentence into the search box; matching entries appear under <em>In your game text</em>.</li>
+</ul>
+<h2>Limits</h2>
+<ul>
+<li>The text is the <strong>game's own</strong> (base game and expansions). Text added by mods is not included.</li>
+<li>Game text contains markers such as <code>{1_Num}</code> (a number filled in by the game) and <code>[ICON_...]</code>. They are shown simplified: icons as ⟨Name⟩, formatting removed, placeholders left as they are.</li>
+<li>Only keys this reference uses are in the file, so a key that the reference does not mention will not be found.</li>
+<li>Your game version should roughly match the data of this reference; a key the game no longer has simply shows as the key.</li>
+<li>A private or incognito window may not keep the file between visits; load it again then.</li>
+</ul>
+<h2>File format</h2>
+<p>A plain JSON file, so other tools can use it:</p>
+<pre><code class="language-json">{&quot;format&quot;: &quot;civ6-ref-strings&quot;, &quot;version&quot;: 1, &quot;created&quot;: &quot;2026-10-04T12:00:00Z&quot;,
+ &quot;languages&quot;: {&quot;en_US&quot;: {&quot;LOC_KEY&quot;: &quot;text&quot;}, &quot;zh_Hans_CN&quot;: {&quot;LOC_KEY&quot;: &quot;文本&quot;}}}
+</code></pre></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>

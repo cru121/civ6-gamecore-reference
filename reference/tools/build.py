@@ -562,6 +562,8 @@ for o, ms in sorted(devce_by_obj.items()):
 
 # ---------------------------------------------------------------- modifier system: effects, requirements, collections
 EFF = load('effects.json')
+USES = load('modifier_uses.json')
+EFF_USES = USES['effect_uses']
 EFF_KIND = {'effect': ('effects', 'Effects', 'EFFECT'), 'requirement': ('requirements', 'Requirements', 'REQUIREMENT'),
             'collection': ('collections', 'Collections', 'COLLECTION')}
 EFF_METHOD_ORDER = {'effect': ('Apply', 'Remove'), 'requirement': ('Test', 'TestPlot', 'TestAdjacentPlot', 'OnInitialize'),
@@ -608,10 +610,13 @@ def eff_row(path, e):
     cells.append(avail_short(e['availability']))
     ms = [(m, e['methods'][m]) for m in EFF_METHOD_ORDER[kind] if m in e['methods']]
     cells.append('<br>'.join('%s `%s`→`%s`' % (m, v['symbol'], v['current'] or '?') for m, v in ms[:2]) or '—')
+    if kind == 'effect':
+        n_uses = len(EFF_USES.get(e['name'], []))
+        cells.append('[%d use%s](u/%s.md)' % (n_uses, '' if n_uses == 1 else 's', safe(e['name'])) if n_uses else '—')
     return '| ' + ' | '.join(cells) + ' |'
 
 EFF_HEAD = {
-    'effect': ('Effect', 'Arguments', 'Applies to (C++)', 'Engine functions called', 'Availability', 'Addresses (symbol→current)'),
+    'effect': ('Effect', 'Arguments', 'Applies to (C++)', 'Engine functions called', 'Availability', 'Addresses (symbol→current)', 'Used in game data'),
     'requirement': ('Requirement', 'Arguments', 'Engine functions called', 'Availability', 'Addresses (symbol→current)'),
     'collection': ('Collection', 'Engine functions called', 'Availability', 'Addresses (symbol→current)')}
 EFF_BLURB = {
@@ -641,6 +646,91 @@ for kind, (d, plural, pre) in EFF_KIND.items():
         L += [eff_row(path, x) for x in es]
         add(path, '%s: %s' % (plural, cls), '\n'.join(L))
     add('%s/index.md' % d, plural, '\n'.join(idx))
+
+
+# ---------------------------------------------------------------- where the game uses each effect (from the game's own data)
+def loc(key, cls='loc'):
+    """A text key that the browser replaces with the reader's own game text once a strings file is loaded."""
+    return '<span class="%s" data-loc="%s"><code>%s</code></span>' % (cls, key, key)
+
+def md_esc(v):
+    return str(v).replace('|', '/').replace('\n', ' ')
+
+def owner_cell(o):
+    kind = o['t'][:-len('Modifiers')] if o['t'].endswith('Modifiers') and o['t'] != 'Modifiers' else o['t']
+    s = '**%s** `%s`' % (md_esc(kind), md_esc(o['id'] or '?'))
+    if o.get('via'):
+        s += ' (attached through another modifier)'
+    if o.get('n'):
+        s += '<br>' + loc(o['n'], 'loc locname')
+    return s
+
+def reqs_cell(use):
+    parts = []
+    for label, sid in (('applies to', use.get('sr')), ('only if owner', use.get('or'))):
+        if not sid or sid not in USES['reqsets']:
+            continue
+        rs = USES['reqsets'][sid]
+        if not rs:
+            continue
+        lines = []
+        for q in rs:
+            args = ', '.join('%s=%s' % (k, v) for k, v in q['a'].items())
+            lines.append('%s`%s`%s' % ('not ' if q.get('inv') else '', q['t'].replace('REQUIREMENT_', ''), (' (%s)' % md_esc(args)) if args else ''))
+        parts.append('<details><summary>%s: %d requirement%s</summary>%s</details>' % (label, len(rs), '' if len(rs) == 1 else 's', '<br>'.join(lines)))
+    return ''.join(parts) or '—'
+
+def text_cell(use):
+    ks = []
+    for o in use['o']:
+        for k in (o.get('d'),):
+            if k and k not in ks:
+                ks.append(k)
+    for c, k in use.get('s', []):
+        if k and k.startswith('LOC_') and k not in ks:
+            ks.append(k)
+    for v in use['a'].values():
+        if isinstance(v, str) and v.startswith('LOC_') and v not in ks:
+            ks.append(v)
+    return '<br>'.join(loc(k) for k in ks) or '—'
+
+def arg_cell(use):
+    return '<br>'.join('`%s` = `%s`' % (md_esc(k), md_esc(v)) for k, v in use['a'].items() if not str(v).startswith('LOC_')) or '—'
+
+uses_path = lambda name: 'effects/u/%s.md' % safe(name)
+KEYMAP = {}        # text key -> [[effect name, page]]
+for e in EFF:
+    if e['kind'] != 'effect':
+        continue
+    us = EFF_USES.get(e['name'])
+    if not us:
+        continue
+    path = uses_path(e['name'])
+    L = ['# %s: where the game uses it\n' % e['name'],
+         '%d modifier%s in the game\'s own data %s this effect. Modifier ids, argument values, owners and requirement sets come from the installed game\'s data files '
+         '(the base game and every DLC; mods are not included). Text keys are shown as keys: [load your own game text](../../game-text.md) to read the in-game wording here.\n' % (len(us), '' if len(us) == 1 else 's', 'uses' if len(us) == 1 else 'use'),
+         'Back to [%s](../%s.md#%s). Arguments: %s.\n' % (e['class'] or 'Other', safe(e['class'] or 'Other'), e['name'].lower(),
+                                                      ', '.join('`%s` (%s)' % (a['name'], a['type']) for a in e['args']) or 'none listed'),
+         '| Used by | Modifier | Arguments | Applies to | Conditions | In-game text | From |', '|---|---|---|---|---|---|---|']
+    for u in us:
+        owners = '<br>'.join(owner_cell(o) for o in u['o']) or '—'
+        if u.get('o_more'):
+            owners += '<br>+%d more' % u['o_more']
+        L.append('| %s | `%s`<br>%s | %s | `%s` | %s | %s | %s |' % (owners, md_esc(u['m']), '`%s`' % md_esc(u['mt']), arg_cell(u), (u['c'] or '').replace('COLLECTION_', ''),
+                                                                  reqs_cell(u), text_cell(u), u['src']))
+        for o in u['o']:
+            for k in (o.get('d'), o.get('n')):
+                if k:
+                    KEYMAP.setdefault(k, [])
+                    if len(KEYMAP[k]) < 4 and [e['name'], path[:-3] + '.html'] not in KEYMAP[k]:
+                        KEYMAP[k].append([e['name'], path[:-3] + '.html'])
+        for c, k in u.get('s', []):
+            if k and k.startswith('LOC_'):
+                KEYMAP.setdefault(k, [])
+                if len(KEYMAP[k]) < 4 and [e['name'], path[:-3] + '.html'] not in KEYMAP[k]:
+                    KEYMAP[k].append([e['name'], path[:-3] + '.html'])
+    add(path, e['name'] + ' uses', '\n'.join(L))
+print('effect use pages:', sum(1 for p in pages if p.startswith('effects/u/')), 'keys mapped:', len(KEYMAP))
 
 # ---------------------------------------------------------------- native functions
 LUA_TXT = {'none': 'no', 'indirect': 'only indirectly', 'ce': 'via the Community Extension', 'devce': 'via the Dev CE test build (experimental)'}
@@ -930,23 +1020,23 @@ main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,
 @media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
 table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
 code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
-#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}\n.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}\n.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}\n.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}\n.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}'''
-JS = '''let idx=null;const q=document.getElementById('q'),res=document.getElementById('res'),nav=q.parentNode;let sel=-1;
+JS = '''let idx=null,stamp=0;const q=document.getElementById('q'),res=document.getElementById('res'),nav=q.parentNode;let sel=-1;
 function mark(el,text,w){const lo=text.toLowerCase();let at=-1,len=0;for(const x of w){const k=lo.indexOf(x);if(k>=0){at=k;len=x.length;break}}
 if(at<0){el.appendChild(document.createTextNode(text));return}el.appendChild(document.createTextNode(text.slice(0,at)));const m=document.createElement('mark');m.textContent=text.slice(at,at+len);el.appendChild(m);el.appendChild(document.createTextNode(text.slice(at+len)))}
 function setSel(i){const a=res.querySelectorAll('a');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach((x,k)=>x.classList.toggle('sel',k===sel));a[sel].scrollIntoView({block:'nearest'})}
 q.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1)}else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1)}else if(e.key==='Enter'){const a=res.querySelectorAll('a');if(a.length)location.href=a[Math.max(sel,0)].href}else if(e.key==='Escape'){q.value='';q.dispatchEvent(new Event('input'))}});
 document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==q&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||'')){e.preventDefault();q.focus()}});
-q.addEventListener('input',async()=>{if(!idx){idx=await (await fetch(ROOT+'search.json')).json()}
+q.addEventListener('input',async()=>{const my=++stamp;if(!idx){idx=await (await fetch(ROOT+'search.json')).json()}
 const w=q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);res.innerHTML='';sel=-1;
 if(!w.length||q.value.trim().length<2){nav.classList.remove('searching');return}nav.classList.add('searching');
 const hits=[];for(const e of idx){const h=((e.s||'')+'.'+e.t+' '+e.t+' '+(e.s||'')).toLowerCase();if(!w.every(x=>h.includes(x))&&!w.every(x=>e.k&&e.k.includes(x)))continue;
 const t=e.t.toLowerCase(),f=w.join(' ');let r=t===f?0:(t.startsWith(f)||((e.s||'')+'.'+e.t).toLowerCase().startsWith(f))?1:t.endsWith('.'+f)||t.endsWith('::'+f)?2:t.includes(f)?3:w.every(x=>h.includes(x))?4:5;if(e.s&&r<5)r+=0.5;hits.push([r,e])}
 hits.sort((a,b)=>a[0]-b[0]);const n=hits.length;
 const c=document.createElement('div');c.className='cnt';c.textContent=n?(n>60?'Showing 60 of '+n+' matches':n+(n==1?' match':' matches')):'No match. For engine functions try All functions (search).';res.appendChild(c);
-hits.slice(0,60).forEach(([r,e])=>{const a=document.createElement('a');a.href=ROOT+e.u;mark(a,e.t,w);if(e.s){const s=document.createElement('small');s.textContent=e.s;a.appendChild(s)}res.appendChild(a)});if(n)setSel(0)});
+hits.slice(0,60).forEach(([r,e])=>{const a=document.createElement('a');a.href=ROOT+e.u;mark(a,e.t,w);if(e.s){const s=document.createElement('small');s.textContent=e.s;a.appendChild(s)}res.appendChild(a)});if(n)setSel(0);if(window.CIV6&&CIV6.loaded()){CIV6.search(q.value,rs=>{if(!rs.length||my!==stamp)return;if(!n)res.firstChild.textContent='No match by name; found in your game text:';const h=document.createElement('div');h.className='cnt';h.textContent='In your game text';res.appendChild(h);rs.forEach(e=>{const a=document.createElement('a');a.href=ROOT+e.u;mark(a,e.t.length>110?e.t.slice(0,110)+'...':e.t,w);const sm=document.createElement('small');sm.textContent=e.s;a.appendChild(sm);res.appendChild(a)})})}});
 (function(){const f=new URLSearchParams(location.search).get('find');if(!f)return;const h=f.toLowerCase();
 for(const td of document.querySelectorAll('main td:first-child')){if(td.textContent.trim().toLowerCase()===h){td.scrollIntoView({block:'center'});td.parentElement.style.outline='2px solid #d9922b';break}}})();'''
 shutil.rmtree(B('site'), ignore_errors=True)
@@ -954,6 +1044,9 @@ os.makedirs(B('site'))
 FNJS = open(B('tools', 'fnsearch.js'), encoding='utf8').read()
 open(B('site', 'style.css'), 'w').write(CSS)
 open(B('site', 'search.js'), 'w').write(JS)
+shutil.copy(B('tools', 'strings.js'), B('site', 'strings.js'))
+shutil.copy(B('data', 'strings_keys.json'), B('site', 'strings_keys.json'))
+json.dump(KEYMAP, open(B('site', 'keymap.json'), 'w', encoding='utf8'), separators=(',', ':'))
 search = []
 for p, (t, text) in pages.items():
     body = markdown.markdown(crumbs_md(p) + text, extensions=['tables', 'fenced_code', 'attr_list'])
@@ -969,13 +1062,13 @@ for p, (t, text) in pages.items():
            + grp('g-engine', 'Engine internals', (('native/index.html', 'Native functions'), ('native/all.html', 'All functions (search)'))))
     page = ('<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>%s</title>'
             '<style>%s</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search>'
-            '<div id=res></div>%s</nav><main>%s</main><script>const ROOT="%s";</script><script src="%ssearch.js"></script>') % (
-            html.escape(t), CSS, nav, body, root, root)
+            '<div id=res></div>%s</nav><main>%s</main><script>const ROOT="%s";</script><script src="%ssearch.js"></script><script src="%sstrings.js"></script>') % (
+            html.escape(t), CSS, nav, body, root, root, root)
     fp = B('site', p[:-3] + '.html'); os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w', encoding='utf8').write(page)
     search.append({'t': t, 'u': p[:-3] + '.html', 'k': re.sub(r'[#|`*\[\]()]', ' ', text[:300]).lower()})
     sect = {'lua': 'Lua API', 'ce': 'CE', 'devce': 'Dev CE', 'native': 'Native', 'operations': 'Operation', 'enums': 'Enum', 'globals': 'Global', 'effects': 'Effect', 'requirements': 'Requirement', 'collections': 'Collection'}.get(p.split('/')[0])
-    if sect and p.count('/') and not p.endswith('index.md') and not p.startswith('layouts'):
+    if sect and p.count('/') and not p.endswith('index.md') and not p.startswith('layouts') and not p.startswith('effects/u/'):
         for row in re.findall(r'<tr>\s*<td>(.*?)</td>', body, re.S):
             m = re.match(r'<a id="([^"]+)"></a>', row)
             name = html.unescape(re.sub(r'<[^>]+>', '', row)).strip()
