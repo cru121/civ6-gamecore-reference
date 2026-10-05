@@ -11,7 +11,7 @@ I made it because the engine knows far more than the Lua API shows, and the exis
 - **Operations, commands, enums, events**: identified with handlers, parameters and hashes.
 - **Modifier effects, requirements and collections**: the database side (`EFFECT_...`, `REQUIREMENT_...`, `COLLECTION_...`), with the engine class, addresses and the engine functions each one calls.
 - **Class layouts and globals**: member offsets and typed global addresses, for raw memory access (`Mem`, `ObjMem`) via the Community Extension.
-- **Native functions** that have no Lua route today, and a **Dev CE (experimental)** section describing engine functions that a development fork of the Community Extension could expose to Lua. No Dev CE DLL is published yet; the section is documentation only.
+- **Native functions** that have no Lua route today, and a **Dev CE (experimental)** section describing engine functions that [Dev CE](https://github.com/cru121/civ6-dev-ce), an experimental fork of the Community Extension, adds to Lua (225 methods on 29 objects, with test status per method). Dev CE is source only: you build the DLL yourself, it is single-player only and has known unsafe functions; read its README first.
 - **Game text (bring your own)**: each modifier effect has a "where the game uses it" page. Build a strings file from your own copy of the game and the pages show the in-game wording, in your language, and search finds entries by it. Nothing is uploaded and no game text is published.
 - **World Builder from Lua**: all 99 World Builder methods grouped by manager, with call forms, return values and undo behaviour.
 - **findings/**: per-function analysis notes and topic pages (great works, events, the identifier hash, build differences).
@@ -38,7 +38,7 @@ findings/    function-level notes and tables
 - Spotted a wrong signature, meaning or address? Open an issue or pull request. Reports of what you observed in a running game are the most valuable.
 - Offsets and addresses are for the installed Windows build the analysis used; a game update can shift them.
 - Only a small share of entries have hand-written notes (28 curated); the rest are generated.
-- Dev CE functions are mostly untested and their descriptions are not human-reviewed.
+- Dev CE functions: the descriptions are AI-written from decompiled code and not human-reviewed; 25 of 225 methods have an effect confirmed in the running game, for most of the rest nobody has seen what they do.
 
 ## Sources and credits
 Built on the work of Sukrit Tan (Civilization VI Modding Wiki), ChimpanG and WildW (Modding Companion 2.0), and Wild-W and contributors (Civilization VI Community Extension). See the site's home page for the full list. Names and layouts are recovered from debug symbols shipped with an older build, following the method in the Community Extension contributor's guide, and cross-checked against the Linux port's DWARF data.
