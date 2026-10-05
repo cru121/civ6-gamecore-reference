@@ -489,7 +489,10 @@ def devce_tests_md(r):
         bits.append('plumbing: not run (no live object)')
     dp = t.get('delta_probe')
     if dp:
-        bits.append('effect ✓ (%s)' % ', '.join(dp['changed_getters']) if dp['visible_effect'] else 'ran ±1, reversible ✓, no visible effect')
+        if not dp.get('reversible', True):
+            bits.append('⚠ ran ±1, **not fully reversible** (lasting side effects)%s' % ((': ' + ', '.join(dp['changed_getters'])) if dp['visible_effect'] else ''))
+        else:
+            bits.append('effect ✓ (%s)' % ', '.join(dp['changed_getters']) if dp['visible_effect'] else 'ran ±1, reversible ✓, no visible effect')
     if t.get('this_oracle'):
         bits.append('this ✓ (oracle)')
     return '<br>'.join(bits) or '—'
@@ -513,14 +516,23 @@ add('devce/index.md', 'Dev CE (experimental)', """# Lua methods added by the Dev
 
 A development build of a Community-Extension-style GameCore that adds Lua methods by **calling engine functions directly**: the Lua call `object:Method(a, b)` becomes `GameCore::Class::Method(this, a, b)`.
 The methods are generated from a table (address and signature from the symbol-build map and the Linux debug info; `this` from the game's own instance resolver for the Lua object); no per-function code is written.
-They exist only in the Dev CE test build, which is **not released**, replaces the game's GameCore (like the Community Extension, incompatible with it for now) and has only been run in single-player on one game build.
+They exist only in **Dev CE**, an experimental fork of the Community Extension: <https://github.com/cru121/civ6-dev-ce> (AGPL-3.0, source only; build the DLL yourself, see the README there). Dev CE replaces the game's GameCore,
+so it cannot be enabled together with the Community Extension or any other GameCore mod, works only with Steam build 15038592, is single-player only (many methods change synchronised state and can desync multiplayer) and has been run on one machine by one person.
+Ids and indices you pass are **not range-checked**; the bridge turns hardware faults into a Lua error but cannot catch silent memory corruption.
 
-%d methods on %d Lua objects. What was tested in the running game (build 15038592, single player, disposable games):
+**Potentially unsafe:** `Unit:ChangeSightRange` hung the game once on a late-game save; `PlayerTrade:ChangeDomesticTradeDisabledCount`, `ChangeInternationalMajorsTradeDisabledCount` and `ChangeInternationalMinorsTradeDisabledCount`
+disable trade routes with +1 and do not bring them back with -1.
+
+%d methods on %d Lua objects (plus a few read-only getters the tests use to compare against vanilla). What was tested in the running game (build 15038592, single player, disposable games and one late-game save):
 
 * **plumbing** (%d methods): the engine function is entered exactly once, `this` is not null, every argument arrives exactly as sent, the return value comes back to Lua intact.
 * **this ✓ (oracle)**: for the object, a vanilla getter and the engine function of the same class give the same answer, so the object pointer is right.
 * **effect ✓** (%d methods): the function was called with +1 and -1; a vanilla getter changed as the name says and everything returned to its starting value.
 * "ran ±1, reversible ✓, no visible effect": called for real (%d methods), caused no error and was fully reversible, but no vanilla getter shows that state. That is not evidence that it works.
+* **robustness**: every method was also called with the wrong kind of object, no arguments or garbage arguments (about 2,000 calls): all raised a clean Lua error and none reached native code with a bad `this`. Read-only getters called with out-of-range ids
+  returned -1/0 or faulted (one getter, `UnitExperience:HasPromotion`); the faults were caught and the game kept running.
+* **loading**: the methods register identically on every game load (new game, load a save, quit to menu, new game). The Community Extension's `RegisterProcessor` fix that Dev CE includes was tested in the same runs (handlers run, results return, a World Congress resolved normally).
+* **not tested**: multiplayer, saves made after a method changed state, other game builds, other machines. 85 of the 112 methods run for real show no effect through any vanilla getter, so for most of them nobody has seen whether they do what the name says.
 
 **Descriptions are written by an AI assistant from the decompiled code and are marked inferred** unless a test confirms them; read them as leads, not documentation. Many methods change synchronised game state and are marked "may desync" in multiplayer.
 Where a method is not listed here, see [native functions](../native/index.md) for what has no Lua route.
@@ -734,7 +746,7 @@ for e in EFF:
 print('effect use pages:', sum(1 for p in pages if p.startswith('effects/u/')), 'keys mapped:', len(KEYMAP))
 
 # ---------------------------------------------------------------- native functions
-LUA_TXT = {'none': 'no', 'indirect': 'only indirectly', 'ce': 'via the Community Extension', 'devce': 'via the Dev CE test build (experimental)'}
+LUA_TXT = {'none': 'no', 'indirect': 'only indirectly', 'ce': 'via the Community Extension', 'devce': 'via Dev CE (experimental fork of the Community Extension)'}
 nby = {}
 for n in natives:
     nby.setdefault(n['class'].split('::')[0], []).append(n)
@@ -986,7 +998,7 @@ def parents(path):
 ZONE_TEXT = {
     'vanilla': '<b>Available out of the box.</b> Usable from Lua in the unmodified game.',
     'ce': '<b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).',
-    'devce': '<b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.',
+    'devce': '<b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.',
     'engine': '<b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.'}
 
 
@@ -1136,7 +1148,7 @@ with open(B('dist', 'ai', 'ce_api.txt'), 'w', encoding='utf8') as f:
             f.write('%s%s%s(%s)%s | %s | %s\n' % (m['object'], '.' if m['static'] else ':', m['method'], ps, (' -> ' + ', '.join(sg['returns'])) if sg['returns'] else '',
                     (m['native'] or '-')[7:], m['builds']['current']['rva'] or '-'))
 with open(B('dist', 'ai', 'devce_api.txt'), 'w', encoding='utf8') as f:
-    f.write('# Lua methods of the EXPERIMENTAL Dev CE test build (not released). Signature | engine function | current rva | tests | purpose (AI-written from decompiled code, inferred)\n')
+    f.write('# Lua methods of the EXPERIMENTAL Dev CE fork of the Community Extension (github.com/cru121/civ6-dev-ce). Signature | engine function | current rva | tests | purpose (AI-written from decompiled code, inferred)\n')
     for m in devce:
         sg = m['signatures'][0]
         ps = ', '.join('%s: %s' % (p['name'], p['lua_type']) for p in sg['params'])

@@ -9,18 +9,26 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › Dev CE (experimental)</p>
-<div class="zone zone-devce"><b>Experimental: needs the Dev CE test build.</b> A development GameCore that adds these Lua methods by calling engine functions directly. Not part of the Community Extension, not released, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>Lua methods added by the Dev CE test build (experimental)</h1>
 <p>A development build of a Community-Extension-style GameCore that adds Lua methods by <strong>calling engine functions directly</strong>: the Lua call <code>object:Method(a, b)</code> becomes <code>GameCore::Class::Method(this, a, b)</code>.
 The methods are generated from a table (address and signature from the symbol-build map and the Linux debug info; <code>this</code> from the game's own instance resolver for the Lua object); no per-function code is written.
-They exist only in the Dev CE test build, which is <strong>not released</strong>, replaces the game's GameCore (like the Community Extension, incompatible with it for now) and has only been run in single-player on one game build.</p>
-<p>225 methods on 29 Lua objects. What was tested in the running game (build 15038592, single player, disposable games):</p>
+They exist only in <strong>Dev CE</strong>, an experimental fork of the Community Extension: <a href="https://github.com/cru121/civ6-dev-ce">https://github.com/cru121/civ6-dev-ce</a> (AGPL-3.0, source only; build the DLL yourself, see the README there). Dev CE replaces the game's GameCore,
+so it cannot be enabled together with the Community Extension or any other GameCore mod, works only with Steam build 15038592, is single-player only (many methods change synchronised state and can desync multiplayer) and has been run on one machine by one person.
+Ids and indices you pass are <strong>not range-checked</strong>; the bridge turns hardware faults into a Lua error but cannot catch silent memory corruption.</p>
+<p><strong>Potentially unsafe:</strong> <code>Unit:ChangeSightRange</code> hung the game once on a late-game save; <code>PlayerTrade:ChangeDomesticTradeDisabledCount</code>, <code>ChangeInternationalMajorsTradeDisabledCount</code> and <code>ChangeInternationalMinorsTradeDisabledCount</code>
+disable trade routes with +1 and do not bring them back with -1.</p>
+<p>225 methods on 29 Lua objects (plus a few read-only getters the tests use to compare against vanilla). What was tested in the running game (build 15038592, single player, disposable games and one late-game save):</p>
 <ul>
 <li><strong>plumbing</strong> (189 methods): the engine function is entered exactly once, <code>this</code> is not null, every argument arrives exactly as sent, the return value comes back to Lua intact.</li>
 <li><strong>this ✓ (oracle)</strong>: for the object, a vanilla getter and the engine function of the same class give the same answer, so the object pointer is right.</li>
-<li><strong>effect ✓</strong> (8 methods): the function was called with +1 and -1; a vanilla getter changed as the name says and everything returned to its starting value.</li>
-<li>"ran ±1, reversible ✓, no visible effect": called for real (105 methods), caused no error and was fully reversible, but no vanilla getter shows that state. That is not evidence that it works.</li>
+<li><strong>effect ✓</strong> (25 methods): the function was called with +1 and -1; a vanilla getter changed as the name says and everything returned to its starting value.</li>
+<li>"ran ±1, reversible ✓, no visible effect": called for real (88 methods), caused no error and was fully reversible, but no vanilla getter shows that state. That is not evidence that it works.</li>
+<li><strong>robustness</strong>: every method was also called with the wrong kind of object, no arguments or garbage arguments (about 2,000 calls): all raised a clean Lua error and none reached native code with a bad <code>this</code>. Read-only getters called with out-of-range ids
+  returned -1/0 or faulted (one getter, <code>UnitExperience:HasPromotion</code>); the faults were caught and the game kept running.</li>
+<li><strong>loading</strong>: the methods register identically on every game load (new game, load a save, quit to menu, new game). The Community Extension's <code>RegisterProcessor</code> fix that Dev CE includes was tested in the same runs (handlers run, results return, a World Congress resolved normally).</li>
+<li><strong>not tested</strong>: multiplayer, saves made after a method changed state, other game builds, other machines. 85 of the 112 methods run for real show no effect through any vanilla getter, so for most of them nobody has seen whether they do what the name says.</li>
 </ul>
 <p><strong>Descriptions are written by an AI assistant from the decompiled code and are marked inferred</strong> unless a test confirms them; read them as leads, not documentation. Many methods change synchronised game state and are marked "may desync" in multiplayer.
 Where a method is not listed here, see <a href="../native/index.html">native functions</a> for what has no Lua route.</p>
@@ -36,7 +44,7 @@ Where a method is not listed here, see <a href="../native/index.html">native fun
 <tr>
 <td><a href="City.html">City</a></td>
 <td>30</td>
-<td>3</td>
+<td>12</td>
 </tr>
 <tr>
 <td><a href="CityBuildQueue.html">CityBuildQueue</a></td>
@@ -46,7 +54,7 @@ Where a method is not listed here, see <a href="../native/index.html">native fun
 <tr>
 <td><a href="CityBuildings.html">CityBuildings</a></td>
 <td>9</td>
-<td>0</td>
+<td>3</td>
 </tr>
 <tr>
 <td><a href="CityDistricts.html">CityDistricts</a></td>
@@ -121,7 +129,7 @@ Where a method is not listed here, see <a href="../native/index.html">native fun
 <tr>
 <td><a href="PlayerResources.html">PlayerResources</a></td>
 <td>10</td>
-<td>1</td>
+<td>2</td>
 </tr>
 <tr>
 <td><a href="PlayerStats.html">PlayerStats</a></td>
@@ -136,7 +144,7 @@ Where a method is not listed here, see <a href="../native/index.html">native fun
 <tr>
 <td><a href="PlayerTrade.html">PlayerTrade</a></td>
 <td>30</td>
-<td>1</td>
+<td>5</td>
 </tr>
 <tr>
 <td><a href="PlayerTreasury.html">PlayerTreasury</a></td>
