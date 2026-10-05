@@ -520,7 +520,7 @@ They exist only in **Dev CE**, an experimental fork of the Community Extension: 
 so it cannot be enabled together with the Community Extension or any other GameCore mod, works only with Steam build 15038592, is single-player only (many methods change synchronised state and can desync multiplayer) and has been run on one machine by one person.
 Ids and indices you pass are **not range-checked**; the bridge turns hardware faults into a Lua error but cannot catch silent memory corruption.
 
-**Known unsafe:** `Unit:ChangeSightRange` hung the game once on a late-game save (and reveals tiles / meets city states even when it works); `PlayerTrade:ChangeDomesticTradeDisabledCount`, `ChangeInternationalMajorsTradeDisabledCount` and `ChangeInternationalMinorsTradeDisabledCount`
+**Potentially unsafe:** `Unit:ChangeSightRange` hung the game once on a late-game save; `PlayerTrade:ChangeDomesticTradeDisabledCount`, `ChangeInternationalMajorsTradeDisabledCount` and `ChangeInternationalMinorsTradeDisabledCount`
 disable trade routes with +1 and do not bring them back with -1.
 
 %d methods on %d Lua objects (plus a few read-only getters the tests use to compare against vanilla). What was tested in the running game (build 15038592, single player, disposable games and one late-game save):
