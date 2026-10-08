@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>Deal:DoTurn(ePlayer: integer)</code></td>
-<td>—</td>
+<td>If the deal is active, calls a virtual per-turn handler on each item belonging to the given player and then removes expired items.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x57e9d0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isexpired"></a>IsExpired</td>
 <td><code>Deal:IsExpired() → boolean</code></td>
-<td>—</td>
+<td>True if every item in the deal reports itself expired (virtual call); an empty deal counts as expired.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x57f270</code></td>
@@ -52,6 +52,17 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>DoTurn</h3>
+<p>Arguments: <code>ePlayer</code> — player whose items get the turn update</p>
+<p><strong>Writes</strong>
+- Deal item list via RemoveExpiredItems and item virtual handler</p>
+<p><strong>Side effects</strong>
+- Virtual item turn callback per matching item</p>
+<p><strong>Input checks:</strong> No validation; skipped if active flag (0xc) is zero.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes deal items. <strong>Risk:</strong> high (affects ongoing deals and may expire them). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsExpired</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads deal items only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>RemoveExpiredItems</h3>
 <p><strong>Writes</strong>
 - deal item list (this+0x10..0x18) via Deal::Instance::RemoveItem</p>

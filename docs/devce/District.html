@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addyieldadjacencybonusmirror"></a>AddYieldAdjacencyBonusMirror</td>
 <td><code>District:AddYieldAdjacencyBonusMirror(eYieldToMirror: integer, eYieldToGrant: integer)</code></td>
-<td>—</td>
+<td>Adds or increments a mirror entry that grants the district an adjacency bonus of one yield equal to another yield.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1901f0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculatetourismadjacencyyieldmodifier"></a>CalculateTourismAdjacencyYieldModifier</td>
 <td><code>District:CalculateTourismAdjacencyYieldModifier(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Adjacency yield scaled by a stored percent: adjacency yield times stored tourism percent divided by 100; 0 if unset or out of range.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1902d0</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getairslots"></a>GetAirSlots</td>
 <td><code>District:GetAirSlots() → number</code></td>
-<td>—</td>
+<td>Air unit slots: district definition base slots plus district bonus at 0x410.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x190710</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getallcalculatedtourismadjacencyyieldmodifier"></a>GetAllCalculatedTourismAdjacencyYieldModifier</td>
 <td><code>District:GetAllCalculatedTourismAdjacencyYieldModifier() → number</code></td>
-<td>—</td>
+<td>Sums the tourism adjacency yield modifier over all yield types (positive contributions only).</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1908b0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getappealyield"></a>GetAppealYield</td>
 <td><code>District:GetAppealYield(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums appeal-based yield bonuses for the given yield whose appeal threshold is met by the district plot's appeal.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x190a20</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getextraregionalyield"></a>GetExtraRegionalYield</td>
 <td><code>District:GetExtraRegionalYield(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns stored extra regional yield for a yield type; 0 if out of range, default value if beyond array.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x191710</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfirstpillagablebuilding"></a>GetFirstPillagableBuilding</td>
 <td><code>District:GetFirstPillagableBuilding() → number</code></td>
-<td>—</td>
+<td>Returns the unpillaged building at the district plot with the highest value (definition field 0x24), or -1 if none or the district is not pillagable.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x191750</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmilitarydomain"></a>GetMilitaryDomain</td>
 <td><code>District:GetMilitaryDomain() → number</code></td>
-<td>—</td>
+<td>Maps the district definition's domain string (DOMAIN_LAND/SEA/AIR) to a domain type; -1 otherwise.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x191a50</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasgarrisonedunit"></a>HasGarrisonedUnit</td>
 <td><code>District:HasGarrisonedUnit() → boolean</code></td>
-<td>—</td>
+<td>True if the district is active, its definition flag permits it, and the best defender on its plot is a combat unit.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x191e10</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasmaxdamage"></a>HasMaxDamage</td>
 <td><code>District:HasMaxDamage() → boolean</code></td>
-<td>—</td>
+<td>True if district damage (0x318) reaches its definition max damage; if no max is defined, true when damage is non-negative.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x191ea0</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="haswalls"></a>HasWalls</td>
 <td><code>District:HasWalls() → boolean</code></td>
-<td>—</td>
+<td>True if the district's outer-defense damage field (0x330) is below the city's outer defense hit points while max damage is positive.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x191f10</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isbesieged"></a>IsBesieged</td>
 <td><code>District:IsBesieged() → boolean</code></td>
-<td>—</td>
+<td>Determines whether the district is besieged by enemy units or auto-siege units on adjacent plots at war with its owner; decompilation is truncated so the tail is not visible.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1924e0</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeyieldadjacencybonusmirror"></a>RemoveYieldAdjacencyBonusMirror</td>
 <td><code>District:RemoveYieldAdjacencyBonusMirror(eYieldToMirror: integer, eYieldToGrant: integer)</code></td>
-<td>—</td>
+<td>Decrements the matching adjacency mirror entry and removes it when its count drops below one.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x192940</code></td>
@@ -180,6 +180,16 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddYieldAdjacencyBonusMirror</h3>
+<p>Arguments: <code>eYieldToMirror</code> — yield whose adjacency bonus is copied; <code>eYieldToGrant</code> — yield that receives the mirrored bonus</p>
+<p><strong>Writes</strong>
+- District mirror list (VariantMap at 0x188): new entry with count 1 or existing count +1</p>
+<p><strong>Input checks:</strong> No range check on yield types.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes district adjacency data. <strong>Risk:</strong> medium (edits a synchronised variable). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateTourismAdjacencyYieldModifier</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> Range-checks yield.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeExtraRegionalYield</h3>
 <p>Arguments: <code>eYield</code> — yield type; <code>iDelta</code> — amount to add</p>
 <p><strong>Writes</strong>
@@ -246,6 +256,44 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Field is a tourism adjacency yield modifier table</p>
 <p><strong>Open questions</strong>
 - Units of the modifier (percent vs flat)</p>
+<h3>GetAirSlots</h3>
+<p><strong>Input checks:</strong> Bounds-checks definition index (out-of-range path reads a bad address).</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetAllCalculatedTourismAdjacencyYieldModifier</h3>
+<p><strong>Input checks:</strong> Range-checks yields.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetAppealYield</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetExtraRegionalYield</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> Range-checks yield.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFirstPillagableBuilding</h3>
+<p><strong>Input checks:</strong> Checks definition flags.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetMilitaryDomain</h3>
+<p><strong>Input checks:</strong> Bounds-checks definition.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasGarrisonedUnit</h3>
+<p><strong>Input checks:</strong> Null checks on defender.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasMaxDamage</h3>
+<p><strong>Input checks:</strong> Bounds-checks definition.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasWalls</h3>
+<p><strong>Input checks:</strong> Bounds-checks definition.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsBesieged</h3>
+<p><strong>Input checks:</strong> Unknown (truncated).</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>RemoveYieldAdjacencyBonusMirror</h3>
+<p>Arguments: <code>eYieldToMirror</code> — mirrored source yield; <code>eYieldToGrant</code> — yield receiving the mirror</p>
+<p><strong>Writes</strong>
+- District mirror list (VariantMap at 0x188)</p>
+<p><strong>Input checks:</strong> No-op if entry not found.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes district adjacency data. <strong>Risk:</strong> medium (edits a synchronised variable). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetComplete</h3>
 <p>Arguments: <code>bState</code> — new completion state; <code>bOriginalCompletion</code> — passed through to the city-signal (first-time completion flag) (inferred)</p>
 <p><strong>Writes</strong>

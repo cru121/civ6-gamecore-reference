@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addadditionalpillaging"></a>AddAdditionalPillaging</td>
 <td><code>Player:AddAdditionalPillaging(ePlunder: integer, eImprovement: integer, eDistrict: integer, iAmount: integer)</code></td>
-<td>—</td>
+<td>Appends a record (plunder, improvement, district, amount) to the player's additional-pillaging list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f7390</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addcounterspyyieldawardperlevel"></a>AddCounterSpyYieldAwardPerLevel</td>
 <td><code>Player:AddCounterSpyYieldAwardPerLevel(eYield: integer, iAmount: integer, iPerXAmount: integer)</code></td>
-<td>—</td>
+<td>Appends a (yield, amount, per-X) record to the counter-spy yield award list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2cf400</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddistrictandbuildingscreateunitwithabilitybyclass"></a>AddDistrictAndBuildingsCreateUnitWithAbilityByClass</td>
 <td><code>Player:AddDistrictAndBuildingsCreateUnitWithAbilityByClass(eAbility: integer, eDistrict: integer, ePromotionClass: integer)</code></td>
-<td>—</td>
+<td>Appends an (ability, district, promotion class) record to the player's list so units created in that district and its buildings get the ability.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c3be0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddistrictcreateunit"></a>AddDistrictCreateUnit</td>
 <td><code>Player:AddDistrictCreateUnit(eDistrict: integer, eUnit: integer)</code></td>
-<td>—</td>
+<td>Appends a (district, unit hash) record to the district-create-unit list; looks up the unit definition and stores its hash field (+0x24).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c3c40</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddistrictcreateyield"></a>AddDistrictCreateYield</td>
 <td><code>Player:AddDistrictCreateYield(eYield: integer, eDistrict: integer, iAmount: integer, bYieldBasedOnAppeal: boolean, bMustReplaceImprovement: boolean, eImprovement: integer)</code></td>
-<td>—</td>
+<td>Appends a district yield record (yield, district, amount, appeal flag, replace-improvement flag, improvement) to the player's list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c3d20</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addspecialallowedimprovement"></a>AddSpecialAllowedImprovement</td>
 <td><code>Player:AddSpecialAllowedImprovement(eImprovement: integer)</code></td>
-<td>—</td>
+<td>Appends an improvement type to the player's special-allowed improvements list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f75e0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeextracapitalpressureradius"></a>ChangeExtraCapitalPressureRadius</td>
 <td><code>Player:ChangeExtraCapitalPressureRadius(iChange: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the extra capital pressure radius variable.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x26ef60</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changewantscongresstomeet"></a>ChangeWantsCongressToMeet</td>
 <td><code>Player:ChangeWantsCongressToMeet(ab: boolean)</code></td>
-<td>—</td>
+<td>Assigns the wants-congress-to-meet boolean variable and sends a Reporting event.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x26c590</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checknotifications"></a>CheckNotifications</td>
 <td><code>Player:CheckNotifications()</code></td>
-<td>—</td>
+<td>Sends two fixed-hash notifications to the owning player; no conditions visible in the decompilation.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2cf8f0</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doendturn"></a>DoEndTurn</td>
 <td><code>Player:DoEndTurn()</code></td>
-<td>—</td>
+<td>Runs end-of-turn processing for the player's Units, Cities and Culture subsystems in that order.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x3449b0</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>Player:DoTurn()</code></td>
-<td>—</td>
+<td>Compares the player's diplomatic victory points (clamped by the tracked value's bounds, shifted right by 8) to the stored value and, if different, sends a notification with the difference and stores the new value.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x26c620</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>Player:DoTurnActivate(bFirstTime: boolean)</code></td>
-<td>—</td>
+<td>Runs start-of-turn processing for a player: research, taxes, deals, culture, religion, diplomacy, cities, congress, espionage, units, governors, trade and stats, then per-city turn activation. The decompilation is truncated, so the tail is not visible.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x344a30</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturndeactivate"></a>DoTurnDeactivate</td>
 <td><code>Player:DoTurnDeactivate()</code></td>
-<td>—</td>
+<td>Runs turn deactivation: records diplomatic visibility levels for major players, then AI control, cities and resources turn deactivation.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x344fc0</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getavoidedrandomevents"></a>GetAvoidedRandomEvents</td>
 <td><code>Player:GetAvoidedRandomEvents(eEvent: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the event type is in the player's avoided random event list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f7d60</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcapitalpressureradius"></a>GetCapitalPressureRadius</td>
 <td><code>Player:GetCapitalPressureRadius() → number</code></td>
-<td>—</td>
+<td>Returns the extra radius plus a global parameter (+0xd8), floored at 0.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x26efc0</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getchopextrayield"></a>GetChopExtraYield</td>
 <td><code>Player:GetChopExtraYield(eFeature: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Finds the record for feature and yield in the chop yield list and returns its extra amount, else 0.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f7dc0</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcontroltype"></a>GetControlType</td>
 <td><code>Player:GetControlType() → number</code></td>
-<td>—</td>
+<td>Looks up the player's configuration and returns 1 (AI) if the player is not human, else 0 (human).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f7ea0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcounterspyyieldawardperlevel"></a>GetCounterSpyYieldAwardPerLevel</td>
 <td><code>Player:GetCounterSpyYieldAwardPerLevel(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums amount/perX fixed-point (8-bit fraction) over entries matching the yield and writes it to the return buffer; the yield argument arrives in a register not shown as a named parameter, so the decompilation is partly misleading.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d03c0</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getdistrictcannotbebuiltadjacenttocity"></a>GetDistrictCannotBeBuiltAdjacentToCity</td>
 <td><code>Player:GetDistrictCannotBeBuiltAdjacentToCity(eDistrict: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the per-district counter at +0x198 is positive.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c43f0</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getdistrictcreationunit"></a>GetDistrictCreationUnit</td>
 <td><code>Player:GetDistrictCreationUnit(eDistrict: integer) → number</code></td>
-<td>—</td>
+<td>Finds the district in the create-unit list and returns the type of the unit definition it references, or -1.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c4410</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfavor"></a>GetFavor</td>
 <td><code>Player:GetFavor() → number</code></td>
-<td>—</td>
+<td>Returns the diplomatic favor balance of this player, read from the player's Congress object.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f7f00</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmilitarydomaindistrict"></a>GetMilitaryDomainDistrict</td>
 <td><code>Player:GetMilitaryDomainDistrict(eDomain: integer) → number</code></td>
-<td>—</td>
+<td>Scans district definitions for one whose index is unlocked for the player and whose domain name maps to the requested domain; returns its type or -1.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c4520</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumdistrictsoftype"></a>GetNumDistrictsOfType</td>
 <td><code>Player:GetNumDistrictsOfType(eDistrict: integer, includePillaged: boolean, includeIncomplete: boolean) → number</code></td>
-<td>—</td>
+<td>Counts the player's districts of a type, optionally including pillaged and incomplete ones.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c45b0</code></td>
@@ -300,7 +300,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getpromotionglobaldefensebonus"></a>GetPromotionGlobalDefenseBonus</td>
 <td><code>Player:GetPromotionGlobalDefenseBonus() → number</code></td>
-<td>—</td>
+<td>Sums the +0x93c defense bonus of the player's non-dead spy units (unit flag 0x1ba bit 2) standing on plots owned by that player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d05f0</code></td>
@@ -308,7 +308,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getpromotionglobaloffensebonus"></a>GetPromotionGlobalOffenseBonus</td>
 <td><code>Player:GetPromotionGlobalOffenseBonus() → number</code></td>
-<td>—</td>
+<td>Sums the +0x938 offense bonus of the player's non-dead spy units standing on plots owned by that player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d06c0</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getrandomeventmodifieddamageopposingplayer"></a>GetRandomEventModifiedDamageOpposingPlayer</td>
 <td><code>Player:GetRandomEventModifiedDamageOpposingPlayer(eRandomEvent: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored modified damage value for a random event, from a per-event int array on the player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f8060</code></td>
@@ -324,7 +324,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getrandomeventnounitdamage"></a>GetRandomEventNoUnitDamage</td>
 <td><code>Player:GetRandomEventNoUnitDamage(eRandomEvent: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the per-event int stored for this random event is positive, meaning the event does no unit damage for this player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f80a0</code></td>
@@ -332,7 +332,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getresolutioneffectrefundpercent"></a>GetResolutionEffectRefundPercent</td>
 <td><code>Player:GetResolutionEffectRefundPercent(eResolution: integer, iWhichEffect: integer) → number</code></td>
-<td>—</td>
+<td>Sums the refund entries matching a resolution and effect index, clamps the total to 0..100 and returns it.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x26cfb0</code></td>
@@ -340,7 +340,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getrevealedfeature"></a>GetRevealedFeature</td>
 <td><code>Player:GetRevealedFeature(eFeatureType: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether a feature type has been revealed to this player, from a per-feature byte array.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f8100</code></td>
@@ -348,7 +348,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getspecialallowedproject"></a>GetSpecialAllowedProject</td>
 <td><code>Player:GetSpecialAllowedProject(eImprovement: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the project's allow counter is positive; for an out-of-range project it falls back to a general counter at 0x5a8.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f8170</code></td>
@@ -356,7 +356,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getspynameindex"></a>GetSpyNameIndex</td>
 <td><code>Player:GetSpyNameIndex(eOpponent: integer) → number</code></td>
-<td>—</td>
+<td>Finds a spy unit of this player on a plot owned by eOpponent that is running a listening-post operation and returns its citizen name index, else -1.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d07e0</code></td>
@@ -364,7 +364,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getvisibilityforagenda"></a>GetVisibilityForAgenda</td>
 <td><code>Player:GetVisibilityForAgenda(agenda: integer) → number</code></td>
-<td>—</td>
+<td>Searches a list of agendas on the player and returns the paired diplomatic visibility level for the given agenda.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f8200</code></td>
@@ -372,7 +372,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldrate"></a>GetYieldRate</td>
 <td><code>Player:GetYieldRate(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the per-turn yield for culture, gold, science or faith by calling the matching subsystem; any other yield gives 0. The decompile also shows a Government find from the yield, likely a decompiler artifact.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f8240</code></td>
@@ -380,7 +380,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasanyrequiredfeatures"></a>HasAnyRequiredFeatures</td>
 <td><code>Player:HasAnyRequiredFeatures() → boolean</code></td>
-<td>—</td>
+<td>Returns true if any feature has a positive count in the player's required-feature array.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c4730</code></td>
@@ -388,7 +388,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasescapingspy"></a>HasEscapingSpy</td>
 <td><code>Player:HasEscapingSpy() → boolean</code></td>
-<td>—</td>
+<td>Returns true if any of the player's spy units has the escaping flag (+0x959) set.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d09f0</code></td>
@@ -396,7 +396,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasfoundanynewcontinent"></a>HasFoundAnyNewContinent</td>
 <td><code>Player:HasFoundAnyNewContinent() → boolean</code></td>
-<td>—</td>
+<td>Counts continents flagged as found by this player and returns true if more than one is flagged.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f83f0</code></td>
@@ -404,7 +404,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasfoundcontinent"></a>HasFoundContinent</td>
 <td><code>Player:HasFoundContinent(eContinentType: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether a given continent is flagged as found by this player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f8430</code></td>
@@ -412,7 +412,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasthisrequiredfeatureforspecialtydistrict"></a>HasThisRequiredFeatureForSpecialtyDistrict</td>
 <td><code>Player:HasThisRequiredFeatureForSpecialtyDistrict(eFeature: integer, eDistrict: integer) → boolean</code></td>
-<td>—</td>
+<td>If the district is a specialty district per Rules::Economic, returns whether the feature's count is positive.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c4780</code></td>
@@ -420,7 +420,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isagendaallowed"></a>IsAgendaAllowed</td>
 <td><code>Player:IsAgendaAllowed(agenda: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks the player's agendas; returns false if any of them lists the given agenda in one of two exclusion lists of its definition, else true.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f96b0</code></td>
@@ -428,7 +428,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="ischopbanned"></a>IsChopBanned</td>
 <td><code>Player:IsChopBanned(eFeature: integer) → boolean</code></td>
-<td>—</td>
+<td>Searches a list of feature/flag entries on the player and returns true if the feature has a nonzero ban flag.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f97c0</code></td>
@@ -436,7 +436,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="issimultaneousturns"></a>IsSimultaneousTurns</td>
 <td><code>Player:IsSimultaneousTurns() → boolean</code></td>
-<td>—</td>
+<td>Returns false for non-human players; otherwise depends on the current phase turn mode: for one mode the per-player flag at 0x2a0, for another mode true.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f98c0</code></td>
@@ -444,7 +444,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="istrackingspy"></a>IsTrackingSpy</td>
 <td><code>Player:IsTrackingSpy() → boolean</code></td>
-<td>—</td>
+<td>Scans all players' spy units from other players that are on plots owned by this player and have the +0x959 flag; returns true if one is found.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d1260</code></td>
@@ -452,7 +452,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isvalid"></a>IsValid</td>
 <td><code>Player:IsValid() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the player's valid flag (0x83a) is set and its configuration has a civilization type.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f9950</code></td>
@@ -468,7 +468,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeadditionalpillaging"></a>RemoveAdditionalPillaging</td>
 <td><code>Player:RemoveAdditionalPillaging(ePlunder: integer, eImprovement: integer, eDistrict: integer, iAmount: integer)</code></td>
-<td>—</td>
+<td>Removes the first entry matching plunder, improvement, district and amount from the player's additional-pillaging list by rebuilding the list without it.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2f9f00</code></td>
@@ -476,7 +476,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeavoidedrandomevents"></a>RemoveAvoidedRandomEvents</td>
 <td><code>Player:RemoveAvoidedRandomEvents(eEventRemove: integer)</code></td>
-<td>—</td>
+<td>If the value is in the player's avoided random events list, updates the dirty-variable set and decrements the count at 0x3f8; the list entry itself is not erased in this code.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2fa0a0</code></td>
@@ -484,7 +484,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removecapturedspy"></a>RemoveCapturedSpy</td>
 <td><code>Player:RemoveCapturedSpy(eOwner: integer, iNameIndex: integer)</code></td>
-<td>—</td>
+<td>Rebuilds the captured-spy list without the entry matching owner and name index.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d1830</code></td>
@@ -500,7 +500,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removecounterspyyieldawardperlevel"></a>RemoveCounterSpyYieldAwardPerLevel</td>
 <td><code>Player:RemoveCounterSpyYieldAwardPerLevel(eYield: integer, iAmount: integer, iPerXAmount: integer)</code></td>
-<td>—</td>
+<td>Rebuilds the counter-spy yield award list, dropping one entry matching yield and amount/perX (the match logic uses &amp;&amp; on negated conditions, so it may drop an unintended entry).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d19b0</code></td>
@@ -508,7 +508,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removedistrictaddnavalunits"></a>RemoveDistrictAddNavalUnits</td>
 <td><code>Player:RemoveDistrictAddNavalUnits(eDistrict: integer)</code></td>
-<td>—</td>
+<td>If the value is in the player's district-adds-naval-units list, updates the dirty-variable set and decrements the count at 0x510; the list entry itself is not erased in this code.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2fa330</code></td>
@@ -516,7 +516,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removedistrictandbuildingscreateunitwithabilitybyclass"></a>RemoveDistrictAndBuildingsCreateUnitWithAbilityByClass</td>
 <td><code>Player:RemoveDistrictAndBuildingsCreateUnitWithAbilityByClass(eAbility: integer, eDistrict: integer, ePromotionClass: integer)</code></td>
-<td>—</td>
+<td>Removes the first list entry matching (ability, district, promotion class) by shifting the rest down.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c5330</code></td>
@@ -524,7 +524,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removedistrictcreateunit"></a>RemoveDistrictCreateUnit</td>
 <td><code>Player:RemoveDistrictCreateUnit(eDistrict: integer)</code></td>
-<td>—</td>
+<td>Removes the first create-unit entry for a district by shifting later entries down.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c53f0</code></td>
@@ -532,7 +532,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removedistrictcreateyield"></a>RemoveDistrictCreateYield</td>
 <td><code>Player:RemoveDistrictCreateYield(eYield: integer, eDistrict: integer)</code></td>
-<td>—</td>
+<td>Removes the first yield entry matching yield and district, shifting later entries down.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c54b0</code></td>
@@ -540,7 +540,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removefoundforeigncontinentcityaddunitclasses"></a>RemoveFoundForeignContinentCityAddUnitClasses</td>
 <td><code>Player:RemoveFoundForeignContinentCityAddUnitClasses(eUnitClass: integer)</code></td>
-<td>—</td>
+<td>If the value is in the player's foreign-continent-city unit class list, updates the dirty-variable set and decrements the count at 0x4e8; the list entry itself is not erased in this code.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2fa470</code></td>
@@ -548,7 +548,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removespecialallowedimprovement"></a>RemoveSpecialAllowedImprovement</td>
 <td><code>Player:RemoveSpecialAllowedImprovement(eImprovement: integer)</code></td>
-<td>—</td>
+<td>Rebuilds the player's special-allowed improvement list at 0x380 without the first matching entry.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2fa5b0</code></td>
@@ -564,7 +564,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setavoidedrandomevents"></a>SetAvoidedRandomEvents</td>
 <td><code>Player:SetAvoidedRandomEvents(eEvent: integer)</code></td>
-<td>—</td>
+<td>Appends a random event type to the player's avoided random events list (ignoring -1).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2faa80</code></td>
@@ -572,7 +572,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setcaneverzone"></a>SetCanEverZone</td>
 <td><code>Player:SetCanEverZone()</code></td>
-<td>—</td>
+<td>Rebuilds the can-ever-zone district array (+0x1d8) sized to the district definitions, using the player's civilization and leader definitions to mark districts and their dependent entries (decompilation truncated).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c5a40</code></td>
@@ -580,7 +580,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setdistrictunlockcivic"></a>SetDistrictUnlockCivic</td>
 <td><code>Player:SetDistrictUnlockCivic(eDistrict: integer, eCivic: integer)</code></td>
-<td>—</td>
+<td>Appends a (district, civic) record to the unlock-civic list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c5da0</code></td>
@@ -588,7 +588,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setdistrictunlocktech"></a>SetDistrictUnlockTech</td>
 <td><code>Player:SetDistrictUnlockTech(eDistrict: integer, eTech: integer)</code></td>
-<td>—</td>
+<td>Appends a (district, tech) record to the unlock-tech list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2c5df0</code></td>
@@ -596,7 +596,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="sethasencountered"></a>SetHasEncountered</td>
 <td><code>Player:SetHasEncountered(eUnit: integer, bNewValue: boolean)</code></td>
-<td>—</td>
+<td>Sets the per-unit-type encountered flag for this player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2faaf0</code></td>
@@ -604,7 +604,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="sethasfoundcontinent"></a>SetHasFoundContinent</td>
 <td><code>Player:SetHasFoundContinent(eContinentType: integer, bRevealed: boolean)</code></td>
-<td>—</td>
+<td>Sets the found flag of a continent for this player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2fab20</code></td>
@@ -612,7 +612,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setrevealedfeature"></a>SetRevealedFeature</td>
 <td><code>Player:SetRevealedFeature(eFeatureType: integer, bRevealed: boolean)</code></td>
-<td>—</td>
+<td>Sets the revealed flag of a feature type for this player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2fad10</code></td>
@@ -620,7 +620,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="updatewithescaperesult"></a>UpdateWithEscapeResult</td>
 <td><code>Player:UpdateWithEscapeResult(iNameIndex: integer, eOperation: integer, eTarget: integer, cityID: integer, eEscapeResult: integer, iNewLevel: integer)</code></td>
-<td>—</td>
+<td>Finds the most recent record matching name index, operation, target, city; sets its escape result and raises its level to iNewLevel if higher.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x2d2530</code></td>
@@ -628,6 +628,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddAdditionalPillaging</h3>
+<p>Arguments: <code>ePlunder</code> — plunder type; <code>eImprovement</code> — improvement type; <code>eDistrict</code> — district type; <code>iAmount</code> — amount, must be positive</p>
+<p><strong>Writes</strong>
+- player pillaging list (+0x5e0)</p>
+<p><strong>Input checks:</strong> Requires plunder != -1, amount &gt; 0 and an improvement or district.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent list). <strong>Confidence of the reading:</strong> high.</p>
 <h3>AddAgenda</h3>
 <p>Arguments: <code>agenda</code> — agenda to add; <code>visibility</code> — how visible the agenda is</p>
 <p><strong>Writes</strong>
@@ -664,6 +670,36 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Pairs with RemoveChopFeatureBehavior</p>
 <p><strong>Open questions</strong>
 - Which code consumes these records</p>
+<h3>AddCounterSpyYieldAwardPerLevel</h3>
+<p>Arguments: <code>eYield</code> — yield type awarded; <code>iAmount</code> — amount awarded (inferred); <code>iPerXAmount</code> — divisor (per X levels) (inferred)</p>
+<p><strong>Writes</strong>
+- counter-spy yield award list (+0x1b8)</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddDistrictAndBuildingsCreateUnitWithAbilityByClass</h3>
+<p>Arguments: <code>eAbility</code> — unit ability to grant (inferred); <code>eDistrict</code> — district type (inferred); <code>ePromotionClass</code> — promotion class of units that receive it (inferred)</p>
+<p><strong>Writes</strong>
+- player districts list at +0x260 (appended 12-byte entry)</p>
+<p><strong>Input checks:</strong> No validation, no duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent modifier list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddDistrictCreateUnit</h3>
+<p>Arguments: <code>eDistrict</code> — district that creates the unit; <code>eUnit</code> — unit type created</p>
+<p><strong>Writes</strong>
+- player create-unit list (+0x230)</p>
+<p><strong>Input checks:</strong> Unit index range-checked but a null definition is dereferenced; no duplicate check (a find loop result is unused).</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> high (invalid unit index can crash). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddDistrictCreateYield</h3>
+<p>Arguments: <code>eYield</code> — yield type (inferred); <code>eDistrict</code> — district type (inferred); <code>iAmount</code> — yield amount (inferred); <code>bYieldBasedOnAppeal</code> — whether yield depends on appeal (inferred); <code>bMustReplaceImprovement</code> — whether district must replace an improvement (inferred); <code>eImprovement</code> — improvement type involved (inferred)</p>
+<p><strong>Writes</strong>
+- player district yield list (+0x200, 20-byte entry)</p>
+<p><strong>Input checks:</strong> No validation; no duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent modifier list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddSpecialAllowedImprovement</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type to allow</p>
+<p><strong>Writes</strong>
+- special allowed improvement list (+0x380)</p>
+<p><strong>Input checks:</strong> No validation, no duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent list). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeCO2GenerationReduction</h3>
 <p>Arguments: <code>eUsageType</code> — resource usage type (0-3); <code>iDiscount</code> — amount added</p>
 <p><strong>Writes</strong>
@@ -678,6 +714,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - adds delta to element</p>
 <p><strong>Inferred</strong>
 - Four usage categories</p>
+<h3>ChangeExtraCapitalPressureRadius</h3>
+<p>Arguments: <code>iChange</code> — amount to add to the extra radius</p>
+<p><strong>Writes</strong>
+- extra capital pressure radius variable (+0x90/+0xa0)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player cultural identity state. <strong>Risk:</strong> medium (affects loyalty pressure). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeFlatBonus</h3>
 <p>Arguments: <code>eBonus</code> — government bonus type; <code>iDelta</code> — amount added to the counter</p>
 <p><strong>Writes</strong>
@@ -793,6 +835,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Entries are yield/percent pairs</p>
 <p><strong>Open questions</strong>
 - Odd end-pointer check against this+0x200 purpose</p>
+<h3>ChangeWantsCongressToMeet</h3>
+<p>Arguments: <code>ab</code> — new wants-congress-to-meet value</p>
+<p><strong>Writes</strong>
+- Congress wants-to-meet auto-variable (+0x298)</p>
+<p><strong>Side effects</strong>
+- sends a Reporting event (hash 0x23aceece)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised congress variable. <strong>Risk:</strong> medium (changes congress state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeYieldRate</h3>
 <p>Arguments: <code>eYield</code> — yield (culture, gold, science, faith only); <code>iAmount</code> — whole-number rate change</p>
 <p><strong>Writes</strong>
@@ -811,6 +861,149 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - delta scaled by 0x100 added to current value then setter called</p>
 <p><strong>Inferred</strong>
 - rate-change is a per-turn modifier</p>
+<h3>CheckNotifications</h3>
+<p><strong>Side effects</strong>
+- sends two player notifications (hashes 0x23d49db5, 0x652183a2)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, issues notifications unconditionally. <strong>Risk:</strong> low (notification send only). <strong>Confidence of the reading:</strong> low.</p>
+<h3>DoEndTurn</h3>
+<p><strong>Writes</strong>
+- delegated: units, cities (city healing) and culture end-of-turn state</p>
+<p><strong>Side effects</strong>
+- calls Player::Units::DoEndTurn, Cities::DoEndTurn, Culture::DoEndTurn</p>
+<p><strong>Input checks:</strong> None; subsystem pointers are not null checked.</p>
+<p><strong>Multiplayer:</strong> may-desync, runs end-of-turn game logic. <strong>Risk:</strong> medium (drives the player's end-of-turn processing). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- stored diplomatic victory points (+0x2b0 variable)</p>
+<p><strong>Side effects</strong>
+- sends a player notification with localized text and the point difference</p>
+<p><strong>Input checks:</strong> Does nothing when the difference is zero.</p>
+<p><strong>Multiplayer:</strong> may-desync, per-turn state update and notification. <strong>Risk:</strong> medium (per-turn processing). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurnActivate</h3>
+<p>Arguments: <code>bFirstTime</code> — true on the first activation of the turn; the main block is skipped when false</p>
+<p><strong>Writes</strong>
+- research, treasury, culture, religion, diplomacy, cities, units, trade, stats and per-city turn state (delegated)</p>
+<p><strong>Side effects</strong>
+- dispatches a unit signal on the game, calculates score, runs improvement captures and placement rules</p>
+<p><strong>Input checks:</strong> Only checks bFirstTime and barbarian status; no null checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, runs full start-of-turn game logic. <strong>Risk:</strong> high (drives all start-of-turn processing; calling twice would double-apply yields). <strong>Confidence of the reading:</strong> low.</p>
+<h3>DoTurnDeactivate</h3>
+<p><strong>Writes</strong>
+- delegated: diplomacy visibility record, AI control, cities, resources</p>
+<p><strong>Side effects</strong>
+- calls Diplomacy::RecordVisibilityLevels (majors only), AI Control DoTurnDeactivate, Cities and Resources DoTurnDeactivate</p>
+<p><strong>Input checks:</strong> Only the IsMajor check gates the diplomacy call; no null checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, runs turn deactivation logic. <strong>Risk:</strong> medium (delegates to several subsystems that change state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetAvoidedRandomEvents</h3>
+<p>Arguments: <code>eEvent</code> — random event type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCapitalPressureRadius</h3>
+<p><strong>Input checks:</strong> Floors the sum at 0.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetChopExtraYield</h3>
+<p>Arguments: <code>eFeature</code> — feature type chopped; <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetControlType</h3>
+<p><strong>Input checks:</strong> None needed; uses the player id stored at offset 0xd8.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCounterSpyYieldAwardPerLevel</h3>
+<p>Arguments: <code>eYield</code> — yield type (inferred)</p>
+<p><strong>Input checks:</strong> Skips entries whose divisor is not positive.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan, writes only the return slot. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetDistrictCannotBeBuiltAdjacentToCity</h3>
+<p>Arguments: <code>eDistrict</code> — district type</p>
+<p><strong>Input checks:</strong> Rejects -1; no upper range check.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (getter, unchecked upper index). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetDistrictCreationUnit</h3>
+<p>Arguments: <code>eDistrict</code> — district type</p>
+<p><strong>Input checks:</strong> Returns -1 when absent.</p>
+<p><strong>Multiplayer:</strong> read-only, list lookup. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetFavor</h3>
+<p><strong>Input checks:</strong> None; Congress object is dereferenced without a null check.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetMilitaryDomainDistrict</h3>
+<p>Arguments: <code>eDomain</code> — domain type (land, sea, air)</p>
+<p><strong>Input checks:</strong> Returns -1 on no match.</p>
+<p><strong>Multiplayer:</strong> read-only, definition scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumDistrictsOfType</h3>
+<p>Arguments: <code>eDistrict</code> — district type to count; <code>includePillaged</code> — count pillaged districts too; <code>includeIncomplete</code> — count districts whose complete flag (+0x3f8) is zero</p>
+<p><strong>Input checks:</strong> No validation of eDistrict.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetPromotionGlobalDefenseBonus</h3>
+<p><strong>Input checks:</strong> Checks unit definition index; skips units with null plot.</p>
+<p><strong>Multiplayer:</strong> read-only, unit scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetPromotionGlobalOffenseBonus</h3>
+<p><strong>Input checks:</strong> Same checks as defense variant.</p>
+<p><strong>Multiplayer:</strong> read-only, unit scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetRandomEventModifiedDamageOpposingPlayer</h3>
+<p>Arguments: <code>eRandomEvent</code> — random event type index into the per-event array</p>
+<p><strong>Input checks:</strong> Checks for -1 (none) and index below array size; returns 0 otherwise.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetRandomEventNoUnitDamage</h3>
+<p>Arguments: <code>eRandomEvent</code> — random event type index into the per-event array</p>
+<p><strong>Input checks:</strong> Checks for -1 and index below array size; returns false otherwise.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetResolutionEffectRefundPercent</h3>
+<p>Arguments: <code>eResolution</code> — resolution type to match; <code>iWhichEffect</code> — effect index to match</p>
+<p><strong>Input checks:</strong> No input validation; unmatched returns 0.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan only. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetRevealedFeature</h3>
+<p>Arguments: <code>eFeatureType</code> — feature type index into the revealed flag array</p>
+<p><strong>Input checks:</strong> Checks for -1 and index below array size; returns false otherwise.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetSpecialAllowedProject</h3>
+<p>Arguments: <code>eImprovement</code> — project type index (named eImprovement but typed ProjectTypes)</p>
+<p><strong>Input checks:</strong> Range checked; out-of-range or invalid falls back to the general counter instead of returning false.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetSpyNameIndex</h3>
+<p>Arguments: <code>eOpponent</code> — player owning the plot where the spy is</p>
+<p><strong>Input checks:</strong> Returns -1 if no match.</p>
+<p><strong>Multiplayer:</strong> read-only, unit scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetVisibilityForAgenda</h3>
+<p>Arguments: <code>agenda</code> — agenda type to look up in the player's agenda list</p>
+<p><strong>Input checks:</strong> No range check; linear search, returns -1 when not found.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetYieldRate</h3>
+<p>Arguments: <code>eYield</code> — yield type to query (inferred)</p>
+<p><strong>Input checks:</strong> Unsupported yields return 0; subsystem pointers are not null checked. Decompile is partly mangled.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasAnyRequiredFeatures</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, array scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasEscapingSpy</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, unit scan. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasFoundAnyNewContinent</h3>
+<p><strong>Input checks:</strong> None; iterates the byte array at 0x368.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasFoundContinent</h3>
+<p>Arguments: <code>eContinentType</code> — continent index into the found flag array</p>
+<p><strong>Input checks:</strong> Checks for -1 and index below array size; returns false otherwise.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasThisRequiredFeatureForSpecialtyDistrict</h3>
+<p>Arguments: <code>eFeature</code> — feature type; <code>eDistrict</code> — district type, must be specialty</p>
+<p><strong>Input checks:</strong> Rejects feature -1; no upper range check.</p>
+<p><strong>Multiplayer:</strong> read-only, array lookup. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsAgendaAllowed</h3>
+<p>Arguments: <code>agenda</code> — agenda type being tested</p>
+<p><strong>Input checks:</strong> Skips -1 agenda entries; assumes valid definition for others.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsChopBanned</h3>
+<p>Arguments: <code>eFeature</code> — feature type to look up in the ban list</p>
+<p><strong>Input checks:</strong> None; linear search of 16-byte entries.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsSimultaneousTurns</h3>
+<p><strong>Input checks:</strong> Non-human returns false; unknown turn mode returns false. Turn mode hashes are compared as constants.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsTrackingSpy</h3>
+<p><strong>Input checks:</strong> Requires valid positions (&gt; -9999).</p>
+<p><strong>Multiplayer:</strong> read-only, scan of all players' units. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsValid</h3>
+<p><strong>Input checks:</strong> None; reads own configuration slot.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>RecomputeCost</h3>
 <p>Arguments: <code>eDistrict</code> — district type</p>
 <p><strong>Writes</strong>
@@ -832,6 +1025,26 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - exact mapping of switch cases to model names
 - float constants not shown</p>
+<h3>RemoveAdditionalPillaging</h3>
+<p>Arguments: <code>ePlunder</code> — plunder type of the entry to remove; <code>eImprovement</code> — improvement type of the entry; <code>eDistrict</code> — district type of the entry; <code>iAmount</code> — amount of the entry</p>
+<p><strong>Writes</strong>
+- additional pillaging entry list at 0x5e0 (one matching entry removed)</p>
+<p><strong>Side effects</strong>
+- allocates and frees a temporary copy of the list</p>
+<p><strong>Input checks:</strong> No validation; nothing is removed if no entry matches (the list is just rebuilt).</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveAvoidedRandomEvents</h3>
+<p>Arguments: <code>eEventRemove</code> — random event type to remove</p>
+<p><strong>Writes</strong>
+- count at 0x3f8 decremented, dirty-variable set updated</p>
+<p><strong>Input checks:</strong> Returns early if the count is 0 or the value is not in the list; no range check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveCapturedSpy</h3>
+<p>Arguments: <code>eOwner</code> — owner of the captured spy; <code>iNameIndex</code> — spy name index</p>
+<p><strong>Writes</strong>
+- captured spy list (+0xf8) rebuilt</p>
+<p><strong>Input checks:</strong> List is rebuilt unchanged if no match.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (list rebuild). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>RemoveChopFeatureBehavior</h3>
 <p>Arguments: <code>eFeature</code> — feature; <code>bBan</code> — ban flag of the rule; <code>eYield</code> — yield of the rule</p>
 <p><strong>Writes</strong>
@@ -851,6 +1064,50 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Probably removes all matching rules, not just the first</p>
 <p><strong>Open questions</strong>
 - Whether offsets 0x5c0/0x5c8 are the same vector as at 0x5b0 value</p>
+<h3>RemoveCounterSpyYieldAwardPerLevel</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>iAmount</code> — amount to match; <code>iPerXAmount</code> — per-X value to match</p>
+<p><strong>Writes</strong>
+- counter-spy yield award list (+0x1b8)</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (possible faulty match). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveDistrictAddNavalUnits</h3>
+<p>Arguments: <code>eDistrict</code> — district type to remove</p>
+<p><strong>Writes</strong>
+- count at 0x510 decremented, dirty-variable set updated</p>
+<p><strong>Input checks:</strong> Returns early if the count is 0 or the value is not in the list; no range check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveDistrictAndBuildingsCreateUnitWithAbilityByClass</h3>
+<p>Arguments: <code>eAbility</code> — ability to match (inferred); <code>eDistrict</code> — district to match (inferred); <code>ePromotionClass</code> — promotion class to match (inferred)</p>
+<p><strong>Writes</strong>
+- player districts list at +0x260 (entry removed)</p>
+<p><strong>Input checks:</strong> No-op if no match.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent modifier list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveDistrictCreateUnit</h3>
+<p>Arguments: <code>eDistrict</code> — district to remove</p>
+<p><strong>Writes</strong>
+- player create-unit list (+0x230)</p>
+<p><strong>Input checks:</strong> No-op if absent; end compare uses +0x248 (possibly a stale pointer).</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent modifier list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveDistrictCreateYield</h3>
+<p>Arguments: <code>eYield</code> — yield type to match; <code>eDistrict</code> — district to match</p>
+<p><strong>Writes</strong>
+- player district yield list (+0x200)</p>
+<p><strong>Input checks:</strong> No-op if absent.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent modifier list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveFoundForeignContinentCityAddUnitClasses</h3>
+<p>Arguments: <code>eUnitClass</code> — unit promotion class to remove</p>
+<p><strong>Writes</strong>
+- count at 0x4e8 decremented, dirty-variable set updated</p>
+<p><strong>Input checks:</strong> Returns early if the count is 0 or the value is not in the list; no range check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveSpecialAllowedImprovement</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type to remove from the list</p>
+<p><strong>Writes</strong>
+- special-allowed improvement list at 0x380 (one matching entry removed)</p>
+<p><strong>Side effects</strong>
+- allocates and frees temporary buffers</p>
+<p><strong>Input checks:</strong> No validation; if the improvement is absent the list is just rewritten unchanged.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetAlive</h3>
 <p>Arguments: <code>bIsAlive</code> — new alive state</p>
 <p><strong>Writes</strong>
@@ -872,4 +1129,53 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - signal declared with Unit parameter but passed the player</p>
 <p><strong>Open questions</strong>
-- what InitializeAliveState does for death</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- what InitializeAliveState does for death</p>
+<h3>SetAvoidedRandomEvents</h3>
+<p>Arguments: <code>eEvent</code> — random event type to add to the avoided list</p>
+<p><strong>Writes</strong>
+- avoided random events list at 0x3d8 (appended)</p>
+<p><strong>Input checks:</strong> Ignores -1; does not check for duplicates or range.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetCanEverZone</h3>
+<p><strong>Writes</strong>
+- can-ever-zone variable (+0x1d8) resized and filled</p>
+<p><strong>Input checks:</strong> Handles missing civilization/leader definitions by skipping the fill.</p>
+<p><strong>Multiplayer:</strong> may-desync, rebuilds synchronised player array. <strong>Risk:</strong> medium (bulk rebuild; decompilation truncated). <strong>Confidence of the reading:</strong> low.</p>
+<h3>SetDistrictUnlockCivic</h3>
+<p>Arguments: <code>eDistrict</code> — district to unlock; <code>eCivic</code> — civic that unlocks it</p>
+<p><strong>Writes</strong>
+- player unlock-civic list (+0x2c0)</p>
+<p><strong>Input checks:</strong> No validation, no duplicate check; despite Set, it appends.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetDistrictUnlockTech</h3>
+<p>Arguments: <code>eDistrict</code> — district to unlock; <code>eTech</code> — tech that unlocks it</p>
+<p><strong>Writes</strong>
+- player unlock-tech list (+0x290)</p>
+<p><strong>Input checks:</strong> No validation, no duplicate check; despite Set, it appends.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player vector. <strong>Risk:</strong> medium (persistent list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetHasEncountered</h3>
+<p>Arguments: <code>eUnit</code> — unit type index into the encountered flag array; <code>bNewValue</code> — new encountered flag value</p>
+<p><strong>Writes</strong>
+- encountered-unit flag array at 0x308</p>
+<p><strong>Input checks:</strong> No bounds or -1 check on eUnit; an invalid index writes out of range.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> high (unchecked index into array). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetHasFoundContinent</h3>
+<p>Arguments: <code>eContinentType</code> — continent index; <code>bRevealed</code> — new found flag value</p>
+<p><strong>Writes</strong>
+- found-continent flag array at 0x358</p>
+<p><strong>Input checks:</strong> Checks for -1 and index below array size; otherwise ignored.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetRevealedFeature</h3>
+<p>Arguments: <code>eFeatureType</code> — feature type index; <code>bRevealed</code> — new revealed flag value</p>
+<p><strong>Writes</strong>
+- revealed-feature flag array at 0x330</p>
+<p><strong>Input checks:</strong> Checks for -1 and index below array size; otherwise ignored.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player state. <strong>Risk:</strong> medium (writes synchronised player state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>UpdateWithEscapeResult</h3>
+<p>Arguments: <code>iNameIndex</code> — spy name index; <code>eOperation</code> — operation type; <code>eTarget</code> — target player; <code>cityID</code> — target city id; <code>eEscapeResult</code> — escape result to store; <code>iNewLevel</code> — level to store if higher</p>
+<p><strong>Writes</strong>
+- matching record result (+0x188 list)</p>
+<p><strong>Side effects</strong>
+- sends Reporting event 0x81c5bd7e19087a58</p>
+<p><strong>Input checks:</strong> No-op if no match.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised list. <strong>Risk:</strong> medium (state change plus event). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

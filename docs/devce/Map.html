@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addoutgoingvisibilityblocker"></a>AddOutgoingVisibilityBlocker</td>
 <td><code>Map:AddOutgoingVisibilityBlocker(eFromPlayer: integer, eToPlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Makes eFromPlayer stop sharing visibility with eToPlayer: registers the blocker on the from-player's visibility instance and, if it was added and outgoing visibility existed, subtracts the from-player's counts from the to-player's per plot and propagates reveal changes for the local observer. The shown code always returns false.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35a4b0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addvolcano"></a>AddVolcano</td>
 <td><code>Map:AddVolcano(iPlotIndex: integer)</code></td>
-<td>—</td>
+<td>Builds a default Volcano record for the plot, appends it to the volcano vector (offset 0x110), records plot index to vector index in a map at 0x208, then calls StoreVolcanoData.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x721170</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculatesusceptibletiles"></a>CalculateSusceptibleTiles</td>
 <td><code>Map:CalculateSusceptibleTiles()</code></td>
-<td>—</td>
+<td>Rebuilds the list (offset 0x238, count 0x248) of plot indices susceptible to eruption by collecting plots from every active volcano and every active natural wonder volcano (via GetAffectedNaturalWonderPlots). Decompilation is truncated before the end.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x721300</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="cansuffereruption"></a>CanSufferEruption</td>
 <td><code>Map:CanSufferEruption(iPlotIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether a plot can suffer an eruption: plot exists, is not flagged (byte 0x3a bit 8), cannot be flooded by a river, and at least one of the 6 adjacent plots passes the manager's virtual slot-0 predicate.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x7216e0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changelandplotcount"></a>ChangeLandPlotCount</td>
 <td><code>Map:ChangeLandPlotCount(iChange: integer)</code></td>
-<td>—</td>
+<td>Adds iChange to the tracked land plot count at offset 0x100 via a variable assignment helper.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x51f80</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="computeplotyielddrop"></a>ComputePlotYieldDrop</td>
 <td><code>Map:ComputePlotYieldDrop(iPlotIndex: integer, eYield: integer, iPercentChance: integer) → number</code></td>
-<td>—</td>
+<td>Computes how much of a plot's stored feature yield is removed: scales the stored yield by the percent chance and rolls the random generator ('Remove Fertility Chance') to round the fractional part up.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x721ab0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>Map:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn update: calls UpdateVolcanoes then CalculateSusceptibleTiles.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x722790</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="geticelossevent"></a>GetIceLossEvent</td>
 <td><code>Map:GetIceLossEvent(iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Looks up a plot index in a list of (plotIndex, eventType) pairs at offset 0x1e0 and returns the random event type, or -1 if not found.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x7239c0</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getlayerindexid"></a>GetLayerIndexID</td>
 <td><code>Map:GetLayerIndexID(uiIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the layer id at the given index of the layer table (stride 0x18) of the instance at +0x50, or -1 if out of range.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35b380</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumactivevolcanoes"></a>GetNumActiveVolcanoes</td>
 <td><code>Map:GetNumActiveVolcanoes() → number</code></td>
-<td>—</td>
+<td>Counts normal volcanoes whose virtual slot 0x10 (active check) returns true.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723a90</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumeruptions"></a>GetNumEruptions</td>
 <td><code>Map:GetNumEruptions() → number</code></td>
-<td>—</td>
+<td>Sums the eruption history entries (12-byte records) over all normal volcanoes and natural wonder volcanoes.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723b00</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumnaturalwondervolcanoes"></a>GetNumNaturalWonderVolcanoes</td>
 <td><code>Map:GetNumNaturalWonderVolcanoes() → number</code></td>
-<td>—</td>
+<td>Returns the number of natural wonder volcano entries (vector at 0x138, 0x50 bytes each).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723b90</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumnaturalwonderseruptions"></a>GetNumNaturalWondersEruptions</td>
 <td><code>Map:GetNumNaturalWondersEruptions() → number</code></td>
-<td>—</td>
+<td>Sums eruption history entries over the vector at offset 0x150 (0x50-byte entries).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723bc0</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumnormalvolcanoes"></a>GetNumNormalVolcanoes</td>
 <td><code>Map:GetNumNormalVolcanoes(bMustBeNamed: boolean) → number</code></td>
-<td>—</td>
+<td>Counts entries in the normal volcano vector, optionally only those whose name field (offset 8) is not -1.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723c10</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumvolcanoes"></a>GetNumVolcanoes</td>
 <td><code>Map:GetNumVolcanoes() → number</code></td>
-<td>—</td>
+<td>Returns number of normal volcano records (vector size / 0xa0).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723c40</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getpercentvolcanoesactive"></a>GetPercentVolcanoesActive</td>
 <td><code>Map:GetPercentVolcanoesActive() → number</code></td>
-<td>—</td>
+<td>Percent of all volcanoes (normal plus natural wonder) that are active; returns 100 if there are none.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723c70</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getplotyield"></a>GetPlotYield</td>
 <td><code>Map:GetPlotYield(iPlotIndex: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored feature yield adjustment for a plot and yield type, using a default entry when the plot has none or an index is out of range.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723d20</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getrevealedimprovementtype"></a>GetRevealedImprovementType</td>
 <td><code>Map:GetRevealedImprovementType(ePlayer: integer, iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the improvement type the given player last saw on a plot, read from the revealed-improvement layer; 0 if plot index out of range, -1 if layer missing.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35b4a0</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getrevealedroutetype"></a>GetRevealedRouteType</td>
 <td><code>Map:GetRevealedRouteType(ePlayer: integer, iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the route type the given player last saw on a plot from the revealed-route layer; 0 if index out of range, -1 if layer missing.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35b5a0</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettotalvolcanoes"></a>GetTotalVolcanoes</td>
 <td><code>Map:GetTotalVolcanoes() → number</code></td>
-<td>—</td>
+<td>Returns the sum of two virtual calls: slot 0x68 with argument 0 (likely normal volcano count) plus slot 0x10 (likely natural wonder volcano count).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723d90</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getvolcanicperiod"></a>GetVolcanicPeriod</td>
 <td><code>Map:GetVolcanicPeriod(plotIndex: integer, minSeverity: integer) → number</code></td>
-<td>—</td>
+<td>Computes an averaged eruption period: gets a list of volcano ids via a virtual call, sums 100/x over each volcano's history entries from minSeverity onward, and returns 100/sum as FixedPoint (-1 when sum is zero). Decompile is partly vectorised.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x723dc0</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getvolcanotype"></a>GetVolcanoType</td>
 <td><code>Map:GetVolcanoType(iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Gets the volcano record for a plot via virtual slot 0x48 and returns its named volcano type if the record passes a check (slot 0x8 false), else -1.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x724240</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getvolcanotypeatindex"></a>GetVolcanoTypeAtIndex</td>
 <td><code>Map:GetVolcanoTypeAtIndex(uiIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the named type of the volcano at the given vector index, -1 if out of range.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x724280</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isactive"></a>IsActive</td>
 <td><code>Map:IsActive(iPlotIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the volcano record found by virtual slot 0x48 for the plot is active (virtual slot 0x10), false if none.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x724380</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="istileeruptionsusceptible"></a>IsTileEruptionSusceptible</td>
 <td><code>Map:IsTileEruptionSusceptible(iPlotIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks the plot and its 6 hex neighbours: true if any such plot has an entry in the sub-object at +0x18 that is active; false if the plot is flagged (byte 0x3a bit 8).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x724620</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isvisibletoanyhuman"></a>IsVisibleToAnyHuman</td>
 <td><code>Map:IsVisibleToAnyHuman(iPlotIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>True if any human player currently has a positive visibility count on the plot.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35bcf0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isvisibletoanyplayer"></a>IsVisibleToAnyPlayer</td>
 <td><code>Map:IsVisibleToAnyPlayer(iPlotIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>True if any player in the manager's list (offset 0x4a0) has positive visibility on the plot.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35bdc0</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isvisibletoplayerofcivlevel"></a>IsVisibleToPlayerOfCivLevel</td>
 <td><code>Map:IsVisibleToPlayerOfCivLevel(iPlotIndex: integer, eLevel: integer) → boolean</code></td>
-<td>—</td>
+<td>True if a player in the manager's list (offset 0x50) matching the civilization-level filter sees the plot; filter hash 0xc2577075 excludes players at level 0xd959ec24, 0x253718b0 excludes both 0xd959ec24 and 0xc2577075, others accept all.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35bf10</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="recalculateoutgoingvisibility"></a>RecalculateOutgoingVisibility</td>
 <td><code>Map:RecalculateOutgoingVisibility()</code></td>
-<td>—</td>
+<td>Rebuilds outgoing (shared) visibility: clears layer 1 for each player, then for each player's recipients without a blocker adds the player's visibility counts into the recipient.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35d1f0</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeoutgoingvisibilityblocker"></a>RemoveOutgoingVisibilityBlocker</td>
 <td><code>Map:RemoveOutgoingVisibilityBlocker(eFromPlayer: integer, eToPlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Re-enables visibility sharing from eFromPlayer to eToPlayer: removes the blocker, adds counts back per plot, marks newly seen plots, updates resource reveal state and propagates visibility changes for the local observer. Decompile is truncated.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x35d8c0</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeplotyield"></a>RemovePlotYield</td>
 <td><code>Map:RemovePlotYield(iPlotIndex: integer, eYield: integer, iReductionAmount: integer)</code></td>
-<td>—</td>
+<td>If the plot is valid, amount&gt;0 and visible to the local observer, builds a localized yield-loss message and sends a reporting event; then in all cases subtracts the amount from the stored plot yield (creating a per-plot entry if needed). The yield switch is stubbed in the decompile.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x725860</code></td>
@@ -332,7 +332,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="updatevolcanoes"></a>UpdateVolcanoes</td>
 <td><code>Map:UpdateVolcanoes()</code></td>
-<td>—</td>
+<td>Runs DoTurn on every normal volcano (vector at 0x110) and every natural wonder volcano (0x140), passing a value read from the parent game cache at offset 0xc0 (likely the current turn).</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x728360</code></td>
@@ -340,6 +340,15 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddOutgoingVisibilityBlocker</h3>
+<p>Arguments: <code>eFromPlayer</code> — player whose outgoing visibility is blocked; <code>eToPlayer</code> — player who stops receiving the visibility</p>
+<p><strong>Writes</strong>
+- Visibility counts of eToPlayer per plot (decrement)
+- blocker set on eFromPlayer instance</p>
+<p><strong>Side effects</strong>
+- PropagateVisibilityChanges for local observer</p>
+<p><strong>Input checks:</strong> Both players must be &lt;0x40 and mapped, otherwise nothing happens; counts clamped at 0.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes player visibility. <strong>Risk:</strong> high (Alters fog state; return value looks unreliable). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>AddPlotYield</h3>
 <p>Arguments: <code>iPlotIndex</code> — plot index; <code>eYield</code> — yield type; <code>iAmount</code> — amount to add; event only for &gt;0</p>
 <p><strong>Writes</strong>
@@ -361,6 +370,30 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - the sent event is the plot yield popup</p>
 <p><strong>Open questions</strong>
 - what the fallback fields at +0x18/+0x30 of the scratch entry represent</p>
+<h3>AddVolcano</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot where the volcano is created</p>
+<p><strong>Writes</strong>
+- Volcano vector at +0x110
+- plot-to-volcano index map at +0x208</p>
+<p><strong>Side effects</strong>
+- Volcano::StoreVolcanoData called on new entry</p>
+<p><strong>Input checks:</strong> No check that the plot index is valid or already has a volcano; inserts map entry only if key missing.</p>
+<p><strong>Multiplayer:</strong> may-desync, adds map feature state. <strong>Risk:</strong> high (Adds volcano objects; duplicate or invalid plot indices unchecked). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateSusceptibleTiles</h3>
+<p><strong>Writes</strong>
+- Susceptible tile array at +0x238 (count reset to 0 then refilled)</p>
+<p><strong>Input checks:</strong> None visible.</p>
+<p><strong>Multiplayer:</strong> may-desync, rewrites feature manager state. <strong>Risk:</strong> medium (Rewrites derived list; decompile truncated). <strong>Confidence of the reading:</strong> low.</p>
+<h3>CanSufferEruption</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot to test</p>
+<p><strong>Input checks:</strong> Null plot returns false; neighbour null checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure check. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ChangeLandPlotCount</h3>
+<p>Arguments: <code>iChange</code> — delta added to land plot count</p>
+<p><strong>Writes</strong>
+- Land plot count at +0x100</p>
+<p><strong>Input checks:</strong> None; no clamp.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes tracked map count. <strong>Risk:</strong> medium (Writes tracked counter without validation). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeNaturalWonderCount</h3>
 <p>Arguments: <code>iChange</code> — amount to add</p>
 <p><strong>Writes</strong>
@@ -377,6 +410,120 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - helper template name mentions AI ControlPriority but is probably a mis-resolved generic assignment</p>
 <p><strong>Open questions</strong>
 - protected member, so Lua exposure may not exist</p>
+<h3>ComputePlotYieldDrop</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot to evaluate; <code>eYield</code> — yield type; <code>iPercentChance</code> — percentage (capped at 100) of the yield to remove</p>
+<p><strong>Writes</strong>
+- Random state via Random::Get</p>
+<p><strong>Side effects</strong>
+- Consumes a random number from the game random generator</p>
+<p><strong>Input checks:</strong> Returns 0 for missing plot or percent&lt;=0; percent capped to 100; yield index bounds checked.</p>
+<p><strong>Multiplayer:</strong> may-desync, consumes shared random stream. <strong>Risk:</strong> medium (Random call changes sync state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- Volcano state and susceptible tile list (via callees)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, advances volcano state. <strong>Risk:</strong> medium (Runs full feature turn processing). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIceLossEvent</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot to look up</p>
+<p><strong>Input checks:</strong> Linear search; no range check needed.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetLayerIndexID</h3>
+<p>Arguments: <code>uiIndex</code> — layer index</p>
+<p><strong>Input checks:</strong> Range checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumActiveVolcanoes</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumEruptions</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumNaturalWonderVolcanoes</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumNaturalWondersEruptions</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumNormalVolcanoes</h3>
+<p>Arguments: <code>bMustBeNamed</code> — count only volcanoes with a named type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumVolcanoes</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetPercentVolcanoesActive</h3>
+<p><strong>Input checks:</strong> Division guarded when count is zero.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetPlotYield</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index; <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> Both plot index and yield type are bounds-checked and fall back to defaults.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetRevealedImprovementType</h3>
+<p>Arguments: <code>ePlayer</code> — observer player (1000 is the special observer; invalid maps to default instance); <code>iPlotIndex</code> — plot index</p>
+<p><strong>Input checks:</strong> Player and plot index bounds-checked with fallback.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetRevealedRouteType</h3>
+<p>Arguments: <code>ePlayer</code> — observer player; <code>iPlotIndex</code> — plot index</p>
+<p><strong>Input checks:</strong> Player and plot index bounds-checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetTotalVolcanoes</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetVolcanicPeriod</h3>
+<p>Arguments: <code>plotIndex</code> — plot used to get related volcanoes (inferred); <code>minSeverity</code> — start index into each volcano's eruption list (inferred)</p>
+<p><strong>Input checks:</strong> Division by zero not checked per entry; handles empty list.</p>
+<p><strong>Multiplayer:</strong> read-only, computed getter. <strong>Risk:</strong> low (Getter but divides by stored values). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetVolcanoType</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index</p>
+<p><strong>Input checks:</strong> Null record returns -1.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetVolcanoTypeAtIndex</h3>
+<p>Arguments: <code>uiIndex</code> — index into the volcano vector</p>
+<p><strong>Input checks:</strong> Range checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsActive</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index</p>
+<p><strong>Input checks:</strong> Null record returns false.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsTileEruptionSusceptible</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot to test</p>
+<p><strong>Input checks:</strong> Null plot gives false; neighbour null checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure check. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsVisibleToAnyHuman</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index</p>
+<p><strong>Input checks:</strong> Plot index range checked; invalid players use default instance.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsVisibleToAnyPlayer</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index</p>
+<p><strong>Input checks:</strong> Plot index range checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsVisibleToPlayerOfCivLevel</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index; <code>eLevel</code> — civilization level filter hash (inferred)</p>
+<p><strong>Input checks:</strong> Plot index range checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RecalculateOutgoingVisibility</h3>
+<p><strong>Writes</strong>
+- Layer 1 counts for every player
+- recipients' group visibility counts</p>
+<p><strong>Input checks:</strong> Skips unmapped players (&gt;=0x40).</p>
+<p><strong>Multiplayer:</strong> may-desync, rewrites visibility state. <strong>Risk:</strong> high (Touches all players' fog data). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveOutgoingVisibilityBlocker</h3>
+<p>Arguments: <code>eFromPlayer</code> — player whose blocker is removed; <code>eToPlayer</code> — player who regains the visibility</p>
+<p><strong>Writes</strong>
+- Visibility counts and revealed flags of eToPlayer
+- blocker set on eFromPlayer</p>
+<p><strong>Side effects</strong>
+- Resource builder UpdateRevealedAt
+- PropagateVisibilityChanges and ViewPlotContents for local observer</p>
+<p><strong>Input checks:</strong> Both players must be &lt;0x40 and mapped; otherwise no change.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes player visibility. <strong>Risk:</strong> high (Alters fog and reveal state; truncated). <strong>Confidence of the reading:</strong> low.</p>
+<h3>RemovePlotYield</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index; <code>eYield</code> — yield type reduced; <code>iReductionAmount</code> — amount subtracted</p>
+<p><strong>Writes</strong>
+- Per-plot yield table at +0xb0 (decrements entry, may allocate a new entry)</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send with localized message when plot is visible to local observer</p>
+<p><strong>Input checks:</strong> Event only if plot exists, amount&gt;0 and visible; the subtraction is not guarded by those checks, bad yield index falls back to default slot.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes map yield state; reporting depends on local visibility. <strong>Risk:</strong> high (Subtraction can go negative; no clamp). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetRevealedImprovementType</h3>
 <p>Arguments: <code>ePlayer</code> — player whose knowledge is changed; 1000 selects the global/default visibility record; <code>iPlotIndex</code> — plot index; <code>eNewValue</code> — improvement type to record</p>
 <p><strong>Writes</strong>
@@ -484,4 +631,11 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - Mirror of SetVolcanoActive</p>
 <p><strong>Open questions</strong>
-- Same unknown virtual calls as the active variant</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- Same unknown virtual calls as the active variant</p>
+<h3>UpdateVolcanoes</h3>
+<p><strong>Writes</strong>
+- Each volcano's state via DoTurn</p>
+<p><strong>Side effects</strong>
+- Whatever Volcano::DoTurn triggers (eruptions)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, advances volcano state. <strong>Risk:</strong> high (Can cause eruptions). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

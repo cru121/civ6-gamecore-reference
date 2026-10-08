@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addcityallowedimprovement"></a>AddCityAllowedImprovement</td>
 <td><code>City:AddCityAllowedImprovement(eImprovement: integer)</code></td>
-<td>—</td>
+<td>Appends an improvement type to the city's allowed-improvement list (variable at this+0x1550), growing the vector as needed.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x12f2b0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addcityterrainmodifier"></a>AddCityTerrainModifier</td>
 <td><code>City:AddCityTerrainModifier(eTerrain: integer, eAdjacentImprovement: integer, eYield: integer, iYieldChange: integer)</code></td>
-<td>—</td>
+<td>Appends a (terrain, adjacent improvement, yield, change) record to the city terrain modifier list (this+0x740) if the change is positive and the improvement is not -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x12f3a0</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addcityvalidterrainimprovement"></a>AddCityValidTerrainImprovement</td>
 <td><code>City:AddCityValidTerrainImprovement(eImprovement: integer, eTerrain: integer)</code></td>
-<td>—</td>
+<td>Appends an (improvement, terrain) pair to the city valid-terrain-improvement list (this+0x770), making the improvement valid on that terrain in this city.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x12f410</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addyieldperterrainclasscitiesimprovement"></a>AddYieldPerTerrainClassCitiesImprovement</td>
 <td><code>City:AddYieldPerTerrainClassCitiesImprovement(eYield: integer, eImprovement: integer, iDelta: integer)</code></td>
-<td>—</td>
+<td>Appends an (improvement, yield, delta) record to the city list at this+0x7a0 (yield per terrain class cities improvement); skipped if improvement or yield is -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x12fd30</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addyieldperterraintype"></a>AddYieldPerTerrainType</td>
 <td><code>City:AddYieldPerTerrainType(eTerrain: integer, eYield: integer, xValue: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Appends a (terrain, yield, fixed-point value) record to the city list at this+0x830 that drives CalculateYieldPerTerrainType.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x12fda0</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="applyouterdefensehealing"></a>ApplyOuterDefenseHealing</td>
 <td><code>City:ApplyOuterDefenseHealing(iHPHealed: number (fixed point, 1/256 steps)) → boolean</code></td>
-<td>—</td>
+<td>Heals the outer defense damage of all flagged defensible districts in the city by the given amount; returns whether none still has damage.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x111730</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateidentityperturn"></a>CalculateIdentityPerTurn</td>
 <td><code>City:CalculateIdentityPerTurn(eIdentityPlayer: integer) → number</code></td>
-<td>—</td>
+<td>Sums identity per turn the city generates for the given player from many sources (martial law, occupation, starvation, trade routes, governor, happiness, religion, influence tokens, free-city bonuses). Decompilation truncated near the end, so the final handling is unseen.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x114630</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateloyaltyperturn"></a>CalculateLoyaltyPerTurn</td>
 <td><code>City:CalculateLoyaltyPerTurn() → number</code></td>
-<td>—</td>
+<td>Sums identity per turn over all players (added for the owner, subtracted for others) plus the loyalty-from-pressure-ratio term.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x114c80</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateyieldfromownedbuilding"></a>CalculateYieldFromOwnedBuilding</td>
 <td><code>City:CalculateYieldFromOwnedBuilding(eBuildingType: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Computes the yield a given building produces for the city: zero if absent or pillaged, otherwise base building yield (power-aware) plus per-era yield bonuses, then yield modifiers, plus district extra regional yield when applicable. Result returned via a hidden out pointer.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x131670</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateyieldperterraintype"></a>CalculateYieldPerTerrainType</td>
 <td><code>City:CalculateYieldPerTerrainType(eYield: integer) → number</code></td>
-<td>—</td>
+<td>For each stored per-terrain yield record matching the yield, counts city-radius plots worked by this city that have the record's terrain and multiplies by the record's value; sums the results.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1318d0</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canbuildunitsofdomain"></a>CanBuildUnitsOfDomain</td>
 <td><code>City:CanBuildUnitsOfDomain(domain: integer) → boolean</code></td>
-<td>—</td>
+<td>True if the city has a district of that military domain, or (for domain 0) the city plot passes a coastal check and domain 1 is valid there; domain 2 is always true.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x131a10</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canplaceunit"></a>CanPlaceUnit</td>
 <td><code>City:CanPlaceUnit(eUnit: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the city can place a newly bought or built unit: unit flags may allow it outright; otherwise looks for a valid placement plot in suitable districts (matching military domain, not pillaged or enemy-occupied) and finally the city center via CanPlaceAtLocation.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x120a80</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeflatyieldbonusfordomestic"></a>ChangeFlatYieldBonusForDomestic</td>
 <td><code>City:ChangeFlatYieldBonusForDomestic(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Adds a fixed-point delta to the per-yield array entry for flat yield bonus for domestic routes.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14da30</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeflatyieldbonusfromothers"></a>ChangeFlatYieldBonusFromOthers</td>
 <td><code>City:ChangeFlatYieldBonusFromOthers(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Adds a fixed-point delta to the per-yield array entry for flat yield bonus from other routes.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14da80</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeflatyieldbonustoothers"></a>ChangeFlatYieldBonusToOthers</td>
 <td><code>City:ChangeFlatYieldBonusToOthers(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Adds a fixed-point delta to the per-yield array entry for flat yield bonus given to others.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14daa0</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeflatyieldbonustoothersfordomestic"></a>ChangeFlatYieldBonusToOthersForDomestic</td>
 <td><code>City:ChangeFlatYieldBonusToOthersForDomestic(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Adds a fixed-point delta to the per-yield array entry for flat yield bonus to others for domestic routes.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14dac0</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeidentityperturnfrommodifiers"></a>ChangeIdentityPerTurnFromModifiers</td>
 <td><code>City:ChangeIdentityPerTurnFromModifiers(xDelta: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Adds a delta to the modifier-based identity per turn and sends a reporting event.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x115130</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changenumforeignroutespassingthrough"></a>ChangeNumForeignRoutesPassingThrough</td>
 <td><code>City:ChangeNumForeignRoutesPassingThrough(iChange: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the count of foreign trade routes passing through the city, clamped to at least 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14dae0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changerequiredpower"></a>ChangeRequiredPower</td>
 <td><code>City:ChangeRequiredPower(xRequiredPower: number (fixed point, 1/256 steps), eBuilding: integer, eProject: integer)</code></td>
-<td>—</td>
+<td>Adds a power requirement amount to the city's total required power (floored at 0) and tracks it per building/project in a list. Only acts when building or project is -1 and the amount is non-zero.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1471e0</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changerequiredpowerfrommodifiers"></a>ChangeRequiredPowerFromModifiers</td>
 <td><code>City:ChangeRequiredPowerFromModifiers(xRequiredPower: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Adds an amount to the modifier-derived required power (floored at 0) and recalculates the city's power.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1472b0</code></td>
@@ -372,7 +372,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checknotifications"></a>CheckNotifications</td>
 <td><code>City:CheckNotifications()</code></td>
-<td>—</td>
+<td>Checks whether required power exceeds available power; if the city is not fully powered by an active project and 10+ turns passed since the last warning, sends a power-shortage notification to the owner.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1474f0</code></td>
@@ -380,7 +380,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="countincomingroutes"></a>CountIncomingRoutes</td>
 <td><code>City:CountIncomingRoutes() → number</code></td>
-<td>—</td>
+<td>Counts trade routes whose destination is this city via the trade manager.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14dcb0</code></td>
@@ -388,7 +388,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="countoutgoingroutes"></a>CountOutgoingRoutes</td>
 <td><code>City:CountOutgoingRoutes() → number</code></td>
-<td>—</td>
+<td>Counts trade routes originating from this city via the trade manager.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14dd00</code></td>
@@ -396,7 +396,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doborderexpansion"></a>DoBorderExpansion</td>
 <td><code>City:DoBorderExpansion()</code></td>
-<td>—</td>
+<td>Per-turn culture border growth: if the capability is present and the city is not blocked, adds the city culture yield (scaled by a percent modifier) to the stored culture; when it reaches the next plot cost it annexes the queued or next buyable plot and bumps the plots-acquired counter. Then re-queues the next buyable plot.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11bcb0</code></td>
@@ -404,7 +404,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="dofoundcity"></a>DoFoundCity</td>
 <td><code>City:DoFoundCity()</code></td>
-<td>—</td>
+<td>Called when a city is founded: acquires the starting plots (count from GetNumStartingPlots, min 0) and replays influence tokens the owner already received from each player via OnPlayerGaveInfluenceToken.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11be40</code></td>
@@ -412,7 +412,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="dorejectedbyplayer"></a>DoRejectedByPlayer</td>
 <td><code>City:DoRejectedByPlayer(ePlayer: integer)</code></td>
-<td>—</td>
+<td>Marks a player as having rejected the city: updates or inserts that player's identity presence entry with zero amount and rejected flag, then recalculates conversion trends.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x115b10</code></td>
@@ -420,7 +420,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>City:DoTurnActivate()</code></td>
-<td>—</td>
+<td>Per-turn loyalty and identity update; for free cities computes identity pressure changes per player through lambdas and applies them with ChangeAccumulatedIdentity. Decompilation truncated, so the remaining steps are unseen.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x115be0</code></td>
@@ -428,7 +428,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getaccumulatedidentitypercent"></a>GetAccumulatedIdentityPercent</td>
 <td><code>City:GetAccumulatedIdentityPercent(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns the share in percent of accumulated identity held by the given player out of the total of all entries.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116340</code></td>
@@ -436,7 +436,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbuildingpurchasecost"></a>GetBuildingPurchaseCost</td>
 <td><code>City:GetBuildingPurchaseCost(ePurchaseYield: integer, eBuilding: integer) → number</code></td>
-<td>—</td>
+<td>Purchase cost of a building in the given yield: production cost converted to purchase cost, game-speed scaled, reduced by city, player and religion purchase-discount bonuses, minimum 1, rounded down to a global step.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x120ed0</code></td>
@@ -444,7 +444,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcityhappinessyieldmodifier"></a>GetCityHappinessYieldModifier</td>
 <td><code>City:GetCityHappinessYieldModifier(eHappiness: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums (percent value * 256) over city happiness-yield entries (list at this+0x720) matching the happiness type and yield type. Result is returned via a hidden out pointer, so the decompiled parameter list is register-shifted.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x132ad0</code></td>
@@ -452,7 +452,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcityterrainadjacentimprovementmodifier"></a>GetCityTerrainAdjacentImprovementModifier</td>
 <td><code>City:GetCityTerrainAdjacentImprovementModifier(eTerrain: integer, eAdjacentImprovement: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums the stored values (times 256) of city terrain-modifier records (list at this+0x750) matching terrain, adjacent improvement and yield. Result is returned via a hidden out pointer, so the decompiled parameter list is register-shifted.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x132b10</code></td>
@@ -460,7 +460,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getculturecostnextplot"></a>GetCultureCostNextPlot</td>
 <td><code>City:GetCultureCostNextPlot() → number</code></td>
-<td>—</td>
+<td>Culture cost of the city's next border plot: (coefficient * plotsAcquired) ^ exponent plus a base value from global parameters, scaled for game speed.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c570</code></td>
@@ -468,7 +468,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcultureyield"></a>GetCultureYield</td>
 <td><code>City:GetCultureYield() → number</code></td>
-<td>—</td>
+<td>Returns the owning city's culture yield by forwarding to City::Instance::GetYield. The yield-type argument is not visible in this decompilation (passed in a register).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c5d0</code></td>
@@ -476,7 +476,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getdistrictpurchasecost"></a>GetDistrictPurchaseCost</td>
 <td><code>City:GetDistrictPurchaseCost(ePurchaseYield: integer, eDistrict: integer) → number</code></td>
-<td>—</td>
+<td>Purchase cost of a district: player district cost converted to purchase cost, reduced by the city and player purchase-discount bonuses, minimum 1, rounded down to a global step.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x121030</code></td>
@@ -484,7 +484,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfreepower"></a>GetFreePower</td>
 <td><code>City:GetFreePower() → number</code></td>
-<td>—</td>
+<td>Returns the city's free power, scaled by a percentage bonus (100 + percent) when the percent field is positive.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x147c50</code></td>
@@ -492,7 +492,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgoldfromcitizens"></a>GetGoldFromCitizens</td>
 <td><code>City:GetGoldFromCitizens() → number</code></td>
-<td>—</td>
+<td>Returns gold from citizens: the city value at +0x268 times the citizen counter at this+0xa4 in 8-bit fixed point, 0 if the counter is not positive. Result goes through a hidden out pointer.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x121140</code></td>
@@ -500,7 +500,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgreatworktourismmodifier"></a>GetGreatWorkTourismModifier</td>
 <td><code>City:GetGreatWorkTourismModifier(eObject: integer) → number</code></td>
-<td>—</td>
+<td>Starts at 100 and, for every tourism modifier entry whose great-work object type matches, adds (entry value - 100); returns the combined percent.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c600</code></td>
@@ -508,7 +508,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgreatworkyieldchange"></a>GetGreatWorkYieldChange</td>
 <td><code>City:GetGreatWorkYieldChange(eObject: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Scans the city's great-work yield list for the first entry matching object type and yield with a positive flat change, and returns that change; 0 if none.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c630</code></td>
@@ -516,7 +516,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgreatworkyieldmodifier"></a>GetGreatWorkYieldModifier</td>
 <td><code>City:GetGreatWorkYieldModifier(eObject: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Starts at 100 and multiplies by each matching (object type, yield) entry with a positive percent value / 100; returns the compounded percent.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c660</code></td>
@@ -524,7 +524,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethighestouterdefensedamage"></a>GetHighestOuterDefenseDamage</td>
 <td><code>City:GetHighestOuterDefenseDamage() → number</code></td>
-<td>—</td>
+<td>Returns the highest outer defense damage among the city's flagged districts.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x111800</code></td>
@@ -532,7 +532,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromgovernor"></a>GetIdentityPerTurnFromGovernor</td>
 <td><code>City:GetIdentityPerTurnFromGovernor() → number</code></td>
-<td>—</td>
+<td>Returns the identity pressure of the governor assigned to this city, in fixed point; 0 if none.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116570</code></td>
@@ -540,7 +540,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromhappiness"></a>GetIdentityPerTurnFromHappiness</td>
 <td><code>City:GetIdentityPerTurnFromHappiness() → number</code></td>
-<td>—</td>
+<td>Returns identity per turn change tied to the city's happiness level, 0 for free cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1165e0</code></td>
@@ -548,7 +548,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfrominfluencetokens"></a>GetIdentityPerTurnFromInfluenceTokens</td>
 <td><code>City:GetIdentityPerTurnFromInfluenceTokens() → number</code></td>
-<td>—</td>
+<td>For city states, returns the most tokens received times a global parameter; otherwise 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116660</code></td>
@@ -556,7 +556,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfrommartiallaw"></a>GetIdentityPerTurnFromMartialLaw</td>
 <td><code>City:GetIdentityPerTurnFromMartialLaw() → number</code></td>
-<td>—</td>
+<td>If the city is occupied and a defensible district has a garrisoned unit, returns a global parameter plus a player value; otherwise 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1166f0</code></td>
@@ -564,7 +564,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromoccupation"></a>GetIdentityPerTurnFromOccupation</td>
 <td><code>City:GetIdentityPerTurnFromOccupation() → number</code></td>
-<td>—</td>
+<td>Returns the negative of the scaled grievances of the original owner toward this city's owner, clamped between global limits; 0 if the owner is the original or not alive.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116b40</code></td>
@@ -572,7 +572,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromoriginalownership"></a>GetIdentityPerTurnFromOriginalOwnership</td>
 <td><code>City:GetIdentityPerTurnFromOriginalOwnership() → number</code></td>
-<td>—</td>
+<td>For free cities returns a global parameter; otherwise 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116c50</code></td>
@@ -580,7 +580,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromownershipbeforeoccupation"></a>GetIdentityPerTurnFromOwnershipBeforeOccupation</td>
 <td><code>City:GetIdentityPerTurnFromOwnershipBeforeOccupation() → number</code></td>
-<td>—</td>
+<td>For free cities returns a global parameter; otherwise 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116d30</code></td>
@@ -588,7 +588,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromreligion"></a>GetIdentityPerTurnFromReligion</td>
 <td><code>City:GetIdentityPerTurnFromReligion() → number</code></td>
-<td>—</td>
+<td>Returns one of two global parameters depending on whether the owner's created religion matches the city's majority religion; 0 if either is none.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116d90</code></td>
@@ -596,7 +596,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromstarvation"></a>GetIdentityPerTurnFromStarvation</td>
 <td><code>City:GetIdentityPerTurnFromStarvation() → number</code></td>
-<td>—</td>
+<td>Returns a global parameter if the city is starving (turns until starvation not -1), else 0; free cities give 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116e20</code></td>
@@ -604,7 +604,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnfromtraderoutes"></a>GetIdentityPerTurnFromTradeRoutes</td>
 <td><code>City:GetIdentityPerTurnFromTradeRoutes() → number</code></td>
-<td>—</td>
+<td>Accumulates identity per turn from outgoing trade routes using the owner's domestic-route origin value, written through an out pointer.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116ea0</code></td>
@@ -612,7 +612,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentityperturnpercitizen"></a>GetIdentityPerTurnPerCitizen</td>
 <td><code>City:GetIdentityPerTurnPerCitizen() → number</code></td>
-<td>—</td>
+<td>Computes a per-citizen identity value from civ-wide loyalty per civilian, the capital's value, a global adjustment and the current production project's value, written through an out pointer.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x116f80</code></td>
@@ -620,7 +620,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getidentitypressurefromownership"></a>GetIdentityPressureFromOwnership</td>
 <td><code>City:GetIdentityPressureFromOwnership(eToPlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns a non-negative global parameter chosen by whether the player is the owner and by a city flag (offset 0x280); 0 for NO_PLAYER.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1170c0</code></td>
@@ -628,7 +628,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getimprovementtourismmodifier"></a>GetImprovementTourismModifier</td>
 <td><code>City:GetImprovementTourismModifier(eImprovement: integer) → number</code></td>
-<td>—</td>
+<td>Starts at 100 and adds (entry value - 100) for each tourism modifier entry that targets the given improvement type.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c6b0</code></td>
@@ -636,7 +636,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getlastturnanydistrictdamaged"></a>GetLastTurnAnyDistrictDamaged</td>
 <td><code>City:GetLastTurnAnyDistrictDamaged() → number</code></td>
-<td>—</td>
+<td>Returns the latest turn on which any flagged district was damaged, -100 if none.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x111890</code></td>
@@ -644,7 +644,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getloyaltylevel"></a>GetLoyaltyLevel</td>
 <td><code>City:GetLoyaltyLevel() → number</code></td>
-<td>—</td>
+<td>Maps the city's loyalty value to the loyalty level definition whose range contains it; -1 if none.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x117410</code></td>
@@ -652,7 +652,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnonreligioustourism"></a>GetNonreligiousTourism</td>
 <td><code>City:GetNonreligiousTourism() → number</code></td>
-<td>—</td>
+<td>Sums tourism from great works (non-religious), wonders, improvements, features, districts, a free-power bonus and national park tourism, then applies the owner's tourism modifier percent.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c770</code></td>
@@ -660,7 +660,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumstartingplots"></a>GetNumStartingPlots</td>
 <td><code>City:GetNumStartingPlots() → number</code></td>
-<td>—</td>
+<td>Number of plots a city starts with: the civilization-level definition's value plus a player offset, plus the game-configured tile count for major players. Returns 0 for a null city or player index -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c890</code></td>
@@ -668,7 +668,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getreligioustourism"></a>GetReligiousTourism</td>
 <td><code>City:GetReligiousTourism() → number</code></td>
-<td>—</td>
+<td>Tourism from religion: if the city is its owner's religion holy city, 100 plus religious-tourism modifier entries scaled by a global parameter, plus religious great-work tourism, then the owner's tourism modifier percent.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11c940</code></td>
@@ -676,7 +676,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getreligioustourismmodifier"></a>GetReligiousTourismModifier</td>
 <td><code>City:GetReligiousTourismModifier() → number</code></td>
-<td>—</td>
+<td>Starts at 100 and adds (entry value - 100) for tourism modifier entries flagged religious (byte at entry+9).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11ca40</code></td>
@@ -684,7 +684,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourism"></a>GetTourism</td>
 <td><code>City:GetTourism() → number</code></td>
-<td>—</td>
+<td>Total city tourism: GetNonreligiousTourism plus GetReligiousTourism.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11ca70</code></td>
@@ -692,7 +692,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismfromdistricts"></a>GetTourismFromDistricts</td>
 <td><code>City:GetTourismFromDistricts() → number</code></td>
-<td>—</td>
+<td>Sums tourism from the city's districts: a per-district value (offset 600) plus tourism adjacency yield modifiers across all yield types. Private method exposed to Lua.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11caa0</code></td>
@@ -700,7 +700,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismfromfeatures"></a>GetTourismFromFeatures</td>
 <td><code>City:GetTourismFromFeatures() → number</code></td>
-<td>—</td>
+<td>Counts city-radius plots owned by the same player and worked by this city that have a feature, adding the per-feature tourism value (this+0x20, min 0) for each. Private method exposed to Lua.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11cb80</code></td>
@@ -708,7 +708,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismfromimprovements"></a>GetTourismFromImprovements</td>
 <td><code>City:GetTourismFromImprovements() → number</code></td>
-<td>—</td>
+<td>Walks the city-radius plots and, for owned plots with an improvement whose tourism definition passes civic and tech prerequisites, adds tourism from GetTourismFromImprovementOnPlot scaled by the improvement tourism modifier percent.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11cd40</code></td>
@@ -716,7 +716,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getturnsleft"></a>GetTurnsLeft</td>
 <td><code>City:GetTurnsLeft() → number</code></td>
-<td>—</td>
+<td>Estimates turns until the next border plot: computes the plot culture cost (same formula as GetCultureCostNextPlot), the city culture yield and the stored culture, then calls ComputeTurnsLeft.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11cef0</code></td>
@@ -724,7 +724,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getunitpurchasecost"></a>GetUnitPurchaseCost</td>
 <td><code>City:GetUnitPurchaseCost(ePurchaseYield: integer, eUnit: integer, eFormation: integer) → number</code></td>
-<td>—</td>
+<td>Purchase cost of a unit in the given yield and formation: unit production cost converted to purchase cost, reduced by purchase-discount bonuses, adjusted by the owner's unit-cost modifier for non-civilian formation classes, rounded to a global step.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1216a0</code></td>
@@ -732,7 +732,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getwondertourismmodifier"></a>GetWonderTourismModifier</td>
 <td><code>City:GetWonderTourismModifier() → number</code></td>
-<td>—</td>
+<td>Starts at 100 and adds (entry value - 100) for tourism modifier entries flagged as wonder (byte at entry+8).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x11cf80</code></td>
@@ -740,7 +740,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfrombuildings"></a>GetYieldFromBuildings</td>
 <td><code>City:GetYieldFromBuildings(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Calls CalculateYieldFromBuildings and clamps the result by the optional min and max values it returns, giving the building yield for the yield type. Result is returned via a hidden out pointer, so the decompiled parameter list is register-shifted.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x133510</code></td>
@@ -748,7 +748,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfromforeignroutespassingthrough"></a>GetYieldFromForeignRoutesPassingThrough</td>
 <td><code>City:GetYieldFromForeignRoutesPassingThrough(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the per-route yield value for a yield type multiplied by the number of foreign routes passing through the city.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14de50</code></td>
@@ -756,7 +756,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfrommajortradepartners"></a>GetYieldFromMajorTradePartners</td>
 <td><code>City:GetYieldFromMajorTradePartners(eYield: integer) → number</code></td>
-<td>—</td>
+<td>If the per-partner yield for the yield type is positive, multiplies it by the number of outgoing major trade partners of this city; otherwise 0. Result is returned via a hidden out pointer, so the decompiled parameter list is register-shifted.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x133570</code></td>
@@ -764,7 +764,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfromoutgoingtraderoutes"></a>GetYieldFromOutgoingTradeRoutes</td>
 <td><code>City:GetYieldFromOutgoingTradeRoutes(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Asks the trade manager to compute the yield this city gets from its outgoing trade routes for the yield type. Result is returned via a hidden out pointer, so the decompiled parameter list is register-shifted.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x133600</code></td>
@@ -772,7 +772,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfrompopulation"></a>GetYieldFromPopulation</td>
 <td><code>City:GetYieldFromPopulation(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Yield from population: per-citizen amounts for science, culture or gold (gold only with a positive counter) from global parameters, plus a per-yield-type per-citizen bonus array times population. Result is returned via a hidden out pointer, so the decompiled parameter list is register-shifted.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x133660</code></td>
@@ -780,7 +780,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfromtiles"></a>GetYieldFromTiles</td>
 <td><code>City:GetYieldFromTiles(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums yield of worked plots in city radius (plot yield times workers), plus yield of improved plots outside territory matching improvement-outside-territory definitions when a city flag is set. Result is returned via a hidden out pointer, so the decompiled parameter list is register-shifted.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x133780</code></td>
@@ -788,7 +788,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldpermajortradepartner"></a>GetYieldPerMajorTradePartner</td>
 <td><code>City:GetYieldPerMajorTradePartner(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the per-yield value granted for each major trade partner.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14e060</code></td>
@@ -796,7 +796,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldperterrainclasscitiesimprovement"></a>GetYieldPerTerrainClassCitiesImprovement</td>
 <td><code>City:GetYieldPerTerrainClassCitiesImprovement(eYield: integer, eImprovement: integer) → number</code></td>
-<td>—</td>
+<td>Sums the delta of stored records (list at this+0x7b0) matching the yield and improvement.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x133920</code></td>
@@ -804,7 +804,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasactivetradingpost"></a>HasActiveTradingPost</td>
 <td><code>City:HasActiveTradingPost(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the city has a trading post flag for the player and the city owner is not at war with that player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14e0a0</code></td>
@@ -812,7 +812,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasbeenrejectedbyplayer"></a>HasBeenRejectedByPlayer</td>
 <td><code>City:HasBeenRejectedByPlayer(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player's identity presence entry has the rejected flag.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1180e0</code></td>
@@ -820,7 +820,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hascityterrainadjacentimprovementmodifier"></a>HasCityTerrainAdjacentImprovementModifier</td>
 <td><code>City:HasCityTerrainAdjacentImprovementModifier(eTerrain: integer, eYield: integer) → boolean</code></td>
-<td>—</td>
+<td>True if any city terrain-modifier record matches the terrain and yield.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x133950</code></td>
@@ -828,7 +828,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasdistrict"></a>HasDistrict</td>
 <td><code>City:HasDistrict() → boolean</code></td>
-<td>—</td>
+<td>Returns true if a district exists at the city's own plot (the city center district).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1339b0</code></td>
@@ -836,7 +836,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasinactivetradingpost"></a>HasInactiveTradingPost</td>
 <td><code>City:HasInactiveTradingPost(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if a trading post flag is set for the player but is not active, such as when the owner is at war with that player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14e100</code></td>
@@ -844,7 +844,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isallowincomingregionalstacking"></a>IsAllowIncomingRegionalStacking</td>
 <td><code>City:IsAllowIncomingRegionalStacking(eYield: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether incoming regional yield stacking is allowed for a yield, using a per-yield array with a fallback default value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x134620</code></td>
@@ -852,7 +852,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isalwaysfullyloyal"></a>IsAlwaysFullyLoyal</td>
 <td><code>City:IsAlwaysFullyLoyal() → boolean</code></td>
-<td>—</td>
+<td>True if a stored always-loyal counter is positive or the location check says so.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x118320</code></td>
@@ -860,7 +860,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="iscitystate"></a>IsCityState</td>
 <td><code>City:IsCityState() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the city's owner player has the city-state civilization level.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x134670</code></td>
@@ -868,7 +868,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isfullypoweredbyactiveproject"></a>IsFullyPoweredByActiveProject</td>
 <td><code>City:IsFullyPoweredByActiveProject() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the city's current production project exists and its definition links to a government record with two flags set, meaning the project fully powers the city.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x147e10</code></td>
@@ -876,7 +876,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isoccupied"></a>IsOccupied</td>
 <td><code>City:IsOccupied(ignoreNoPenalty: boolean) → boolean</code></td>
-<td>—</td>
+<td>Returns the city's occupied flag, unless the owner has a no-penalty flag set and the caller does not ask to ignore it.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1346b0</code></td>
@@ -892,7 +892,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removecityallowedimprovement"></a>RemoveCityAllowedImprovement</td>
 <td><code>City:RemoveCityAllowedImprovement(eImprovement: integer)</code></td>
-<td>—</td>
+<td>Removes the first occurrence of an improvement type from the city's allowed-improvement list by rebuilding the vector without it.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x134790</code></td>
@@ -908,7 +908,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removecityterrainmodifier"></a>RemoveCityTerrainModifier</td>
 <td><code>City:RemoveCityTerrainModifier(eTerrain: integer, eAdjacentImprovement: integer, eYield: integer, iYieldChange: integer)</code></td>
-<td>—</td>
+<td>Removes the first matching entry from the city's terrain-modifier list. Does nothing unless iYieldChange &gt; 0 and eAdjacentImprovement is valid.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x134b10</code></td>
@@ -916,7 +916,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removecityvalidterrainimprovement"></a>RemoveCityValidTerrainImprovement</td>
 <td><code>City:RemoveCityValidTerrainImprovement(eImprovement: integer, eTerrain: integer)</code></td>
-<td>—</td>
+<td>Removes the first entry matching the improvement or terrain from the city's valid terrain-improvement list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x134c90</code></td>
@@ -932,7 +932,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeimprovementadjacencybonus"></a>RemoveImprovementAdjacencyBonus</td>
 <td><code>City:RemoveImprovementAdjacencyBonus(eDistrict: integer, eImprovement: integer, eYield: integer)</code></td>
-<td>—</td>
+<td>Erases all dynamic adjacency bonus entries in the city that match the given district, improvement and yield.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x134e50</code></td>
@@ -940,7 +940,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeyieldperterrainclasscitiesimprovement"></a>RemoveYieldPerTerrainClassCitiesImprovement</td>
 <td><code>City:RemoveYieldPerTerrainClassCitiesImprovement(eYield: integer, eImprovement: integer, iDelta: integer)</code></td>
-<td>—</td>
+<td>Removes the first matching entry from the city's yield-per-terrain-class improvement list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x134ee0</code></td>
@@ -948,7 +948,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeyieldperterraintype"></a>RemoveYieldPerTerrainType</td>
 <td><code>City:RemoveYieldPerTerrainType(eTerrain: integer, eYield: integer, xValue: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Erases all entries matching terrain, yield and value from the city's yield-per-terrain-type list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x135010</code></td>
@@ -956,7 +956,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resetaccumulatedidentity"></a>ResetAccumulatedIdentity</td>
 <td><code>City:ResetAccumulatedIdentity()</code></td>
-<td>—</td>
+<td>Clears the accumulated identity list by resetting its end pointer to the start.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x118590</code></td>
@@ -972,7 +972,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resettemporarypower"></a>ResetTemporaryPower</td>
 <td><code>City:ResetTemporaryPower()</code></td>
-<td>—</td>
+<td>Zeroes the temporary power value and clears the entries in two per-item lists.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1481a0</code></td>
@@ -988,7 +988,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setcomponentid"></a>SetComponentID</td>
 <td><code>City:SetComponentID(eOwner: integer, id: integer)</code></td>
-<td>—</td>
+<td>Assigns the city's owner and id fields and updates the object's archive ID.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1357f0</code></td>
@@ -1012,6 +1012,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddCityAllowedImprovement</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type to allow in this city</p>
+<p><strong>Writes</strong>
+- city allowed-improvement list (this+0x1550)</p>
+<p><strong>Input checks:</strong> No validation (no -1 check, no duplicate check).</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised city state. <strong>Risk:</strong> medium (modifies replicated city data; appends without de-duplication). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>AddCityHappinessModifier</h3>
 <p>Arguments: <code>eHappiness</code> — happiness state the modifier applies to; <code>eYield</code> — yield affected; <code>eGreatPersonClass</code> — great person class affected; <code>iYieldChange</code> — yield change; must be &gt;0 unless iGreatPersonChange &gt;0; <code>iGreatPersonChange</code> — great person point change</p>
 <p><strong>Writes</strong>
@@ -1031,6 +1037,59 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Record semantic is 'when city is in this happiness state, add yield/GP'</p>
 <p><strong>Open questions</strong>
 - How RemoveCityHappinessModifier matches records (see that function)</p>
+<h3>AddCityTerrainModifier</h3>
+<p>Arguments: <code>eTerrain</code> — terrain type the modifier applies to; <code>eAdjacentImprovement</code> — adjacent improvement required; <code>eYield</code> — yield type changed; <code>iYieldChange</code> — yield amount, must be &gt; 0</p>
+<p><strong>Writes</strong>
+- city terrain modifier list (this+0x740)</p>
+<p><strong>Input checks:</strong> Silently ignores non-positive change and improvement -1; terrain and yield unchecked.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised city state. <strong>Risk:</strong> medium (modifies replicated city data; appends without de-duplication). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddCityValidTerrainImprovement</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type; <code>eTerrain</code> — terrain type where it becomes valid</p>
+<p><strong>Writes</strong>
+- city valid terrain-improvement list (this+0x770)</p>
+<p><strong>Input checks:</strong> Silently ignores either argument being -1; no duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised city state. <strong>Risk:</strong> medium (modifies replicated city data; appends without de-duplication). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddYieldPerTerrainClassCitiesImprovement</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>eImprovement</code> — improvement type; <code>iDelta</code> — yield amount added (inferred)</p>
+<p><strong>Writes</strong>
+- city yield-per-terrain-class list (this+0x7a0)</p>
+<p><strong>Input checks:</strong> Silently ignores -1 improvement or yield; delta unchecked.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised city state. <strong>Risk:</strong> medium (modifies replicated city data; appends without de-duplication). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddYieldPerTerrainType</h3>
+<p>Arguments: <code>eTerrain</code> — terrain type; <code>eYield</code> — yield type; <code>xValue</code> — fixed-point yield per matching plot (passed by pointer)</p>
+<p><strong>Writes</strong>
+- city yield-per-terrain-type list (this+0x830)</p>
+<p><strong>Input checks:</strong> No validation at all (no -1 or range check).</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised city state. <strong>Risk:</strong> medium (modifies replicated city data; appends without de-duplication). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ApplyOuterDefenseHealing</h3>
+<p>Arguments: <code>iHPHealed</code> — Fixed-point amount of HP to heal</p>
+<p><strong>Writes</strong>
+- Outer defense damage of each flagged district (ChangeDamage by negative amount)</p>
+<p><strong>Input checks:</strong> Skips null districts and those not flagged at offset 0x3f8; amount not validated.</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies district damage. <strong>Risk:</strong> medium (Writes district damage). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CalculateIdentityPerTurn</h3>
+<p>Arguments: <code>eIdentityPlayer</code> — Player whose identity per turn is calculated</p>
+<p><strong>Input checks:</strong> Returns 0 for NO_PLAYER; rest truncated.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateLoyaltyPerTurn</h3>
+<p><strong>Input checks:</strong> No inputs.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CalculateYieldFromOwnedBuilding</h3>
+<p>Arguments: <code>eBuildingType</code> — building type to evaluate (inferred); <code>eYield</code> — yield type to compute (inferred)</p>
+<p><strong>Input checks:</strong> Checks HasBuilding, pillaged state and null definition; argument mapping in the decompilation is register-shifted, so which argument is which is uncertain.</p>
+<p><strong>Multiplayer:</strong> read-only, computation (flagged writes are local temporaries). <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>CalculateYieldPerTerrainType</h3>
+<p>Arguments: <code>eYield</code> — yield type to compute</p>
+<p><strong>Input checks:</strong> Skips null plots and plots worked by another city.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CanBuildUnitsOfDomain</h3>
+<p>Arguments: <code>domain</code> — domain type (numeric)</p>
+<p><strong>Input checks:</strong> No range check on domain; domain 2 short-circuits to true.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanPlaceUnit</h3>
+<p>Arguments: <code>eUnit</code> — unit type to place</p>
+<p><strong>Input checks:</strong> Null city returns false; an out-of-range unit index gives a null definition that is dereferenced unchecked; plot coordinates below -9999 treated as invalid.</p>
+<p><strong>Multiplayer:</strong> read-only, placement query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeAccumulatedIdentity</h3>
 <p>Arguments: <code>ePlayer</code> — major player whose identity changes; <code>xIdentityChange</code> — identity delta (raw/256)</p>
 <p><strong>Writes</strong>
@@ -1101,6 +1160,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - reads old value, adds delta from reference, stores via the variable's move assignment</p>
 <p><strong>Inferred</strong>
 - does not recompute trends here</p>
+<h3>ChangeFlatYieldBonusForDomestic</h3>
+<p>Arguments: <code>eYield</code> — yield type used as array index; <code>xDelta</code> — fixed-point amount to add</p>
+<p><strong>Writes</strong>
+- flat yield bonus for domestic routes (offset 0x68)</p>
+<p><strong>Input checks:</strong> ignores out-of-range yield index; no other checks</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeFlatYieldBonusForInternational</h3>
 <p>Arguments: <code>eYield</code> — yield index; <code>xDelta</code> — amount to add (raw/256)</p>
 <p><strong>Writes</strong>
@@ -1117,6 +1182,24 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - array is the international flat bonus table by name</p>
 <p><strong>Open questions</strong>
 - whether city yields are refreshed elsewhere</p>
+<h3>ChangeFlatYieldBonusFromOthers</h3>
+<p>Arguments: <code>eYield</code> — yield type used as array index; <code>xDelta</code> — fixed-point amount to add</p>
+<p><strong>Writes</strong>
+- flat yield bonus from other routes (offset 0x48)</p>
+<p><strong>Input checks:</strong> ignores out-of-range yield index; no other checks</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ChangeFlatYieldBonusToOthers</h3>
+<p>Arguments: <code>eYield</code> — yield type used as array index; <code>xDelta</code> — fixed-point amount to add</p>
+<p><strong>Writes</strong>
+- flat yield bonus given to others (offset 0x28)</p>
+<p><strong>Input checks:</strong> ignores out-of-range yield index; no other checks</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ChangeFlatYieldBonusToOthersForDomestic</h3>
+<p>Arguments: <code>eYield</code> — yield type used as array index; <code>xDelta</code> — fixed-point amount to add</p>
+<p><strong>Writes</strong>
+- flat yield bonus to others for domestic routes (offset 0x8)</p>
+<p><strong>Input checks:</strong> ignores out-of-range yield index; no other checks</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeFollowerYieldModifier</h3>
 <p>Arguments: <code>eYield</code> — yield type; <code>iDelta</code> — amount to add</p>
 <p><strong>Writes</strong>
@@ -1156,6 +1239,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - whether the mixed-sign case is intended
 - consumer of the list</p>
+<h3>ChangeIdentityPerTurnFromModifiers</h3>
+<p>Arguments: <code>xDelta</code> — Fixed-point amount added to the modifier identity value</p>
+<p><strong>Writes</strong>
+- Identity-per-turn-from-modifiers value (this+0x1b8/0x1c8)</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send for the city and player</p>
+<p><strong>Input checks:</strong> No validation of the delta.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes synchronised city state. <strong>Risk:</strong> medium (Alters loyalty modifier). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeIdentityPressureFromAges</h3>
 <p>Arguments: <code>xChange</code> — amount to add (raw/256)</p>
 <p><strong>Writes</strong>
@@ -1182,6 +1273,28 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Multiplayer:</strong> may-desync: edits synchronized state. <strong>Risk:</strong> low (simple value add). <strong>Confidence of the reading:</strong> high.</p>
 <p><strong>Verified from the code</strong>
 - reads old value, adds delta from reference, stores via the variable's move assignment</p>
+<h3>ChangeNumForeignRoutesPassingThrough</h3>
+<p>Arguments: <code>iChange</code> — signed change to the count</p>
+<p><strong>Writes</strong>
+- foreign routes passing through count (0x230)</p>
+<p><strong>Input checks:</strong> clamps at 0</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ChangeRequiredPower</h3>
+<p>Arguments: <code>xRequiredPower</code> — fixed-point change in required power; <code>eBuilding</code> — building type the requirement belongs to; <code>eProject</code> — project type the requirement belongs to</p>
+<p><strong>Writes</strong>
+- total required power (0x58)
+- per building/project requirement list (0x60..0x70)</p>
+<p><strong>Input checks:</strong> does nothing unless (eBuilding == -1 or eProject == -1) and amount non-zero; clamps results at 0</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ChangeRequiredPowerFromModifiers</h3>
+<p>Arguments: <code>xRequiredPower</code> — fixed-point change in required power from modifiers</p>
+<p><strong>Writes</strong>
+- required power from modifiers (0x5c)
+- fields updated by RecalculatePower</p>
+<p><strong>Side effects</strong>
+- calls RecalculatePower</p>
+<p><strong>Input checks:</strong> does nothing for zero; clamps at 0</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeTourism</h3>
 <p>Arguments: <code>eImprovement</code> — improvement type; <code>eObjectType</code> — great work object type; <code>bAffectsWonders</code> — whether it applies to wonders; <code>bAffectsReligiousTourism</code> — whether it applies to religious tourism; <code>iScalingFactor</code> — scaling factor (positive adds, negative removes); <code>iModifierID</code> — modifier id the entry belongs to</p>
 <p><strong>Writes</strong>
@@ -1357,6 +1470,251 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - bounds check then raw add to array element</p>
 <p><strong>Inferred</strong>
 - meaning taken from the function name</p>
+<h3>CheckNotifications</h3>
+<p><strong>Writes</strong>
+- last notification turn (0xa4)</p>
+<p><strong>Side effects</strong>
+- sends a notification with localized text (power required vs available)
+- reads current game turn</p>
+<p><strong>Input checks:</strong> checks game pointer non-null; no input</p>
+<p><strong>Multiplayer:</strong> may-desync, sends notification and writes last-notified turn. <strong>Risk:</strong> medium (sends notification and writes city state; uses turn). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CountIncomingRoutes</h3>
+<p><strong>Input checks:</strong> returns 0 if no current game</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CountOutgoingRoutes</h3>
+<p><strong>Input checks:</strong> returns 0 if no current game</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoBorderExpansion</h3>
+<p><strong>Writes</strong>
+- stored culture accumulator (this+0x8)
+- plots-acquired count (this+0x10)
+- queued next-plot index (this+0x1c)
+- plot ownership via AnnexPlot</p>
+<p><strong>Side effects</strong>
+- annexes a plot to the city (AnnexPlot)</p>
+<p><strong>Input checks:</strong> Checks capability hash 0xc7331068, a block flag at this+0x28, null city and null civilization-level definition; does not otherwise validate the queued plot.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes plot ownership and culture state. <strong>Risk:</strong> high (writes city culture and plot ownership). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoFoundCity</h3>
+<p><strong>Writes</strong>
+- city plot ownership (via AcquirePlots)
+- culture-side influence-token bookkeeping (via OnPlayerGaveInfluenceToken)</p>
+<p><strong>Side effects</strong>
+- acquires plots for the city</p>
+<p><strong>Input checks:</strong> Clamps a negative starting-plot count to 0; dereferences the owning city without a null check.</p>
+<p><strong>Multiplayer:</strong> may-desync, acquires plots and changes city state. <strong>Risk:</strong> high (assigns plot ownership; calling on an established city re-runs founding logic). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoRejectedByPlayer</h3>
+<p>Arguments: <code>ePlayer</code> — Player that rejected the city</p>
+<p><strong>Writes</strong>
+- Identity presence list entry for ePlayer (amount zeroed, rejected flag set)</p>
+<p><strong>Side effects</strong>
+- RecalculateConversionTrends</p>
+<p><strong>Input checks:</strong> No check of the ePlayer value.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes city identity state. <strong>Risk:</strong> medium (Writes presence list). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- Accumulated identity per player
+- Other city identity fields (truncated)</p>
+<p><strong>Side effects</strong>
+- Notification (per facts)
+- Several internal lambdas run</p>
+<p><strong>Input checks:</strong> Checks free-cities status and player validity; rest truncated.</p>
+<p><strong>Multiplayer:</strong> may-desync, per-turn city state change. <strong>Risk:</strong> high (Changes accumulated identity). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetAccumulatedIdentityPercent</h3>
+<p>Arguments: <code>ePlayer</code> — Player whose share is returned</p>
+<p><strong>Input checks:</strong> Handles empty or zero total; ePlayer not validated.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetBuildingPurchaseCost</h3>
+<p>Arguments: <code>ePurchaseYield</code> — yield used to pay (gold branch vs other, e.g. faith); <code>eBuilding</code> — building type to price</p>
+<p><strong>Input checks:</strong> Null building definition returns 0; no range check on the yield type.</p>
+<p><strong>Multiplayer:</strong> read-only, cost computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCityHappinessYieldModifier</h3>
+<p>Arguments: <code>eHappiness</code> — happiness type to match (inferred); <code>eYield</code> — yield type to match (inferred)</p>
+<p><strong>Input checks:</strong> No range checks.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetCityTerrainAdjacentImprovementModifier</h3>
+<p>Arguments: <code>eTerrain</code> — terrain type to match (inferred); <code>eAdjacentImprovement</code> — adjacent improvement to match (inferred); <code>eYield</code> — yield type to match (inferred)</p>
+<p><strong>Input checks:</strong> No range checks.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetCultureCostNextPlot</h3>
+<p><strong>Input checks:</strong> None; no parameters.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCultureYield</h3>
+<p><strong>Input checks:</strong> Relies on the owning city pointer being non-null; no checks.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetDistrictPurchaseCost</h3>
+<p>Arguments: <code>ePurchaseYield</code> — yield used to pay (gold vs other); <code>eDistrict</code> — district type to price</p>
+<p><strong>Input checks:</strong> Null district definition returns 0; no range check on the yield type.</p>
+<p><strong>Multiplayer:</strong> read-only, cost computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFreePower</h3>
+<p><strong>Input checks:</strong> none</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetGoldFromCitizens</h3>
+<p><strong>Input checks:</strong> Counter must be positive; the city pointer is not null-checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetGreatWorkTourismModifier</h3>
+<p>Arguments: <code>eObject</code> — great work object type to match</p>
+<p><strong>Input checks:</strong> No range check; unmatched type returns 100.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetGreatWorkYieldChange</h3>
+<p>Arguments: <code>eObject</code> — great work object type to match; <code>eYield</code> — yield type to match</p>
+<p><strong>Input checks:</strong> No range check; only positive entries count and only the first match is returned.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetGreatWorkYieldModifier</h3>
+<p>Arguments: <code>eObject</code> — great work object type to match; <code>eYield</code> — yield type to match</p>
+<p><strong>Input checks:</strong> No range check; non-positive entries are skipped.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetHighestOuterDefenseDamage</h3>
+<p><strong>Input checks:</strong> Skips null or unflagged districts.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromGovernor</h3>
+<p><strong>Input checks:</strong> Null-checks governor.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromHappiness</h3>
+<p><strong>Input checks:</strong> Free-city check only.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromInfluenceTokens</h3>
+<p><strong>Input checks:</strong> Only for city states and a non-zero parameter.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromMartialLaw</h3>
+<p><strong>Input checks:</strong> Checks occupied state and garrison.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromOccupation</h3>
+<p><strong>Input checks:</strong> Checks the original owner is alive and different.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromOriginalOwnership</h3>
+<p><strong>Input checks:</strong> Free-city check only.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromOwnershipBeforeOccupation</h3>
+<p><strong>Input checks:</strong> Free-city check only.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromReligion</h3>
+<p><strong>Input checks:</strong> Checks both religion values for none.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromStarvation</h3>
+<p><strong>Input checks:</strong> Free-city check only.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIdentityPerTurnFromTradeRoutes</h3>
+<p><strong>Input checks:</strong> Only iterates routes when the per-route value is non-zero.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetIdentityPerTurnPerCitizen</h3>
+<p><strong>Input checks:</strong> Null-checks capital and project definitions.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetIdentityPressureFromOwnership</h3>
+<p>Arguments: <code>eToPlayer</code> — Player the pressure applies to</p>
+<p><strong>Input checks:</strong> Returns 0 for NO_PLAYER; clamps to non-negative.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetImprovementTourismModifier</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type to match</p>
+<p><strong>Input checks:</strong> No range check; unmatched type returns 100.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetLastTurnAnyDistrictDamaged</h3>
+<p><strong>Input checks:</strong> Skips null or unflagged districts.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetLoyaltyLevel</h3>
+<p><strong>Input checks:</strong> Iterates definitions, skips null.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNonreligiousTourism</h3>
+<p><strong>Input checks:</strong> Reads the owner via the player manager without checking the player index.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumStartingPlots</h3>
+<p><strong>Input checks:</strong> Checks null city and player index -1; a null definition falls back to 0.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetReligiousTourism</h3>
+<p><strong>Input checks:</strong> Handles a missing holy city (base 0); does not null-check the owner.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetReligiousTourismModifier</h3>
+<p><strong>Input checks:</strong> None; no parameters.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourism</h3>
+<p><strong>Input checks:</strong> None; no parameters.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourismFromDistricts</h3>
+<p><strong>Input checks:</strong> Skips null district lookups.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourismFromFeatures</h3>
+<p><strong>Input checks:</strong> Skips null plots and plots owned by another player or worked by another city.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourismFromImprovements</h3>
+<p><strong>Input checks:</strong> Checks plot ownership, null improvement, null tourism definition, civic and tech requirements.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTurnsLeft</h3>
+<p><strong>Input checks:</strong> None; no parameters. The flagged writes are only local temporaries.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetUnitPurchaseCost</h3>
+<p>Arguments: <code>ePurchaseYield</code> — yield used to pay; <code>eUnit</code> — unit type to price; <code>eFormation</code> — formation (normal, corps, army) used for the production cost</p>
+<p><strong>Input checks:</strong> Checks unit index range and null definition (returns 0); no range check on yield or formation.</p>
+<p><strong>Multiplayer:</strong> read-only, cost computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetWonderTourismModifier</h3>
+<p><strong>Input checks:</strong> None; no parameters.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetYieldFromBuildings</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None visible; cleans up a temporary breakdown vector.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldFromForeignRoutesPassingThrough</h3>
+<p>Arguments: <code>eYield</code> — yield type used as array index</p>
+<p><strong>Input checks:</strong> out-of-range index returns 0</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldFromMajorTradePartners</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> Returns 0 when the per-partner yield is not positive.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldFromOutgoingTradeRoutes</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None; delegates entirely to Trade::Manager.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldFromPopulation</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> Bounds-checks the yield index against the array, otherwise uses a default slot.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldFromTiles</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> Skips null plots and plots without workers.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldPerMajorTradePartner</h3>
+<p>Arguments: <code>eYield</code> — yield type used as array index</p>
+<p><strong>Input checks:</strong> out-of-range index returns 0</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldPerTerrainClassCitiesImprovement</h3>
+<p>Arguments: <code>eYield</code> — yield type to match; <code>eImprovement</code> — improvement type to match</p>
+<p><strong>Input checks:</strong> No range checks.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasActiveTradingPost</h3>
+<p>Arguments: <code>ePlayer</code> — player whose trading post is checked</p>
+<p><strong>Input checks:</strong> returns false for ePlayer out of range or missing owner</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasBeenRejectedByPlayer</h3>
+<p>Arguments: <code>ePlayer</code> — Player to check</p>
+<p><strong>Input checks:</strong> Not-found returns false.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasCityTerrainAdjacentImprovementModifier</h3>
+<p>Arguments: <code>eTerrain</code> — terrain to match; <code>eYield</code> — yield to match</p>
+<p><strong>Input checks:</strong> No range checks.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasDistrict</h3>
+<p><strong>Input checks:</strong> none needed; no inputs</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasInactiveTradingPost</h3>
+<p>Arguments: <code>ePlayer</code> — player whose trading post is checked</p>
+<p><strong>Input checks:</strong> returns false for ePlayer out of range; flag lookup after war check is unguarded when owner missing</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsAllowIncomingRegionalStacking</h3>
+<p>Arguments: <code>eYield</code> — yield type index</p>
+<p><strong>Input checks:</strong> returns false for -1 or index &gt;= NUM_YIELD_TYPES; indices beyond the array use the default field</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsAlwaysFullyLoyal</h3>
+<p><strong>Input checks:</strong> Delegates to IsAlwaysFullyLoyalAtLocation.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsCityState</h3>
+<p><strong>Input checks:</strong> none; assumes owner id is valid</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsFullyPoweredByActiveProject</h3>
+<p><strong>Input checks:</strong> returns false when no project is in production or definitions are missing</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>IsOccupied</h3>
+<p>Arguments: <code>ignoreNoPenalty</code> — if true skip the owner's no-penalty check</p>
+<p><strong>Input checks:</strong> none; owner lookup unchecked</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>RecalculatePower</h3>
 <p><strong>Writes</strong>
 - required power total at this+0x58 (zeroed then rebuilt)
@@ -1382,6 +1740,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - exact semantics of fields 0x5c, 0x60, 0x68
 - type confusion in Find template names</p>
+<h3>RemoveCityAllowedImprovement</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type to remove</p>
+<p><strong>Writes</strong>
+- city allowed-improvements list (offset 0x1550)</p>
+<p><strong>Input checks:</strong> no range check on eImprovement; if absent the list is rebuilt unchanged</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>RemoveCityHappinessModifier</h3>
 <p>Arguments: <code>eHappiness</code> — happiness type to match; <code>eYield</code> — yield to match; <code>eGreatPersonClass</code> — great person class to match; <code>iYieldChange</code> — yield change (checked for &lt;0 as the trigger); <code>iGreatPersonChange</code> — great person change</p>
 <p><strong>Writes</strong>
@@ -1403,6 +1767,18 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - Whether the OR/AND logic is a decompiler artefact or a real game quirk
 - Why the first matching record and everything after is lost</p>
+<h3>RemoveCityTerrainModifier</h3>
+<p>Arguments: <code>eTerrain</code> — terrain type of entry; <code>eAdjacentImprovement</code> — adjacent improvement of entry; <code>eYield</code> — yield type (not used in the match shown) (inferred); <code>iYieldChange</code> — yield amount; must be &gt; 0</p>
+<p><strong>Writes</strong>
+- city terrain-modifier list (offset 0x740)</p>
+<p><strong>Input checks:</strong> requires iYieldChange &gt; 0 and improvement != -1; the match uses OR over terrain/improvement/amount so a loosely matching entry may be removed</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state; loose match may remove wrong entry. <strong>Risk:</strong> medium (modifies synchronised city state; loose match may remove wrong entry). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveCityValidTerrainImprovement</h3>
+<p>Arguments: <code>eImprovement</code> — improvement type; <code>eTerrain</code> — terrain type</p>
+<p><strong>Writes</strong>
+- city valid terrain-improvement list (offset 0x770)</p>
+<p><strong>Input checks:</strong> returns early if either type is -1; match uses OR so one equal field removes an entry</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>RemoveDynamicAdjacencyBonus</h3>
 <p>Arguments: <code>eDistrict</code> — district type of the bonus; <code>eTerrain</code> — terrain filter; <code>eFeature</code> — feature filter; <code>bIsRiver</code> — river adjacency; <code>iAppeal</code> — appeal value; <code>bAdjacentDistrict</code> — adjacent district flag; <code>eYield</code> — yield type</p>
 <p><strong>Writes</strong>
@@ -1419,6 +1795,29 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - no cache refresh is triggered here</p>
 <p><strong>Open questions</strong>
 - exact lambda comparison, whether adjacency yields recalculated elsewhere</p>
+<h3>RemoveImprovementAdjacencyBonus</h3>
+<p>Arguments: <code>eDistrict</code> — district type of bonus; <code>eImprovement</code> — improvement type of bonus; <code>eYield</code> — yield type of bonus</p>
+<p><strong>Writes</strong>
+- city dynamic adjacency bonus list (offset 0x800)</p>
+<p><strong>Input checks:</strong> no validation; non-matching input erases nothing</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveYieldPerTerrainClassCitiesImprovement</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>eImprovement</code> — improvement type; <code>iDelta</code> — amount of the entry</p>
+<p><strong>Writes</strong>
+- city yield-per-terrain-class improvement list (offset 0x7a0)</p>
+<p><strong>Input checks:</strong> returns early if yield or improvement is -1; match uses OR over the three fields</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state; loose OR match. <strong>Risk:</strong> medium (modifies synchronised city state; loose OR match). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveYieldPerTerrainType</h3>
+<p>Arguments: <code>eTerrain</code> — terrain type; <code>eYield</code> — yield type; <code>xValue</code> — fixed-point yield value to match</p>
+<p><strong>Writes</strong>
+- city yield-per-terrain-type list (offset 0x830)</p>
+<p><strong>Input checks:</strong> no validation; unmatched input erases nothing</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ResetAccumulatedIdentity</h3>
+<p><strong>Writes</strong>
+- Accumulated identity per-player list emptied</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, clears synchronised city state. <strong>Risk:</strong> medium (Wipes city identity data). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ResetCache</h3>
 <p><strong>Writes</strong>
 - per-yield cached value array at this+0x1950 (capacity at +0x1958, count at +0x1960): all entries marked invalid, count set to number of yields</p>
@@ -1437,6 +1836,13 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Each entry is a CachedValue of fixed-point with a valid flag</p>
 <p><strong>Open questions</strong>
 - The value field is written from an uninitialised local so its content is irrelevant</p>
+<h3>ResetTemporaryPower</h3>
+<p><strong>Writes</strong>
+- temporary power (0x30)
+- list at 0x38..0x40
+- list at 0x80..0x88 entries</p>
+<p><strong>Input checks:</strong> none</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetBuildingFaithPurchaseByDistrict</h3>
 <p>Arguments: <code>eDistrict</code> — district type whose buildings are affected; <code>bNewValue</code> — true adds one to each counter, false subtracts one</p>
 <p><strong>Writes</strong>
@@ -1454,6 +1860,16 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - The array is a faith-purchase enable refcount; nonzero likely means purchasable</p>
 <p><strong>Open questions</strong>
 - How the counter is later interpreted (&gt;0?)</p>
+<h3>SetComponentID</h3>
+<p>Arguments: <code>eOwner</code> — owner player id; <code>id</code> — city id number</p>
+<p><strong>Writes</strong>
+- city id field (0xa8)
+- city owner field (0xd8)
+- FAutoArchive id (offset 0x8)</p>
+<p><strong>Side effects</strong>
+- calls FAutoArchive::SetID</p>
+<p><strong>Input checks:</strong> no validation</p>
+<p><strong>Multiplayer:</strong> may-desync, changes city identity used by archive/networking. <strong>Risk:</strong> high (changes city identity used by archive/networking). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetOccupied</h3>
 <p>Arguments: <code>bNewValue</code> — new occupied flag</p>
 <p><strong>Writes</strong>

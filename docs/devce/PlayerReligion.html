@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addbeliefyield"></a>AddBeliefYield</td>
 <td><code>PlayerReligion:AddBeliefYield(eBeliefYieldType: integer, eYield: integer, iAmount: integer, iPerXItems: integer, eDistrict: integer)</code></td>
-<td>—</td>
+<td>Appends a belief yield record (type, yield, amount, per-X-items, district) to the player's belief yield list at offset 0x130.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3131b0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addreligiousbuildingmodifier"></a>AddReligiousBuildingModifier</td>
 <td><code>PlayerReligion:AddReligiousBuildingModifier(eYield: integer, iMultiplier: integer, bFounderOnly: boolean)</code></td>
-<td>—</td>
+<td>Appends an entry (yield, multiplier, founder-only flag) to the religious building modifier vector at offset 0x160.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x313220</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checknewpurchases"></a>CheckNewPurchases</td>
 <td><code>PlayerReligion:CheckNewPurchases(xFaithIncome: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>If notifications are enabled for the player, scans units and buildings for faith purchases newly affordable with income and sends notifications. Decompilation is truncated before the building part ends.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x314080</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doreligion"></a>DoReligion</td>
 <td><code>PlayerReligion:DoReligion()</code></td>
-<td>—</td>
+<td>Per-turn religion update: computes faith yield, checks new purchases, changes faith balance, flags AI to found a religion when affordable, spreads religion and updates city religions.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x314c80</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getenablewallattackwholegamesamereligionpromotionclass"></a>GetEnableWallAttackWholeGameSameReligionPromotionClass</td>
 <td><code>PlayerReligion:GetEnableWallAttackWholeGameSameReligionPromotionClass(ePromotionClass: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the per-promotion-class count array at 0x2f0 is positive for the given class.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3150c0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfaithfrompeacefulreligionfounders"></a>GetFaithFromPeacefulReligionFounders</td>
 <td><code>PlayerReligion:GetFaithFromPeacefulReligionFounders() → number</code></td>
-<td>—</td>
+<td>Counts met (or self) players that founded a religion and are not at war with any major civ, and multiplies by a per-player faith amount at offset 0x230.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x315100</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getreligiousbuildingyieldmultiplier"></a>GetReligiousBuildingYieldMultiplier</td>
 <td><code>PlayerReligion:GetReligiousBuildingYieldMultiplier(eYield: integer, bIsFounder: boolean) → number</code></td>
-<td>—</td>
+<td>Sums multipliers in the modifier vector at 0x170 matching the yield, including founder-only entries only if bIsFounder.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x315610</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getspreadmodifier"></a>GetSpreadModifier</td>
 <td><code>PlayerReligion:GetSpreadModifier() → number</code></td>
-<td>—</td>
+<td>Returns the spread modifier at 0x248, plus an extra at 0x278 if the player has the tech stored at 0x260.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x315650</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getunitsreligionstrengthbyreligion"></a>GetUnitsReligionStrengthByReligion</td>
 <td><code>PlayerReligion:GetUnitsReligionStrengthByReligion(eReligion: integer) → number</code></td>
-<td>—</td>
+<td>Looks up the religion definition and returns the entry in the per-religion strength array at 0x3f0.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3156a0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getworshipbuilding"></a>GetWorshipBuilding</td>
 <td><code>PlayerReligion:GetWorshipBuilding() → number</code></td>
-<td>—</td>
+<td>Returns the first worship building type of the religion created by the owner, or -1 if none.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3156f0</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfrombeliefs"></a>GetYieldFromBeliefs</td>
 <td><code>PlayerReligion:GetYieldFromBeliefs(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums belief yield records matching the yield, scaling amount by a count (cities, followers, foreign, districts, wonders) divided by per-X value.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x315740</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasreligiousfoundingunit"></a>HasReligiousFoundingUnit</td>
 <td><code>PlayerReligion:HasReligiousFoundingUnit() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the owner has at least one unit of a type flagged as religion founding (flag 0x4 at offset 0x1b9).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x315900</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isreligioncreatedby"></a>IsReligionCreatedBy</td>
 <td><code>PlayerReligion:IsReligionCreatedBy(eReligion: integer, ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the owner's created religion matches the given religion type and the given founding player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x315b30</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setadoptsallyfoundedreligions"></a>SetAdoptsAllyFoundedReligions</td>
 <td><code>PlayerReligion:SetAdoptsAllyFoundedReligions(bshouldAdopt: boolean)</code></td>
-<td>—</td>
+<td>Sets the flag at offset 0x398 for adopting ally-founded religions.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x316060</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setfaithratechange"></a>SetFaithRateChange</td>
 <td><code>PlayerReligion:SetFaithRateChange(xNewValue: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>If the new value differs from the current faith rate change at 0xc8, assigns it at 0xb8 and sends a reporting event.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x316120</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setgainsallfollowerbeliefs"></a>SetGainsAllFollowerBeliefs</td>
 <td><code>PlayerReligion:SetGainsAllFollowerBeliefs(bNewValue: boolean)</code></td>
-<td>—</td>
+<td>Sets the gains-all-follower-beliefs flag at offset 0x1f0.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x316180</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setgreatpersonfounder"></a>SetGreatPersonFounder</td>
 <td><code>PlayerReligion:SetGreatPersonFounder(eGreatPersonIndividual: integer)</code></td>
-<td>—</td>
+<td>Stores the great person individual type at offset 0x100 as the religion's founder.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3161b0</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setlaunchedinquisition"></a>SetLaunchedInquisition</td>
 <td><code>PlayerReligion:SetLaunchedInquisition(bNewValue: boolean)</code></td>
-<td>—</td>
+<td>Sets the launched-inquisition flag at offset 0x1d8.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x316250</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="settreatallycapitalasholycity"></a>SetTreatAllyCapitalAsHolyCity</td>
 <td><code>PlayerReligion:SetTreatAllyCapitalAsHolyCity(bValue: boolean)</code></td>
-<td>—</td>
+<td>Sets the treat-ally-capital-as-holy-city flag at offset 0x3b0.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x316320</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="settreatholysitesasholycities"></a>SetTreatHolySitesAsHolyCities</td>
 <td><code>PlayerReligion:SetTreatHolySitesAsHolyCities(bValue: boolean)</code></td>
-<td>—</td>
+<td>Sets the treat-holy-sites-as-holy-cities flag at offset 0x3c8.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x316350</code></td>
@@ -196,6 +196,97 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddBeliefYield</h3>
+<p>Arguments: <code>eBeliefYieldType</code> — Kind of count the yield scales with; <code>eYield</code> — Yield type granted; <code>iAmount</code> — Amount per unit; <code>iPerXItems</code> — Divisor of items needed per amount; <code>eDistrict</code> — District type for district-based counts</p>
+<p><strong>Writes</strong>
+- Belief yield vector (offset 0x130)</p>
+<p><strong>Input checks:</strong> No validation of any argument.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (appends to synced vector). <strong>Confidence of the reading:</strong> high.</p>
+<h3>AddReligiousBuildingModifier</h3>
+<p>Arguments: <code>eYield</code> — Yield type to modify; <code>iMultiplier</code> — Multiplier amount; <code>bFounderOnly</code> — Whether it applies only to the founder</p>
+<p><strong>Writes</strong>
+- Religious building modifier vector (offset 0x160)</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (appends to synced vector). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CheckNewPurchases</h3>
+<p>Arguments: <code>xFaithIncome</code> — Faith income added to current balance to test affordability</p>
+<p><strong>Side effects</strong>
+- Sends notifications; dispatches a signal</p>
+<p><strong>Input checks:</strong> Checks a virtual notification-enabled query; no bounds checks.</p>
+<p><strong>Multiplayer:</strong> read-only: only sends local notifications, no synced state. <strong>Risk:</strong> low (notification only). <strong>Confidence of the reading:</strong> low.</p>
+<h3>DoReligion</h3>
+<p><strong>Writes</strong>
+- Faith balance
+- AI religious flag (bool in Religious AI)
+- City religion assignment</p>
+<p><strong>Side effects</strong>
+- Calls SpreadMyReligion, UpdateNextReligionForCities, CheckNotifications</p>
+<p><strong>Input checks:</strong> Checks capability and founded-religion state; no explicit input validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> high (turn processing of synced religion state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetEnableWallAttackWholeGameSameReligionPromotionClass</h3>
+<p>Arguments: <code>ePromotionClass</code> — Unit promotion class type</p>
+<p><strong>Input checks:</strong> Checks index != -1 and below array size.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFaithFromPeacefulReligionFounders</h3>
+<p><strong>Input checks:</strong> Returns the base value when it is not positive.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetReligiousBuildingYieldMultiplier</h3>
+<p>Arguments: <code>eYield</code> — Yield type to match; <code>bIsFounder</code> — Whether to include founder-only modifiers</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetSpreadModifier</h3>
+<p><strong>Input checks:</strong> Skips tech check if tech is -1.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetUnitsReligionStrengthByReligion</h3>
+<p>Arguments: <code>eReligion</code> — Religion type</p>
+<p><strong>Input checks:</strong> Returns 0 for -1; does not check Find result for null.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter; may crash on invalid religion). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetWorshipBuilding</h3>
+<p><strong>Input checks:</strong> Checks religion exists and building list non-empty.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetYieldFromBeliefs</h3>
+<p>Arguments: <code>eYield</code> — Yield type to compute</p>
+<p><strong>Input checks:</strong> Skips entries with non-positive divisor; unknown count types contribute 0.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasReligiousFoundingUnit</h3>
+<p><strong>Input checks:</strong> No inputs.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsReligionCreatedBy</h3>
+<p>Arguments: <code>eReligion</code> — Religion type to compare; <code>ePlayer</code> — Player to compare with the stored founder</p>
+<p><strong>Input checks:</strong> Null-checks religion data.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetAdoptsAllyFoundedReligions</h3>
+<p>Arguments: <code>bshouldAdopt</code> — New flag value</p>
+<p><strong>Writes</strong>
+- Religion field at offset 0x398</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced player religion flag). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetFaithRateChange</h3>
+<p>Arguments: <code>xNewValue</code> — New faith rate change</p>
+<p><strong>Writes</strong>
+- Faith rate change (offset 0xb8)</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send</p>
+<p><strong>Input checks:</strong> Skips when unchanged.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced faith rate). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetGainsAllFollowerBeliefs</h3>
+<p>Arguments: <code>bNewValue</code> — New flag value</p>
+<p><strong>Writes</strong>
+- Religion field at offset 0x1f0</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced player religion flag). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetGreatPersonFounder</h3>
+<p>Arguments: <code>eGreatPersonIndividual</code> — Great person individual type</p>
+<p><strong>Writes</strong>
+- Religion field at offset 0x100</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced player religion flag). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetLaunchedInquisition</h3>
+<p>Arguments: <code>bNewValue</code> — New flag value</p>
+<p><strong>Writes</strong>
+- Religion field at offset 0x1d8</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced player religion flag). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetSpreadModifier</h3>
 <p>Arguments: <code>iSpreadMultiplier</code> — base spread multiplier; <code>eSpreadEnhancingTech</code> — tech that upgrades spread; <code>iTechEnabledSpreadMultiplier</code> — multiplier once the tech is researched</p>
 <p><strong>Writes</strong>
@@ -214,4 +305,16 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - names come from the Linux debug info, so roles are reliable but consumer code was not read</p>
 <p><strong>Open questions</strong>
-- how the spread code applies the two multipliers</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- how the spread code applies the two multipliers</p>
+<h3>SetTreatAllyCapitalAsHolyCity</h3>
+<p>Arguments: <code>bValue</code> — New flag value</p>
+<p><strong>Writes</strong>
+- Religion field at offset 0x3b0</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced player religion flag). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetTreatHolySitesAsHolyCities</h3>
+<p>Arguments: <code>bValue</code> — New flag value</p>
+<p><strong>Writes</strong>
+- Religion field at offset 0x3c8</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced player religion flag). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addbanneddiploactionsspecificcivilizations"></a>AddBannedDiploActionsSpecificCivilizations</td>
 <td><code>TeamDiplomacy:AddBannedDiploActionsSpecificCivilizations(eAction: integer, eCiv: integer)</code></td>
-<td>—</td>
+<td>Appends an (action, civilization) pair to the list at Diplomacy+0x1fb8 banning that diplomatic action towards the civilization.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29dfe0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddiploactionprereqoverride"></a>AddDiploActionPrereqOverride</td>
 <td><code>TeamDiplomacy:AddDiploActionPrereqOverride(eAction: integer, eCivic: integer, eTech: integer)</code></td>
-<td>—</td>
+<td>Appends an (action, civic, tech) triple to the list at Diplomacy+0x1f88 overriding the prerequisite for a diplomatic action.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29e030</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddiplomaticcombatmodifier"></a>AddDiplomaticCombatModifier</td>
 <td><code>TeamDiplomacy:AddDiplomaticCombatModifier(eSource: integer, iTurnsActive: integer, iCombatBonus: integer, bReligiousOnly: boolean)</code></td>
-<td>—</td>
+<td>Appends a 16-byte entry (source, turns active, combat bonus, religious-only flag) to the list at Diplomacy+0x1f58.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29e090</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddiplomaticmovementmodifier"></a>AddDiplomaticMovementModifier</td>
 <td><code>TeamDiplomacy:AddDiplomaticMovementModifier(eSource: integer, iTurnsActive: integer, iExtraMoves: integer)</code></td>
-<td>—</td>
+<td>Appends an entry (source, turns active, extra moves) to the player's diplomatic movement modifier list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29e0f0</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddiplomaticyieldmodifier"></a>AddDiplomaticYieldModifier</td>
 <td><code>TeamDiplomacy:AddDiplomaticYieldModifier(eSource: integer, iTurnsActive: integer, eYield: integer, iYieldModifier: integer, bStackWithOtherDiploYieldModifiers: boolean)</code></td>
-<td>—</td>
+<td>Appends an entry (source, turns active, yield type, modifier, stacking flag) to the diplomatic yield modifier list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29e150</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddynamicvisibility"></a>AddDynamicVisibility</td>
 <td><code>TeamDiplomacy:AddDynamicVisibility(iValue: integer, eSource: integer, eSourceType: integer)</code></td>
-<td>—</td>
+<td>Appends an entry (value, visibility source, source type) to the dynamic diplomatic visibility list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29e1c0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addpromisedata"></a>AddPromiseData</td>
 <td><code>TeamDiplomacy:AddPromiseData(eOtherPlayer: integer, ePromiseType: integer, iTurnPromiseMade: integer, bPromiseSkipped: boolean)</code></td>
-<td>—</td>
+<td>Records a promise of a given type made to another player, creating the per-player promise map entry if absent and storing turn made and skipped flag; decompilation is truncated after building the new entry.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29e5e0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="applywarweariness"></a>ApplyWarWeariness</td>
 <td><code>TeamDiplomacy:ApplyWarWeariness()</code></td>
-<td>—</td>
+<td>Per-turn war weariness pass: builds lists of other alive players (at war vs not) that this player has weariness toward, sorts them, then applies effects using amenity and district lookups; decompilation is truncated.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29eb40</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateyieldperdelegation"></a>CalculateYieldPerDelegation</td>
 <td><code>TeamDiplomacy:CalculateYieldPerDelegation(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Computes yield per delegation: looks up a yield definition value, indexes a per-type array in the player, and multiplies it by the number of other players with a delegation flag toward this player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x29ffa0</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateyieldperembassy"></a>CalculateYieldPerEmbassy</td>
 <td><code>TeamDiplomacy:CalculateYieldPerEmbassy(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Computes yield per embassy: per-type base value times the number of other players with an embassy flag toward this player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a0090</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canliberatecityto"></a>CanLiberateCityTo</td>
 <td><code>TeamDiplomacy:CanLiberateCityTo(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether this player may liberate a city to ePlayer: not self, not at war with them, target must be major or minor, and in play-by-cloud a human target must be active.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a0bf0</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changealliancepointswithplayer"></a>ChangeAlliancePointsWithPlayer</td>
 <td><code>TeamDiplomacy:ChangeAlliancePointsWithPlayer(otherPlayer: integer, xChange: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the alliance points stored for another player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a0f30</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="clearlastpromisedata"></a>ClearLastPromiseData</td>
 <td><code>TeamDiplomacy:ClearLastPromiseData(eOtherPlayer: integer)</code></td>
-<td>—</td>
+<td>Empties the promise vector for the given player in the last-promise map by resetting its end pointer to its begin.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a1660</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>TeamDiplomacy:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn diplomacy update: updates the diplomacy blackboard, decays and applies war weariness, expires stale per-player entries (dispatching a signal), sends queued kudos or warnings, then updates available casus belli.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a4440</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="dowarwearinessdecay"></a>DoWarWearinessDecay</td>
 <td><code>TeamDiplomacy:DoWarWearinessDecay()</code></td>
-<td>—</td>
+<td>For each other met player with positive weariness, decays war weariness by an at-war or at-peace amount.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a4670</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getalliancepointswithplayer"></a>GetAlliancePointsWithPlayer</td>
 <td><code>TeamDiplomacy:GetAlliancePointsWithPlayer(otherPlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored alliance points for another player, or 0 if the index is out of range.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a4f60</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getallianceturnsuntilend"></a>GetAllianceTurnsUntilEnd</td>
 <td><code>TeamDiplomacy:GetAllianceTurnsUntilEnd(otherPlayer: integer) → number</code></td>
-<td>—</td>
+<td>Computes turns until the alliance with a player ends: declared alliance turn minus (current turn minus game-speed adjusted alliance duration).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a4f90</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getalliancetype"></a>GetAllianceType</td>
 <td><code>TeamDiplomacy:GetAllianceType(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns the alliance type between this player and another from the diplomatic relations table.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a5010</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getculturefromalliances"></a>GetCultureFromAlliances</td>
 <td><code>TeamDiplomacy:GetCultureFromAlliances() → number</code></td>
-<td>—</td>
+<td>Returns culture bonus from an alliance: finds the player with a specific alliance type and sums that player's city culture yields times a stored percentage; result is written through a hidden return pointer.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a51d0</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentdiplomaticcombatmodifier"></a>GetCurrentDiplomaticCombatModifier</td>
 <td><code>TeamDiplomacy:GetCurrentDiplomaticCombatModifier(bReligiousCombat: boolean) → number</code></td>
-<td>—</td>
+<td>Sums combat modifiers from the combat modifier list whose entries match the religious-combat flag and whose source timer is still active.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a52d0</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentdiplomaticyieldmodifier"></a>GetCurrentDiplomaticYieldModifier</td>
 <td><code>TeamDiplomacy:GetCurrentDiplomaticYieldModifier(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the active diplomatic yield modifier for a yield: stacking entries are summed, non-stacking entries contribute only the maximum.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a5550</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfaithbonusfromalliances"></a>GetFaithBonusFromAlliances</td>
 <td><code>TeamDiplomacy:GetFaithBonusFromAlliances() → number</code></td>
-<td>—</td>
+<td>Returns faith bonus from an alliance: for the ally of a specific type, multiplies a stored value by the follower count of that ally's founded religion across this player's cities.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a5880</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgrievancesfromplayer"></a>GetGrievancesFromPlayer</td>
 <td><code>TeamDiplomacy:GetGrievancesFromPlayer(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns the grievance score between this player and the given player from the diplomatic relations table.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a5950</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmetera"></a>GetMetEra</td>
 <td><code>TeamDiplomacy:GetMetEra(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns the era in which this player met another, or -1 if invalid, self or no entry.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a5fd0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumalliances"></a>GetNumAlliances</td>
 <td><code>TeamDiplomacy:GetNumAlliances() → number</code></td>
-<td>—</td>
+<td>Counts other players in the major list with which this player has any alliance type.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a60a0</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumgossipreports"></a>GetNumGossipReports</td>
 <td><code>TeamDiplomacy:GetNumGossipReports(ePlayer: integer, eGossipType: integer) → number</code></td>
-<td>—</td>
+<td>Returns the number of gossip reports of a type about a player from the nested map; 0 if not found.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a6130</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnummajorsmet"></a>GetNumMajorsMet</td>
 <td><code>TeamDiplomacy:GetNumMajorsMet() → number</code></td>
-<td>—</td>
+<td>Counts other valid major players that this player has met.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a61f0</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumminorsmet"></a>GetNumMinorsMet</td>
 <td><code>TeamDiplomacy:GetNumMinorsMet() → number</code></td>
-<td>—</td>
+<td>Counts other valid minor players that this player has met.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a62e0</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getplayerwithalliancetype"></a>GetPlayerWithAllianceType</td>
 <td><code>TeamDiplomacy:GetPlayerWithAllianceType(eAlliance: integer) → number</code></td>
-<td>—</td>
+<td>Returns the first other player in the major list that shares the given alliance type with this player, or -1.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a63d0</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getsciencemultiplierfromalliances"></a>GetScienceMultiplierFromAlliances</td>
 <td><code>TeamDiplomacy:GetScienceMultiplierFromAlliances() → number</code></td>
-<td>—</td>
+<td>Returns a science multiplier from an alliance: if the ally and this player share, or one has already researched, the other's current research, returns the stored value, else 0.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a6570</code></td>
@@ -300,7 +300,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismfromalliances"></a>GetTourismFromAlliances</td>
 <td><code>TeamDiplomacy:GetTourismFromAlliances() → number</code></td>
-<td>—</td>
+<td>Returns tourism from an alliance: sums the ally's city tourism times a stored percentage.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a6690</code></td>
@@ -308,7 +308,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getturnssinceopenbordersended"></a>GetTurnsSinceOpenBordersEnded</td>
 <td><code>TeamDiplomacy:GetTurnsSinceOpenBordersEnded(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns turns since open borders with a player ended: 0 if currently open, -1 if never ended, else current turn minus end turn.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a6790</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasactivedowonminor"></a>HasActiveDOWOnMinor</td>
 <td><code>TeamDiplomacy:HasActiveDOWOnMinor() → boolean</code></td>
-<td>—</td>
+<td>Returns true if this player is at war with any valid minor-type player (not barbarian, major or free cities).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a67f0</code></td>
@@ -324,7 +324,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasconqueredminor"></a>HasConqueredMinor</td>
 <td><code>TeamDiplomacy:HasConqueredMinor() → boolean</code></td>
-<td>—</td>
+<td>Returns true if any of this player's cities has a different original owner that is neither major nor barbarian.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a6980</code></td>
@@ -332,7 +332,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="haspermanentalliance"></a>HasPermanentAlliance</td>
 <td><code>TeamDiplomacy:HasPermanentAlliance(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether this player is permanently allied with the given player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a6f60</code></td>
@@ -340,7 +340,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="incrementgossipreports"></a>IncrementGossipReports</td>
 <td><code>TeamDiplomacy:IncrementGossipReports(ePlayer: integer, eGossipType: integer)</code></td>
-<td>—</td>
+<td>Increments the gossip report counter of a type for a player in the nested map, inserting a new entry if the type is missing; the decompilation of the no-player-entry path only calls IsMajor.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a6fa0</code></td>
@@ -348,7 +348,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isatwarwithanymajorciv"></a>IsAtWarWithAnyMajorCiv</td>
 <td><code>TeamDiplomacy:IsAtWarWithAnyMajorCiv() → boolean</code></td>
-<td>—</td>
+<td>Returns true if this player is at war with any valid alive major player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a8740</code></td>
@@ -356,7 +356,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isenforcingborders"></a>IsEnforcingBorders</td>
 <td><code>TeamDiplomacy:IsEnforcingBorders(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether this player enforces borders against another: false if the other has open borders from this player, otherwise a flag in the other's diplomacy data.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a9b00</code></td>
@@ -364,7 +364,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isjointwartypeallowed"></a>IsJointWarTypeAllowed</td>
 <td><code>TeamDiplomacy:IsJointWarTypeAllowed(eSharedWarType: integer, ePartner: integer, eOpponent: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether a joint war of the given type with a partner against an opponent is allowed; both must be alive majors, then declare-war action validity is checked for this player or the partner by war type hash. Decompilation is truncated.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2a9c50</code></td>
@@ -372,7 +372,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isoccupyingoriginalcapital"></a>IsOccupyingOriginalCapital</td>
 <td><code>TeamDiplomacy:IsOccupyingOriginalCapital(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if any of this player's cities is an original capital whose original owner is the given player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2aa1a0</code></td>
@@ -380,7 +380,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isthirdpartywartypeallowed"></a>IsThirdPartyWarTypeAllowed</td>
 <td><code>TeamDiplomacy:IsThirdPartyWarTypeAllowed(eSharedWarType: integer, ePartner: integer, eOpponent: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether a third-party war type is allowed against an opponent: both majors and alive, true if the existing war type matches, else validity of the matching declare-war diplomatic action for this player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2aa410</code></td>
@@ -388,7 +388,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removebanneddiploactionsspecificcivilizations"></a>RemoveBannedDiploActionsSpecificCivilizations</td>
 <td><code>TeamDiplomacy:RemoveBannedDiploActionsSpecificCivilizations(eAction: integer, eCiv: integer)</code></td>
-<td>—</td>
+<td>Removes all matching (action, civilization) entries from the banned diplomatic actions list by copying the vector, clearing it and re-adding non-matching entries.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2adf40</code></td>
@@ -396,7 +396,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removediplomaticyieldmodifier"></a>RemoveDiplomaticYieldModifier</td>
 <td><code>TeamDiplomacy:RemoveDiplomaticYieldModifier(eSource: integer, iTurnsActive: integer, eYield: integer, iYieldModifier: integer, bStackWithOtherDiploYieldModifiers: boolean)</code></td>
-<td>—</td>
+<td>Removes all entries exactly matching (source, turns active, yield, modifier, stacking flag) from the diplomatic yield modifier list by copy, clear and re-add.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2ae020</code></td>
@@ -404,7 +404,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resetdenouncement"></a>ResetDenouncement</td>
 <td><code>TeamDiplomacy:ResetDenouncement(ePlayer: integer)</code></td>
-<td>—</td>
+<td>Clears the recorded denouncement turn for the given player by setting its entry in the per-player denounce-turn map (offset 0x6a0) to -1.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2af4f0</code></td>
@@ -412,7 +412,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resetoccupiedcities"></a>ResetOccupiedCities</td>
 <td><code>TeamDiplomacy:ResetOccupiedCities(eOpponent: integer)</code></td>
-<td>—</td>
+<td>Loops over all cities of the owning player and clears the occupied flag on each occupied city whose stored player field (city+0x220) equals the given opponent.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2af520</code></td>
@@ -444,7 +444,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="sethadfriendlymeeting"></a>SetHadFriendlyMeeting</td>
 <td><code>TeamDiplomacy:SetHadFriendlyMeeting(ePlayer: integer, bNewValue: boolean)</code></td>
-<td>—</td>
+<td>Sets the per-player flag (array at offset 0x378) recording whether a friendly meeting with that player occurred.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2afca0</code></td>
@@ -460,7 +460,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="sethasdenounced"></a>SetHasDenounced</td>
 <td><code>TeamDiplomacy:SetHasDenounced(ePlayer: integer, bNewValue: boolean)</code></td>
-<td>—</td>
+<td>Records the current game turn as the denouncement turn for the given player, dispatches a game signal, and applies a denouncement grievance from this player onto the target player's diplomacy.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2b0040</code></td>
@@ -500,7 +500,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="updateavailablecasusbelli"></a>UpdateAvailableCasusBelli</td>
 <td><code>TeamDiplomacy:UpdateAvailableCasusBelli()</code></td>
-<td>—</td>
+<td>Recomputes which colonial-war casus belli options are available against each met, living player and sends notifications for newly available ones. Decompilation is truncated, so the later part is not visible.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2b0800</code></td>
@@ -508,7 +508,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="updateincursiondata"></a>UpdateIncursionData</td>
 <td><code>TeamDiplomacy:UpdateIncursionData()</code></td>
-<td>—</td>
+<td>Prunes the incursion record map (offset 0x2bc8): removes entries older than a per-type turn limit (50 turns for most types, -1 for one type).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2b1870</code></td>
@@ -516,7 +516,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="updatepromise"></a>UpdatePromise</td>
 <td><code>TeamDiplomacy:UpdatePromise(eOtherPlayer: integer, ePromiseType: integer)</code></td>
-<td>—</td>
+<td>Looks up the promise record of the given player and promise type and, if it is older than a limit (5 turns for one type, 0 for others), calls BreakPromise.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2b19b0</code></td>
@@ -524,6 +524,42 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddBannedDiploActionsSpecificCivilizations</h3>
+<p>Arguments: <code>eAction</code> — diplomatic action to ban; <code>eCiv</code> — civilization it is banned against</p>
+<p><strong>Writes</strong>
+- entry appended to list at Diplomacy+0x1fb8</p>
+<p><strong>Input checks:</strong> No validation or duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised diplomacy data. <strong>Risk:</strong> medium (alters allowed diplomatic actions). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddDiploActionPrereqOverride</h3>
+<p>Arguments: <code>eAction</code> — diplomatic action; <code>eCivic</code> — civic that satisfies the prerequisite (inferred); <code>eTech</code> — tech that satisfies the prerequisite (inferred)</p>
+<p><strong>Writes</strong>
+- entry appended to list at Diplomacy+0x1f88</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised diplomacy data. <strong>Risk:</strong> medium (alters action prerequisites). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddDiplomaticCombatModifier</h3>
+<p>Arguments: <code>eSource</code> — diplomatic yield source of the bonus; <code>iTurnsActive</code> — duration in turns (inferred); <code>iCombatBonus</code> — combat strength bonus (inferred); <code>bReligiousOnly</code> — applies only to religious combat (inferred)</p>
+<p><strong>Writes</strong>
+- entry appended to list at Diplomacy+0x1f58</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised diplomacy data. <strong>Risk:</strong> medium (alters combat bonuses). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddDiplomaticMovementModifier</h3>
+<p>Arguments: <code>eSource</code> — diplomatic source enum stored in the entry; <code>iTurnsActive</code> — turn value stored in the entry (likely start turn or duration) (inferred); <code>iExtraMoves</code> — extra movement stored in the entry (inferred)</p>
+<p><strong>Writes</strong>
+- vector at this+0x1f28 (12-byte entries appended)</p>
+<p><strong>Input checks:</strong> No range checks on any argument.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced player diplomacy state. <strong>Risk:</strong> medium (unvalidated push into a synced list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddDiplomaticYieldModifier</h3>
+<p>Arguments: <code>eSource</code> — diplomatic source enum stored in entry; <code>iTurnsActive</code> — turn value stored in entry (inferred); <code>eYield</code> — yield type the modifier applies to; <code>iYieldModifier</code> — modifier amount stored in entry; <code>bStackWithOtherDiploYieldModifiers</code> — stacking flag stored in entry (getter sums stacking entries, takes max of others)</p>
+<p><strong>Writes</strong>
+- vector at this+0x1ef8 (20-byte entries appended)</p>
+<p><strong>Input checks:</strong> No range checks; duplicates are allowed.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced player diplomacy state. <strong>Risk:</strong> medium (unvalidated push into a synced list). <strong>Confidence of the reading:</strong> high.</p>
+<h3>AddDynamicVisibility</h3>
+<p>Arguments: <code>iValue</code> — visibility amount stored in entry (inferred); <code>eSource</code> — visibility source enum stored in entry; <code>eSourceType</code> — source type enum stored in entry</p>
+<p><strong>Writes</strong>
+- vector at this+0x348 (12-byte entries appended)</p>
+<p><strong>Input checks:</strong> No range checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced player diplomacy state. <strong>Risk:</strong> medium (unvalidated push into a synced list). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>AddEspionageIncursion</h3>
 <p>Arguments: <code>eOtherPlayer</code> — player whose territory was spied in</p>
 <p><strong>Writes</strong>
@@ -562,6 +598,40 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - IncursionData holds just the turn number</p>
 <p><strong>Open questions</strong>
 - container details are noisy in decompile</p>
+<h3>AddPromiseData</h3>
+<p>Arguments: <code>eOtherPlayer</code> — player the promise concerns (map key); <code>ePromiseType</code> — promise type key in the inner map; <code>iTurnPromiseMade</code> — turn stored in the PromiseData; <code>bPromiseSkipped</code> — skipped flag stored in PromiseData</p>
+<p><strong>Writes</strong>
+- promise map at this+0x2b48 (per player, per promise type PromiseData)</p>
+<p><strong>Side effects</strong>
+- later effects unknown because decompilation is truncated</p>
+<p><strong>Input checks:</strong> No explicit range check on eOtherPlayer is visible.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced promise map. <strong>Risk:</strong> medium (writes synced state; output truncated). <strong>Confidence of the reading:</strong> low.</p>
+<h3>ApplyWarWeariness</h3>
+<p><strong>Writes</strong>
+- field at this+0x1c80 (count reset to 0)
+- war weariness related state (43 writes counted)</p>
+<p><strong>Side effects</strong>
+- may change city amenity or district related values via Economic and Districts calls</p>
+<p><strong>Input checks:</strong> Skips self and invalid or dead players; no argument to validate.</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies player/city state each turn. <strong>Risk:</strong> high (large turn-processing routine, truncated). <strong>Confidence of the reading:</strong> low.</p>
+<h3>CalculateYieldPerDelegation</h3>
+<p>Arguments: <code>eYield</code> — yield type used for the definition lookup; -1 gives 0</p>
+<p><strong>Input checks:</strong> Returns 0 for eYield == -1 and for non-positive base value; array index is range-checked.</p>
+<p><strong>Multiplayer:</strong> read-only, reads player flags only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateYieldPerEmbassy</h3>
+<p>Arguments: <code>eYield</code> — yield type used for the lookup; -1 gives 0</p>
+<p><strong>Input checks:</strong> Returns 0 for eYield == -1 or non-positive base; array index range-checked.</p>
+<p><strong>Multiplayer:</strong> read-only, reads player flags only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanLiberateCityTo</h3>
+<p>Arguments: <code>ePlayer</code> — candidate player to receive the city</p>
+<p><strong>Input checks:</strong> Rejects self, at-war valid players and non major/minor players; player pointer not null-checked before the major/minor test.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ChangeAlliancePointsWithPlayer</h3>
+<p>Arguments: <code>otherPlayer</code> — index into the alliance points array; <code>xChange</code> — signed amount added to the points</p>
+<p><strong>Writes</strong>
+- alliance points array at this+0x20d8 (element otherPlayer)</p>
+<p><strong>Input checks:</strong> Checks otherPlayer is below array size; overflow and sign of xChange not checked.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced alliance points. <strong>Risk:</strong> medium (simple bounded write to synced state). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeYieldPerDelegation</h3>
 <p>Arguments: <code>iAmount</code> — value stored for that yield; <code>eYield</code> — yield type</p>
 <p><strong>Writes</strong>
@@ -600,6 +670,153 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - fallback field meaning
 - Lua object</p>
+<h3>ClearLastPromiseData</h3>
+<p>Arguments: <code>eOtherPlayer</code> — player key in the last-promise map</p>
+<p><strong>Writes</strong>
+- entry in map at this+0x2b88 (end pointer reset)</p>
+<p><strong>Input checks:</strong> Does nothing if the player has no entry.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced promise data. <strong>Risk:</strong> medium (writes synced state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- blackboard at this+0x12b0
+- per-player timers at this+0x6a0 (reset to -1 when expired)
+- pending kudo/warning list at this+0x2b20 (cleared)
+- war weariness and casus belli state via callees</p>
+<p><strong>Side effects</strong>
+- dispatches a game signal for expired players
+- calls SendKudoTo / SendWarningTo for queued items
+- calls UpdateAvailableCasusBelli</p>
+<p><strong>Input checks:</strong> No parameters; iterates all players.</p>
+<p><strong>Multiplayer:</strong> may-desync, main per-turn diplomacy state update. <strong>Risk:</strong> high (runs many synced state changes). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoWarWearinessDecay</h3>
+<p><strong>Writes</strong>
+- war weariness values via ChangeWarWearinessFrom</p>
+<p><strong>Side effects</strong>
+- calls ChangeWarWearinessFrom with reasons At War Decay or At Peace Decay</p>
+<p><strong>Input checks:</strong> Skips self, unmet and invalid players; only decays when the weariness entry is positive.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes synced weariness values. <strong>Risk:</strong> medium (modifies synced state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetAlliancePointsWithPlayer</h3>
+<p>Arguments: <code>otherPlayer</code> — index into alliance points array</p>
+<p><strong>Input checks:</strong> Bounds checked against array size.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetAllianceTurnsUntilEnd</h3>
+<p>Arguments: <code>otherPlayer</code> — ally whose declaration turn is looked up</p>
+<p><strong>Input checks:</strong> No validation of the player or that an alliance exists.</p>
+<p><strong>Multiplayer:</strong> read-only, uses current turn and relations table. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetAllianceType</h3>
+<p>Arguments: <code>ePlayer</code> — other player</p>
+<p><strong>Input checks:</strong> None here; delegated.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCultureFromAlliances</h3>
+<p><strong>Input checks:</strong> Checks ally exists and stored percentage is non-zero.</p>
+<p><strong>Multiplayer:</strong> read-only, result written to return buffer. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCurrentDiplomaticCombatModifier</h3>
+<p>Arguments: <code>bReligiousCombat</code> — only entries with matching religious flag are counted</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, uses current turn. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCurrentDiplomaticYieldModifier</h3>
+<p>Arguments: <code>eYield</code> — yield type to match</p>
+<p><strong>Input checks:</strong> No validation; entries with inactive or expired source timers are skipped.</p>
+<p><strong>Multiplayer:</strong> read-only, uses current turn. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFaithBonusFromAlliances</h3>
+<p><strong>Input checks:</strong> Checks ally exists, value non-zero and religion created.</p>
+<p><strong>Multiplayer:</strong> read-only, result written to return buffer. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetGrievancesFromPlayer</h3>
+<p>Arguments: <code>ePlayer</code> — other player in the grievance pair</p>
+<p><strong>Input checks:</strong> None here; delegated.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetMetEra</h3>
+<p>Arguments: <code>ePlayer</code> — other player</p>
+<p><strong>Input checks:</strong> Checks player index below 0x41, alive-map entry, and not self.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumAlliances</h3>
+<p><strong>Input checks:</strong> Skips self.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumGossipReports</h3>
+<p>Arguments: <code>ePlayer</code> — player key of the gossip map; <code>eGossipType</code> — gossip type key in the inner map</p>
+<p><strong>Input checks:</strong> Returns 0 on missing keys.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumMajorsMet</h3>
+<p><strong>Input checks:</strong> Skips self and invalid players.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumMinorsMet</h3>
+<p><strong>Input checks:</strong> Skips self and invalid players.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetPlayerWithAllianceType</h3>
+<p>Arguments: <code>eAlliance</code> — alliance type to look for</p>
+<p><strong>Input checks:</strong> Skips self; no check on eAlliance.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetScienceMultiplierFromAlliances</h3>
+<p><strong>Input checks:</strong> Checks ally exists, stored value non-zero and player valid.</p>
+<p><strong>Multiplayer:</strong> read-only, result written to return buffer. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourismFromAlliances</h3>
+<p><strong>Input checks:</strong> Checks ally exists and percentage non-zero.</p>
+<p><strong>Multiplayer:</strong> read-only, result written to return buffer. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTurnsSinceOpenBordersEnded</h3>
+<p>Arguments: <code>ePlayer</code> — index into per-player arrays</p>
+<p><strong>Input checks:</strong> No bounds check on ePlayer.</p>
+<p><strong>Multiplayer:</strong> read-only, uses current turn. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasActiveDOWOnMinor</h3>
+<p><strong>Input checks:</strong> Skips self and invalid players.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasConqueredMinor</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasPermanentAlliance</h3>
+<p>Arguments: <code>ePlayer</code> — other player</p>
+<p><strong>Input checks:</strong> None here; delegated.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IncrementGossipReports</h3>
+<p>Arguments: <code>ePlayer</code> — player key; <code>eGossipType</code> — gossip type key</p>
+<p><strong>Writes</strong>
+- gossip map at this+0x308 (counter incremented or inserted)</p>
+<p><strong>Input checks:</strong> When the player has no map entry the shown code validates the player and calls IsMajor but writes nothing.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced gossip counters. <strong>Risk:</strong> medium (writes synced state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsAtWarWithAnyMajorCiv</h3>
+<p><strong>Input checks:</strong> Skips self and invalid players.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsEnforcingBorders</h3>
+<p>Arguments: <code>ePlayer</code> — other player</p>
+<p><strong>Input checks:</strong> No validity check on ePlayer.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsJointWarTypeAllowed</h3>
+<p>Arguments: <code>eSharedWarType</code> — war type hash being checked; <code>ePartner</code> — joint-war partner; <code>eOpponent</code> — target of the war</p>
+<p><strong>Input checks:</strong> Null-checks both players, requires majors and alive flag, rejects one war type hash.</p>
+<p><strong>Multiplayer:</strong> read-only, reads state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>IsOccupyingOriginalCapital</h3>
+<p>Arguments: <code>ePlayer</code> — original owner to test</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsThirdPartyWarTypeAllowed</h3>
+<p>Arguments: <code>eSharedWarType</code> — war type hash being checked; <code>ePartner</code> — partner player; <code>eOpponent</code> — opponent player</p>
+<p><strong>Input checks:</strong> Null-checks players, requires majors alive, rejects one war type hash.</p>
+<p><strong>Multiplayer:</strong> read-only, reads game state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveBannedDiploActionsSpecificCivilizations</h3>
+<p>Arguments: <code>eAction</code> — diplomatic action to unban; <code>eCiv</code> — civilization for which the ban is removed</p>
+<p><strong>Writes</strong>
+- banned action vector at this+0x1fb8 (rebuilt)</p>
+<p><strong>Input checks:</strong> No validation; no-op if not present.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced ban list. <strong>Risk:</strong> medium (writes synced state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveDiplomaticYieldModifier</h3>
+<p>Arguments: <code>eSource</code> — source to match; <code>iTurnsActive</code> — turn value to match; <code>eYield</code> — yield to match; <code>iYieldModifier</code> — modifier to match; <code>bStackWithOtherDiploYieldModifiers</code> — stacking flag to match</p>
+<p><strong>Writes</strong>
+- yield modifier vector at this+0x1ef8 (rebuilt)</p>
+<p><strong>Input checks:</strong> No validation; no-op if nothing matches.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced list. <strong>Risk:</strong> medium (writes synced state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ResetDenouncement</h3>
+<p>Arguments: <code>ePlayer</code> — player whose denouncement record is cleared</p>
+<p><strong>Writes</strong>
+- per-player denouncement turn entry at this+0x6a0 set to -1</p>
+<p><strong>Input checks:</strong> Skips if ePlayer is -1; no upper range check on the index.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced diplomacy variable. <strong>Risk:</strong> medium (unchecked array index, synced state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ResetOccupiedCities</h3>
+<p>Arguments: <code>eOpponent</code> — player whose occupied cities (by that city field) are freed</p>
+<p><strong>Writes</strong>
+- city occupied flag cleared via SetOccupied(false)</p>
+<p><strong>Side effects</strong>
+- City::Instance::SetOccupied may trigger its own updates</p>
+<p><strong>Input checks:</strong> No validation of eOpponent.</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies city state. <strong>Risk:</strong> medium (changes city occupation state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetBlockedEntry</h3>
 <p>Arguments: <code>eUnit</code> — unit type index into the blocked-entry array; <code>bNewValue</code> — whether entry is blocked</p>
 <p><strong>Writes</strong>
@@ -663,6 +880,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - argument order to SetJointWarTarget is owner, partner, target</p>
 <p><strong>Open questions</strong>
 - internal checks in SetJointWarTarget</p>
+<h3>SetHadFriendlyMeeting</h3>
+<p>Arguments: <code>ePlayer</code> — other player, index into the flag array; <code>bNewValue</code> — new flag value</p>
+<p><strong>Writes</strong>
+- friendly-meeting flag byte at this+0x378 [ePlayer]</p>
+<p><strong>Input checks:</strong> None; ePlayer is used as an unchecked index.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced diplomacy variable. <strong>Risk:</strong> medium (unchecked index). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetHasDefensivePact</h3>
 <p>Arguments: <code>ePlayer</code> — other player in the pact; <code>bNewValue</code> — true to set pact, false to clear</p>
 <p><strong>Writes</strong>
@@ -679,6 +902,16 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - flag likely symmetric handled inside callee</p>
 <p><strong>Open questions</strong>
 - symmetry and validation inside callee</p>
+<h3>SetHasDenounced</h3>
+<p>Arguments: <code>ePlayer</code> — player being denounced; <code>bNewValue</code> — passed in but never read by the code shown (inferred)</p>
+<p><strong>Writes</strong>
+- denounce-turn entry at this+0x6a0 [ePlayer] set to current turn
+- grievances on the target player's diplomacy</p>
+<p><strong>Side effects</strong>
+- dispatches a signal on the game object
+- adds grievance with log key LOC_DIPLO_GRIEVANCE_LOG_DENOUNCED</p>
+<p><strong>Input checks:</strong> No null/range check on ePlayer; bNewValue ignored.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes diplomacy state and grievances. <strong>Risk:</strong> high (signals and grievances, unchecked index). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetHasOpenBordersFrom</h3>
 <p>Arguments: <code>ePlayer</code> — other player granting the open borders; <code>bNewValue</code> — true adds one, false removes one</p>
 <p><strong>Writes</strong>
@@ -750,4 +983,22 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - tech -1 probably clears it</p>
 <p><strong>Open questions</strong>
-- callee validation</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- callee validation</p>
+<h3>UpdateAvailableCasusBelli</h3>
+<p><strong>Writes</strong>
+- casus belli availability data at this+0x1ca8 per player</p>
+<p><strong>Side effects</strong>
+- sends Reporting notification for new casus belli options</p>
+<p><strong>Input checks:</strong> Checks player index below 0x41 and active, not self, has met, and diplomatic action validity; remainder truncated.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced diplomacy and notifies. <strong>Risk:</strong> medium (large function, truncated view). <strong>Confidence of the reading:</strong> low.</p>
+<h3>UpdateIncursionData</h3>
+<p><strong>Writes</strong>
+- incursion entries removed from map at this+0x2bc8</p>
+<p><strong>Input checks:</strong> No input; compares current turn to each entry turn.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synced incursion data. <strong>Risk:</strong> medium (deletes records). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>UpdatePromise</h3>
+<p>Arguments: <code>eOtherPlayer</code> — player the promise is tied to; <code>ePromiseType</code> — promise type hash</p>
+<p><strong>Side effects</strong>
+- may call BreakPromise, which changes diplomacy state</p>
+<p><strong>Input checks:</strong> Does nothing if no record found; no range checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, can break promises. <strong>Risk:</strong> medium (indirectly breaks promises). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

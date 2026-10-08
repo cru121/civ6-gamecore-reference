@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canappoint"></a>CanAppoint</td>
 <td><code>PlayerGovernors:CanAppoint() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the player has unspent governor points, at least one governor type not yet appointed, and the appointed count does not exceed a game parameter limit.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2dd760</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="caneverearnpromotion"></a>CanEverEarnPromotion</td>
 <td><code>PlayerGovernors:CanEverEarnPromotion(eGovernor: integer, ePromotion: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the given governor appears in the governor list of the given promotion definition.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2de080</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canpromote"></a>CanPromote</td>
 <td><code>PlayerGovernors:CanPromote() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the player has unspent governor points and any appointed governor still lacks one of its definition promotions.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2de100</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>PlayerGovernors:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn update for each appointed governor: increments turns on site, counts down neutralization, notifies when it ends, and sends a per-governor turn event.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2de6a0</code></td>
@@ -60,11 +60,34 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasgovernor"></a>HasGovernor</td>
 <td><code>PlayerGovernors:HasGovernor(eGovernor: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if a governor of the given type is in the player's appointed list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2def90</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>CanAppoint</h3>
+<p><strong>Input checks:</strong> No input.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanEverEarnPromotion</h3>
+<p>Arguments: <code>eGovernor</code> — governor type; <code>ePromotion</code> — promotion type</p>
+<p><strong>Input checks:</strong> Returns false for -1 args; promotion index is bounds-checked but a null definition would then be dereferenced.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanPromote</h3>
+<p><strong>Input checks:</strong> No input.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- governor turns-on-site
+- governor neutralized turns decremented</p>
+<p><strong>Side effects</strong>
+- notification when neutralization ends
+- Reporting event sent per governor each turn</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes governor state and sends events. <strong>Risk:</strong> medium (state change and events). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasGovernor</h3>
+<p>Arguments: <code>eGovernor</code> — governor type to look for</p>
+<p><strong>Input checks:</strong> List scan; no range check needed.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

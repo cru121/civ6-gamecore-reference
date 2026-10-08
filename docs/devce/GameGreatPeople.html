@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addguarantee"></a>AddGuarantee</td>
 <td><code>GameGreatPeople:AddGuarantee(ePlayer: integer, eClass: integer, eEra: integer)</code></td>
-<td>—</td>
+<td>Appends a guarantee record (class, player, era) to the guarantee vector at offset 0x150.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x208f60</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculatepersoncost"></a>CalculatePersonCost</td>
 <td><code>GameGreatPeople:CalculatePersonCost(eClass: integer, eEra: integer) → number</code></td>
-<td>—</td>
+<td>Computes the era-scaled point cost of a great person: base cost from the era definition (0x2c), compounded by 30 percent steps when the era is ahead of the current era, adjusted for game speed and rounded down to a multiple of a global parameter.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2090b0</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canclaimperson"></a>CanClaimPerson</td>
 <td><code>GameGreatPeople:CanClaimPerson(ePlayer: integer, eIndividual: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks the individual is in the available list with valid fields, that the player can recruit it, and that it is not yet claimed.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x209220</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checklapsedclaims"></a>CheckLapsedClaims</td>
 <td><code>GameGreatPeople:CheckLapsedClaims()</code></td>
-<td>—</td>
+<td>For each available timeline entry that has a claimant, recruits the person for that player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x209fd0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="countpeopleanywhereintimeline"></a>CountPeopleAnywhereInTimeline</td>
 <td><code>GameGreatPeople:CountPeopleAnywhereInTimeline(eClassFilter: integer) → number</code></td>
-<td>—</td>
+<td>Counts valid entries in both timeline lists (recruited at 0xd0 and available at 0x100), optionally filtered by class.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20a160</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>GameGreatPeople:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn update: if the flag at 0xb8 is false it initialises the timeline and assigns the flag, then checks guarantees for all players and classes and resolves lapsed claims.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20a8d0</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getavailablepersonbyclass"></a>GetAvailablePersonByClass</td>
 <td><code>GameGreatPeople:GetAvailablePersonByClass(eClass: integer) → number</code></td>
-<td>—</td>
+<td>Returns the available individual in the timeline slot indexed by class, or -1 if the slot is invalid.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20bec0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getavailablepersonerabyclass"></a>GetAvailablePersonEraByClass</td>
 <td><code>GameGreatPeople:GetAvailablePersonEraByClass(eClass: integer) → number</code></td>
-<td>—</td>
+<td>Returns the era of the available person in the slot indexed by class, or -1.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20bf30</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmaximumpeopleallowedintimeline"></a>GetMaximumPeopleAllowedInTimeline</td>
 <td><code>GameGreatPeople:GetMaximumPeopleAllowedInTimeline(eClass: integer, bIgnoreClassMaximums: boolean) → number</code></td>
-<td>—</td>
+<td>Returns the maximum number of people of the class allowed in the timeline, from the map's per-class limit and, for flagged classes, the belief class counts.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20c350</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumactiveclaims"></a>GetNumActiveClaims</td>
 <td><code>GameGreatPeople:GetNumActiveClaims(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Counts available-list entries whose claimant (offset 0x10) equals the player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20c4f0</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumpeoplereceived"></a>GetNumPeopleReceived</td>
 <td><code>GameGreatPeople:GetNumPeopleReceived(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Counts recruited-list entries whose recruiter (offset 0x10) equals the player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20c530</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getpersonbeenrecruitedby"></a>GetPersonBeenRecruitedBy</td>
 <td><code>GameGreatPeople:GetPersonBeenRecruitedBy(eIndividual: integer) → number</code></td>
-<td>—</td>
+<td>Returns the player who recruited the individual, searched in the recruited list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20cab0</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="haspassiveeffect"></a>HasPassiveEffect</td>
 <td><code>GameGreatPeople:HasPassiveEffect(eIndividual: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if a modifier query for great person birth modifiers returns any definitions.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20d030</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="ispersonanywhereintimeline"></a>IsPersonAnywhereInTimeline</td>
 <td><code>GameGreatPeople:IsPersonAnywhereInTimeline(eIndividual: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the individual appears in either the recruited list or the available list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20d390</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="ispersonclaimedanywhereintimeline"></a>IsPersonClaimedAnywhereInTimeline</td>
 <td><code>GameGreatPeople:IsPersonClaimedAnywhereInTimeline(eIndividual: integer, ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if an entry for the individual with claimant equal to the player exists in the recruited or available list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x20d3e0</code></td>
@@ -156,6 +156,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddGuarantee</h3>
+<p>Arguments: <code>ePlayer</code> — player receiving the guarantee; <code>eClass</code> — great person class; <code>eEra</code> — era of the guarantee (inferred)</p>
+<p><strong>Writes</strong>
+- guarantee vector at 0x150 gets a 12-byte entry</p>
+<p><strong>Input checks:</strong> Ignored if ePlayer or eClass is -1; eEra not checked; no duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, adds synchronised game state. <strong>Risk:</strong> medium (no validation of era). <strong>Confidence of the reading:</strong> high.</p>
 <h3>AwardFreePersonByClass</h3>
 <p>Arguments: <code>ePlayer</code> — receiving player; <code>eClass</code> — great person class index</p>
 <p><strong>Writes</strong>
@@ -176,4 +182,68 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - scratch struct is default grant parameters</p>
 <p><strong>Open questions</strong>
 - what the three checked fields are
-- GrantPerson side effects</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- GrantPerson side effects</p>
+<h3>CalculatePersonCost</h3>
+<p>Arguments: <code>eClass</code> — great person class; not used in the decompiled body (inferred); <code>eEra</code> — era whose base cost is used</p>
+<p><strong>Input checks:</strong> Out-of-range era keeps cost at INT_MAX before scaling; class unused.</p>
+<p><strong>Multiplayer:</strong> read-only, computes cost only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanClaimPerson</h3>
+<p>Arguments: <code>ePlayer</code> — player index used to index the per-player array; <code>eIndividual</code> — great person individual searched in available list</p>
+<p><strong>Input checks:</strong> Returns false if not in available list, fields are -1 or not recruitable; ePlayer not range-checked here.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CheckLapsedClaims</h3>
+<p><strong>Writes</strong>
+- opens the vector at 0xf0 for editing
+- indirectly recruits people via RecruitPerson</p>
+<p><strong>Side effects</strong>
+- RecruitPerson side effects</p>
+<p><strong>Input checks:</strong> Skips entries with any -1 core field or no claimant.</p>
+<p><strong>Multiplayer:</strong> may-desync, recruits great people. <strong>Risk:</strong> medium (triggers recruitment). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CountPeopleAnywhereInTimeline</h3>
+<p>Arguments: <code>eClassFilter</code> — class to count, or -1 for all</p>
+<p><strong>Input checks:</strong> Skips entries with -1 core fields; -1 filter means all classes.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- timeline initialisation
+- init flag at 0xa8</p>
+<p><strong>Side effects</strong>
+- CheckGuarantees and CheckLapsedClaims effects</p>
+<p><strong>Input checks:</strong> No inputs.</p>
+<p><strong>Multiplayer:</strong> may-desync, advances great person state. <strong>Risk:</strong> medium (turn processing). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetAvailablePersonByClass</h3>
+<p>Arguments: <code>eClass</code> — class used as index into the available list</p>
+<p><strong>Input checks:</strong> Returns -1 if eClass is out of range or slot has -1 fields.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetAvailablePersonEraByClass</h3>
+<p>Arguments: <code>eClass</code> — class used as index into the available list</p>
+<p><strong>Input checks:</strong> Returns -1 if eClass is out of range or slot has -1 fields.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetMaximumPeopleAllowedInTimeline</h3>
+<p>Arguments: <code>eClass</code> — great person class; <code>bIgnoreClassMaximums</code> — skip the map-defined class limit</p>
+<p><strong>Input checks:</strong> Returns 0 if map or class definition invalid; no other range check.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumActiveClaims</h3>
+<p>Arguments: <code>ePlayer</code> — player index used to index the per-player array</p>
+<p><strong>Input checks:</strong> No validation; -1 counts unclaimed entries.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumPeopleReceived</h3>
+<p>Arguments: <code>ePlayer</code> — player index used to index the per-player array</p>
+<p><strong>Input checks:</strong> No validation; -1 counts entries with no recruiter.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetPersonBeenRecruitedBy</h3>
+<p>Arguments: <code>eIndividual</code> — great person to look up</p>
+<p><strong>Input checks:</strong> Returns -1 if the individual is not in the list.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasPassiveEffect</h3>
+<p>Arguments: <code>eIndividual</code> — great person individual checked</p>
+<p><strong>Input checks:</strong> Returns false for -1, out-of-range index or missing game or effects objects; the query does not appear to be filtered by individual in this function.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsPersonAnywhereInTimeline</h3>
+<p>Arguments: <code>eIndividual</code> — great person searched</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsPersonClaimedAnywhereInTimeline</h3>
+<p>Arguments: <code>eIndividual</code> — great person searched; <code>ePlayer</code> — player index used to index the per-player array</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

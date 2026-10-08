@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addgreatpersonearnedboost"></a>AddGreatPersonEarnedBoost</td>
 <td><code>PlayerGreatPeoplePoints:AddGreatPersonEarnedBoost(eGPClass: integer, bTechBoost: boolean, bOtherPlayers: boolean)</code></td>
-<td>—</td>
+<td>Appends a record (class, tech-boost flag, other-players flag) to the earned-boost vector at offset 0x238.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e26e0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateyieldchangeperearnedgreatpersonclassonresource"></a>CalculateYieldChangePerEarnedGreatPersonClassOnResource</td>
 <td><code>PlayerGreatPeoplePoints:CalculateYieldChangePerEarnedGreatPersonClassOnResource(eYield: integer, eResource: integer) → number</code></td>
-<td>—</td>
+<td>Sums matching entries of the yield-change vector per great person class, multiplied by the number of people of that class the player has received.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e2cb0</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changechangeyieldchangeperearnedgreatpersonclassonresource"></a>ChangeChangeYieldChangePerEarnedGreatPersonClassOnResource</td>
 <td><code>PlayerGreatPeoplePoints:ChangeChangeYieldChangePerEarnedGreatPersonClassOnResource(eYield: integer, eClass: integer, eResource: integer, iChange: integer)</code></td>
-<td>—</td>
+<td>Adds, or for negative iChange removes, a matching (yield, class, resource, amount) entry in the vector at 0x1e8. Decompilation of the add path is truncated.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e2f20</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>PlayerGreatPeoplePoints:DoTurn()</code></td>
-<td>—</td>
+<td>If the player is alive and the government flag allows, computes points per turn for each great person class, stores it, and adds it to the class total.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e3610</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcachedpointsperturn"></a>GetCachedPointsPerTurn</td>
 <td><code>PlayerGreatPeoplePoints:GetCachedPointsPerTurn(eClass: integer) → number</code></td>
-<td>—</td>
+<td>Computes points per turn for a class: sums city contributions, adds bonus points and applies a percentage bonus; result is a fixed-point value written through a hidden return pointer.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e3720</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfaithfromunusedgreatpeoplepoints"></a>GetFaithFromUnusedGreatPeoplePoints</td>
 <td><code>PlayerGreatPeoplePoints:GetFaithFromUnusedGreatPeoplePoints() → number</code></td>
-<td>—</td>
+<td>Sums points in great person classes the player can never earn, then multiplies by a game parameter to give faith.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e3920</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldmodifierfromearnedgreatpeople"></a>GetYieldModifierFromEarnedGreatPeople</td>
 <td><code>PlayerGreatPeoplePoints:GetYieldModifierFromEarnedGreatPeople(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the per-person modifier for a yield times people received, capped at a game parameter limit.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e3ae0</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldmodifierperearnedgreatperson"></a>GetYieldModifierPerEarnedGreatPerson</td>
 <td><code>PlayerGreatPeoplePoints:GetYieldModifierPerEarnedGreatPerson(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the per-earned-person modifier stored for a yield, or 0 if out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e3b90</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isgreatpersonclassnopoints"></a>IsGreatPersonClassNoPoints</td>
 <td><code>PlayerGreatPeoplePoints:IsGreatPersonClassNoPoints(eGPClass: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the class is in the no-points list at 0x278.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e3c30</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removegreatpersonearnedboost"></a>RemoveGreatPersonEarnedBoost</td>
 <td><code>PlayerGreatPeoplePoints:RemoveGreatPersonEarnedBoost(eGPClass: integer, bTechBoost: boolean, bOtherPlayers: boolean)</code></td>
-<td>—</td>
+<td>Removes matching earned-boost records (class, tech flag, other-players flag) from the vector at 0x238.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e4080</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setbonuspointsperturn"></a>SetBonusPointsPerTurn</td>
 <td><code>PlayerGreatPeoplePoints:SetBonusPointsPerTurn(eClass: integer, xValue: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Sets the bonus points per turn for a class in the array at 0xe8, clamping negative values to zero.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e44c0</code></td>
@@ -180,6 +180,16 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddGreatPersonEarnedBoost</h3>
+<p>Arguments: <code>eGPClass</code> — great person class; <code>bTechBoost</code> — flag stored in record; <code>bOtherPlayers</code> — flag stored in record</p>
+<p><strong>Writes</strong>
+- earned-boost vector at this+0x238 grows</p>
+<p><strong>Input checks:</strong> None; duplicates allowed.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced vector. <strong>Risk:</strong> medium (unchecked). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateYieldChangePerEarnedGreatPersonClassOnResource</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>eResource</code> — resource type</p>
+<p><strong>Input checks:</strong> Returns 0 without a game; no range checks.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeBonusPointsPerTurn</h3>
 <p>Arguments: <code>eClass</code> — great person class index; <code>xChange</code> — delta in raw/256</p>
 <p><strong>Writes</strong>
@@ -209,6 +219,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - sets to 0 if the result is negative</p>
 <p><strong>Inferred</strong>
 - bounds array (0xf8) and edited array (0x118) are parallel arrays by class</p>
+<h3>ChangeChangeYieldChangePerEarnedGreatPersonClassOnResource</h3>
+<p>Arguments: <code>eYield</code> — yield type; <code>eClass</code> — great person class; <code>eResource</code> — resource type; <code>iChange</code> — amount; negative removes an entry with the opposite amount</p>
+<p><strong>Writes</strong>
+- yield-change entry vector at this+0x1d8</p>
+<p><strong>Input checks:</strong> Rejects -1 types on the add path; removal matches exact amount only.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced vector. <strong>Risk:</strong> medium (truncated, vector rewrite). <strong>Confidence of the reading:</strong> low.</p>
 <h3>ChangeFreeGreatPersonPoints</h3>
 <p>Arguments: <code>iChange</code> — signed delta</p>
 <p><strong>Writes</strong>
@@ -259,6 +275,43 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - refund applies when a great person is recruited</p>
 <p><strong>Open questions</strong>
 - when refund is applied</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- per-turn points array at this+0xc0
+- class totals via ChangePointsTotal</p>
+<p><strong>Input checks:</strong> Requires owner non-null, alive and government flag.</p>
+<p><strong>Multiplayer:</strong> may-desync, adds great person points. <strong>Risk:</strong> medium (changes points). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetCachedPointsPerTurn</h3>
+<p>Arguments: <code>eClass</code> — great person class (inferred)</p>
+<p><strong>Input checks:</strong> Zero result if owner null, not alive, or government flag missing.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetFaithFromUnusedGreatPeoplePoints</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldModifierFromEarnedGreatPeople</h3>
+<p>Arguments: <code>eYield</code> — yield type (inferred)</p>
+<p><strong>Input checks:</strong> Index bounds-checked; zero without a game.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldModifierPerEarnedGreatPerson</h3>
+<p>Arguments: <code>eYield</code> — yield type (inferred)</p>
+<p><strong>Input checks:</strong> Bounds-checked.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsGreatPersonClassNoPoints</h3>
+<p>Arguments: <code>eGPClass</code> — great person class</p>
+<p><strong>Input checks:</strong> None needed.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveGreatPersonEarnedBoost</h3>
+<p>Arguments: <code>eGPClass</code> — great person class; <code>bTechBoost</code> — tech boost flag to match; <code>bOtherPlayers</code> — other-players flag to match</p>
+<p><strong>Writes</strong>
+- earned-boost vector at this+0x238 shrinks</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced vector. <strong>Risk:</strong> medium (unchecked). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetBonusPointsPerTurn</h3>
+<p>Arguments: <code>eClass</code> — great person class index; <code>xValue</code> — new bonus value (fixed point); negative clamped to 0</p>
+<p><strong>Writes</strong>
+- bonus per-turn array at this+0xe8</p>
+<p><strong>Input checks:</strong> Index range-checked; negative value clamped.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced array. <strong>Risk:</strong> medium (synced write). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetGreatPersonClassNoPoints</h3>
 <p>Arguments: <code>eGPClass</code> — great person class; <code>bNoPoints</code> — true to block points for the class, false to allow again</p>
 <p><strong>Writes</strong>

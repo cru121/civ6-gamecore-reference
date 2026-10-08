@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addwonderlostplot"></a>AddWonderLostPlot</td>
 <td><code>PlayerStats:AddWonderLostPlot(iPlotIndex: integer)</code></td>
-<td>—</td>
+<td>Appends a plot index to the vector of lost-wonder plots at this+0x3b8.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32a480</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateimprovedtilepercentage"></a>CalculateImprovedTilePercentage</td>
 <td><code>PlayerStats:CalculateImprovedTilePercentage() → number</code></td>
-<td>—</td>
+<td>Walks the player cities, counts purchased plots and those that are improved, and returns an improved tile percentage as an int.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32a4d0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculatemilitarystrength"></a>CalculateMilitaryStrength</td>
 <td><code>PlayerStats:CalculateMilitaryStrength(eDomain: integer) → number</code></td>
-<td>—</td>
+<td>Sums unit strength over all player units (optionally filtered by domain): best of combat or ranged, scaled by health fraction; adds a gold-derived value when domain is -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32a6f0</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeemergenciesjoined"></a>ChangeEmergenciesJoined</td>
 <td><code>PlayerStats:ChangeEmergenciesJoined(iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the emergencies-joined counter at this+0x268.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32ade0</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changegoldspentlevying"></a>ChangeGoldSpentLevying</td>
 <td><code>PlayerStats:ChangeGoldSpentLevying(iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the gold-spent-levying counter at this+0x250.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32ae10</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changewmdcityhits"></a>ChangeWMDCityHits</td>
 <td><code>PlayerStats:ChangeWMDCityHits(iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the WMD city hits counter at this+0x1d8 and dispatches a game signal with the new value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32aee0</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>PlayerStats:DoTurnActivate()</code></td>
-<td>—</td>
+<td>Start-of-turn stats refresh: recomputes military strength overall and per domain, then updates other stats from yields and congress; decompilation is truncated.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32b260</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getaveragenumconstructabledistricts"></a>GetAverageNumConstructableDistricts</td>
 <td><code>PlayerStats:GetAverageNumConstructableDistricts() → number</code></td>
-<td>—</td>
+<td>Computes the average number of built specialty districts among constructable specialty district types as an 8-bit fixed point value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32b6e0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbestunitofdomain"></a>GetBestUnitOfDomain</td>
 <td><code>PlayerStats:GetBestUnitOfDomain(eDomain: integer) → number</code></td>
-<td>—</td>
+<td>Returns the unit type with highest combat strength within a domain that the player can build (tech and civic requirements met).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32b870</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbestunitofpromotionclass"></a>GetBestUnitOfPromotionClass</td>
 <td><code>PlayerStats:GetBestUnitOfPromotionClass(eClass: integer) → number</code></td>
-<td>—</td>
+<td>Returns the unit type with highest strength in a promotion class that the player can use.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32b990</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmaxrangedstrengthtrained"></a>GetMaxRangedStrengthTrained</td>
 <td><code>PlayerStats:GetMaxRangedStrengthTrained() → number</code></td>
-<td>—</td>
+<td>Returns the larger of the stored max ranged strength trained and a global parameter minimum.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32bb10</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmilitarystrength"></a>GetMilitaryStrength</td>
 <td><code>PlayerStats:GetMilitaryStrength(eDomain: integer, includeGold: boolean) → number</code></td>
-<td>—</td>
+<td>Returns cached military strength for domain 0, 1 or 2; for other values returns total, minus the gold part unless includeGold.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32bb70</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumarmada"></a>GetNumArmada</td>
 <td><code>PlayerStats:GetNumArmada() → number</code></td>
-<td>—</td>
+<td>Counts the player naval combat units (domain 0) that are armadas.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32bbd0</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumarmy"></a>GetNumArmy</td>
 <td><code>PlayerStats:GetNumArmy() → number</code></td>
-<td>—</td>
+<td>Counts the player land combat units that are armies.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32bc70</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumbuildingscompleted"></a>GetNumBuildingsCompleted</td>
 <td><code>PlayerStats:GetNumBuildingsCompleted() → number</code></td>
-<td>—</td>
+<td>Sums the number of completed buildings across all building types in the player cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32bd50</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcitiesonlandmassofsize"></a>GetNumCitiesOnLandmassOfSize</td>
 <td><code>PlayerStats:GetNumCitiesOnLandmassOfSize(iMinSize: integer, iMaxSize: integer) → number</code></td>
-<td>—</td>
+<td>Counts the player cities whose landmass size lies within a range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c020</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcivicsculturevated"></a>GetNumCivicsCulturevated</td>
 <td><code>PlayerStats:GetNumCivicsCulturevated() → number</code></td>
-<td>—</td>
+<td>Returns the number of civics the player has completed, 0 if no player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c0c0</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcivicsculturevatedperera"></a>GetNumCivicsCulturevatedPerEra</td>
 <td><code>PlayerStats:GetNumCivicsCulturevatedPerEra(eEra: integer) → number</code></td>
-<td>—</td>
+<td>Counts civics from a given era that the player has completed.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c0e0</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcombatunits"></a>GetNumCombatUnits</td>
 <td><code>PlayerStats:GetNumCombatUnits() → number</code></td>
-<td>—</td>
+<td>Counts the player units that have positive combat, ranged or bombard strength and a flag clear.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c1a0</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcorps"></a>GetNumCorps</td>
 <td><code>PlayerStats:GetNumCorps() → number</code></td>
-<td>—</td>
+<td>Counts the player land combat units that are corps.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c230</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumdifferentterraintypesforcities"></a>GetNumDifferentTerrainTypesForCities</td>
 <td><code>PlayerStats:GetNumDifferentTerrainTypesForCities() → number</code></td>
-<td>—</td>
+<td>Counts distinct terrain classes found under the player cities by marking a temporary array, which it frees afterwards.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c2d0</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumdistrictscompleted"></a>GetNumDistrictsCompleted</td>
 <td><code>PlayerStats:GetNumDistrictsCompleted(bSpecialtyDistrictsOnly: boolean, bIncludeCivUnique: boolean) → number</code></td>
-<td>—</td>
+<td>Counts completed (non-pillaged) districts, optionally only specialty districts and including civ-unique replacements.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c4a0</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumdistrictsoftype"></a>GetNumDistrictsOfType</td>
 <td><code>PlayerStats:GetNumDistrictsOfType(eDistrict: integer, bIncludeUnderConstruction: boolean, bIncludeCivUnique: boolean, bIsIncludePillaged: boolean) → number</code></td>
-<td>—</td>
+<td>Counts the player districts of a type, optionally including unique replacements, under-construction and pillaged ones.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c710</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumdistrictspossible"></a>GetNumDistrictsPossible</td>
 <td><code>PlayerStats:GetNumDistrictsPossible() → number</code></td>
-<td>—</td>
+<td>Sums the number of allowed districts across all of the player cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32c7e0</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumgreatpeopleearned"></a>GetNumGreatPeopleEarned</td>
 <td><code>PlayerStats:GetNumGreatPeopleEarned() → number</code></td>
-<td>—</td>
+<td>Returns the number of great people the owning player has received from the game great-people tracker.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32cb80</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumgreatworks"></a>GetNumGreatWorks</td>
 <td><code>PlayerStats:GetNumGreatWorks() → number</code></td>
-<td>—</td>
+<td>Sums the great works in all of the player cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32cbb0</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumholysitesfollowingreligion"></a>GetNumHolySitesFollowingReligion</td>
 <td><code>PlayerStats:GetNumHolySitesFollowingReligion(bMustHaveFoundedReligion: boolean) → number</code></td>
-<td>—</td>
+<td>Counts major players whose holy city is of the religion this player founded (or, if bMustHaveFoundedReligion is false, the religion followed by the majority of its cities).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32cc70</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumimprovedtiles"></a>GetNumImprovedTiles</td>
 <td><code>PlayerStats:GetNumImprovedTiles() → number</code></td>
-<td>—</td>
+<td>Counts plots owned by this player that have no district, hold an improvement that is not a barbarian camp and is not pillaged.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32cd50</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumimprovementsoftype"></a>GetNumImprovementsOfType</td>
 <td><code>PlayerStats:GetNumImprovementsOfType(eImprovement: integer) → number</code></td>
-<td>—</td>
+<td>Counts non-pillaged improvements of the given type on plots owned by this player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32ce10</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumlandunits"></a>GetNumLandUnits</td>
 <td><code>PlayerStats:GetNumLandUnits() → number</code></td>
-<td>—</td>
+<td>Counts this player's alive land-domain units (domain 2) that have any melee, ranged or bombard combat strength.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32cec0</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumnavalunits"></a>GetNumNavalUnits</td>
 <td><code>PlayerStats:GetNumNavalUnits() → number</code></td>
-<td>—</td>
+<td>Counts this player's alive sea-domain units (domain 0) that have any melee, ranged or bombard combat strength.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32cfa0</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumownedcoastallandtiles"></a>GetNumOwnedCoastalLandTiles</td>
 <td><code>PlayerStats:GetNumOwnedCoastalLandTiles() → number</code></td>
-<td>—</td>
+<td>Counts plots owned by this player that are coastal land.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d030</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumownedtiles"></a>GetNumOwnedTiles</td>
 <td><code>PlayerStats:GetNumOwnedTiles() → number</code></td>
-<td>—</td>
+<td>Counts all map plots whose owner is this player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d0c0</code></td>
@@ -300,7 +300,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumprojectsadvanced"></a>GetNumProjectsAdvanced</td>
 <td><code>PlayerStats:GetNumProjectsAdvanced(eProject: integer) → number</code></td>
-<td>—</td>
+<td>Returns how many times the given project has been completed by this player from a per-project counter array.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d150</code></td>
@@ -308,7 +308,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumreligiousunits"></a>GetNumReligiousUnits</td>
 <td><code>PlayerStats:GetNumReligiousUnits(includeHealers: boolean) → number</code></td>
-<td>—</td>
+<td>Counts this player's alive units that have religious spread charges, optionally also units with a second charge counter (healers).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d180</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumtechnologiesresearchedperera"></a>GetNumTechnologiesResearchedPerEra</td>
 <td><code>PlayerStats:GetNumTechnologiesResearchedPerEra(eEra: integer) → number</code></td>
-<td>—</td>
+<td>Counts the technologies of the given era that this player has researched.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d1e0</code></td>
@@ -324,7 +324,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumtechsresearched"></a>GetNumTechsResearched</td>
 <td><code>PlayerStats:GetNumTechsResearched() → number</code></td>
-<td>—</td>
+<td>Returns the number of techs this player has researched (excluding repeatable techs).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d2a0</code></td>
@@ -332,7 +332,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumthemedbuildings"></a>GetNumThemedBuildings</td>
 <td><code>PlayerStats:GetNumThemedBuildings() → number</code></td>
-<td>—</td>
+<td>Counts, across all of this player's cities, the buildings that exist and are themed correctly (e.g. museums).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d2c0</code></td>
@@ -340,7 +340,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumuniquedistrictsavailable"></a>GetNumUniqueDistrictsAvailable</td>
 <td><code>PlayerStats:GetNumUniqueDistrictsAvailable(bSpecialtyDistrictsOnly: boolean) → number</code></td>
-<td>—</td>
+<td>Counts district types this player has the tech and civic to zone and can ever zone; with the flag set only specialty districts count.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d3a0</code></td>
@@ -348,7 +348,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumuniquedistrictscompleted"></a>GetNumUniqueDistrictsCompleted</td>
 <td><code>PlayerStats:GetNumUniqueDistrictsCompleted(bSpecialtyDistrictsOnly: boolean) → number</code></td>
-<td>—</td>
+<td>Counts district types of which this player has at least one completed district (flag at +0x3f8); with the flag set only specialty districts count.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d480</code></td>
@@ -356,7 +356,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumunitsofpromotionclass"></a>GetNumUnitsOfPromotionClass</td>
 <td><code>PlayerStats:GetNumUnitsOfPromotionClass(eClass: integer) → number</code></td>
-<td>—</td>
+<td>Counts this player's alive units whose unit definition has the given promotion class.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d5c0</code></td>
@@ -364,7 +364,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumunpillagedimprovements"></a>GetNumUnpillagedImprovements</td>
 <td><code>PlayerStats:GetNumUnpillagedImprovements() → number</code></td>
-<td>—</td>
+<td>Copies this player's improvement plot-index list into a temporary buffer and counts the plots whose improvement is not pillaged.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d710</code></td>
@@ -372,7 +372,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumwmdsoftype"></a>GetNumWMDsOfType</td>
 <td><code>PlayerStats:GetNumWMDsOfType(eWMD: integer) → number</code></td>
-<td>—</td>
+<td>Returns the count of weapons of mass destruction of the given type stored for this player (read from a temporary copy of the counter array).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d850</code></td>
@@ -380,7 +380,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumwonders"></a>GetNumWonders</td>
 <td><code>PlayerStats:GetNumWonders() → number</code></td>
-<td>—</td>
+<td>Counts wonders built across this player's cities (buildings whose definition flag 0x40 is set and that exist in the city).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d940</code></td>
@@ -388,7 +388,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getoverallhappiness"></a>GetOverallHappiness</td>
 <td><code>PlayerStats:GetOverallHappiness() → number</code></td>
-<td>—</td>
+<td>Sums the happiness level of all of this player's cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32d9f0</code></td>
@@ -396,7 +396,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getpopulation"></a>GetPopulation</td>
 <td><code>PlayerStats:GetPopulation() → number</code></td>
-<td>—</td>
+<td>Sums the population of all of this player's cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32da50</code></td>
@@ -404,7 +404,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourism"></a>GetTourism</td>
 <td><code>PlayerStats:GetTourism() → number</code></td>
-<td>—</td>
+<td>Calculates the player's tourism via CalculateTourism and returns the resulting value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32dbe0</code></td>
@@ -412,7 +412,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyield"></a>GetYield</td>
 <td><code>PlayerStats:GetYield(eYield: integer, useChachedValue: boolean) → number</code></td>
-<td>—</td>
+<td>Returns the player's total yield of the given type, either from a cached per-yield array or by summing the yield of every city.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32dc70</code></td>
@@ -420,7 +420,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isunitaffectmaxstrengthstats"></a>IsUnitAffectMaxStrengthStats</td>
 <td><code>PlayerStats:IsUnitAffectMaxStrengthStats(eUnitType: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether a unit type counts toward max-strength stats: a non-sea unit lacking a specific property, whose XP2 definition is missing or has flag 4 set.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32e560</code></td>
@@ -428,7 +428,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="iswonderlostplot"></a>IsWonderLostPlot</td>
 <td><code>PlayerStats:IsWonderLostPlot(iPlotIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the given plot index appears in this player's list of plots where a wonder was lost.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x32e5f0</code></td>
@@ -436,6 +436,31 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddWonderLostPlot</h3>
+<p>Arguments: <code>iPlotIndex</code> — map plot index to record</p>
+<p><strong>Writes</strong>
+- Vector at this+0x3b8 gets the plot index appended</p>
+<p><strong>Input checks:</strong> No range check on the plot index.</p>
+<p><strong>Multiplayer:</strong> may-desync, appends to synchronised player stats. <strong>Risk:</strong> low (Appends to player stats). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateImprovedTilePercentage</h3>
+<p><strong>Input checks:</strong> Handles no cities; skips district, natural wonder and certain terrain plots.</p>
+<p><strong>Multiplayer:</strong> read-only, pure calculation. <strong>Risk:</strong> low (Pure calculation). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateMilitaryStrength</h3>
+<p>Arguments: <code>eDomain</code> — domain filter, -1 for all domains plus gold</p>
+<p><strong>Input checks:</strong> -1 means no filter; otherwise matches unit domain.</p>
+<p><strong>Multiplayer:</strong> read-only, pure calculation. <strong>Risk:</strong> low (Pure calculation). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ChangeEmergenciesJoined</h3>
+<p>Arguments: <code>iDelta</code> — amount added to counter</p>
+<p><strong>Writes</strong>
+- Emergencies joined counter</p>
+<p><strong>Input checks:</strong> No range check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player stats. <strong>Risk:</strong> low (Writes player stats). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ChangeGoldSpentLevying</h3>
+<p>Arguments: <code>iDelta</code> — amount added to counter</p>
+<p><strong>Writes</strong>
+- Gold spent levying counter</p>
+<p><strong>Input checks:</strong> No range check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player stats. <strong>Risk:</strong> low (Writes player stats). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeScienceVictoryPointsPerTurn</h3>
 <p>Arguments: <code>xDelta</code> — delta raw/256</p>
 <p><strong>Writes</strong>
@@ -447,4 +472,168 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - gameplay state only</p>
 <p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (simple additive stat). <strong>Confidence of the reading:</strong> high.</p>
 <p><strong>Verified from the code</strong>
-- adds delta to int at this+0x350 and writes via MoveAssignmentDo</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- adds delta to int at this+0x350 and writes via MoveAssignmentDo</p>
+<h3>ChangeWMDCityHits</h3>
+<p>Arguments: <code>iDelta</code> — amount added to counter</p>
+<p><strong>Writes</strong>
+- WMD city hits counter</p>
+<p><strong>Side effects</strong>
+- Dispatches a game signal with the owning player and new count</p>
+<p><strong>Input checks:</strong> No range check; dereferences current game without a null check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised player stats. <strong>Risk:</strong> low (Writes player stats). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- Military strength stats (overall and per domain)
+- Several other stats via variant maps (truncated)</p>
+<p><strong>Side effects</strong>
+- Dispatches a game signal (seen in callee list)</p>
+<p><strong>Input checks:</strong> Unknown due to truncation.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised stats. <strong>Risk:</strong> medium (Writes synchronised stats). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetAverageNumConstructableDistricts</h3>
+<p><strong>Input checks:</strong> Handles zero count.</p>
+<p><strong>Multiplayer:</strong> read-only, pure calculation. <strong>Risk:</strong> low (Pure calculation). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetBestUnitOfDomain</h3>
+<p>Arguments: <code>eDomain</code> — domain to search</p>
+<p><strong>Input checks:</strong> No validation of domain.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetBestUnitOfPromotionClass</h3>
+<p>Arguments: <code>eClass</code> — promotion class to search</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetMaxRangedStrengthTrained</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetMilitaryStrength</h3>
+<p>Arguments: <code>eDomain</code> — domain 0, 1 or 2; other for total; <code>includeGold</code> — if true, include gold component in total</p>
+<p><strong>Input checks:</strong> Unknown domains fall to the total.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumArmada</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumArmy</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumBuildingsCompleted</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumCitiesOnLandmassOfSize</h3>
+<p>Arguments: <code>iMinSize</code> — minimum landmass size; <code>iMaxSize</code> — maximum landmass size</p>
+<p><strong>Input checks:</strong> No validation of range ordering.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumCivicsCulturevated</h3>
+<p><strong>Input checks:</strong> Null player check.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumCivicsCulturevatedPerEra</h3>
+<p>Arguments: <code>eEra</code> — era type</p>
+<p><strong>Input checks:</strong> Null player and null era checks.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumCombatUnits</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumCorps</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumDifferentTerrainTypesForCities</h3>
+<p><strong>Input checks:</strong> Skips cities without a plot.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Only a temporary allocation). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumDistrictsCompleted</h3>
+<p>Arguments: <code>bSpecialtyDistrictsOnly</code> — count only specialty districts; <code>bIncludeCivUnique</code> — also count district built as unique replacement</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumDistrictsOfType</h3>
+<p>Arguments: <code>eDistrict</code> — district type; <code>bIncludeUnderConstruction</code> — include unfinished districts; <code>bIncludeCivUnique</code> — include unique replacement district; <code>bIsIncludePillaged</code> — include pillaged districts</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumDistrictsPossible</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumGreatPeopleEarned</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumGreatWorks</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumHolySitesFollowingReligion</h3>
+<p>Arguments: <code>bMustHaveFoundedReligion</code> — If true only the founded religion is used; if false falls back to majority religion</p>
+<p><strong>Input checks:</strong> No null check on the player pointer; returns 0 when there is no religion.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumImprovedTiles</h3>
+<p><strong>Input checks:</strong> No validation; map and player pointers are assumed valid.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumImprovementsOfType</h3>
+<p>Arguments: <code>eImprovement</code> — Improvement type index compared with each plot's improvement</p>
+<p><strong>Input checks:</strong> Type is not range checked; an invalid value simply matches nothing.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumLandUnits</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumNavalUnits</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumOwnedCoastalLandTiles</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumOwnedTiles</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumProjectsAdvanced</h3>
+<p>Arguments: <code>eProject</code> — Project type used as an index into the counter array</p>
+<p><strong>Input checks:</strong> Range checked (negative or beyond array returns 0).</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumReligiousUnits</h3>
+<p>Arguments: <code>includeHealers</code> — If true also counts units with the second charge field &gt; 0 (inferred)</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumTechnologiesResearchedPerEra</h3>
+<p>Arguments: <code>eEra</code> — Era type whose tech list is scanned</p>
+<p><strong>Input checks:</strong> Null player check and era lookup check; era index itself is not range checked beyond Find returning null.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumTechsResearched</h3>
+<p><strong>Input checks:</strong> Null player check only.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumThemedBuildings</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumUniqueDistrictsAvailable</h3>
+<p>Arguments: <code>bSpecialtyDistrictsOnly</code> — If true only specialty districts are considered</p>
+<p><strong>Input checks:</strong> No validation; null variant map passed to HaveTechAndCivicToZone.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumUniqueDistrictsCompleted</h3>
+<p>Arguments: <code>bSpecialtyDistrictsOnly</code> — If true only specialty districts are considered</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumUnitsOfPromotionClass</h3>
+<p>Arguments: <code>eClass</code> — Promotion class type compared with the unit definition's class</p>
+<p><strong>Input checks:</strong> Unit definition index is bounds checked, but a null definition would still be dereferenced.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumUnpillagedImprovements</h3>
+<p><strong>Input checks:</strong> No validation; the list is a temporary copy.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumWMDsOfType</h3>
+<p>Arguments: <code>eWMD</code> — WMD type used as index into the copied counts</p>
+<p><strong>Input checks:</strong> No range check on the index and the copy is dereferenced unchecked, so an out-of-range type reads invalid memory.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter, but unchecked index). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumWonders</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetOverallHappiness</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetPopulation</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourism</h3>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYield</h3>
+<p>Arguments: <code>eYield</code> — Yield type index; <code>useChachedValue</code> — If true return the cached value instead of recomputing from cities</p>
+<p><strong>Input checks:</strong> Recompute path skips when yield is -1 (returns 0); cached path indexes unchecked.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (getter; cached index unchecked). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsUnitAffectMaxStrengthStats</h3>
+<p>Arguments: <code>eUnitType</code> — Unit type index to test</p>
+<p><strong>Input checks:</strong> Rejects -1 and out-of-range or null definitions (returns false).</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsWonderLostPlot</h3>
+<p>Arguments: <code>iPlotIndex</code> — Plot index searched in the list</p>
+<p><strong>Input checks:</strong> No validation; linear search.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

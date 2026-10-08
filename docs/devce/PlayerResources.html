@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateexcessluxuries"></a>CalculateExcessLuxuries</td>
 <td><code>PlayerResources:CalculateExcessLuxuries() → number</code></td>
-<td>—</td>
+<td>Sums (amount - 1) over accessible luxury resources for which the player has more than one available.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31e650</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changepowerresourcedemandperturn"></a>ChangePowerResourceDemandPerTurn</td>
 <td><code>PlayerResources:ChangePowerResourceDemandPerTurn(resource: integer, iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds iDelta (as fixed point, x256) to the power demand per turn of the resource; out-of-range indices go to a fallback counter.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31e910</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checknotifications"></a>CheckNotifications</td>
 <td><code>PlayerResources:CheckNotifications()</code></td>
-<td>—</td>
+<td>Loops over resource definitions whose consumption/government entry has a flag set; if the stockpile-related counter is below the projected amount plus unit demand, fires the Lua hook AdvisorNegativeResourceRate with player id and resource.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31eb90</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>PlayerResources:DoTurnActivate()</code></td>
-<td>—</td>
+<td>Start-of-turn step: accumulates resources, allocates luxuries to cities, then recomputes national park amenities for the owning player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31f520</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturndeactivate"></a>DoTurnDeactivate</td>
 <td><code>PlayerResources:DoTurnDeactivate()</code></td>
-<td>—</td>
+<td>End-of-turn step: for each qualifying resource, if the stockpile (minus reserved amount) exceeds the stockpile cap, reduces it down to the cap.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31f560</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnresourcemaintenance"></a>DoTurnResourceMaintenance</td>
 <td><code>PlayerResources:DoTurnResourceMaintenance()</code></td>
-<td>—</td>
+<td>Resets a per-resource index list at offset 0x1a0, pays resource maintenance costs, then supplements city power with resources.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31f670</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="endexportresource"></a>EndExportResource</td>
 <td><code>PlayerResources:EndExportResource(resource: integer, amount: integer)</code></td>
-<td>—</td>
+<td>Ends an export of a resource: moves the given amount from category 2 back to category 0 of the resource amounts.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31f6b0</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getavailableresourceamount"></a>GetAvailableResourceAmount</td>
 <td><code>PlayerResources:GetAvailableResourceAmount(resource: integer, bSubtractReserved: boolean) → number</code></td>
-<td>—</td>
+<td>Returns the amount of a resource available to the player, optionally subtracting the reserved amount, plus a second per-resource value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31f820</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfreeresourcesextracted"></a>GetFreeResourcesExtracted</td>
 <td><code>PlayerResources:GetFreeResourcesExtracted(resource: integer) → number</code></td>
-<td>—</td>
+<td>Returns the free-resources-extracted count for a resource from an array at this+0x2e0, or 0 for the invalid type -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31fe60</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumownedluxuries"></a>GetNumOwnedLuxuries</td>
 <td><code>PlayerResources:GetNumOwnedLuxuries() → number</code></td>
-<td>—</td>
+<td>Counts luxury resources (class hash match) whose owned amount, minus the reserved amount, is positive.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x31ff10</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getresourceimportedextracted"></a>GetResourceImportedExtracted</td>
 <td><code>PlayerResources:GetResourceImportedExtracted(resource: integer) → number</code></td>
-<td>—</td>
+<td>Returns the imported-extracted count for a resource from an array at this+0x2b0, or 0 for -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x3204f0</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getresourcestockpilecap"></a>GetResourceStockpileCap</td>
 <td><code>PlayerResources:GetResourceStockpileCap(eResource: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stockpile cap for a resource: the consumption/government base value adjusted for game speed plus a per-resource bonus at this+0x340; 0 if no entry.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x320560</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getunitresourcedemandperturn"></a>GetUnitResourceDemandPerTurn</td>
 <td><code>PlayerResources:GetUnitResourceDemandPerTurn(resource: integer) → number</code></td>
-<td>—</td>
+<td>Returns per-turn resource demand of units for a resource as a fixed-point value from an array in the player unit object, 0 if invalid.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x320ba0</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="incrementaccumulatedresources"></a>IncrementAccumulatedResources</td>
 <td><code>PlayerResources:IncrementAccumulatedResources()</code></td>
-<td>—</td>
+<td>Resets a per-resource list at this+0x140, then adds imported and free-extracted amounts to resource stockpiles and processes city plots; decompilation is truncated in the second half.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x320ec0</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isnocapresource"></a>IsNoCapResource</td>
 <td><code>PlayerResources:IsNoCapResource(eResource: integer) → number</code></td>
-<td>—</td>
+<td>Returns 1 if the resource is flagged as no-cap (array entry at this+0x258 is greater than 0), else 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x321580</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setfreeresourcevisibility"></a>SetFreeResourceVisibility</td>
 <td><code>PlayerResources:SetFreeResourceVisibility(resource: integer)</code></td>
-<td>—</td>
+<td>Marks a resource as visible in a flag array at this+0x90 (if not already), dispatches a game signal, and reveals the resource on visible tiles.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x323190</code></td>
@@ -236,6 +236,9 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>CalculateExcessLuxuries</h3>
+<p><strong>Input checks:</strong> No inputs.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeBannedResource</h3>
 <p>Arguments: <code>eResource</code> — resource index; <code>iDelta</code> — amount added to the counter</p>
 <p><strong>Writes</strong>
@@ -358,6 +361,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - nonzero counter means no cap; meaning inferred from the name</p>
 <p><strong>Open questions</strong>
 - where the counter is consumed</p>
+<h3>ChangePowerResourceDemandPerTurn</h3>
+<p>Arguments: <code>resource</code> — Resource type index; <code>iDelta</code> — Change in demand per turn (whole units)</p>
+<p><strong>Writes</strong>
+- Power resource demand vector (offset 0x1a0)</p>
+<p><strong>Input checks:</strong> Bounds-checks resource; out of range adds to fallback field.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced resource data). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeReservedResourceAmount</h3>
 <p>Arguments: <code>eResource</code> — resource type; <code>iDelta</code> — signed change</p>
 <p><strong>Writes</strong>
@@ -390,6 +399,73 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - modifier is added to the base stockpile cap</p>
 <p><strong>Open questions</strong>
 - whether the array is always sized to the definition count</p>
+<h3>CheckNotifications</h3>
+<p><strong>Side effects</strong>
+- Calls Lua hook AdvisorNegativeResourceRate(playerID, resourceType)</p>
+<p><strong>Input checks:</strong> Bounds-checks resource index against arrays; no external input.</p>
+<p><strong>Multiplayer:</strong> read-only on game state; only fires a UI advisor hook. <strong>Risk:</strong> low (Only calls a Lua hook, no state writes seen). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- Accumulated resource stockpiles (via IncrementAccumulatedResources)
+- Luxury allocation (via AllocateLuxuries)
+- National park amenities for the player</p>
+<p><strong>Side effects</strong>
+- Edits Game::NationalParks</p>
+<p><strong>Input checks:</strong> None; no parameters.</p>
+<p><strong>Multiplayer:</strong> may-desync, turn processing mutates synchronised state. <strong>Risk:</strong> medium (Calling it out of turn double-counts resources). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoTurnDeactivate</h3>
+<p><strong>Writes</strong>
+- Resource stockpile amounts (via ChangeResourceAmount)</p>
+<p><strong>Input checks:</strong> Checks resource index range; skips resources whose consumption entry flag is unset.</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies player stockpiles. <strong>Risk:</strong> medium (Modifies player resource stockpiles). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurnResourceMaintenance</h3>
+<p><strong>Writes</strong>
+- Per-resource list at this+0x1a0 (reset)
+- Resource stockpiles (via PayResourceMaintenanceCosts)
+- City power (via SupplementCityPowerWithResources)</p>
+<p><strong>Input checks:</strong> None; no parameters.</p>
+<p><strong>Multiplayer:</strong> may-desync, turn-processing writes to player/city state. <strong>Risk:</strong> high (Turn-processing writes to synchronised state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>EndExportResource</h3>
+<p>Arguments: <code>resource</code> — resource type affected; <code>amount</code> — quantity moved back from category 2 to category 0</p>
+<p><strong>Writes</strong>
+- Resource amounts (category 2 decreased, category 0 increased by amount)</p>
+<p><strong>Input checks:</strong> No checks here; ChangeResourceAmount does any range checking.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits player resource totals. <strong>Risk:</strong> medium (Edits player resource totals). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetAvailableResourceAmount</h3>
+<p>Arguments: <code>resource</code> — resource type index; <code>bSubtractReserved</code> — if true, subtract the reserved amount from the base count</p>
+<p><strong>Input checks:</strong> Range-checks resource index against the definition count; returns 0 if invalid.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetFreeResourcesExtracted</h3>
+<p>Arguments: <code>resource</code> — resource type, -1 means none</p>
+<p><strong>Input checks:</strong> Rejects -1; the definition lookup result is only partly checked.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumOwnedLuxuries</h3>
+<p><strong>Input checks:</strong> Range-checks resource index; no parameters.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetResourceImportedExtracted</h3>
+<p>Arguments: <code>resource</code> — resource type, -1 means none</p>
+<p><strong>Input checks:</strong> Rejects -1 only.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetResourceStockpileCap</h3>
+<p>Arguments: <code>eResource</code> — resource type, -1 returns 0</p>
+<p><strong>Input checks:</strong> Rejects -1; if the definition is missing it dereferences a null-based pointer (not checked).</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetUnitResourceDemandPerTurn</h3>
+<p>Arguments: <code>resource</code> — resource type index (inferred)</p>
+<p><strong>Input checks:</strong> Checks -1, definition count and array size; returns 0 otherwise.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter (decompiler shows the return-slot and param mismatched)). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IncrementAccumulatedResources</h3>
+<p><strong>Writes</strong>
+- Per-resource list at this+0x140
+- Resource stockpile amounts</p>
+<p><strong>Side effects</strong>
+- Reporting event block 0x1153df52 begin/end/send</p>
+<p><strong>Input checks:</strong> Checks flags and -1 resource index; decompilation truncated so later checks unknown.</p>
+<p><strong>Multiplayer:</strong> may-desync, mutates stockpiles and sends events. <strong>Risk:</strong> high (Mutates synchronised stockpiles and sends events). <strong>Confidence of the reading:</strong> low.</p>
+<h3>IsNoCapResource</h3>
+<p>Arguments: <code>eResource</code> — resource type index</p>
+<p><strong>Input checks:</strong> Checks index within 0 and array size.</p>
+<p><strong>Multiplayer:</strong> read-only getter. <strong>Risk:</strong> low (Pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>RevealResourceOnVisibleTiles</h3>
 <p>Arguments: <code>resource</code> — resource to reveal</p>
 <p><strong>Writes</strong>
@@ -415,4 +491,13 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - plots not currently visible or explored are skipped before refresh
 - Change amount uses plot resource count</p>
 <p><strong>Open questions</strong>
-- meaning of RevealedState values 1 and 2 passed to RefreshVisibility</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- meaning of RevealedState values 1 and 2 passed to RefreshVisibility</p>
+<h3>SetFreeResourceVisibility</h3>
+<p>Arguments: <code>resource</code> — resource type to reveal</p>
+<p><strong>Writes</strong>
+- Free-resource visibility flag array at this+0x90</p>
+<p><strong>Side effects</strong>
+- Dispatches a game signal with the player and resource
+- Calls RevealResourceOnVisibleTiles</p>
+<p><strong>Input checks:</strong> Checks index in range and flag not yet set; ignores otherwise.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised visibility state. <strong>Risk:</strong> medium (Writes synchronised visibility state). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

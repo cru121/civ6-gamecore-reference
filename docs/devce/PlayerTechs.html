@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="cantriggerboost"></a>CanTriggerBoost</td>
 <td><code>PlayerTechs:CanTriggerBoost(eTech: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the boost attached to the given tech can currently be triggered for this player; first requires Game::Culture::HasCivic to be true for the id.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x333530</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doresearch"></a>DoResearch</td>
 <td><code>PlayerTechs:DoResearch()</code></td>
-<td>—</td>
+<td>Per-turn research step: computes science yield, adds it to an accumulated amount and applies it to the current research (first queue entry) or stores it if nothing is being researched.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3337a0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="findbesttechtostealfromplayer"></a>FindBestTechtoStealFromPlayer</td>
 <td><code>PlayerTechs:FindBestTechtoStealFromPlayer(targetPlayer: integer) → number</code></td>
-<td>—</td>
+<td>Picks a tech to steal from the target player by scanning tech definitions and building candidate lists; decompilation is truncated so the final selection logic is not visible.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x333a00</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumtechsresearched"></a>GetNumTechsResearched</td>
 <td><code>PlayerTechs:GetNumTechsResearched(bIncludeRepeatedTechs: boolean) → number</code></td>
-<td>—</td>
+<td>Counts the techs flagged as researched, optionally adding the repeated-tech count.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x333cd0</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="grantallboostsbyera"></a>GrantAllBoostsByEra</td>
 <td><code>PlayerTechs:GrantAllBoostsByEra(eStartEra: integer, eEndEra: integer)</code></td>
-<td>—</td>
+<td>Triggers the eureka boost for every tech in the eras between eStartEra and eEndEra that has a boost, is not researched and has not yet been boosted.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3340a0</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="grantrandomtechs"></a>GrantRandomTechs</td>
 <td><code>PlayerTechs:GrantRandomTechs(iNumTechs: integer)</code></td>
-<td>—</td>
+<td>Builds the list of researchable techs, then randomly picks iNumTechs of them and sets their research progress to full cost; decompilation is truncated at the end of the loop.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x334a00</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setscienceratechange"></a>SetScienceRateChange</td>
 <td><code>PlayerTechs:SetScienceRateChange(xNewValue: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Sets the science rate change value if it differs from the current one and sends an event.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x336590</code></td>
@@ -116,6 +116,34 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>CanTriggerBoost</h3>
+<p>Arguments: <code>eTech</code> — Tech type whose boost is tested</p>
+<p><strong>Input checks:</strong> Returns false when HasCivic fails or no boost matches; index not otherwise checked.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoResearch</h3>
+<p><strong>Writes</strong>
+- Research progress of the current tech (via ChangeResearchProgress)
+- Stored leftover science value at +0xf8</p>
+<p><strong>Side effects</strong>
+- Sends a research notification (hash 0x592df4c8) to the player</p>
+<p><strong>Input checks:</strong> No validation except an empty queue or -1 head, which stores science instead.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes research progress. <strong>Risk:</strong> high (Advances research and sends a notification). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>FindBestTechtoStealFromPlayer</h3>
+<p>Arguments: <code>targetPlayer</code> — Player to steal from</p>
+<p><strong>Input checks:</strong> Returns -1 for an invalid target player; target is not otherwise checked.</p>
+<p><strong>Multiplayer:</strong> read-only, only builds temporary candidate lists. <strong>Risk:</strong> low (Looks like a selector, but the body is cut off). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetNumTechsResearched</h3>
+<p>Arguments: <code>bIncludeRepeatedTechs</code> — If true adds the repeatable-tech counter (+0x1c8)</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GrantAllBoostsByEra</h3>
+<p>Arguments: <code>eStartEra</code> — First era (inclusive); <code>eEndEra</code> — Last era (inclusive)</p>
+<p><strong>Writes</strong>
+- Boost-triggered state for each qualifying tech (via TriggerBoost)</p>
+<p><strong>Side effects</strong>
+- TriggerBoost may raise events/notifications for each tech</p>
+<p><strong>Input checks:</strong> Era indices are bounds checked; if either era is invalid nothing is boosted.</p>
+<p><strong>Multiplayer:</strong> may-desync, triggers boosts changing research. <strong>Risk:</strong> medium (Mass-triggers boosts, but only for unresearched techs). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>GrantRandomBoostGoodyHut</h3>
 <p>Arguments: <code>iNumFreeBoosts</code> — how many boosts to grant; <code>eSource</code> — source of the boost, passed to TriggerBoost</p>
 <p><strong>Writes</strong>
@@ -160,6 +188,15 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - meaning of TriggerBoost source value 3
 - oddity of HasCivic check on a tech id</p>
+<h3>GrantRandomTechs</h3>
+<p>Arguments: <code>iNumTechs</code> — How many random techs to grant</p>
+<p><strong>Writes</strong>
+- Research progress of the chosen techs (SetResearchProgress)</p>
+<p><strong>Side effects</strong>
+- Consumes game random numbers
+- Likely completes techs and triggers their unlock events</p>
+<p><strong>Input checks:</strong> Stops when the candidate list is empty; iNumTechs &lt;= 0 does nothing.</p>
+<p><strong>Multiplayer:</strong> may-desync, uses game RNG and changes techs. <strong>Risk:</strong> high (Gives free techs and uses synchronized RNG). <strong>Confidence of the reading:</strong> low.</p>
 <h3>SetAllTechsByPreviousEra</h3>
 <p>Arguments: <code>eEraType</code> — era; techs from earlier eras are granted</p>
 <p><strong>Writes</strong>
@@ -198,4 +235,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - GrantRandomBoostsByEra takes the era twice, probably a from/to range
 - negative numBoosts reduces stored count</p>
 <p><strong>Open questions</strong>
-- whether the era-change handler consumes the stored count</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- whether the era-change handler consumes the stored count</p>
+<h3>SetScienceRateChange</h3>
+<p>Arguments: <code>xNewValue</code> — New science rate change as a fixed point value</p>
+<p><strong>Writes</strong>
+- Science rate change at +0x110/+0x120</p>
+<p><strong>Side effects</strong>
+- Sends an event (hash 0xdca96e74) for the owning player</p>
+<p><strong>Input checks:</strong> No validation; skips when the value is unchanged.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player state. <strong>Risk:</strong> medium (Only modifies a rate and sends an event). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

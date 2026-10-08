@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addespionagebonus"></a>AddEspionageBonus</td>
 <td><code>Unit:AddEspionageBonus(eOperation: integer, bOffensive: boolean, iAmount: integer)</code></td>
-<td>—</td>
+<td>Adds iAmount to the bonus entry for (operation, offensive flag) in the unit's espionage bonus list, creating an entry if none exists.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x395cb0</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addinitialabilities"></a>AddInitialAbilities</td>
 <td><code>Unit:AddInitialAbilities()</code></td>
-<td>—</td>
+<td>For each ability definition the unit can have and which is not flagged, increments the unit's ability count and dispatches a signal if the ability active state changed.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a2190</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canbelevied"></a>CanBeLevied</td>
 <td><code>Unit:CanBeLevied(subjectPlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the unit can be levied by the given player: it must be owned by that player, not flagged at +0x2e8, and be a combat unit (melee, ranged or bombard strength &gt; 0) or have formation class 1.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a22e0</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeattackrange"></a>ChangeAttackRange</td>
 <td><code>Unit:ChangeAttackRange(iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the unit attack range stored in an auto-variable map at +0x870.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a2840</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeattacksremaining"></a>ChangeAttacksRemaining</td>
 <td><code>Unit:ChangeAttacksRemaining(iDelta: integer) → boolean</code></td>
-<td>—</td>
+<td>Adds a delta to the unit attacks remaining (+0x508), clamped at 0, and fires a reporting event when the value changes.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a2860</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeparkcharges"></a>ChangeParkCharges</td>
 <td><code>Unit:ChangeParkCharges(iChange: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the unit park charges (+0x550), clamped at 0, and fires a reporting event if the delta is nonzero.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a2bf0</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbasemoves"></a>GetBaseMoves</td>
 <td><code>Unit:GetBaseMoves(eMovementDomain: integer) → number</code></td>
-<td>—</td>
+<td>Returns the unit base movement for a domain: zero if the unit type is missing or domain mismatches, an embarked-movement value (global parameter plus owner player bonus) when embarked or able to embark on land, else the unit type movement field (+0x38).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a33d0</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbonuspointsperkill"></a>GetBonusPointsPerKill</td>
 <td><code>Unit:GetBonusPointsPerKill(eClass: integer) → number</code></td>
-<td>—</td>
+<td>Returns the great-person points per kill granted for a given great person class from an array at +0x3e8.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3500</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbonuspointsperkillstrength"></a>GetBonusPointsPerKillStrength</td>
 <td><code>Unit:GetBonusPointsPerKillStrength(eClass: integer) → number</code></td>
-<td>—</td>
+<td>Returns the great-person points per kill-strength for a given class from an array at +0x410.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3520</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getera"></a>GetEra</td>
 <td><code>Unit:GetEra() → number</code></td>
-<td>—</td>
+<td>Returns the era of the unit: the era of its unit type definition (from prereq tech/civic, taking the later), or the owner era if tagged CLASS_ALL_ERAS, else the earliest era; -1 if no unit type.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3720</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getespionagebonus"></a>GetEspionageBonus</td>
 <td><code>Unit:GetEspionageBonus(eOperation: integer, bOffensive: boolean) → number</code></td>
-<td>—</td>
+<td>Returns the espionage bonus stored for (operation, offensive flag), or 0 if none.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x395e00</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getespionagetimereduction"></a>GetEspionageTimeReduction</td>
 <td><code>Unit:GetEspionageTimeReduction(eOperation: integer) → number</code></td>
-<td>—</td>
+<td>Returns the time reduction stored for the operation in the list at +0x28, or 0 if none.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x395e60</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getignorefeature"></a>GetIgnoreFeature</td>
 <td><code>Unit:GetIgnoreFeature(eFeature: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the unit ignores the movement effects of a feature type, from a byte array at +0x3c0.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3940</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getignoreterrain"></a>GetIgnoreTerrain</td>
 <td><code>Unit:GetIgnoreTerrain(eTerrain: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the unit ignores the movement effects of a terrain type, from a byte array at +0x398.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3960</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmaxnumattacks"></a>GetMaxNumAttacks</td>
 <td><code>Unit:GetMaxNumAttacks() → number</code></td>
-<td>—</td>
+<td>Returns maximum attacks per turn: unit bonus (+0x7a0) plus a global parameter (default 1 if zero).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3b20</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasadjacentmove"></a>HasAdjacentMove</td>
 <td><code>Unit:HasAdjacentMove() → boolean</code></td>
-<td>—</td>
+<td>Checks the six neighbouring plots and returns true if the unit could be placed on one and has enough movement left (or the move costs no more than remaining movement).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3da0</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasattacked"></a>HasAttacked</td>
 <td><code>Unit:HasAttacked() → boolean</code></td>
-<td>—</td>
+<td>Returns true if attacks remaining (+0x508) is below the max number of attacks (global parameter default 1 plus unit bonus).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3f30</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasbypasswallspromotionclass"></a>HasBypassWallsPromotionClass</td>
 <td><code>Unit:HasBypassWallsPromotionClass(ePromotionClass: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the unit has a bypass-walls effect registered for a promotion class, via a hash table at +0x438 keyed by the class definition hash.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3f60</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasenablewallattackpromotionclass"></a>HasEnableWallAttackPromotionClass</td>
 <td><code>Unit:HasEnableWallAttackPromotionClass(ePromotionClass: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the unit has an enable-wall-attack effect registered for a promotion class, via a hash table at +0x470.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a3fb0</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isfortifyable"></a>IsFortifyable</td>
 <td><code>Unit:IsFortifyable() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the unit has melee, ranged or bombard strength and its domain field (+0x2a0) is 2 or 3.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a47e0</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isoperationdisabled"></a>IsOperationDisabled</td>
 <td><code>Unit:IsOperationDisabled(eOperation: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether a unit operation type is disabled for this unit, by indexing a byte array at +0xbd8 with the operation definition index; out of range falls back to a default flag.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a4830</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removebypasswallspromotionclass"></a>RemoveBypassWallsPromotionClass</td>
 <td><code>Unit:RemoveBypassWallsPromotionClass(ePromotionClass: integer)</code></td>
-<td>—</td>
+<td>Decrements the reference count of a promotion class in the bypass-walls hash table (+0x428) and erases the entry when it reaches zero.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a4b40</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeenablewallattackpromotionclass"></a>RemoveEnableWallAttackPromotionClass</td>
 <td><code>Unit:RemoveEnableWallAttackPromotionClass(ePromotionClass: integer)</code></td>
-<td>—</td>
+<td>Decrements the reference count of a promotion class in the enable-wall-attack hash table (+0x460) and erases the entry at zero.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a4c00</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeespionagebonus"></a>RemoveEspionageBonus</td>
 <td><code>Unit:RemoveEspionageBonus(eOperation: integer, bOffensive: boolean, iAmount: integer)</code></td>
-<td>—</td>
+<td>Rebuilds the espionage bonus list, subtracting iAmount from the matching (operation, offensive) entry and dropping it if the result is 0.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3960c0</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setattacksremaining"></a>SetAttacksRemaining</td>
 <td><code>Unit:SetAttacksRemaining(iNewAttacksRemaining: integer)</code></td>
-<td>—</td>
+<td>Sets the unit attacks remaining (+0x508) to the given value and fires a reporting event if it changed.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3a5860</code></td>
@@ -364,7 +364,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setoperation"></a>SetOperation</td>
 <td><code>Unit:SetOperation(eOperation: integer)</code></td>
-<td>—</td>
+<td>Stores the operation type index in the espionage object (+0x48).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x396380</code></td>
@@ -431,6 +431,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - counter acts as a stack count</p>
 <p><strong>Open questions</strong>
 - byte counter overflow unhandled</p>
+<h3>AddEspionageBonus</h3>
+<p>Arguments: <code>eOperation</code> — Unit operation type; <code>bOffensive</code> — True for offensive bonus, false for defensive; <code>iAmount</code> — Amount added to the bonus</p>
+<p><strong>Writes</strong>
+- Espionage bonus vector at Espionage+0x8</p>
+<p><strong>Input checks:</strong> No validation of operation or amount.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes unit state. <strong>Risk:</strong> medium (Unchecked write.). <strong>Confidence of the reading:</strong> high.</p>
 <h3>AddEspionageTimeReduction</h3>
 <p>Arguments: <code>eOperation</code> — spy operation type (converted to an index via Types::GetIndex); <code>iReductionPercent</code> — percent to add to the reduction for that operation</p>
 <p><strong>Writes</strong>
@@ -448,6 +454,31 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - entries are shown as DistrictCreateUnit type only because of shared template instantiation</p>
 <p><strong>Open questions</strong>
 - whether negative totals are clamped elsewhere</p>
+<h3>AddInitialAbilities</h3>
+<p><strong>Writes</strong>
+- Unit ability count array at Instance+0x338</p>
+<p><strong>Side effects</strong>
+- Dispatches game signal at game+0x280 +0x1560 (unit, ability) when active state changes</p>
+<p><strong>Input checks:</strong> Uses CanHaveAbility and a definition flag; null definitions guarded loosely.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes unit abilities. <strong>Risk:</strong> medium (Increments counts, calling twice doubles them.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanBeLevied</h3>
+<p>Arguments: <code>subjectPlayer</code> — Player compared with the unit owner (+0x140)</p>
+<p><strong>Input checks:</strong> Owner must equal subjectPlayer; no range check on the player id.</p>
+<p><strong>Multiplayer:</strong> read-only; pure check on unit state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ChangeAttackRange</h3>
+<p>Arguments: <code>iDelta</code> — Amount added to the attack range value</p>
+<p><strong>Writes</strong>
+- Unit attack range value in FAutoVariable at +0x870</p>
+<p><strong>Input checks:</strong> None; no clamping, negative results possible.</p>
+<p><strong>Multiplayer:</strong> may-desync; writes synchronised unit state. <strong>Risk:</strong> medium (unclamped change to unit stat). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ChangeAttacksRemaining</h3>
+<p>Arguments: <code>iDelta</code> — Amount added to attacks remaining</p>
+<p><strong>Writes</strong>
+- Unit attacks remaining at +0x508</p>
+<p><strong>Side effects</strong>
+- Sends reporting event 0x35597c21 with unit component id and new value</p>
+<p><strong>Input checks:</strong> Clamps result to &gt;= 0; no upper bound check against max attacks.</p>
+<p><strong>Multiplayer:</strong> may-desync; writes synchronised unit state. <strong>Risk:</strong> medium (no upper clamp). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeBonusPointsPerKill</h3>
 <p>Arguments: <code>eClass</code> — great person class; <code>iChange</code> — amount to add</p>
 <p><strong>Writes</strong>
@@ -515,6 +546,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - event id shared with build charges suggests a generic charge-changed event</p>
 <p><strong>Open questions</strong>
 - which event id distinguishes disaster from build charges</p>
+<h3>ChangeParkCharges</h3>
+<p>Arguments: <code>iChange</code> — Amount added to park charges</p>
+<p><strong>Writes</strong>
+- Unit park charges at +0x550</p>
+<p><strong>Side effects</strong>
+- Sends reporting event 0xb2176dc4 with unit id, new and old value</p>
+<p><strong>Input checks:</strong> Clamps result to &gt;= 0; no upper bound.</p>
+<p><strong>Multiplayer:</strong> may-desync; writes synchronised unit state. <strong>Risk:</strong> medium (changes unit charge counter). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeSightRange</h3>
 <p>Arguments: <code>iRangeDelta</code> — change to sight range</p>
 <p><strong>Observed in the game:</strong> Not undone by a -1 call: increasing the sight range reveals map tiles immediately, and if a revealed tile belongs to a city-state the game meets it at once (user-observed: a scientific city-state was met, which gives a free envoy and raised the science yield 3.5 -&gt; 4.5 and shortened the research turns left 7 -&gt; 6). The meeting and the revealed tiles stay when the range is lowered again.</p>
@@ -567,6 +606,79 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - religion variant applies when the religious source applies (from name)</p>
 <p><strong>Open questions</strong>
 - exact slot-to-territory naming</p>
+<h3>GetBaseMoves</h3>
+<p>Arguments: <code>eMovementDomain</code> — Domain for which movement is queried (-1 means any/current) (inferred)</p>
+<p><strong>Input checks:</strong> Returns 0 if unit type pointer is null; domain not otherwise range checked.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetBonusPointsPerKill</h3>
+<p>Arguments: <code>eClass</code> — Great person class index</p>
+<p><strong>Input checks:</strong> Bounds checked against array size (0..size-1); returns 0 otherwise.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetBonusPointsPerKillStrength</h3>
+<p>Arguments: <code>eClass</code> — Great person class index</p>
+<p><strong>Input checks:</strong> Bounds checked against array size; returns 0 otherwise.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetEra</h3>
+<p><strong>Input checks:</strong> Null checks on unit type and linked definitions.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetEspionageBonus</h3>
+<p>Arguments: <code>eOperation</code> — Unit operation type; <code>bOffensive</code> — Offensive or defensive bonus</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, list lookup. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetEspionageTimeReduction</h3>
+<p>Arguments: <code>eOperation</code> — Unit operation type</p>
+<p><strong>Input checks:</strong> None; note the loop matches the first entry with the same index.</p>
+<p><strong>Multiplayer:</strong> read-only, list lookup. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetIgnoreFeature</h3>
+<p>Arguments: <code>eFeature</code> — Feature type index</p>
+<p><strong>Input checks:</strong> Rejects -1 and indexes beyond array size; other negative values are not checked.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetIgnoreTerrain</h3>
+<p>Arguments: <code>eTerrain</code> — Terrain type index</p>
+<p><strong>Input checks:</strong> Rejects -1 and indexes beyond array size; other negative values are not checked.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetMaxNumAttacks</h3>
+<p><strong>Input checks:</strong> None needed.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasAdjacentMove</h3>
+<p><strong>Input checks:</strong> Skips null plots and invalid coordinates; uses placement validity check.</p>
+<p><strong>Multiplayer:</strong> read-only; evaluates map and unit state. <strong>Risk:</strong> low (pure check). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasAttacked</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasBypassWallsPromotionClass</h3>
+<p>Arguments: <code>ePromotionClass</code> — Unit promotion class type</p>
+<p><strong>Input checks:</strong> Returns false if class definition not found.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasEnableWallAttackPromotionClass</h3>
+<p>Arguments: <code>ePromotionClass</code> — Unit promotion class type</p>
+<p><strong>Input checks:</strong> Returns false if class definition not found.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsFortifyable</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsOperationDisabled</h3>
+<p>Arguments: <code>eOperation</code> — Unit operation type</p>
+<p><strong>Input checks:</strong> Unknown operation gives index -1 and returns false; range checked against array size.</p>
+<p><strong>Multiplayer:</strong> read-only; getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveBypassWallsPromotionClass</h3>
+<p>Arguments: <code>ePromotionClass</code> — Unit promotion class type</p>
+<p><strong>Writes</strong>
+- Bypass-walls promotion class table at +0x428</p>
+<p><strong>Input checks:</strong> Does nothing if class unknown or not in table.</p>
+<p><strong>Multiplayer:</strong> may-desync; writes synchronised unit state. <strong>Risk:</strong> medium (changes unit combat ability). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveEnableWallAttackPromotionClass</h3>
+<p>Arguments: <code>ePromotionClass</code> — Unit promotion class type</p>
+<p><strong>Writes</strong>
+- Enable-wall-attack promotion class table at +0x460</p>
+<p><strong>Input checks:</strong> Does nothing if class unknown or not in table.</p>
+<p><strong>Multiplayer:</strong> may-desync; writes synchronised unit state. <strong>Risk:</strong> medium (changes unit combat ability). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveEspionageBonus</h3>
+<p>Arguments: <code>eOperation</code> — Unit operation type; <code>bOffensive</code> — Offensive or defensive bonus; <code>iAmount</code> — Amount to subtract</p>
+<p><strong>Writes</strong>
+- Espionage bonus vector at Espionage+0x8 (rebuilt)</p>
+<p><strong>Input checks:</strong> No check that the entry exists or amount is positive; negative remainders are kept.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes unit state. <strong>Risk:</strong> medium (Rebuilds list, unchecked.). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>RemoveEspionageTimeReduction</h3>
 <p>Arguments: <code>eOperation</code> — spy operation type; <code>iReductionPercent</code> — percent to subtract</p>
 <p><strong>Writes</strong>
@@ -599,6 +711,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - flag 1 means terrain is invalid for the unit</p>
 <p><strong>Open questions</strong>
 - signed or unsigned comparison for negatives is only inferred from the decompile</p>
+<h3>SetAttacksRemaining</h3>
+<p>Arguments: <code>iNewAttacksRemaining</code> — New attacks remaining value</p>
+<p><strong>Writes</strong>
+- Unit attacks remaining at +0x508</p>
+<p><strong>Side effects</strong>
+- Sends reporting event 0x35597c21 with unit component id and value</p>
+<p><strong>Input checks:</strong> None; negative or above-max values accepted.</p>
+<p><strong>Multiplayer:</strong> may-desync; writes synchronised unit state. <strong>Risk:</strong> medium (unvalidated value). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetCanMoveAfterAttacking</h3>
 <p>Arguments: <code>delta</code> — amount added to the counter</p>
 <p><strong>Writes</strong>
@@ -679,6 +799,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - dispatches signal with the unit pointer</p>
 <p><strong>Inferred</strong>
 - flag drives levy return logic</p>
+<h3>SetOperation</h3>
+<p>Arguments: <code>eOperation</code> — Operation type to set</p>
+<p><strong>Writes</strong>
+- Current operation field at Espionage+0x48</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes unit field. <strong>Risk:</strong> low (Single field write.). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetOperationDisabled</h3>
 <p>Arguments: <code>eOperation</code> — operation to disable or enable; <code>newValue</code> — true disables the operation (inferred)</p>
 <p><strong>Writes</strong>

@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changegrievanceandtension"></a>ChangeGrievanceAndTension</td>
 <td><code>GameDiplomacy:ChangeGrievanceAndTension(a: integer, b: integer, iNumGrievances: integer)</code></td>
-<td>—</td>
+<td>Changes the grievance score between two players by the amount and the tension score by its absolute value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1ce9f0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changetensionscore"></a>ChangeTensionScore</td>
 <td><code>GameDiplomacy:ChangeTensionScore(a: integer, b: integer, iChangeinTension: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the tension score of an unordered player pair (stored in a triangular array), clamped at 0, and stamps the current game turn when the delta is positive.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1ceb50</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>GameDiplomacy:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn processing: for each pair of players with an alliance it adds alliance points per turn to both and, if the alliance level changed, dispatches a signal and sends notifications to both players. Decompilation is truncated, so later behaviour is unseen.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1cf680</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getalliancetype"></a>GetAllianceType</td>
 <td><code>GameDiplomacy:GetAllianceType(a: integer, b: integer) → number</code></td>
-<td>—</td>
+<td>Returns the alliance type stored for the unordered player pair, or -1 if both players are the same.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d0900</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgrievancescore"></a>GetGrievanceScore</td>
 <td><code>GameDiplomacy:GetGrievanceScore(a: integer, b: integer) → number</code></td>
-<td>—</td>
+<td>Returns the grievance score for the pair, signed by who holds the grievance: positive if the stored owner equals a, negative otherwise, 0 if a==b or no owner.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d0cc0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getjointwartarget"></a>GetJointWarTarget</td>
 <td><code>GameDiplomacy:GetJointWarTarget(initiator: integer, partner: integer) → number</code></td>
-<td>—</td>
+<td>Returns the joint war target stored for the unordered pair of players.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d0d60</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getlastturnplayerwasoffereddeal"></a>GetLastTurnPlayerWasOfferedDeal</td>
 <td><code>GameDiplomacy:GetLastTurnPlayerWasOfferedDeal(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Loops over all players other than ePlayer calling Diplomacy::GetLastTurnOfferedDeal but discards the results and always returns 0 as decompiled.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d0dc0</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getresearchagreementtech"></a>GetResearchAgreementTech</td>
 <td><code>GameDiplomacy:GetResearchAgreementTech(a: integer, b: integer) → number</code></td>
-<td>—</td>
+<td>Returns the tech of the research agreement between the pair, or -1 if same player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d0e80</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettensionscore"></a>GetTensionScore</td>
 <td><code>GameDiplomacy:GetTensionScore(a: integer, b: integer) → number</code></td>
-<td>—</td>
+<td>Returns the tension score of the unordered pair, 0 if same player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d0ee0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resetallianceduration"></a>ResetAllianceDuration</td>
 <td><code>GameDiplomacy:ResetAllianceDuration(a: integer, b: integer)</code></td>
-<td>—</td>
+<td>If the pair has an alliance, sets its last-change turn field to the current game turn.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d3120</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setisallied"></a>SetIsAllied</td>
 <td><code>GameDiplomacy:SetIsAllied(a: integer, b: integer, allied: integer)</code></td>
-<td>—</td>
+<td>Sets or clears the alliance type between two players, stamps the turn, dispatches alliance start or end signals, sets the defensive pact flag, logs a diplomatic event and sends reporting events. Decompilation is truncated after visibility handling.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d3920</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setresearchagreementtech"></a>SetResearchAgreementTech</td>
 <td><code>GameDiplomacy:SetResearchAgreementTech(a: integer, b: integer, eTech: integer)</code></td>
-<td>—</td>
+<td>Stores the research agreement tech and current turn for the pair, dispatches a start or end signal (end when tech is -1) and logs a diplomatic event.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1d4050</code></td>
@@ -156,6 +156,60 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>ChangeGrievanceAndTension</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player; <code>iNumGrievances</code> — signed grievance delta; absolute value added to tension</p>
+<p><strong>Writes</strong>
+- grievance score for the pair (via ChangeGrievanceScore)
+- tension score for the pair (via ChangeTensionScore)</p>
+<p><strong>Side effects</strong>
+- last-change turn recorded for tension when delta positive</p>
+<p><strong>Input checks:</strong> No checks itself; delegates.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised diplomacy state. <strong>Risk:</strong> medium (edits diplomacy state without validation). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ChangeTensionScore</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player; <code>iChangeinTension</code> — tension delta</p>
+<p><strong>Writes</strong>
+- tension VariantMap entry at +0x2c8 (value and last-change turn)</p>
+<p><strong>Input checks:</strong> Clamps result to &gt;= 0; no check for a==b or invalid players.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes game diplomacy VariantMap. <strong>Risk:</strong> medium (unchecked indexing; a==b or invalid player index would hit a wrong slot). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- player Diplomacy alliance points (both players)</p>
+<p><strong>Side effects</strong>
+- alliance level change signal
+- localized notifications to both players
+- callees show game speed adjustment and symmetric deal turn lookup</p>
+<p><strong>Input checks:</strong> Skips pairs with no alliance (-1); no other checks visible.</p>
+<p><strong>Multiplayer:</strong> may-desync, advances alliance state each turn. <strong>Risk:</strong> high (turn processing; calling it again double-counts alliance points). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetAllianceType</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player</p>
+<p><strong>Input checks:</strong> Only a==b checked; no range check.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetGrievanceScore</h3>
+<p>Arguments: <code>a</code> — player whose perspective is used; <code>b</code> — other player</p>
+<p><strong>Input checks:</strong> a==b and owner -1 give 0; no range check.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetJointWarTarget</h3>
+<p>Arguments: <code>initiator</code> — first player (inferred); <code>partner</code> — second player (inferred)</p>
+<p><strong>Input checks:</strong> No checks, even for equal players.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetLastTurnPlayerWasOfferedDeal</h3>
+<p>Arguments: <code>ePlayer</code> — player being queried</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetResearchAgreementTech</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player</p>
+<p><strong>Input checks:</strong> Only a==b checked.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTensionScore</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player</p>
+<p><strong>Input checks:</strong> Only a==b checked.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ResetAllianceDuration</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player</p>
+<p><strong>Writes</strong>
+- alliance VariantMap entry turn stamp at +0x200</p>
+<p><strong>Input checks:</strong> Skips if alliance type is -1; no player range check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes alliance state. <strong>Risk:</strong> medium (synchronised alliance state). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetAtWar</h3>
 <p>Arguments: <code>a</code> — first player id; <code>b</code> — second player id; <code>war</code> — war type; -1 = peace</p>
 <p><strong>Writes</strong>
@@ -186,6 +240,18 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - exact meaning of ExpelFromTerritory reason codes 3 and 4
 - why visibility blocker is added twice for the same ordered pair</p>
+<h3>SetIsAllied</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player; <code>allied</code> — alliance type to set, -1 ends the alliance</p>
+<p><strong>Writes</strong>
+- alliance VariantMap entry (type and turn)
+- defensive pact flag via SetIsInDefensivePact
+- diplomatic event log</p>
+<p><strong>Side effects</strong>
+- Alliance start/end message signals
+- Reporting events sent
+- visibility updates (seen in truncated tail)</p>
+<p><strong>Input checks:</strong> No-op if type and turn unchanged; no range check on players.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes alliances and visibility. <strong>Risk:</strong> high (alliance change cascades to pacts and visibility). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetIsInDefensivePact</h3>
 <p>Arguments: <code>a</code> — first player; <code>b</code> — second player; <code>pact</code> — true to create, false to end</p>
 <p><strong>Writes</strong>
@@ -223,6 +289,15 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Passing -1 as target probably clears it</p>
 <p><strong>Open questions</strong>
 - Whether callers use the stored turn for expiry</p>
+<h3>SetResearchAgreementTech</h3>
+<p>Arguments: <code>a</code> — first player; <code>b</code> — second player; <code>eTech</code> — tech under agreement, -1 ends it</p>
+<p><strong>Writes</strong>
+- research agreement VariantMap entry (tech, turn) at +0x160</p>
+<p><strong>Side effects</strong>
+- Research agreement start/end signal
+- diplomatic event log entry</p>
+<p><strong>Input checks:</strong> No range or validity checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised diplomacy state. <strong>Risk:</strong> medium (unvalidated indexes). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetSharesSuzerain</h3>
 <p>Arguments: <code>a</code> — first player; <code>b</code> — second player; <code>c</code> — true if they now share a suzerain</p>
 <p><strong>Writes</strong>

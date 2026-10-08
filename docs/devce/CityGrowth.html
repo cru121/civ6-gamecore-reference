@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="docitygrowth"></a>DoCityGrowth</td>
 <td><code>CityGrowth:DoCityGrowth()</code></td>
-<td>—</td>
+<td>Per-turn city growth step: computes food surplus (food yield minus consumption), applies growth modifier, adds it via AddGrowth, and sends starvation, stagnation, housing and amenity notifications (each throttled to once per 10 turns).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x123460</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getamenitieslostfromwarweariness"></a>GetAmenitiesLostFromWarWeariness</td>
 <td><code>CityGrowth:GetAmenitiesLostFromWarWeariness() → number</code></td>
-<td>—</td>
+<td>Returns amenities this city loses to war weariness, from the owner's diplomacy state.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x123fb0</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getamenitiesneeded"></a>GetAmenitiesNeeded</td>
 <td><code>CityGrowth:GetAmenitiesNeeded() → number</code></td>
-<td>—</td>
+<td>Returns amenities the city needs for its population from the economic rules.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x123fe0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfeatureappealmodifier"></a>GetFeatureAppealModifier</td>
 <td><code>CityGrowth:GetFeatureAppealModifier(eFeature: integer) → number</code></td>
-<td>—</td>
+<td>Looks up the city's stored appeal modifier for a feature type; 0 if none.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x124010</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethappinessgrowthmodifier"></a>GetHappinessGrowthModifier</td>
 <td><code>CityGrowth:GetHappinessGrowthModifier() → number</code></td>
-<td>—</td>
+<td>Growth modifier from happiness: amenity surplus mapped to a happiness level then to a growth modifier.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x124110</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethousinggrowthmodifier"></a>GetHousingGrowthModifier</td>
 <td><code>CityGrowth:GetHousingGrowthModifier() → number</code></td>
-<td>—</td>
+<td>Growth modifier from housing: housing from water, buildings, improvements and districts passed to the surplus-reduction rule.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x1245e0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getloyaltygrowthmodifier"></a>GetLoyaltyGrowthModifier</td>
 <td><code>CityGrowth:GetLoyaltyGrowthModifier() → number</code></td>
-<td>—</td>
+<td>Growth modifier from the city's loyalty level, read from the loyalty level definition; 1.0 (0x100) if no level.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x124660</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getoccupationgrowthmodifier"></a>GetOccupationGrowthModifier</td>
 <td><code>CityGrowth:GetOccupationGrowthModifier() → number</code></td>
-<td>—</td>
+<td>Returns the global occupation growth modifier parameter converted to fixed point.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x1246f0</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getothergrowthmodifier"></a>GetOtherGrowthModifier</td>
 <td><code>CityGrowth:GetOtherGrowthModifier() → number</code></td>
-<td>—</td>
+<td>Other growth modifier: player growth-rate setting times 0.01 plus the city's own extra modifier field at 0x84.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x124750</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getturnsuntilstarvation"></a>GetTurnsUntilStarvation</td>
 <td><code>CityGrowth:GetTurnsUntilStarvation() → number</code></td>
-<td>—</td>
+<td>Turns until the city's stored food runs out given a negative surplus; -1 if not starving or population is 1 or less, 1 if no stored food.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x124a80</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasdroughtprevention"></a>HasDroughtPrevention</td>
 <td><code>CityGrowth:HasDroughtPrevention() → boolean</code></td>
-<td>—</td>
+<td>Checks whether the city has a district or a worked improvement (flagged in XP2 definitions) that prevents drought.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x124c70</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removefeatureappealmodifier"></a>RemoveFeatureAppealModifier</td>
 <td><code>CityGrowth:RemoveFeatureAppealModifier(eFeature: integer)</code></td>
-<td>—</td>
+<td>Removes the city's appeal modifier entry for a feature by swapping in the last entry.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x124e10</code></td>
@@ -177,4 +177,49 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - Entries are used to modify per-feature appeal calculation in the city</p>
 <p><strong>Open questions</strong>
-- Who recomputes appeal after this change</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- Who recomputes appeal after this change</p>
+<h3>DoCityGrowth</h3>
+<p><strong>Writes</strong>
+- Growth food accumulator (via AddGrowth)
+- Last-notification turn fields at 0x88, 0x8c, 0x90, 0x94</p>
+<p><strong>Side effects</strong>
+- Reporting::Notification::Send for starving, no-growth, housing and amenity warnings</p>
+<p><strong>Input checks:</strong> No argument validation; notification throttled by game turn.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes city population food. <strong>Risk:</strong> high (drives population growth and sends notifications). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetAmenitiesLostFromWarWeariness</h3>
+<p><strong>Input checks:</strong> None; assumes valid owner.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetAmenitiesNeeded</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFeatureAppealModifier</h3>
+<p>Arguments: <code>eFeature</code> — feature type to look up</p>
+<p><strong>Input checks:</strong> No range check; linear search.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetHappinessGrowthModifier</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetHousingGrowthModifier</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetLoyaltyGrowthModifier</h3>
+<p><strong>Input checks:</strong> Bounds-checks definition index.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetOccupationGrowthModifier</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetOtherGrowthModifier</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetTurnsUntilStarvation</h3>
+<p><strong>Input checks:</strong> Population 1 or less returns -1.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasDroughtPrevention</h3>
+<p><strong>Input checks:</strong> Null checks on definitions and plots.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveFeatureAppealModifier</h3>
+<p>Arguments: <code>eFeature</code> — feature type whose entry is removed</p>
+<p><strong>Writes</strong>
+- Growth feature appeal modifier array (0x8, count 0x18)</p>
+<p><strong>Input checks:</strong> No check that the feature was found: if absent, the search pointer is at end and the code still shrinks the list and writes past it.</p>
+<p><strong>Multiplayer:</strong> may-desync, alters growth modifier data. <strong>Risk:</strong> medium (missing-entry case corrupts the list). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

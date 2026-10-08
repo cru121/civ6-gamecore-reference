@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changefeaturecount"></a>ChangeFeatureCount</td>
 <td><code>Territory:ChangeFeatureCount(eFeature: integer, iChange: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the per-feature plot count of a territory and to its total feature count.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x2c6c0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeplotcount"></a>ChangePlotCount</td>
 <td><code>Territory:ChangePlotCount(iChange: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the territory plot count and recomputes the two averages (+0x58/+0x5c divided by count) into +0x60/+0x64, or sets them to -1 when count is not positive.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x2c720</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setislake"></a>SetIsLake</td>
 <td><code>Territory:SetIsLake(bIsLake: boolean)</code></td>
-<td>—</td>
+<td>Sets the territory is-lake flag (byte at +0x20); also calls Types::GetIndex on a constant hash whose result is unused.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x2ce30</code></td>
@@ -60,6 +60,26 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>ChangeFeatureCount</h3>
+<p>Arguments: <code>eFeature</code> — feature type to adjust; <code>iChange</code> — amount added to the counters</p>
+<p><strong>Writes</strong>
+- territory per-feature count array entry
+- territory total feature count (+0x1c)</p>
+<p><strong>Input checks:</strong> Ignores -1 and feature indices beyond the array; iChange not checked.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes map territory state. <strong>Risk:</strong> medium (raw counter edit can desync territory statistics). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ChangePlotCount</h3>
+<p>Arguments: <code>iChange</code> — amount added to the plot count</p>
+<p><strong>Writes</strong>
+- territory plot count (+8)
+- territory averages at +0x60 and +0x64</p>
+<p><strong>Input checks:</strong> Guards division by zero; iChange not range checked.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes map territory state. <strong>Risk:</strong> medium (raw counter edit). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetIsLake</h3>
+<p>Arguments: <code>bIsLake</code> — new lake flag</p>
+<p><strong>Writes</strong>
+- territory lake flag (+0x20)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes map territory state. <strong>Risk:</strong> medium (changes territory classification). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetIsSea</h3>
 <p>Arguments: <code>bIsSea</code> — new sea flag</p>
 <p><strong>Writes</strong>

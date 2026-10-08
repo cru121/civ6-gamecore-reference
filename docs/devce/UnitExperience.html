@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canearnpromotion"></a>CanEarnPromotion</td>
 <td><code>UnitExperience:CanEarnPromotion(ePromotion: integer, bIgnoreRandomPromotionCheck: boolean) → boolean</code></td>
-<td>—</td>
+<td>Checks whether a unit can earn a promotion: promotion exists and not already owned, if the unit type requires proposed promotions it must be proposed, class must be valid for the unit type, and all or any prerequisite is owned.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3969a0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checkpromotenotification"></a>CheckPromoteNotification</td>
 <td><code>UnitExperience:CheckPromoteNotification()</code></td>
-<td>—</td>
+<td>If the experience flags at +8 and +9 are set, clears +9 and for human owners adds the unit to a PromoteUnit notification, creating one if needed.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x396dc0</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getexperiencemodifier"></a>GetExperienceModifier</td>
 <td><code>UnitExperience:GetExperienceModifier(bIsUnitAttacking: boolean) → number</code></td>
-<td>—</td>
+<td>Returns a fixed-point combat modifier from unit experience: base value at +0x28 plus an optional attacker part from +0x2c plus a player bonus scaled by 0.01.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x396f60</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setlevelandexperience"></a>SetLevelAndExperience</td>
 <td><code>UnitExperience:SetLevelAndExperience(iLevel: integer, iExperience: integer)</code></td>
-<td>—</td>
+<td>Sets the experience level (+0x10), clears experience flags and counter (+8,+0xa,+0xc), then calls ChangeExperience with the given amount.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x397500</code></td>
@@ -84,6 +84,10 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>CanEarnPromotion</h3>
+<p>Arguments: <code>ePromotion</code> — Promotion type to test; <code>bIgnoreRandomPromotionCheck</code> — If true skips the proposed-promotion (random choice) check</p>
+<p><strong>Input checks:</strong> Checks promotion index validity and ownership; unit type pointer used without null check.</p>
+<p><strong>Multiplayer:</strong> read-only; evaluates unit state. <strong>Risk:</strong> low (pure check). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeGeneralExperienceModifier</h3>
 <p>Arguments: <code>iDelta</code> — change in percent</p>
 <p><strong>Writes</strong>
@@ -102,6 +106,17 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - stored as 8-bit fixed point</p>
 <p><strong>Open questions</strong>
 - float constants not read directly (symbol names only)</p>
+<h3>CheckPromoteNotification</h3>
+<p><strong>Writes</strong>
+- Experience flag at +9 cleared</p>
+<p><strong>Side effects</strong>
+- Creates or updates the promote-unit notification for the owner</p>
+<p><strong>Input checks:</strong> Only acts for human players; returns if notification creation fails.</p>
+<p><strong>Multiplayer:</strong> may-desync; notifications and unit flag, human only. <strong>Risk:</strong> low (notification only). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetExperienceModifier</h3>
+<p>Arguments: <code>bIsUnitAttacking</code> — If true, adds the attacking experience component (inferred)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only; computes from state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
 <h3>GrantPromotion</h3>
 <p>Arguments: <code>ePromotion</code> — promotion type; <code>bIgnoreRandomPromotionCheck</code> — skip the random-promotion restriction in CanEarnPromotion (inferred)</p>
 <p><strong>Writes</strong>
@@ -139,4 +154,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - promotion availability may depend on level vs promotions taken</p>
 <p><strong>Open questions</strong>
-- whether other code expects level to match XP</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- whether other code expects level to match XP</p>
+<h3>SetLevelAndExperience</h3>
+<p>Arguments: <code>iLevel</code> — New experience level; <code>iExperience</code> — Experience points passed to ChangeExperience</p>
+<p><strong>Writes</strong>
+- Experience level at +0x10
+- Experience fields at +8,+0xa,+0xc reset
+- Experience points via ChangeExperience</p>
+<p><strong>Side effects</strong>
+- Whatever ChangeExperience triggers (possible promotion notification)</p>
+<p><strong>Input checks:</strong> None; level not range checked.</p>
+<p><strong>Multiplayer:</strong> may-desync; writes synchronised unit experience. <strong>Risk:</strong> medium (unvalidated level and xp). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checkforthemedbuilding"></a>CheckForThemedBuilding</td>
 <td><code>CityBuildings:CheckForThemedBuilding(eBuilding: integer)</code></td>
-<td>—</td>
+<td>If the building is themed correctly, dispatches a game signal with the city instance and the building type (signal on current game at +0x240; Ghidra shows a Unit-based signature, likely a mismatched type).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10a2c0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfreeslot"></a>GetFreeSlot</td>
 <td><code>CityBuildings:GetFreeSlot(eBuilding: integer) → number</code></td>
-<td>—</td>
+<td>Finds the first empty great-work slot index in the given building's slot list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10b7a0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfreeslotoftype"></a>GetFreeSlotOfType</td>
 <td><code>CityBuildings:GetFreeSlotOfType(eBuilding: integer, slotType: integer) → number</code></td>
-<td>—</td>
+<td>Finds the first empty slot of a specific great-work slot type in the given building.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10b800</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumbuildings"></a>GetNumBuildings</td>
 <td><code>CityBuildings:GetNumBuildings() → number</code></td>
-<td>—</td>
+<td>Counts non-wonder buildings (flag 0x40 clear) that exist in the city, using the location array.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10bab0</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumbuildingsatlocation"></a>GetNumBuildingsAtLocation</td>
 <td><code>CityBuildings:GetNumBuildingsAtLocation(iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Counts buildings whose recorded plot index equals the given plot index.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10bb40</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumfreeslots"></a>GetNumFreeSlots</td>
 <td><code>CityBuildings:GetNumFreeSlots(slotType: integer) → number</code></td>
-<td>—</td>
+<td>Counts empty great-work slots of a given slot type across all buildings.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10bbb0</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumgreatworks"></a>GetNumGreatWorks</td>
 <td><code>CityBuildings:GetNumGreatWorks(eGreatWorkObjectTypeFilter: integer) → number</code></td>
-<td>—</td>
+<td>Counts great works held in slots, optionally filtered by great work object type (all if filter is -1).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10bc50</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumwonders"></a>GetNumWonders</td>
 <td><code>CityBuildings:GetNumWonders() → number</code></td>
-<td>—</td>
+<td>Counts wonders (building flag 0x40 set) that exist in the city.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10bd40</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismfromgreatworks"></a>GetTourismFromGreatWorks</td>
 <td><code>CityBuildings:GetTourismFromGreatWorks(bReligious: boolean) → number</code></td>
-<td>—</td>
+<td>Sums tourism from great works across all buildings with great-work slots via GetBuildingTourismFromGreatWorks.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10bdd0</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismfromonewonder"></a>GetTourismFromOneWonder</td>
 <td><code>CityBuildings:GetTourismFromOneWonder(eBuilding: integer) → number</code></td>
-<td>—</td>
+<td>Computes tourism of a single wonder: global base parameter plus era difference between player's era and wonder's era, scaled by city wonder tourism modifier; returns the base if the global flag is off.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10be50</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismfromwonders"></a>GetTourismFromWonders</td>
 <td><code>CityBuildings:GetTourismFromWonders() → number</code></td>
-<td>—</td>
+<td>Sums tourism over all wonders present in the city that are not flagged in the exclusion array, via GetTourismFromOneWonder.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10bf80</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldchange"></a>GetYieldChange</td>
 <td><code>CityBuildings:GetYieldChange(eBuilding: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns total flat yield change of a building for a yield: district-derived yield (if a yield-conversion applies), plus a wonder-specific entry, plus a stored per-building yield modifier.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10c0e0</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldchangecitystates"></a>GetYieldChangeCityStates</td>
 <td><code>CityBuildings:GetYieldChangeCityStates(eBuilding: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored city-state yield change for a building and yield, or 0 if none.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10c250</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldchangefromfeature"></a>GetYieldChangeFromFeature</td>
 <td><code>CityBuildings:GetYieldChangeFromFeature(eFeature: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums yield change entries matching a feature and yield from the stored list.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10c290</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfromgreatworks"></a>GetYieldFromGreatWorks</td>
 <td><code>CityBuildings:GetYieldFromGreatWorks(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Sums yield from great works for a yield type across all buildings with slots via GetBuildingYieldFromGreatWorks.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10c2d0</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldmodifier"></a>GetYieldModifier</td>
 <td><code>CityBuildings:GetYieldModifier(eBuilding: integer, eYield: integer) → number</code></td>
-<td>—</td>
+<td>Looks up the stored yield modifier percent for a building (mapped to its generic equivalent) and yield; 0 if none.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10c350</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isincity"></a>IsInCity</td>
 <td><code>CityBuildings:IsInCity(iIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the great work with the given list index is held in any building slot of this city.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/City.html#city__buildings__isincity">City::Buildings::IsInCity</a></td>
 <td><code>0x10cc60</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeyieldmodifier"></a>RemoveYieldModifier</td>
 <td><code>CityBuildings:RemoveYieldModifier(eBuilding: integer, eYield: integer)</code></td>
-<td>—</td>
+<td>Removes the first (building, yield) modifier entry from the city's building yield-modifier list by swapping in the last element.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x10d5c0</code></td>
@@ -370,6 +370,73 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - this change is not immediately propagated to city yields (no recompute call seen)</p>
 <p><strong>Open questions</strong>
 - whether the caller triggers a yield recompute</p>
+<h3>CheckForThemedBuilding</h3>
+<p>Arguments: <code>eBuilding</code> — building type to check</p>
+<p><strong>Side effects</strong>
+- Dispatches a game-level signal (themed-building event) when theme is correct</p>
+<p><strong>Input checks:</strong> No range check; relies on IsBuildingThemedCorrectly.</p>
+<p><strong>Multiplayer:</strong> may-desync: fires signal handlers that may change state. <strong>Risk:</strong> medium (signal listeners may alter synchronised state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetFreeSlot</h3>
+<p>Arguments: <code>eBuilding</code> — building type</p>
+<p><strong>Input checks:</strong> None; returns -1 if building not found.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFreeSlotOfType</h3>
+<p>Arguments: <code>eBuilding</code> — building type; <code>slotType</code> — great work slot type required</p>
+<p><strong>Input checks:</strong> None; returns -1 if not found.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumBuildings</h3>
+<p><strong>Input checks:</strong> Bounds-checks index against array size.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumBuildingsAtLocation</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index to match</p>
+<p><strong>Input checks:</strong> Bounds-checks against array size; negative entries skipped.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumFreeSlots</h3>
+<p>Arguments: <code>slotType</code> — great work slot type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumGreatWorks</h3>
+<p>Arguments: <code>eGreatWorkObjectTypeFilter</code> — object type filter or -1 for all</p>
+<p><strong>Input checks:</strong> Checks definition index and null; -1 means no filter.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumWonders</h3>
+<p><strong>Input checks:</strong> Bounds-checks against array size.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourismFromGreatWorks</h3>
+<p>Arguments: <code>bReligious</code> — whether to count religious great works (inferred)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourismFromOneWonder</h3>
+<p>Arguments: <code>eBuilding</code> — wonder building type</p>
+<p><strong>Input checks:</strong> Range-checks building but does not null-check the definition or era before dereference.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetTourismFromWonders</h3>
+<p><strong>Input checks:</strong> Bounds-checked against array sizes.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetYieldChange</h3>
+<p>Arguments: <code>eBuilding</code> — building type; <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> Range-checks building; no null check on the definition before field reads.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldChangeCityStates</h3>
+<p>Arguments: <code>eBuilding</code> — building type; <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetYieldChangeFromFeature</h3>
+<p>Arguments: <code>eFeature</code> — feature type; <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetYieldFromGreatWorks</h3>
+<p>Arguments: <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetYieldModifier</h3>
+<p>Arguments: <code>eBuilding</code> — building type; <code>eYield</code> — yield type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsInCity</h3>
+<p>Arguments: <code>iIndex</code> — great work list index</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>RemoveAllBuildings</h3>
 <p><strong>Writes</strong>
 - building plot-location array at this+0x8 set to -1
@@ -399,6 +466,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - what the Rules::Cities virtual at 0xa8 does
 - exact role of the government-collection lookup</p>
+<h3>RemoveYieldModifier</h3>
+<p>Arguments: <code>eBuilding</code> — building type of the entry to remove; <code>eYield</code> — yield type of the entry to remove</p>
+<p><strong>Writes</strong>
+- City::Buildings yield-modifier array (data ptr 0x68, count 0x78): one 12-byte entry removed</p>
+<p><strong>Input checks:</strong> No range check on types; silently does nothing if no matching entry.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes city yield modifier data. <strong>Risk:</strong> medium (alters city yield modifiers without any recalculation call). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetEraCreatedToGameEra</h3>
 <p>Arguments: <code>eBuilding</code> — building type index</p>
 <p><strong>Writes</strong>

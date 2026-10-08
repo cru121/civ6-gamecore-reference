@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addnuclearreactor"></a>AddNuclearReactor</td>
 <td><code>GameFalloutManager:AddNuclearReactor(iPlotIndex: integer, eOwner: integer)</code></td>
-<td>—</td>
+<td>Appends a reactor entry (plot index, owner, age 0) to the manager's reactor vector at offset 0xf0.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1ed840</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>GameFalloutManager:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn update: calls UpdateFallout, then increments the age counter (offset +8) of every reactor entry.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1ed900</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfalloutdamage"></a>GetFalloutDamage</td>
 <td><code>GameFalloutManager:GetFalloutDamage() → number</code></td>
-<td>—</td>
+<td>Returns the fallout damage value, using the global default parameter (offset 0x560) when the stored value is -1.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1edb80</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getreactorage"></a>GetReactorAge</td>
 <td><code>GameFalloutManager:GetReactorAge(iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Looks up the city's building flagged as a reactor (bit 8 at 0x48 of the XP2 building definition), then returns the age of the tracked reactor entry at that building's plot, or 0.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1edc80</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resetreactorage"></a>ResetReactorAge</td>
 <td><code>GameFalloutManager:ResetReactorAge(iPlotIndex: integer)</code></td>
-<td>—</td>
+<td>Finds the reactor entry for the plot, sets its age to 0, un-pillages the flagged reactor building in that plot's district city (if the plot is a district but not a city center), then sends a reporting event.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1ee4d0</code></td>
@@ -68,11 +68,48 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="updatefallout"></a>UpdateFallout</td>
 <td><code>GameFalloutManager:UpdateFallout()</code></td>
-<td>—</td>
+<td>For each plot with fallout turns remaining (&gt;0), decrements the counter, dispatches a plot signal on the game object and sends two reporting events (one using local-observer visibility).</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1ef420</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>AddNuclearReactor</h3>
+<p>Arguments: <code>iPlotIndex</code> — map plot index of the reactor; <code>eOwner</code> — player owning the reactor</p>
+<p><strong>Writes</strong>
+- reactor vector at 0xf0 (new 16-byte entry: plot, owner, age 0)</p>
+<p><strong>Input checks:</strong> Ignored if iPlotIndex &lt; 0 or eOwner is -1; does not check for duplicates or plot validity.</p>
+<p><strong>Multiplayer:</strong> may-desync, adds synchronised game state. <strong>Risk:</strong> medium (adds an entry without validating the plot). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- reactor ages in vector at 0xf0 incremented
+- fallout timers via UpdateFallout</p>
+<p><strong>Side effects</strong>
+- UpdateFallout fires a signal and reporting events</p>
+<p><strong>Input checks:</strong> No inputs.</p>
+<p><strong>Multiplayer:</strong> may-desync, advances synchronised state each turn. <strong>Risk:</strong> medium (turn processing; calling it manually double-advances state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFalloutDamage</h3>
+<p><strong>Input checks:</strong> No inputs; -1 sentinel replaced by default.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetReactorAge</h3>
+<p><strong>Input checks:</strong> Returns 0 if city is null, no flagged building exists or no tracked reactor at its location.</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ResetReactorAge</h3>
+<p>Arguments: <code>iPlotIndex</code> — map plot index of the reactor</p>
+<p><strong>Writes</strong>
+- reactor age set to 0
+- reactor building pillaged flag cleared in city buildings</p>
+<p><strong>Side effects</strong>
+- Reporting event 0x686fdce3 sent with the plot index</p>
+<p><strong>Input checks:</strong> Returns if iPlotIndex &lt; 0 or no reactor entry exists for the plot.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits city building state. <strong>Risk:</strong> medium (edits city buildings and age). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>UpdateFallout</h3>
+<p><strong>Writes</strong>
+- per-plot fallout timer array (0xa8) decremented</p>
+<p><strong>Side effects</strong>
+- Signal dispatched on game object (offset 0x1158)
+- Reporting events 0x8e5e1e95 and 0x8cbda9f3</p>
+<p><strong>Input checks:</strong> No inputs.</p>
+<p><strong>Multiplayer:</strong> may-desync, decrements synchronised fallout timers. <strong>Risk:</strong> medium (changes map fallout state). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
