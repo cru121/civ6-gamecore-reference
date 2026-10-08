@@ -6,7 +6,7 @@ order: 0
 
 **What it is.** A reference for the GameCore library of Sid Meier's Civilization VI: what the Lua API exposes, which operations and commands exist, what identifiers mean, and how the engine is laid out. Everything is generated from analysis data and small hand-written notes.
 
-**Builds.** Every address is given for two builds: the *symbol build* (Steam depot 947510, where the function names come from) and the *current build* (Steam build 15038592). The Linux port (depot 533502) supplies layouts and parameter names. An address of `—` means the function could not be mapped to that build.
+**Builds.** Every address is given for two builds: the *symbol build* (Steam depot 947510, where the function names come from) and the *current build* (Steam build 15038592; build 15296837 ships a byte-identical GameCore DLL, so every address applies to it as well). The Linux port (depot 533502) supplies layouts and parameter names. An address of `—` means the function could not be mapped to that build.
 
 **Availability.** Every section is colour-coded by how you can use what it lists:
 - **Green, available out of the box:** usable from Lua in the unmodified game (the Lua API, operations and commands you can request, Lua constant tables).

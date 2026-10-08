@@ -31,7 +31,7 @@ def crc(s):
 # ---- builds
 dump('builds.json', [
     {'id': 'symbol', 'label': 'Steam depot 947510 (older build with debug symbols, GameCore_XP2)', 'role': 'names come from here'},
-    {'id': 'current', 'label': 'Steam build 15038592 (installed, July 2024)', 'role': 'target build; addresses mapped from the symbol build'},
+    {'id': 'current', 'label': 'Steam build 15038592 (July 2024; build 15296837 of August 2024 ships the identical GameCore DLL)', 'role': 'target build; addresses mapped from the symbol build'},
     {'id': 'linux', 'label': 'Steam depot 533502 (Linux port with DWARF debug info, before the New Frontier Pass)', 'role': 'layouts, member and parameter names'}])
 
 # ---- enums

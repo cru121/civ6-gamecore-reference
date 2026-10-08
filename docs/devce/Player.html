@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › Player</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>Player</h1>
-<p>14 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayer</code> instance resolver (virtual).</p>
+<p>75 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayer</code> instance resolver (virtual).</p>
 <table>
 <thead>
 <tr>
@@ -25,6 +25,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a id="addadditionalpillaging"></a>AddAdditionalPillaging</td>
+<td><code>Player:AddAdditionalPillaging(ePlunder: integer, eImprovement: integer, eDistrict: integer, iAmount: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f7390</code></td>
+</tr>
 <tr>
 <td><a id="addagenda"></a>AddAgenda</td>
 <td><code>Player:AddAgenda(agenda: integer, visibility: integer) → boolean</code></td>
@@ -42,12 +50,60 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x2f7570</code></td>
 </tr>
 <tr>
+<td><a id="addcounterspyyieldawardperlevel"></a>AddCounterSpyYieldAwardPerLevel</td>
+<td><code>Player:AddCounterSpyYieldAwardPerLevel(eYield: integer, iAmount: integer, iPerXAmount: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2cf400</code></td>
+</tr>
+<tr>
+<td><a id="adddistrictandbuildingscreateunitwithabilitybyclass"></a>AddDistrictAndBuildingsCreateUnitWithAbilityByClass</td>
+<td><code>Player:AddDistrictAndBuildingsCreateUnitWithAbilityByClass(eAbility: integer, eDistrict: integer, ePromotionClass: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c3be0</code></td>
+</tr>
+<tr>
+<td><a id="adddistrictcreateunit"></a>AddDistrictCreateUnit</td>
+<td><code>Player:AddDistrictCreateUnit(eDistrict: integer, eUnit: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c3c40</code></td>
+</tr>
+<tr>
+<td><a id="adddistrictcreateyield"></a>AddDistrictCreateYield</td>
+<td><code>Player:AddDistrictCreateYield(eYield: integer, eDistrict: integer, iAmount: integer, bYieldBasedOnAppeal: boolean, bMustReplaceImprovement: boolean, eImprovement: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c3d20</code></td>
+</tr>
+<tr>
+<td><a id="addspecialallowedimprovement"></a>AddSpecialAllowedImprovement</td>
+<td><code>Player:AddSpecialAllowedImprovement(eImprovement: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f75e0</code></td>
+</tr>
+<tr>
 <td><a id="changeco2generationreduction"></a>ChangeCO2GenerationReduction</td>
 <td><code>Player:ChangeCO2GenerationReduction(eUsageType: integer, iDiscount: integer)</code></td>
 <td>Adds a discount to the CO2 generation reduction for a resource usage type.</td>
 <td>—</td>
 <td><a href="../native/Player.html#player__instance__changeco2generationreduction">Player::Instance::ChangeCO2GenerationReduction</a></td>
 <td><code>0x2f7720</code></td>
+</tr>
+<tr>
+<td><a id="changeextracapitalpressureradius"></a>ChangeExtraCapitalPressureRadius</td>
+<td><code>Player:ChangeExtraCapitalPressureRadius(iChange: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x26ef60</code></td>
 </tr>
 <tr>
 <td><a id="changeflatbonus"></a>ChangeFlatBonus</td>
@@ -106,12 +162,300 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x2cf800</code></td>
 </tr>
 <tr>
+<td><a id="changewantscongresstomeet"></a>ChangeWantsCongressToMeet</td>
+<td><code>Player:ChangeWantsCongressToMeet(ab: boolean)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x26c590</code></td>
+</tr>
+<tr>
 <td><a id="changeyieldrate"></a>ChangeYieldRate</td>
 <td><code>Player:ChangeYieldRate(eYield: integer, iAmount: integer)</code></td>
 <td>Adds a per-turn rate change for culture, gold, science or faith by forwarding to the matching subsystem.</td>
 <td>ran ±1, reversible ✓, no visible effect</td>
 <td><a href="../native/Player.html#player__instance__changeyieldrate">Player::Instance::ChangeYieldRate</a></td>
 <td><code>0x2f7800</code></td>
+</tr>
+<tr>
+<td><a id="checknotifications"></a>CheckNotifications</td>
+<td><code>Player:CheckNotifications()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2cf8f0</code></td>
+</tr>
+<tr>
+<td><a id="doendturn"></a>DoEndTurn</td>
+<td><code>Player:DoEndTurn()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x3449b0</code></td>
+</tr>
+<tr>
+<td><a id="doturn"></a>DoTurn</td>
+<td><code>Player:DoTurn()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x26c620</code></td>
+</tr>
+<tr>
+<td><a id="doturnactivate"></a>DoTurnActivate</td>
+<td><code>Player:DoTurnActivate(bFirstTime: boolean)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x344a30</code></td>
+</tr>
+<tr>
+<td><a id="doturndeactivate"></a>DoTurnDeactivate</td>
+<td><code>Player:DoTurnDeactivate()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x344fc0</code></td>
+</tr>
+<tr>
+<td><a id="getavoidedrandomevents"></a>GetAvoidedRandomEvents</td>
+<td><code>Player:GetAvoidedRandomEvents(eEvent: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f7d60</code></td>
+</tr>
+<tr>
+<td><a id="getcapitalpressureradius"></a>GetCapitalPressureRadius</td>
+<td><code>Player:GetCapitalPressureRadius() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x26efc0</code></td>
+</tr>
+<tr>
+<td><a id="getchopextrayield"></a>GetChopExtraYield</td>
+<td><code>Player:GetChopExtraYield(eFeature: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f7dc0</code></td>
+</tr>
+<tr>
+<td><a id="getcontroltype"></a>GetControlType</td>
+<td><code>Player:GetControlType() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f7ea0</code></td>
+</tr>
+<tr>
+<td><a id="getcounterspyyieldawardperlevel"></a>GetCounterSpyYieldAwardPerLevel</td>
+<td><code>Player:GetCounterSpyYieldAwardPerLevel(eYield: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d03c0</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictcannotbebuiltadjacenttocity"></a>GetDistrictCannotBeBuiltAdjacentToCity</td>
+<td><code>Player:GetDistrictCannotBeBuiltAdjacentToCity(eDistrict: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c43f0</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictcreationunit"></a>GetDistrictCreationUnit</td>
+<td><code>Player:GetDistrictCreationUnit(eDistrict: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c4410</code></td>
+</tr>
+<tr>
+<td><a id="getfavor"></a>GetFavor</td>
+<td><code>Player:GetFavor() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f7f00</code></td>
+</tr>
+<tr>
+<td><a id="getmilitarydomaindistrict"></a>GetMilitaryDomainDistrict</td>
+<td><code>Player:GetMilitaryDomainDistrict(eDomain: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c4520</code></td>
+</tr>
+<tr>
+<td><a id="getnumdistrictsoftype"></a>GetNumDistrictsOfType</td>
+<td><code>Player:GetNumDistrictsOfType(eDistrict: integer, includePillaged: boolean, includeIncomplete: boolean) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c45b0</code></td>
+</tr>
+<tr>
+<td><a id="getpromotionglobaldefensebonus"></a>GetPromotionGlobalDefenseBonus</td>
+<td><code>Player:GetPromotionGlobalDefenseBonus() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d05f0</code></td>
+</tr>
+<tr>
+<td><a id="getpromotionglobaloffensebonus"></a>GetPromotionGlobalOffenseBonus</td>
+<td><code>Player:GetPromotionGlobalOffenseBonus() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d06c0</code></td>
+</tr>
+<tr>
+<td><a id="getrandomeventmodifieddamageopposingplayer"></a>GetRandomEventModifiedDamageOpposingPlayer</td>
+<td><code>Player:GetRandomEventModifiedDamageOpposingPlayer(eRandomEvent: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f8060</code></td>
+</tr>
+<tr>
+<td><a id="getrandomeventnounitdamage"></a>GetRandomEventNoUnitDamage</td>
+<td><code>Player:GetRandomEventNoUnitDamage(eRandomEvent: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f80a0</code></td>
+</tr>
+<tr>
+<td><a id="getresolutioneffectrefundpercent"></a>GetResolutionEffectRefundPercent</td>
+<td><code>Player:GetResolutionEffectRefundPercent(eResolution: integer, iWhichEffect: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x26cfb0</code></td>
+</tr>
+<tr>
+<td><a id="getrevealedfeature"></a>GetRevealedFeature</td>
+<td><code>Player:GetRevealedFeature(eFeatureType: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f8100</code></td>
+</tr>
+<tr>
+<td><a id="getspecialallowedproject"></a>GetSpecialAllowedProject</td>
+<td><code>Player:GetSpecialAllowedProject(eImprovement: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f8170</code></td>
+</tr>
+<tr>
+<td><a id="getspynameindex"></a>GetSpyNameIndex</td>
+<td><code>Player:GetSpyNameIndex(eOpponent: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d07e0</code></td>
+</tr>
+<tr>
+<td><a id="getvisibilityforagenda"></a>GetVisibilityForAgenda</td>
+<td><code>Player:GetVisibilityForAgenda(agenda: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f8200</code></td>
+</tr>
+<tr>
+<td><a id="getyieldrate"></a>GetYieldRate</td>
+<td><code>Player:GetYieldRate(eYield: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f8240</code></td>
+</tr>
+<tr>
+<td><a id="hasanyrequiredfeatures"></a>HasAnyRequiredFeatures</td>
+<td><code>Player:HasAnyRequiredFeatures() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c4730</code></td>
+</tr>
+<tr>
+<td><a id="hasescapingspy"></a>HasEscapingSpy</td>
+<td><code>Player:HasEscapingSpy() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d09f0</code></td>
+</tr>
+<tr>
+<td><a id="hasfoundanynewcontinent"></a>HasFoundAnyNewContinent</td>
+<td><code>Player:HasFoundAnyNewContinent() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f83f0</code></td>
+</tr>
+<tr>
+<td><a id="hasfoundcontinent"></a>HasFoundContinent</td>
+<td><code>Player:HasFoundContinent(eContinentType: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f8430</code></td>
+</tr>
+<tr>
+<td><a id="hasthisrequiredfeatureforspecialtydistrict"></a>HasThisRequiredFeatureForSpecialtyDistrict</td>
+<td><code>Player:HasThisRequiredFeatureForSpecialtyDistrict(eFeature: integer, eDistrict: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c4780</code></td>
+</tr>
+<tr>
+<td><a id="isagendaallowed"></a>IsAgendaAllowed</td>
+<td><code>Player:IsAgendaAllowed(agenda: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f96b0</code></td>
+</tr>
+<tr>
+<td><a id="ischopbanned"></a>IsChopBanned</td>
+<td><code>Player:IsChopBanned(eFeature: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f97c0</code></td>
+</tr>
+<tr>
+<td><a id="issimultaneousturns"></a>IsSimultaneousTurns</td>
+<td><code>Player:IsSimultaneousTurns() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f98c0</code></td>
+</tr>
+<tr>
+<td><a id="istrackingspy"></a>IsTrackingSpy</td>
+<td><code>Player:IsTrackingSpy() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d1260</code></td>
+</tr>
+<tr>
+<td><a id="isvalid"></a>IsValid</td>
+<td><code>Player:IsValid() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f9950</code></td>
 </tr>
 <tr>
 <td><a id="recomputecost"></a>RecomputeCost</td>
@@ -122,6 +466,30 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x2c4f10</code></td>
 </tr>
 <tr>
+<td><a id="removeadditionalpillaging"></a>RemoveAdditionalPillaging</td>
+<td><code>Player:RemoveAdditionalPillaging(ePlunder: integer, eImprovement: integer, eDistrict: integer, iAmount: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2f9f00</code></td>
+</tr>
+<tr>
+<td><a id="removeavoidedrandomevents"></a>RemoveAvoidedRandomEvents</td>
+<td><code>Player:RemoveAvoidedRandomEvents(eEventRemove: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2fa0a0</code></td>
+</tr>
+<tr>
+<td><a id="removecapturedspy"></a>RemoveCapturedSpy</td>
+<td><code>Player:RemoveCapturedSpy(eOwner: integer, iNameIndex: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d1830</code></td>
+</tr>
+<tr>
 <td><a id="removechopfeaturebehavior"></a>RemoveChopFeatureBehavior</td>
 <td><code>Player:RemoveChopFeatureBehavior(eFeature: integer, bBan: boolean, eYield: integer)</code></td>
 <td>Removes a matching chop-feature rule from the player's rule list by copying the list, clearing it, and re-adding non-matching rules.</td>
@@ -130,12 +498,132 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x2fa1e0</code></td>
 </tr>
 <tr>
+<td><a id="removecounterspyyieldawardperlevel"></a>RemoveCounterSpyYieldAwardPerLevel</td>
+<td><code>Player:RemoveCounterSpyYieldAwardPerLevel(eYield: integer, iAmount: integer, iPerXAmount: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d19b0</code></td>
+</tr>
+<tr>
+<td><a id="removedistrictaddnavalunits"></a>RemoveDistrictAddNavalUnits</td>
+<td><code>Player:RemoveDistrictAddNavalUnits(eDistrict: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2fa330</code></td>
+</tr>
+<tr>
+<td><a id="removedistrictandbuildingscreateunitwithabilitybyclass"></a>RemoveDistrictAndBuildingsCreateUnitWithAbilityByClass</td>
+<td><code>Player:RemoveDistrictAndBuildingsCreateUnitWithAbilityByClass(eAbility: integer, eDistrict: integer, ePromotionClass: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c5330</code></td>
+</tr>
+<tr>
+<td><a id="removedistrictcreateunit"></a>RemoveDistrictCreateUnit</td>
+<td><code>Player:RemoveDistrictCreateUnit(eDistrict: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c53f0</code></td>
+</tr>
+<tr>
+<td><a id="removedistrictcreateyield"></a>RemoveDistrictCreateYield</td>
+<td><code>Player:RemoveDistrictCreateYield(eYield: integer, eDistrict: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c54b0</code></td>
+</tr>
+<tr>
+<td><a id="removefoundforeigncontinentcityaddunitclasses"></a>RemoveFoundForeignContinentCityAddUnitClasses</td>
+<td><code>Player:RemoveFoundForeignContinentCityAddUnitClasses(eUnitClass: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2fa470</code></td>
+</tr>
+<tr>
+<td><a id="removespecialallowedimprovement"></a>RemoveSpecialAllowedImprovement</td>
+<td><code>Player:RemoveSpecialAllowedImprovement(eImprovement: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2fa5b0</code></td>
+</tr>
+<tr>
 <td><a id="setalive"></a>SetAlive</td>
 <td><code>Player:SetAlive(bIsAlive: boolean)</code></td>
 <td>Sets whether a player is alive, re-initializes alive state and player lists, and on a change fires a revive signal and a reporting event.</td>
 <td>—</td>
 <td><a href="../native/Player.html#player__instance__setalive">Player::Instance::SetAlive</a></td>
 <td><code>0x2fa9a0</code></td>
+</tr>
+<tr>
+<td><a id="setavoidedrandomevents"></a>SetAvoidedRandomEvents</td>
+<td><code>Player:SetAvoidedRandomEvents(eEvent: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2faa80</code></td>
+</tr>
+<tr>
+<td><a id="setcaneverzone"></a>SetCanEverZone</td>
+<td><code>Player:SetCanEverZone()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c5a40</code></td>
+</tr>
+<tr>
+<td><a id="setdistrictunlockcivic"></a>SetDistrictUnlockCivic</td>
+<td><code>Player:SetDistrictUnlockCivic(eDistrict: integer, eCivic: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c5da0</code></td>
+</tr>
+<tr>
+<td><a id="setdistrictunlocktech"></a>SetDistrictUnlockTech</td>
+<td><code>Player:SetDistrictUnlockTech(eDistrict: integer, eTech: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2c5df0</code></td>
+</tr>
+<tr>
+<td><a id="sethasencountered"></a>SetHasEncountered</td>
+<td><code>Player:SetHasEncountered(eUnit: integer, bNewValue: boolean)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2faaf0</code></td>
+</tr>
+<tr>
+<td><a id="sethasfoundcontinent"></a>SetHasFoundContinent</td>
+<td><code>Player:SetHasFoundContinent(eContinentType: integer, bRevealed: boolean)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2fab20</code></td>
+</tr>
+<tr>
+<td><a id="setrevealedfeature"></a>SetRevealedFeature</td>
+<td><code>Player:SetRevealedFeature(eFeatureType: integer, bRevealed: boolean)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2fad10</code></td>
+</tr>
+<tr>
+<td><a id="updatewithescaperesult"></a>UpdateWithEscapeResult</td>
+<td><code>Player:UpdateWithEscapeResult(iNameIndex: integer, eOperation: integer, eTarget: integer, cityID: integer, eEscapeResult: integer, iNewLevel: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x2d2530</code></td>
 </tr>
 </tbody>
 </table>

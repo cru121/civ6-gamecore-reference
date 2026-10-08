@@ -1,0 +1,841 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PlayerInfluence</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › PlayerInfluence</p>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+
+<h1>PlayerInfluence</h1>
+<p>52 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerInfluence</code> instance resolver (plain).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Signature</th>
+<th>Purpose (AI-written, inferred)</th>
+<th>Tested</th>
+<th>Engine function</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="addlevydiscountpercent"></a>AddLevyDiscountPercent</td>
+<td><code>PlayerInfluence:AddLevyDiscountPercent(iNewValue: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e8e70</code></td>
+</tr>
+<tr>
+<td><a id="cangivetokenstoanyplayer"></a>CanGiveTokensToAnyPlayer</td>
+<td><code>PlayerInfluence:CanGiveTokensToAnyPlayer() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e8f70</code></td>
+</tr>
+<tr>
+<td><a id="canreceiveinfluencefrom"></a>CanReceiveInfluenceFrom</td>
+<td><code>PlayerInfluence:CanReceiveInfluenceFrom(fromPlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9260</code></td>
+</tr>
+<tr>
+<td><a id="changebasepointsperturn"></a>ChangeBasePointsPerTurn</td>
+<td><code>PlayerInfluence:ChangeBasePointsPerTurn(change: number (fixed point, 1/256 steps))</code></td>
+<td>Adds a delta to the base influence points per turn, clamping at zero, and sends an event.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__changebasepointsperturn">Player::Influence::ChangeBasePointsPerTurn</a></td>
+<td><code>0x2e92e0</code></td>
+</tr>
+<tr>
+<td><a id="changepointsthreshold"></a>ChangePointsThreshold</td>
+<td><code>PlayerInfluence:ChangePointsThreshold(change: integer)</code></td>
+<td>Adds a delta to the player influence points threshold (floored at zero) and fires an update event.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__changepointsthreshold">Player::Influence::ChangePointsThreshold</a></td>
+<td><code>0x2e9350</code></td>
+</tr>
+<tr>
+<td><a id="changesuzerainuniquebonusdisabledcount"></a>ChangeSuzerainUniqueBonusDisabledCount</td>
+<td><code>PlayerInfluence:ChangeSuzerainUniqueBonusDisabledCount(iChange: integer)</code></td>
+<td>Changes the counter that disables the city-state's unique suzerain bonus and signals whether it is now disabled.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__influence__changesuzerainuniquebonusdisabledcount">Player::Influence::ChangeSuzerainUniqueBonusDisabledCount</a></td>
+<td><code>0x2e93c0</code></td>
+</tr>
+<tr>
+<td><a id="changetokensperthreshold"></a>ChangeTokensPerThreshold</td>
+<td><code>PlayerInfluence:ChangeTokensPerThreshold(change: integer)</code></td>
+<td>Adds a signed delta to a player's influence tokens-per-threshold value, clamping at 0, then fires a reporting event for the owning player.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__changetokensperthreshold">Player::Influence::ChangeTokensPerThreshold</a></td>
+<td><code>0x2e9430</code></td>
+</tr>
+<tr>
+<td><a id="changetokensreceived"></a>ChangeTokensReceived</td>
+<td><code>PlayerInfluence:ChangeTokensReceived(fromPlayer: integer, iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e94a0</code></td>
+</tr>
+<tr>
+<td><a id="changetokensreceivedmodifier"></a>ChangeTokensReceivedModifier</td>
+<td><code>PlayerInfluence:ChangeTokensReceivedModifier(fromPlayer: integer, iDelta: integer)</code></td>
+<td>Changes the token-received modifier from one player toward this (city-state) player, updates the suzerain, and notifies listeners of the effective token change.</td>
+<td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
+<td><a href="../native/Player.html#player__influence__changetokensreceivedmodifier">Player::Influence::ChangeTokensReceivedModifier</a></td>
+<td><code>0x2e94c0</code></td>
+</tr>
+<tr>
+<td><a id="changevirtualtokensreceived"></a>ChangeVirtualTokensReceived</td>
+<td><code>PlayerInfluence:ChangeVirtualTokensReceived(fromPlayer: integer, iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9610</code></td>
+</tr>
+<tr>
+<td><a id="checkfortokensearned"></a>CheckForTokensEarned</td>
+<td><code>PlayerInfluence:CheckForTokensEarned()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9630</code></td>
+</tr>
+<tr>
+<td><a id="checksendtokennotification"></a>CheckSendTokenNotification</td>
+<td><code>PlayerInfluence:CheckSendTokenNotification()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9700</code></td>
+</tr>
+<tr>
+<td><a id="clearalltokensreceived"></a>ClearAllTokensReceived</td>
+<td><code>PlayerInfluence:ClearAllTokensReceived()</code></td>
+<td>Removes all tokens received from every other player (private cleanup), adjusting suzerain, religious pressure, diplomatic favor and firing signals per player.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__clearalltokensreceived">Player::Influence::ClearAllTokensReceived</a></td>
+<td><code>0x2e9730</code></td>
+</tr>
+<tr>
+<td><a id="counttokensgiventoanyplayer"></a>CountTokensGivenToAnyPlayer</td>
+<td><code>PlayerInfluence:CountTokensGivenToAnyPlayer() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9a30</code></td>
+</tr>
+<tr>
+<td><a id="counttributaries"></a>CountTributaries</td>
+<td><code>PlayerInfluence:CountTributaries() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9b30</code></td>
+</tr>
+<tr>
+<td><a id="decrementcopyluxuriescount"></a>DecrementCopyLuxuriesCount</td>
+<td><code>PlayerInfluence:DecrementCopyLuxuriesCount(toPlayer: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9bc0</code></td>
+</tr>
+<tr>
+<td><a id="decrementcopystrategicscount"></a>DecrementCopyStrategicsCount</td>
+<td><code>PlayerInfluence:DecrementCopyStrategicsCount(toPlayer: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9ce0</code></td>
+</tr>
+<tr>
+<td><a id="decrementopenborderscount"></a>DecrementOpenBordersCount</td>
+<td><code>PlayerInfluence:DecrementOpenBordersCount(toPlayer: integer)</code></td>
+<td>Decrements the count of open-borders sources toward a given player; when that drops to zero it revokes the open-borders-from flag in the other player's diplomacy.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__decrementopenborderscount">Player::Influence::DecrementOpenBordersCount</a></td>
+<td><code>0x2e9d20</code></td>
+</tr>
+<tr>
+<td><a id="doturn"></a>DoTurn</td>
+<td><code>PlayerInfluence:DoTurn()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2e9f90</code></td>
+</tr>
+<tr>
+<td><a id="getenemynonvirtualtokensreceived"></a>GetEnemyNonVirtualTokensReceived</td>
+<td><code>PlayerInfluence:GetEnemyNonVirtualTokensReceived(ePlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea1d0</code></td>
+</tr>
+<tr>
+<td><a id="getlevyturnlimit"></a>GetLevyTurnLimit</td>
+<td><code>PlayerInfluence:GetLevyTurnLimit() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea4a0</code></td>
+</tr>
+<tr>
+<td><a id="getmaxtokensreceived"></a>GetMaxTokensReceived</td>
+<td><code>PlayerInfluence:GetMaxTokensReceived(fromPlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea4d0</code></td>
+</tr>
+<tr>
+<td><a id="gettotaltokensreceived"></a>GetTotalTokensReceived</td>
+<td><code>PlayerInfluence:GetTotalTokensReceived() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea760</code></td>
+</tr>
+<tr>
+<td><a id="getvirtualtokensreceived"></a>GetVirtualTokensReceived</td>
+<td><code>PlayerInfluence:GetVirtualTokensReceived(fromPlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea830</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfromgiventokens"></a>GetYieldFromGivenTokens</td>
+<td><code>PlayerInfluence:GetYieldFromGivenTokens(yield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea890</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfromtributaries"></a>GetYieldFromTributaries</td>
+<td><code>PlayerInfluence:GetYieldFromTributaries(yield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea900</code></td>
+</tr>
+<tr>
+<td><a id="getyieldmodifierfromtributaries"></a>GetYieldModifierFromTributaries</td>
+<td><code>PlayerInfluence:GetYieldModifierFromTributaries(yield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea970</code></td>
+</tr>
+<tr>
+<td><a id="getyieldmodifierpertributary"></a>GetYieldModifierPerTributary</td>
+<td><code>PlayerInfluence:GetYieldModifierPerTributary(yield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ea9e0</code></td>
+</tr>
+<tr>
+<td><a id="getyieldpergiventoken"></a>GetYieldPerGivenToken</td>
+<td><code>PlayerInfluence:GetYieldPerGivenToken(yield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2eaa20</code></td>
+</tr>
+<tr>
+<td><a id="getyieldpertributary"></a>GetYieldPerTributary</td>
+<td><code>PlayerInfluence:GetYieldPerTributary(yield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2eaa60</code></td>
+</tr>
+<tr>
+<td><a id="givetokentoplayer"></a>GiveTokenToPlayer</td>
+<td><code>PlayerInfluence:GiveTokenToPlayer(toPlayer: integer) → boolean</code></td>
+<td>Gives one of the player's stored influence tokens to another player and decreases the number of tokens left to give.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__givetokentoplayer">Player::Influence::GiveTokenToPlayer</a></td>
+<td><code>0x2ead90</code></td>
+</tr>
+<tr>
+<td><a id="grantplayersuzerainship"></a>GrantPlayerSuzerainship</td>
+<td><code>PlayerInfluence:GrantPlayerSuzerainship(fromPlayer: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2eade0</code></td>
+</tr>
+<tr>
+<td><a id="incrementcopyluxuriescount"></a>IncrementCopyLuxuriesCount</td>
+<td><code>PlayerInfluence:IncrementCopyLuxuriesCount(toPlayer: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2eaee0</code></td>
+</tr>
+<tr>
+<td><a id="incrementcopystrategicscount"></a>IncrementCopyStrategicsCount</td>
+<td><code>PlayerInfluence:IncrementCopyStrategicsCount(toPlayer: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2eb000</code></td>
+</tr>
+<tr>
+<td><a id="incrementlevyturncounter"></a>IncrementLevyTurnCounter</td>
+<td><code>PlayerInfluence:IncrementLevyTurnCounter()</code></td>
+<td>Advances the levy turn counter for a player's suzerain levy relationship and, once it reaches the game-speed-adjusted limit, returns the levied military to its owner. Fires a reporting event afterwards.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__incrementlevyturncounter">Player::Influence::IncrementLevyTurnCounter</a></td>
+<td><code>0x2eb040</code></td>
+</tr>
+<tr>
+<td><a id="incrementopenborderscount"></a>IncrementOpenBordersCount</td>
+<td><code>PlayerInfluence:IncrementOpenBordersCount(toPlayer: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2eb220</code></td>
+</tr>
+<tr>
+<td><a id="removelevydiscountpercent"></a>RemoveLevyDiscountPercent</td>
+<td><code>PlayerInfluence:RemoveLevyDiscountPercent(iRemoveValue: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ec640</code></td>
+</tr>
+<tr>
+<td><a id="removenonsuzeraintokens"></a>RemoveNonSuzerainTokens</td>
+<td><code>PlayerInfluence:RemoveNonSuzerainTokens()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ec6b0</code></td>
+</tr>
+<tr>
+<td><a id="resetlevyturncounter"></a>ResetLevyTurnCounter</td>
+<td><code>PlayerInfluence:ResetLevyTurnCounter()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2ed110</code></td>
+</tr>
+<tr>
+<td><a id="setbasepointsperturn"></a>SetBasePointsPerTurn</td>
+<td><code>PlayerInfluence:SetBasePointsPerTurn(value: number (fixed point, 1/256 steps))</code></td>
+<td>Sets the base influence points per turn (negatives clamped to zero) and sends an event.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setbasepointsperturn">Player::Influence::SetBasePointsPerTurn</a></td>
+<td><code>0x2ed390</code></td>
+</tr>
+<tr>
+<td><a id="setduplicatefirsttokens"></a>SetDuplicateFirstTokens</td>
+<td><code>PlayerInfluence:SetDuplicateFirstTokens(value: integer)</code></td>
+<td>Sets how many extra tokens are given on the first token placement, only when the owner's government meets a required flag.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setduplicatefirsttokens">Player::Influence::SetDuplicateFirstTokens</a></td>
+<td><code>0x2ed3f0</code></td>
+</tr>
+<tr>
+<td><a id="setduplicatetokenswhenrivalgovernment"></a>SetDuplicateTokensWhenRivalGovernment</td>
+<td><code>PlayerInfluence:SetDuplicateTokensWhenRivalGovernment(value: integer)</code></td>
+<td>Sets the number of duplicate tokens granted when the other party has a rival government, only if the owner's government meets a required flag.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setduplicatetokenswhenrivalgovernment">Player::Influence::SetDuplicateTokensWhenRivalGovernment</a></td>
+<td><code>0x2ed480</code></td>
+</tr>
+<tr>
+<td><a id="setduplicatetokenswhensamereligion"></a>SetDuplicateTokensWhenSameReligion</td>
+<td><code>PlayerInfluence:SetDuplicateTokensWhenSameReligion(value: integer)</code></td>
+<td>Sets the number of duplicate tokens granted when the other party shares the owner's religion, only if the owner's government meets a required flag.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setduplicatetokenswhensamereligion">Player::Influence::SetDuplicateTokensWhenSameReligion</a></td>
+<td><code>0x2ed510</code></td>
+</tr>
+<tr>
+<td><a id="setduplicatetokenswhentraderouteto"></a>SetDuplicateTokensWhenTradeRouteTo</td>
+<td><code>PlayerInfluence:SetDuplicateTokensWhenTradeRouteTo(value: integer)</code></td>
+<td>Sets the number of duplicate tokens granted when the owner has a trade route to the other party, only if the owner's government meets a required flag.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setduplicatetokenswhentraderouteto">Player::Influence::SetDuplicateTokensWhenTradeRouteTo</a></td>
+<td><code>0x2ed5a0</code></td>
+</tr>
+<tr>
+<td><a id="setpointsearned"></a>SetPointsEarned</td>
+<td><code>PlayerInfluence:SetPointsEarned(value: number (fixed point, 1/256 steps))</code></td>
+<td>Sets influence points earned (clamped at zero) if the owning player is alive and its civilization level allows it, then sends an event.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setpointsearned">Player::Influence::SetPointsEarned</a></td>
+<td><code>0x2ed690</code></td>
+</tr>
+<tr>
+<td><a id="settokensonfirsttomeet"></a>SetTokensOnFirstToMeet</td>
+<td><code>PlayerInfluence:SetTokensOnFirstToMeet(value: integer)</code></td>
+<td>Sets how many tokens the owner receives for being the first to meet a player, only if the owner's government meets a required flag.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__settokensonfirsttomeet">Player::Influence::SetTokensOnFirstToMeet</a></td>
+<td><code>0x2ed730</code></td>
+</tr>
+<tr>
+<td><a id="settokensontraderoutestarted"></a>SetTokensOnTradeRouteStarted</td>
+<td><code>PlayerInfluence:SetTokensOnTradeRouteStarted(value: integer)</code></td>
+<td>Sets how many tokens the owner receives when a trade route is started, only if the owner's government meets a required flag.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__settokensontraderoutestarted">Player::Influence::SetTokensOnTradeRouteStarted</a></td>
+<td><code>0x2ed7c0</code></td>
+</tr>
+<tr>
+<td><a id="setvirtualtokensreceived"></a>SetVirtualTokensReceived</td>
+<td><code>PlayerInfluence:SetVirtualTokensReceived(fromPlayer: integer, value: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x2edbd0</code></td>
+</tr>
+<tr>
+<td><a id="setyieldmodifierpertributary"></a>SetYieldModifierPerTributary</td>
+<td><code>PlayerInfluence:SetYieldModifierPerTributary(yield: integer, value: number (fixed point, 1/256 steps))</code></td>
+<td>Sets the yield modifier per tributary city state for a yield type.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setyieldmodifierpertributary">Player::Influence::SetYieldModifierPerTributary</a></td>
+<td><code>0x2edd40</code></td>
+</tr>
+<tr>
+<td><a id="setyieldpergiventoken"></a>SetYieldPerGivenToken</td>
+<td><code>PlayerInfluence:SetYieldPerGivenToken(yield: integer, value: number (fixed point, 1/256 steps))</code></td>
+<td>Sets the yield granted per envoy token given, for a yield type.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setyieldpergiventoken">Player::Influence::SetYieldPerGivenToken</a></td>
+<td><code>0x2edd90</code></td>
+</tr>
+<tr>
+<td><a id="setyieldpertributary"></a>SetYieldPerTributary</td>
+<td><code>PlayerInfluence:SetYieldPerTributary(yield: integer, value: number (fixed point, 1/256 steps))</code></td>
+<td>Sets the flat yield gained per tributary for a yield type.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__setyieldpertributary">Player::Influence::SetYieldPerTributary</a></td>
+<td><code>0x2edde0</code></td>
+</tr>
+<tr>
+<td><a id="updatesuzerain"></a>UpdateSuzerain</td>
+<td><code>PlayerInfluence:UpdateSuzerain()</code></td>
+<td>Recomputes which major player is the suzerain of a city-state from per-player influence values and, on change, makes peace with the old suzerain's enemies, removes visibility/open borders, returns levied military and notifies.</td>
+<td>plumbing ✓</td>
+<td><a href="../native/Player.html#player__influence__updatesuzerain">Player::Influence::UpdateSuzerain</a></td>
+<td><code>0x2edf10</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Details</h2>
+<h3>ChangeBasePointsPerTurn</h3>
+<p>Arguments: <code>change</code> — delta (raw/256)</p>
+<p><strong>Writes</strong>
+- base points per turn at this+0xc0</p>
+<p><strong>Side effects</strong>
+- Reporting::Event 0xd35e571d with player id</p>
+<p><strong>Input checks:</strong> Clamps negative total to 0.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: must be applied everywhere. <strong>Risk:</strong> low (clamped). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- clamp at zero
+- sends event</p>
+<p><strong>Inferred</strong>
+- 0xd0 read vs 0xc0 write may be same value tracked</p>
+<p><strong>Open questions</strong>
+- reads at +0xd0 but writes at +0xc0</p>
+<h3>ChangePointsThreshold</h3>
+<p>Arguments: <code>change</code> — signed delta</p>
+<p><strong>Writes</strong>
+- tracked int at this+0xf0 (influence points threshold)</p>
+<p><strong>Side effects</strong>
+- sends event 0xd35e571d with owner id</p>
+<p><strong>Input checks:</strong> Clamps result to 0 minimum; no other validation.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state
+- private method normally called internally</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synchronised state. <strong>Risk:</strong> medium (Private method; clamped but a direct write.). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- Result clamped to &gt;= 0
+- Event 0xd35e571d sent after assignment</p>
+<p><strong>Inferred</strong>
+- Threshold is points needed for the next envoy</p>
+<p><strong>Open questions</strong>
+- The DistrictTypes template name is likely identical-code-folding noise</p>
+<h3>ChangeSuzerainUniqueBonusDisabledCount</h3>
+<p>Arguments: <code>iChange</code> — delta to counter</p>
+<p><strong>Writes</strong>
+- disabled count auto-variable at this+0x438 (value read at +0x448)</p>
+<p><strong>Side effects</strong>
+- signal (City const*, bool) at game signal +0xca8 with owner pointer and (count&gt;0)</p>
+<p><strong>Input checks:</strong> Zero change is a no-op; no lower bound clamp on the count.</p>
+<p><strong>Preconditions</strong>
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: synced counter. <strong>Risk:</strong> low (counter plus signal). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- no-op when change is 0
+- signal arg is whether count &gt; 0
+- no clamp on count</p>
+<p><strong>Inferred</strong>
+- signal arg type is mislabeled (owner is a Player, not City)</p>
+<h3>ChangeTokensPerThreshold</h3>
+<p>Arguments: <code>change</code> — signed amount added to the current value</p>
+<p><strong>Writes</strong>
+- tokens-per-threshold auto-variable at this+0x108 (new value = old at this+0x118 + change, min 0)</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send with hash 0xd35e571d and owner player id</p>
+<p><strong>Input checks:</strong> No input checks; negative result is clamped to 0.</p>
+<p><strong>Preconditions</strong>
+- owner player pointer at this+0x498 must be valid (dereferenced unchecked)
+- game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: writes synced auto-variable; safe only if called identically on all clients. <strong>Risk:</strong> low (simple counter with clamp). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- clamps result at 0
+- assigns via CopyAssignmentDo to this+0x108
+- sends event 0xd35e571d with owner id
+- owner pointer dereferenced without null check</p>
+<p><strong>Inferred</strong>
+- field is the tokens-per-threshold counter, name taken from function name
+- the auto-variable type shown in the template (DistrictTypes) is a Ghidra mislabel</p>
+<p><strong>Open questions</strong>
+- exact meaning of event hash 0xd35e571d</p>
+<h3>ChangeTokensReceivedModifier</h3>
+<p>Arguments: <code>fromPlayer</code> — player sending tokens; <code>iDelta</code> — amount to add to the modifier</p>
+<p><strong>Writes</strong>
+- per-player modifier array at this+0x228 (element += iDelta)
+- suzerain via UpdateSuzerain</p>
+<p><strong>Side effects</strong>
+- dispatches game signal (+0xc90) with players, effective delta and a flag derived from bit 31 of this+0x460
+- dispatches two per-player signals on the player's object at +0x798 (+0x120 and +0x138)
+- sends Reporting::Event 0x65c1d0a2 with owner id</p>
+<p><strong>Input checks:</strong> Silent no-op if fromPlayer &gt;= 64 or iDelta is 0. Negative fromPlayer is not explicitly checked in signature terms (unsigned compare in code).</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: changes influence/suzerain. <strong>Risk:</strong> medium (Can flip suzerain and fire several signals). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- bounds check &lt; 0x40 and delta != 0
+- UpdateSuzerain called after write
+- events and signals fire only if effective token count changed</p>
+<p><strong>Inferred</strong>
+- the modifier acts like bonus envoys
+- signal types shown are mis-resolved</p>
+<p><strong>Open questions</strong>
+- meaning of bit 31 of this+0x460</p>
+<h3>ClearAllTokensReceived</h3>
+<p><strong>Writes</strong>
+- tokens-received array at this+0x1c8 zeroed per player
+- array at this+0x258 zeroed where negative
+- suzerain via UpdateSuzerain
+- capital city religion pressure
+- diplomatic favor of the other player</p>
+<p><strong>Side effects</strong>
+- adds religious pressure to the owner's capital for players that founded a religion
+- changes diplomatic favor via Congress for a minor civ bonus
+- dispatches the same signals as ChangeTokensReceivedModifier per player
+- sends Reporting::Event 0x65c1d0a2 per cleared player</p>
+<p><strong>Input checks:</strong> Skips the owner itself and ids &gt;= 0x40. Per-player handling only if the computed delta is nonzero.</p>
+<p><strong>Preconditions</strong>
+- gameplay state
+- valid owner</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates many replicated values. <strong>Risk:</strong> high (Wide mutation of influence, religion and favor). <strong>Confidence of the reading:</strong> low.</p>
+<p><strong>Verified from the code</strong>
+- iterates the player manager's list
+- skips self
+- computes a negative delta from arrays
+- calls UpdateSuzerain, Congress favor and religion pressure</p>
+<p><strong>Inferred</strong>
+- delta formula looks like (x/100+1)*count; meaning unclear
+- applies only to minor civs for the favor part</p>
+<p><strong>Open questions</strong>
+- meaning of arrays at +0x1d8, +0x238, +0x268
+- exact semantic of the religion pressure amount</p>
+<h3>DecrementOpenBordersCount</h3>
+<p>Arguments: <code>toPlayer</code> — player id whose open-borders count is lowered</p>
+<p><strong>Writes</strong>
+- per-player int array in the variant map at this+0x288 (open borders count, entry decremented)
+- other player's Diplomacy open-borders-from flag toward the owner (cleared)</p>
+<p><strong>Side effects</strong>
+- calls Diplomacy::SetHasOpenBordersFrom(false) on the target player's diplomacy (owner id read at owner+0xd8)
+- fetches an editable target player via Context::Globals::EditPlayer</p>
+<p><strong>Input checks:</strong> Silently returns if the owner pointer is null or the player id is &gt;= 0x40. The count can go negative: no lower-bound check on the decrement. Diplomacy side only runs if CanReceiveInfluence is true and the count is below 1.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- owner player must be set
+- player id &lt; 64</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates replicated state and another player's diplomacy; must be called identically everywhere. <strong>Risk:</strong> medium (unchecked negative count and cross-player diplomacy mutation). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- bails if this+0x498 is null or id &gt;= 0x40
+- decrements an int in the map at this+0x288 indexed by player
+- clears HasOpenBordersFrom on target diplomacy only when count (this+0x298 array) &lt; 1 and flag set and CanReceiveInfluence</p>
+<p><strong>Inferred</strong>
+- this+0x288 and this+0x298 are the editable and read views of the same counts array
+- semantics are open-borders reference counting</p>
+<p><strong>Open questions</strong>
+- whether the two offsets are really the same array
+- why the counter can be driven negative</p>
+<h3>GiveTokenToPlayer</h3>
+<p>Arguments: <code>toPlayer</code> — recipient player id</p>
+<p><strong>Writes</strong>
+- tokens-to-give counter at this+0x130 (decremented by 1 via SetTokensToGive on success)</p>
+<p><strong>Side effects</strong>
+- calls GiveFreeTokenToPlayer, which grants the token to the recipient (effects not visible here)</p>
+<p><strong>Input checks:</strong> Returns false when tokens-to-give is below 1. Validation of the player id is delegated to GiveFreeTokenToPlayer.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- must run on the game thread</p>
+<p><strong>Multiplayer:</strong> may-desync: state change must be applied identically on all clients. <strong>Risk:</strong> medium (grants influence to another player; recipient id validation not visible). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- returns false if this+0x130 &lt; 1
+- calls GiveFreeTokenToPlayer then SetTokensToGive(count-1) only if that returned true
+- returns the result of GiveFreeTokenToPlayer</p>
+<p><strong>Inferred</strong>
+- tokens are envoys given to city-states</p>
+<p><strong>Open questions</strong>
+- what GiveFreeTokenToPlayer validates</p>
+<h3>IncrementLevyTurnCounter</h3>
+<p><strong>Writes</strong>
+- levy turn counter at this+0x460 (incremented by 1)
+- registers the variable at this+0x450 in a std::set held at this+0x458 (change-tracking set, if not already present)</p>
+<p><strong>Side effects</strong>
+- calls ReturnLeviedMilitary on the suzerain's influence object when counter &gt;= limit
+- Reporting::Event::Send hash 0xf2f69b23 with owner id (skipped if suzerain id is -1 at the return branch)</p>
+<p><strong>Input checks:</strong> Silent return if owner null, owner flag at +600 is 0, level definition missing, or definition flag (bit 7 at +0x28) not set. If counter reaches limit and suzerain is -1 it returns silently without event.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- owner player valid</p>
+<p><strong>Multiplayer:</strong> may-desync: mutates synced counter; must run identically on all clients. <strong>Risk:</strong> medium (returning levied units has wide effects). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- increments this+0x460 by one
+- compares against AdjustForGameSpeed of a global parameter
+- calls ReturnLeviedMilitary with suzerain's influence object
+- sends event 0xf2f69b23</p>
+<p><strong>Inferred</strong>
+- the +0x450 tree insert is the usual auto-variable dirty-set registration
+- definition flag likely means 'is city-state' type level</p>
+<p><strong>Open questions</strong>
+- exact meaning of the level/definition flag at +0x28 bit 7
+- which game parameter is at ms_pkParameters+0x450</p>
+<h3>SetBasePointsPerTurn</h3>
+<p>Arguments: <code>value</code> — new value (raw/256)</p>
+<p><strong>Writes</strong>
+- base points per turn at this+0xc0</p>
+<p><strong>Side effects</strong>
+- Reporting::Event 0xd35e571d</p>
+<p><strong>Input checks:</strong> Negative input clamped to zero (input itself is modified).</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: must be applied everywhere. <strong>Risk:</strong> low (clamped). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- clamp and write
+- event</p>
+<h3>SetDuplicateFirstTokens</h3>
+<p>Arguments: <code>value</code> — number of duplicate first tokens; negatives are clamped to 0</p>
+<p><strong>Writes</strong>
+- int auto-variable at this+0x138</p>
+<p><strong>Side effects</strong>
+- auto-variable assign likely marks state dirty</p>
+<p><strong>Input checks:</strong> Silently does nothing if the owner is null, the owner flag at +0x258 is zero, the definition lookup fails, or definition flag bit 6 is clear. Negative values are clamped to 0.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- owner player must be set and active</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (clamped value with silent gating). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- gated by owner non null and owner+0x258 nonzero
+- looks up a definition via GetLevel and the civilization level definitions, and requires bit 6 of byte +0x28
+- clamps negative to 0 and stores at this+0x138</p>
+<p><strong>Inferred</strong>
+- gating flag is a government property enabling token bonuses; exact meaning unknown
+- the semantic name comes from the function name</p>
+<p><strong>Open questions</strong>
+- what definition flag bit 6 means
+- whether the Find call really targets the Government collection (symbol is confusing)</p>
+<h3>SetDuplicateTokensWhenRivalGovernment</h3>
+<p>Arguments: <code>value</code> — duplicate token count; negatives clamped to 0</p>
+<p><strong>Writes</strong>
+- int auto-variable at this+0x180</p>
+<p><strong>Side effects</strong>
+- auto-variable assign likely marks state dirty</p>
+<p><strong>Input checks:</strong> Silently does nothing if owner null, owner flag at +0x258 zero, definition not found, or flag bit 6 clear. Negatives clamped to 0.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- owner player must be set and active</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (clamped value with silent gating). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- same gating and clamp as the other Influence token setters
+- stores at this+0x180</p>
+<p><strong>Inferred</strong>
+- meaning of the field follows the function name</p>
+<p><strong>Open questions</strong>
+- meaning of definition flag bit 6
+- where the field is consumed</p>
+<h3>SetDuplicateTokensWhenSameReligion</h3>
+<p>Arguments: <code>value</code> — duplicate token count; negatives clamped to 0</p>
+<p><strong>Writes</strong>
+- int auto-variable at this+0x1b0</p>
+<p><strong>Side effects</strong>
+- auto-variable assign likely marks state dirty</p>
+<p><strong>Input checks:</strong> Silently does nothing if owner null, owner flag at +0x258 zero, definition not found, or flag bit 6 clear. Negatives clamped to 0.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- owner player must be set and active</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (clamped value with silent gating). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- same gating and clamp as the other Influence token setters
+- stores at this+0x1b0</p>
+<p><strong>Inferred</strong>
+- meaning follows the function name</p>
+<p><strong>Open questions</strong>
+- meaning of definition flag bit 6
+- where the field is consumed</p>
+<h3>SetDuplicateTokensWhenTradeRouteTo</h3>
+<p>Arguments: <code>value</code> — duplicate token count; negatives clamped to 0</p>
+<p><strong>Writes</strong>
+- int auto-variable at this+0x198</p>
+<p><strong>Side effects</strong>
+- auto-variable assign likely marks state dirty</p>
+<p><strong>Input checks:</strong> Silently does nothing if owner null, owner flag at +0x258 zero, definition not found, or flag bit 6 clear. Negatives clamped to 0.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- owner player must be set and active</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (clamped value with silent gating). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- same gating and clamp as the other Influence token setters
+- stores at this+0x198</p>
+<p><strong>Inferred</strong>
+- meaning follows the function name</p>
+<p><strong>Open questions</strong>
+- meaning of definition flag bit 6
+- where the field is consumed</p>
+<h3>SetPointsEarned</h3>
+<p>Arguments: <code>value</code> — new value (raw/256)</p>
+<p><strong>Writes</strong>
+- points earned at this+0xa8</p>
+<p><strong>Side effects</strong>
+- Reporting::Event 0xd35e571d</p>
+<p><strong>Input checks:</strong> Silently does nothing if no owner, owner not alive, or level lacks the flag.</p>
+<p><strong>Preconditions</strong>
+- gameplay state</p>
+<p><strong>Multiplayer:</strong> may-desync: must be applied everywhere. <strong>Risk:</strong> low (guarded). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- guard on alive and level flag
+- clamp</p>
+<p><strong>Inferred</strong>
+- flag likely means level has influence</p>
+<h3>SetTokensOnFirstToMeet</h3>
+<p>Arguments: <code>value</code> — token count; negatives clamped to 0</p>
+<p><strong>Writes</strong>
+- int auto-variable at this+0x150</p>
+<p><strong>Side effects</strong>
+- auto-variable assign likely marks state dirty</p>
+<p><strong>Input checks:</strong> Silently does nothing if owner null, owner flag at +0x258 zero, definition not found, or flag bit 6 clear. Negatives clamped to 0.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- owner player must be set and active</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (clamped value with silent gating). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- same gating and clamp as the other Influence token setters
+- stores at this+0x150</p>
+<p><strong>Inferred</strong>
+- meaning follows the function name</p>
+<p><strong>Open questions</strong>
+- meaning of definition flag bit 6
+- where the field is consumed</p>
+<h3>SetTokensOnTradeRouteStarted</h3>
+<p>Arguments: <code>value</code> — token count; negatives clamped to 0</p>
+<p><strong>Writes</strong>
+- int auto-variable at this+0x168</p>
+<p><strong>Side effects</strong>
+- auto-variable assign likely marks state dirty</p>
+<p><strong>Input checks:</strong> Silently does nothing if owner null, owner flag at +0x258 zero, definition not found, or flag bit 6 clear. Negatives clamped to 0.</p>
+<p><strong>Preconditions</strong>
+- gameplay Lua state only
+- owner player must be set and active</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (clamped value with silent gating). <strong>Confidence of the reading:</strong> medium.</p>
+<p><strong>Verified from the code</strong>
+- same gating and clamp as the other Influence token setters
+- stores at this+0x168</p>
+<p><strong>Inferred</strong>
+- meaning follows the function name</p>
+<p><strong>Open questions</strong>
+- meaning of definition flag bit 6
+- where the field is consumed</p>
+<h3>SetYieldModifierPerTributary</h3>
+<p>Arguments: <code>yield</code> — yield type index; <code>value</code> — new value raw/256</p>
+<p><strong>Writes</strong>
+- array element in VariantMap at this+0x3d8</p>
+<p><strong>Input checks:</strong> Unsigned bound check; invalid silently ignored.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- stores *param in element</p>
+<h3>SetYieldPerGivenToken</h3>
+<p>Arguments: <code>yield</code> — yield type index; <code>value</code> — new value raw/256</p>
+<p><strong>Writes</strong>
+- array element in VariantMap at this+0x378</p>
+<p><strong>Input checks:</strong> Unsigned bound check; invalid silently ignored.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- stores *param in element</p>
+<p><strong>Inferred</strong>
+- token means envoy/influence token from name</p>
+<h3>SetYieldPerTributary</h3>
+<p>Arguments: <code>yield</code> — yield type index; <code>value</code> — new value raw/256</p>
+<p><strong>Writes</strong>
+- array element in VariantMap at this+0x3a8</p>
+<p><strong>Input checks:</strong> Unsigned bound check; invalid silently ignored.</p>
+<p><strong>Preconditions</strong>
+- gameplay state only</p>
+<p><strong>Multiplayer:</strong> may-desync: direct state write. <strong>Risk:</strong> low (bounds checked). <strong>Confidence of the reading:</strong> high.</p>
+<p><strong>Verified from the code</strong>
+- bounds check
+- stores *param in element</p>
+<h3>UpdateSuzerain</h3>
+<p><strong>Writes</strong>
+- suzerain player id at this+0x408 (assigned from result)
+- registers change in set at this+0x420/0x428
+- war-changed turn for pairs set to -1 via DiplomaticRelations
+- peace made on owner's Diplomacy</p>
+<p><strong>Side effects</strong>
+- Diplomacy::MakePeaceWith for players at war with owner
+- removes outgoing visibility for old suzerain
+- DecrementOpenBordersCount
+- ReturnLeviedMilitary if levy counter &gt;= 0
+- Reporting::Notification::Send with localized text and capital location</p>
+<p><strong>Input checks:</strong> Returns silently when owner is invalid/not a city-state level, or old/new suzerain id is out of range (&gt;0x40) or not an active player.</p>
+<p><strong>Preconditions</strong>
+- game thread
+- owner must be a city-state-like player</p>
+<p><strong>Multiplayer:</strong> may-desync: large diplomatic state mutation; must be deterministic across clients. <strong>Risk:</strong> high (changes diplomacy, visibility, units and sends notifications). <strong>Confidence of the reading:</strong> low.</p>
+<p><strong>Verified from the code</strong>
+- suzerain is the player with the highest influence value that is at least a global threshold; a tie yields -1
+- early returns when old equals new suzerain
+- calls MakePeaceWith and sets war-changed turn to -1
+- sends a notification via Reporting::Notification::Send</p>
+<p><strong>Inferred</strong>
+- influence = (base + bonus) scaled by percent at +0x238
+- the pieces after the truncation presumably assign the new suzerain and run new-suzerain effects</p>
+<p><strong>Open questions</strong>
+- decompiled C is truncated, so the new-suzerain assignment/notification half is not seen
+- exact roles of arrays at +0x1d8/+0x208/+0x238</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

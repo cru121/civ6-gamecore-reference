@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › PlayerTrade</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>PlayerTrade</h1>
-<p>30 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerTrade</code> instance resolver (virtual).</p>
+<p>37 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerTrade</code> instance resolver (virtual).</p>
 <table>
 <thead>
 <tr>
@@ -88,6 +88,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>plumbing ✓<br>⚠ ran ±1, <strong>not fully reversible</strong> (lasting side effects): GetGoldYield, GetFoodSurplus, GetTurnsUntilGrowth</td>
 <td><a href="../native/Player.html#player__trade__changedomestictradedisabledcount">Player::Trade::ChangeDomesticTradeDisabledCount</a></td>
 <td><code>0x33c4b0</code></td>
+</tr>
+<tr>
+<td><a id="changeextrawaterrangerefuel"></a>ChangeExtraWaterRangeRefuel</td>
+<td><code>PlayerTrade:ChangeExtraWaterRangeRefuel(iChange: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x33c520</code></td>
 </tr>
 <tr>
 <td><a id="changeflatyieldbonus"></a>ChangeFlatYieldBonus ✓</td>
@@ -234,6 +242,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x33cce0</code></td>
 </tr>
 <tr>
+<td><a id="changeyieldbonusforprogressdifference"></a>ChangeYieldBonusForProgressDifference</td>
+<td><code>PlayerTrade:ChangeYieldBonusForProgressDifference(iTechsCivicsPerYield: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x33cd40</code></td>
+</tr>
+<tr>
 <td><a id="changeyieldperfollower"></a>ChangeYieldPerFollower</td>
 <td><code>PlayerTrade:ChangeYieldPerFollower(eYield: integer, xChange: number (fixed point, 1/256 steps))</code></td>
 <td>Adds a signed amount to the yield-per-religious-follower bonus applied to trade routes.</td>
@@ -264,6 +280,46 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
 <td><a href="../native/Player.html#player__trade__changeyieldpertradingpostinowncity">Player::Trade::ChangeYieldPerTradingPostInOwnCity</a></td>
 <td><code>0x33ce60</code></td>
+</tr>
+<tr>
+<td><a id="checkcapacitynotification"></a>CheckCapacityNotification</td>
+<td><code>PlayerTrade:CheckCapacityNotification()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x33ceb0</code></td>
+</tr>
+<tr>
+<td><a id="doturnactivate"></a>DoTurnActivate</td>
+<td><code>PlayerTrade:DoTurnActivate()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x33d4d0</code></td>
+</tr>
+<tr>
+<td><a id="getdestinationyieldmodifier"></a>GetDestinationYieldModifier</td>
+<td><code>PlayerTrade:GetDestinationYieldModifier(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x33d620</code></td>
+</tr>
+<tr>
+<td><a id="getinternationalyieldmodifier"></a>GetInternationalYieldModifier</td>
+<td><code>PlayerTrade:GetInternationalYieldModifier(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x33da30</code></td>
+</tr>
+<tr>
+<td><a id="getoriginyieldmodifier"></a>GetOriginYieldModifier</td>
+<td><code>PlayerTrade:GetOriginYieldModifier(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x33dbb0</code></td>
 </tr>
 </tbody>
 </table>

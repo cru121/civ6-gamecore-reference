@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › CityBuildings</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>CityBuildings</h1>
-<p>9 methods (Dev CE test build). <code>this</code> is found with the game's own <code>ICityBuildings</code> instance resolver (plain).</p>
+<p>27 methods (Dev CE test build). <code>this</code> is found with the game's own <code>ICityBuildings</code> instance resolver (plain).</p>
 <table>
 <thead>
 <tr>
@@ -82,12 +82,156 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x10a1d0</code></td>
 </tr>
 <tr>
+<td><a id="checkforthemedbuilding"></a>CheckForThemedBuilding</td>
+<td><code>CityBuildings:CheckForThemedBuilding(eBuilding: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10a2c0</code></td>
+</tr>
+<tr>
+<td><a id="getfreeslot"></a>GetFreeSlot</td>
+<td><code>CityBuildings:GetFreeSlot(eBuilding: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10b7a0</code></td>
+</tr>
+<tr>
+<td><a id="getfreeslotoftype"></a>GetFreeSlotOfType</td>
+<td><code>CityBuildings:GetFreeSlotOfType(eBuilding: integer, slotType: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10b800</code></td>
+</tr>
+<tr>
+<td><a id="getnumbuildings"></a>GetNumBuildings</td>
+<td><code>CityBuildings:GetNumBuildings() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10bab0</code></td>
+</tr>
+<tr>
+<td><a id="getnumbuildingsatlocation"></a>GetNumBuildingsAtLocation</td>
+<td><code>CityBuildings:GetNumBuildingsAtLocation(iPlotIndex: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10bb40</code></td>
+</tr>
+<tr>
+<td><a id="getnumfreeslots"></a>GetNumFreeSlots</td>
+<td><code>CityBuildings:GetNumFreeSlots(slotType: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10bbb0</code></td>
+</tr>
+<tr>
+<td><a id="getnumgreatworks"></a>GetNumGreatWorks</td>
+<td><code>CityBuildings:GetNumGreatWorks(eGreatWorkObjectTypeFilter: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10bc50</code></td>
+</tr>
+<tr>
+<td><a id="getnumwonders"></a>GetNumWonders</td>
+<td><code>CityBuildings:GetNumWonders() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10bd40</code></td>
+</tr>
+<tr>
+<td><a id="gettourismfromgreatworks"></a>GetTourismFromGreatWorks</td>
+<td><code>CityBuildings:GetTourismFromGreatWorks(bReligious: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10bdd0</code></td>
+</tr>
+<tr>
+<td><a id="gettourismfromonewonder"></a>GetTourismFromOneWonder</td>
+<td><code>CityBuildings:GetTourismFromOneWonder(eBuilding: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10be50</code></td>
+</tr>
+<tr>
+<td><a id="gettourismfromwonders"></a>GetTourismFromWonders</td>
+<td><code>CityBuildings:GetTourismFromWonders() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10bf80</code></td>
+</tr>
+<tr>
+<td><a id="getyieldchange"></a>GetYieldChange</td>
+<td><code>CityBuildings:GetYieldChange(eBuilding: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10c0e0</code></td>
+</tr>
+<tr>
+<td><a id="getyieldchangecitystates"></a>GetYieldChangeCityStates</td>
+<td><code>CityBuildings:GetYieldChangeCityStates(eBuilding: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10c250</code></td>
+</tr>
+<tr>
+<td><a id="getyieldchangefromfeature"></a>GetYieldChangeFromFeature</td>
+<td><code>CityBuildings:GetYieldChangeFromFeature(eFeature: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10c290</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfromgreatworks"></a>GetYieldFromGreatWorks</td>
+<td><code>CityBuildings:GetYieldFromGreatWorks(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10c2d0</code></td>
+</tr>
+<tr>
+<td><a id="getyieldmodifier"></a>GetYieldModifier</td>
+<td><code>CityBuildings:GetYieldModifier(eBuilding: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10c350</code></td>
+</tr>
+<tr>
+<td><a id="isincity"></a>IsInCity</td>
+<td><code>CityBuildings:IsInCity(iIndex: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td><a href="../native/City.html#city__buildings__isincity">City::Buildings::IsInCity</a></td>
+<td><code>0x10cc60</code></td>
+</tr>
+<tr>
 <td><a id="removeallbuildings"></a>RemoveAllBuildings</td>
 <td><code>CityBuildings:RemoveAllBuildings()</code></td>
 <td>Removes every building from a city: for each building slot it clears the plot link and wonder status, removes great-work slots, and sends removal events.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/City.html#city__buildings__removeallbuildings">City::Buildings::RemoveAllBuildings</a></td>
 <td><code>0x10cf80</code></td>
+</tr>
+<tr>
+<td><a id="removeyieldmodifier"></a>RemoveYieldModifier</td>
+<td><code>CityBuildings:RemoveYieldModifier(eBuilding: integer, eYield: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x10d5c0</code></td>
 </tr>
 <tr>
 <td><a id="seteracreatedtogameera"></a>SetEraCreatedToGameEra</td>

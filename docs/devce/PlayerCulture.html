@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › PlayerCulture</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>PlayerCulture</h1>
-<p>12 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerCulture</code> instance resolver (virtual).</p>
+<p>49 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerCulture</code> instance resolver (virtual).</p>
 <table>
 <thead>
 <tr>
@@ -34,6 +34,38 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x279f60</code></td>
 </tr>
 <tr>
+<td><a id="addtourismintofavor"></a>AddTourismIntoFavor</td>
+<td><code>PlayerCulture:AddTourismIntoFavor(iTourism: integer, iFavor: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27a090</code></td>
+</tr>
+<tr>
+<td><a id="applytourism"></a>ApplyTourism</td>
+<td><code>PlayerCulture:ApplyTourism()</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27a0e0</code></td>
+</tr>
+<tr>
+<td><a id="canfillallpolicyslots"></a>CanFillAllPolicySlots</td>
+<td><code>PlayerCulture:CanFillAllPolicySlots() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27b790</code></td>
+</tr>
+<tr>
+<td><a id="cantriggerboost"></a>CanTriggerBoost</td>
+<td><code>PlayerCulture:CanTriggerBoost(eCivic: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27be50</code></td>
+</tr>
+<tr>
 <td><a id="changegreatworkobjecttourismmodifier"></a>ChangeGreatWorkObjectTourismModifier</td>
 <td><code>PlayerCulture:ChangeGreatWorkObjectTourismModifier(eGreatWorkObjectType: integer, iModDelta: integer)</code></td>
 <td>Adds a delta to the tourism modifier for a specific great work object type, if that type already has a record.</td>
@@ -42,12 +74,156 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x27c0b0</code></td>
 </tr>
 <tr>
+<td><a id="changetourismmodifier"></a>ChangeTourismModifier</td>
+<td><code>PlayerCulture:ChangeTourismModifier(iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27c110</code></td>
+</tr>
+<tr>
 <td><a id="changetourismon"></a>ChangeTourismOn</td>
 <td><code>PlayerCulture:ChangeTourismOn(ePlayer: integer, xValue: number (fixed point, 1/256 steps))</code></td>
 <td>Adds a delta to this player's accumulated tourism toward another player.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/Player.html#player__culture__changetourismon">Player::Culture::ChangeTourismOn</a></td>
 <td><code>0x27c140</code></td>
+</tr>
+<tr>
+<td><a id="checkfordominance"></a>CheckForDominance</td>
+<td><code>PlayerCulture:CheckForDominance()</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27c190</code></td>
+</tr>
+<tr>
+<td><a id="computetourismon"></a>ComputeTourismOn</td>
+<td><code>PlayerCulture:ComputeTourismOn(ePlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27ca80</code></td>
+</tr>
+<tr>
+<td><a id="computeturnsuntildominant"></a>ComputeTurnsUntilDominant</td>
+<td><code>PlayerCulture:ComputeTurnsUntilDominant(ePlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27cf40</code></td>
+</tr>
+<tr>
+<td><a id="doculture"></a>DoCulture</td>
+<td><code>PlayerCulture:DoCulture()</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27d3c0</code></td>
+</tr>
+<tr>
+<td><a id="doendturn"></a>DoEndTurn</td>
+<td><code>PlayerCulture:DoEndTurn()</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27d770</code></td>
+</tr>
+<tr>
+<td><a id="getfavorperturnfrombuilding"></a>GetFavorPerTurnFromBuilding</td>
+<td><code>PlayerCulture:GetFavorPerTurnFromBuilding(eBuilding: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e1e0</code></td>
+</tr>
+<tr>
+<td><a id="getfavorperturnfrompolicy"></a>GetFavorPerTurnFromPolicy</td>
+<td><code>PlayerCulture:GetFavorPerTurnFromPolicy(ePolicy: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e210</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkobjectnotourism"></a>GetGreatWorkObjectNoTourism</td>
+<td><code>PlayerCulture:GetGreatWorkObjectNoTourism(eGreatWorkObjectType: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e240</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkobjecttourismmodifier"></a>GetGreatWorkObjectTourismModifier</td>
+<td><code>PlayerCulture:GetGreatWorkObjectTourismModifier(eGreatWorkObjectType: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e270</code></td>
+</tr>
+<tr>
+<td><a id="getnumcivicscompleted"></a>GetNumCivicsCompleted</td>
+<td><code>PlayerCulture:GetNumCivicsCompleted(bIncludeRepeatedCivics: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e2e0</code></td>
+</tr>
+<tr>
+<td><a id="getnumpoliciesenactedspecifictype"></a>GetNumPoliciesEnactedSpecificType</td>
+<td><code>PlayerCulture:GetNumPoliciesEnactedSpecificType(eGovernmentSlot: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e390</code></td>
+</tr>
+<tr>
+<td><a id="getnumpoliciesunlocked"></a>GetNumPoliciesUnlocked</td>
+<td><code>PlayerCulture:GetNumPoliciesUnlocked() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e4e0</code></td>
+</tr>
+<tr>
+<td><a id="getnumpolicyslotsopen"></a>GetNumPolicySlotsOpen</td>
+<td><code>PlayerCulture:GetNumPolicySlotsOpen() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e590</code></td>
+</tr>
+<tr>
+<td><a id="getothergovernmentintolerancemodifier"></a>GetOtherGovernmentIntoleranceModifier</td>
+<td><code>PlayerCulture:GetOtherGovernmentIntoleranceModifier(GovA: integer, GovB: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e640</code></td>
+</tr>
+<tr>
+<td><a id="getslottype"></a>GetSlotType</td>
+<td><code>PlayerCulture:GetSlotType(iSlotIndex: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27e940</code></td>
+</tr>
+<tr>
+<td><a id="gettourismnationalparksmodifier"></a>GetTourismNationalParksModifier</td>
+<td><code>PlayerCulture:GetTourismNationalParksModifier() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x27fe90</code></td>
+</tr>
+<tr>
+<td><a id="gettouriststo"></a>GetTouristsTo</td>
+<td><code>PlayerCulture:GetTouristsTo() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x2805b0</code></td>
 </tr>
 <tr>
 <td><a id="grantrandomboostgoodyhut"></a>GrantRandomBoostGoodyHut</td>
@@ -66,6 +242,38 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x280c80</code></td>
 </tr>
 <tr>
+<td><a id="grantrandomcivics"></a>GrantRandomCivics</td>
+<td><code>PlayerCulture:GrantRandomCivics(iNumCivics: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x280fb0</code></td>
+</tr>
+<tr>
+<td><a id="hasfeaturesmodifiedunlock"></a>HasFeaturesModifiedUnlock</td>
+<td><code>PlayerCulture:HasFeaturesModifiedUnlock(eFeature: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x2815e0</code></td>
+</tr>
+<tr>
+<td><a id="iscivicrevealed"></a>IsCivicRevealed</td>
+<td><code>PlayerCulture:IsCivicRevealed(eCivic: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x281c80</code></td>
+</tr>
+<tr>
+<td><a id="isprogressingcivic"></a>IsProgressingCivic</td>
+<td><code>PlayerCulture:IsProgressingCivic(eCivic: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x282210</code></td>
+</tr>
+<tr>
 <td><a id="recomputetourismon"></a>RecomputeTourismOn</td>
 <td><code>PlayerCulture:RecomputeTourismOn(ePlayer: integer)</code></td>
 <td>Recomputes how many tourists this player receives from another player's culture and updates the stored value and the other player's tourism-related total by the difference.</td>
@@ -74,12 +282,60 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x282cb0</code></td>
 </tr>
 <tr>
+<td><a id="removeculturebombtrigger"></a>RemoveCultureBombTrigger</td>
+<td><code>PlayerCulture:RemoveCultureBombTrigger(eBuilding: integer, bCapturesOwnedTiles: boolean)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x282e80</code></td>
+</tr>
+<tr>
+<td><a id="removegovernmenttypeslotmodifier"></a>RemoveGovernmentTypeSlotModifier</td>
+<td><code>PlayerCulture:RemoveGovernmentTypeSlotModifier(eGovernmentType: integer, eSlotType: integer, bAddSlot: boolean)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x282f30</code></td>
+</tr>
+<tr>
+<td><a id="removemodifiedpolicyslot"></a>RemoveModifiedPolicySlot</td>
+<td><code>PlayerCulture:RemoveModifiedPolicySlot(eGovSlot: integer, bAddSlot: boolean)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x283060</code></td>
+</tr>
+<tr>
+<td><a id="removereplacedpolicyslot"></a>RemoveReplacedPolicySlot</td>
+<td><code>PlayerCulture:RemoveReplacedPolicySlot(eReplacedSlot: integer, eAddedSlot: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x2831a0</code></td>
+</tr>
+<tr>
+<td><a id="removetourismintofavor"></a>RemoveTourismIntoFavor</td>
+<td><code>PlayerCulture:RemoveTourismIntoFavor(iTourism: integer, iFavor: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x283300</code></td>
+</tr>
+<tr>
 <td><a id="setallcivicsbypreviousera"></a>SetAllCivicsByPreviousEra</td>
 <td><code>PlayerCulture:SetAllCivicsByPreviousEra(eEraType: integer)</code></td>
 <td>Marks as completed every civic whose era is earlier than the given era (era index &gt;1), notifying listeners for each and once overall.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/Player.html#player__culture__setallcivicsbypreviousera">Player::Culture::SetAllCivicsByPreviousEra</a></td>
 <td><code>0x284060</code></td>
+</tr>
+<tr>
+<td><a id="setcultureratechange"></a>SetCultureRateChange</td>
+<td><code>PlayerCulture:SetCultureRateChange(xNewValue: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x284990</code></td>
 </tr>
 <tr>
 <td><a id="setfavorperturnfrombuilding"></a>SetFavorPerTurnFromBuilding</td>
@@ -98,12 +354,36 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x284d60</code></td>
 </tr>
 <tr>
+<td><a id="setfeaturemodifiedunlock"></a>SetFeatureModifiedUnlock</td>
+<td><code>PlayerCulture:SetFeatureModifiedUnlock(eFeature: integer, eCivic: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x284e20</code></td>
+</tr>
+<tr>
+<td><a id="setgovernmenttypeslotmodifier"></a>SetGovernmentTypeSlotModifier</td>
+<td><code>PlayerCulture:SetGovernmentTypeSlotModifier(eGovernmentType: integer, eSlotType: integer, bAddSlot: boolean)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x284e90</code></td>
+</tr>
+<tr>
 <td><a id="setgreatworkobjectnotourism"></a>SetGreatWorkObjectNoTourism</td>
 <td><code>PlayerCulture:SetGreatWorkObjectNoTourism(eGreatWorkObjectType: integer, bNoTourism: boolean)</code></td>
 <td>Sets a flag that makes a great work object type produce no tourism, if the type has a record.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/Player.html#player__culture__setgreatworkobjectnotourism">Player::Culture::SetGreatWorkObjectNoTourism</a></td>
 <td><code>0x285030</code></td>
+</tr>
+<tr>
+<td><a id="setmodifiedpolicyslot"></a>SetModifiedPolicySlot</td>
+<td><code>PlayerCulture:SetModifiedPolicySlot(eGovSlot: integer, bAddSlot: boolean)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x285090</code></td>
 </tr>
 <tr>
 <td><a id="setnumfreecivicboostonnewera"></a>SetNumFreeCivicBoostOnNewEra</td>
@@ -120,6 +400,22 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/Player.html#player__culture__setpolicybanned">Player::Culture::SetPolicyBanned</a></td>
 <td><code>0x285230</code></td>
+</tr>
+<tr>
+<td><a id="setpolicychangemade"></a>SetPolicyChangeMade</td>
+<td><code>PlayerCulture:SetPolicyChangeMade(bNewValue: boolean)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x285300</code></td>
+</tr>
+<tr>
+<td><a id="setreplacedpolicyslot"></a>SetReplacedPolicySlot</td>
+<td><code>PlayerCulture:SetReplacedPolicySlot(eReplacedSlot: integer, eAddedSlot: integer, bReplacesAll: boolean)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x285920</code></td>
 </tr>
 </tbody>
 </table>

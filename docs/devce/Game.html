@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › Game</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>Game</h1>
-<p>6 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IGame</code> instance resolver (plain).</p>
+<p>55 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IGame</code> instance resolver (plain).</p>
 <table>
 <thead>
 <tr>
@@ -25,6 +25,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a id="attachscorelisteners"></a>AttachScoreListeners</td>
+<td><code>Game:AttachScoreListeners()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x198100</code></td>
+</tr>
 <tr>
 <td><a id="buildcivics"></a>BuildCivics</td>
 <td><code>Game:BuildCivics()</code></td>
@@ -42,12 +50,76 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x2502e0</code></td>
 </tr>
 <tr>
+<td><a id="calculatemaxturn"></a>CalculateMaxTurn</td>
+<td><code>Game:CalculateMaxTurn() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x63cb40</code></td>
+</tr>
+<tr>
+<td><a id="calculateplayercontrolledresources"></a>CalculatePlayerControlledResources</td>
+<td><code>Game:CalculatePlayerControlledResources()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62b0a0</code></td>
+</tr>
+<tr>
+<td><a id="calculatepurchasecostfromproductioncost"></a>CalculatePurchaseCostFromProductionCost</td>
+<td><code>Game:CalculatePurchaseCostFromProductionCost(iProductionCost: integer, ePurchaseYield: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x36f9a0</code></td>
+</tr>
+<tr>
+<td><a id="calculateresourcemonopolies"></a>CalculateResourceMonopolies</td>
+<td><code>Game:CalculateResourceMonopolies()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62b4a0</code></td>
+</tr>
+<tr>
+<td><a id="canaddgreatwork"></a>CanAddGreatWork</td>
+<td><code>Game:CanAddGreatWork(eGreatPerson: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1c7c20</code></td>
+</tr>
+<tr>
+<td><a id="cancreatenewproduct"></a>CanCreateNewProduct</td>
+<td><code>Game:CanCreateNewProduct(ePlayer: integer, eResource: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62bae0</code></td>
+</tr>
+<tr>
+<td><a id="checkforendingdroughts"></a>CheckForEndingDroughts</td>
+<td><code>Game:CheckForEndingDroughts()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1ba250</code></td>
+</tr>
+<tr>
 <td><a id="clearlists"></a>ClearLists</td>
 <td><code>Game:ClearLists()</code></td>
 <td>Empties the player manager's cached player lists by resetting the end pointer of about 23 vectors to their begin pointer, and frees the team-to-players hash table nodes.</td>
 <td>—</td>
 <td><a href="../native/Player.html#player__manager__clearlists">Player::Manager::ClearLists</a></td>
 <td><code>0x3065e0</code></td>
+</tr>
+<tr>
+<td><a id="createcomponents"></a>CreateComponents</td>
+<td><code>Game:CreateComponents()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x63cc10</code></td>
 </tr>
 <tr>
 <td><a id="decrementgamestatelock"></a>DecrementGameStateLock</td>
@@ -58,6 +130,214 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x63cee0</code></td>
 </tr>
 <tr>
+<td><a id="detachscorelisteners"></a>DetachScoreListeners</td>
+<td><code>Game:DetachScoreListeners()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x199990</code></td>
+</tr>
+<tr>
+<td><a id="doactiveoneoffs"></a>DoActiveOneOffs</td>
+<td><code>Game:DoActiveOneOffs()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1bb4d0</code></td>
+</tr>
+<tr>
+<td><a id="doturn"></a>DoTurn</td>
+<td><code>Game:DoTurn()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x199b80</code></td>
+</tr>
+<tr>
+<td><a id="getcorporationplayer"></a>GetCorporationPlayer</td>
+<td><code>Game:GetCorporationPlayer(eResource: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62d510</code></td>
+</tr>
+<tr>
+<td><a id="getcurrentturndeforestationpoints"></a>GetCurrentTurnDeforestationPoints</td>
+<td><code>Game:GetCurrentTurnDeforestationPoints() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1bd6f0</code></td>
+</tr>
+<tr>
+<td><a id="getfirstturnactivehuman"></a>GetFirstTurnActiveHuman</td>
+<td><code>Game:GetFirstTurnActiveHuman() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x306d80</code></td>
+</tr>
+<tr>
+<td><a id="getfreegreatworkforslot"></a>GetFreeGreatWorkForSlot</td>
+<td><code>Game:GetFreeGreatWorkForSlot(eGreatPerson: integer, eSlot: integer, eObject: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1c8500</code></td>
+</tr>
+<tr>
+<td><a id="getgameendturn"></a>GetGameEndTurn</td>
+<td><code>Game:GetGameEndTurn() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x63d0e0</code></td>
+</tr>
+<tr>
+<td><a id="getgoldfrommonopolies"></a>GetGoldFromMonopolies</td>
+<td><code>Game:GetGoldFromMonopolies(ePlayer: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62d5c0</code></td>
+</tr>
+<tr>
+<td><a id="gethappinessgrowthmodifier"></a>GetHappinessGrowthModifier</td>
+<td><code>Game:GetHappinessGrowthModifier(eHappiness: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x371180</code></td>
+</tr>
+<tr>
+<td><a id="gethappinessidentityperturnchange"></a>GetHappinessIdentityPerTurnChange</td>
+<td><code>Game:GetHappinessIdentityPerTurnChange(eHappiness: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x371220</code></td>
+</tr>
+<tr>
+<td><a id="gethappinessinera"></a>GetHappinessInEra</td>
+<td><code>Game:GetHappinessInEra(eResource: integer, eEra: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x371260</code></td>
+</tr>
+<tr>
+<td><a id="gethousingsurplusreduction"></a>GetHousingSurplusReduction</td>
+<td><code>Game:GetHousingSurplusReduction(iPopDifference: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x371420</code></td>
+</tr>
+<tr>
+<td><a id="getmaxvoteswithfavor"></a>GetMaxVoteswithFavor</td>
+<td><code>Game:GetMaxVoteswithFavor(maxFavor: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x371500</code></td>
+</tr>
+<tr>
+<td><a id="getnumcontrolledresources"></a>GetNumControlledResources</td>
+<td><code>Game:GetNumControlledResources(ePlayer: integer, eResource: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62d7a0</code></td>
+</tr>
+<tr>
+<td><a id="getnumcorporations"></a>GetNumCorporations</td>
+<td><code>Game:GetNumCorporations(ePlayer: integer, bActiveOnly: boolean) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62d7c0</code></td>
+</tr>
+<tr>
+<td><a id="getnumindustries"></a>GetNumIndustries</td>
+<td><code>Game:GetNumIndustries(ePlayer: integer, bActiveOnly: boolean) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62d880</code></td>
+</tr>
+<tr>
+<td><a id="getnumrollsforresult"></a>GetNumRollsForResult</td>
+<td><code>Game:GetNumRollsForResult(iLowRoll: integer, iHighRoll: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x373f10</code></td>
+</tr>
+<tr>
+<td><a id="getnumtechs"></a>GetNumTechs</td>
+<td><code>Game:GetNumTechs() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x251320</code></td>
+</tr>
+<tr>
+<td><a id="getscaledweightformap"></a>GetScaledWeightForMap</td>
+<td><code>Game:GetScaledWeightForMap(iInitialWeight: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1be810</code></td>
+</tr>
+<tr>
+<td><a id="getstormdirection"></a>GetStormDirection</td>
+<td><code>Game:GetStormDirection(iCurrentLocation: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1be930</code></td>
+</tr>
+<tr>
+<td><a id="getstormnearestplayer"></a>GetStormNearestPlayer</td>
+<td><code>Game:GetStormNearestPlayer(iPlotIndex: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1beb50</code></td>
+</tr>
+<tr>
+<td><a id="hasavailablebuildingforproduct"></a>HasAvailableBuildingForProduct</td>
+<td><code>Game:HasAvailableBuildingForProduct(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62e550</code></td>
+</tr>
+<tr>
+<td><a id="hasgreatworkbeencreated"></a>HasGreatWorkBeenCreated</td>
+<td><code>Game:HasGreatWorkBeenCreated(eWork: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1c87d0</code></td>
+</tr>
+<tr>
+<td><a id="hasindustryof"></a>HasIndustryOf</td>
+<td><code>Game:HasIndustryOf(ePlayer: integer, eResource: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62e5c0</code></td>
+</tr>
+<tr>
+<td><a id="hasresourcemonopolyof"></a>HasResourceMonopolyOf</td>
+<td><code>Game:HasResourceMonopolyOf(ePlayer: integer, eResource: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62e5f0</code></td>
+</tr>
+<tr>
 <td><a id="incrementgamestatelock"></a>IncrementGameStateLock</td>
 <td><code>Game:IncrementGameStateLock() → number</code></td>
 <td>Increments a game-state lock counter; on the first increment (0 to 1) dispatches a signal with true to notify listeners that the game state is locked.</td>
@@ -66,12 +346,124 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x63d1a0</code></td>
 </tr>
 <tr>
+<td><a id="isai"></a>IsAI</td>
+<td><code>Game:IsAI(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x307850</code></td>
+</tr>
+<tr>
+<td><a id="isactive"></a>IsActive</td>
+<td><code>Game:IsActive() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x62e7e0</code></td>
+</tr>
+<tr>
+<td><a id="isaiprocessing"></a>IsAiProcessing</td>
+<td><code>Game:IsAiProcessing() → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x63d910</code></td>
+</tr>
+<tr>
+<td><a id="isbarbarian"></a>IsBarbarian</td>
+<td><code>Game:IsBarbarian(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x3078b0</code></td>
+</tr>
+<tr>
+<td><a id="isfreecities"></a>IsFreeCities</td>
+<td><code>Game:IsFreeCities(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x3078e0</code></td>
+</tr>
+<tr>
+<td><a id="ismajor"></a>IsMajor</td>
+<td><code>Game:IsMajor(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x307950</code></td>
+</tr>
+<tr>
+<td><a id="isminor"></a>IsMinor</td>
+<td><code>Game:IsMinor(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x307980</code></td>
+</tr>
+<tr>
+<td><a id="isspecialtydistrict"></a>IsSpecialtyDistrict</td>
+<td><code>Game:IsSpecialtyDistrict(eDistrict: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x3715b0</code></td>
+</tr>
+<tr>
+<td><a id="isterrainvalid"></a>IsTerrainValid</td>
+<td><code>Game:IsTerrainValid(eEventType: integer, eTerrain: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1bfe70</code></td>
+</tr>
+<tr>
+<td><a id="isvalidobjectforslot"></a>IsValidObjectForSlot</td>
+<td><code>Game:IsValidObjectForSlot(eSlot: integer, eObject: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1c89d0</code></td>
+</tr>
+<tr>
+<td><a id="moveactivestorms"></a>MoveActiveStorms</td>
+<td><code>Game:MoveActiveStorms()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1c0090</code></td>
+</tr>
+<tr>
+<td><a id="resetplayerturnresourceconsumption"></a>ResetPlayerTurnResourceConsumption</td>
+<td><code>Game:ResetPlayerTurnResourceConsumption(ePlayer: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x1c0b90</code></td>
+</tr>
+<tr>
+<td><a id="setasobserver"></a>SetAsObserver</td>
+<td><code>Game:SetAsObserver(ePlayer: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x308a80</code></td>
+</tr>
+<tr>
 <td><a id="setlocalplayerto"></a>SetLocalPlayerTo</td>
 <td><code>Game:SetLocalPlayerTo(ePlayer: integer) → boolean</code></td>
 <td>Sets which player is the local (viewing) player and the secondary observer slot, then refreshes visibility for the new player.</td>
 <td>—</td>
 <td><a href="../native/Player.html#player__manager__setlocalplayerto">Player::Manager::SetLocalPlayerTo</a></td>
 <td><code>0x308ca0</code></td>
+</tr>
+<tr>
+<td><a id="setpaused"></a>SetPaused</td>
+<td><code>Game:SetPaused(gamePaused: boolean)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x63e0e0</code></td>
 </tr>
 </tbody>
 </table>
