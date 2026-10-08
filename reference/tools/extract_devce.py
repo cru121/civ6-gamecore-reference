@@ -18,7 +18,7 @@ man = [e for e in json.load(open(os.path.join(DEV, 'data', 'exposed.json'), enco
 status = json.load(open(os.path.join(DEV, 'data', 'function_status.json'), encoding='utf-8'))
 oracle = json.load(open(os.path.join(DEV, 'data', 'oracle_results.json'), encoding='utf-8')) if os.path.exists(os.path.join(DEV, 'data', 'oracle_results.json')) else {}
 agent = {}
-for f in glob.glob(os.path.join(DEV, 'batch', 'out', 'batch_*.jsonl')):
+for f in glob.glob(os.path.join(DEV, 'batch', 'out', 'batch_*.jsonl')) + glob.glob(os.path.join(DEV, 'batch', 'out2', 'batch_*.jsonl')):
     for l in open(f, encoding='utf-8'):
         if l.strip():
             o = json.loads(l)

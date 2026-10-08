@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="dofoundcity"></a>DoFoundCity</td>
 <td><code>CityCitizens:DoFoundCity()</code></td>
-<td>—</td>
+<td>Called when a city is founded: puts one citizen worker on the city center plot and then reallocates citizens.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x10fa60</code></td>
@@ -36,11 +36,29 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeallcitizenworkers"></a>RemoveAllCitizenWorkers</td>
 <td><code>CityCitizens:RemoveAllCitizenWorkers(sendEvents: boolean)</code></td>
-<td>—</td>
+<td>Trims citizen worker assignments that exceed plot capacity, rebalances the unassigned count, and resets entries, optionally sending change events; despite the name the code shown does not simply clear all workers.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x110760</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>DoFoundCity</h3>
+<p><strong>Writes</strong>
+- Citizens worker-count array entry for the center plot index (+1)
+- Citizens counter at 0x6c incremented if plot index is not 0</p>
+<p><strong>Side effects</strong>
+- SendPlotIndexWorkerChange for the plot
+- ReallocateCitizens runs</p>
+<p><strong>Input checks:</strong> Checks plot exists and index is within the radius-2 plot range; no other checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes citizen assignment. <strong>Risk:</strong> medium (reallocates citizens; calling on an established city adds an extra worker). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveAllCitizenWorkers</h3>
+<p>Arguments: <code>sendEvents</code> — if true, SendPlotIndexWorkerChange is raised for each modified plot</p>
+<p><strong>Writes</strong>
+- Citizens per-plot worker arrays (0x8, 0x20)
+- Citizens unassigned count (0x68) and specialist/other count (0x6c)</p>
+<p><strong>Side effects</strong>
+- SendPlotIndexWorkerChange per changed plot when sendEvents is true</p>
+<p><strong>Input checks:</strong> Walks arrays within their stored sizes; no argument checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, rewrites citizen assignment. <strong>Risk:</strong> high (large rewrite of citizen state; behaviour differs from name). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

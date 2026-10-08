@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="areanypillaged"></a>AreAnyPillaged</td>
 <td><code>CityDistricts:AreAnyPillaged(eDistrictType: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether any district of the given type belonging to this city is pillaged.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x11e080</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumalloweddistricts"></a>GetNumAllowedDistricts</td>
 <td><code>CityDistricts:GetNumAllowedDistricts() → number</code></td>
-<td>—</td>
+<td>Number of districts the city may have: ceil(population / divisor from game parameters) plus a bonus field; returns 1 if the divisor is not positive.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x11eae0</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasdistrictofmilitarydomain"></a>HasDistrictOfMilitaryDomain</td>
 <td><code>CityDistricts:HasDistrictOfMilitaryDomain(eDomain: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the city has an active district whose definition's military domain matches the given domain.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x11ef20</code></td>
@@ -60,6 +60,10 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AreAnyPillaged</h3>
+<p>Arguments: <code>eDistrictType</code> — district type to look for</p>
+<p><strong>Input checks:</strong> No range check on type; skips missing districts.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>DestroyAll</h3>
 <p><strong>Writes</strong>
 - city district id list count at this+0x18 (decremented for stale ids)
@@ -81,4 +85,11 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - Destroy removes the id from the list (otherwise infinite loop)
 - this+0x0 is the City instance</p>
 <p><strong>Open questions</strong>
-- Whether Destroy leaves the city city-center district handling to the caller</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- Whether Destroy leaves the city city-center district handling to the caller</p>
+<h3>GetNumAllowedDistricts</h3>
+<p><strong>Input checks:</strong> Guards against divisor below 1.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasDistrictOfMilitaryDomain</h3>
+<p>Arguments: <code>eDomain</code> — domain type to match (land/sea/air)</p>
+<p><strong>Input checks:</strong> Bounds-checks definition index; no range check on domain.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

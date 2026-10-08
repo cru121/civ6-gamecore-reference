@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addbuildingreplacementoverride"></a>AddBuildingReplacementOverride</td>
 <td><code>PlayerCities:AddBuildingReplacementOverride(eBuildingToReplace: integer, eBuildingOverride: integer)</code></td>
-<td>—</td>
+<td>Registers a building replacement (one building replaced by another) on the player, then swaps existing buildings in every city and moves their great works. The decompilation is truncated near the end.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x264110</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checkunhandledcitydecisions"></a>CheckUnhandledCityDecisions</td>
 <td><code>PlayerCities:CheckUnhandledCityDecisions()</code></td>
-<td>—</td>
+<td>Collects the player's cities that have pending decisions (fields 0x2e0/0x2f8 set). For human players it issues a Destroy command request per city; for AI it resets two request fields to -1. The decompilation is truncated.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x264500</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doendturn"></a>DoEndTurn</td>
 <td><code>PlayerCities:DoEndTurn()</code></td>
-<td>—</td>
+<td>If the player has any cities, calls City::Manager::Heal on each city.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265330</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="dosetturncomplete"></a>DoSetTurnComplete</td>
 <td><code>PlayerCities:DoSetTurnComplete(eRequestType: integer)</code></td>
-<td>—</td>
+<td>For two specific turn request subtypes and a human player, clears unassigned production overflow in all cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2653d0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>PlayerCities:DoTurnActivate()</code></td>
-<td>—</td>
+<td>Gets the improvements rules object and calls a lambda invoker; the decompilation shows only these two calls, so the real behaviour is unclear.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265410</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getaicitiescaptured"></a>GetAICitiesCaptured</td>
 <td><code>PlayerCities:GetAICitiesCaptured(neverHuman: boolean) → number</code></td>
-<td>—</td>
+<td>Counts this player's cities originally owned by another AI major player; if neverHuman is true, owners with a nonempty nickname are skipped.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265600</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumbuildings"></a>GetNumBuildings</td>
 <td><code>PlayerCities:GetNumBuildings(eBuilding: integer) → number</code></td>
-<td>—</td>
+<td>Counts the player's cities that have the given building.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2658c0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcapturedcitystates"></a>GetNumCapturedCityStates</td>
 <td><code>PlayerCities:GetNumCapturedCityStates() → number</code></td>
-<td>—</td>
+<td>Counts cities whose original owner differs from the current owner and is neither a major player nor barbarian.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265920</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumoriginalcapitalscaptured"></a>GetNumOriginalCapitalsCaptured</td>
 <td><code>PlayerCities:GetNumOriginalCapitalsCaptured() → number</code></td>
-<td>—</td>
+<td>Counts cities whose original owner differs from the current owner, are flagged as original capital (0x298) and whose original owner is a major player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2659a0</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hascityoncontinent"></a>HasCityOnContinent</td>
 <td><code>PlayerCities:HasCityOnContinent(continent: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the continent is in the player's list of continents with cities.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265aa0</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasslotforgreatwork"></a>HasSlotForGreatWork</td>
 <td><code>PlayerCities:HasSlotForGreatWork(iIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if any city of the player can accept the great work index into a slot.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265ae0</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isdistrictbuildingbanned"></a>IsDistrictBuildingBanned</td>
 <td><code>PlayerCities:IsDistrictBuildingBanned(eDistrict: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the district type is in the player's banned-district list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265d10</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removebuildingreplacementoverride"></a>RemoveBuildingReplacementOverride</td>
 <td><code>PlayerCities:RemoveBuildingReplacementOverride(eBuildingToReplace: integer, eBuildingOverride: integer)</code></td>
-<td>—</td>
+<td>Removes one matching pair from the building replacement list, then reverts existing buildings in the player's cities and relocates great works. The decompilation is truncated near the end.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x265e80</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeunassignedproductionoverflow"></a>RemoveUnassignedProductionOverflow</td>
 <td><code>PlayerCities:RemoveUnassignedProductionOverflow()</code></td>
-<td>—</td>
+<td>For each city of the player with no active build item (field 0x12b0 zero or pointer 0x12a0 null), clears the build queue production overflow.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x266120</code></td>
@@ -180,6 +180,16 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddBuildingReplacementOverride</h3>
+<p>Arguments: <code>eBuildingToReplace</code> — building type that is to be replaced; <code>eBuildingOverride</code> — building type that replaces it</p>
+<p><strong>Writes</strong>
+- building replacement override list at 0x168
+- cities' buildings (ReplaceBuilding)
+- can-ever-construct state</p>
+<p><strong>Side effects</strong>
+- notifies Rules::Cities OnCityBuildingOverrideAdded and relocates great works in each affected city</p>
+<p><strong>Input checks:</strong> Ignores -1 for either argument and skips duplicate pairs; does not check the buildings exist.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes cities' buildings. <strong>Risk:</strong> high (rewrites buildings in all cities of the player). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeExtraStartingPopulationOffHomeContinent</h3>
 <p>Arguments: <code>iChange</code> — amount added to the stored bonus</p>
 <p><strong>Writes</strong>
@@ -197,6 +207,73 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - counter is applied when new cities are founded off home continent (from the name)</p>
 <p><strong>Open questions</strong>
 - where the counter is consumed</p>
+<h3>CheckUnhandledCityDecisions</h3>
+<p><strong>Writes</strong>
+- city decision fields reset to -1 for AI cities
+- city command requests queued for humans</p>
+<p><strong>Side effects</strong>
+- queues City::Commands::Destroy request through the command manager for human players</p>
+<p><strong>Input checks:</strong> Skips cities without a valid index; no other checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, resets city decisions and queues commands. <strong>Risk:</strong> high (can issue destroy commands and clear AI decisions). <strong>Confidence of the reading:</strong> low.</p>
+<h3>DoEndTurn</h3>
+<p><strong>Writes</strong>
+- city health through Heal (delegated)</p>
+<p><strong>Side effects</strong>
+- each city is healed by City::Manager::Heal</p>
+<p><strong>Input checks:</strong> Skips when there are no cities; an invalid city index passes null to Heal.</p>
+<p><strong>Multiplayer:</strong> may-desync, heals cities. <strong>Risk:</strong> medium (changes city health state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoSetTurnComplete</h3>
+<p>Arguments: <code>eRequestType</code> — turn request subtype; only two hashed values (0x720b6468, 0x4601eac9) trigger the work</p>
+<p><strong>Writes</strong>
+- city build queue overflow (via RemoveUnassignedProductionOverflow)</p>
+<p><strong>Input checks:</strong> Only acts for the two request subtypes and human players.</p>
+<p><strong>Multiplayer:</strong> may-desync, clears city production overflow. <strong>Risk:</strong> medium (indirectly clears build queue overflow). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- unknown, delegated to a lambda</p>
+<p><strong>Input checks:</strong> None visible.</p>
+<p><strong>Multiplayer:</strong> unknown, behaviour hidden in a lambda. <strong>Risk:</strong> medium (body only calls a lambda, effect unknown). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetAICitiesCaptured</h3>
+<p>Arguments: <code>neverHuman</code> — if true, exclude owners whose configuration has a nonempty nickname (inferred)</p>
+<p><strong>Input checks:</strong> Skips cities with flag at 0x208 set, invalid original owners and the player itself.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumBuildings</h3>
+<p>Arguments: <code>eBuilding</code> — building type to count</p>
+<p><strong>Input checks:</strong> None; passes the building type to HasBuilding for each city.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumCapturedCityStates</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumOriginalCapitalsCaptured</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasCityOnContinent</h3>
+<p>Arguments: <code>continent</code> — continent type to look for in the list at 0x128</p>
+<p><strong>Input checks:</strong> None; linear search.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasSlotForGreatWork</h3>
+<p>Arguments: <code>iIndex</code> — great work list index to place</p>
+<p><strong>Input checks:</strong> None; each city is queried with no building filter.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsDistrictBuildingBanned</h3>
+<p>Arguments: <code>eDistrict</code> — district type to look for in the ban list at 0x228</p>
+<p><strong>Input checks:</strong> None; linear search.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveBuildingReplacementOverride</h3>
+<p>Arguments: <code>eBuildingToReplace</code> — building type that had been replaced; <code>eBuildingOverride</code> — building type that replaced it</p>
+<p><strong>Writes</strong>
+- building replacement override list at 0x168 (rebuilt without the pair)
+- cities' buildings (ReplaceBuilding)
+- can-ever-construct state</p>
+<p><strong>Side effects</strong>
+- relocates great works in each affected city via Rules::Cities</p>
+<p><strong>Input checks:</strong> No -1 or existence check; rebuilds the list even if the pair is absent.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes cities' buildings. <strong>Risk:</strong> high (rewrites buildings in all cities of the player). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveUnassignedProductionOverflow</h3>
+<p><strong>Writes</strong>
+- city build queue overflow cleared</p>
+<p><strong>Input checks:</strong> Invalid city indices pass a null city; no other checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, clears city overflow production. <strong>Risk:</strong> medium (loses leftover production). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetCanEverConstruct</h3>
 <p><strong>Writes</strong>
 - per-building can-ever-construct int array at this+0x140 (cleared to -1, then set to the building's own index when allowed)

@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="applybankruptcypenalties"></a>ApplyBankruptcyPenalties</td>
 <td><code>PlayerTreasury:ApplyBankruptcyPenalties()</code></td>
-<td>—</td>
+<td>If the treasury balance is negative, sets a bankruptcy flag and a deficit-driven counter, disbands units according to thresholds and sends a notification.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x340fc0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="applysiphonlosses"></a>ApplySiphonLosses</td>
 <td><code>PlayerTreasury:ApplySiphonLosses() → number</code></td>
-<td>—</td>
+<td>Sums, over the player's cities, the lesser of each city's siphon amount (+0x954) and its current yield, adds it to the output value, and subtracts the amount from a per-city counter.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3410c0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculategoldyieldexcludingtrade"></a>CalculateGoldYieldExcludingTrade</td>
 <td><code>PlayerTreasury:CalculateGoldYieldExcludingTrade() → number</code></td>
-<td>—</td>
+<td>Recomputes the player's gold yield, then adjusts the cached yield field by the gold value of active deal items (subtracting outgoing gold-per-turn, adding incoming) and returns the result.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x3421d0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="dotaxforgold"></a>DoTaxForGold</td>
 <td><code>PlayerTreasury:DoTaxForGold()</code></td>
-<td>—</td>
+<td>Per-turn gold processing: if the capability 0x798f719c is present, computes yield, subtracts siphon losses and maintenance, changes the gold balance, and applies bankruptcy penalties and resets balance to 0 if it goes negative.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x343780</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setgoldratechange"></a>SetGoldRateChange</td>
 <td><code>PlayerTreasury:SetGoldRateChange(xNewValue: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>Sets the treasury gold rate-change value (+0xc0 mirror) if it differs from the current one, then sends a reporting event and dispatches a signal with the player ID and current gold balance (whole units).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x343dc0</code></td>
@@ -84,6 +84,27 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>ApplyBankruptcyPenalties</h3>
+<p><strong>Writes</strong>
+- Bankruptcy-related state at +0x110/+0x120
+- Player units via DisbandUnit</p>
+<p><strong>Side effects</strong>
+- Disbands units
+- Sends a notification (hash 0x6de806ec)</p>
+<p><strong>Input checks:</strong> Only acts when gold is below zero; thresholds come from the global parameters.</p>
+<p><strong>Multiplayer:</strong> may-desync, disbands units and changes treasury state. <strong>Risk:</strong> high (Destroys units). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ApplySiphonLosses</h3>
+<p><strong>Writes</strong>
+- Per-city counter at +0x9c in the city's variant map</p>
+<p><strong>Side effects</strong>
+- Edits city objects</p>
+<p><strong>Input checks:</strong> Only cities with a positive siphon value are processed.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits city state. <strong>Risk:</strong> high (Modifies every affected city). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculateGoldYieldExcludingTrade</h3>
+<p><strong>Writes</strong>
+- Cached gold-yield auto variable at +0xf8 (value at +0x108), overwritten during computation</p>
+<p><strong>Input checks:</strong> Skips null deal items and deals not involving this player; no other checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, rewrites cached treasury yield variable. <strong>Risk:</strong> medium (Despite the name it mutates a cached synchronised variable and relies on deal manager state.). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeGoldDiplomaticDeal</h3>
 <p>Arguments: <code>dealId</code> — diplomatic deal id; <code>dealItemId</code> — item id within the deal; <code>addDeal</code> — true to append the pair, false to remove all matching pairs</p>
 <p><strong>Writes</strong>
@@ -123,4 +144,21 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - the variable is the gold interest percent, from the name; the Ghidra ControlPriority template name is likely code folding of the same assignment</p>
 <p><strong>Open questions</strong>
-- whether 0xf0 is the live value or a cached copy of 0xe0</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- whether 0xf0 is the live value or a cached copy of 0xe0</p>
+<h3>DoTaxForGold</h3>
+<p><strong>Writes</strong>
+- Treasury gold balance (+0xa8) via ChangeGoldBalance/SetGoldBalance
+- Cached yield/maintenance variables at +0xc8 and +0x110</p>
+<p><strong>Side effects</strong>
+- ApplyBankruptcyPenalties when balance is negative</p>
+<p><strong>Input checks:</strong> Does nothing unless the game capability is present; no argument checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes player gold and penalties. <strong>Risk:</strong> high (Mutates player gold and can trigger bankruptcy penalties.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetGoldRateChange</h3>
+<p>Arguments: <code>xNewValue</code> — New gold rate change as fixed point (compared against and copied to the stored field)</p>
+<p><strong>Writes</strong>
+- Gold rate change field at +0xb0/+0xc0</p>
+<p><strong>Side effects</strong>
+- Reporting event 0x20f2116e with player ID
+- Dispatches game signal at game+0x280 +0x9f0 (player, gold&gt;&gt;8)</p>
+<p><strong>Input checks:</strong> Only skips when value is unchanged; no range check; signal skipped if no current game.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player treasury field. <strong>Risk:</strong> medium (Writes synchronised treasury value and fires UI/event signals.). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

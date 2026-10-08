@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addsourceat"></a>AddSourceAt</td>
 <td><code>MapAreaPortal:AddSourceAt(iSourcePlot: integer) → boolean</code></td>
-<td>—</td>
+<td>Adds a source plot to the portal via base Portal::Instance::AddSourceAt and, if it succeeded, re-attaches areas (AttachAreas).</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x63430</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removesourceat"></a>RemoveSourceAt</td>
 <td><code>MapAreaPortal:RemoveSourceAt(iSourcePlot: integer) → boolean</code></td>
-<td>—</td>
+<td>Removes a source plot from the portal's list (offset 0x10-0x18), resets a field at 0xa0 from 0x98, and re-attaches areas.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x64c20</code></td>
@@ -52,6 +52,13 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddSourceAt</h3>
+<p>Arguments: <code>iSourcePlot</code> — plot index to add as source</p>
+<p><strong>Writes</strong>
+- Portal source list (via base)
+- attached areas</p>
+<p><strong>Input checks:</strong> Validation delegated to base AddSourceAt.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes route portal data. <strong>Risk:</strong> medium (Changes route connectivity). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>AttachAreas</h3>
 <p><strong>Writes</strong>
 - appends unique player pointers to the vector at this+0x98..0xa8</p>
@@ -70,4 +77,13 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - the pointer type is Player::Instance const* per the callee template; flag at +0xd81 probably means player is alive/valid</p>
 <p><strong>Open questions</strong>
 - meaning of the byte at +0xd81
-- what the 4-byte ids are exactly (area ids vs plot indexes)</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- what the 4-byte ids are exactly (area ids vs plot indexes)</p>
+<h3>RemoveSourceAt</h3>
+<p>Arguments: <code>iSourcePlot</code> — source plot index to remove</p>
+<p><strong>Writes</strong>
+- Portal source list at +0x10..0x18
+- field +0xa0</p>
+<p><strong>Side effects</strong>
+- AttachAreas called</p>
+<p><strong>Input checks:</strong> -1 rejected; returns false if not found.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes route portal data. <strong>Risk:</strong> medium (Changes route connectivity). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

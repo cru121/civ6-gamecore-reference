@@ -28,11 +28,21 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setalive"></a>SetAlive</td>
 <td><code>FreeCities:SetAlive(living: boolean)</code></td>
-<td>—</td>
+<td>Sets the alive flag and, when set to false, removes all units owned by this free city via the unit manager and destroys its behavior tree.</td>
 <td>plumbing: not run (no live object)</td>
 <td>—</td>
 <td><code>0x1ac3a0</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>SetAlive</h3>
+<p>Arguments: <code>living</code> — new alive flag</p>
+<p><strong>Writes</strong>
+- Alive flag (0x14)
+- Behavior tree id at 0x24 reset to -1</p>
+<p><strong>Side effects</strong>
+- Removes all matching units via unit manager virtual call
+- Destroys behavior tree</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync, destroys units and AI trees. <strong>Risk:</strong> high (destroys units). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

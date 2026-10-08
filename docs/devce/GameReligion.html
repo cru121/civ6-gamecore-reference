@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addunit"></a>AddUnit</td>
 <td><code>GameReligion:AddUnit(eReligion: integer, eUnit: integer)</code></td>
-<td>—</td>
+<td>Appends a unit type to the religion's data vector at offset 0x60 (a list of units tied to that religion).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x242530</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>GameReligion:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn religion update: among players that have not yet created a pantheon, picks the one with the highest value at offset 0xb0 of their religion object and stores it in the field at +0xf0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2429f0</code></td>
@@ -44,11 +44,29 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="updatenextreligionforcities"></a>UpdateNextReligionForCities</td>
 <td><code>GameReligion:UpdateNextReligionForCities()</code></td>
-<td>—</td>
+<td>Iterates every player's cities and calls RecomputeNextReligion on each city's religion component.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x243ce0</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>AddUnit</h3>
+<p>Arguments: <code>eReligion</code> — religion to edit; <code>eUnit</code> — unit type appended to the religion's list</p>
+<p><strong>Writes</strong>
+- ReligionData vector at +0x60 (push_back of the unit type)</p>
+<p><strong>Input checks:</strong> Null check on the ReligionData from EditReligion; no range check on unit type and no duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies shared religion data. <strong>Risk:</strong> medium (Writes game-state vector; vector element type shown as TechTypes in decompile but argument is UnitTypes). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- Religion field at +0xf0 (selected player id, reset to -1 first)</p>
+<p><strong>Input checks:</strong> Skips players that already created a pantheon and the player held in +0x100; no external input.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised religion state each turn. <strong>Risk:</strong> medium (Writes tracked variable derived from all players). <strong>Confidence of the reading:</strong> low.</p>
+<h3>UpdateNextReligionForCities</h3>
+<p><strong>Writes</strong>
+- Each city's religion data (next religion recomputed)</p>
+<p><strong>Side effects</strong>
+- Edits city variant maps via edit()</p>
+<p><strong>Input checks:</strong> None; iterates all players in the manager list.</p>
+<p><strong>Multiplayer:</strong> may-desync, rewrites city religion state. <strong>Risk:</strong> medium (Touches every city). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

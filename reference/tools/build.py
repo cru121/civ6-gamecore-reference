@@ -535,7 +535,7 @@ disable trade routes with +1 and do not bring them back with -1.
 * **save and load**: era score, influence tokens, alliance points and gold rate changed by Dev CE survive save, quit to menu and load (tested on the late-game save).
 * **not tested**: multiplayer, loading a save made after a method changed state in plain CE or vanilla, other game builds, other machines, hostile arguments on the newer methods. %d methods were not run for real at all, and %d of the %d that were show no effect through any vanilla getter, so for most methods nobody has seen whether they do what the name says.
 
-**Descriptions are written by an AI assistant from the decompiled code and are marked inferred** unless a test confirms them; read them as leads, not documentation. Only %d of the methods have a description so far; the others show a dash. Many methods change synchronised game state and are marked "may desync" in multiplayer.
+**Descriptions are written by an AI assistant from the decompiled code and are marked inferred** unless a test confirms them; read them as leads, not documentation. %d methods have a description; about one in twenty is marked low confidence (truncated or missing decompilation), and every description is one reading of the code, not a test result. Many methods change synchronised game state and are marked "may desync" in multiplayer.
 Where a method is not listed here, see [native functions](../native/index.md) for what has no Lua route.
 
 | Object | Methods | Effect verified |

@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="cantribetrainunitnow"></a>CanTribeTrainUnitNow</td>
 <td><code>BarbarianTribes:CanTribeTrainUnitNow(iTribeIndex: integer, eUnitType: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether a tribe can train a unit now: unit exists and is available, not blocked by a government flag, prerequisite tech is known by the player or the clan, and prerequisite civic is held.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe20c0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changespawnrate"></a>ChangeSpawnRate</td>
 <td><code>BarbarianTribes:ChangeSpawnRate(tribe: integer, rate: integer)</code></td>
-<td>—</td>
+<td>Sets the warrior spawn rate of the given tribe.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe2220</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="createcamps"></a>CreateCamps</td>
 <td><code>BarbarianTribes:CreateCamps()</code></td>
-<td>—</td>
+<td>Creates new barbarian camps: submits and runs AI camp-evaluation jobs, counts land plots and unseen ones to compute a target camp count, then places camps. Decompilation is truncated after the count logic, so placement details are not visible.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe2270</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>BarbarianTribes:DoTurnActivate(bFirstActivation: boolean)</code></td>
-<td>—</td>
+<td>Per-turn clans update: if the clans capability is on and bFirstActivation is true, picks a random tribe whose conversion is at least 100 percent on a valid city-found location and converts it to a minor civ; then advances a counter and tries to let a tribe claim a unique unit. Output truncated at the end.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x620400</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbribeclangoldcost"></a>GetBribeClanGoldCost</td>
 <td><code>BarbarianTribes:GetBribeClanGoldCost(iTribeIndex: integer, ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Computes the gold cost for a player to bribe a barbarian clan: tribe definition base property plus a per-player factor, adjusted for game speed.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x6209b0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentera"></a>GetCurrentEra</td>
 <td><code>BarbarianTribes:GetCurrentEra() → number</code></td>
-<td>—</td>
+<td>Returns the game's current era, or the first era if none is set yet.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x620ab0</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethireclangoldcost"></a>GetHireClanGoldCost</td>
 <td><code>BarbarianTribes:GetHireClanGoldCost(iTribeIndex: integer, ePlayer: integer, eUnitType: integer) → number</code></td>
-<td>—</td>
+<td>Computes the gold cost for a player to hire a clan with a given unit: unit production cost converted to purchase cost, multiplied by a global factor.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x620ae0</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getpreviouscampdistancefromplot"></a>GetPreviousCampDistanceFromPlot</td>
 <td><code>BarbarianTribes:GetPreviousCampDistanceFromPlot(iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the smallest plot distance from the given plot to any previous camp location in the stored list; 0 if the list is empty.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe3f60</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getraidclangoldreward"></a>GetRaidClanGoldReward</td>
 <td><code>BarbarianTribes:GetRaidClanGoldReward(iTribeIndex: integer, ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Computes the gold reward for raiding a clan: barbarian camp improvement value plus a per-player amount, adjusted for game speed.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x620e00</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getraidscorefortribe"></a>GetRaidScoreForTribe</td>
 <td><code>BarbarianTribes:GetRaidScoreForTribe(tribe: integer) → number</code></td>
-<td>—</td>
+<td>Returns the tribe's raid score as the sum of two stored ints at offsets 0x78 and 0x7c.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe4010</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getrampagetarget"></a>GetRampageTarget</td>
 <td><code>BarbarianTribes:GetRampageTarget(tribeNumber: integer) → number</code></td>
-<td>—</td>
+<td>Returns the player a tribe is currently rampaging against.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe40a0</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettribetype"></a>GetTribeType</td>
 <td><code>BarbarianTribes:GetTribeType(tribe: integer) → number</code></td>
-<td>—</td>
+<td>Returns the barbarian name type of the tribe at the index.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe43f0</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getuniqueunitclaimtribe"></a>GetUniqueUnitClaimTribe</td>
 <td><code>BarbarianTribes:GetUniqueUnitClaimTribe(eUnitType: integer) → number</code></td>
-<td>—</td>
+<td>Looks up which tribe has claimed a given unique unit in the claim list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x621090</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isdefender"></a>IsDefender</td>
 <td><code>BarbarianTribes:IsDefender(unitType: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the unit type is in the barbarian defender unit list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe5090</code></td>
@@ -140,11 +140,92 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removetribe"></a>RemoveTribe</td>
 <td><code>BarbarianTribes:RemoveTribe(iTribeIndex: integer)</code></td>
-<td>—</td>
+<td>Removes a tribe: finds the tribe with the given index, clears the improvement on its camp plot, updates two manager fields and marks the tribe entry as inactive.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xe5cd0</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>CanTribeTrainUnitNow</h3>
+<p>Arguments: <code>iTribeIndex</code> — Tribe index; <code>eUnitType</code> — Unit type to test</p>
+<p><strong>Input checks:</strong> Range-checks tribe index and unit type, null-checks definitions.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>ChangeSpawnRate</h3>
+<p>Arguments: <code>tribe</code> — Tribe index; <code>rate</code> — New warrior spawn rate passed to SetWarriorSpawnRate</p>
+<p><strong>Writes</strong>
+- Tribe warrior spawn rate (via Instance::SetWarriorSpawnRate on the tribe vector)</p>
+<p><strong>Input checks:</strong> Range-checks tribe index; rate not validated.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised tribe state. <strong>Risk:</strong> medium (Writes tribe state, only for a valid index). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CreateCamps</h3>
+<p><strong>Writes</strong>
+- Barbarian camps and tribes (placement, truncated)</p>
+<p><strong>Side effects</strong>
+- Runs and waits for AI jobs
+- Logs stats through the logging manager
+- Notification sent (per facts)
+- Uses game random and turn info (per facts)</p>
+<p><strong>Input checks:</strong> Returns early if a setting is -1 or the camp limit is reached; other checks not visible.</p>
+<p><strong>Multiplayer:</strong> may-desync, creates camps and runs AI jobs. <strong>Risk:</strong> high (Spawns map improvements and tribes). <strong>Confidence of the reading:</strong> low.</p>
+<h3>DoTurnActivate</h3>
+<p>Arguments: <code>bFirstActivation</code> — Gate flag; function returns immediately when false</p>
+<p><strong>Writes</strong>
+- Converts a tribe to a minor civ via ConvertTribeToMinorCiv
+- Unique-unit claim counter at this+0x100 incremented or reset
+- Tribe vector opened for edit</p>
+<p><strong>Side effects</strong>
+- Random roll (GetRandNum) for tribe choice
+- LogStats call
+- May let a tribe claim a unique unit</p>
+<p><strong>Input checks:</strong> Checks capability 0x6e293fcc and bFirstActivation; null-checks tribe; no other range checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, converts tribes and uses game RNG. <strong>Risk:</strong> high (Changes tribe and minor civ state and consumes RNG). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetBribeClanGoldCost</h3>
+<p>Arguments: <code>iTribeIndex</code> — Index of the barbarian tribe; <code>ePlayer</code> — Player who would pay; a per-player value scales the cost</p>
+<p><strong>Input checks:</strong> Null-checks tribe and definition range; ePlayer is not validated before EditPlayer.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCurrentEra</h3>
+<p><strong>Input checks:</strong> No inputs.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetHireClanGoldCost</h3>
+<p>Arguments: <code>iTribeIndex</code> — Tribe index; not used by the code; <code>ePlayer</code> — Player whose unit cost is looked up; <code>eUnitType</code> — Unit type to be hired</p>
+<p><strong>Input checks:</strong> Returns -1 for NO_PLAYER or NO_UNIT; tribe index is unused and unchecked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetPreviousCampDistanceFromPlot</h3>
+<p>Arguments: <code>iPlotIndex</code> — Map plot index</p>
+<p><strong>Input checks:</strong> Skips negative stored indices; iPlotIndex is not range-checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetRaidClanGoldReward</h3>
+<p>Arguments: <code>iTribeIndex</code> — Tribe index; not used by the code; <code>ePlayer</code> — Player whose per-improvement bonus is read</p>
+<p><strong>Input checks:</strong> Checks camp improvement type and definition range; ePlayer and tribe index not validated.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetRaidScoreForTribe</h3>
+<p>Arguments: <code>tribe</code> — Tribe index</p>
+<p><strong>Input checks:</strong> No bounds check on the tribe index; out-of-range reads other memory.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetRampageTarget</h3>
+<p>Arguments: <code>tribeNumber</code> — Tribe index</p>
+<p><strong>Input checks:</strong> Range-checks tribe index.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTribeType</h3>
+<p>Arguments: <code>tribe</code> — Tribe index</p>
+<p><strong>Input checks:</strong> Range-checks tribe index.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetUniqueUnitClaimTribe</h3>
+<p>Arguments: <code>eUnitType</code> — Unit type to look up</p>
+<p><strong>Input checks:</strong> Returns -1 for NO_UNIT or when not found.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsDefender</h3>
+<p>Arguments: <code>unitType</code> — Unit type to find</p>
+<p><strong>Input checks:</strong> No validation; plain list search.</p>
+<p><strong>Multiplayer:</strong> read-only, pure query. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveTribe</h3>
+<p>Arguments: <code>iTribeIndex</code> — Tribe index to remove</p>
+<p><strong>Writes</strong>
+- Camp plot improvement set to none
+- Tribe entry flag at +0x18 cleared
+- Manager fields at +0xc8 and +0x150 updated</p>
+<p><strong>Side effects</strong>
+- Map improvement change on the camp plot</p>
+<p><strong>Input checks:</strong> Range-checks index and searches for the matching tribe; no-op if not found.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes map and tribe state. <strong>Risk:</strong> high (Removes improvement and tribe). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

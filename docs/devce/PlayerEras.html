@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateera"></a>CalculateEra</td>
 <td><code>PlayerEras:CalculateEra() → number</code></td>
-<td>—</td>
+<td>Computes the player's era as the max of the highest era among researched technologies and the highest among adopted civics, defaulting to the first era when the owner is null.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2c9580</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>PlayerEras:DoTurnActivate()</code></td>
-<td>—</td>
+<td>Recalculates the player's era, applies it via SetEra, then copies a value from the game-wide eras object (offset 0xb8) into a control-priority variable at this+0xb0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2c9880</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasdarkage"></a>HasDarkAge</td>
 <td><code>PlayerEras:HasDarkAge() → boolean</code></td>
-<td>—</td>
+<td>Returns whether the owning player currently has a dark age, queried from the game-wide eras object.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2c98d0</code></td>
@@ -52,11 +52,28 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasgoldenage"></a>HasGoldenAge</td>
 <td><code>PlayerEras:HasGoldenAge() → boolean</code></td>
-<td>—</td>
+<td>Returns whether the owning player currently has a golden age, queried from the game-wide eras object.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2c9920</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>CalculateEra</h3>
+<p><strong>Input checks:</strong> Returns first era if owner pointer is null.</p>
+<p><strong>Multiplayer:</strong> read-only, pure calculation. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- player era via SetEra
+- control-priority variable at this+0xb0</p>
+<p><strong>Side effects</strong>
+- SetEra may trigger era-change effects</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, updates era state. <strong>Risk:</strong> medium (changes era). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasDarkAge</h3>
+<p><strong>Input checks:</strong> Returns false if game or owner is null.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasGoldenAge</h3>
+<p><strong>Input checks:</strong> Returns false if game or owner is null.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

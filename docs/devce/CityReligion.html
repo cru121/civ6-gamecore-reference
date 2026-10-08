@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canconvert"></a>CanConvert</td>
 <td><code>CityReligion:CanConvert() → boolean</code></td>
-<td>—</td>
+<td>Checks whether the city's owner may be converted: false if the owner's suzerain has created a religion while the owner has the relevant flag.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x149470</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getpressurefromcity"></a>GetPressureFromCity</td>
 <td><code>CityReligion:GetPressureFromCity() → number</code></td>
-<td>—</td>
+<td>Computes the religious pressure the city exerts, applying holy site, suzerain religion, spread modifiers, production project bonus and game speed.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x149e50</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettotalpressureoncity"></a>GetTotalPressureOnCity</td>
 <td><code>CityReligion:GetTotalPressureOnCity(eReligion: integer) → number</code></td>
-<td>—</td>
+<td>Sums pressure on this city from other cities across all players for a religion.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14a370</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasbeeninitiated"></a>HasBeenInitiated</td>
 <td><code>CityReligion:HasBeenInitiated(eReligion: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the city's per-religion record for the given religion has its initiated flag set.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14a4b0</code></td>
@@ -60,11 +60,32 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="recomputenextreligion"></a>RecomputeNextReligion</td>
 <td><code>CityReligion:RecomputeNextReligion()</code></td>
-<td>—</td>
+<td>Recomputes which religion will next take over the city; decompilation is truncated, only the initial reset of fields 0xcc/0xd0 and copying of religion definition data is visible.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x14ad20</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>CanConvert</h3>
+<p><strong>Input checks:</strong> Handles no suzerain.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetPressureFromCity</h3>
+<p><strong>Input checks:</strong> Returns 0 if city has no religion or religion data is missing.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetTotalPressureOnCity</h3>
+<p>Arguments: <code>eReligion</code> — religion type whose pressure is measured (inferred)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasBeenInitiated</h3>
+<p>Arguments: <code>eReligion</code> — religion type to look up</p>
+<p><strong>Input checks:</strong> Returns false if no record.</p>
+<p><strong>Multiplayer:</strong> read-only, reads city/district state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RecomputeNextReligion</h3>
+<p><strong>Writes</strong>
+- Religion fields at 0xcc and 0xd0 (reset)</p>
+<p><strong>Side effects</strong>
+- Allocates temporary vectors</p>
+<p><strong>Input checks:</strong> Unknown (truncated).</p>
+<p><strong>Multiplayer:</strong> may-desync, changes city religion state. <strong>Risk:</strong> high (incomplete decompilation). <strong>Confidence of the reading:</strong> low.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

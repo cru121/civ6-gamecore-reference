@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="cleartemproutes"></a>ClearTempRoutes</td>
 <td><code>TradeManager:ClearTempRoutes() → number</code></td>
-<td>—</td>
+<td>Destroys all temporary routes in the manager's vector (+0x218) and clears it, returning the number cleared.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x38d6d0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="disabledomesticroutesforplayer"></a>DisableDomesticRoutesForPlayer</td>
 <td><code>TradeManager:DisableDomesticRoutesForPlayer(disablePlayer: integer)</code></td>
-<td>—</td>
+<td>Removes all routes of the player to its own cities from the graph and cleans up each removed route.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x38e2c0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="disableinternationalmajorsroutesforplayer"></a>DisableInternationalMajorsRoutesForPlayer</td>
 <td><code>TradeManager:DisableInternationalMajorsRoutesForPlayer(disablePlayer: integer)</code></td>
-<td>—</td>
+<td>Removes routes between the given player and every other major player (both directions) and cleans them up.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x38e3b0</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="disableinternationalminorsroutesforplayer"></a>DisableInternationalMinorsRoutesForPlayer</td>
 <td><code>TradeManager:DisableInternationalMinorsRoutesForPlayer(disablePlayer: integer)</code></td>
-<td>—</td>
+<td>Removes routes between the given player and every other non-major player (city-states) in both directions and cleans them up.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x38e530</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>TradeManager:DoTurn()</code></td>
-<td>—</td>
+<td>Clears temporary routes and, if any were cleared, dispatches a no-argument game signal.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x38eec0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getearliestendturnforroute"></a>GetEarliestEndTurnForRoute</td>
 <td><code>TradeManager:GetEarliestEndTurnForRoute(startTurn: integer) → number</code></td>
-<td>—</td>
+<td>Computes the earliest turn a route started on startTurn may end: start plus a game-speed-adjusted global duration, plus an era/government-specific extra duration when defined, at least start+1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x38f720</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasactiveroute"></a>HasActiveRoute</td>
 <td><code>TradeManager:HasActiveRoute(plotIndex: integer) → boolean</code></td>
-<td>—</td>
+<td>Scans the graph's edge table for an active edge whose list of plot indices contains the given plot and returns true if any.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x386620</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="islandrouteallowed"></a>IsLandRouteAllowed</td>
 <td><code>TradeManager:IsLandRouteAllowed(originPlayer: integer, iX: integer, iY: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the origin player may route over the plot at (iX,iY): false if plot or player invalid, otherwise tests a per-player counter that differs for the player's own territory versus other territory, allowed when counter below 1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x38fd10</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="iswaterrouteallowed"></a>IsWaterRouteAllowed</td>
 <td><code>TradeManager:IsWaterRouteAllowed(originPlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player can embark the UNIT_TRADER unit, used as the water-route permission.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x390040</code></td>
@@ -100,11 +100,72 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeedgebyid"></a>RemoveEdgeByID</td>
 <td><code>TradeManager:RemoveEdgeByID(iID: integer) → boolean</code></td>
-<td>—</td>
+<td>Removes the edge with the given ID from the trade graph: erases it from both vertex adjacency maps and the edge table, destroys it and returns it to the free list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x386f30</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>ClearTempRoutes</h3>
+<p><strong>Writes</strong>
+- Temporary route vector end pointer</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, clears manager route list. <strong>Risk:</strong> low (Temp routes are normally local previews.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DisableDomesticRoutesForPlayer</h3>
+<p>Arguments: <code>disablePlayer</code> — Player whose domestic routes are removed</p>
+<p><strong>Writes</strong>
+- Trade graph routes
+- Route state via CleanupRemovedRoute</p>
+<p><strong>Side effects</strong>
+- Cleanup of removed routes (reason code 7)</p>
+<p><strong>Input checks:</strong> Checks player ID &lt; 0x41 and that the player exists; otherwise no-op.</p>
+<p><strong>Multiplayer:</strong> may-desync, removes trade routes. <strong>Risk:</strong> high (Cancels existing routes.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DisableInternationalMajorsRoutesForPlayer</h3>
+<p>Arguments: <code>disablePlayer</code> — Player whose routes with majors are removed</p>
+<p><strong>Writes</strong>
+- Trade graph routes
+- Route state via CleanupRemovedRoute</p>
+<p><strong>Side effects</strong>
+- Cleanup of removed routes (reason code 7)</p>
+<p><strong>Input checks:</strong> Checks player ID &lt; 0x41 and existing; skips itself and null/non-major players.</p>
+<p><strong>Multiplayer:</strong> may-desync, removes trade routes. <strong>Risk:</strong> high (Cancels existing routes.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DisableInternationalMinorsRoutesForPlayer</h3>
+<p>Arguments: <code>disablePlayer</code> — Player whose routes with minors are removed</p>
+<p><strong>Writes</strong>
+- Trade graph routes
+- Route state via CleanupRemovedRoute</p>
+<p><strong>Side effects</strong>
+- Cleanup of removed routes (reason code 7)</p>
+<p><strong>Input checks:</strong> Checks player ID &lt; 0x41 and existing; skips itself and major players.</p>
+<p><strong>Multiplayer:</strong> may-desync, removes trade routes. <strong>Risk:</strong> high (Cancels existing routes.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- Temporary route vector (via ClearTempRoutes)</p>
+<p><strong>Side effects</strong>
+- Dispatches game signal at game+0x280 +0x13b0 when routes were cleared</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, per-turn manager processing. <strong>Risk:</strong> low (Small turn hook.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetEarliestEndTurnForRoute</h3>
+<p>Arguments: <code>startTurn</code> — Turn the route starts</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, computes from rules and era. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasActiveRoute</h3>
+<p>Arguments: <code>plotIndex</code> — Plot index to search for on active routes</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, scans edge table. <strong>Risk:</strong> low (Pure check.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsLandRouteAllowed</h3>
+<p>Arguments: <code>originPlayer</code> — Player whose route would use the plot; <code>iX</code> — Plot X; <code>iY</code> — Plot Y</p>
+<p><strong>Input checks:</strong> Null plot and -1 player return false; coordinates not range checked beyond map lookup.</p>
+<p><strong>Multiplayer:</strong> read-only, inspects map and player counters. <strong>Risk:</strong> low (Pure check.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsWaterRouteAllowed</h3>
+<p>Arguments: <code>originPlayer</code> — Player to check</p>
+<p><strong>Input checks:</strong> No player validity check; missing trader type passes -1.</p>
+<p><strong>Multiplayer:</strong> read-only, checks embark ability. <strong>Risk:</strong> low (Pure check.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveEdgeByID</h3>
+<p>Arguments: <code>iID</code> — Edge ID to remove</p>
+<p><strong>Writes</strong>
+- Edge hash table, adjacency maps (+0xf0, +0x118), edge free list and count</p>
+<p><strong>Input checks:</strong> Returns false if the ID is not found.</p>
+<p><strong>Multiplayer:</strong> may-desync, mutates trade graph. <strong>Risk:</strong> high (Private graph edit; stale routes may reference it.). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

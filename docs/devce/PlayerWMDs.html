@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getallwmdcounts"></a>GetAllWMDCounts</td>
 <td><code>PlayerWMDs:GetAllWMDCounts() → number</code></td>
-<td>—</td>
+<td>Sums the player's stockpile counts over all WMD definitions, treating an invalid index as -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x35f0a0</code></td>
@@ -36,11 +36,22 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setweaponcount"></a>SetWeaponCount</td>
 <td><code>PlayerWMDs:SetWeaponCount(eWMD: integer, iValue: integer)</code></td>
-<td>—</td>
+<td>Sets the player's stockpile count of a WMD type and sends a reporting event with the player and WMD type.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x35f330</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>GetAllWMDCounts</h3>
+<p><strong>Input checks:</strong> Invalid WMD indices contribute -1.</p>
+<p><strong>Multiplayer:</strong> read-only, sums stockpile array. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetWeaponCount</h3>
+<p>Arguments: <code>eWMD</code> — WMD type; <code>iValue</code> — New stockpile count</p>
+<p><strong>Writes</strong>
+- WMD stockpile array entry at WMDs+0x98</p>
+<p><strong>Side effects</strong>
+- Reporting event 0x23f12549 (player, WMD)</p>
+<p><strong>Input checks:</strong> Ignores -1 type; no upper bound check on the type index and no range check on value.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player stockpile. <strong>Risk:</strong> medium (No bounds check against array size.). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

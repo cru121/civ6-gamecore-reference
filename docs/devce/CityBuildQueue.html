@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="adddistrictbuildingmodifier"></a>AddDistrictBuildingModifier</td>
 <td><code>CityBuildQueue:AddDistrictBuildingModifier(eDistrictType: integer, iModifier: integer)</code></td>
-<td>—</td>
+<td>Appends a (district, modifier) pair to the build queue's district building modifier list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xf5030</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="dobuilds"></a>DoBuilds</td>
 <td><code>CityBuildQueue:DoBuilds()</code></td>
-<td>—</td>
+<td>Per-turn production processing: calculates yields for the current production, resets a city yield array and related field, and adds progress. The decompilation is truncated, so the rest is not visible.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfc330</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>CityBuildQueue:DoTurnActivate()</code></td>
-<td>—</td>
+<td>Adds the pending value at 0x1f8 to the value at 0x1f4, clears the pending value and runs DoBuilds.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfc690</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getadjacentcityriverbuildingproductionmultipliercalclulated"></a>GetAdjacentCityRiverBuildingProductionMultiplierCalclulated</td>
 <td><code>CityBuildQueue:GetAdjacentCityRiverBuildingProductionMultiplierCalclulated(eBuilding: integer) → number</code></td>
-<td>—</td>
+<td>Returns a production multiplier for a building if a stored plot is adjacent to the city and a river edge lies in that direction; otherwise 1.0 (0x100).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfc770</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getbestformationfor"></a>GetBestFormationFor</td>
 <td><code>CityBuildQueue:GetBestFormationFor(eUnit: integer) → number</code></td>
-<td>—</td>
+<td>Returns the best military formation the city can train for a unit: 2 (corps/army tier) if trainable, else 1 if trainable at tier 1, else 0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfc970</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentbuildprogress"></a>GetCurrentBuildProgress</td>
 <td><code>CityBuildQueue:GetCurrentBuildProgress() → number</code></td>
-<td>—</td>
+<td>Returns accumulated progress of the current production item, choosing the progress array by item kind (unit, building, district, project).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfcf90</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentproductionbuilding"></a>GetCurrentProductionBuilding</td>
 <td><code>CityBuildQueue:GetCurrentProductionBuilding() → number</code></td>
-<td>—</td>
+<td>Returns the building type currently in production, or -1 if the current item is not a building.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfd080</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentproductiondistrict"></a>GetCurrentProductionDistrict</td>
 <td><code>CityBuildQueue:GetCurrentProductionDistrict() → number</code></td>
-<td>—</td>
+<td>Returns the district type currently in production, or -1 if the current item is not a district.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfd0b0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentproductiontypemodifier"></a>GetCurrentProductionTypeModifier</td>
 <td><code>CityBuildQueue:GetCurrentProductionTypeModifier() → number</code></td>
-<td>—</td>
+<td>Returns the type modifier hash stored on the current item when the item kind is 0 (unit), else -1.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfd340</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentproductionunit"></a>GetCurrentProductionUnit</td>
 <td><code>CityBuildQueue:GetCurrentProductionUnit() → number</code></td>
-<td>—</td>
+<td>Returns the unit type currently in production, or -1 if the current item is not a unit.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfd370</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getdistrictproductioncost"></a>GetDistrictProductionCost</td>
 <td><code>CityBuildQueue:GetDistrictProductionCost(eDistrict: integer, eFeatureToRemove: integer, eResourceToHarvest: integer) → number</code></td>
-<td>—</td>
+<td>Returns the production cost of a district for this city, from the existing district if it has a positive cost, else from the player's district cost; adds half a builder's cost if removing a feature with no yield list.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfd470</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getdistrictzonedatlocation"></a>GetDistrictZonedAtLocation</td>
 <td><code>CityBuildQueue:GetDistrictZonedAtLocation(iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the district type that has been zoned at a given plot index in this city's queue, or -1 if none.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfd5a0</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getextraunitcopy"></a>GetExtraUnitCopy</td>
 <td><code>CityBuildQueue:GetExtraUnitCopy(eUnit: integer) → number</code></td>
-<td>—</td>
+<td>Returns how many extra copies of a unit the queue grants: the queue's own per-unit counter plus the owning player's per-unit counter.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfd750</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getproductionyield"></a>GetProductionYield</td>
 <td><code>CityBuildQueue:GetProductionYield() → number</code></td>
-<td>—</td>
+<td>Returns the owning city's production yield by forwarding to City::Instance::GetYield; the yield type argument is not set in the decompilation (taken from a leftover register), so the shown code may be incomplete.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfdb10</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getprojectproductioncost"></a>GetProjectProductionCost</td>
 <td><code>CityBuildQueue:GetProjectProductionCost(eProject: integer) → number</code></td>
-<td>—</td>
+<td>Computes the production cost of a project for this city's owner: uses defense-damage based cost for flagged projects, else base cost with cost-progression escalation (tech/civic percent or cost group), then game speed adjustment.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfdca0</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getprojectproductionmultiplier"></a>GetProjectProductionMultiplier</td>
 <td><code>CityBuildQueue:GetProjectProductionMultiplier(eProject: integer) → number</code></td>
-<td>—</td>
+<td>Returns a FixedPoint production multiplier for a project: base value from a per-index array, scaled by a government-linked array entry when the project's hero class and government are found. The decompilation reads params from registers and is partly garbled.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfde60</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettotaldistrictbuildingmodifier"></a>GetTotalDistrictBuildingModifier</td>
 <td><code>CityBuildQueue:GetTotalDistrictBuildingModifier(eDistrictType: integer) → number</code></td>
-<td>—</td>
+<td>Sums all stored modifier values for the given district type from the queue's (district, value) list and returns the total as FixedPoint (values scaled by 1/256-style float conversion).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfe1e0</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getunitarmyproductioncost"></a>GetUnitArmyProductionCost</td>
 <td><code>CityBuildQueue:GetUnitArmyProductionCost(eUnit: integer) → number</code></td>
-<td>—</td>
+<td>Computes army-formation production cost of a unit: 3x base unit cost minus a per-unit discount fraction from the queue.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfea70</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getunitcorpsproductioncost"></a>GetUnitCorpsProductionCost</td>
 <td><code>CityBuildQueue:GetUnitCorpsProductionCost(eUnit: integer) → number</code></td>
-<td>—</td>
+<td>Computes corps-formation production cost of a unit: 2x base unit cost minus a per-unit discount fraction from the queue.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfeaf0</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getunitproductioncost"></a>GetUnitProductionCost</td>
 <td><code>CityBuildQueue:GetUnitProductionCost(eUnit: integer, eMilitaryFormation: integer) → number</code></td>
-<td>—</td>
+<td>Returns the production cost of a unit in standard, corps or army formation, with an optional percent reduction from the player (for non-naval-class formation types when the player's yield type is production and a reduction is set).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfeb80</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getunitresourcecost"></a>GetUnitResourceCost</td>
 <td><code>CityBuildQueue:GetUnitResourceCost(eUnit: integer, eMilitaryFormation: integer) → number</code></td>
-<td>—</td>
+<td>Returns the strategic resource cost of building a unit in a formation, with corps/army discount, a city-level reduction percentage and a minimum of 1; 0 if the unit has no resource requirement.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xfec80</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getvalidfeaturefordistrict"></a>GetValidFeatureForDistrict</td>
 <td><code>CityBuildQueue:GetValidFeatureForDistrict(eValidDistrict: integer, eValidFeature: integer) → boolean</code></td>
-<td>—</td>
+<td>Searches the queue's modifier-granted list of (district, feature) pairs for a match.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xff430</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getvalidfeatureforwonder"></a>GetValidFeatureForWonder</td>
 <td><code>CityBuildQueue:GetValidFeatureForWonder(eFeature: integer) → boolean</code></td>
-<td>—</td>
+<td>Looks up a per-feature flag array to see if wonders may be built on that feature.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xff470</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getzoningplot"></a>GetZoningPlot</td>
 <td><code>CityBuildQueue:GetZoningPlot(eDistrict: integer) → number</code></td>
-<td>—</td>
+<td>Returns the plot index recorded as the zoning (planned district) plot for a district type.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xff490</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isconstructionplotriver"></a>IsConstructionPlotRiver</td>
 <td><code>CityBuildQueue:IsConstructionPlotRiver(eBuilding: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the plot where a building is being constructed has a river (flag byte at plot+0x37 &gt; 0).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xff870</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isconstructionplotvalidadjacentnaturalwonder"></a>IsConstructionPlotValidAdjacentNaturalWonder</td>
 <td><code>CityBuildQueue:IsConstructionPlotValidAdjacentNaturalWonder(eBuilding: integer) → number</code></td>
-<td>—</td>
+<td>Iterates neighbors of the building's construction plot with a lambda that checks the queue's building list against adjacent natural wonders; returns a FixedPoint that defaults to 1.0 (0x100). The lambda body is not visible, so the exact result semantics are unclear.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xff8e0</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isvaliddomainforunit"></a>IsValidDomainForUnit</td>
 <td><code>CityBuildQueue:IsValidDomainForUnit(eUnit: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the city can build a unit by domain; only sea units (DOMAIN_SEA) are further tested via City::Instance::CanBuildUnitsOfDomain.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xff9f0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="iszoningplotriver"></a>IsZoningPlotRiver</td>
 <td><code>CityBuildQueue:IsZoningPlotRiver(eDistrict: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the zoning plot of a district has a river (plot flag byte +0x37 &gt; 0).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xffa70</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="iszoningplotvalidadjacentnaturalwonder"></a>IsZoningPlotValidAdjacentNaturalWonder</td>
 <td><code>CityBuildQueue:IsZoningPlotValidAdjacentNaturalWonder(eDistrict: integer) → number</code></td>
-<td>—</td>
+<td>Iterates neighbors of a district's zoning plot with a lambda against the queue's building list; returns a FixedPoint defaulting to 1.0 (0x100). Lambda body not visible so exact semantics unclear.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0xffae0</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeall"></a>RemoveAll</td>
 <td><code>CityBuildQueue:RemoveAll()</code></td>
-<td>—</td>
+<td>Removes every entry from the city's build queue: calls OnRemoveFrontEntry, clears the node vector, and sends a queue-changed event.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x103450</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeallincompletebuildings"></a>RemoveAllIncompleteBuildings</td>
 <td><code>CityBuildQueue:RemoveAllIncompleteBuildings()</code></td>
-<td>—</td>
+<td>Iterates all building definitions and calls JustRemoveBuilding for each to drop incomplete buildings from the queue (protected method).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1034d0</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removedistrictbuildingmodifier"></a>RemoveDistrictBuildingModifier</td>
 <td><code>CityBuildQueue:RemoveDistrictBuildingModifier(eDistrictType: integer, iModifier: integer)</code></td>
-<td>—</td>
+<td>Removes the first (district, value) pair matching both arguments from the queue's district-building-modifier list, shifting later entries down.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x103670</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removedistrictdependentbuildings"></a>RemoveDistrictDependentBuildings</td>
 <td><code>CityBuildQueue:RemoveDistrictDependentBuildings(eDistrict: integer)</code></td>
-<td>—</td>
+<td>Iterates building definitions and removes from the queue each building whose prerequisite district equals the given one (protected).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1037b0</code></td>
@@ -300,7 +300,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removemodifiervalidfeaturedistricts"></a>RemoveModifierValidFeatureDistricts</td>
 <td><code>CityBuildQueue:RemoveModifierValidFeatureDistricts(eNewDistrict: integer, eNewFeature: integer)</code></td>
-<td>—</td>
+<td>Removes all (district, feature) pairs matching the arguments from the modifier-granted valid feature-district list, shrinking its count.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1039c0</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setmodifiervalidfeaturedistricts"></a>SetModifierValidFeatureDistricts</td>
 <td><code>CityBuildQueue:SetModifierValidFeatureDistricts(eNewDistrict: integer, eNewFeature: integer)</code></td>
-<td>—</td>
+<td>Appends a (district, feature) pair to the modifier-granted valid feature-district list, growing the vector when full.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x1047b0</code></td>
@@ -324,6 +324,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddDistrictBuildingModifier</h3>
+<p>Arguments: <code>eDistrictType</code> — district type the modifier applies to; <code>iModifier</code> — modifier value</p>
+<p><strong>Writes</strong>
+- district building modifier list (0x3b8..0x3c8)</p>
+<p><strong>Input checks:</strong> no validation; duplicates are appended</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> medium (modifies synchronised city state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeProductionModifier</h3>
 <p>Arguments: <code>iDelta</code> — percent change</p>
 <p><strong>Writes</strong>
@@ -342,6 +348,152 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - constant is probably 0.01</p>
 <p><strong>Open questions</strong>
 - whether a given overload uses a separate array in the real build (folded here)</p>
+<h3>DoBuilds</h3>
+<p><strong>Writes</strong>
+- city yield array (city offset 0x6e0)
+- city field at 2000 set to -1
+- build progress via AddProgress (not visible)</p>
+<p><strong>Side effects</strong>
+- calls CalculateYield and AddProgress</p>
+<p><strong>Input checks:</strong> unknown due to truncated decompilation</p>
+<p><strong>Multiplayer:</strong> may-desync, adds production progress. <strong>Risk:</strong> high (advances production in synchronised state). <strong>Confidence of the reading:</strong> low.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- accumulated value (0x1f4)
+- pending value (0x1f8)</p>
+<p><strong>Side effects</strong>
+- calls DoBuilds</p>
+<p><strong>Input checks:</strong> none</p>
+<p><strong>Multiplayer:</strong> may-desync, modifies synchronised city state. <strong>Risk:</strong> high (modifies synchronised city state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetAdjacentCityRiverBuildingProductionMultiplierCalclulated</h3>
+<p>Arguments: <code>eBuilding</code> — building type used to look up a plot in a per-building array (inferred)</p>
+<p><strong>Input checks:</strong> returns 1.0 when stored multiplier &lt;= 1.0, plot missing or not adjacent</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetBestFormationFor</h3>
+<p>Arguments: <code>eUnit</code> — unit type to test</p>
+<p><strong>Input checks:</strong> delegates to CanTrain; no extra checks</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCurrentBuildProgress</h3>
+<p><strong>Input checks:</strong> returns 0 if queue is empty or kind is unknown</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCurrentProductionBuilding</h3>
+<p><strong>Input checks:</strong> returns -1 if the queue is empty or kind is not building</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCurrentProductionDistrict</h3>
+<p><strong>Input checks:</strong> returns -1 if queue empty or kind is not district</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetCurrentProductionTypeModifier</h3>
+<p><strong>Input checks:</strong> returns -1 if queue empty or kind is not 0</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetCurrentProductionUnit</h3>
+<p><strong>Input checks:</strong> returns -1 if queue empty or kind is not unit</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetDistrictProductionCost</h3>
+<p>Arguments: <code>eDistrict</code> — district type; <code>eFeatureToRemove</code> — feature removed during construction; <code>eResourceToHarvest</code> — resource harvested (not used in the shown code) (inferred)</p>
+<p><strong>Input checks:</strong> checks district index range; -1 feature skipped</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetDistrictZonedAtLocation</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index to look up</p>
+<p><strong>Input checks:</strong> no range check on plot index; bounded by district definitions</p>
+<p><strong>Multiplayer:</strong> read-only, pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetExtraUnitCopy</h3>
+<p>Arguments: <code>eUnit</code> — unit type index</p>
+<p><strong>Input checks:</strong> Returns 0 if eUnit is &gt;= the queue's array size; player array bounds-checked, no null check on player.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetProductionYield</h3>
+<p><strong>Input checks:</strong> None visible.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetProjectProductionCost</h3>
+<p>Arguments: <code>eProject</code> — project type index</p>
+<p><strong>Input checks:</strong> Returns -1 if eProject is out of range or has no definition; no player null check.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetProjectProductionMultiplier</h3>
+<p>Arguments: <code>eProject</code> — project type index (inferred)</p>
+<p><strong>Input checks:</strong> Null-checks hero class, government and its sub-pointer; index not range-checked in visible code.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetTotalDistrictBuildingModifier</h3>
+<p>Arguments: <code>eDistrictType</code> — district type index to match</p>
+<p><strong>Input checks:</strong> No validation; unmatched district gives 0.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetUnitArmyProductionCost</h3>
+<p>Arguments: <code>eUnit</code> — unit type (resolved via Types::GetIndex)</p>
+<p><strong>Input checks:</strong> Returns -1 if Types::GetIndex returns invalid.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetUnitCorpsProductionCost</h3>
+<p>Arguments: <code>eUnit</code> — unit type (resolved via Types::GetIndex)</p>
+<p><strong>Input checks:</strong> Returns -1 if Types::GetIndex returns invalid.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetUnitProductionCost</h3>
+<p>Arguments: <code>eUnit</code> — unit type index; <code>eMilitaryFormation</code> — formation: &lt;=0 standard, 1 corps, 2 army</p>
+<p><strong>Input checks:</strong> Checks unit definition exists and formation &gt;= -1; formation &gt; 2 returns 0.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetUnitResourceCost</h3>
+<p>Arguments: <code>eUnit</code> — unit type index; <code>eMilitaryFormation</code> — formation type (1-2 apply discount)</p>
+<p><strong>Input checks:</strong> Returns 0 if unit definition missing or no resource requirement.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetValidFeatureForDistrict</h3>
+<p>Arguments: <code>eValidDistrict</code> — district type; <code>eValidFeature</code> — feature type</p>
+<p><strong>Input checks:</strong> No validation; linear search of list.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetValidFeatureForWonder</h3>
+<p>Arguments: <code>eFeature</code> — feature type index</p>
+<p><strong>Input checks:</strong> Out-of-range feature returns false.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetZoningPlot</h3>
+<p>Arguments: <code>eDistrict</code> — district type index</p>
+<p><strong>Input checks:</strong> Out-of-range returns -1.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsConstructionPlotRiver</h3>
+<p>Arguments: <code>eBuilding</code> — building type index</p>
+<p><strong>Input checks:</strong> Out-of-range returns false; null plot returns false.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsConstructionPlotValidAdjacentNaturalWonder</h3>
+<p>Arguments: <code>eBuilding</code> — building type index</p>
+<p><strong>Input checks:</strong> Range check on building; null map and plot handled.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>IsValidDomainForUnit</h3>
+<p>Arguments: <code>eUnit</code> — unit type index</p>
+<p><strong>Input checks:</strong> False for out-of-range/missing definition.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsZoningPlotRiver</h3>
+<p>Arguments: <code>eDistrict</code> — district type index</p>
+<p><strong>Input checks:</strong> Out-of-range returns false; null plot returns false.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsZoningPlotValidAdjacentNaturalWonder</h3>
+<p>Arguments: <code>eDistrict</code> — district type index</p>
+<p><strong>Input checks:</strong> Range check on district; null map/plot handled.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>RemoveAll</h3>
+<p><strong>Writes</strong>
+- build queue entries (cleared)
+- front entry state via OnRemoveFrontEntry</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send with city id (event hash 0x92492f56)</p>
+<p><strong>Input checks:</strong> Does nothing if the queue is already empty; no other checks.</p>
+<p><strong>Multiplayer:</strong> may-desync: clears queue of synchronised city state. <strong>Risk:</strong> high (wipes city production queue). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveAllIncompleteBuildings</h3>
+<p><strong>Writes</strong>
+- build queue / incomplete building progress (via JustRemoveBuilding)</p>
+<p><strong>Input checks:</strong> No checks; relies on JustRemoveBuilding.</p>
+<p><strong>Multiplayer:</strong> may-desync: edits city build state. <strong>Risk:</strong> medium (bulk removal of queued buildings). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveDistrictBuildingModifier</h3>
+<p>Arguments: <code>eDistrictType</code> — district type to match; <code>iModifier</code> — modifier value to match</p>
+<p><strong>Writes</strong>
+- district building modifier list at +0x3b8 (one entry removed)</p>
+<p><strong>Input checks:</strong> No range checks; no-op if no exact pair matches.</p>
+<p><strong>Multiplayer:</strong> may-desync: alters production modifier state. <strong>Risk:</strong> medium (modifies city production modifiers). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveDistrictDependentBuildings</h3>
+<p>Arguments: <code>eDistrict</code> — district type whose dependent buildings are removed</p>
+<p><strong>Writes</strong>
+- build queue entries for buildings requiring that district</p>
+<p><strong>Input checks:</strong> No checks; skips buildings without a district requirement.</p>
+<p><strong>Multiplayer:</strong> may-desync: edits city build queue. <strong>Risk:</strong> medium (removes queued items). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveModifierValidFeatureDistricts</h3>
+<p>Arguments: <code>eNewDistrict</code> — district type to match; <code>eNewFeature</code> — feature type to match</p>
+<p><strong>Writes</strong>
+- valid feature-district list at +0x378 and count at +0x388</p>
+<p><strong>Input checks:</strong> No validation; no-op if no match.</p>
+<p><strong>Multiplayer:</strong> may-desync: alters placement rules in synchronised city state. <strong>Risk:</strong> medium (edits placement-validity data). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetDistrictPercentComplete</h3>
 <p>Arguments: <code>eDistrict</code> — district type; <code>iPercent</code> — percent of cost completed</p>
 <p><strong>Writes</strong>
@@ -359,4 +511,10 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - array at +0x248 is district production progress</p>
 <p><strong>Open questions</strong>
-- whether percent above 100 is handled elsewhere</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- whether percent above 100 is handled elsewhere</p>
+<h3>SetModifierValidFeatureDistricts</h3>
+<p>Arguments: <code>eNewDistrict</code> — district type; <code>eNewFeature</code> — feature type</p>
+<p><strong>Writes</strong>
+- valid feature-district list at +0x378, count at +0x388 (capacity at +0x380)</p>
+<p><strong>Input checks:</strong> No duplicate or range checks.</p>
+<p><strong>Multiplayer:</strong> may-desync: alters placement rules in synchronised city state. <strong>Risk:</strong> medium (edits placement-validity data). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addembarkunitpass"></a>AddEmbarkUnitPass</td>
 <td><code>PlayerUnits:AddEmbarkUnitPass(eUnit: integer)</code></td>
-<td>—</td>
+<td>Appends a unit type to the player's embark-pass list (units allowed to embark) stored in the variant vector at +0x2a0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34c410</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addrandombasepromotion"></a>AddRandomBasePromotion</td>
 <td><code>PlayerUnits:AddRandomBasePromotion(eUnit: integer) → boolean</code></td>
-<td>—</td>
+<td>Picks a random promotion of the unit's promotion class that the player does not already have as a base promotion for this unit type, adds it via ChangeBasePromotionCount, and assigns it to existing units.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34c480</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addunlimitedpromotionchoiceunittype"></a>AddUnlimitedPromotionChoiceUnitType</td>
 <td><code>PlayerUnits:AddUnlimitedPromotionChoiceUnitType(eUnit: integer)</code></td>
-<td>—</td>
+<td>Adds a unit type to the list (+0xe8) of types that receive unlimited promotion choices, unless already present.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34c670</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="assignbasepromotionstounits"></a>AssignBasePromotionsToUnits</td>
 <td><code>PlayerUnits:AssignBasePromotionsToUnits()</code></td>
-<td>—</td>
+<td>For each unit the player owns, grants every base promotion (matching unit type with positive count) the unit does not yet have.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34c800</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canembark"></a>CanEmbark</td>
 <td><code>PlayerUnits:CanEmbark(eUnit: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player can embark the given unit type: false for barbarians, true if a global parameter allows it, if the unit is in the embark-pass list, or if an owned tech/civic grants embarkation for that unit.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34c950</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changebasepromotioncount"></a>ChangeBasePromotionCount</td>
 <td><code>PlayerUnits:ChangeBasePromotionCount(eUnit: integer, ePromotion: integer, iDelta: integer) → boolean</code></td>
-<td>—</td>
+<td>Adds iDelta to the count for the (unit type, promotion) base promotion entry, removing the entry when the count drops to 0 or below, or appends a new entry when none exists and iDelta is positive.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34cbd0</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changefreepass"></a>ChangeFreePass</td>
 <td><code>PlayerUnits:ChangeFreePass(eBuildUnit: integer)</code></td>
-<td>—</td>
+<td>Appends a unit type to the free-pass list (+0x278), then recalculates which unit types the player can ever train.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x949640</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doendturn"></a>DoEndTurn</td>
 <td><code>PlayerUnits:DoEndTurn()</code></td>
-<td>—</td>
+<td>End-of-turn processing for the player's units: for non-barbarian players iterates units and applies fallout damage on plots with fallout turns remaining (scaled by a per-unit reduction), sending reporting events. Decompilation is truncated so the rest is unknown.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34d690</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>PlayerUnits:DoTurnActivate()</code></td>
-<td>—</td>
+<td>At turn start resets and recomputes per-resource hero-related unit counts (vector +0x5c8) from units' definitions, then iterates required resources for a major player; decompilation is truncated.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34e9d0</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcost"></a>GetCost</td>
 <td><code>PlayerUnits:GetCost(eUnit: integer) → number</code></td>
-<td>—</td>
+<td>Returns the per-unit-type cost from the player's cost array (+0x1c0), or 0 when the type index is beyond the array.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34f550</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumunitsfromcity"></a>GetNumUnitsFromCity</td>
 <td><code>PlayerUnits:GetNumUnitsFromCity(eUnitType: integer, cityID: integer) → number</code></td>
-<td>—</td>
+<td>Counts the player's units of a given type whose origin city ID matches.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34f5d0</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumunitsoftype"></a>GetNumUnitsOfType</td>
 <td><code>PlayerUnits:GetNumUnitsOfType(eUnit: integer) → number</code></td>
-<td>—</td>
+<td>Counts the player's units of the given type.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34f6b0</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getresourcecost"></a>GetResourceCost</td>
 <td><code>PlayerUnits:GetResourceCost(eUnit: integer, eMilitaryFormation: integer) → number</code></td>
-<td>—</td>
+<td>Returns the resource cost of a unit type from array +0x1e8, doubled for formation 1 (corps) and tripled for formation 2 (army); 0 if out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34f6e0</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isproposedpromotion"></a>IsProposedPromotion</td>
 <td><code>PlayerUnits:IsProposedPromotion(iUnitID: integer, ePromotion: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether the (unit ID, promotion) pair is in the list of proposed promotions at +0x3c8.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34f8e0</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeembarkunitpass"></a>RemoveEmbarkUnitPass</td>
 <td><code>PlayerUnits:RemoveEmbarkUnitPass(eUnit: integer)</code></td>
-<td>—</td>
+<td>Rebuilds the embark-pass list without the first occurrence of the given unit type and writes it back to +0x2a0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34fbf0</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removefreepass"></a>RemoveFreePass</td>
 <td><code>PlayerUnits:RemoveFreePass(eUnit: integer)</code></td>
-<td>—</td>
+<td>Rebuilds the free-pass list without all occurrences of the unit type, writes it to +0x278 and recalculates can-ever-train.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x34fe20</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeunlimitedpromotionchoiceunittype"></a>RemoveUnlimitedPromotionChoiceUnitType</td>
 <td><code>PlayerUnits:RemoveUnlimitedPromotionChoiceUnitType(eUnit: integer)</code></td>
-<td>—</td>
+<td>Removes the unit type from the unlimited-promotion-choice list (+0xe8) if present.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x350040</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setcorpsarmyunlockcivic"></a>SetCorpsArmyUnlockCivic</td>
 <td><code>PlayerUnits:SetCorpsArmyUnlockCivic(bLand: boolean, bCorps: boolean, eCivic: integer)</code></td>
-<td>—</td>
+<td>Stores the civic that unlocks corps or army for land or naval units: land+corps +0x418, land+army +0x430, naval+corps +0x448, naval+army +0x460.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x3511f0</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setcorpsarmyunlocktech"></a>SetCorpsArmyUnlockTech</td>
 <td><code>PlayerUnits:SetCorpsArmyUnlockTech(bLand: boolean, bCorps: boolean, eTech: integer)</code></td>
-<td>—</td>
+<td>Stores the tech that unlocks corps or army: land+corps +0x478, land+army +0x490, naval+corps +0x4a8, naval+army +0x4c0.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x351260</code></td>
@@ -236,6 +236,36 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddEmbarkUnitPass</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to grant the embark pass for</p>
+<p><strong>Writes</strong>
+- Embark unit pass vector at Units+0x2a0 (append)</p>
+<p><strong>Input checks:</strong> Ignores -1 (NO_UNIT); does not check for duplicates or that the type is valid.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised player list. <strong>Risk:</strong> medium (Allows duplicates and writes player state.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>AddRandomBasePromotion</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to receive a random base promotion</p>
+<p><strong>Writes</strong>
+- Base promotion list (+0x3f8..0x400) via ChangeBasePromotionCount
+- Existing units' promotions via AssignBasePromotionsToUnits</p>
+<p><strong>Side effects</strong>
+- Consumes a game random roll labelled 'Random Base Promotion'</p>
+<p><strong>Input checks:</strong> Returns false for -1 or unit type without a definition; if no candidate remains passes -1 promotion (which fails).</p>
+<p><strong>Multiplayer:</strong> may-desync, uses game RNG and edits player units. <strong>Risk:</strong> high (Consumes RNG and promotes units.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>AddUnlimitedPromotionChoiceUnitType</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to add</p>
+<p><strong>Writes</strong>
+- Unlimited-promotion-choice unit type vector at Units+0xe8</p>
+<p><strong>Input checks:</strong> Checks for duplicates only; no validity or -1 check.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised player list. <strong>Risk:</strong> medium (Writes player state without range check.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>AssignBasePromotionsToUnits</h3>
+<p><strong>Writes</strong>
+- Each owned unit's experience/promotion data (+0x960 via SetPromotion)</p>
+<p><strong>Input checks:</strong> Skips when the player has no units; no other checks.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes unit promotions. <strong>Risk:</strong> medium (Changes promotions of many units.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CanEmbark</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to test</p>
+<p><strong>Input checks:</strong> Unit type bounds-checked against definitions; no null handling for owner beyond use.</p>
+<p><strong>Multiplayer:</strong> read-only, pure check of definitions and player state. <strong>Risk:</strong> low (Pure check.). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeAddOnDistrictFounding</h3>
 <p>Arguments: <code>districtHash</code> — hash of the district type; <code>unitHash</code> — hash of the unit type; <code>iDelta</code> — amount added to the counter</p>
 <p><strong>Writes</strong>
@@ -253,6 +283,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - nonzero count enables the unit to found that district; semantic taken from the name</p>
 <p><strong>Open questions</strong>
 - where the counters are read and how zero or negative values are treated</p>
+<h3>ChangeBasePromotionCount</h3>
+<p>Arguments: <code>eUnit</code> — Unit type of the base promotion; <code>ePromotion</code> — Promotion type; <code>iDelta</code> — Amount to add to the count (negative to remove)</p>
+<p><strong>Writes</strong>
+- Base promotion vector at Units+0x3e8 (entries of 12 bytes: unit, promotion, count)</p>
+<p><strong>Input checks:</strong> Returns false for -1 unit or promotion; no delta range check; no definition validity check.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised player list. <strong>Risk:</strong> medium (Does not itself apply promotions to units.). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeExtraBuildCharges</h3>
 <p>Arguments: <code>eUnit</code> — unit type; <code>iChange</code> — delta to add</p>
 <p><strong>Writes</strong>
@@ -270,6 +306,13 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - applies to newly created units of that type (not confirmed)</p>
 <p><strong>Open questions</strong>
 - whether existing units are updated</p>
+<h3>ChangeFreePass</h3>
+<p>Arguments: <code>eBuildUnit</code> — Unit type to add to the free pass list</p>
+<p><strong>Writes</strong>
+- Free pass unit vector at Units+0x278 (append)
+- Can-ever-train data via SetCanEverTrain</p>
+<p><strong>Input checks:</strong> No -1 or range check; appends even if present.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits player list and buildability. <strong>Risk:</strong> medium (Unchecked append.). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeProductionModifier</h3>
 <p>Arguments: <code>eUnit</code> — unit type index to modify; <code>iDelta</code> — amount to add (scaled by a small constant, then converted to a fixed-point int)</p>
 <p><strong>Writes</strong>
@@ -290,6 +333,61 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - constant is likely 0.01</p>
 <p><strong>Open questions</strong>
 - exact constant value and the modifier semantics</p>
+<h3>DoEndTurn</h3>
+<p><strong>Writes</strong>
+- Unit damage via Unit manager (fallout damage)</p>
+<p><strong>Side effects</strong>
+- Reporting events
+- Unit manager virtual calls</p>
+<p><strong>Input checks:</strong> Skips when the player has no units; decompilation is truncated so remaining logic is unknown.</p>
+<p><strong>Multiplayer:</strong> may-desync, damages units at turn end. <strong>Risk:</strong> high (Turn-processing function; output truncated.). <strong>Confidence of the reading:</strong> low.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- Per-resource vector at Units+0x5c8
+- Unit Religion-related bool at unit +0x708</p>
+<p><strong>Side effects</strong>
+- Reporting event block 0x1153df52</p>
+<p><strong>Input checks:</strong> No argument; remaining logic is truncated.</p>
+<p><strong>Multiplayer:</strong> may-desync, turn-start processing of player state. <strong>Risk:</strong> high (Truncated; changes turn state.). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetCost</h3>
+<p>Arguments: <code>eUnit</code> — Unit type index</p>
+<p><strong>Input checks:</strong> Upper bound only (unsigned compare, so -1 returns 0).</p>
+<p><strong>Multiplayer:</strong> read-only, array lookup. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumUnitsFromCity</h3>
+<p>Arguments: <code>eUnitType</code> — Unit type to count; <code>cityID</code> — Origin city ID (compared with unit field +0x8a0)</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, counts owned units. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumUnitsOfType</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to count</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, counts owned units. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetResourceCost</h3>
+<p>Arguments: <code>eUnit</code> — Unit type; <code>eMilitaryFormation</code> — Formation: 1 corps (x2), 2 army (x3), else standard</p>
+<p><strong>Input checks:</strong> Bounds check on unit type; formation value not validated.</p>
+<p><strong>Multiplayer:</strong> read-only, array lookup. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsProposedPromotion</h3>
+<p>Arguments: <code>iUnitID</code> — Unit ID; <code>ePromotion</code> — Promotion type</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, list search. <strong>Risk:</strong> low (Pure getter.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveEmbarkUnitPass</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to remove one pass for</p>
+<p><strong>Writes</strong>
+- Embark unit pass vector at Units+0x2a0 (rebuilt)</p>
+<p><strong>Input checks:</strong> Ignores -1; silently does nothing if the type is absent.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised player list. <strong>Risk:</strong> medium (Removes only the first copy.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveFreePass</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to remove</p>
+<p><strong>Writes</strong>
+- Free pass vector at Units+0x278 (rebuilt)
+- Can-ever-train data</p>
+<p><strong>Input checks:</strong> No -1 check; absent type is a no-op rewrite.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits player list and buildability. <strong>Risk:</strong> medium (Rewrites list.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>RemoveUnlimitedPromotionChoiceUnitType</h3>
+<p>Arguments: <code>eUnit</code> — Unit type to remove</p>
+<p><strong>Writes</strong>
+- Unlimited-promotion-choice vector at Units+0xe8</p>
+<p><strong>Input checks:</strong> No-op if absent; no -1 check.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised player list. <strong>Risk:</strong> medium (Writes player state.). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetBannedProductionYield</h3>
 <p>Arguments: <code>eNewYield</code> — yield type that is banned for unit production</p>
 <p><strong>Writes</strong>
@@ -334,6 +432,18 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - meaning of the hash constants and flag bits
 - the function exits through the definition loop end; any additional state set is not seen</p>
+<h3>SetCorpsArmyUnlockCivic</h3>
+<p>Arguments: <code>bLand</code> — True for land units, false for naval; <code>bCorps</code> — True for corps slot, false for army slot; <code>eCivic</code> — Civic type that unlocks the formation</p>
+<p><strong>Writes</strong>
+- One of four unlock-civic fields in Player::Units</p>
+<p><strong>Input checks:</strong> No range checks on civic.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player field. <strong>Risk:</strong> low (Single field write.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetCorpsArmyUnlockTech</h3>
+<p>Arguments: <code>bLand</code> — True for land units, false for naval; <code>bCorps</code> — True for corps slot, false for army slot; <code>eTech</code> — Tech type that unlocks the formation</p>
+<p><strong>Writes</strong>
+- One of four unlock-tech fields in Player::Units</p>
+<p><strong>Input checks:</strong> No range checks on tech.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player field. <strong>Risk:</strong> low (Single field write.). <strong>Confidence of the reading:</strong> high.</p>
 <h3>SetModifiedArmyCorpsStrength</h3>
 <p>Arguments: <code>bLand</code> — true selects land slots, false naval slots (inferred); <code>bCorps</code> — true selects corps, false army (inferred); <code>iAmount</code> — amount added to the current value</p>
 <p><strong>Writes</strong>

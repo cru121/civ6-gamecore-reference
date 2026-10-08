@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeextrawaterrangerefuel"></a>ChangeExtraWaterRangeRefuel</td>
 <td><code>PlayerTrade:ChangeExtraWaterRangeRefuel(iChange: integer)</code></td>
-<td>—</td>
+<td>Adds iChange to the extra water-range-refuel value of the trade component and sends an event.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x33c520</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changeyieldbonusforprogressdifference"></a>ChangeYieldBonusForProgressDifference</td>
 <td><code>PlayerTrade:ChangeYieldBonusForProgressDifference(iTechsCivicsPerYield: integer)</code></td>
-<td>—</td>
+<td>Overwrites the yield-bonus-for-progress-difference field at +0x4e0 with the passed value (despite the name Change, the code assigns the value).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x33cd40</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checkcapacitynotification"></a>CheckCapacityNotification</td>
 <td><code>PlayerTrade:CheckCapacityNotification()</code></td>
-<td>—</td>
+<td>Compares current trade route capacity with the last remembered value and, if capacity grew and routes are free, sends a notification; then stores the new value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x33ceb0</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturnactivate"></a>DoTurnActivate</td>
 <td><code>PlayerTrade:DoTurnActivate()</code></td>
-<td>—</td>
+<td>For each alive unit of the player that is a trader (flag 0x40 on its definition) and not on an active route, asks the Trade Manager to update paths for the idle trader.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x33d4d0</code></td>
@@ -300,7 +300,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getdestinationyieldmodifier"></a>GetDestinationYieldModifier</td>
 <td><code>PlayerTrade:GetDestinationYieldModifier(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the destination yield modifier for the given yield from a per-yield array, defaulting to 1.0 (0x100) when out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x33d620</code></td>
@@ -308,7 +308,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getinternationalyieldmodifier"></a>GetInternationalYieldModifier</td>
 <td><code>PlayerTrade:GetInternationalYieldModifier(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the international trade yield modifier for the given yield, defaulting to 1.0 (0x100) when out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x33da30</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getoriginyieldmodifier"></a>GetOriginYieldModifier</td>
 <td><code>PlayerTrade:GetOriginYieldModifier(eYield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the origin yield modifier for the given yield, defaulting to 1.0 (0x100) when out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x33dbb0</code></td>
@@ -443,6 +443,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - re-enabling is handled elsewhere, no call on the decrement path here</p>
 <p><strong>Open questions</strong>
 - whether routes are restored when the counter returns to zero</p>
+<h3>ChangeExtraWaterRangeRefuel</h3>
+<p>Arguments: <code>iChange</code> — Delta added to the extra water refuel range</p>
+<p><strong>Writes</strong>
+- Extra water refuel range at +0x120/+0x130</p>
+<p><strong>Side effects</strong>
+- Sends an event (hash 0x39a17bf7) for the owning player</p>
+<p><strong>Input checks:</strong> Zero change is ignored; no range limits on the result.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player trade state. <strong>Risk:</strong> medium (Small state change with an event). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeFlatYieldBonus</h3>
 <p>Arguments: <code>eYield</code> — yield index; <code>xChange</code> — delta (raw/256)</p>
 <p><strong>Writes</strong>
@@ -769,6 +777,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - 'per specialty district' counting happens in the consumer</p>
 <p><strong>Open questions</strong>
 - consumer</p>
+<h3>ChangeYieldBonusForProgressDifference</h3>
+<p>Arguments: <code>iTechsCivicsPerYield</code> — Value assigned to the field; the code does not add it to the old value (inferred)</p>
+<p><strong>Writes</strong>
+- Yield bonus for tech/civic progress difference at +0x4e0</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player trade state. <strong>Risk:</strong> low (Simple assignment). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeYieldPerFollower</h3>
 <p>Arguments: <code>eYield</code> — yield index; <code>xChange</code> — delta (raw/256)</p>
 <p><strong>Writes</strong>
@@ -840,4 +854,30 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Inferred</strong>
 - own-city meaning from the name</p>
 <p><strong>Open questions</strong>
-- consumer</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- consumer</p>
+<h3>CheckCapacityNotification</h3>
+<p><strong>Writes</strong>
+- Remembered capacity value at +0xa8</p>
+<p><strong>Side effects</strong>
+- May send a notification (hash 0xcce487d2) to the owning player</p>
+<p><strong>Input checks:</strong> No validation.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes player state and sends a notification. <strong>Risk:</strong> low (Only a notification and a remembered value). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoTurnActivate</h3>
+<p><strong>Writes</strong>
+- Trade manager path data for idle traders</p>
+<p><strong>Side effects</strong>
+- Trade manager recomputes paths</p>
+<p><strong>Input checks:</strong> Skips units that are dead or have no definition.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits trade manager state. <strong>Risk:</strong> medium (Alters shared trade manager data). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetDestinationYieldModifier</h3>
+<p>Arguments: <code>eYield</code> — Yield type index (passed in a register, decompiler lost its name) (inferred)</p>
+<p><strong>Input checks:</strong> Range checked; falls back to 1.0.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetInternationalYieldModifier</h3>
+<p>Arguments: <code>eYield</code> — Yield type index (passed in a register, decompiler lost its name) (inferred)</p>
+<p><strong>Input checks:</strong> Range checked; falls back to 1.0.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetOriginYieldModifier</h3>
+<p>Arguments: <code>eYield</code> — Yield type index (passed in a register, decompiler lost its name) (inferred)</p>
+<p><strong>Input checks:</strong> Range checked; falls back to 1.0.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads player/map state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

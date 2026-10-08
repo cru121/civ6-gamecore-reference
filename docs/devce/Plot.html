@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="clearcityattributes"></a>ClearCityAttributes</td>
 <td><code>Plot:ClearCityAttributes()</code></td>
-<td>—</td>
+<td>Frees the plot's city attribute slot (index at offset 0x4e) via CityPlots::DeallocateAttributes and zeroes the index.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x5eca0</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isforcedworkedstate"></a>IsForcedWorkedState</td>
 <td><code>Plot:IsForcedWorkedState() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the plot has an improvement whose properties contain a specific key (hash 0xd4c291d2) of an accepted value type with nonzero data; false if no improvement.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x5ffa0</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isgoodyhut"></a>IsGoodyHut</td>
 <td><code>Plot:IsGoodyHut() → boolean</code></td>
-<td>—</td>
+<td>True if the plot's improvement definition has flag bit 4 at offset 0x109 (goody hut flag).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x60180</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isgoodynotify"></a>IsGoodyNotify</td>
 <td><code>Plot:IsGoodyNotify() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the plot's improvement definition has both flag bits 0xc set at +0x109 (a goody-hut style notify flag).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x601d0</code></td>
@@ -60,11 +60,36 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setimprovementowner"></a>SetImprovementOwner</td>
 <td><code>Plot:SetImprovementOwner(eOwner: integer)</code></td>
-<td>—</td>
+<td>Changes the player owning the plot's improvement: removes visibility and improvement bookkeeping for the old owner, validates and stores the new owner, then adds visibility for the new owner (decompilation truncated after the new-owner visibility loop).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x61280</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Details</h2></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+<h2>Details</h2>
+<h3>ClearCityAttributes</h3>
+<p><strong>Writes</strong>
+- Plot city attribute index at +0x4e
+- city plot attribute pool</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes plot state. <strong>Risk:</strong> medium (Frees attributes in shared pool). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsForcedWorkedState</h3>
+<p><strong>Input checks:</strong> No improvement returns false; property type and flag checked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure check. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>IsGoodyHut</h3>
+<p><strong>Input checks:</strong> Improvement index bounds-checked; no improvement returns false.</p>
+<p><strong>Multiplayer:</strong> read-only, pure check. <strong>Risk:</strong> low (Getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsGoodyNotify</h3>
+<p><strong>Input checks:</strong> Checks improvement index for -1, range and null definition.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads plot and definitions. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetImprovementOwner</h3>
+<p>Arguments: <code>eOwner</code> — new improvement owner player id, -1 for none</p>
+<p><strong>Writes</strong>
+- plot improvement owner byte (+0x46)
+- old and new owner visibility counts for the plot and its 6 neighbours
+- old owner's Player::Improvements list</p>
+<p><strong>Side effects</strong>
+- sends a Reporting event for the old owner when ownership is removed</p>
+<p><strong>Input checks:</strong> No-op if owner unchanged; invalid owner (&gt;0x40 or absent player slot) is coerced to -1.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes plot/player visibility and improvement state. <strong>Risk:</strong> high (alters visibility counts and improvement lists). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

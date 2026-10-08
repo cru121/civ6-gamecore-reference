@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="attachscorelisteners"></a>AttachScoreListeners</td>
 <td><code>Game:AttachScoreListeners()</code></td>
-<td>—</td>
+<td>Iterates the EmergencyScoreSource definitions and subscribes lambda listeners to game message signals for each source, storing the handles in the manager's handle vector; decompilation is truncated so the full set of signals is not visible.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x198100</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculatemaxturn"></a>CalculateMaxTurn</td>
 <td><code>Game:CalculateMaxTurn() → number</code></td>
-<td>—</td>
+<td>Computes the maximum turn from the turn limit setting: none gives 0, custom uses configured max turns, otherwise sums game speed turn segments, falling back to 500.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x63cb40</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateplayercontrolledresources"></a>CalculatePlayerControlledResources</td>
 <td><code>Game:CalculatePlayerControlledResources()</code></td>
-<td>—</td>
+<td>Recounts, for each player allowed to use the economy, how many extractable resource plots they and their suzerain city-states control, storing per-resource counts in the manager; decompilation is truncated.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62b0a0</code></td>
@@ -68,7 +68,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculatepurchasecostfromproductioncost"></a>CalculatePurchaseCostFromProductionCost</td>
 <td><code>Game:CalculatePurchaseCostFromProductionCost(iProductionCost: integer, ePurchaseYield: integer) → number</code></td>
-<td>—</td>
+<td>Computes purchase cost as production cost times a global multiplier, additionally multiplied by a second global factor when the yield is gold.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x36f9a0</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="calculateresourcemonopolies"></a>CalculateResourceMonopolies</td>
 <td><code>Game:CalculateResourceMonopolies()</code></td>
-<td>—</td>
+<td>For each resource and player, checks monopoly status and updates the monopoly owner and count; dispatches gained/lost signals and logs; decompilation is truncated.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62b4a0</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canaddgreatwork"></a>CanAddGreatWork</td>
 <td><code>Game:CanAddGreatWork(eGreatPerson: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if a great person individual has at least one associated great work that has not yet been created.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1c7c20</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="cancreatenewproduct"></a>CanCreateNewProduct</td>
 <td><code>Game:CanCreateNewProduct(ePlayer: integer, eResource: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if at least one product great work linked to the resource's improvement type has not yet been created.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62bae0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checkforendingdroughts"></a>CheckForEndingDroughts</td>
 <td><code>Game:CheckForEndingDroughts()</code></td>
-<td>—</td>
+<td>Copies the list of active droughts, and for each one whose end turn has been reached looks up its random event, sends a notification to players and marks the drought inactive; decompilation is truncated.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1ba250</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="createcomponents"></a>CreateComponents</td>
 <td><code>Game:CreateComponents()</code></td>
-<td>—</td>
+<td>Creates the game instance's component objects: global parameters, registered components, AI, victory manager, analysis manager and game summary, storing pointers in the instance.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x63cc10</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="detachscorelisteners"></a>DetachScoreListeners</td>
 <td><code>Game:DetachScoreListeners()</code></td>
-<td>—</td>
+<td>Unsubscribes and destroys every message handle stored in the manager's handle vector, then resets the count to zero.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x199990</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doactiveoneoffs"></a>DoActiveOneOffs</td>
 <td><code>Game:DoActiveOneOffs()</code></td>
-<td>—</td>
+<td>Copies the active one-off climate events; for each, if still within its duration applies its effects and sends a notification, otherwise marks it inactive.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1bb4d0</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>Game:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn emergency processing: if the emergency capability is enabled, it walks the emergency alliance definitions and the manager's emergency list, builds a temporary array and may call ConfirmEmergency; decompilation is truncated so details are incomplete.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x199b80</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcorporationplayer"></a>GetCorporationPlayer</td>
 <td><code>Game:GetCorporationPlayer(eResource: integer) → number</code></td>
-<td>—</td>
+<td>Scans the corporation list and returns the player whose corporation matches the resource.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62d510</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getcurrentturndeforestationpoints"></a>GetCurrentTurnDeforestationPoints</td>
 <td><code>Game:GetCurrentTurnDeforestationPoints() → number</code></td>
-<td>—</td>
+<td>Computes a deforestation score from features removed minus forests placed across players, finds the matching DeforestationLevel by percentage, stores a control-priority value, and returns the level's points.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1bd6f0</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfirstturnactivehuman"></a>GetFirstTurnActiveHuman</td>
 <td><code>Game:GetFirstTurnActiveHuman() → number</code></td>
-<td>—</td>
+<td>Returns the first human player flagged active this turn (byte at +0x288), or -1.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x306d80</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfreegreatworkforslot"></a>GetFreeGreatWorkForSlot</td>
 <td><code>Game:GetFreeGreatWorkForSlot(eGreatPerson: integer, eSlot: integer, eObject: integer) → number</code></td>
-<td>—</td>
+<td>Searches great work definitions for one not yet created that belongs to the given great person and whose object type fits the slot; returns its type.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1c8500</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgameendturn"></a>GetGameEndTurn</td>
 <td><code>Game:GetGameEndTurn() → number</code></td>
-<td>—</td>
+<td>Returns the turn on which the game ends from the turn limit type, start turn and the stored value; 0 if no limit.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x63d0e0</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgoldfrommonopolies"></a>GetGoldFromMonopolies</td>
 <td><code>Game:GetGoldFromMonopolies(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Sums gold from the player's resource monopolies using tiers by control percentage, plus a bonus per other player with a trade route to them.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62d5c0</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethappinessgrowthmodifier"></a>GetHappinessGrowthModifier</td>
 <td><code>Game:GetHappinessGrowthModifier(eHappiness: integer) → number</code></td>
-<td>—</td>
+<td>Returns the growth modifier of a happiness (amenity) level definition as an 8-bit fixed point value, or 0 if the type is invalid or the definition flag is unset.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x371180</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethappinessidentityperturnchange"></a>GetHappinessIdentityPerTurnChange</td>
 <td><code>Game:GetHappinessIdentityPerTurnChange(eHappiness: integer) → number</code></td>
-<td>—</td>
+<td>Looks up the Happiness_XP1 definition by hash of the happiness type and returns an int field (+0x1c) used as identity per-turn change; 0 if missing.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x371220</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethappinessinera"></a>GetHappinessInEra</td>
 <td><code>Game:GetHappinessInEra(eResource: integer, eEra: integer) → number</code></td>
-<td>—</td>
+<td>Returns a resource base amenity value reduced by era distance: base minus abs(resource era - given era) times a global per-era penalty, floored at a global minimum.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x371260</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gethousingsurplusreduction"></a>GetHousingSurplusReduction</td>
 <td><code>Game:GetHousingSurplusReduction(iPopDifference: integer) → number</code></td>
-<td>—</td>
+<td>Returns a fixed-point housing surplus reduction depending on how the population difference compares to global thresholds: 0, 0.25, 0.5 or 1.0.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x371420</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmaxvoteswithfavor"></a>GetMaxVoteswithFavor</td>
 <td><code>Game:GetMaxVoteswithFavor(maxFavor: integer) → number</code></td>
-<td>—</td>
+<td>Computes max World Congress votes from favor: 1 if favor &lt;= 0, else (sqrt(4<em>favor/gameSpeedAdjusted(5)+1)+1)</em>0.5 truncated.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x371500</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcontrolledresources"></a>GetNumControlledResources</td>
 <td><code>Game:GetNumControlledResources(ePlayer: integer, eResource: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored count of controlled plots of a resource for a player.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62d7a0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcorporations"></a>GetNumCorporations</td>
 <td><code>Game:GetNumCorporations(ePlayer: integer, bActiveOnly: boolean) → number</code></td>
-<td>—</td>
+<td>Counts corporation list entries owned by the player; bActiveOnly is not used.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62d7c0</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumindustries"></a>GetNumIndustries</td>
 <td><code>Game:GetNumIndustries(ePlayer: integer, bActiveOnly: boolean) → number</code></td>
-<td>—</td>
+<td>Counts industry entries owned by the player; bActiveOnly is not used.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62d880</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumrollsforresult"></a>GetNumRollsForResult</td>
 <td><code>Game:GetNumRollsForResult(iLowRoll: integer, iHighRoll: integer) → number</code></td>
-<td>—</td>
+<td>Sums entries of a global three-dice-six probability table (iThreeDieSixProb) from iLowRoll to iHighRoll inclusive, giving the number of dice combinations producing that range.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x373f10</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumtechs"></a>GetNumTechs</td>
 <td><code>Game:GetNumTechs() → number</code></td>
-<td>—</td>
+<td>Returns the number of technology definitions.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x251320</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getscaledweightformap"></a>GetScaledWeightForMap</td>
 <td><code>Game:GetScaledWeightForMap(iInitialWeight: integer) → number</code></td>
-<td>—</td>
+<td>Scales a weight by the current map's plot count relative to the standard map size definition.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1be810</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getstormdirection"></a>GetStormDirection</td>
 <td><code>Game:GetStormDirection(iCurrentLocation: integer) → number</code></td>
-<td>—</td>
+<td>Picks a storm direction for a plot by collecting prevailing wind definitions whose latitude range covers the plot and making a weighted random choice.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1be930</code></td>
@@ -300,7 +300,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getstormnearestplayer"></a>GetStormNearestPlayer</td>
 <td><code>Game:GetStormNearestPlayer(iPlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the owner of a plot if a major player owns it, otherwise the player whose closest city (or fallback start location) is nearest the plot.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1beb50</code></td>
@@ -308,7 +308,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasavailablebuildingforproduct"></a>HasAvailableBuildingForProduct</td>
 <td><code>Game:HasAvailableBuildingForProduct(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if any city of the player has a free product great work slot.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62e550</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasgreatworkbeencreated"></a>HasGreatWorkBeenCreated</td>
 <td><code>Game:HasGreatWorkBeenCreated(eWork: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the given great work type is in the culture manager's created great works list.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1c87d0</code></td>
@@ -324,7 +324,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasindustryof"></a>HasIndustryOf</td>
 <td><code>Game:HasIndustryOf(ePlayer: integer, eResource: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the player has an industry for the resource.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62e5c0</code></td>
@@ -332,7 +332,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasresourcemonopolyof"></a>HasResourceMonopolyOf</td>
 <td><code>Game:HasResourceMonopolyOf(ePlayer: integer, eResource: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the player controls enough of a luxury resource to meet the monopoly threshold from global parameters.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62e5f0</code></td>
@@ -348,7 +348,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isai"></a>IsAI</td>
 <td><code>Game:IsAI(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player is a AI player, false for invalid ids.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x307850</code></td>
@@ -356,7 +356,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isactive"></a>IsActive</td>
 <td><code>Game:IsActive() → boolean</code></td>
-<td>—</td>
+<td>Returns whether capability hash 0x10c40410 (economic system) is enabled.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x62e7e0</code></td>
@@ -364,7 +364,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isaiprocessing"></a>IsAiProcessing</td>
 <td><code>Game:IsAiProcessing() → boolean</code></td>
-<td>—</td>
+<td>Returns false when the AI counter is not positive; otherwise returns false if an active non-human player in a non-multiplayer game has pending diplomacy sessions, statements, actions or deals, else true.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x63d910</code></td>
@@ -372,7 +372,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isbarbarian"></a>IsBarbarian</td>
 <td><code>Game:IsBarbarian(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player is a barbarian player, false for invalid ids.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x3078b0</code></td>
@@ -380,7 +380,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isfreecities"></a>IsFreeCities</td>
 <td><code>Game:IsFreeCities(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player is a free cities player, false for invalid ids.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x3078e0</code></td>
@@ -388,7 +388,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="ismajor"></a>IsMajor</td>
 <td><code>Game:IsMajor(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player is a major civ player, false for invalid ids.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x307950</code></td>
@@ -396,7 +396,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isminor"></a>IsMinor</td>
 <td><code>Game:IsMinor(ePlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns whether the player is a city-state player, false for invalid ids.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x307980</code></td>
@@ -404,7 +404,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isspecialtydistrict"></a>IsSpecialtyDistrict</td>
 <td><code>Game:IsSpecialtyDistrict(eDistrict: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns bit 6 of a flags byte (+0xe1) in the district definition, i.e. whether the district is a specialty district.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x3715b0</code></td>
@@ -412,7 +412,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isterrainvalid"></a>IsTerrainValid</td>
 <td><code>Game:IsTerrainValid(eEventType: integer, eTerrain: integer) → boolean</code></td>
-<td>—</td>
+<td>Checks whether a random event can occur on a terrain: true if the terrain is in the event's terrain list, or the list is empty.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1bfe70</code></td>
@@ -420,7 +420,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isvalidobjectforslot"></a>IsValidObjectForSlot</td>
 <td><code>Game:IsValidObjectForSlot(eSlot: integer, eObject: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if a GreatWork_ValidSubType row pairs the given slot type with the given object type.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1c89d0</code></td>
@@ -428,7 +428,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="moveactivestorms"></a>MoveActiveStorms</td>
 <td><code>Game:MoveActiveStorms()</code></td>
-<td>—</td>
+<td>Copies the active storm list and advances each storm: computes next plot and direction, applies storm effects, updates storm data and sends notifications; decompilation is truncated.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1c0090</code></td>
@@ -436,7 +436,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resetplayerturnresourceconsumption"></a>ResetPlayerTurnResourceConsumption</td>
 <td><code>Game:ResetPlayerTurnResourceConsumption(ePlayer: integer)</code></td>
-<td>—</td>
+<td>Zeroes two per-player counters (fields 3 and 5 of the 24-byte entry) for the matching player in the climate resource consumption table.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x1c0b90</code></td>
@@ -444,7 +444,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setasobserver"></a>SetAsObserver</td>
 <td><code>Game:SetAsObserver(ePlayer: integer)</code></td>
-<td>—</td>
+<td>Turns a human player slot into an observer: sets configuration slot status to 4, sends a configuration event and notifies the player-type processor; if it is the local player, resets the field at 0x2dac to 1000 and swaps visibility.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x308a80</code></td>
@@ -460,7 +460,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setpaused"></a>SetPaused</td>
 <td><code>Game:SetPaused(gamePaused: boolean)</code></td>
-<td>—</td>
+<td>Stores the paused flag on the game instance and sends a reporting event with it.</td>
 <td>—</td>
 <td>—</td>
 <td><code>0x63e0e0</code></td>
@@ -468,6 +468,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AttachScoreListeners</h3>
+<p><strong>Writes</strong>
+- handle vector at this+0x18/0x28 (appends subscription handles)
+- signal listener counts on the game message hub (offset 0x280 object)</p>
+<p><strong>Side effects</strong>
+- registers callbacks that fire on later game events (e.g. project/district signals)</p>
+<p><strong>Input checks:</strong> No parameters; skips sources lacking the relevant optional fields.</p>
+<p><strong>Multiplayer:</strong> may-desync, registers gameplay callbacks that change emergency scores. <strong>Risk:</strong> high (Adds persistent signal subscriptions; calling twice duplicates listeners.). <strong>Confidence of the reading:</strong> low.</p>
 <h3>BuildCivics</h3>
 <p><strong>Writes</strong>
 - civic node vector at this+0xa8
@@ -508,6 +516,43 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - near-identical to BuildCivics, applied to techs</p>
 <p><strong>Open questions</strong>
 - decompilation truncated; prerequisite handling unseen</p>
+<h3>CalculateMaxTurn</h3>
+<p><strong>Input checks:</strong> Falls back to 500 for missing data.</p>
+<p><strong>Multiplayer:</strong> read-only, config computation. <strong>Risk:</strong> low (Pure computation.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculatePlayerControlledResources</h3>
+<p><strong>Writes</strong>
+- per-player controlled resource counts (VariantMap at this+0x100)</p>
+<p><strong>Input checks:</strong> Skips players not allowed to use economy or out of table range.</p>
+<p><strong>Multiplayer:</strong> may-desync, rewrites synced economic data. <strong>Risk:</strong> medium (Recomputes synced counters.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CalculatePurchaseCostFromProductionCost</h3>
+<p>Arguments: <code>iProductionCost</code> — production cost to convert; <code>ePurchaseYield</code> — yield used to buy; gold gets an extra multiplier</p>
+<p><strong>Input checks:</strong> No range checks; no overflow check.</p>
+<p><strong>Multiplayer:</strong> read-only, pure arithmetic on global parameters. <strong>Risk:</strong> low (pure calculation). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CalculateResourceMonopolies</h3>
+<p><strong>Writes</strong>
+- monopoly owner and count entries (VariantMap at this+0xa8)</p>
+<p><strong>Side effects</strong>
+- dispatches monopoly gained/lost signals
+- logs 'Monopoly Gained/Lost'</p>
+<p><strong>Input checks:</strong> Range checks resource and player against table sizes.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes synced monopoly ownership. <strong>Risk:</strong> high (Changes ownership and fires signals.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanAddGreatWork</h3>
+<p>Arguments: <code>eGreatPerson</code> — great person individual type</p>
+<p><strong>Input checks:</strong> Checks index against definition count and null entry; otherwise false.</p>
+<p><strong>Multiplayer:</strong> read-only, culture list lookup. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanCreateNewProduct</h3>
+<p>Arguments: <code>ePlayer</code> — player (not used in the code shown) (inferred); <code>eResource</code> — resource type</p>
+<p><strong>Input checks:</strong> Resource index is bounds-checked loosely; player unused.</p>
+<p><strong>Multiplayer:</strong> read-only, definition lookup. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CheckForEndingDroughts</h3>
+<p><strong>Writes</strong>
+- active drought list in climate data (SetDroughtInactive)
+- edits the drought VariantMap</p>
+<p><strong>Side effects</strong>
+- sends drought-ended notifications to affected players
+- fires reporting event</p>
+<p><strong>Input checks:</strong> Bounds-checks drought index against the vector size; null-checks the event definition.</p>
+<p><strong>Multiplayer:</strong> may-desync, ends droughts and edits synced climate data. <strong>Risk:</strong> high (Mutates synchronised climate data and notifies players.). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ClearLists</h3>
 <p><strong>Writes</strong>
 - vector end pointers at +0x58, +0x280, +0x4a8, +0x5d8, +0x800 and others (sets end = begin)
@@ -526,6 +571,13 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - called before repopulating the lists</p>
 <p><strong>Open questions</strong>
 - which list is at which offset</p>
+<h3>CreateComponents</h3>
+<p><strong>Writes</strong>
+- component pointers at this+0x240..0x288 and component container</p>
+<p><strong>Side effects</strong>
+- allocates and registers components</p>
+<p><strong>Input checks:</strong> None; runs at game setup.</p>
+<p><strong>Multiplayer:</strong> may-desync, game setup only. <strong>Risk:</strong> high (Creating components twice leaks or breaks the game.). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>DecrementGameStateLock</h3>
 <p><strong>Writes</strong>
 - game state lock counter at this+0x2a0</p>
@@ -544,6 +596,122 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - lock prevents game-state changes while held (name)</p>
 <p><strong>Open questions</strong>
 - what the lock actually blocks</p>
+<h3>DetachScoreListeners</h3>
+<p><strong>Writes</strong>
+- handle vector count at this+0x28 set to 0
+- unsubscribes handles stored at this+0x18</p>
+<p><strong>Side effects</strong>
+- emergency score listeners stop receiving signals</p>
+<p><strong>Input checks:</strong> No input checks; assumes handle vector is valid.</p>
+<p><strong>Multiplayer:</strong> may-desync, removes gameplay listeners. <strong>Risk:</strong> medium (Removes emergency score tracking until reattached.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoActiveOneOffs</h3>
+<p><strong>Writes</strong>
+- one-off event list (SetOneOffInactive) and one-off VariantMap via edit()</p>
+<p><strong>Side effects</strong>
+- applies effects via ApplyOneOffEffects
+- sends one-off event notifications</p>
+<p><strong>Input checks:</strong> Bounds-checks index; skips if event definition not found.</p>
+<p><strong>Multiplayer:</strong> may-desync, applies climate event effects to players. <strong>Risk:</strong> high (Applies gameplay effects and mutates synced data.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- emergency state (list at this+0x68, other fields) via ConfirmEmergency</p>
+<p><strong>Side effects</strong>
+- may confirm emergencies and send notifications
+- writes log entries via logging manager</p>
+<p><strong>Input checks:</strong> Checks the capability hash 0x370521e0 only; no parameters.</p>
+<p><strong>Multiplayer:</strong> may-desync, advances emergency state each turn. <strong>Risk:</strong> high (Turn-processing function altering emergency state.). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetCorporationPlayer</h3>
+<p>Arguments: <code>eResource</code> — resource type of the corporation</p>
+<p><strong>Input checks:</strong> No checks; returns the last match.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetCurrentTurnDeforestationPoints</h3>
+<p><strong>Writes</strong>
+- AI control priority field (climate sub-object +0x150) assigned from level data</p>
+<p><strong>Input checks:</strong> Returns 0 when total at +0x100 is not positive or no level matches; the division is guarded by that check.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes a field despite getter-like name. <strong>Risk:</strong> medium (Looks like a getter but assigns a stored value.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetFirstTurnActiveHuman</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, player list scan. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetFreeGreatWorkForSlot</h3>
+<p>Arguments: <code>eGreatPerson</code> — great person individual type; <code>eSlot</code> — great work slot type; <code>eObject</code> — great work object type (not used in the code shown) (inferred)</p>
+<p><strong>Input checks:</strong> Returns -1 if none; no range check on great person index.</p>
+<p><strong>Multiplayer:</strong> read-only, culture list lookup. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetGameEndTurn</h3>
+<p><strong>Input checks:</strong> Handles null configuration.</p>
+<p><strong>Multiplayer:</strong> read-only, config computation. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetGoldFromMonopolies</h3>
+<p>Arguments: <code>ePlayer</code> — player to evaluate</p>
+<p><strong>Input checks:</strong> Returns 0 for player -1; no upper bound check.</p>
+<p><strong>Multiplayer:</strong> read-only, computed value. <strong>Risk:</strong> low (Pure computation.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetHappinessGrowthModifier</h3>
+<p>Arguments: <code>eHappiness</code> — happiness level type</p>
+<p><strong>Input checks:</strong> Checks -1, definition index range, null definition and an enable byte at +0x30.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetHappinessIdentityPerTurnChange</h3>
+<p>Arguments: <code>eHappiness</code> — happiness type whose hash is looked up</p>
+<p><strong>Input checks:</strong> Checks -1 and null definition.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetHappinessInEra</h3>
+<p>Arguments: <code>eResource</code> — resource type; <code>eEra</code> — era to evaluate in</p>
+<p><strong>Input checks:</strong> Range-checks era index and -1; resource definition is read at +0x24 even when the index is out of range.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetHousingSurplusReduction</h3>
+<p>Arguments: <code>iPopDifference</code> — difference between population and housing</p>
+<p><strong>Input checks:</strong> No validation of the integer.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetMaxVoteswithFavor</h3>
+<p>Arguments: <code>maxFavor</code> — favor amount</p>
+<p><strong>Input checks:</strong> Non-positive favor returns 1.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumControlledResources</h3>
+<p>Arguments: <code>ePlayer</code> — player index; <code>eResource</code> — resource type</p>
+<p><strong>Input checks:</strong> No bounds checks on either index.</p>
+<p><strong>Multiplayer:</strong> read-only, direct table read. <strong>Risk:</strong> low (Unchecked indices may crash on bad values.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumCorporations</h3>
+<p>Arguments: <code>ePlayer</code> — player to count for; <code>bActiveOnly</code> — active-only flag, ignored in code (inferred)</p>
+<p><strong>Input checks:</strong> No checks.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumIndustries</h3>
+<p>Arguments: <code>ePlayer</code> — player to count for; <code>bActiveOnly</code> — active-only flag, ignored in code (inferred)</p>
+<p><strong>Input checks:</strong> No checks.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumRollsForResult</h3>
+<p>Arguments: <code>iLowRoll</code> — lower bound of roll range; <code>iHighRoll</code> — upper bound of roll range</p>
+<p><strong>Input checks:</strong> Returns 0 if low &gt; high; no bounds check on table indices.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumTechs</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, definition count. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetScaledWeightForMap</h3>
+<p>Arguments: <code>iInitialWeight</code> — weight to scale</p>
+<p><strong>Input checks:</strong> Falls back to the input if MAPSIZE_STANDARD is not found; division by standard dims unchecked.</p>
+<p><strong>Multiplayer:</strong> read-only, pure computation. <strong>Risk:</strong> low (Pure calculation.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetStormDirection</h3>
+<p>Arguments: <code>iCurrentLocation</code> — plot index where the storm is</p>
+<p><strong>Side effects</strong>
+- consumes a game random number (GetRandNum 'Storm Direction Preview')</p>
+<p><strong>Input checks:</strong> No range check on plot index; returns -1 if no wind definition matches.</p>
+<p><strong>Multiplayer:</strong> may-desync, draws from the synced game RNG. <strong>Risk:</strong> medium (Advances the synced RNG despite being a query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetStormNearestPlayer</h3>
+<p>Arguments: <code>iPlotIndex</code> — plot index of the storm</p>
+<p><strong>Input checks:</strong> No plot index check; skips players without cities, returns -1 if none.</p>
+<p><strong>Multiplayer:</strong> read-only, distance queries only. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasAvailableBuildingForProduct</h3>
+<p>Arguments: <code>ePlayer</code> — player to check</p>
+<p><strong>Input checks:</strong> Returns false for player -1.</p>
+<p><strong>Multiplayer:</strong> read-only, city building scan. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasGreatWorkBeenCreated</h3>
+<p>Arguments: <code>eWork</code> — great work type</p>
+<p><strong>Input checks:</strong> No range check; plain list search.</p>
+<p><strong>Multiplayer:</strong> read-only, list lookup. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasIndustryOf</h3>
+<p>Arguments: <code>ePlayer</code> — player; <code>eResource</code> — resource type</p>
+<p><strong>Input checks:</strong> Returns false for player -1.</p>
+<p><strong>Multiplayer:</strong> read-only, list scan. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>HasResourceMonopolyOf</h3>
+<p>Arguments: <code>ePlayer</code> — player; <code>eResource</code> — luxury resource type</p>
+<p><strong>Input checks:</strong> Rejects -1 ids and out-of-range resources; only luxury class counts.</p>
+<p><strong>Multiplayer:</strong> read-only, computed. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>IncrementGameStateLock</h3>
 <p><strong>Writes</strong>
 - lock counter at this+0x2a0</p>
@@ -563,6 +731,70 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - a matching decrement dispatches false</p>
 <p><strong>Open questions</strong>
 - what listens to the signal and effects on multiplayer sync</p>
+<h3>IsAI</h3>
+<p>Arguments: <code>ePlayer</code> — player id</p>
+<p><strong>Input checks:</strong> Range check ids below 0x41 and slot not -1.</p>
+<p><strong>Multiplayer:</strong> read-only, player type check. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsActive</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, capability check. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsAiProcessing</h3>
+<p><strong>Input checks:</strong> No input.</p>
+<p><strong>Multiplayer:</strong> read-only, diplomacy state query. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> low.</p>
+<h3>IsBarbarian</h3>
+<p>Arguments: <code>ePlayer</code> — player id</p>
+<p><strong>Input checks:</strong> Range check ids below 0x41 and slot not -1.</p>
+<p><strong>Multiplayer:</strong> read-only, player type check. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsFreeCities</h3>
+<p>Arguments: <code>ePlayer</code> — player id</p>
+<p><strong>Input checks:</strong> Range check ids below 0x41 and slot not -1.</p>
+<p><strong>Multiplayer:</strong> read-only, player type check. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsMajor</h3>
+<p>Arguments: <code>ePlayer</code> — player id</p>
+<p><strong>Input checks:</strong> Range check ids below 0x41 and slot not -1.</p>
+<p><strong>Multiplayer:</strong> read-only, player type check. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsMinor</h3>
+<p>Arguments: <code>ePlayer</code> — player id</p>
+<p><strong>Input checks:</strong> Range check ids below 0x41 and slot not -1.</p>
+<p><strong>Multiplayer:</strong> read-only, player type check. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsSpecialtyDistrict</h3>
+<p>Arguments: <code>eDistrict</code> — district type</p>
+<p><strong>Input checks:</strong> Range and null check on definition.</p>
+<p><strong>Multiplayer:</strong> read-only, reads stored state only. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsTerrainValid</h3>
+<p>Arguments: <code>eEventType</code> — random event type; <code>eTerrain</code> — terrain type to test</p>
+<p><strong>Input checks:</strong> Returns false if the event definition is not found; no terrain range check.</p>
+<p><strong>Multiplayer:</strong> read-only, definition lookup. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsValidObjectForSlot</h3>
+<p>Arguments: <code>eSlot</code> — great work slot type; <code>eObject</code> — great work object type</p>
+<p><strong>Input checks:</strong> No input range checks; false if no pair.</p>
+<p><strong>Multiplayer:</strong> read-only, definition lookup. <strong>Risk:</strong> low (Pure query.). <strong>Confidence of the reading:</strong> high.</p>
+<h3>MoveActiveStorms</h3>
+<p><strong>Writes</strong>
+- active storm entries (position, direction, turns) via VariantMap edit()
+- random event schedule via RandomEvents::Edit</p>
+<p><strong>Side effects</strong>
+- applies storm effects to plots/players
+- sends storm notifications</p>
+<p><strong>Input checks:</strong> Bounds-checks storm index; skips missing event definitions.</p>
+<p><strong>Multiplayer:</strong> may-desync, moves storms and applies effects. <strong>Risk:</strong> high (Mutates synced climate state each turn.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ResetPlayerTurnResourceConsumption</h3>
+<p>Arguments: <code>ePlayer</code> — player whose entry is reset</p>
+<p><strong>Writes</strong>
+- resource consumption entries for the player (two int fields set to 0)</p>
+<p><strong>Input checks:</strong> No range check; silently does nothing if the player has no entry.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synced climate data. <strong>Risk:</strong> medium (Edits synced per-player data.). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetAsObserver</h3>
+<p>Arguments: <code>ePlayer</code> — player slot to convert to observer</p>
+<p><strong>Writes</strong>
+- Configuration player slot status (set to 4)
+- Manager field at 0x2dac reset to 1000 when ePlayer is the local player</p>
+<p><strong>Side effects</strong>
+- ConfigurationEvent sent for SlotStatus
+- Processor::PlayerTypeChanged called
+- Game::Edit()-&gt;SwapVisibility for local player</p>
+<p><strong>Input checks:</strong> Checks ePlayer&lt;=0x40, a map entry not -1, and a flag at player+600; only acts if IsHuman. No null check on player pointer.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes player slot and visibility state. <strong>Risk:</strong> high (changes player type configuration and visibility). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetLocalPlayerTo</h3>
 <p>Arguments: <code>ePlayer</code> — player id to become local player</p>
 <p><strong>Writes</strong>
@@ -586,4 +818,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - event likely notifies UI of local player change</p>
 <p><strong>Open questions</strong>
 - meaning of flag at visibility manager +0x2b
-- decompiler mangled the call args so the Game::Instance::Edit invocation is uncertain</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- decompiler mangled the call args so the Game::Instance::Edit invocation is uncertain</p>
+<h3>SetPaused</h3>
+<p>Arguments: <code>gamePaused</code> — new paused state</p>
+<p><strong>Writes</strong>
+- paused flag at this+0x210</p>
+<p><strong>Side effects</strong>
+- sends reporting event 0x562fd140</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, game flow state. <strong>Risk:</strong> medium (Pausing may stall other clients.). <strong>Confidence of the reading:</strong> high.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

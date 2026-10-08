@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addtourismintofavor"></a>AddTourismIntoFavor</td>
 <td><code>PlayerCulture:AddTourismIntoFavor(iTourism: integer, iFavor: integer)</code></td>
-<td>—</td>
+<td>Appends an (iTourism, iFavor) pair to a per-player list at offset 0x6a8 that defines a tourism-into-favor conversion entry.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27a090</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="applytourism"></a>ApplyTourism</td>
 <td><code>PlayerCulture:ApplyTourism()</code></td>
-<td>—</td>
+<td>For every player in the manager's list that this player has met, computes tourism towards them and adds it to the accumulated per-player tourism array, then recomputes.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27a0e0</code></td>
@@ -52,7 +52,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canfillallpolicyslots"></a>CanFillAllPolicySlots</td>
 <td><code>PlayerCulture:CanFillAllPolicySlots() → boolean</code></td>
-<td>—</td>
+<td>Checks whether the player has enough unlocked policies to fill every government slot, matching slot types and wildcard slots. Decompilation is truncated before the final result.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27b790</code></td>
@@ -60,7 +60,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="cantriggerboost"></a>CanTriggerBoost</td>
 <td><code>PlayerCulture:CanTriggerBoost(eCivic: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns false if the civic is already known, otherwise finds the boost whose civic type matches and asks Boost::Manager::CanTriggerThisBoost whether the Eureka can fire.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27be50</code></td>
@@ -76,7 +76,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changetourismmodifier"></a>ChangeTourismModifier</td>
 <td><code>PlayerCulture:ChangeTourismModifier(iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds a delta to the tourism modifier stored at Culture+0x508.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27c110</code></td>
@@ -92,7 +92,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checkfordominance"></a>CheckForDominance</td>
 <td><code>PlayerCulture:CheckForDominance()</code></td>
-<td>—</td>
+<td>For each other player, compares this player's tourist count with that player's culture-based threshold to set/clear a dominance flag and turns-until-dominant, sending notifications to both players when dominance is first reached. Decompilation is truncated near the end.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27c190</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="computetourismon"></a>ComputeTourismOn</td>
 <td><code>PlayerCulture:ComputeTourismOn(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Computes fixed-point tourism this player generates towards the given player from city religious and non-religious tourism, era differences, trade routes, open borders, government modifiers and monopolies. Decompilation truncated at the end.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27ca80</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="computeturnsuntildominant"></a>ComputeTurnsUntilDominant</td>
 <td><code>PlayerCulture:ComputeTurnsUntilDominant(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Estimates turns until this player becomes culturally dominant over ePlayer from the tourist totals and the other player's culture values; -1 if not progressing.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27cf40</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doculture"></a>DoCulture</td>
 <td><code>PlayerCulture:DoCulture()</code></td>
-<td>—</td>
+<td>Per-turn culture processing: records last culture rate, handles pending government change, computes culture yield, advances civic progress, and for major players runs tourism recording/application/distribution and dominance checks, then era flags, obsolete policies and notifications. Decompilation truncated.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27d3c0</code></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doendturn"></a>DoEndTurn</td>
 <td><code>PlayerCulture:DoEndTurn()</code></td>
-<td>—</td>
+<td>Clears the boolean flag at Culture+0x450 at end of turn.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27d770</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfavorperturnfrombuilding"></a>GetFavorPerTurnFromBuilding</td>
 <td><code>PlayerCulture:GetFavorPerTurnFromBuilding(eBuilding: integer) → number</code></td>
-<td>—</td>
+<td>Looks up a building in a list of (building, favor) pairs at Culture+0x7a8 and returns its favor per turn.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e1e0</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getfavorperturnfrompolicy"></a>GetFavorPerTurnFromPolicy</td>
 <td><code>PlayerCulture:GetFavorPerTurnFromPolicy(ePolicy: integer) → number</code></td>
-<td>—</td>
+<td>Looks up a policy in a list of (policy, favor) pairs at Culture+0x778 and returns its favor per turn.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e210</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgreatworkobjectnotourism"></a>GetGreatWorkObjectNoTourism</td>
 <td><code>PlayerCulture:GetGreatWorkObjectNoTourism(eGreatWorkObjectType: integer) → boolean</code></td>
-<td>—</td>
+<td>Looks up a great work object type in the 12-byte entry list at Culture+0x748 and returns its no-tourism flag.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e240</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getgreatworkobjecttourismmodifier"></a>GetGreatWorkObjectTourismModifier</td>
 <td><code>PlayerCulture:GetGreatWorkObjectTourismModifier(eGreatWorkObjectType: integer) → number</code></td>
-<td>—</td>
+<td>Looks up a great work object type in the 12-byte entry list at Culture+0x748 and returns its tourism modifier.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e270</code></td>
@@ -164,7 +164,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumcivicscompleted"></a>GetNumCivicsCompleted</td>
 <td><code>PlayerCulture:GetNumCivicsCompleted(bIncludeRepeatedCivics: boolean) → number</code></td>
-<td>—</td>
+<td>Counts civics that are completed for the player; optionally adds the repeated-civics counter at Culture+0x850.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e2e0</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumpoliciesenactedspecifictype"></a>GetNumPoliciesEnactedSpecificType</td>
 <td><code>PlayerCulture:GetNumPoliciesEnactedSpecificType(eGovernmentSlot: integer) → number</code></td>
-<td>—</td>
+<td>Counts currently slotted policies whose definition's slot type equals eGovernmentSlot.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e390</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumpoliciesunlocked"></a>GetNumPoliciesUnlocked</td>
 <td><code>PlayerCulture:GetNumPoliciesUnlocked() → number</code></td>
-<td>—</td>
+<td>Counts policies for which IsPolicyUnlocked is true.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e4e0</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getnumpolicyslotsopen"></a>GetNumPolicySlotsOpen</td>
 <td><code>PlayerCulture:GetNumPolicySlotsOpen() → number</code></td>
-<td>—</td>
+<td>Counts empty policy slots (entries with policy -1) in the slot array at Culture+0x1a0; 0 if no government.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e590</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getothergovernmentintolerancemodifier"></a>GetOtherGovernmentIntoleranceModifier</td>
 <td><code>PlayerCulture:GetOtherGovernmentIntoleranceModifier(GovA: integer, GovB: integer) → number</code></td>
-<td>—</td>
+<td>Returns the intolerance modifier at Culture+0x838 when two different governments have equal-sized lists (vector at definition+0x90), else 0.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e640</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getslottype"></a>GetSlotType</td>
 <td><code>PlayerCulture:GetSlotType(iSlotIndex: integer) → number</code></td>
-<td>—</td>
+<td>Returns the government slot type of the slot at the given index.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27e940</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettourismnationalparksmodifier"></a>GetTourismNationalParksModifier</td>
 <td><code>PlayerCulture:GetTourismNationalParksModifier() → number</code></td>
-<td>—</td>
+<td>Returns a fixed-point multiplier 1.0 + (Culture+0x730)/100 for national parks tourism; 1.0 if the value is not positive.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x27fe90</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettouriststo"></a>GetTouristsTo</td>
 <td><code>PlayerCulture:GetTouristsTo() → number</code></td>
-<td>—</td>
+<td>Sums per-player tourist counts (array at Culture+0x5f8) over all other players this player has met.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2805b0</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="grantrandomcivics"></a>GrantRandomCivics</td>
 <td><code>PlayerCulture:GrantRandomCivics(iNumCivics: integer)</code></td>
-<td>—</td>
+<td>Builds a list of civics that can be progressed and are not yet completed, then randomly picks up to iNumCivics of them and grants them via cultural progress at full civic cost. Decompilation truncated.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x280fb0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="hasfeaturesmodifiedunlock"></a>HasFeaturesModifiedUnlock</td>
 <td><code>PlayerCulture:HasFeaturesModifiedUnlock(eFeature: integer) → boolean</code></td>
-<td>—</td>
+<td>Searches the (feature, civic) pair list at Culture+0x700 and returns true if a matching feature has its civic completed.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2815e0</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="iscivicrevealed"></a>IsCivicRevealed</td>
 <td><code>PlayerCulture:IsCivicRevealed(eCivic: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the civic is visible to the player: owned, boost triggered, or a prerequisite owned (for flagged civics); true for unflagged civics; false if no definition.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x281c80</code></td>
@@ -268,7 +268,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="isprogressingcivic"></a>IsProgressingCivic</td>
 <td><code>PlayerCulture:IsProgressingCivic(eCivic: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if the civic currently being progressed (first entry of list at Culture+0x408) equals eCivic.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x282210</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removeculturebombtrigger"></a>RemoveCultureBombTrigger</td>
 <td><code>PlayerCulture:RemoveCultureBombTrigger(eBuilding: integer, bCapturesOwnedTiles: boolean)</code></td>
-<td>—</td>
+<td>Finds the first entry in the list at Culture+0x678 matching the given type and capture flag, and erases it. (DWARF lists both eBuilding and eDistrict variants; decompile uses DistrictTypes.)</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x282e80</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removegovernmenttypeslotmodifier"></a>RemoveGovernmentTypeSlotModifier</td>
 <td><code>PlayerCulture:RemoveGovernmentTypeSlotModifier(eGovernmentType: integer, eSlotType: integer, bAddSlot: boolean)</code></td>
-<td>—</td>
+<td>Finds the (government, slot type) modifier entry and adjusts its count by 1 (opposite of Set); if the player's current government matches, clears policies, rebuilds slots and resets flags.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x282f30</code></td>
@@ -300,7 +300,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removemodifiedpolicyslot"></a>RemoveModifiedPolicySlot</td>
 <td><code>PlayerCulture:RemoveModifiedPolicySlot(eGovSlot: integer, bAddSlot: boolean)</code></td>
-<td>—</td>
+<td>Removes one entry for the slot type from the added (0x1e0) or removed (0x208) modified slot list depending on bAddSlot, then clears policies of that slot type and refreshes the government.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x283060</code></td>
@@ -308,7 +308,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removereplacedpolicyslot"></a>RemoveReplacedPolicySlot</td>
 <td><code>PlayerCulture:RemoveReplacedPolicySlot(eReplacedSlot: integer, eAddedSlot: integer)</code></td>
-<td>—</td>
+<td>Clears all policies, erases entries matching (replaced slot, added slot) from the replaced-slot list at Culture+0x230, and re-applies the current government.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x2831a0</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removetourismintofavor"></a>RemoveTourismIntoFavor</td>
 <td><code>PlayerCulture:RemoveTourismIntoFavor(iTourism: integer, iFavor: integer)</code></td>
-<td>—</td>
+<td>Rebuilds the tourism-into-favor pair list at Culture+0x6a8 from a copy, omitting entries matching (iTourism, iFavor).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x283300</code></td>
@@ -332,7 +332,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setcultureratechange"></a>SetCultureRateChange</td>
 <td><code>PlayerCulture:SetCultureRateChange(xNewValue: number (fixed point, 1/256 steps))</code></td>
-<td>—</td>
+<td>If the value differs from Culture+0x448, assigns it (via auto-variable at 0x438) and sends a culture-rate-changed event.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x284990</code></td>
@@ -356,7 +356,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setfeaturemodifiedunlock"></a>SetFeatureModifiedUnlock</td>
 <td><code>PlayerCulture:SetFeatureModifiedUnlock(eFeature: integer, eCivic: integer)</code></td>
-<td>—</td>
+<td>Appends a (feature, civic) pair to the list at Culture+0x6f0 so the feature is unlocked once the civic is completed.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x284e20</code></td>
@@ -364,7 +364,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setgovernmenttypeslotmodifier"></a>SetGovernmentTypeSlotModifier</td>
 <td><code>PlayerCulture:SetGovernmentTypeSlotModifier(eGovernmentType: integer, eSlotType: integer, bAddSlot: boolean)</code></td>
-<td>—</td>
+<td>Finds or creates the (government, slot type) modifier entry and increments or decrements its count; if the current government matches, clears policies, rebuilds slots and resets flags.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x284e90</code></td>
@@ -380,7 +380,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setmodifiedpolicyslot"></a>SetModifiedPolicySlot</td>
 <td><code>PlayerCulture:SetModifiedPolicySlot(eGovSlot: integer, bAddSlot: boolean)</code></td>
-<td>—</td>
+<td>Appends the slot type to the added (0x1e0) or removed (0x208) slot list depending on bAddSlot, then stores previous policies, clears them, rebuilds slots and resets flags.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x285090</code></td>
@@ -404,7 +404,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setpolicychangemade"></a>SetPolicyChangeMade</td>
 <td><code>PlayerCulture:SetPolicyChangeMade(bNewValue: boolean)</code></td>
-<td>—</td>
+<td>If true stores the current turn in Culture+0x7c8, otherwise stores -1 (marks whether a policy change was made this turn).</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x285300</code></td>
@@ -412,7 +412,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setreplacedpolicyslot"></a>SetReplacedPolicySlot</td>
 <td><code>PlayerCulture:SetReplacedPolicySlot(eReplacedSlot: integer, eAddedSlot: integer, bReplacesAll: boolean)</code></td>
-<td>—</td>
+<td>Appends a (replaced slot, added slot, replacesAll) entry to the list at Culture+0x230, clears policies and re-applies the current government if any.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td>—</td>
 <td><code>0x285920</code></td>
@@ -436,6 +436,27 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - modifier pointer chain is the player's tourism modifier</p>
 <p><strong>Open questions</strong>
 - what source is at +0x6f0 -&gt; +0x508</p>
+<h3>AddTourismIntoFavor</h3>
+<p>Arguments: <code>iTourism</code> — tourism amount of the entry (inferred); <code>iFavor</code> — favor amount of the entry (inferred)</p>
+<p><strong>Writes</strong>
+- vector at Culture+0x6a8 (tourism/favor pair list) gets one 8-byte entry appended</p>
+<p><strong>Input checks:</strong> No validation; duplicates allowed.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised player data. <strong>Risk:</strong> medium (writes synchronised list used by tourism-to-favor logic). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ApplyTourism</h3>
+<p><strong>Writes</strong>
+- Culture+0x480 per-player accumulated tourism array (adds ComputeTourismOn result for player ids &lt;22)
+- Culture+0x510 value set from Diplomacy::GetTourismFromAlliances</p>
+<p><strong>Side effects</strong>
+- calls RecomputeTourismOn for each met player</p>
+<p><strong>Input checks:</strong> Only touches players already met; index guarded to &lt; 22.</p>
+<p><strong>Multiplayer:</strong> may-desync, accumulates tourism into game state. <strong>Risk:</strong> medium (changes tourism totals every call). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanFillAllPolicySlots</h3>
+<p><strong>Input checks:</strong> No input; iterates government slot and policy definitions.</p>
+<p><strong>Multiplayer:</strong> read-only, only computes from definitions. <strong>Risk:</strong> low (pure check (truncated decompile)). <strong>Confidence of the reading:</strong> low.</p>
+<h3>CanTriggerBoost</h3>
+<p>Arguments: <code>eCivic</code> — civic type whose boost is tested</p>
+<p><strong>Input checks:</strong> No range check on eCivic beyond Types::GetIndex.</p>
+<p><strong>Multiplayer:</strong> read-only, queries boost and civic state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeGreatWorkObjectTourismModifier</h3>
 <p>Arguments: <code>eGreatWorkObjectType</code> — great work object type; <code>iModDelta</code> — amount added to the modifier</p>
 <p><strong>Writes</strong>
@@ -453,6 +474,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - third field is the no-tourism flag set by SetGreatWorkObjectNoTourism</p>
 <p><strong>Open questions</strong>
 - where the vector is populated</p>
+<h3>ChangeTourismModifier</h3>
+<p>Arguments: <code>iDelta</code> — amount added to the modifier</p>
+<p><strong>Writes</strong>
+- Culture+0x508 tourism modifier += iDelta</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes synchronised tourism modifier. <strong>Risk:</strong> medium (modifies tourism output). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeTourismOn</h3>
 <p>Arguments: <code>ePlayer</code> — player the tourism is directed at; <code>xValue</code> — amount to add (raw/256)</p>
 <p><strong>Writes</strong>
@@ -472,6 +499,80 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - value is FixedPoint raw int; no clamping</p>
 <p><strong>Open questions</strong>
 - why the limit is 22 rather than 64 (likely only majors)</p>
+<h3>CheckForDominance</h3>
+<p><strong>Writes</strong>
+- per-player dominance flag array (Culture+0x4a8)
+- per-player turns-until-dominant array (Culture+0x4d0)</p>
+<p><strong>Side effects</strong>
+- sends Reporting::Notification to this player and the dominated player</p>
+<p><strong>Input checks:</strong> Skips same team and unmet players (clearing their state).</p>
+<p><strong>Multiplayer:</strong> may-desync, writes dominance state and sends notifications. <strong>Risk:</strong> medium (drives cultural victory progress). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ComputeTourismOn</h3>
+<p>Arguments: <code>ePlayer</code> — target player of the tourism</p>
+<p><strong>Input checks:</strong> No range check on ePlayer; EditPlayer assumed valid.</p>
+<p><strong>Multiplayer:</strong> read-only, computes from synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>ComputeTurnsUntilDominant</h3>
+<p>Arguments: <code>ePlayer</code> — player whose culture is compared</p>
+<p><strong>Input checks:</strong> Does not check ePlayer range; returns -1 if rates are non-positive.</p>
+<p><strong>Multiplayer:</strong> read-only, no state written. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>DoCulture</h3>
+<p><strong>Writes</strong>
+- many Culture fields (0x420-0x468, 0xf8, 0x5b0, 0x5b8, 0x5d0)
+- civic progress via ChangeCulturalProgress
+- current government via SetCurrentGovernment</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send and several Notification::Send calls</p>
+<p><strong>Input checks:</strong> Guards on IsMajor and civic progress state.</p>
+<p><strong>Multiplayer:</strong> may-desync, runs the turn culture update. <strong>Risk:</strong> high (executes full per-turn culture logic). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DoEndTurn</h3>
+<p><strong>Writes</strong>
+- Culture+0x450 flag set to false</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised flag. <strong>Risk:</strong> low (single flag write). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetFavorPerTurnFromBuilding</h3>
+<p>Arguments: <code>eBuilding</code> — building type to look up</p>
+<p><strong>Input checks:</strong> Returns 0 for -1 or not found.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetFavorPerTurnFromPolicy</h3>
+<p>Arguments: <code>ePolicy</code> — policy type to look up</p>
+<p><strong>Input checks:</strong> Returns 0 for -1 or not found.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetGreatWorkObjectNoTourism</h3>
+<p>Arguments: <code>eGreatWorkObjectType</code> — great work object type</p>
+<p><strong>Input checks:</strong> Returns false for -1 or not found.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetGreatWorkObjectTourismModifier</h3>
+<p>Arguments: <code>eGreatWorkObjectType</code> — great work object type</p>
+<p><strong>Input checks:</strong> Returns 0 for -1 or not found.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumCivicsCompleted</h3>
+<p>Arguments: <code>bIncludeRepeatedCivics</code> — if true adds the repeated civic count</p>
+<p><strong>Input checks:</strong> Checks index bounds against Culture+0x368 and civic existence.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetNumPoliciesEnactedSpecificType</h3>
+<p>Arguments: <code>eGovernmentSlot</code> — slot type to count</p>
+<p><strong>Input checks:</strong> Skips empty slots (-1); policy lookup handles missing definitions.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumPoliciesUnlocked</h3>
+<p><strong>Input checks:</strong> None needed.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetNumPolicySlotsOpen</h3>
+<p><strong>Input checks:</strong> Returns 0 when government is -1 or no slots.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetOtherGovernmentIntoleranceModifier</h3>
+<p>Arguments: <code>GovA</code> — first government type; <code>GovB</code> — second government type</p>
+<p><strong>Input checks:</strong> Bounds-checks the index but dereferences definitions unchecked.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetSlotType</h3>
+<p>Arguments: <code>iSlotIndex</code> — slot index</p>
+<p><strong>Input checks:</strong> Upper bound checked; negative index not checked.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetTourismNationalParksModifier</h3>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> read-only, writes only the return slot. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetTouristsTo</h3>
+<p><strong>Input checks:</strong> Excludes self and unmet players.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>GrantRandomBoostGoodyHut</h3>
 <p>Arguments: <code>iNumFreeBoosts</code> — how many boosts to grant; <code>eSource</code> — source of the boost, passed to TriggerBoost</p>
 <p><strong>Writes</strong>
@@ -520,6 +621,26 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - meaning of TriggerBoost source value 2
 - decompile mixes tech/civic type names so list element type is unsure</p>
+<h3>GrantRandomCivics</h3>
+<p>Arguments: <code>iNumCivics</code> — how many civics to grant</p>
+<p><strong>Writes</strong>
+- cultural progress per granted civic via SetCulturalProgress</p>
+<p><strong>Side effects</strong>
+- consumes game random numbers (GetRandNum)</p>
+<p><strong>Input checks:</strong> Stops when no candidates left; iNumCivics &lt;= 0 does nothing.</p>
+<p><strong>Multiplayer:</strong> may-desync, uses RNG and grants civics. <strong>Risk:</strong> high (changes civic progress and RNG state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>HasFeaturesModifiedUnlock</h3>
+<p>Arguments: <code>eFeature</code> — feature type to test</p>
+<p><strong>Input checks:</strong> Bounds-checks civic index; no check on eFeature.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>IsCivicRevealed</h3>
+<p>Arguments: <code>eCivic</code> — civic type to test</p>
+<p><strong>Input checks:</strong> Returns false when civic definition not found.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IsProgressingCivic</h3>
+<p>Arguments: <code>eCivic</code> — civic type to compare</p>
+<p><strong>Input checks:</strong> Returns false if the progress list is empty.</p>
+<p><strong>Multiplayer:</strong> read-only, only reads synchronised state. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
 <h3>RecomputeTourismOn</h3>
 <p>Arguments: <code>ePlayer</code> — the other player id</p>
 <p><strong>Writes</strong>
@@ -540,6 +661,45 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - the +0x5a0 type name AI::Control::ControlPriority is likely a mis-resolved template</p>
 <p><strong>Open questions</strong>
 - exact meaning of the field updated on the other player</p>
+<h3>RemoveCultureBombTrigger</h3>
+<p>Arguments: <code>eBuilding</code> — type matched against the list entry field (district/building) (inferred); <code>bCapturesOwnedTiles</code> — captures-owned-tiles flag that must match</p>
+<p><strong>Writes</strong>
+- entry removed from culture bomb trigger list at Culture+0x678</p>
+<p><strong>Input checks:</strong> Silently does nothing if no entry matches.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised list. <strong>Risk:</strong> medium (removes culture bomb triggers). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveGovernmentTypeSlotModifier</h3>
+<p>Arguments: <code>eGovernmentType</code> — government whose modifier is changed; <code>eSlotType</code> — slot type being modified; <code>bAddSlot</code> — true if the original modifier added a slot</p>
+<p><strong>Writes</strong>
+- modifier entry count in list at Culture+0x258
+- Culture+0x7c8 reset to -1, Culture+0x450 set true, policies cleared</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send(0xa981150) when current government matches</p>
+<p><strong>Input checks:</strong> If no entry found nothing changes in the list; current government still rebuilt.</p>
+<p><strong>Multiplayer:</strong> may-desync, rebuilds policy slots. <strong>Risk:</strong> high (clears all enacted policies on current government). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveModifiedPolicySlot</h3>
+<p>Arguments: <code>eGovSlot</code> — slot type whose modifier is removed; <code>bAddSlot</code> — selects list: true=added-slots list, false=removed-slots list</p>
+<p><strong>Writes</strong>
+- entry erased from slot modifier list (0x1e0 or 0x208)
+- policies of that slot type cleared</p>
+<p><strong>Side effects</strong>
+- SetCurrentGovernment re-applies current government</p>
+<p><strong>Input checks:</strong> Returns early for slot -1.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits slots and policies. <strong>Risk:</strong> high (clears policies). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveReplacedPolicySlot</h3>
+<p>Arguments: <code>eReplacedSlot</code> — slot type that was replaced; <code>eAddedSlot</code> — slot type that replaced it</p>
+<p><strong>Writes</strong>
+- entries removed from list at Culture+0x230
+- all policies cleared</p>
+<p><strong>Side effects</strong>
+- SetCurrentGovernment re-applies current government if one is set</p>
+<p><strong>Input checks:</strong> Returns early if either slot is -1.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits slots and policies. <strong>Risk:</strong> high (clears all policies). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveTourismIntoFavor</h3>
+<p>Arguments: <code>iTourism</code> — tourism value of the entry to remove (inferred); <code>iFavor</code> — favor value of the entry to remove (inferred)</p>
+<p><strong>Writes</strong>
+- list at Culture+0x6a8 rebuilt without matching entries</p>
+<p><strong>Input checks:</strong> None; non-matching list stays unchanged.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised list. <strong>Risk:</strong> medium (list rewrite). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetAllCivicsByPreviousEra</h3>
 <p>Arguments: <code>eEraType</code> — era; civics from earlier eras are granted</p>
 <p><strong>Writes</strong>
@@ -560,6 +720,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - does not trigger boosts or other civic side effects</p>
 <p><strong>Open questions</strong>
 - whether already-owned civics also re-trigger the signal (no check seen)</p>
+<h3>SetCultureRateChange</h3>
+<p>Arguments: <code>xNewValue</code> — new fixed-point culture rate change</p>
+<p><strong>Writes</strong>
+- culture rate change value at Culture+0x438/0x448</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send(0x8aba2360, player)</p>
+<p><strong>Input checks:</strong> Skips when unchanged.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes culture rate. <strong>Risk:</strong> medium (changes applied culture rate). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetFavorPerTurnFromBuilding</h3>
 <p>Arguments: <code>eBuilding</code> — building type; <code>iFavor</code> — favor per turn value (assigned, not added)</p>
 <p><strong>Writes</strong>
@@ -592,6 +760,21 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - sums into player's favor income</p>
 <p><strong>Open questions</strong>
 - aggregation point</p>
+<h3>SetFeatureModifiedUnlock</h3>
+<p>Arguments: <code>eFeature</code> — feature type to unlock; <code>eCivic</code> — civic that unlocks it</p>
+<p><strong>Writes</strong>
+- entry appended to list at Culture+0x6f0</p>
+<p><strong>Input checks:</strong> No validation or duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits synchronised list. <strong>Risk:</strong> medium (adds unlock condition). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>SetGovernmentTypeSlotModifier</h3>
+<p>Arguments: <code>eGovernmentType</code> — government whose slots are modified; <code>eSlotType</code> — slot type being modified; <code>bAddSlot</code> — true adds a slot (+1), false removes (-1)</p>
+<p><strong>Writes</strong>
+- modifier list at Culture+0x258
+- Culture+0x7c8 reset to -1, Culture+0x450 set true, policies cleared</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send(0xa981150) when current government matches</p>
+<p><strong>Input checks:</strong> No range checks on enums.</p>
+<p><strong>Multiplayer:</strong> may-desync, rebuilds slots and clears policies. <strong>Risk:</strong> high (clears all enacted policies on current government). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetGreatWorkObjectNoTourism</h3>
 <p>Arguments: <code>eGreatWorkObjectType</code> — great work object type; <code>bNoTourism</code> — true to suppress tourism</p>
 <p><strong>Writes</strong>
@@ -607,6 +790,15 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - writes a bool at offset 8 of the 12-byte record</p>
 <p><strong>Inferred</strong>
 - flag consulted in tourism calculation</p>
+<h3>SetModifiedPolicySlot</h3>
+<p>Arguments: <code>eGovSlot</code> — slot type to add or remove; <code>bAddSlot</code> — true uses the added-slots list, false the removed list</p>
+<p><strong>Writes</strong>
+- slot modifier list (0x1e0 or 0x208)
+- Culture+0x7c8 reset to -1, Culture+0x450 set true, policies cleared</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send(0xa981150, player)</p>
+<p><strong>Input checks:</strong> No validation of slot type.</p>
+<p><strong>Multiplayer:</strong> may-desync, rebuilds slots and clears policies. <strong>Risk:</strong> high (clears all enacted policies). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetNumFreeCivicBoostOnNewEra</h3>
 <p>Arguments: <code>numBoosts</code> — amount added to the stored counter (despite 'Set' name it is additive); <code>applyImmediately</code> — if true and boosts positive, grant random boosts now</p>
 <p><strong>Writes</strong>
@@ -651,4 +843,19 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - value at +0x7c8 is something like a last-removed-policy marker</p>
 <p><strong>Open questions</strong>
 - what +0x7c8 means
-- if slot not found, +0x7c8 stays unchanged (return before)</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+- if slot not found, +0x7c8 stays unchanged (return before)</p>
+<h3>SetPolicyChangeMade</h3>
+<p>Arguments: <code>bNewValue</code> — true marks a change made this turn, false clears it</p>
+<p><strong>Writes</strong>
+- Culture+0x7c8 = current turn or -1</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synchronised turn marker. <strong>Risk:</strong> low (single value write). <strong>Confidence of the reading:</strong> high.</p>
+<h3>SetReplacedPolicySlot</h3>
+<p>Arguments: <code>eReplacedSlot</code> — slot type being replaced; <code>eAddedSlot</code> — slot type taking its place; <code>bReplacesAll</code> — stored flag, whether it replaces all such slots (inferred)</p>
+<p><strong>Writes</strong>
+- entry appended to list at Culture+0x230
+- all policies cleared</p>
+<p><strong>Side effects</strong>
+- SetCurrentGovernment re-applies current government</p>
+<p><strong>Input checks:</strong> No validation or duplicate check.</p>
+<p><strong>Multiplayer:</strong> may-desync, edits slots and clears policies. <strong>Risk:</strong> high (clears all policies). <strong>Confidence of the reading:</strong> medium.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

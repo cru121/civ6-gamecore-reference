@@ -28,7 +28,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="addlevydiscountpercent"></a>AddLevyDiscountPercent</td>
 <td><code>PlayerInfluence:AddLevyDiscountPercent(iNewValue: integer)</code></td>
-<td>—</td>
+<td>Appends a discount value to the levy discount vector at offset 0x2b8.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e8e70</code></td>
@@ -36,7 +36,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="cangivetokenstoanyplayer"></a>CanGiveTokensToAnyPlayer</td>
 <td><code>PlayerInfluence:CanGiveTokensToAnyPlayer() → boolean</code></td>
-<td>—</td>
+<td>Returns true if the player's government allows giving tokens and any player in the manager list passes CanGiveTokensToPlayer.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e8f70</code></td>
@@ -44,7 +44,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="canreceiveinfluencefrom"></a>CanReceiveInfluenceFrom</td>
 <td><code>PlayerInfluence:CanReceiveInfluenceFrom(fromPlayer: integer) → boolean</code></td>
-<td>—</td>
+<td>Returns true if government permits receiving influence and the per-player byte flag at 0x358 for that player is zero.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9260</code></td>
@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changetokensreceived"></a>ChangeTokensReceived</td>
 <td><code>PlayerInfluence:ChangeTokensReceived(fromPlayer: integer, iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds iDelta to the tokens received from a player by calling SetTokensReceived.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e94a0</code></td>
@@ -100,7 +100,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="changevirtualtokensreceived"></a>ChangeVirtualTokensReceived</td>
 <td><code>PlayerInfluence:ChangeVirtualTokensReceived(fromPlayer: integer, iDelta: integer)</code></td>
-<td>—</td>
+<td>Adds iDelta to the virtual tokens received from a player by calling SetVirtualTokensReceived.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9610</code></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checkfortokensearned"></a>CheckForTokensEarned</td>
 <td><code>PlayerInfluence:CheckForTokensEarned()</code></td>
-<td>—</td>
+<td>If government permits, converts accumulated points into tokens at a threshold and keeps the remainder.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9630</code></td>
@@ -116,7 +116,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="checksendtokennotification"></a>CheckSendTokenNotification</td>
 <td><code>PlayerInfluence:CheckSendTokenNotification()</code></td>
-<td>—</td>
+<td>Sends a fixed-type notification to the owning player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9700</code></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="counttokensgiventoanyplayer"></a>CountTokensGivenToAnyPlayer</td>
 <td><code>PlayerInfluence:CountTokensGivenToAnyPlayer() → number</code></td>
-<td>—</td>
+<td>Sums across all players the tokens this player has given them, including bonus percent.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9a30</code></td>
@@ -140,7 +140,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="counttributaries"></a>CountTributaries</td>
 <td><code>PlayerInfluence:CountTributaries() → number</code></td>
-<td>—</td>
+<td>Counts players whose influence field at 0x418 equals this player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9b30</code></td>
@@ -148,7 +148,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="decrementcopyluxuriescount"></a>DecrementCopyLuxuriesCount</td>
 <td><code>PlayerInfluence:DecrementCopyLuxuriesCount(toPlayer: integer)</code></td>
-<td>—</td>
+<td>Decrements the luxury-copy count given to a player; when it drops to zero ends imports of all luxury resources for that player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9bc0</code></td>
@@ -156,7 +156,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="decrementcopystrategicscount"></a>DecrementCopyStrategicsCount</td>
 <td><code>PlayerInfluence:DecrementCopyStrategicsCount(toPlayer: integer)</code></td>
-<td>—</td>
+<td>Decrements the strategic-copy count for a player in the array at 0x318.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9ce0</code></td>
@@ -172,7 +172,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="doturn"></a>DoTurn</td>
 <td><code>PlayerInfluence:DoTurn()</code></td>
-<td>—</td>
+<td>Per-turn influence processing: restores visibility on the old capital plot, adds points per turn, converts tokens, sends a notification, manages levies and advances the levy counter.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2e9f90</code></td>
@@ -180,7 +180,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getenemynonvirtualtokensreceived"></a>GetEnemyNonVirtualTokensReceived</td>
 <td><code>PlayerInfluence:GetEnemyNonVirtualTokensReceived(ePlayer: integer) → number</code></td>
-<td>—</td>
+<td>Sums, over all other players in the manager list, the net non-virtual tokens received including bonus percent.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea1d0</code></td>
@@ -188,7 +188,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getlevyturnlimit"></a>GetLevyTurnLimit</td>
 <td><code>PlayerInfluence:GetLevyTurnLimit() → number</code></td>
-<td>—</td>
+<td>Returns the global levy turn limit parameter (offset 0x450 of the global parameters) scaled by game speed.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea4a0</code></td>
@@ -196,7 +196,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getmaxtokensreceived"></a>GetMaxTokensReceived</td>
 <td><code>PlayerInfluence:GetMaxTokensReceived(fromPlayer: integer) → number</code></td>
-<td>—</td>
+<td>Returns the base token count stored for the given player, increased by a percentage bonus if that player has a positive bonus value.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea4d0</code></td>
@@ -204,7 +204,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="gettotaltokensreceived"></a>GetTotalTokensReceived</td>
 <td><code>PlayerInfluence:GetTotalTokensReceived() → number</code></td>
-<td>—</td>
+<td>Sums, over all players in the player manager list, the real plus virtual tokens received with the percent bonus applied.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea760</code></td>
@@ -212,7 +212,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getvirtualtokensreceived"></a>GetVirtualTokensReceived</td>
 <td><code>PlayerInfluence:GetVirtualTokensReceived(fromPlayer: integer) → number</code></td>
-<td>—</td>
+<td>Computes tokens for a player: array 0x208 value plus a percent bonus applied to the (0x1d8 + 0x208) sum when bonus at 0x238 is positive.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea830</code></td>
@@ -220,7 +220,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfromgiventokens"></a>GetYieldFromGivenTokens</td>
 <td><code>PlayerInfluence:GetYieldFromGivenTokens(yield: integer) → number</code></td>
-<td>—</td>
+<td>Returns a FixedPoint: the per-unit value from the vector at 0x388 (per-given-token yield) for the yield, multiplied by CountTokensGivenToAnyPlayer, or 0 if not positive/out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea890</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldfromtributaries"></a>GetYieldFromTributaries</td>
 <td><code>PlayerInfluence:GetYieldFromTributaries(yield: integer) → number</code></td>
-<td>—</td>
+<td>Returns a FixedPoint: the per-unit value from the vector at 0x3b8 (per-tributary yield) for the yield, multiplied by CountTributaries, or 0 if not positive/out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea900</code></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldmodifierfromtributaries"></a>GetYieldModifierFromTributaries</td>
 <td><code>PlayerInfluence:GetYieldModifierFromTributaries(yield: integer) → number</code></td>
-<td>—</td>
+<td>Returns a FixedPoint: the per-unit value from the vector at 0x3e8 (per-tributary modifier) for the yield, multiplied by CountTributaries, or 0 if not positive/out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea970</code></td>
@@ -244,7 +244,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldmodifierpertributary"></a>GetYieldModifierPerTributary</td>
 <td><code>PlayerInfluence:GetYieldModifierPerTributary(yield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored FixedPoint value at the yield index of the vector at offset 0x3e8, or 0 if the index is out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ea9e0</code></td>
@@ -252,7 +252,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldpergiventoken"></a>GetYieldPerGivenToken</td>
 <td><code>PlayerInfluence:GetYieldPerGivenToken(yield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored FixedPoint value at the yield index of the vector at offset 0x388, or 0 if the index is out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2eaa20</code></td>
@@ -260,7 +260,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="getyieldpertributary"></a>GetYieldPerTributary</td>
 <td><code>PlayerInfluence:GetYieldPerTributary(yield: integer) → number</code></td>
-<td>—</td>
+<td>Returns the stored FixedPoint value at the yield index of the vector at offset 0x3b8, or 0 if the index is out of range.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2eaa60</code></td>
@@ -276,7 +276,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="grantplayersuzerainship"></a>GrantPlayerSuzerainship</td>
 <td><code>PlayerInfluence:GrantPlayerSuzerainship(fromPlayer: integer)</code></td>
-<td>—</td>
+<td>Makes peace between the owner and the given player, then (for a qualifying government/level) sets the player's token count to at least the current maximum plus one so they become suzerain.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2eade0</code></td>
@@ -284,7 +284,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="incrementcopyluxuriescount"></a>IncrementCopyLuxuriesCount</td>
 <td><code>PlayerInfluence:IncrementCopyLuxuriesCount(toPlayer: integer)</code></td>
-<td>—</td>
+<td>Increments the per-player copy-luxuries counter; when it goes from 0 to positive, imports all luxury resources the owner has into the target player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2eaee0</code></td>
@@ -292,7 +292,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="incrementcopystrategicscount"></a>IncrementCopyStrategicsCount</td>
 <td><code>PlayerInfluence:IncrementCopyStrategicsCount(toPlayer: integer)</code></td>
-<td>—</td>
+<td>Increments the per-player copy-strategic-resources counter (offset 0x318) for the given player.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2eb000</code></td>
@@ -308,7 +308,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="incrementopenborderscount"></a>IncrementOpenBordersCount</td>
 <td><code>PlayerInfluence:IncrementOpenBordersCount(toPlayer: integer)</code></td>
-<td>—</td>
+<td>Increments the open-borders counter for the given player and, if influence can be received and the counter is positive, grants that player open borders from the owner.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2eb220</code></td>
@@ -316,7 +316,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removelevydiscountpercent"></a>RemoveLevyDiscountPercent</td>
 <td><code>PlayerInfluence:RemoveLevyDiscountPercent(iRemoveValue: integer)</code></td>
-<td>—</td>
+<td>Removes the first occurrence of the given value from the levy discount percent list (offset 0x2b8).</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ec640</code></td>
@@ -324,7 +324,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="removenonsuzeraintokens"></a>RemoveNonSuzerainTokens</td>
 <td><code>PlayerInfluence:RemoveNonSuzerainTokens()</code></td>
-<td>—</td>
+<td>For every other player (not owner or current suzerain) zeroes their tokens, updates suzerain, adds religious pressure, adjusts diplomatic favor, and dispatches signals. Decompilation is truncated near the end.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ec6b0</code></td>
@@ -332,7 +332,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="resetlevyturncounter"></a>ResetLevyTurnCounter</td>
 <td><code>PlayerInfluence:ResetLevyTurnCounter()</code></td>
-<td>—</td>
+<td>Resets the levy turn counter field (offset 0x450) to -1 if the owner meets a government/level condition, and sends a reporting event.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2ed110</code></td>
@@ -404,7 +404,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td><a id="setvirtualtokensreceived"></a>SetVirtualTokensReceived</td>
 <td><code>PlayerInfluence:SetVirtualTokensReceived(fromPlayer: integer, value: integer)</code></td>
-<td>—</td>
+<td>Sets the virtual token count for a player; if the effective change is nonzero updates suzerain and dispatches signals and a reporting event.</td>
 <td>plumbing ✓</td>
 <td>—</td>
 <td><code>0x2edbd0</code></td>
@@ -444,6 +444,19 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tbody>
 </table>
 <h2>Details</h2>
+<h3>AddLevyDiscountPercent</h3>
+<p>Arguments: <code>iNewValue</code> — discount percent to add</p>
+<p><strong>Writes</strong>
+- levy discount vector at this+0x2b8 grows</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced vector. <strong>Risk:</strong> medium (unchecked). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CanGiveTokensToAnyPlayer</h3>
+<p><strong>Input checks:</strong> Checks owner alive and government flag.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CanReceiveInfluenceFrom</h3>
+<p>Arguments: <code>fromPlayer</code> — player sending influence</p>
+<p><strong>Input checks:</strong> Requires fromPlayer &lt; 0x40 and owner alive.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ChangeBasePointsPerTurn</h3>
 <p>Arguments: <code>change</code> — delta (raw/256)</p>
 <p><strong>Writes</strong>
@@ -516,6 +529,12 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - the auto-variable type shown in the template (DistrictTypes) is a Ghidra mislabel</p>
 <p><strong>Open questions</strong>
 - exact meaning of event hash 0xd35e571d</p>
+<h3>ChangeTokensReceived</h3>
+<p>Arguments: <code>fromPlayer</code> — source player; <code>iDelta</code> — amount to add</p>
+<p><strong>Writes</strong>
+- tokens received via SetTokensReceived</p>
+<p><strong>Input checks:</strong> Skips -1; no upper bound check here.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes influence tokens. <strong>Risk:</strong> medium (synced state). <strong>Confidence of the reading:</strong> high.</p>
 <h3>ChangeTokensReceivedModifier</h3>
 <p>Arguments: <code>fromPlayer</code> — player sending tokens; <code>iDelta</code> — amount to add to the modifier</p>
 <p><strong>Writes</strong>
@@ -538,6 +557,23 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - signal types shown are mis-resolved</p>
 <p><strong>Open questions</strong>
 - meaning of bit 31 of this+0x460</p>
+<h3>ChangeVirtualTokensReceived</h3>
+<p>Arguments: <code>fromPlayer</code> — source player; <code>iDelta</code> — amount to add</p>
+<p><strong>Writes</strong>
+- virtual tokens via SetVirtualTokensReceived</p>
+<p><strong>Input checks:</strong> Skips -1; no upper bound check here.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes influence tokens. <strong>Risk:</strong> medium (synced state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CheckForTokensEarned</h3>
+<p><strong>Writes</strong>
+- tokens to give
+- points earned remainder</p>
+<p><strong>Input checks:</strong> Requires owner alive, government flag and positive threshold.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes tokens and points. <strong>Risk:</strong> medium (synced state). <strong>Confidence of the reading:</strong> high.</p>
+<h3>CheckSendTokenNotification</h3>
+<p><strong>Side effects</strong>
+- Reporting notification sent to owner</p>
+<p><strong>Input checks:</strong> None.</p>
+<p><strong>Multiplayer:</strong> may-desync, sends a notification. <strong>Risk:</strong> low (only a notification). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>ClearAllTokensReceived</h3>
 <p><strong>Writes</strong>
 - tokens-received array at this+0x1c8 zeroed per player
@@ -566,6 +602,27 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - meaning of arrays at +0x1d8, +0x238, +0x268
 - exact semantic of the religion pressure amount</p>
+<h3>CountTokensGivenToAnyPlayer</h3>
+<p><strong>Input checks:</strong> Skips null players.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>CountTributaries</h3>
+<p><strong>Input checks:</strong> Skips null players.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DecrementCopyLuxuriesCount</h3>
+<p>Arguments: <code>toPlayer</code> — recipient player</p>
+<p><strong>Writes</strong>
+- luxury copy count at this+0x2e8
+- recipient resource imports ended</p>
+<p><strong>Side effects</strong>
+- Resources::EndImportResource called</p>
+<p><strong>Input checks:</strong> Requires owner, toPlayer &lt; 0x40 and not self.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes resources. <strong>Risk:</strong> medium (ends imports). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>DecrementCopyStrategicsCount</h3>
+<p>Arguments: <code>toPlayer</code> — recipient player</p>
+<p><strong>Writes</strong>
+- strategic copy count at this+0x318</p>
+<p><strong>Input checks:</strong> Requires owner, toPlayer &lt; 0x40, not self.</p>
+<p><strong>Multiplayer:</strong> may-desync, writes synced array. <strong>Risk:</strong> medium (synced write). <strong>Confidence of the reading:</strong> high.</p>
 <h3>DecrementOpenBordersCount</h3>
 <p>Arguments: <code>toPlayer</code> — player id whose open-borders count is lowered</p>
 <p><strong>Writes</strong>
@@ -590,6 +647,58 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - whether the two offsets are really the same array
 - why the counter can be driven negative</p>
+<h3>DoTurn</h3>
+<p><strong>Writes</strong>
+- points earned
+- visibility counts
+- levy turn counter</p>
+<p><strong>Side effects</strong>
+- visibility changes
+- notification sent</p>
+<p><strong>Input checks:</strong> Checks owner alive and government flag.</p>
+<p><strong>Multiplayer:</strong> may-desync, changes state. <strong>Risk:</strong> high (many state writes). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetEnemyNonVirtualTokensReceived</h3>
+<p>Arguments: <code>ePlayer</code> — player excluded from the sum</p>
+<p><strong>Input checks:</strong> Skips ePlayer and bounds each player below 0x40.</p>
+<p><strong>Multiplayer:</strong> read-only, getter. <strong>Risk:</strong> low (getter). <strong>Confidence of the reading:</strong> low.</p>
+<h3>GetLevyTurnLimit</h3>
+<p><strong>Input checks:</strong> No inputs to validate.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter of rules data. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> high.</p>
+<h3>GetMaxTokensReceived</h3>
+<p>Arguments: <code>fromPlayer</code> — Player whose tokens are queried (index into per-player arrays)</p>
+<p><strong>Input checks:</strong> Checks fromPlayer &lt; 64 (returns 0 otherwise); no check for null arrays.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetTotalTokensReceived</h3>
+<p><strong>Input checks:</strong> Skips player ids &gt;= 64; no null checks.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetVirtualTokensReceived</h3>
+<p>Arguments: <code>fromPlayer</code> — Player whose tokens are queried</p>
+<p><strong>Input checks:</strong> Checks fromPlayer &lt; 64; array bounds not checked.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldFromGivenTokens</h3>
+<p>Arguments: <code>yield</code> — Yield type index into the per-yield vector</p>
+<p><strong>Input checks:</strong> Bounds-checks yield against vector size; no null check on this.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldFromTributaries</h3>
+<p>Arguments: <code>yield</code> — Yield type index into the per-yield vector</p>
+<p><strong>Input checks:</strong> Bounds-checks yield against vector size; no null check on this.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldModifierFromTributaries</h3>
+<p>Arguments: <code>yield</code> — Yield type index into the per-yield vector</p>
+<p><strong>Input checks:</strong> Bounds-checks yield against vector size; no null check on this.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldModifierPerTributary</h3>
+<p>Arguments: <code>yield</code> — Yield type index into the vector</p>
+<p><strong>Input checks:</strong> Bounds-checks yield against vector size.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldPerGivenToken</h3>
+<p>Arguments: <code>yield</code> — Yield type index into the vector</p>
+<p><strong>Input checks:</strong> Bounds-checks yield against vector size.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>GetYieldPerTributary</h3>
+<p>Arguments: <code>yield</code> — Yield type index into the vector</p>
+<p><strong>Input checks:</strong> Bounds-checks yield against vector size.</p>
+<p><strong>Multiplayer:</strong> read-only: pure getter. <strong>Risk:</strong> low (pure getter). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>GiveTokenToPlayer</h3>
 <p>Arguments: <code>toPlayer</code> — recipient player id</p>
 <p><strong>Writes</strong>
@@ -609,6 +718,30 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 - tokens are envoys given to city-states</p>
 <p><strong>Open questions</strong>
 - what GiveFreeTokenToPlayer validates</p>
+<h3>GrantPlayerSuzerainship</h3>
+<p>Arguments: <code>fromPlayer</code> — Player to be granted suzerainship</p>
+<p><strong>Writes</strong>
+- Player diplomacy state (peace)
+- Tokens received for fromPlayer (via SetTokensReceived)</p>
+<p><strong>Side effects</strong>
+- MakePeaceWith call; SetTokensReceived fires its own signals</p>
+<p><strong>Input checks:</strong> Checks player index &lt;= 0x40, lookup entry not -1 and player object non-null; silently returns otherwise.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> high (changes diplomacy and token ownership of synced game state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IncrementCopyLuxuriesCount</h3>
+<p>Arguments: <code>toPlayer</code> — Player receiving copies of luxuries</p>
+<p><strong>Writes</strong>
+- Copy-luxuries count array (offset 0x2e8) for toPlayer
+- Target player's imported resources</p>
+<p><strong>Side effects</strong>
+- Calls BeginImportResource on target player for each owned luxury</p>
+<p><strong>Input checks:</strong> Checks owner non-null, toPlayer &lt; 64 and not the owner itself.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> high (modifies resource imports of another player). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>IncrementCopyStrategicsCount</h3>
+<p>Arguments: <code>toPlayer</code> — Player to receive strategic copies</p>
+<p><strong>Writes</strong>
+- Copy-strategics count array (offset 0x318)</p>
+<p><strong>Input checks:</strong> Checks owner non-null, toPlayer &lt; 64 and toPlayer != owner.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced per-player counter). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>IncrementLevyTurnCounter</h3>
 <p><strong>Writes</strong>
 - levy turn counter at this+0x460 (incremented by 1)
@@ -632,6 +765,38 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - exact meaning of the level/definition flag at +0x28 bit 7
 - which game parameter is at ms_pkParameters+0x450</p>
+<h3>IncrementOpenBordersCount</h3>
+<p>Arguments: <code>toPlayer</code> — Player gaining open borders</p>
+<p><strong>Writes</strong>
+- Open-borders count array (offset 0x288)
+- Target player's diplomacy open-borders flag</p>
+<p><strong>Side effects</strong>
+- Calls SetHasOpenBordersFrom on target player diplomacy</p>
+<p><strong>Input checks:</strong> Checks owner non-null and toPlayer &lt; 64.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (changes diplomacy state). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveLevyDiscountPercent</h3>
+<p>Arguments: <code>iRemoveValue</code> — Discount percent value to remove from the list</p>
+<p><strong>Writes</strong>
+- Levy discount percent vector (offset 0x2b8)</p>
+<p><strong>Input checks:</strong> No check; if value is not found nothing happens.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (edits synced game variable list). <strong>Confidence of the reading:</strong> medium.</p>
+<h3>RemoveNonSuzerainTokens</h3>
+<p><strong>Writes</strong>
+- Tokens received array (offset 0x1c8)
+- Suzerain state
+- Capital city religious pressure
+- Congress diplomatic favor</p>
+<p><strong>Side effects</strong>
+- Dispatches token-change signals and likely a reporting event</p>
+<p><strong>Input checks:</strong> Skips players &gt;= 64 and the owner/suzerain; no null checks on pointers.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> high (bulk change to influence, religion and favor state). <strong>Confidence of the reading:</strong> low.</p>
+<h3>ResetLevyTurnCounter</h3>
+<p><strong>Writes</strong>
+- Levy turn counter (offset 0x450)</p>
+<p><strong>Side effects</strong>
+- Reporting::Event::Send</p>
+<p><strong>Input checks:</strong> Checks owner flag at 600 and government definition lookup for null.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> medium (writes synced AI control variable). <strong>Confidence of the reading:</strong> low.</p>
 <h3>SetBasePointsPerTurn</h3>
 <p>Arguments: <code>value</code> — new value (raw/256)</p>
 <p><strong>Writes</strong>
@@ -776,6 +941,15 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <p><strong>Open questions</strong>
 - meaning of definition flag bit 6
 - where the field is consumed</p>
+<h3>SetVirtualTokensReceived</h3>
+<p>Arguments: <code>fromPlayer</code> — Player whose virtual tokens are set; <code>value</code> — New virtual token count</p>
+<p><strong>Writes</strong>
+- Virtual tokens array (offset 0x1f8) for fromPlayer
+- Suzerain state</p>
+<p><strong>Side effects</strong>
+- Dispatches influence-change and belief-type signals; Reporting::Event::Send</p>
+<p><strong>Input checks:</strong> Checks fromPlayer &lt; 64; value not range-checked.</p>
+<p><strong>Multiplayer:</strong> may-desync. <strong>Risk:</strong> high (changes synced token and suzerain state). <strong>Confidence of the reading:</strong> medium.</p>
 <h3>SetYieldModifierPerTributary</h3>
 <p>Arguments: <code>yield</code> — yield type index; <code>value</code> — new value raw/256</p>
 <p><strong>Writes</strong>
