@@ -516,31 +516,32 @@ add('devce/index.md', 'Dev CE (experimental)', """# Lua methods added by the Dev
 
 A development build of a Community-Extension-style GameCore that adds Lua methods by **calling engine functions directly**: the Lua call `object:Method(a, b)` becomes `GameCore::Class::Method(this, a, b)`.
 The methods are generated from a table (address and signature from the symbol-build map and the Linux debug info; `this` from the game's own instance resolver for the Lua object); no per-function code is written.
-They exist only in **Dev CE**, an experimental fork of the Community Extension: <https://github.com/cru121/civ6-dev-ce> (AGPL-3.0, source only; build the DLL yourself, see the README there). Dev CE replaces the game's GameCore,
-so it cannot be enabled together with the Community Extension or any other GameCore mod, works only with Steam build 15038592, is single-player only (many methods change synchronised state and can desync multiplayer) and has been run on one machine by one person.
+They exist only in **Dev CE**, an experimental fork of the Community Extension: <https://github.com/cru121/civ6-dev-ce> (AGPL-3.0; release zip with the DLL and the full source, see the README there). Dev CE replaces the game's GameCore,
+so it cannot be enabled together with the Community Extension or any other GameCore mod, works only with Steam builds 15038592 and 15296837 (same GameCore DLL; it checks the DLL itself, not the build number), is single-player only (many methods change synchronised state and can desync multiplayer) and has been run on one machine by one person.
 Ids and indices you pass are **not range-checked**; the bridge turns hardware faults into a Lua error but cannot catch silent memory corruption.
 
 **Potentially unsafe:** `Unit:ChangeSightRange` hung the game once on a late-game save; `PlayerTrade:ChangeDomesticTradeDisabledCount`, `ChangeInternationalMajorsTradeDisabledCount` and `ChangeInternationalMinorsTradeDisabledCount`
 disable trade routes with +1 and do not bring them back with -1.
 
-%d methods on %d Lua objects (plus a few read-only getters the tests use to compare against vanilla). What was tested in the running game (build 15038592, single player, disposable games and one late-game save):
+%d methods on %d Lua objects (plus a few read-only getters the tests use to compare against vanilla). What was tested in the running game (build 15038592; build 15296837 has the identical DLL but was not tested separately; single player, disposable games and a copy of one late-game save; the 0.2.0 release has 1033 functions including the read-only comparison getters, the 0.1.0 release 251):
 
 * **plumbing** (%d methods): the engine function is entered exactly once, `this` is not null, every argument arrives exactly as sent, the return value comes back to Lua intact.
 * **this ✓ (oracle)**: for the object, a vanilla getter and the engine function of the same class give the same answer, so the object pointer is right.
 * **effect ✓** (%d methods): the function was called with +1 and -1; a vanilla getter changed as the name says and everything returned to its starting value.
 * "ran ±1, reversible ✓, no visible effect": called for real (%d methods), caused no error and was fully reversible, but no vanilla getter shows that state. That is not evidence that it works.
-* **robustness**: every method was also called with the wrong kind of object, no arguments or garbage arguments (about 2,000 calls): all raised a clean Lua error and none reached native code with a bad `this`. Read-only getters called with out-of-range ids
+* **robustness** (earlier 251-method build only): every method was also called with the wrong kind of object, no arguments or garbage arguments (about 2,000 calls): all raised a clean Lua error and none reached native code with a bad `this`. Read-only getters called with out-of-range ids
   returned -1/0 or faulted (one getter, `UnitExperience:HasPromotion`); the faults were caught and the game kept running.
 * **loading**: the methods register identically on every game load (new game, load a save, quit to menu, new game). The Community Extension's `RegisterProcessor` fix that Dev CE includes was tested in the same runs (handlers run, results return, a World Congress resolved normally).
-* **not tested**: multiplayer, saves made after a method changed state, other game builds, other machines. 85 of the 112 methods run for real show no effect through any vanilla getter, so for most of them nobody has seen whether they do what the name says.
+* **save and load**: era score, influence tokens, alliance points and gold rate changed by Dev CE survive save, quit to menu and load (tested on the late-game save).
+* **not tested**: multiplayer, loading a save made after a method changed state in plain CE or vanilla, other game builds, other machines, hostile arguments on the newer methods. %d methods were not run for real at all, and %d of the %d that were show no effect through any vanilla getter, so for most methods nobody has seen whether they do what the name says.
 
-**Descriptions are written by an AI assistant from the decompiled code and are marked inferred** unless a test confirms them; read them as leads, not documentation. Many methods change synchronised game state and are marked "may desync" in multiplayer.
+**Descriptions are written by an AI assistant from the decompiled code and are marked inferred** unless a test confirms them; read them as leads, not documentation. Only %d of the methods have a description so far; the others show a dash. Many methods change synchronised game state and are marked "may desync" in multiplayer.
 Where a method is not listed here, see [native functions](../native/index.md) for what has no Lua route.
 
 | Object | Methods | Effect verified |
 |---|---|---|
 %s
-""" % (len(devce), len(devce_by_obj), n_pass, n_eff, n_dp - n_eff, '\n'.join(rows)))
+""" % (len(devce), len(devce_by_obj), n_pass, n_eff, n_dp - n_eff, len(devce) - n_dp, n_dp - n_eff, n_dp, sum(1 for r in devce if r.get('analysis')), '\n'.join(rows)))
 for o, ms in sorted(devce_by_obj.items()):
     path = 'devce/%s.md' % safe(o)
     L = ['# %s\n' % o, '%d methods (Dev CE test build). `this` is found with the game\'s own `%s` instance resolver (%s).\n' % (len(ms), ms[0]['interface'], ms[0]['this_resolution']),
@@ -998,7 +999,7 @@ def parents(path):
 ZONE_TEXT = {
     'vanilla': '<b>Available out of the box.</b> Usable from Lua in the unmodified game.',
     'ce': '<b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).',
-    'devce': '<b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.',
+    'devce': '<b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.',
     'engine': '<b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.'}
 
 

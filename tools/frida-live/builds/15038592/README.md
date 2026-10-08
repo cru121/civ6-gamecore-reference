@@ -28,5 +28,5 @@ python civ.py "slots ROME"                     READ-ONLY: dump one city's great 
 python civ.py "report"                         READ-ONLY: per-city works, yields, tourism
 ```
 **Read-only first.** `spawn`, `limbo`, `place`, `remove`, `removeraw`, `makeghost`, `unghost`, `rmbuilding`, `hut`, `relicbase`, `reliclimbo`, `propset`, `tag` WRITE game state
-(they run on the game thread): use them on a disposable single-player save only. The addresses and struct offsets inside are for build 15038592; on any other build they are wrong.
+(they run on the game thread): use them on a disposable single-player save only. The addresses and struct offsets inside are for the DLL of builds 15038592/15296837; on any other DLL they are wrong.
 The header comment of the file describes every command.

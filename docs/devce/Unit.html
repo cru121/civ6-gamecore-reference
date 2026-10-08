@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › Unit</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>Unit</h1>
-<p>20 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IUnit</code> instance resolver (plain).</p>
+<p>46 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IUnit</code> instance resolver (plain).</p>
 <table>
 <thead>
 <tr>
@@ -42,12 +42,52 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a2060</code></td>
 </tr>
 <tr>
+<td><a id="addespionagebonus"></a>AddEspionageBonus</td>
+<td><code>Unit:AddEspionageBonus(eOperation: integer, bOffensive: boolean, iAmount: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x395cb0</code></td>
+</tr>
+<tr>
 <td><a id="addespionagetimereduction"></a>AddEspionageTimeReduction</td>
 <td><code>Unit:AddEspionageTimeReduction(eOperation: integer, iReductionPercent: integer)</code></td>
 <td>Adds a percentage reduction to the mission time of a given spy operation type, merging into an existing entry or appending a new one.</td>
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/Unit.html#unit__espionage__addespionagetimereduction">Unit::Espionage::AddEspionageTimeReduction</a></td>
 <td><code>0x395d70</code></td>
+</tr>
+<tr>
+<td><a id="addinitialabilities"></a>AddInitialAbilities</td>
+<td><code>Unit:AddInitialAbilities()</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a2190</code></td>
+</tr>
+<tr>
+<td><a id="canbelevied"></a>CanBeLevied</td>
+<td><code>Unit:CanBeLevied(subjectPlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a22e0</code></td>
+</tr>
+<tr>
+<td><a id="changeattackrange"></a>ChangeAttackRange</td>
+<td><code>Unit:ChangeAttackRange(iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a2840</code></td>
+</tr>
+<tr>
+<td><a id="changeattacksremaining"></a>ChangeAttacksRemaining</td>
+<td><code>Unit:ChangeAttacksRemaining(iDelta: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a2860</code></td>
 </tr>
 <tr>
 <td><a id="changebonuspointsperkill"></a>ChangeBonusPointsPerKill</td>
@@ -82,6 +122,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a2a40</code></td>
 </tr>
 <tr>
+<td><a id="changeparkcharges"></a>ChangeParkCharges</td>
+<td><code>Unit:ChangeParkCharges(iChange: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a2bf0</code></td>
+</tr>
+<tr>
 <td><a id="changesightrange"></a>ChangeSightRange</td>
 <td><code>Unit:ChangeSightRange(iRangeDelta: integer)</code></td>
 <td>Changes the unit's sight range by a delta and refreshes the fog-of-war visibility if the unit is on the map.</td>
@@ -106,6 +154,150 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x3a2db0</code></td>
 </tr>
 <tr>
+<td><a id="getbasemoves"></a>GetBaseMoves</td>
+<td><code>Unit:GetBaseMoves(eMovementDomain: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a33d0</code></td>
+</tr>
+<tr>
+<td><a id="getbonuspointsperkill"></a>GetBonusPointsPerKill</td>
+<td><code>Unit:GetBonusPointsPerKill(eClass: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3500</code></td>
+</tr>
+<tr>
+<td><a id="getbonuspointsperkillstrength"></a>GetBonusPointsPerKillStrength</td>
+<td><code>Unit:GetBonusPointsPerKillStrength(eClass: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3520</code></td>
+</tr>
+<tr>
+<td><a id="getera"></a>GetEra</td>
+<td><code>Unit:GetEra() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3720</code></td>
+</tr>
+<tr>
+<td><a id="getespionagebonus"></a>GetEspionageBonus</td>
+<td><code>Unit:GetEspionageBonus(eOperation: integer, bOffensive: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x395e00</code></td>
+</tr>
+<tr>
+<td><a id="getespionagetimereduction"></a>GetEspionageTimeReduction</td>
+<td><code>Unit:GetEspionageTimeReduction(eOperation: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x395e60</code></td>
+</tr>
+<tr>
+<td><a id="getignorefeature"></a>GetIgnoreFeature</td>
+<td><code>Unit:GetIgnoreFeature(eFeature: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3940</code></td>
+</tr>
+<tr>
+<td><a id="getignoreterrain"></a>GetIgnoreTerrain</td>
+<td><code>Unit:GetIgnoreTerrain(eTerrain: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3960</code></td>
+</tr>
+<tr>
+<td><a id="getmaxnumattacks"></a>GetMaxNumAttacks</td>
+<td><code>Unit:GetMaxNumAttacks() → number</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3b20</code></td>
+</tr>
+<tr>
+<td><a id="hasadjacentmove"></a>HasAdjacentMove</td>
+<td><code>Unit:HasAdjacentMove() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3da0</code></td>
+</tr>
+<tr>
+<td><a id="hasattacked"></a>HasAttacked</td>
+<td><code>Unit:HasAttacked() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3f30</code></td>
+</tr>
+<tr>
+<td><a id="hasbypasswallspromotionclass"></a>HasBypassWallsPromotionClass</td>
+<td><code>Unit:HasBypassWallsPromotionClass(ePromotionClass: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3f60</code></td>
+</tr>
+<tr>
+<td><a id="hasenablewallattackpromotionclass"></a>HasEnableWallAttackPromotionClass</td>
+<td><code>Unit:HasEnableWallAttackPromotionClass(ePromotionClass: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a3fb0</code></td>
+</tr>
+<tr>
+<td><a id="isfortifyable"></a>IsFortifyable</td>
+<td><code>Unit:IsFortifyable() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a47e0</code></td>
+</tr>
+<tr>
+<td><a id="isoperationdisabled"></a>IsOperationDisabled</td>
+<td><code>Unit:IsOperationDisabled(eOperation: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a4830</code></td>
+</tr>
+<tr>
+<td><a id="removebypasswallspromotionclass"></a>RemoveBypassWallsPromotionClass</td>
+<td><code>Unit:RemoveBypassWallsPromotionClass(ePromotionClass: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a4b40</code></td>
+</tr>
+<tr>
+<td><a id="removeenablewallattackpromotionclass"></a>RemoveEnableWallAttackPromotionClass</td>
+<td><code>Unit:RemoveEnableWallAttackPromotionClass(ePromotionClass: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a4c00</code></td>
+</tr>
+<tr>
+<td><a id="removeespionagebonus"></a>RemoveEspionageBonus</td>
+<td><code>Unit:RemoveEspionageBonus(eOperation: integer, bOffensive: boolean, iAmount: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3960c0</code></td>
+</tr>
+<tr>
 <td><a id="removeespionagetimereduction"></a>RemoveEspionageTimeReduction</td>
 <td><code>Unit:RemoveEspionageTimeReduction(eOperation: integer, iReductionPercent: integer)</code></td>
 <td>Subtracts a percentage reduction from a spy operation's time-reduction entry, dropping the entry when it reaches exactly zero.</td>
@@ -120,6 +312,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/Unit.html#unit__instance__removeinvalidterrain">Unit::Instance::RemoveInvalidTerrain</a></td>
 <td><code>0x3a4cc0</code></td>
+</tr>
+<tr>
+<td><a id="setattacksremaining"></a>SetAttacksRemaining</td>
+<td><code>Unit:SetAttacksRemaining(iNewAttacksRemaining: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x3a5860</code></td>
 </tr>
 <tr>
 <td><a id="setcanmoveafterattacking"></a>SetCanMoveAfterAttacking</td>
@@ -160,6 +360,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>plumbing ✓<br>this ✓ (oracle)</td>
 <td><a href="../native/Unit.html#unit__instance__setlevied">Unit::Instance::SetLevied</a></td>
 <td><code>0x3a5c50</code></td>
+</tr>
+<tr>
+<td><a id="setoperation"></a>SetOperation</td>
+<td><code>Unit:SetOperation(eOperation: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓<br>this ✓ (oracle)</td>
+<td>—</td>
+<td><code>0x396380</code></td>
 </tr>
 <tr>
 <td><a id="setoperationdisabled"></a>SetOperationDisabled</td>

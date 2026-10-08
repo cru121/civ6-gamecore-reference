@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › PlayerStats</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>PlayerStats</h1>
-<p>1 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerStats</code> instance resolver (virtual).</p>
+<p>51 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IPlayerStats</code> instance resolver (virtual).</p>
 <table>
 <thead>
 <tr>
@@ -26,12 +26,412 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </thead>
 <tbody>
 <tr>
+<td><a id="addwonderlostplot"></a>AddWonderLostPlot</td>
+<td><code>PlayerStats:AddWonderLostPlot(iPlotIndex: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32a480</code></td>
+</tr>
+<tr>
+<td><a id="calculateimprovedtilepercentage"></a>CalculateImprovedTilePercentage</td>
+<td><code>PlayerStats:CalculateImprovedTilePercentage() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32a4d0</code></td>
+</tr>
+<tr>
+<td><a id="calculatemilitarystrength"></a>CalculateMilitaryStrength</td>
+<td><code>PlayerStats:CalculateMilitaryStrength(eDomain: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32a6f0</code></td>
+</tr>
+<tr>
+<td><a id="changeemergenciesjoined"></a>ChangeEmergenciesJoined</td>
+<td><code>PlayerStats:ChangeEmergenciesJoined(iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32ade0</code></td>
+</tr>
+<tr>
+<td><a id="changegoldspentlevying"></a>ChangeGoldSpentLevying</td>
+<td><code>PlayerStats:ChangeGoldSpentLevying(iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32ae10</code></td>
+</tr>
+<tr>
 <td><a id="changesciencevictorypointsperturn"></a>ChangeScienceVictoryPointsPerTurn</td>
 <td><code>PlayerStats:ChangeScienceVictoryPointsPerTurn(xDelta: number (fixed point, 1/256 steps))</code></td>
 <td>Adds a fixed-point delta to the science victory points earned per turn.</td>
 <td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
 <td><a href="../native/Player.html#player__stats__changesciencevictorypointsperturn">Player::Stats::ChangeScienceVictoryPointsPerTurn</a></td>
 <td><code>0x32aeb0</code></td>
+</tr>
+<tr>
+<td><a id="changewmdcityhits"></a>ChangeWMDCityHits</td>
+<td><code>PlayerStats:ChangeWMDCityHits(iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32aee0</code></td>
+</tr>
+<tr>
+<td><a id="doturnactivate"></a>DoTurnActivate</td>
+<td><code>PlayerStats:DoTurnActivate()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32b260</code></td>
+</tr>
+<tr>
+<td><a id="getaveragenumconstructabledistricts"></a>GetAverageNumConstructableDistricts</td>
+<td><code>PlayerStats:GetAverageNumConstructableDistricts() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32b6e0</code></td>
+</tr>
+<tr>
+<td><a id="getbestunitofdomain"></a>GetBestUnitOfDomain</td>
+<td><code>PlayerStats:GetBestUnitOfDomain(eDomain: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32b870</code></td>
+</tr>
+<tr>
+<td><a id="getbestunitofpromotionclass"></a>GetBestUnitOfPromotionClass</td>
+<td><code>PlayerStats:GetBestUnitOfPromotionClass(eClass: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32b990</code></td>
+</tr>
+<tr>
+<td><a id="getmaxrangedstrengthtrained"></a>GetMaxRangedStrengthTrained</td>
+<td><code>PlayerStats:GetMaxRangedStrengthTrained() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32bb10</code></td>
+</tr>
+<tr>
+<td><a id="getmilitarystrength"></a>GetMilitaryStrength</td>
+<td><code>PlayerStats:GetMilitaryStrength(eDomain: integer, includeGold: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32bb70</code></td>
+</tr>
+<tr>
+<td><a id="getnumarmada"></a>GetNumArmada</td>
+<td><code>PlayerStats:GetNumArmada() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32bbd0</code></td>
+</tr>
+<tr>
+<td><a id="getnumarmy"></a>GetNumArmy</td>
+<td><code>PlayerStats:GetNumArmy() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32bc70</code></td>
+</tr>
+<tr>
+<td><a id="getnumbuildingscompleted"></a>GetNumBuildingsCompleted</td>
+<td><code>PlayerStats:GetNumBuildingsCompleted() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32bd50</code></td>
+</tr>
+<tr>
+<td><a id="getnumcitiesonlandmassofsize"></a>GetNumCitiesOnLandmassOfSize</td>
+<td><code>PlayerStats:GetNumCitiesOnLandmassOfSize(iMinSize: integer, iMaxSize: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c020</code></td>
+</tr>
+<tr>
+<td><a id="getnumcivicsculturevated"></a>GetNumCivicsCulturevated</td>
+<td><code>PlayerStats:GetNumCivicsCulturevated() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c0c0</code></td>
+</tr>
+<tr>
+<td><a id="getnumcivicsculturevatedperera"></a>GetNumCivicsCulturevatedPerEra</td>
+<td><code>PlayerStats:GetNumCivicsCulturevatedPerEra(eEra: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c0e0</code></td>
+</tr>
+<tr>
+<td><a id="getnumcombatunits"></a>GetNumCombatUnits</td>
+<td><code>PlayerStats:GetNumCombatUnits() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c1a0</code></td>
+</tr>
+<tr>
+<td><a id="getnumcorps"></a>GetNumCorps</td>
+<td><code>PlayerStats:GetNumCorps() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c230</code></td>
+</tr>
+<tr>
+<td><a id="getnumdifferentterraintypesforcities"></a>GetNumDifferentTerrainTypesForCities</td>
+<td><code>PlayerStats:GetNumDifferentTerrainTypesForCities() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c2d0</code></td>
+</tr>
+<tr>
+<td><a id="getnumdistrictscompleted"></a>GetNumDistrictsCompleted</td>
+<td><code>PlayerStats:GetNumDistrictsCompleted(bSpecialtyDistrictsOnly: boolean, bIncludeCivUnique: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c4a0</code></td>
+</tr>
+<tr>
+<td><a id="getnumdistrictsoftype"></a>GetNumDistrictsOfType</td>
+<td><code>PlayerStats:GetNumDistrictsOfType(eDistrict: integer, bIncludeUnderConstruction: boolean, bIncludeCivUnique: boolean, bIsIncludePillaged: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c710</code></td>
+</tr>
+<tr>
+<td><a id="getnumdistrictspossible"></a>GetNumDistrictsPossible</td>
+<td><code>PlayerStats:GetNumDistrictsPossible() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32c7e0</code></td>
+</tr>
+<tr>
+<td><a id="getnumgreatpeopleearned"></a>GetNumGreatPeopleEarned</td>
+<td><code>PlayerStats:GetNumGreatPeopleEarned() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32cb80</code></td>
+</tr>
+<tr>
+<td><a id="getnumgreatworks"></a>GetNumGreatWorks</td>
+<td><code>PlayerStats:GetNumGreatWorks() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32cbb0</code></td>
+</tr>
+<tr>
+<td><a id="getnumholysitesfollowingreligion"></a>GetNumHolySitesFollowingReligion</td>
+<td><code>PlayerStats:GetNumHolySitesFollowingReligion(bMustHaveFoundedReligion: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32cc70</code></td>
+</tr>
+<tr>
+<td><a id="getnumimprovedtiles"></a>GetNumImprovedTiles</td>
+<td><code>PlayerStats:GetNumImprovedTiles() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32cd50</code></td>
+</tr>
+<tr>
+<td><a id="getnumimprovementsoftype"></a>GetNumImprovementsOfType</td>
+<td><code>PlayerStats:GetNumImprovementsOfType(eImprovement: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32ce10</code></td>
+</tr>
+<tr>
+<td><a id="getnumlandunits"></a>GetNumLandUnits</td>
+<td><code>PlayerStats:GetNumLandUnits() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32cec0</code></td>
+</tr>
+<tr>
+<td><a id="getnumnavalunits"></a>GetNumNavalUnits</td>
+<td><code>PlayerStats:GetNumNavalUnits() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32cfa0</code></td>
+</tr>
+<tr>
+<td><a id="getnumownedcoastallandtiles"></a>GetNumOwnedCoastalLandTiles</td>
+<td><code>PlayerStats:GetNumOwnedCoastalLandTiles() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d030</code></td>
+</tr>
+<tr>
+<td><a id="getnumownedtiles"></a>GetNumOwnedTiles</td>
+<td><code>PlayerStats:GetNumOwnedTiles() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d0c0</code></td>
+</tr>
+<tr>
+<td><a id="getnumprojectsadvanced"></a>GetNumProjectsAdvanced</td>
+<td><code>PlayerStats:GetNumProjectsAdvanced(eProject: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d150</code></td>
+</tr>
+<tr>
+<td><a id="getnumreligiousunits"></a>GetNumReligiousUnits</td>
+<td><code>PlayerStats:GetNumReligiousUnits(includeHealers: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d180</code></td>
+</tr>
+<tr>
+<td><a id="getnumtechnologiesresearchedperera"></a>GetNumTechnologiesResearchedPerEra</td>
+<td><code>PlayerStats:GetNumTechnologiesResearchedPerEra(eEra: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d1e0</code></td>
+</tr>
+<tr>
+<td><a id="getnumtechsresearched"></a>GetNumTechsResearched</td>
+<td><code>PlayerStats:GetNumTechsResearched() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d2a0</code></td>
+</tr>
+<tr>
+<td><a id="getnumthemedbuildings"></a>GetNumThemedBuildings</td>
+<td><code>PlayerStats:GetNumThemedBuildings() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d2c0</code></td>
+</tr>
+<tr>
+<td><a id="getnumuniquedistrictsavailable"></a>GetNumUniqueDistrictsAvailable</td>
+<td><code>PlayerStats:GetNumUniqueDistrictsAvailable(bSpecialtyDistrictsOnly: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d3a0</code></td>
+</tr>
+<tr>
+<td><a id="getnumuniquedistrictscompleted"></a>GetNumUniqueDistrictsCompleted</td>
+<td><code>PlayerStats:GetNumUniqueDistrictsCompleted(bSpecialtyDistrictsOnly: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d480</code></td>
+</tr>
+<tr>
+<td><a id="getnumunitsofpromotionclass"></a>GetNumUnitsOfPromotionClass</td>
+<td><code>PlayerStats:GetNumUnitsOfPromotionClass(eClass: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d5c0</code></td>
+</tr>
+<tr>
+<td><a id="getnumunpillagedimprovements"></a>GetNumUnpillagedImprovements</td>
+<td><code>PlayerStats:GetNumUnpillagedImprovements() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d710</code></td>
+</tr>
+<tr>
+<td><a id="getnumwmdsoftype"></a>GetNumWMDsOfType</td>
+<td><code>PlayerStats:GetNumWMDsOfType(eWMD: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d850</code></td>
+</tr>
+<tr>
+<td><a id="getnumwonders"></a>GetNumWonders</td>
+<td><code>PlayerStats:GetNumWonders() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d940</code></td>
+</tr>
+<tr>
+<td><a id="getoverallhappiness"></a>GetOverallHappiness</td>
+<td><code>PlayerStats:GetOverallHappiness() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32d9f0</code></td>
+</tr>
+<tr>
+<td><a id="getpopulation"></a>GetPopulation</td>
+<td><code>PlayerStats:GetPopulation() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32da50</code></td>
+</tr>
+<tr>
+<td><a id="gettourism"></a>GetTourism</td>
+<td><code>PlayerStats:GetTourism() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32dbe0</code></td>
+</tr>
+<tr>
+<td><a id="getyield"></a>GetYield</td>
+<td><code>PlayerStats:GetYield(eYield: integer, useChachedValue: boolean) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32dc70</code></td>
+</tr>
+<tr>
+<td><a id="isunitaffectmaxstrengthstats"></a>IsUnitAffectMaxStrengthStats</td>
+<td><code>PlayerStats:IsUnitAffectMaxStrengthStats(eUnitType: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32e560</code></td>
+</tr>
+<tr>
+<td><a id="iswonderlostplot"></a>IsWonderLostPlot</td>
+<td><code>PlayerStats:IsWonderLostPlot(iPlotIndex: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x32e5f0</code></td>
 </tr>
 </tbody>
 </table>

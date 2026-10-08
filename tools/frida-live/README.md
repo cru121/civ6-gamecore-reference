@@ -60,7 +60,7 @@ The tool is generic; two things are build-specific and you must supply them:
 
 1. **Symbols (optional but very convenient).** `--symbols FILE` takes JSON `{"Qualified::Name": [rva, ...]}` (RVAs in the loaded DLL). `ghidra/ExportSymbols.java` writes
    that file from a Ghidra project. The game's symbol-carrying depot (Steam depot 947510) is documented in the Community Extension wiki; mapping its names to the current build
-   is a byte-pattern matching job (mask relative operands, match old->new, propagate through the call graph). For Steam build 15038592 that map is in this repository (`data/old_to_new_offsets.tsv`, see `data/README.md`) and `builds/15038592/run.bat` wires it up; for any other build you have to make your own.
+   is a byte-pattern matching job (mask relative operands, match old->new, propagate through the call graph). For Steam builds 15038592 and 15296837 (identical GameCore DLL) that map is in this repository (`data/old_to_new_offsets.tsv`, see `data/README.md`) and `builds/15038592/run.bat` wires it up; for any other build you have to make your own.
 2. **A tick hook** (a function called regularly on the game thread, also while the game is idle) so `-g` works: `--tick RVA`. We found ours with the `probe` command:
    `probe NAMEPART 2500` hooks up to 40 mapped functions matching the text and reports call counts per thread; or `probe 0xA,0xB,0xC` for explicit RVAs. A function that is called
    ~60 times a second on one thread even when you do nothing is a good tick. Functions that only run when the game has work (accessors like "get player") are NOT: they stay silent while idle

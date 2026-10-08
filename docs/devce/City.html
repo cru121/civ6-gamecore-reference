@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › City</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>City</h1>
-<p>30 methods (Dev CE test build). <code>this</code> is found with the game's own <code>ICity</code> instance resolver (virtual).</p>
+<p>123 methods (Dev CE test build). <code>this</code> is found with the game's own <code>ICity</code> instance resolver (virtual).</p>
 <table>
 <thead>
 <tr>
@@ -26,12 +26,108 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </thead>
 <tbody>
 <tr>
+<td><a id="addcityallowedimprovement"></a>AddCityAllowedImprovement</td>
+<td><code>City:AddCityAllowedImprovement(eImprovement: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x12f2b0</code></td>
+</tr>
+<tr>
 <td><a id="addcityhappinessmodifier"></a>AddCityHappinessModifier</td>
 <td><code>City:AddCityHappinessModifier(eHappiness: integer, eYield: integer, eGreatPersonClass: integer, iYieldChange: integer, iGreatPersonChange: integer)</code></td>
 <td>Appends a happiness modifier record (happiness type, yield, great person class, yield change, great person change) to the city's modifier list.</td>
 <td>plumbing ✓</td>
 <td><a href="../native/City.html#city__instance__addcityhappinessmodifier">City::Instance::AddCityHappinessModifier</a></td>
 <td><code>0x12f320</code></td>
+</tr>
+<tr>
+<td><a id="addcityterrainmodifier"></a>AddCityTerrainModifier</td>
+<td><code>City:AddCityTerrainModifier(eTerrain: integer, eAdjacentImprovement: integer, eYield: integer, iYieldChange: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x12f3a0</code></td>
+</tr>
+<tr>
+<td><a id="addcityvalidterrainimprovement"></a>AddCityValidTerrainImprovement</td>
+<td><code>City:AddCityValidTerrainImprovement(eImprovement: integer, eTerrain: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x12f410</code></td>
+</tr>
+<tr>
+<td><a id="addyieldperterrainclasscitiesimprovement"></a>AddYieldPerTerrainClassCitiesImprovement</td>
+<td><code>City:AddYieldPerTerrainClassCitiesImprovement(eYield: integer, eImprovement: integer, iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x12fd30</code></td>
+</tr>
+<tr>
+<td><a id="addyieldperterraintype"></a>AddYieldPerTerrainType</td>
+<td><code>City:AddYieldPerTerrainType(eTerrain: integer, eYield: integer, xValue: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x12fda0</code></td>
+</tr>
+<tr>
+<td><a id="applyouterdefensehealing"></a>ApplyOuterDefenseHealing</td>
+<td><code>City:ApplyOuterDefenseHealing(iHPHealed: number (fixed point, 1/256 steps)) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x111730</code></td>
+</tr>
+<tr>
+<td><a id="calculateidentityperturn"></a>CalculateIdentityPerTurn</td>
+<td><code>City:CalculateIdentityPerTurn(eIdentityPlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x114630</code></td>
+</tr>
+<tr>
+<td><a id="calculateloyaltyperturn"></a>CalculateLoyaltyPerTurn</td>
+<td><code>City:CalculateLoyaltyPerTurn() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x114c80</code></td>
+</tr>
+<tr>
+<td><a id="calculateyieldfromownedbuilding"></a>CalculateYieldFromOwnedBuilding</td>
+<td><code>City:CalculateYieldFromOwnedBuilding(eBuildingType: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x131670</code></td>
+</tr>
+<tr>
+<td><a id="calculateyieldperterraintype"></a>CalculateYieldPerTerrainType</td>
+<td><code>City:CalculateYieldPerTerrainType(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1318d0</code></td>
+</tr>
+<tr>
+<td><a id="canbuildunitsofdomain"></a>CanBuildUnitsOfDomain</td>
+<td><code>City:CanBuildUnitsOfDomain(domain: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x131a10</code></td>
+</tr>
+<tr>
+<td><a id="canplaceunit"></a>CanPlaceUnit</td>
+<td><code>City:CanPlaceUnit(eUnit: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x120a80</code></td>
 </tr>
 <tr>
 <td><a id="changeaccumulatedidentity"></a>ChangeAccumulatedIdentity</td>
@@ -66,12 +162,44 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x115100</code></td>
 </tr>
 <tr>
+<td><a id="changeflatyieldbonusfordomestic"></a>ChangeFlatYieldBonusForDomestic</td>
+<td><code>City:ChangeFlatYieldBonusForDomestic(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14da30</code></td>
+</tr>
+<tr>
 <td><a id="changeflatyieldbonusforinternational"></a>ChangeFlatYieldBonusForInternational ✓</td>
 <td><code>City:ChangeFlatYieldBonusForInternational(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
 <td>Adds a delta to the city's flat yield bonus for international trade routes for one yield type.</td>
 <td>plumbing ✓<br>effect ✓ (GetFoodSurplus, GetTurnsUntilGrowth)</td>
 <td><a href="../native/City.html#city__trade__changeflatyieldbonusforinternational">City::Trade::ChangeFlatYieldBonusForInternational</a></td>
 <td><code>0x14da50</code></td>
+</tr>
+<tr>
+<td><a id="changeflatyieldbonusfromothers"></a>ChangeFlatYieldBonusFromOthers</td>
+<td><code>City:ChangeFlatYieldBonusFromOthers(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14da80</code></td>
+</tr>
+<tr>
+<td><a id="changeflatyieldbonustoothers"></a>ChangeFlatYieldBonusToOthers</td>
+<td><code>City:ChangeFlatYieldBonusToOthers(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14daa0</code></td>
+</tr>
+<tr>
+<td><a id="changeflatyieldbonustoothersfordomestic"></a>ChangeFlatYieldBonusToOthersForDomestic</td>
+<td><code>City:ChangeFlatYieldBonusToOthersForDomestic(eYield: integer, xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14dac0</code></td>
 </tr>
 <tr>
 <td><a id="changefolloweryieldmodifier"></a>ChangeFollowerYieldModifier ✓</td>
@@ -90,6 +218,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x11b800</code></td>
 </tr>
 <tr>
+<td><a id="changeidentityperturnfrommodifiers"></a>ChangeIdentityPerTurnFromModifiers</td>
+<td><code>City:ChangeIdentityPerTurnFromModifiers(xDelta: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x115130</code></td>
+</tr>
+<tr>
 <td><a id="changeidentitypressurefromages"></a>ChangeIdentityPressureFromAges</td>
 <td><code>City:ChangeIdentityPressureFromAges(xChange: number (fixed point, 1/256 steps))</code></td>
 <td>Adds a fixed-point delta to the identity pressure the city gets from ages.</td>
@@ -104,6 +240,30 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>plumbing ✓<br>ran ±1, reversible ✓, no visible effect</td>
 <td><a href="../native/City.html#city__culturalidentity__changeidentitypressurefrommodifiers">City::CulturalIdentity::ChangeIdentityPressureFromModifiers</a></td>
 <td><code>0x1151e0</code></td>
+</tr>
+<tr>
+<td><a id="changenumforeignroutespassingthrough"></a>ChangeNumForeignRoutesPassingThrough</td>
+<td><code>City:ChangeNumForeignRoutesPassingThrough(iChange: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14dae0</code></td>
+</tr>
+<tr>
+<td><a id="changerequiredpower"></a>ChangeRequiredPower</td>
+<td><code>City:ChangeRequiredPower(xRequiredPower: number (fixed point, 1/256 steps), eBuilding: integer, eProject: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1471e0</code></td>
+</tr>
+<tr>
+<td><a id="changerequiredpowerfrommodifiers"></a>ChangeRequiredPowerFromModifiers</td>
+<td><code>City:ChangeRequiredPowerFromModifiers(xRequiredPower: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1472b0</code></td>
 </tr>
 <tr>
 <td><a id="changetourism"></a>ChangeTourism</td>
@@ -210,12 +370,532 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x14dc80</code></td>
 </tr>
 <tr>
+<td><a id="checknotifications"></a>CheckNotifications</td>
+<td><code>City:CheckNotifications()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1474f0</code></td>
+</tr>
+<tr>
+<td><a id="countincomingroutes"></a>CountIncomingRoutes</td>
+<td><code>City:CountIncomingRoutes() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14dcb0</code></td>
+</tr>
+<tr>
+<td><a id="countoutgoingroutes"></a>CountOutgoingRoutes</td>
+<td><code>City:CountOutgoingRoutes() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14dd00</code></td>
+</tr>
+<tr>
+<td><a id="doborderexpansion"></a>DoBorderExpansion</td>
+<td><code>City:DoBorderExpansion()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11bcb0</code></td>
+</tr>
+<tr>
+<td><a id="dofoundcity"></a>DoFoundCity</td>
+<td><code>City:DoFoundCity()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11be40</code></td>
+</tr>
+<tr>
+<td><a id="dorejectedbyplayer"></a>DoRejectedByPlayer</td>
+<td><code>City:DoRejectedByPlayer(ePlayer: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x115b10</code></td>
+</tr>
+<tr>
+<td><a id="doturnactivate"></a>DoTurnActivate</td>
+<td><code>City:DoTurnActivate()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x115be0</code></td>
+</tr>
+<tr>
+<td><a id="getaccumulatedidentitypercent"></a>GetAccumulatedIdentityPercent</td>
+<td><code>City:GetAccumulatedIdentityPercent(ePlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116340</code></td>
+</tr>
+<tr>
+<td><a id="getbuildingpurchasecost"></a>GetBuildingPurchaseCost</td>
+<td><code>City:GetBuildingPurchaseCost(ePurchaseYield: integer, eBuilding: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x120ed0</code></td>
+</tr>
+<tr>
+<td><a id="getcityhappinessyieldmodifier"></a>GetCityHappinessYieldModifier</td>
+<td><code>City:GetCityHappinessYieldModifier(eHappiness: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x132ad0</code></td>
+</tr>
+<tr>
+<td><a id="getcityterrainadjacentimprovementmodifier"></a>GetCityTerrainAdjacentImprovementModifier</td>
+<td><code>City:GetCityTerrainAdjacentImprovementModifier(eTerrain: integer, eAdjacentImprovement: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x132b10</code></td>
+</tr>
+<tr>
+<td><a id="getculturecostnextplot"></a>GetCultureCostNextPlot</td>
+<td><code>City:GetCultureCostNextPlot() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c570</code></td>
+</tr>
+<tr>
+<td><a id="getcultureyield"></a>GetCultureYield</td>
+<td><code>City:GetCultureYield() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c5d0</code></td>
+</tr>
+<tr>
+<td><a id="getdistrictpurchasecost"></a>GetDistrictPurchaseCost</td>
+<td><code>City:GetDistrictPurchaseCost(ePurchaseYield: integer, eDistrict: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x121030</code></td>
+</tr>
+<tr>
+<td><a id="getfreepower"></a>GetFreePower</td>
+<td><code>City:GetFreePower() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x147c50</code></td>
+</tr>
+<tr>
+<td><a id="getgoldfromcitizens"></a>GetGoldFromCitizens</td>
+<td><code>City:GetGoldFromCitizens() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x121140</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworktourismmodifier"></a>GetGreatWorkTourismModifier</td>
+<td><code>City:GetGreatWorkTourismModifier(eObject: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c600</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkyieldchange"></a>GetGreatWorkYieldChange</td>
+<td><code>City:GetGreatWorkYieldChange(eObject: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c630</code></td>
+</tr>
+<tr>
+<td><a id="getgreatworkyieldmodifier"></a>GetGreatWorkYieldModifier</td>
+<td><code>City:GetGreatWorkYieldModifier(eObject: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c660</code></td>
+</tr>
+<tr>
+<td><a id="gethighestouterdefensedamage"></a>GetHighestOuterDefenseDamage</td>
+<td><code>City:GetHighestOuterDefenseDamage() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x111800</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromgovernor"></a>GetIdentityPerTurnFromGovernor</td>
+<td><code>City:GetIdentityPerTurnFromGovernor() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116570</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromhappiness"></a>GetIdentityPerTurnFromHappiness</td>
+<td><code>City:GetIdentityPerTurnFromHappiness() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1165e0</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfrominfluencetokens"></a>GetIdentityPerTurnFromInfluenceTokens</td>
+<td><code>City:GetIdentityPerTurnFromInfluenceTokens() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116660</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfrommartiallaw"></a>GetIdentityPerTurnFromMartialLaw</td>
+<td><code>City:GetIdentityPerTurnFromMartialLaw() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1166f0</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromoccupation"></a>GetIdentityPerTurnFromOccupation</td>
+<td><code>City:GetIdentityPerTurnFromOccupation() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116b40</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromoriginalownership"></a>GetIdentityPerTurnFromOriginalOwnership</td>
+<td><code>City:GetIdentityPerTurnFromOriginalOwnership() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116c50</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromownershipbeforeoccupation"></a>GetIdentityPerTurnFromOwnershipBeforeOccupation</td>
+<td><code>City:GetIdentityPerTurnFromOwnershipBeforeOccupation() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116d30</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromreligion"></a>GetIdentityPerTurnFromReligion</td>
+<td><code>City:GetIdentityPerTurnFromReligion() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116d90</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromstarvation"></a>GetIdentityPerTurnFromStarvation</td>
+<td><code>City:GetIdentityPerTurnFromStarvation() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116e20</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnfromtraderoutes"></a>GetIdentityPerTurnFromTradeRoutes</td>
+<td><code>City:GetIdentityPerTurnFromTradeRoutes() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116ea0</code></td>
+</tr>
+<tr>
+<td><a id="getidentityperturnpercitizen"></a>GetIdentityPerTurnPerCitizen</td>
+<td><code>City:GetIdentityPerTurnPerCitizen() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x116f80</code></td>
+</tr>
+<tr>
+<td><a id="getidentitypressurefromownership"></a>GetIdentityPressureFromOwnership</td>
+<td><code>City:GetIdentityPressureFromOwnership(eToPlayer: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1170c0</code></td>
+</tr>
+<tr>
+<td><a id="getimprovementtourismmodifier"></a>GetImprovementTourismModifier</td>
+<td><code>City:GetImprovementTourismModifier(eImprovement: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c6b0</code></td>
+</tr>
+<tr>
+<td><a id="getlastturnanydistrictdamaged"></a>GetLastTurnAnyDistrictDamaged</td>
+<td><code>City:GetLastTurnAnyDistrictDamaged() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x111890</code></td>
+</tr>
+<tr>
+<td><a id="getloyaltylevel"></a>GetLoyaltyLevel</td>
+<td><code>City:GetLoyaltyLevel() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x117410</code></td>
+</tr>
+<tr>
+<td><a id="getnonreligioustourism"></a>GetNonreligiousTourism</td>
+<td><code>City:GetNonreligiousTourism() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c770</code></td>
+</tr>
+<tr>
+<td><a id="getnumstartingplots"></a>GetNumStartingPlots</td>
+<td><code>City:GetNumStartingPlots() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c890</code></td>
+</tr>
+<tr>
+<td><a id="getreligioustourism"></a>GetReligiousTourism</td>
+<td><code>City:GetReligiousTourism() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11c940</code></td>
+</tr>
+<tr>
+<td><a id="getreligioustourismmodifier"></a>GetReligiousTourismModifier</td>
+<td><code>City:GetReligiousTourismModifier() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11ca40</code></td>
+</tr>
+<tr>
+<td><a id="gettourism"></a>GetTourism</td>
+<td><code>City:GetTourism() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11ca70</code></td>
+</tr>
+<tr>
+<td><a id="gettourismfromdistricts"></a>GetTourismFromDistricts</td>
+<td><code>City:GetTourismFromDistricts() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11caa0</code></td>
+</tr>
+<tr>
+<td><a id="gettourismfromfeatures"></a>GetTourismFromFeatures</td>
+<td><code>City:GetTourismFromFeatures() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11cb80</code></td>
+</tr>
+<tr>
+<td><a id="gettourismfromimprovements"></a>GetTourismFromImprovements</td>
+<td><code>City:GetTourismFromImprovements() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11cd40</code></td>
+</tr>
+<tr>
+<td><a id="getturnsleft"></a>GetTurnsLeft</td>
+<td><code>City:GetTurnsLeft() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11cef0</code></td>
+</tr>
+<tr>
+<td><a id="getunitpurchasecost"></a>GetUnitPurchaseCost</td>
+<td><code>City:GetUnitPurchaseCost(ePurchaseYield: integer, eUnit: integer, eFormation: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1216a0</code></td>
+</tr>
+<tr>
+<td><a id="getwondertourismmodifier"></a>GetWonderTourismModifier</td>
+<td><code>City:GetWonderTourismModifier() → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x11cf80</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfrombuildings"></a>GetYieldFromBuildings</td>
+<td><code>City:GetYieldFromBuildings(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x133510</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfromforeignroutespassingthrough"></a>GetYieldFromForeignRoutesPassingThrough</td>
+<td><code>City:GetYieldFromForeignRoutesPassingThrough(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14de50</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfrommajortradepartners"></a>GetYieldFromMajorTradePartners</td>
+<td><code>City:GetYieldFromMajorTradePartners(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x133570</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfromoutgoingtraderoutes"></a>GetYieldFromOutgoingTradeRoutes</td>
+<td><code>City:GetYieldFromOutgoingTradeRoutes(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x133600</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfrompopulation"></a>GetYieldFromPopulation</td>
+<td><code>City:GetYieldFromPopulation(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x133660</code></td>
+</tr>
+<tr>
+<td><a id="getyieldfromtiles"></a>GetYieldFromTiles</td>
+<td><code>City:GetYieldFromTiles(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x133780</code></td>
+</tr>
+<tr>
+<td><a id="getyieldpermajortradepartner"></a>GetYieldPerMajorTradePartner</td>
+<td><code>City:GetYieldPerMajorTradePartner(eYield: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14e060</code></td>
+</tr>
+<tr>
+<td><a id="getyieldperterrainclasscitiesimprovement"></a>GetYieldPerTerrainClassCitiesImprovement</td>
+<td><code>City:GetYieldPerTerrainClassCitiesImprovement(eYield: integer, eImprovement: integer) → number</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x133920</code></td>
+</tr>
+<tr>
+<td><a id="hasactivetradingpost"></a>HasActiveTradingPost</td>
+<td><code>City:HasActiveTradingPost(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14e0a0</code></td>
+</tr>
+<tr>
+<td><a id="hasbeenrejectedbyplayer"></a>HasBeenRejectedByPlayer</td>
+<td><code>City:HasBeenRejectedByPlayer(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1180e0</code></td>
+</tr>
+<tr>
+<td><a id="hascityterrainadjacentimprovementmodifier"></a>HasCityTerrainAdjacentImprovementModifier</td>
+<td><code>City:HasCityTerrainAdjacentImprovementModifier(eTerrain: integer, eYield: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x133950</code></td>
+</tr>
+<tr>
+<td><a id="hasdistrict"></a>HasDistrict</td>
+<td><code>City:HasDistrict() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1339b0</code></td>
+</tr>
+<tr>
+<td><a id="hasinactivetradingpost"></a>HasInactiveTradingPost</td>
+<td><code>City:HasInactiveTradingPost(ePlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x14e100</code></td>
+</tr>
+<tr>
+<td><a id="isallowincomingregionalstacking"></a>IsAllowIncomingRegionalStacking</td>
+<td><code>City:IsAllowIncomingRegionalStacking(eYield: integer) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x134620</code></td>
+</tr>
+<tr>
+<td><a id="isalwaysfullyloyal"></a>IsAlwaysFullyLoyal</td>
+<td><code>City:IsAlwaysFullyLoyal() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x118320</code></td>
+</tr>
+<tr>
+<td><a id="iscitystate"></a>IsCityState</td>
+<td><code>City:IsCityState() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x134670</code></td>
+</tr>
+<tr>
+<td><a id="isfullypoweredbyactiveproject"></a>IsFullyPoweredByActiveProject</td>
+<td><code>City:IsFullyPoweredByActiveProject() → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x147e10</code></td>
+</tr>
+<tr>
+<td><a id="isoccupied"></a>IsOccupied</td>
+<td><code>City:IsOccupied(ignoreNoPenalty: boolean) → boolean</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1346b0</code></td>
+</tr>
+<tr>
 <td><a id="recalculatepower"></a>RecalculatePower</td>
 <td><code>City:RecalculatePower()</code></td>
 <td>Recomputes how much power a city needs: zeroes the required total, re-adds power requirements of non-pillaged buildings, the current production project and extra amounts, then signals whether the city is powered and sends an event when power balance sign changes.</td>
 <td>plumbing ✓</td>
 <td><a href="../native/City.html#city__power__recalculatepower">City::Power::RecalculatePower</a></td>
 <td><code>0x147e80</code></td>
+</tr>
+<tr>
+<td><a id="removecityallowedimprovement"></a>RemoveCityAllowedImprovement</td>
+<td><code>City:RemoveCityAllowedImprovement(eImprovement: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x134790</code></td>
 </tr>
 <tr>
 <td><a id="removecityhappinessmodifier"></a>RemoveCityHappinessModifier</td>
@@ -226,12 +906,60 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x1349b0</code></td>
 </tr>
 <tr>
+<td><a id="removecityterrainmodifier"></a>RemoveCityTerrainModifier</td>
+<td><code>City:RemoveCityTerrainModifier(eTerrain: integer, eAdjacentImprovement: integer, eYield: integer, iYieldChange: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x134b10</code></td>
+</tr>
+<tr>
+<td><a id="removecityvalidterrainimprovement"></a>RemoveCityValidTerrainImprovement</td>
+<td><code>City:RemoveCityValidTerrainImprovement(eImprovement: integer, eTerrain: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x134c90</code></td>
+</tr>
+<tr>
 <td><a id="removedynamicadjacencybonus"></a>RemoveDynamicAdjacencyBonus</td>
 <td><code>City:RemoveDynamicAdjacencyBonus(eDistrict: integer, eTerrain: integer, eFeature: integer, bIsRiver: boolean, iAppeal: integer, bAdjacentDistrict: boolean, eYield: integer)</code></td>
 <td>Removes matching dynamic adjacency bonus entries from the city's list.</td>
 <td>plumbing ✓</td>
 <td><a href="../native/City.html#city__instance__removedynamicadjacencybonus">City::Instance::RemoveDynamicAdjacencyBonus</a></td>
 <td><code>0x134d90</code></td>
+</tr>
+<tr>
+<td><a id="removeimprovementadjacencybonus"></a>RemoveImprovementAdjacencyBonus</td>
+<td><code>City:RemoveImprovementAdjacencyBonus(eDistrict: integer, eImprovement: integer, eYield: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x134e50</code></td>
+</tr>
+<tr>
+<td><a id="removeyieldperterrainclasscitiesimprovement"></a>RemoveYieldPerTerrainClassCitiesImprovement</td>
+<td><code>City:RemoveYieldPerTerrainClassCitiesImprovement(eYield: integer, eImprovement: integer, iDelta: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x134ee0</code></td>
+</tr>
+<tr>
+<td><a id="removeyieldperterraintype"></a>RemoveYieldPerTerrainType</td>
+<td><code>City:RemoveYieldPerTerrainType(eTerrain: integer, eYield: integer, xValue: number (fixed point, 1/256 steps))</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x135010</code></td>
+</tr>
+<tr>
+<td><a id="resetaccumulatedidentity"></a>ResetAccumulatedIdentity</td>
+<td><code>City:ResetAccumulatedIdentity()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x118590</code></td>
 </tr>
 <tr>
 <td><a id="resetcache"></a>ResetCache</td>
@@ -242,12 +970,28 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x135370</code></td>
 </tr>
 <tr>
+<td><a id="resettemporarypower"></a>ResetTemporaryPower</td>
+<td><code>City:ResetTemporaryPower()</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1481a0</code></td>
+</tr>
+<tr>
 <td><a id="setbuildingfaithpurchasebydistrict"></a>SetBuildingFaithPurchaseByDistrict</td>
 <td><code>City:SetBuildingFaithPurchaseByDistrict(eDistrict: integer, bNewValue: boolean)</code></td>
 <td>Enables or disables faith purchasing for every building that belongs to a given district type by adjusting a per-building counter.</td>
 <td>plumbing ✓</td>
 <td><a href="../native/City.html#city__gold__setbuildingfaithpurchasebydistrict">City::Gold::SetBuildingFaithPurchaseByDistrict</a></td>
 <td><code>0x121c20</code></td>
+</tr>
+<tr>
+<td><a id="setcomponentid"></a>SetComponentID</td>
+<td><code>City:SetComponentID(eOwner: integer, id: integer)</code></td>
+<td>—</td>
+<td>plumbing ✓</td>
+<td>—</td>
+<td><code>0x1357f0</code></td>
 </tr>
 <tr>
 <td><a id="setoccupied"></a>SetOccupied</td>

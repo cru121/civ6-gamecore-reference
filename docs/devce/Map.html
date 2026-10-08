@@ -9,10 +9,10 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 .grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Dev CE (experimental)</a> › Map</p>
-<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, source only). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
+<div class="zone zone-devce"><b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.</div>
 
 <h1>Map</h1>
-<p>7 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IMap</code> instance resolver (plain).</p>
+<p>39 methods (Dev CE test build). <code>this</code> is found with the game's own <code>IMap</code> instance resolver (plain).</p>
 <table>
 <thead>
 <tr>
@@ -26,6 +26,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </thead>
 <tbody>
 <tr>
+<td><a id="addoutgoingvisibilityblocker"></a>AddOutgoingVisibilityBlocker</td>
+<td><code>Map:AddOutgoingVisibilityBlocker(eFromPlayer: integer, eToPlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35a4b0</code></td>
+</tr>
+<tr>
 <td><a id="addplotyield"></a>AddPlotYield</td>
 <td><code>Map:AddPlotYield(iPlotIndex: integer, eYield: integer, iAmount: integer)</code></td>
 <td>Adds a positive yield bonus to a plot's stored yield map; if the plot is visible to the local observer it also sends a floating-text style event naming the yield and amount.</td>
@@ -34,12 +42,252 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x720ee0</code></td>
 </tr>
 <tr>
+<td><a id="addvolcano"></a>AddVolcano</td>
+<td><code>Map:AddVolcano(iPlotIndex: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x721170</code></td>
+</tr>
+<tr>
+<td><a id="calculatesusceptibletiles"></a>CalculateSusceptibleTiles</td>
+<td><code>Map:CalculateSusceptibleTiles()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x721300</code></td>
+</tr>
+<tr>
+<td><a id="cansuffereruption"></a>CanSufferEruption</td>
+<td><code>Map:CanSufferEruption(iPlotIndex: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x7216e0</code></td>
+</tr>
+<tr>
+<td><a id="changelandplotcount"></a>ChangeLandPlotCount</td>
+<td><code>Map:ChangeLandPlotCount(iChange: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x51f80</code></td>
+</tr>
+<tr>
 <td><a id="changenaturalwondercount"></a>ChangeNaturalWonderCount</td>
 <td><code>Map:ChangeNaturalWonderCount(iChange: integer)</code></td>
 <td>Adds a delta to the map's natural wonder count stored in an auto-variable.</td>
 <td>ran ±1, reversible ✓, no visible effect</td>
 <td><a href="../native/Map.html#map__instance__changenaturalwondercount">Map::Instance::ChangeNaturalWonderCount</a></td>
 <td><code>0x52000</code></td>
+</tr>
+<tr>
+<td><a id="computeplotyielddrop"></a>ComputePlotYieldDrop</td>
+<td><code>Map:ComputePlotYieldDrop(iPlotIndex: integer, eYield: integer, iPercentChance: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x721ab0</code></td>
+</tr>
+<tr>
+<td><a id="doturn"></a>DoTurn</td>
+<td><code>Map:DoTurn()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x722790</code></td>
+</tr>
+<tr>
+<td><a id="geticelossevent"></a>GetIceLossEvent</td>
+<td><code>Map:GetIceLossEvent(iPlotIndex: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x7239c0</code></td>
+</tr>
+<tr>
+<td><a id="getlayerindexid"></a>GetLayerIndexID</td>
+<td><code>Map:GetLayerIndexID(uiIndex: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35b380</code></td>
+</tr>
+<tr>
+<td><a id="getnumactivevolcanoes"></a>GetNumActiveVolcanoes</td>
+<td><code>Map:GetNumActiveVolcanoes() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723a90</code></td>
+</tr>
+<tr>
+<td><a id="getnumeruptions"></a>GetNumEruptions</td>
+<td><code>Map:GetNumEruptions() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723b00</code></td>
+</tr>
+<tr>
+<td><a id="getnumnaturalwondervolcanoes"></a>GetNumNaturalWonderVolcanoes</td>
+<td><code>Map:GetNumNaturalWonderVolcanoes() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723b90</code></td>
+</tr>
+<tr>
+<td><a id="getnumnaturalwonderseruptions"></a>GetNumNaturalWondersEruptions</td>
+<td><code>Map:GetNumNaturalWondersEruptions() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723bc0</code></td>
+</tr>
+<tr>
+<td><a id="getnumnormalvolcanoes"></a>GetNumNormalVolcanoes</td>
+<td><code>Map:GetNumNormalVolcanoes(bMustBeNamed: boolean) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723c10</code></td>
+</tr>
+<tr>
+<td><a id="getnumvolcanoes"></a>GetNumVolcanoes</td>
+<td><code>Map:GetNumVolcanoes() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723c40</code></td>
+</tr>
+<tr>
+<td><a id="getpercentvolcanoesactive"></a>GetPercentVolcanoesActive</td>
+<td><code>Map:GetPercentVolcanoesActive() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723c70</code></td>
+</tr>
+<tr>
+<td><a id="getplotyield"></a>GetPlotYield</td>
+<td><code>Map:GetPlotYield(iPlotIndex: integer, eYield: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723d20</code></td>
+</tr>
+<tr>
+<td><a id="getrevealedimprovementtype"></a>GetRevealedImprovementType</td>
+<td><code>Map:GetRevealedImprovementType(ePlayer: integer, iPlotIndex: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35b4a0</code></td>
+</tr>
+<tr>
+<td><a id="getrevealedroutetype"></a>GetRevealedRouteType</td>
+<td><code>Map:GetRevealedRouteType(ePlayer: integer, iPlotIndex: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35b5a0</code></td>
+</tr>
+<tr>
+<td><a id="gettotalvolcanoes"></a>GetTotalVolcanoes</td>
+<td><code>Map:GetTotalVolcanoes() → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723d90</code></td>
+</tr>
+<tr>
+<td><a id="getvolcanicperiod"></a>GetVolcanicPeriod</td>
+<td><code>Map:GetVolcanicPeriod(plotIndex: integer, minSeverity: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x723dc0</code></td>
+</tr>
+<tr>
+<td><a id="getvolcanotype"></a>GetVolcanoType</td>
+<td><code>Map:GetVolcanoType(iPlotIndex: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x724240</code></td>
+</tr>
+<tr>
+<td><a id="getvolcanotypeatindex"></a>GetVolcanoTypeAtIndex</td>
+<td><code>Map:GetVolcanoTypeAtIndex(uiIndex: integer) → number</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x724280</code></td>
+</tr>
+<tr>
+<td><a id="isactive"></a>IsActive</td>
+<td><code>Map:IsActive(iPlotIndex: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x724380</code></td>
+</tr>
+<tr>
+<td><a id="istileeruptionsusceptible"></a>IsTileEruptionSusceptible</td>
+<td><code>Map:IsTileEruptionSusceptible(iPlotIndex: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x724620</code></td>
+</tr>
+<tr>
+<td><a id="isvisibletoanyhuman"></a>IsVisibleToAnyHuman</td>
+<td><code>Map:IsVisibleToAnyHuman(iPlotIndex: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35bcf0</code></td>
+</tr>
+<tr>
+<td><a id="isvisibletoanyplayer"></a>IsVisibleToAnyPlayer</td>
+<td><code>Map:IsVisibleToAnyPlayer(iPlotIndex: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35bdc0</code></td>
+</tr>
+<tr>
+<td><a id="isvisibletoplayerofcivlevel"></a>IsVisibleToPlayerOfCivLevel</td>
+<td><code>Map:IsVisibleToPlayerOfCivLevel(iPlotIndex: integer, eLevel: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35bf10</code></td>
+</tr>
+<tr>
+<td><a id="recalculateoutgoingvisibility"></a>RecalculateOutgoingVisibility</td>
+<td><code>Map:RecalculateOutgoingVisibility()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35d1f0</code></td>
+</tr>
+<tr>
+<td><a id="removeoutgoingvisibilityblocker"></a>RemoveOutgoingVisibilityBlocker</td>
+<td><code>Map:RemoveOutgoingVisibilityBlocker(eFromPlayer: integer, eToPlayer: integer) → boolean</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x35d8c0</code></td>
+</tr>
+<tr>
+<td><a id="removeplotyield"></a>RemovePlotYield</td>
+<td><code>Map:RemovePlotYield(iPlotIndex: integer, eYield: integer, iReductionAmount: integer)</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x725860</code></td>
 </tr>
 <tr>
 <td><a id="setrevealedimprovementtype"></a>SetRevealedImprovementType</td>
@@ -80,6 +328,14 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>—</td>
 <td><a href="../native/Map.html#map__feature__manager__setvolcanoinactive">Map::Feature::Manager::SetVolcanoInactive</a></td>
 <td><code>0x727540</code></td>
+</tr>
+<tr>
+<td><a id="updatevolcanoes"></a>UpdateVolcanoes</td>
+<td><code>Map:UpdateVolcanoes()</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><code>0x728360</code></td>
 </tr>
 </tbody>
 </table>
