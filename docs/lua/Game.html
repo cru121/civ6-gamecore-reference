@@ -141,7 +141,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="getdefeatrequirements"></a>GetDefeatRequirements</td>
-<td><code>Game.GetDefeatRequirements(arg1: integer) → number</code><br><small>✓ exists at runtime (not called)</small></td>
+<td><code>Game.GetDefeatRequirements(arg1: integer, arg2: number/string) → number</code><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache, gameplay</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetDefeatRequirements/">yes ↗</a></td>
 <td><code>0x69ab00</code></td>
@@ -317,7 +317,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="getplayers"></a>GetPlayers</td>
-<td><code>Game.GetPlayers() → table</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td><code>Game.GetPlayers(arg1?: table) → table</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
 <td>ui-cache, gameplay</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetPlayers/">yes ↗</a></td>
 <td><code>0x69b440</code></td>
@@ -405,7 +405,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="getunits"></a>GetUnits</td>
-<td><code>Game.GetUnits() → number[][]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
+<td><code>Game.GetUnits(arg1?: table) → number[][]</code><br><small>✓ called in the game: 1 value(s) as documented</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetUnits/">yes ↗</a></td>
 <td><code>0x69bde0</code></td>
@@ -421,7 +421,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="getvictoryrequirements"></a>GetVictoryRequirements</td>
-<td><code>Game.GetVictoryRequirements(arg1: integer) → number</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: The scripts pass the result to <code>GameEffects.GetRequirementSetInnerRequirements</code>. (inferred)</small></td>
+<td><code>Game.GetVictoryRequirements(arg1: integer, arg2: number/string) → number</code><br><small>✓ exists at runtime (not called)</small><br><small>returns: The scripts pass the result to <code>GameEffects.GetRequirementSetInnerRequirements</code>. (inferred)</small></td>
 <td>ui-cache, gameplay</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.GetVictoryRequirements/">yes ↗</a></td>
 <td><code>0x69c480</code></td>
@@ -461,7 +461,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="isdefeatenabled"></a>IsDefeatEnabled ★</td>
-<td><code>Game.IsDefeatEnabled() → boolean</code><br><small>⚠ test call in the game raised: Invalid argument type. Expected number or string. stack traceback: [C]: in funct</small></td>
+<td><code>Game.IsDefeatEnabled(defeatType: string/number) → boolean</code><br><small>⚠ test call in the game raised: Invalid argument type. Expected number or string. stack traceback: [C]: in funct</small></td>
 <td>ui-cache, gameplay</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.IsDefeatEnabled/">yes ↗</a></td>
 <td><code>0x69c750</code></td>
@@ -469,7 +469,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="isvictoryenabled"></a>IsVictoryEnabled ★</td>
-<td><code>Game.IsVictoryEnabled() → boolean</code><br><small>⚠ test call in the game raised: Invalid argument type. Expected number or string. stack traceback: [C]: in funct</small></td>
+<td><code>Game.IsVictoryEnabled(victoryType: string/number) → boolean</code><br><small>⚠ test call in the game raised: Invalid argument type. Expected number or string. stack traceback: [C]: in funct</small></td>
 <td>ui-cache, gameplay</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/Game.IsVictoryEnabled/">yes ↗</a></td>
 <td><code>0x69c810</code></td>
@@ -569,18 +569,18 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
   <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
 </ul>
 <h3>IsDefeatEnabled</h3>
-<p>Takes an argument although the recovered signature shows none.</p>
+<p>Takes a defeat type argument (a number or a type name).</p>
 <ul>
 <li>Called with no arguments the wrapper raises "Invalid argument type. Expected number or string": it needs an argument (a number or a string).
   <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
-<li>The argument is probably a defeat type (index or name); not tested with a value.
-  <em>[inferred; evidence: static-analysis — inferred from the error message and the name]</em></li>
+<li>With an argument it returned false in the tester's game. The argument is a defeat type (name or hash); the exact type names were not recorded.
+  <em>[inferred; evidence: community-reference — reported by an external tester, reproduced twice in single player on build 15038592 (2026-10); not re-run here]</em></li>
 </ul>
 <h3>IsVictoryEnabled</h3>
-<p>Takes an argument although the recovered signature shows none.</p>
+<p>Takes a victory type argument (a number or a type name).</p>
 <ul>
 <li>Called with no arguments the wrapper raises "Invalid argument type. Expected number or string": it needs an argument (a number or a string).
   <em>[verified; evidence: runtime — called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness]</em></li>
-<li>The argument is probably a victory type (index or name); not tested with a value.
-  <em>[inferred; evidence: static-analysis — inferred from the error message and the name]</em></li>
+<li>Game.IsVictoryEnabled("VICTORY_SCORE") returned true. The argument is a victory type (name or hash).
+  <em>[inferred; evidence: community-reference — reported by an external tester, reproduced twice in single player on build 15038592 (2026-10); not re-run here]</em></li>
 </ul></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

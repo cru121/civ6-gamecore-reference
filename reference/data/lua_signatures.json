@@ -1070,10 +1070,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 2,
@@ -1106,7 +1105,7 @@
    2,
    4
   ],
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number"
@@ -1195,10 +1194,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 2,
@@ -1228,7 +1226,7 @@
    "MapPlot"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "MapPlot"
@@ -1778,7 +1776,14 @@
   "cpp_class": "GameCore::Lua::IMapAreas",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "boolean",
+    "lua_type": "boolean",
+    "optional": true
+   }
+  ],
   "nret": 1,
   "returns": [
    "MapArea"
@@ -4691,7 +4696,16 @@
   "cpp_class": "GameCore::Lua::IMapStartPositioner",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "boolean",
+    "lua_type": "boolean",
+    "optional": true,
+    "name": "bWaterMap",
+    "name_source": "method-name"
+   }
+  ],
   "nret": 1,
   "returns": [
    "number"
@@ -4877,10 +4891,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "boolean",
+    "lua_type": "boolean",
+    "optional": true
    },
    {
     "index": 2,
@@ -4902,7 +4915,7 @@
   "nret": 0,
   "returns": [],
   "callee": "Map::River::Manager::GenerateFloodplains",
-  "confidence": "partial",
+  "confidence": "high",
   "may_return_nothing": true
  },
  "0x22060": {
@@ -5098,10 +5111,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "table",
+    "lua_type": "table",
+    "optional": false
    },
    {
     "index": 2,
@@ -5117,7 +5129,7 @@
    "boolean"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "boolean"
@@ -5241,7 +5253,29 @@
   "cpp_class": "GameCore::Lua::IMapTerrainBuilder",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "plot-x",
+    "lua_type": "integer|Plot",
+    "optional": false,
+    "name": "x",
+    "note": "plot given as (x, y), or as a single plot index (inferred from the helper name)"
+   },
+   {
+    "index": 2,
+    "kind": "plot-y",
+    "lua_type": "integer",
+    "optional": true,
+    "name": "y"
+   },
+   {
+    "index": 3,
+    "kind": "integer",
+    "lua_type": "integer",
+    "optional": false
+   }
+  ],
   "nret": 0,
   "returns": [],
   "callee": null,
@@ -8591,7 +8625,16 @@
   "cpp_class": "GameCore::Lua::IGameRandomEvents",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "table",
+    "lua_type": "table",
+    "optional": false,
+    "name": "kEventIn",
+    "name_source": "method-name"
+   }
+  ],
   "nret": 0,
   "returns": [],
   "callee": null,
@@ -9885,10 +9928,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "string",
+    "lua_type": "string",
+    "optional": true
    },
    {
     "index": 2,
@@ -9900,7 +9942,7 @@
   "nret": 0,
   "returns": [],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "may_return_nothing": true
  },
  "0x5ed4e0": {
@@ -10095,6 +10137,14 @@
     "optional": false,
     "var": "uVar2",
     "name": "uiType"
+   },
+   {
+    "index": 4,
+    "kind": "string",
+    "lua_type": "string",
+    "optional": false,
+    "name": "pszName",
+    "name_source": "callee-position"
    }
   ],
   "nret": 1,
@@ -10125,6 +10175,14 @@
     "optional": false,
     "var": "uVar2",
     "name": "uiType"
+   },
+   {
+    "index": 4,
+    "kind": "string",
+    "lua_type": "string",
+    "optional": false,
+    "name": "pszName",
+    "name_source": "callee-position"
    }
   ],
   "nret": 1,
@@ -10349,7 +10407,30 @@
   "cpp_class": "GameCore::Lua::IWorldBuilderCityManager",
   "static": false,
   "self_object": "WorldBuilderCityManager",
-  "params": [],
+  "params": [
+   {
+    "index": 2,
+    "kind": "plot-x",
+    "lua_type": "integer|Plot",
+    "optional": false,
+    "name": "x",
+    "note": "plot given as (x, y), or as a single plot index (inferred from the helper name)"
+   },
+   {
+    "index": 3,
+    "kind": "plot-y",
+    "lua_type": "integer",
+    "optional": true,
+    "name": "y"
+   },
+   {
+    "index": 4,
+    "kind": "city-id",
+    "lua_type": "integer|City",
+    "optional": true,
+    "note": "city to give the plot to; a boolean here means no city (inferred)"
+   }
+  ],
   "nret": 0,
   "returns": [],
   "callee": null,
@@ -10745,7 +10826,16 @@
   "cpp_class": "GameCore::Lua::IWorldBuilderManager",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true,
+    "name": "ePlayer",
+    "name_source": "method-name"
+   }
+  ],
   "nret": 0,
   "returns": [],
   "callee": null,
@@ -10757,7 +10847,14 @@
   "cpp_class": "GameCore::Lua::IWorldBuilderManager",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "boolean",
+    "lua_type": "boolean",
+    "optional": true
+   }
+  ],
   "nret": 0,
   "returns": [],
   "callee": null,
@@ -11140,6 +11237,14 @@
     "var": "TVar3",
     "cpp_type": "Types",
     "name": "ePropertyType"
+   },
+   {
+    "index": 4,
+    "kind": "string",
+    "lua_type": "string",
+    "optional": true,
+    "name": "pszName",
+    "name_source": "callee-position"
    }
   ],
   "nret": 1,
@@ -11625,10 +11730,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -11643,7 +11747,7 @@
    "nil|string"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "string|nil"
@@ -11659,7 +11763,14 @@
   "cpp_class": "GameCore::Lua::IWorldBuilderModManager",
   "static": false,
   "self_object": "WorldBuilderModManager",
-  "params": [],
+  "params": [
+   {
+    "index": 2,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
+   }
+  ],
   "nret": 1,
   "returns": [
    "nil|string"
@@ -11681,10 +11792,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "string",
+    "lua_type": "string",
+    "optional": true
    },
    {
     "index": 3,
@@ -11700,7 +11810,7 @@
    "string"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "string"
@@ -11752,10 +11862,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -11790,7 +11899,7 @@
    "boolean"
   ],
   "callee": "WorldBuilder::Mod::LocalizationStringTable::SetByIndex",
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "boolean"
@@ -12015,7 +12124,16 @@
   "cpp_class": "GameCore::Lua::IWorldBuilderPlayerManager",
   "static": false,
   "self_object": "WorldBuilderPlayerManager",
-  "params": [],
+  "params": [
+   {
+    "index": 2,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true,
+    "name": "ePlayer",
+    "name_source": "method-name"
+   }
+  ],
   "nret": 1,
   "returns": [
    "boolean"
@@ -12357,10 +12475,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
+    "kind": "number",
+    "lua_type": "number",
     "optional": true,
-    "unknown": true,
     "name": "ePlayer",
     "name_source": "callee-position"
    },
@@ -12395,7 +12512,7 @@
   "nret": 0,
   "returns": [],
   "callee": "WorldBuilder::Player::Manager::SetPlayerLeader",
-  "confidence": "partial",
+  "confidence": "high",
   "may_return_nothing": true
  },
  "0x5f8190": {
@@ -12406,10 +12523,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -12424,7 +12540,7 @@
    "boolean"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "boolean"
@@ -13166,7 +13282,17 @@
     "kind": "number",
     "lua_type": "number",
     "optional": true,
-    "var": "dVar8"
+    "var": "dVar8",
+    "name": "iIndex",
+    "name_source": "method-name"
+   },
+   {
+    "index": 3,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true,
+    "name": "eForPlayerType",
+    "name_source": "method-name"
    }
   ],
   "nret": 1,
@@ -16796,6 +16922,12 @@
     "kind": "table",
     "lua_type": "table",
     "optional": false
+   },
+   {
+    "index": 4,
+    "kind": "value",
+    "lua_type": "any",
+    "optional": true
    }
   ],
   "nret": 1,
@@ -17587,10 +17719,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 2,
@@ -17605,7 +17736,7 @@
    "number"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number"
@@ -17621,10 +17752,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 2,
@@ -17639,7 +17769,7 @@
    "string|nil|string|string|string"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "string|nil|string|string|string"
@@ -17666,6 +17796,12 @@
     "lua_type": "number",
     "optional": true,
     "var": "dVar7"
+   },
+   {
+    "index": 3,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    }
   ],
   "nret": 1,
@@ -17794,10 +17930,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
+    "kind": "number",
+    "lua_type": "number",
     "optional": true,
-    "unknown": true,
     "name": "eFromPlayer",
     "name_source": "method-name"
    },
@@ -17816,7 +17951,7 @@
    "number"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number"
@@ -19051,6 +19186,12 @@
     "kind": "integer",
     "lua_type": "integer",
     "optional": false
+   },
+   {
+    "index": 2,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
    }
   ],
   "nret": 1,
@@ -19413,7 +19554,14 @@
   "cpp_class": "GameCore::Cache::Lua::IGame",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "table",
+    "lua_type": "table",
+    "optional": true
+   }
+  ],
   "nret": 1,
   "returns": [
    "table"
@@ -19561,7 +19709,14 @@
   "cpp_class": "GameCore::Cache::Lua::IGame",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "table",
+    "lua_type": "table",
+    "optional": true
+   }
+  ],
   "nret": 1,
   "returns": [
    "table"
@@ -19625,6 +19780,12 @@
     "index": 1,
     "kind": "integer",
     "lua_type": "integer",
+    "optional": false
+   },
+   {
+    "index": 2,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
     "optional": false
    }
   ],
@@ -19724,7 +19885,14 @@
   "cpp_class": "GameCore::Cache::Lua::IGame",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
+   }
+  ],
   "nret": 1,
   "returns": [
    "boolean"
@@ -19742,7 +19910,14 @@
   "cpp_class": "GameCore::Cache::Lua::IGame",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
+   }
+  ],
   "nret": 1,
   "returns": [
    "boolean"
@@ -21111,10 +21286,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 2,
@@ -21129,7 +21303,7 @@
    "MapPlot"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "MapPlot"
@@ -21311,10 +21485,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 2,
@@ -21344,7 +21517,7 @@
    "MapPlot"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "MapPlot"
@@ -21502,10 +21675,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 2,
@@ -21520,7 +21692,7 @@
    "boolean"
   ],
   "callee": null,
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "boolean"
@@ -24011,7 +24183,24 @@
   "cpp_class": "GameCore::Cache::Lua::IPlayerCulture",
   "static": false,
   "self_object": "PlayerCulture",
-  "params": [],
+  "params": [
+   {
+    "index": 2,
+    "kind": "table",
+    "lua_type": "table",
+    "optional": true,
+    "name": "kClear",
+    "name_source": "method-name"
+   },
+   {
+    "index": 3,
+    "kind": "table",
+    "lua_type": "table",
+    "optional": true,
+    "name": "kAdd",
+    "name_source": "method-name"
+   }
+  ],
   "nret": 1,
   "returns": [
    "boolean"
@@ -24977,6 +25166,12 @@
     "lua_type": "number",
     "optional": true,
     "var": "dVar10"
+   },
+   {
+    "index": 4,
+    "kind": "boolean",
+    "lua_type": "boolean",
+    "optional": true
    }
   ],
   "nret": 0,
@@ -28329,6 +28524,14 @@
     "var": "iVar6",
     "name": "destinationCityID",
     "name_source": "cache-twin"
+   },
+   {
+    "index": 6,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true,
+    "name": "paYields",
+    "name_source": "cache-twin"
    }
   ],
   "nret": 1,
@@ -28385,6 +28588,14 @@
     "optional": false,
     "var": "iVar6",
     "name": "destinationCityID",
+    "name_source": "cache-twin"
+   },
+   {
+    "index": 6,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true,
+    "name": "paYields",
     "name_source": "cache-twin"
    }
   ],
@@ -28715,6 +28926,14 @@
     "optional": false,
     "var": "iVar6",
     "name": "destinationCityID",
+    "name_source": "cache-twin"
+   },
+   {
+    "index": 6,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true,
+    "name": "paYields",
     "name_source": "cache-twin"
    }
   ],
@@ -30823,6 +31042,12 @@
     "kind": "table",
     "lua_type": "table",
     "optional": false
+   },
+   {
+    "index": 4,
+    "kind": "value",
+    "lua_type": "any",
+    "optional": true
    }
   ],
   "nret": 1,
@@ -30982,6 +31207,12 @@
     "kind": "table",
     "lua_type": "table",
     "optional": false
+   },
+   {
+    "index": 4,
+    "kind": "value",
+    "lua_type": "any",
+    "optional": true
    }
   ],
   "nret": 1,
@@ -31241,7 +31472,14 @@
   "cpp_class": "GameCore::Cache::Lua::IUnitManager",
   "static": false,
   "self_object": "Unit",
-  "params": [],
+  "params": [
+   {
+    "index": 2,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
+   }
+  ],
   "nret": 0,
   "returns": [],
   "callee": null,
@@ -31252,7 +31490,14 @@
   "cpp_class": "GameCore::Cache::Lua::IUnitManager",
   "static": false,
   "self_object": "Unit",
-  "params": [],
+  "params": [
+   {
+    "index": 2,
+    "kind": "value",
+    "lua_type": "any",
+    "optional": true
+   }
+  ],
   "nret": 0,
   "returns": [],
   "callee": null,
@@ -37062,7 +37307,17 @@
     "kind": "number",
     "lua_type": "number",
     "optional": true,
-    "var": "dVar6"
+    "var": "dVar6",
+    "name": "eFromPlayer",
+    "name_source": "method-name"
+   },
+   {
+    "index": 2,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true,
+    "name": "eToPlayer",
+    "name_source": "method-name"
    }
   ],
   "nret": 1,
@@ -38161,6 +38416,12 @@
     "kind": "integer",
     "lua_type": "integer",
     "optional": false
+   },
+   {
+    "index": 2,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
    }
   ],
   "nret": 1,
@@ -38333,7 +38594,14 @@
   "cpp_class": "GameCore::Lua::IGame",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "table",
+    "lua_type": "table",
+    "optional": true
+   }
+  ],
   "nret": 1,
   "returns": [
    "table"
@@ -38522,6 +38790,12 @@
     "kind": "integer",
     "lua_type": "integer",
     "optional": false
+   },
+   {
+    "index": 2,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
    }
   ],
   "nret": 1,
@@ -38620,7 +38894,14 @@
   "cpp_class": "GameCore::Lua::IGame",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
+   }
+  ],
   "nret": 1,
   "returns": [
    "boolean"
@@ -38638,7 +38919,14 @@
   "cpp_class": "GameCore::Lua::IGame",
   "static": true,
   "self_object": null,
-  "params": [],
+  "params": [
+   {
+    "index": 1,
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
+   }
+  ],
   "nret": 1,
   "returns": [
    "boolean"
@@ -39218,10 +39506,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
    },
    {
     "index": 2,
@@ -39241,7 +39528,7 @@
   "nret": 0,
   "returns": [],
   "callee": null,
-  "confidence": "partial"
+  "confidence": "high"
  },
  "0x6dc3c0": {
   "wrapper": "lGetModifierTextKey",
@@ -39251,10 +39538,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
    },
    {
     "index": 2,
@@ -39266,7 +39552,7 @@
   "nret": 0,
   "returns": [],
   "callee": null,
-  "confidence": "partial"
+  "confidence": "high"
  },
  "0x6dc580": {
   "wrapper": "lGetModifierTrackedObjectCount",
@@ -39798,10 +40084,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
    },
    {
     "index": 2,
@@ -39814,7 +40099,7 @@
   "nret": 0,
   "returns": [],
   "callee": null,
-  "confidence": "partial"
+  "confidence": "high"
  },
  "0x6deb00": {
   "wrapper": "lGetRequirementTextKey",
@@ -39824,10 +40109,9 @@
   "params": [
    {
     "index": 1,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number-or-string",
+    "lua_type": "number|string",
+    "optional": false
    },
    {
     "index": 2,
@@ -39840,7 +40124,7 @@
   "nret": 0,
   "returns": [],
   "callee": null,
-  "confidence": "partial"
+  "confidence": "high"
  },
  "0x6decd0": {
   "wrapper": "lGetRequirements",
@@ -44693,6 +44977,12 @@
     "optional": false,
     "cpp_type": "CivicTypes",
     "name": "eCivic"
+   },
+   {
+    "index": 3,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    }
   ],
   "nret": 1,
@@ -44834,6 +45124,12 @@
     "lua_type": "number",
     "optional": true,
     "var": "iVar2"
+   },
+   {
+    "index": 3,
+    "kind": "boolean",
+    "lua_type": "boolean",
+    "optional": true
    }
   ],
   "nret": 1,
@@ -47477,6 +47773,12 @@
     "optional": false,
     "cpp_type": "TechTypes",
     "name": "eTech"
+   },
+   {
+    "index": 3,
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    }
   ],
   "nret": 1,
@@ -48440,10 +48742,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -48486,7 +48787,7 @@
    "number"
   ],
   "callee": "Trade::Manager::CalculateDestinationYieldFromModifiers",
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number",
@@ -48502,10 +48803,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -48538,7 +48838,7 @@
   ],
   "callee": null,
   "returns_constant_stub": "mov dword ptr [rdx], 0 ; mov rax, rdx ; ret",
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number"
@@ -48649,10 +48949,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -48691,7 +48990,7 @@
   ],
   "callee": null,
   "returns_constant_stub": "mov dword ptr [rdx], 0 ; mov rax, rdx ; ret",
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number"
@@ -48706,10 +49005,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -48752,7 +49050,7 @@
    "number"
   ],
   "callee": "Trade::Manager::CalculateOriginYieldFromModifiers",
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number",
@@ -48768,10 +49066,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -48807,7 +49104,7 @@
    "number"
   ],
   "callee": "Trade::Manager::CalculateOriginYieldFromPath",
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number",
@@ -48823,10 +49120,9 @@
   "params": [
    {
     "index": 2,
-    "kind": "unknown",
-    "lua_type": "any",
-    "optional": true,
-    "unknown": true
+    "kind": "number",
+    "lua_type": "number",
+    "optional": true
    },
    {
     "index": 3,
@@ -48862,7 +49158,7 @@
    "number"
   ],
   "callee": "Trade::Manager::CalculateOriginYieldFromPotentialRoute",
-  "confidence": "partial",
+  "confidence": "high",
   "return_details": [
    {
     "type": "number",
@@ -53008,6 +53304,12 @@
     "lua_type": "City",
     "optional": false,
     "object": "City"
+   },
+   {
+    "index": 4,
+    "kind": "boolean",
+    "lua_type": "boolean",
+    "optional": true
    }
   ],
   "nret": 2,

@@ -144,6 +144,42 @@ def parse(block):
         if re.search(r'if \(%s < \*' % re.escape(var), rest):
             is_bool = bool(re.search(r'& 0xf', rest)) and bool(re.search(r'== 1', rest))
             setp(idx, 'boolean' if is_bool else 'value', 'boolean' if is_bool else 'any', True, var)
+    # raw stack pointers: `pHVar1 = *(HksObject **)(param_1 + 0x50)` is argument 1 of a static method, `... + 0x10` argument 2, and so on.
+    # The pointer is then tested against the stack top (optional argument), its type tag is compared (`& 0xf` == 3 number, 4 string, 5 table,
+    # 1 boolean) and the value read with hks_obj_to*. The inline-read scan above only understands a base expression inside the call.
+    rawvars = {}
+    for rm in re.finditer(r'(\w+)\s*=\s*(?:\*\(\w+\s*\*\*\)\(param_1 \+ 0x50\)|\([\w\s\*]+\)\(\*\(longlong \*\)\(param_1 \+ 0x50\)\s*\+\s*(0x[0-9a-f]+)\))', code):
+        rawvars[rm.group(1)] = (int(rm.group(2), 16) // 16 if rm.group(2) else 0) + 1
+    TAGS = {1: 'boolean', 3: 'number', 4: 'string', 5: 'table', 0xc: 'table'}
+    if name.endswith('Aux') or re.search(r'luaL_checktype\(param_1,\s*1,', code):
+        rawvars = {}      # iterator closures read their own upvalues, and luaL_checktype(1) means slot 1 is the object itself
+    for var, idx in rawvars.items():
+        if idx in params and params[idx]['kind'] != 'unknown':
+            continue
+        guard = re.search(r'%s\s*<\s*\*\(\w+\s*\*\*\)\(param_1 \+ 0x48\)|%s\s*<\s*\w+\)|\*\(\w+\s*\*\*\)\(param_1 \+ 0x48\)\s*(?:>|<=)\s*%s' % (re.escape(var), re.escape(var), re.escape(var)), code)
+        reads = {fn for fn in re.findall(r'(hks_obj_tonumber|hks_obj_tolstring|hks_obj_toboolean)\s*\(\s*param_1\s*,\s*%s\b' % re.escape(var), code)}
+        tags = set()
+        # the pointer is often copied (`puVar12 = puVar13;`) and the copy tested
+        alias = '(?:%s)' % '|'.join([re.escape(var)] + [re.escape(a) for a in re.findall(r'(\w+)\s*=\s*(?:\([\w\s\*]+\))?%s\s*;' % re.escape(var), code)])
+        for tm in re.finditer(r'\(\*%s\s*&\s*0xf\)\s*==\s*(0x[0-9a-f]+|\d+)|\(\*\(uint \*\)%s\s*&\s*0xf\)\s*==\s*(0x[0-9a-f]+|\d+)' % (alias, alias), code):
+            tags.add(TAGS.get(int(tm.group(1) or tm.group(2), 0)))
+        tags.discard(None)
+        # a `uVar = *var & 0xf` copy is compared with literals afterwards (IsVictoryEnabled)
+        for cm in re.finditer(r'(\w+)\s*=\s*\*\(uint \*\)%s\s*&\s*0xf' % alias, code):
+            for tm in re.finditer(r'%s\s*==\s*(\d+)' % re.escape(cm.group(1)), code):
+                tags.add(TAGS.get(int(tm.group(1))))
+            tags.discard(None)
+        if not reads and not tags:
+            continue
+        types = sorted(tags | {'number' if r == 'hks_obj_tonumber' else 'string' if r == 'hks_obj_tolstring' else 'boolean' for r in reads})
+        if types == ['number', 'string']:
+            kind, lt = 'number-or-string', 'number|string'
+        elif len(types) == 1:
+            kind = lt = types[0]
+        else:
+            kind, lt = 'value', 'any'
+        required = bool(re.search(r'luaL_error|argerror|Invalid argument', code))
+        setp(idx, kind, lt, bool(guard) and not required, None)
     # plot location helpers: (x, y) or a plot index starting at the given argument
     for qm in re.finditer(r'Utility::(GetPlotLocation|GetPlotIndex|GetPlotInstance)\s*\(\s*param_1\s*,[^,]*,\s*(\d+)', code):
         start = int(qm.group(2))
@@ -155,6 +191,28 @@ def parse(block):
             setp(start + 1, 'plot-y', 'integer', True)
             params[start + 1]['name'] = 'y'
             sig['plot_start'] = start
+    # Lua::Value wrapper constructed from a stack slot: `Lua::Value::Value(local, param_1, N)` then Table::Valid/begin = a table argument (ApplyEvent, RequestPolicyChanges)
+    for vm in re.finditer(r'Lua::Value::Value\(\s*(?:\([\w\s\*]+\))?\w+\s*,\s*param_1\s*,\s*(\d+)\s*\)', code):
+        idx = int(vm.group(1))
+        if re.search(r'Lua::Table::(Valid|begin)', code[vm.end():vm.end() + 200]) and idx not in params:
+            setp(idx, 'table', 'table', bool(rawvars))
+    # IMapPlot::EditPlotInstance(param_1, out, start, [flag,] &next): a plot as (x, y) or a plot index at `start`; the argument after it is read
+    # at the index left in `next` (luaL_checkinteger = required value, GetCityID = optional city id)
+    em = re.search(r'IMapPlot::EditPlotInstance\(\s*param_1\s*,\s*[^,]+,\s*(\d+)\s*,', code)
+    if em:
+        start = int(em.group(1))
+        setp(start, 'plot-x', 'integer|Plot', False)
+        params[start]['name'] = 'x'
+        params[start]['note'] = 'plot given as (x, y), or as a single plot index (inferred from the helper name)'
+        setp(start + 1, 'plot-y', 'integer', True)
+        params[start + 1]['name'] = 'y'
+        sig['plot_start'] = start
+        nm = re.search(r'(\w+)\s*=\s*luaL_checkinteger\(param_1,\s*\w+\[0\]\)', code)
+        if nm:
+            setp(start + 2, 'integer', 'integer', False)      # no variable: the callee-name match would pair it with the wrong C++ parameter
+        elif re.search(r'Utility::GetCityID\(', code):
+            setp(start + 2, 'city-id', 'integer|City', True)
+            params[start + 2]['note'] = 'city to give the plot to; a boolean here means no city (inferred)'
     # argument index taken from a variable (follows a helper that consumed 1 or 2 arguments)
     for dm in re.finditer(r'hksi_lua_tointeger\(param_1,(?!\d)', code):
         start = sig.get('plot_start')

@@ -23,7 +23,7 @@ with the quoted message; <strong>✓ exists at runtime</strong> means the method
   Methods documented here but absent at runtime are registered only for the gameplay state, which a UI state cannot see.</li>
 <li><strong>What zero-parameter getters return.</strong> 453 methods documented with no parameters (<code>Get…</code>, <code>Is…</code>, <code>Has…</code>, <code>Can…</code>) were called: 439 returned the documented number of values,
   8 returned nothing (a legitimate "no value" case, for example no winner yet), 6 raised errors. The errors show reference problems, each recorded on the method's own page:
-  <code>Game.IsDefeatEnabled</code>, <code>Game.IsVictoryEnabled</code> (need an argument), <code>Game.GetUnitNamePrefix</code>, <code>Game.GetUnitNameSuffix</code> (not callable without an instance or argument),
+  <code>Game.IsDefeatEnabled</code>, <code>Game.IsVictoryEnabled</code> (need a victory/defeat type argument; a tester confirmed <code>IsVictoryEnabled("VICTORY_SCORE")</code> returns true), <code>Game.GetUnitNamePrefix</code>, <code>Game.GetUnitNameSuffix</code> (not callable without an instance or argument),
   <code>Plot.IsNone</code>, <code>Area.IsNone</code> (only valid on a "none" instance). Documented return counts are therefore reliable for getters; documented parameter lists are the weaker part.</li>
 <li><strong>The engine functions behind some of this.</strong> Function pages marked with observed behavior (great-work removal, relic creation, the Palace) were exercised by calling the
   native functions directly in the running game; see their "Observed in-game" notes.</li>
@@ -32,6 +32,7 @@ with the quoted message; <strong>✓ exists at runtime</strong> means the method
 <ul>
 <li><strong>Calling a method with the wrong number of arguments can fault natively, not just raise a Lua error.</strong> <code>DiplomacyManager.GetDiplomaticActionCost()</code> called with no arguments dereferenced
   a null pointer inside the game. Only call methods whose parameter list is known.</li>
+<li><strong>Native faults that <code>pcall</code> cannot catch.</strong> An outside tester reports that <code>TeamDiplomacy.GetNextEscapingSpyID</code>, <code>TeamDiplomacy.GetNextPursuedSpyID</code> and <code>CityBuildQueue.CheckActiveProduction</code> crash the game at any argument count tried (null object pointer). Four <code>CityBuildings</code> index functions (<code>GetCreatorNameFromIndex</code>, <code>GetGreatWorkTypeFromIndex</code>, <code>GetPlayerFromIndex</code>, <code>GetTurnFromIndex</code>) fault when given an index that is not in the game's great work list. Reported by the tester, not re-run here; see each method's page.</li>
 <li><strong>Lua states are not all long-lived.</strong> The game creates hundreds of short-lived coroutine states per turn (the AI). Running code in a state that no longer exists corrupts the heap and
   crashes the game later. Use a context that lives as long as the UI (for example the one that polls <code>GetProperty</code> continuously).</li>
 <li><strong>UI state versus gameplay state.</strong> Only the UI state was checked. "Where" in the method tables says which registration table lists a method, not which state can call it; checking the
