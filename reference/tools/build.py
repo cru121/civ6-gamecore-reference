@@ -106,6 +106,9 @@ print('validation ok: %d lua methods, %d operations, %d enums, %d layouts, %d gl
 for r in methods + ops + enums + layouts + globs + ce_methods + devce + natives:
     if r['id'] in curated:
         r['curated'] = {k: v for k, v in curated[r['id']].items() if k != 'id'}
+        if 'signature_fix' in r['curated']:  # hand-corrected parameter list (names or arguments the extractor cannot recover)
+            for _s in r.get('signatures') or []:
+                _s['params'] = r['curated']['signature_fix']['params']
 
 for r in methods + ops:
     r['availability'] = 'vanilla'

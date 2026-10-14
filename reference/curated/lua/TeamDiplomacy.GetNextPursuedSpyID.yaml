@@ -1,0 +1,7 @@
+id: lua:TeamDiplomacy.GetNextPursuedSpyID
+summary: "Crashes the game (access violation, not catchable with pcall) in the tester's game."
+notes:
+  - text: "Calling it at any arity faulted natively (build 15038592, code offset +0xb597a, read of address 0xb0), the same null pointer pattern as its sibling GetNextEscapingSpyID. pcall does not catch it. Do not call it from mod code."
+    status: inferred
+    evidence: [{kind: community-reference, note: "external tester, reproduced in single player on build 15038592 (2026-10); not re-run here"}]
+related: [lua:TeamDiplomacy.GetNextEscapingSpyID]

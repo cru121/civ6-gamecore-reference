@@ -1,0 +1,7 @@
+id: lua:CityBuildings.GetTurnFromIndex
+summary: "Faults natively on an index that is not in the game's great work list."
+notes:
+  - text: "The recovered parameter type is GreatWorkListIndex, the index into the game's great work list, not a slot number inside the city. A tester's calls with slot-style arguments faulted natively (access violation, null result register) and pcall does not catch it. Take the index from a getter that returns one (for example the great work listed for a building slot) and never pass a literal."
+    status: inferred
+    evidence: [{kind: community-reference, note: "external tester: 4 faults on build 15038592 (2026-10), all from this binder family; the explanation from the parameter type is a guess, not tested"}]
+related: [lua:Game.GetGreatWorkDataFromIndex]

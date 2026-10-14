@@ -84,7 +84,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x68d720</code></td>
 </tr>
 <tr>
-<td><a id="getcreatornamefromindex"></a>GetCreatorNameFromIndex</td>
+<td><a id="getcreatornamefromindex"></a>GetCreatorNameFromIndex ★</td>
 <td><code>CityBuildings:GetCreatorNameFromIndex(arg1: integer[GreatWorkListIndex]) → nil/string</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetCreatorNameFromIndex/">yes ↗</a></td>
@@ -108,7 +108,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x68d870</code></td>
 </tr>
 <tr>
-<td><a id="getgreatworktypefromindex"></a>GetGreatWorkTypeFromIndex</td>
+<td><a id="getgreatworktypefromindex"></a>GetGreatWorkTypeFromIndex ★</td>
 <td><code>CityBuildings:GetGreatWorkTypeFromIndex(arg1: integer[GreatWorkListIndex]) → number</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small><br><small>returns: Key of a row of the GreatWorks table: the scripts look it up with GameInfo.GreatWorks[result].</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetGreatWorkTypeFromIndex/">yes ↗</a></td>
@@ -124,7 +124,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x68d960</code></td>
 </tr>
 <tr>
-<td><a id="getplayerfromindex"></a>GetPlayerFromIndex</td>
+<td><a id="getplayerfromindex"></a>GetPlayerFromIndex ★</td>
 <td><code>CityBuildings:GetPlayerFromIndex(arg1: integer[GreatWorkListIndex]) → number</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetPlayerFromIndex/">yes ↗</a></td>
@@ -132,7 +132,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x68d9d0</code></td>
 </tr>
 <tr>
-<td><a id="getturnfromindex"></a>GetTurnFromIndex</td>
+<td><a id="getturnfromindex"></a>GetTurnFromIndex ★</td>
 <td><code>CityBuildings:GetTurnFromIndex(arg1: integer[GreatWorkListIndex]) → number</code><br><small>args: <code>arg1</code> — Great work list index: the index of a work in the game-wide great work list (not the row in the GreatWorks tab</small><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/CityBuildings.GetTurnFromIndex/">yes ↗</a></td>
@@ -188,4 +188,33 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td>—</td>
 </tr>
 </tbody>
-</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+</table>
+<h2>Notes (★)</h2>
+<h3>GetCreatorNameFromIndex</h3>
+<p>Faults natively on an index that is not in the game's great work list.</p>
+<ul>
+<li>The recovered parameter type is GreatWorkListIndex, the index into the game's great work list, not a slot number inside the city. A tester's calls with slot-style arguments faulted natively (access violation, null result register) and pcall does not catch it. Take the index from a getter that returns one (for example the great work listed for a building slot) and never pass a literal.
+  <em>[inferred; evidence: community-reference — external tester: 4 faults on build 15038592 (2026-10), all from this binder family; the explanation from the parameter type is a guess, not tested]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="Game.html#getgreatworkdatafromindex">Game.GetGreatWorkDataFromIndex</a></p>
+<h3>GetGreatWorkTypeFromIndex</h3>
+<p>Faults natively on an index that is not in the game's great work list.</p>
+<ul>
+<li>The recovered parameter type is GreatWorkListIndex, the index into the game's great work list, not a slot number inside the city. A tester's calls with slot-style arguments faulted natively (access violation, null result register) and pcall does not catch it. Take the index from a getter that returns one (for example the great work listed for a building slot) and never pass a literal.
+  <em>[inferred; evidence: community-reference — external tester: 4 faults on build 15038592 (2026-10), all from this binder family; the explanation from the parameter type is a guess, not tested]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="Game.html#getgreatworkdatafromindex">Game.GetGreatWorkDataFromIndex</a></p>
+<h3>GetPlayerFromIndex</h3>
+<p>Faults natively on an index that is not in the game's great work list.</p>
+<ul>
+<li>The recovered parameter type is GreatWorkListIndex, the index into the game's great work list, not a slot number inside the city. A tester's calls with slot-style arguments faulted natively (access violation, null result register) and pcall does not catch it. Take the index from a getter that returns one (for example the great work listed for a building slot) and never pass a literal.
+  <em>[inferred; evidence: community-reference — external tester: 4 faults on build 15038592 (2026-10), all from this binder family; the explanation from the parameter type is a guess, not tested]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="Game.html#getgreatworkdatafromindex">Game.GetGreatWorkDataFromIndex</a></p>
+<h3>GetTurnFromIndex</h3>
+<p>Faults natively on an index that is not in the game's great work list.</p>
+<ul>
+<li>The recovered parameter type is GreatWorkListIndex, the index into the game's great work list, not a slot number inside the city. A tester's calls with slot-style arguments faulted natively (access violation, null result register) and pcall does not catch it. Take the index from a getter that returns one (for example the great work listed for a building slot) and never pass a literal.
+  <em>[inferred; evidence: community-reference — external tester: 4 faults on build 15038592 (2026-10), all from this binder family; the explanation from the parameter type is a guess, not tested]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="Game.html#getgreatworkdatafromindex">Game.GetGreatWorkDataFromIndex</a></p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -1,9 +1,12 @@
 id: lua:Game.IsVictoryEnabled
-summary: "Takes an argument although the recovered signature shows none."
+summary: "Takes a victory type argument (a number or a type name)."
+signature_fix:
+  params:
+    - {name: victoryType, type: "string|number", optional: false}
 notes:
   - text: "Called with no arguments the wrapper raises \"Invalid argument type. Expected number or string\": it needs an argument (a number or a string)."
     status: verified
     evidence: [{kind: runtime, note: "called in the running game (UI Lua state, build 15038592, 2026-10-03, single player) by the live test harness"}]
-  - text: "The argument is probably a victory type (index or name); not tested with a value."
+  - text: "Game.IsVictoryEnabled(\"VICTORY_SCORE\") returned true. The argument is a victory type (name or hash)."
     status: inferred
-    evidence: [{kind: static-analysis, note: "inferred from the error message and the name"}]
+    evidence: [{kind: community-reference, note: "reported by an external tester, reproduced twice in single player on build 15038592 (2026-10); not re-run here"}]

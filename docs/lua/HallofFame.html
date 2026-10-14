@@ -131,7 +131,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x6e4ab0</code></td>
 </tr>
 <tr>
-<td><a id="getrulesettypes"></a>GetRulesetTypes</td>
+<td><a id="getrulesettypes"></a>GetRulesetTypes ★</td>
 <td><code>HallofFame.GetRulesetTypes() → nil</code></td>
 <td>gameplay</td>
 <td>—</td>
@@ -187,4 +187,11 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x6e5810</code></td>
 </tr>
 </tbody>
-</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+</table>
+<h2>Notes (★)</h2>
+<h3>GetRulesetTypes</h3>
+<p>Returns the list of rulesets known to the game summary data; the wrapper itself reads no argument.</p>
+<ul>
+<li>The wrapper code reads nothing from the Lua stack: it takes the ruleset list from the current game's summary repository and builds a table of rows with the fields Type, Kind, Name and Icon. An argument passed from Lua (two of the game's own UI scripts pass a ruleset value) is therefore ignored by this function as far as the code shows. A tester suggested a one-argument form; that was not confirmed, and the listed no-parameter signature stands.
+  <em>[inferred; evidence: static-analysis — decompiled wrapper (lGetRulesetTypes) has no stack argument reads; the tester's 1-arg question is untested]</em></li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

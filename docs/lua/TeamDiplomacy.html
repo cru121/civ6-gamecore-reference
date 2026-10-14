@@ -53,7 +53,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="canmakepeacewith"></a>CanMakePeaceWith</td>
-<td><em>UI state:</em> <code>TeamDiplomacy:CanMakePeaceWith(eRecipient: integer[PlayerTypes]) → boolean</code><br><em>gameplay state:</em> <code>TeamDiplomacy:CanMakePeaceWith(arg1?: number) → boolean</code><br><small>args: <code>eRecipient</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
+<td><em>UI state:</em> <code>TeamDiplomacy:CanMakePeaceWith(eRecipient: integer[PlayerTypes]) → boolean</code><br><em>gameplay state:</em> <code>TeamDiplomacy:CanMakePeaceWith(arg1?: number, arg2?: boolean) → boolean</code><br><small>args: <code>eRecipient</code> — Id of a player (as in Players[id]).</small><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache, gameplay</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.CanMakePeaceWith/">yes ↗</a></td>
 <td><code>0x6aeab0</code></td>
@@ -228,7 +228,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x6af4c0</code></td>
 </tr>
 <tr>
-<td><a id="getnextescapingspyid"></a>GetNextEscapingSpyID</td>
+<td><a id="getnextescapingspyid"></a>GetNextEscapingSpyID ★</td>
 <td><code>TeamDiplomacy:GetNextEscapingSpyID() → number</code><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNextEscapingSpyID/">yes ↗</a></td>
@@ -236,7 +236,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x6af570</code></td>
 </tr>
 <tr>
-<td><a id="getnextpursuedspyid"></a>GetNextPursuedSpyID</td>
+<td><a id="getnextpursuedspyid"></a>GetNextPursuedSpyID ★</td>
 <td><code>TeamDiplomacy:GetNextPursuedSpyID() → number</code><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.GetNextPursuedSpyID/">yes ↗</a></td>
@@ -421,7 +421,7 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><a id="isdiplomaticactionvalid"></a>IsDiplomaticActionValid</td>
-<td><code>TeamDiplomacy:IsDiplomaticActionValid(action: number/string[DiplomaticActions], arg2?: number)</code><br><small>args: <code>arg2</code> — Id of a player (the scripts name the argument playerID / owner). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
+<td><code>TeamDiplomacy:IsDiplomaticActionValid(action: number/string[DiplomaticActions], arg2?: number, arg3?: boolean)</code><br><small>args: <code>arg2</code> — Id of a player (the scripts name the argument playerID / owner). (inferred); <code>arg3</code> — A boolean flag (true/false). (inferred)</small><br><small>✓ exists at runtime (not called)</small></td>
 <td>ui-cache</td>
 <td><a href="https://sukritact.github.io/civilization-modding-wiki/civ-6/lua/TeamDiplomacy.IsDiplomaticActionValid/">yes ↗</a></td>
 <td><code>0x6afdd0</code></td>
@@ -564,4 +564,19 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <td><code>0x6f29d0</code></td>
 </tr>
 </tbody>
-</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
+</table>
+<h2>Notes (★)</h2>
+<h3>GetNextEscapingSpyID</h3>
+<p>Crashes the game (access violation, not catchable with pcall) in the tester's game.</p>
+<ul>
+<li>Calling it at any arity faulted natively (build 15038592, code offset +0xb594a, read of address 0xb0), which is a null object pointer dereference. pcall does not catch it, so the game dies. Do not call it from mod code until the object it needs is understood.
+  <em>[inferred; evidence: community-reference — external tester, reproduced in single player on build 15038592 (2026-10); not re-run here]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="TeamDiplomacy.html#getnextpursuedspyid">TeamDiplomacy.GetNextPursuedSpyID</a></p>
+<h3>GetNextPursuedSpyID</h3>
+<p>Crashes the game (access violation, not catchable with pcall) in the tester's game.</p>
+<ul>
+<li>Calling it at any arity faulted natively (build 15038592, code offset +0xb597a, read of address 0xb0), the same null pointer pattern as its sibling GetNextEscapingSpyID. pcall does not catch it. Do not call it from mod code.
+  <em>[inferred; evidence: community-reference — external tester, reproduced in single player on build 15038592 (2026-10); not re-run here]</em></li>
+</ul>
+<p><strong>See also:</strong> <a href="TeamDiplomacy.html#getnextescapingspyid">TeamDiplomacy.GetNextEscapingSpyID</a></p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
