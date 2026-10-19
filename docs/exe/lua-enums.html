@@ -1,0 +1,5052 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Lua enum tables of the exe</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Lua enum tables of the exe</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Lua enum tables of the exe</h1>
+<p>Besides the <a href="../enums/index.html">GameCore enums</a> (database types, operations, events), the engine executable registers its own global Lua tables of named numbers: 74 tables with 640 members. They are what <code>Keys.VK_...</code>, <code>MouseEvents.LButtonDown</code>, <code>ServerType.SERVER_TYPE_STEAM</code> or <code>InterfaceModeTypes.SELECTION</code> mean in the game's UI scripts. The member names and the numeric values were read from the exe's registration code (<strong>Verified</strong>: each value is a constant stored by the code). For the 10 tables that also exist as GameCore enums every shared member has the same value in both places. "Script uses" counts how often the game's own Lua files write <code>Table.MEMBER</code>.</p>
+<p><strong>Value kinds.</strong> <em>small numbers</em> are plain sequence numbers or flags. <em>hash values</em> are 32-bit signed numbers computed from the member names (the same hash as GameCore types, so they are not stable to guess, always use the table in Lua). Values that look like hashes are shown signed, as Lua sees them.</p>
+<h2>Multiplayer and lobby</h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Members</th>
+<th>Value kind</th>
+<th>Hash of</th>
+<th>Script uses</th>
+<th>GameCore enum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#chattargettypes">ChatTargetTypes</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>59</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#firewiretypes">FireWireTypes</a></td>
+<td>1</td>
+<td>small numbers</td>
+<td></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#joingameerrortype">JoinGameErrorType</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#kickreason">KickReason</a></td>
+<td>11</td>
+<td>small numbers</td>
+<td></td>
+<td>27</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#kickvotereasontype">KickVoteReasonType</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#kickvoteresulttype">KickVoteResultType</a></td>
+<td>5</td>
+<td>small numbers</td>
+<td></td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#lobbytypes">LobbyTypes</a></td>
+<td>6</td>
+<td>small numbers</td>
+<td></td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#netplayertypes">NetPlayerTypes</a></td>
+<td>1</td>
+<td>small numbers</td>
+<td></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#networkcapabilitystates">NetworkCapabilityStates</a></td>
+<td>3</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#networkplatform">NetworkPlatform</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>16</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#networkresult">NetworkResult</a></td>
+<td>7</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#networkservicesaccounttype">NetworkServicesAccountType</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#playbycloudendturnbehaviortype">PlayByCloudEndTurnBehaviorType</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#playbycloudreadybehaviortype">PlayByCloudReadyBehaviorType</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#servertype">ServerType</a></td>
+<td>8</td>
+<td>small numbers</td>
+<td></td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#transporttype">TransportType</a></td>
+<td>5</td>
+<td>small numbers</td>
+<td></td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Input, mouse and keys</h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Members</th>
+<th>Value kind</th>
+<th>Hash of</th>
+<th>Script uses</th>
+<th>GameCore enum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#batteryevents">BatteryEvents</a></td>
+<td>2</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#buttonstates">ButtonStates</a></td>
+<td>8</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#drag">Drag</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>18</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#gamepadevents">GamepadEvents</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#gestures">Gestures</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#keyevents">KeyEvents</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>169</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#keys">Keys</a></td>
+<td>205</td>
+<td>small numbers</td>
+<td></td>
+<td>183</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#mouse">Mouse</a></td>
+<td>11</td>
+<td>small numbers</td>
+<td></td>
+<td>1603</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#mouseevents">MouseEvents</a></td>
+<td>18</td>
+<td>small numbers</td>
+<td></td>
+<td>153</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>UI and application</h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Members</th>
+<th>Value kind</th>
+<th>Hash of</th>
+<th>Script uses</th>
+<th>GameCore enum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#arxdevicetypes">ARXDeviceTypes</a></td>
+<td>7</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#civilizationleveltypes">CivilizationLevelTypes</a></td>
+<td>5</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>16</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#combatvistype">CombatVisType</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>25</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#cursortypes">CursorTypes</a></td>
+<td>3</td>
+<td>hash values (32-bit, signed)</td>
+<td><code>CURSOR_NAME</code></td>
+<td>70</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#diplomaticthreattypes">DiplomaticThreatTypes</a></td>
+<td>6</td>
+<td>small numbers</td>
+<td></td>
+<td>5</td>
+<td><a href="../enums/DiplomaticThreatTypes.html">DiplomaticThreatTypes</a> (6 of 6 members agree)</td>
+</tr>
+<tr>
+<td><a href="#diplomatictrusttypes">DiplomaticTrustTypes</a></td>
+<td>8</td>
+<td>small numbers</td>
+<td></td>
+<td>7</td>
+<td><a href="../enums/DiplomaticTrustTypes.html">DiplomaticTrustTypes</a> (8 of 8 members agree)</td>
+</tr>
+<tr>
+<td><a href="#diplomaticvisibilitytypes">DiplomaticVisibilityTypes</a></td>
+<td>5</td>
+<td>small numbers</td>
+<td></td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#eratypes">EraTypes</a></td>
+<td>1</td>
+<td>small numbers</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#inputlayouttypes">InputLayoutTypes</a></td>
+<td>2</td>
+<td>small numbers</td>
+<td></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#lenslayers">LensLayers</a></td>
+<td>60</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#mainmenustatedonedata">MainMenuStateDoneData</a></td>
+<td>1</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#optionfiletypes">OptionFileTypes</a></td>
+<td>5</td>
+<td>small numbers</td>
+<td></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#popuppriority">PopupPriority</a></td>
+<td>11</td>
+<td>small numbers</td>
+<td></td>
+<td>175</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#pushdatasearchoptions">PushDataSearchOptions</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#ribbonhudstats">RibbonHUDStats</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>13</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#savedirectories">SaveDirectories</a></td>
+<td>6</td>
+<td>small numbers</td>
+<td></td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#savefiletypes">SaveFileTypes</a></td>
+<td>2</td>
+<td>small numbers</td>
+<td></td>
+<td>25</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#savelocationoptions">SaveLocationOptions</a></td>
+<td>8</td>
+<td>small numbers</td>
+<td></td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#savelocations">SaveLocations</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>23</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#savetypes">SaveTypes</a></td>
+<td>5</td>
+<td>small numbers</td>
+<td></td>
+<td>44</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#slotstatus">SlotStatus</a></td>
+<td>5</td>
+<td>small numbers</td>
+<td></td>
+<td>76</td>
+<td><a href="../enums/SlotStatus.html">SlotStatus</a> (5 of 5 members agree)</td>
+</tr>
+<tr>
+<td><a href="#tradeitemdesirability">TradeItemDesirability</a></td>
+<td>5</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td><a href="../enums/TradeItemDesirability.html">TradeItemDesirability</a> (5 of 5 members agree)</td>
+</tr>
+<tr>
+<td><a href="#turnnotifyfrequencymodes">TurnNotifyFrequencyModes</a></td>
+<td>2</td>
+<td>small numbers</td>
+<td></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#worldrenderview">WorldRenderView</a></td>
+<td>2</td>
+<td>small numbers</td>
+<td></td>
+<td>25</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Game state and interface modes</h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Members</th>
+<th>Value kind</th>
+<th>Hash of</th>
+<th>Script uses</th>
+<th>GameCore enum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#boostsources">BoostSources</a></td>
+<td>11</td>
+<td>small numbers</td>
+<td></td>
+<td>16</td>
+<td><a href="../enums/BoostSources.html">BoostSources</a> (11 of 11 members agree)</td>
+</tr>
+<tr>
+<td><a href="#cloudnotifytypes">CloudNotifyTypes</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>21</td>
+<td><a href="../enums/CloudNotifyTypes.html">CloudNotifyTypes</a> (4 of 4 members agree)</td>
+</tr>
+<tr>
+<td><a href="#combattypes">CombatTypes</a></td>
+<td>6</td>
+<td>hash values (32-bit, signed)</td>
+<td><code>COMBAT_NAME</code></td>
+<td>21</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#directiontypes">DirectionTypes</a></td>
+<td>7</td>
+<td>small numbers</td>
+<td></td>
+<td>741</td>
+<td><a href="../enums/DirectionTypes.html">DirectionTypes</a> (7 of 7 members agree)</td>
+</tr>
+<tr>
+<td><a href="#falloutdamages">FalloutDamages</a></td>
+<td>1</td>
+<td>small numbers</td>
+<td></td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#gamemodetypes">GameModeTypes</a></td>
+<td>6</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>15</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#gamepadinputtype">GamePadInputType</a></td>
+<td>8</td>
+<td>small numbers</td>
+<td></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#gamestatetypes">GameStateTypes</a></td>
+<td>3</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>23</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#herodiscoverysources">HeroDiscoverySources</a></td>
+<td>8</td>
+<td>small numbers</td>
+<td></td>
+<td>7</td>
+<td><a href="../enums/HeroDiscoverySources.html">HeroDiscoverySources</a> (8 of 8 members agree)</td>
+</tr>
+<tr>
+<td><a href="#identityconversionoutcome">IdentityConversionOutcome</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>12</td>
+<td><a href="../enums/IdentityConversionOutcome.html">IdentityConversionOutcome</a> (3 of 3 members agree)</td>
+</tr>
+<tr>
+<td><a href="#interfacemodetypes">InterfaceModeTypes</a></td>
+<td>44</td>
+<td>hash values (32-bit, signed)</td>
+<td><code>INTERFACEMODE_NAME</code></td>
+<td>610</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#layoutoverride">LayoutOverride</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#leaderrandompooltypes">LeaderRandomPoolTypes</a></td>
+<td>3</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#militaryformationtypes">MilitaryFormationTypes</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>105</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#playertypes">PlayerTypes</a></td>
+<td>4</td>
+<td>small numbers</td>
+<td></td>
+<td>157</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#plotdynamicpropertykeys">PlotDynamicPropertyKeys</a></td>
+<td>1</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#plothighlighttypes">PlotHighlightTypes</a></td>
+<td>3</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#revealedstate">RevealedState</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>66</td>
+<td><a href="../enums/RevealedState.html">RevealedState</a> (3 of 3 members agree)</td>
+</tr>
+<tr>
+<td><a href="#teamtypes">TeamTypes</a></td>
+<td>1</td>
+<td>small numbers</td>
+<td></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#turnlimittypes">TurnLimitTypes</a></td>
+<td>3</td>
+<td>hash values (32-bit, signed)</td>
+<td><code>TURNLIMIT_NAME</code></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#turntimertypes">TurnTimerTypes</a></td>
+<td>3</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#tutoriallevel">TutorialLevel</a></td>
+<td>6</td>
+<td>small numbers</td>
+<td></td>
+<td>164</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#unitconfirmationlevel">UnitConfirmationLevel</a></td>
+<td>3</td>
+<td>small numbers</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#unitpropertykeys">UnitPropertyKeys</a></td>
+<td>2</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#wmdstatus">WMDStatus</a></td>
+<td>5</td>
+<td>hash values (32-bit, signed)</td>
+<td>no simple prefix</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="chattargettypes"></a>ChatTargetTypes</h3>
+<p>Multiplayer and lobby, 4 members, small numbers, used in 7 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_CHATTARGET</code></td>
+<td>-1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>CHATTARGET_ALL</code></td>
+<td>-2</td>
+<td>17</td>
+</tr>
+<tr>
+<td><code>CHATTARGET_TEAM</code></td>
+<td>-3</td>
+<td>19</td>
+</tr>
+<tr>
+<td><code>CHATTARGET_PLAYER</code></td>
+<td>-4</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="firewiretypes"></a>FireWireTypes</h3>
+<p>Multiplayer and lobby, 1 members, small numbers, used in 4 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>1 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FIREWIRE_INVALID_ID</code></td>
+<td>-1</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="joingameerrortype"></a>JoinGameErrorType</h3>
+<p>Multiplayer and lobby, 4 members, small numbers, used in 1 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JOINGAME_NO_ERROR</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>JOINGAME_ROOM_FULL</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>JOINGAME_GAME_STARTED</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>JOINGAME_TOO_MANY_MATCHES</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="kickreason"></a>KickReason</h3>
+<p>Multiplayer and lobby, 11 members, small numbers, used in 4 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>11 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KICK_NONE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KICK_NO_HOST</code></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>KICK_HOST</code></td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>KICK_TIMEOUT</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KICK_UNRECOGNIZED</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KICK_UNAUTHORIZED</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KICK_NO_ROOM</code></td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>KICK_VERSION_MISMATCH</code></td>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>KICK_MOD_ERROR</code></td>
+<td>8</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>KICK_MOD_MISSING</code></td>
+<td>9</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>KICK_MATCH_DELETED</code></td>
+<td>10</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="kickvotereasontype"></a>KickVoteReasonType</h3>
+<p>Multiplayer and lobby, 4 members, small numbers, used in 2 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KICKVOTE_NONE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KICKVOTE_AFK</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>KICKVOTE_GRIEFING</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>KICKVOTE_CHEATING</code></td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="kickvoteresulttype"></a>KickVoteResultType</h3>
+<p>Multiplayer and lobby, 5 members, small numbers, used in 1 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KICKVOTERESULT_PENDING</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KICKVOTERESULT_NOT_ENOUGH_PLAYERS</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>KICKVOTERESULT_TIME_ELAPSED</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>KICKVOTERESULT_VOTED_NO_KICK</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>KICKVOTERESULT_VOTE_PASSED</code></td>
+<td>4</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="lobbytypes"></a>LobbyTypes</h3>
+<p>Multiplayer and lobby, 6 members, small numbers, used in 3 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>6 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LOBBY_NONE</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>LOBBY_LAN</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>LOBBY_INTERNET</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>LOBBY_SERVER</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>LOBBY_FIRAXIS_CLOUD</code></td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>LOBBY_CROSSPLAY</code></td>
+<td>5</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="netplayertypes"></a>NetPlayerTypes</h3>
+<p>Multiplayer and lobby, 1 members, small numbers, used in 1 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>1 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INVALID_PLAYERID</code></td>
+<td>-1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="networkcapabilitystates"></a>NetworkCapabilityStates</h3>
+<p>Multiplayer and lobby, 3 members, hash values (32-bit, signed). Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unsupported</code></td>
+<td>1133691932</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Enabled</code></td>
+<td>1622900199</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Disabled</code></td>
+<td>-2106068150</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="networkplatform"></a>NetworkPlatform</h3>
+<p>Multiplayer and lobby, 4 members, small numbers, used in 9 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NETWORK_PLATFORM_UNKNOWN</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORK_PLATFORM_STEAM</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>NETWORK_PLATFORM_RAIL</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORK_PLATFORM_EOS</code></td>
+<td>3</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="networkresult"></a>NetworkResult</h3>
+<p>Multiplayer and lobby, 7 members, small numbers. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>7 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NETWORKRESULT_NONE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORKRESULT_OK</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORKRESULT_PENDING</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORKRESULT_SIGNIN</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORKRESULT_ERROR</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORKRESULT_NO_ROOM</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NETWORKRESULT_EXISTING_OPERATION_PENDING</code></td>
+<td>6</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="networkservicesaccounttype"></a>NetworkServicesAccountType</h3>
+<p>Multiplayer and lobby, 4 members, small numbers. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unknown</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Anonymous</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Full</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Platform</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="playbycloudendturnbehaviortype"></a>PlayByCloudEndTurnBehaviorType</h3>
+<p>Multiplayer and lobby, 3 members, small numbers, used in 2 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PBC_ENDTURN_ASK_ME</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>PBC_ENDTURN_DO_NOTHING</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>PBC_ENDTURN_EXIT_MAINMENU</code></td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="playbycloudreadybehaviortype"></a>PlayByCloudReadyBehaviorType</h3>
+<p>Multiplayer and lobby, 3 members, small numbers, used in 2 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PBC_READY_ASK_ME</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>PBC_READY_DO_NOTHING</code></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>PBC_READY_EXIT_LOBBY</code></td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="servertype"></a>ServerType</h3>
+<p>Multiplayer and lobby, 8 members, small numbers, used in 10 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>8 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SERVER_TYPE_NONE</code></td>
+<td>0</td>
+<td>33</td>
+</tr>
+<tr>
+<td><code>SERVER_TYPE_LAN</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>SERVER_TYPE_INTERNET</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>SERVER_TYPE_STEAM</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>SERVER_TYPE_STEAM_DEDICATED</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>SERVER_TYPE_HOTSEAT</code></td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>SERVER_TYPE_FIRAXIS_CLOUD</code></td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>SERVER_TYPE_CROSSPLAY</code></td>
+<td>7</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="transporttype"></a>TransportType</h3>
+<p>Multiplayer and lobby, 5 members, small numbers, used in 3 script files. Registered by <code>0x268250</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TRANSPORT_NONE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TRANSPORT_ENET</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TRANSPORT_STEAM</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TRANSPORT_RAIL</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TRANSPORT_EOS</code></td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="batteryevents"></a>BatteryEvents</h3>
+<p>Input, mouse and keys, 2 members, small numbers. Registered by <code>0x8ef560</code>.</p>
+<details open="open">
+<summary>2 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BatteryUpdate</code></td>
+<td>46</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>BatteryChargingUpdate</code></td>
+<td>47</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="buttonstates"></a>ButtonStates</h3>
+<p>Input, mouse and keys, 8 members, small numbers. Registered by <code>0x8ef560</code>.</p>
+<details open="open">
+<summary>8 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eNormal</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eOver</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eDown</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eDisabled</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eSelectedNormal</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eSelectedOver</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eSelectedDown</code></td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eSelectedDisabledState</code></td>
+<td>7</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="drag"></a>Drag</h3>
+<p>Input, mouse and keys, 4 members, small numbers, used in 5 script files. Registered by <code>0x8ef560</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eDown</code></td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>eDrag</code></td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>eDrop</code></td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>eDragDisabled</code></td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="gamepadevents"></a>GamepadEvents</h3>
+<p>Input, mouse and keys, 3 members, small numbers, used in 1 script files. Registered by <code>0x8ef560</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ButtonDown</code></td>
+<td>9</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>ButtonUp</code></td>
+<td>10</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>JoystickMotion</code></td>
+<td>11</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="gestures"></a>Gestures</h3>
+<p>Input, mouse and keys, 4 members, small numbers, used in 1 script files. Registered by <code>0x8ef560</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Dragging</code></td>
+<td>32</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Stretching</code></td>
+<td>64</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>Holding</code></td>
+<td>128</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Any</code></td>
+<td>480</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="keyevents"></a>KeyEvents</h3>
+<p>Input, mouse and keys, 4 members, small numbers, used in 110 script files. Registered by <code>0x8ef560</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WM_KEYDOWN</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KeyDown</code></td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>WM_KEYUP</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KeyUp</code></td>
+<td>1</td>
+<td>161</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="keys"></a>Keys</h3>
+<p>Input, mouse and keys, 205 members, small numbers, used in 108 script files. Registered by <code>0x8ef560</code>.</p>
+<details>
+<summary>205 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>F</code></td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>9</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>J</code></td>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>11</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>13</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>14</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>15</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>16</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td>17</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>18</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>19</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>20</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>21</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>22</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>23</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>24</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>25</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>26</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>29</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>31</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>32</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td>33</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td>34</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td>35</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>9</code></td>
+<td>36</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>27</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_A</code></td>
+<td>128</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>PAD_B</code></td>
+<td>129</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>PAD_X</code></td>
+<td>130</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>PAD_Y</code></td>
+<td>131</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_BACK</code></td>
+<td>147</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_START</code></td>
+<td>146</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_RSHOULDER</code></td>
+<td>132</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>PAD_LSHOULDER</code></td>
+<td>133</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_LTRIGGER</code></td>
+<td>134</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_RTRIGGER</code></td>
+<td>136</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>PAD_UP</code></td>
+<td>138</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_DOWN</code></td>
+<td>139</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_LEFT</code></td>
+<td>140</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_RIGHT</code></td>
+<td>141</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_LTHUMB_PRESS</code></td>
+<td>148</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_RTHUMB_PRESS</code></td>
+<td>149</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_STICK_LEFT</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_STICK_RIGHT</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PAD_TOOLTIP_REFRESH</code></td>
+<td>190</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_SPACE</code></td>
+<td>100</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>VK_BACK</code></td>
+<td>104</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_TAB</code></td>
+<td>101</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>VK_RETURN</code></td>
+<td>102</td>
+<td>22</td>
+</tr>
+<tr>
+<td><code>VK_SHIFT</code></td>
+<td>106</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>VK_CONTROL</code></td>
+<td>107</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>VK_MENU</code></td>
+<td>108</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ALT</code></td>
+<td>108</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>VK_PAUSE</code></td>
+<td>99</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_CAPITAL</code></td>
+<td>115</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>VK_KANA</code></td>
+<td>21</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_HANGEUL</code></td>
+<td>21</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_HANGUL</code></td>
+<td>21</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_JUNJA</code></td>
+<td>23</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_FINAL</code></td>
+<td>24</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_HANJA</code></td>
+<td>25</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_KANJI</code></td>
+<td>25</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ESCAPE</code></td>
+<td>103</td>
+<td>119</td>
+</tr>
+<tr>
+<td><code>VK_CONVERT</code></td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NONCONVERT</code></td>
+<td>29</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ACCEPT</code></td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_MODECHANGE</code></td>
+<td>31</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_PRIOR</code></td>
+<td>79</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NEXT</code></td>
+<td>82</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_END</code></td>
+<td>81</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_HOME</code></td>
+<td>78</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LEFT</code></td>
+<td>83</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_UP</code></td>
+<td>84</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_RIGHT</code></td>
+<td>85</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_DOWN</code></td>
+<td>86</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_SNAPSHOT</code></td>
+<td>98</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_INSERT</code></td>
+<td>77</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_DELETE</code></td>
+<td>80</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LWIN</code></td>
+<td>118</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_RWIN</code></td>
+<td>119</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_APPS</code></td>
+<td>120</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_SLEEP</code></td>
+<td>95</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD0</code></td>
+<td>37</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD1</code></td>
+<td>38</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD2</code></td>
+<td>39</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD3</code></td>
+<td>40</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD4</code></td>
+<td>41</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD5</code></td>
+<td>42</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD6</code></td>
+<td>43</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD7</code></td>
+<td>44</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD8</code></td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMPAD9</code></td>
+<td>46</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_MULTIPLY</code></td>
+<td>47</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ADD</code></td>
+<td>48</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>VK_SEPARATOR</code></td>
+<td>122</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_SUBTRACT</code></td>
+<td>49</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>VK_DECIMAL</code></td>
+<td>50</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_DIVIDE</code></td>
+<td>51</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F1</code></td>
+<td>53</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F2</code></td>
+<td>54</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F3</code></td>
+<td>55</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F4</code></td>
+<td>56</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F5</code></td>
+<td>57</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F6</code></td>
+<td>58</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F7</code></td>
+<td>59</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F8</code></td>
+<td>60</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F9</code></td>
+<td>61</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F10</code></td>
+<td>62</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F11</code></td>
+<td>63</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F12</code></td>
+<td>64</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F13</code></td>
+<td>65</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F14</code></td>
+<td>66</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F15</code></td>
+<td>67</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F16</code></td>
+<td>68</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F17</code></td>
+<td>69</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F18</code></td>
+<td>70</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F19</code></td>
+<td>71</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F20</code></td>
+<td>72</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F21</code></td>
+<td>73</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F22</code></td>
+<td>74</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F23</code></td>
+<td>75</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_F24</code></td>
+<td>76</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NUMLOCK</code></td>
+<td>116</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_SCROLL</code></td>
+<td>117</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_NEC_EQUAL</code></td>
+<td>146</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_FJ_JISHO</code></td>
+<td>146</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_FJ_MASSHOU</code></td>
+<td>147</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_FJ_TOUROKU</code></td>
+<td>148</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_FJ_LOYA</code></td>
+<td>149</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_FJ_ROYA</code></td>
+<td>150</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LSHIFT</code></td>
+<td>109</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_RSHIFT</code></td>
+<td>112</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LCONTROL</code></td>
+<td>110</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_RCONTROL</code></td>
+<td>113</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LMENU</code></td>
+<td>111</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_RMENU</code></td>
+<td>114</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_BROWSER_BACK</code></td>
+<td>166</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_BROWSER_FORWARD</code></td>
+<td>167</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_BROWSER_REFRESH</code></td>
+<td>168</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_BROWSER_STOP</code></td>
+<td>169</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_BROWSER_SEARCH</code></td>
+<td>170</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_BROWSER_FAVORITES</code></td>
+<td>171</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_BROWSER_HOME</code></td>
+<td>172</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_VOLUME_MUTE</code></td>
+<td>183</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_VOLUME_DOWN</code></td>
+<td>184</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_VOLUME_UP</code></td>
+<td>185</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_MEDIA_NEXT_TRACK</code></td>
+<td>186</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_MEDIA_PREV_TRACK</code></td>
+<td>187</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_MEDIA_STOP</code></td>
+<td>188</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_MEDIA_PLAY_PAUSE</code></td>
+<td>189</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LAUNCH_MAIL</code></td>
+<td>180</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LAUNCH_MEDIA_SELECT</code></td>
+<td>181</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LAUNCH_APP1</code></td>
+<td>182</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_LAUNCH_APP2</code></td>
+<td>183</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_1</code></td>
+<td>87</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_PLUS</code></td>
+<td>88</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_COMMA</code></td>
+<td>89</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_MINUS</code></td>
+<td>90</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_PERIOD</code></td>
+<td>91</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_2</code></td>
+<td>92</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_3</code></td>
+<td>93</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_4</code></td>
+<td>94</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_5</code></td>
+<td>95</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_6</code></td>
+<td>96</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_7</code></td>
+<td>97</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_8</code></td>
+<td>223</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_AX</code></td>
+<td>225</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_102</code></td>
+<td>226</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ICO_HELP</code></td>
+<td>227</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ICO_00</code></td>
+<td>228</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_PROCESSKEY</code></td>
+<td>229</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ICO_CLEAR</code></td>
+<td>230</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_PACKET</code></td>
+<td>231</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_RESET</code></td>
+<td>233</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_JUMP</code></td>
+<td>234</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_PA1</code></td>
+<td>235</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_PA2</code></td>
+<td>236</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_PA3</code></td>
+<td>237</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_WSCTRL</code></td>
+<td>238</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_CUSEL</code></td>
+<td>239</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_ATTN</code></td>
+<td>240</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_FINISH</code></td>
+<td>241</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_COPY</code></td>
+<td>242</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_AUTO</code></td>
+<td>243</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_ENLW</code></td>
+<td>244</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_BACKTAB</code></td>
+<td>245</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ATTN</code></td>
+<td>246</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_CRSEL</code></td>
+<td>247</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_EXSEL</code></td>
+<td>248</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_EREOF</code></td>
+<td>249</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_PLAY</code></td>
+<td>250</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_ZOOM</code></td>
+<td>251</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_NONAME</code></td>
+<td>252</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_PA1</code></td>
+<td>253</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>VK_OEM_CLEAR</code></td>
+<td>254</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="mouse"></a>Mouse</h3>
+<p>Input, mouse and keys, 11 members, small numbers, used in 168 script files. Registered by <code>0x8ef560</code>.</p>
+<details open="open">
+<summary>11 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eLClick</code></td>
+<td>0</td>
+<td>1125</td>
+</tr>
+<tr>
+<td><code>eLDblClick</code></td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>eRClick</code></td>
+<td>1</td>
+<td>94</td>
+</tr>
+<tr>
+<td><code>eRDblClick</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eMClick</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>eMDblClick</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eWheel</code></td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eMouseEnter</code></td>
+<td>9</td>
+<td>368</td>
+</tr>
+<tr>
+<td><code>eMouseExit</code></td>
+<td>10</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>eTap</code></td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>eDblTap</code></td>
+<td>7</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="mouseevents"></a>MouseEvents</h3>
+<p>Input, mouse and keys, 18 members, small numbers, used in 16 script files. Registered by <code>0x8ef560</code>.</p>
+<details>
+<summary>18 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MouseFirst</code></td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MouseWheel</code></td>
+<td>28</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>MouseMove</code></td>
+<td>12</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>LButtonDown</code></td>
+<td>13</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>LButtonUp</code></td>
+<td>14</td>
+<td>49</td>
+</tr>
+<tr>
+<td><code>LButtonDoubleClick</code></td>
+<td>15</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>RButtonDown</code></td>
+<td>16</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>RButtonUp</code></td>
+<td>17</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>RButtonDoubleClick</code></td>
+<td>18</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MButtonDown</code></td>
+<td>19</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>MButtonUp</code></td>
+<td>20</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>MButtonDoubleClick</code></td>
+<td>21</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PointerLeave</code></td>
+<td>39</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>PointerEnter</code></td>
+<td>38</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MouseLast</code></td>
+<td>29</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PointerUp</code></td>
+<td>36</td>
+<td>41</td>
+</tr>
+<tr>
+<td><code>PointerDown</code></td>
+<td>35</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>PointerUpdate</code></td>
+<td>34</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="arxdevicetypes"></a>ARXDeviceTypes</h3>
+<p>UI and application, 7 members, small numbers. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>7 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNKNOWN</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>IPHONE</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>IPAD</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ANDROID_SMALL</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ANDROID_LARGE</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ANDROID_XLARGE</code></td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ANDROID_UNKNOWN</code></td>
+<td>7</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="civilizationleveltypes"></a>CivilizationLevelTypes</h3>
+<p>UI and application, 5 members, hash values (32-bit, signed), used in 9 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_CIVILIZATION_LEVEL</code></td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CIVILIZATION_LEVEL_TRIBE</code></td>
+<td>-648418268</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CIVILIZATION_LEVEL_CITY_STATE</code></td>
+<td>-1034456971</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CIVILIZATION_LEVEL_FULL_CIV</code></td>
+<td>624367792</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>CIVILIZATION_LEVEL_FREE_CITIES</code></td>
+<td>82227360</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="combatvistype"></a>CombatVisType</h3>
+<p>UI and application, 4 members, small numbers, used in 3 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ATTACKER</code></td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>DEFENDER</code></td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>INTERCEPTOR</code></td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>ANTI_AIR</code></td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="cursortypes"></a>CursorTypes</h3>
+<p>UI and application, 3 members, hash values (32-bit, signed), used in 6 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NORMAL</code></td>
+<td>-2047893672</td>
+<td>34</td>
+</tr>
+<tr>
+<td><code>WAIT</code></td>
+<td>547071007</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>RANGE_ATTACK</code></td>
+<td>-46722710</td>
+<td>36</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="diplomaticthreattypes"></a>DiplomaticThreatTypes</h3>
+<p>UI and application, 6 members, small numbers, used in 1 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>6 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNKNOWN_THREAT</code></td>
+<td>-1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>INVALID_THREAT</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MAJOR_THREAT</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>MODERATE_THREAT</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>MINOR_THREAT</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>NO_THREAT</code></td>
+<td>4</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="diplomatictrusttypes"></a>DiplomaticTrustTypes</h3>
+<p>UI and application, 8 members, small numbers, used in 1 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>8 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNKNOWN_TRUST</code></td>
+<td>-1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>INVALID_TRUST</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TRUSTED</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>BARELY_KNOWN</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>SOME_TRUST</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>LOW_TRUST</code></td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISTRUSTED</code></td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>NO_TRUST</code></td>
+<td>6</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="diplomaticvisibilitytypes"></a>DiplomaticVisibilityTypes</h3>
+<p>UI and application, 5 members, small numbers, used in 1 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NONE</code></td>
+<td>-1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>LIMITED</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>FULL</code></td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>SECRET</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TOP_SECRET</code></td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="eratypes"></a>EraTypes</h3>
+<p>UI and application, 1 members, small numbers, used in 1 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>1 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NONE</code></td>
+<td>-1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="inputlayouttypes"></a>InputLayoutTypes</h3>
+<p>UI and application, 2 members, small numbers, used in 1 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>2 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PC</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>CONSOLE</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="lenslayers"></a>LensLayers</h3>
+<p>UI and application, 60 members, small numbers. Registered by <code>0x4d7c30</code>.</p>
+<details>
+<summary>60 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNITS_MILITARY</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>UNITS_RELIGIOUS</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>UNITS_CIVILIAN</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>UNITS_ARCHAELOGY</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>YIELD_ICONS</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>IMPROVEMENTS</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>RESOURCES_BONUS</code></td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>RESOURCES_LUXURY</code></td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>RESOURCES_STRATEGIC</code></td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_CITY_CENTER</code></td>
+<td>9</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_ENCAMPMENT_DEFENSE</code></td>
+<td>10</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_CAMPUS</code></td>
+<td>11</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_NEARBY_MOUNTAIN</code></td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_HOLY_SITE</code></td>
+<td>13</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_ENCAMPMENT_MILITARY</code></td>
+<td>14</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_COMMERICAL_HUB</code></td>
+<td>15</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_THEATER_DISTRICT</code></td>
+<td>16</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_HARBOR</code></td>
+<td>17</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_AQUEDUCT</code></td>
+<td>18</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_ENTERTAINMENT_COMPLEX</code></td>
+<td>19</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_INDUSTRIAL_ZONE</code></td>
+<td>20</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_NEIGHBORHOOD</code></td>
+<td>21</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_AERODROME</code></td>
+<td>22</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_SPACEPORT</code></td>
+<td>23</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TOURIST_TOKENS</code></td>
+<td>24</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>RECOMMENDATION_SETTLER</code></td>
+<td>25</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>RECOMMENDATION_BUILDER</code></td>
+<td>26</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CULTURE_BORDERS</code></td>
+<td>27</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LABELS_EMPIRE</code></td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LABELS_CONTINENT</code></td>
+<td>29</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_GOVERNMENT</code></td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_OWNING_CIV</code></td>
+<td>31</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_CONTINENT</code></td>
+<td>32</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_APPEAL_LEVEL</code></td>
+<td>33</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_WATER_AVAILABLITY</code></td>
+<td>34</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_RELIGION</code></td>
+<td>35</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_GREAT_PEOPLE</code></td>
+<td>36</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MOVEMENT_PATH</code></td>
+<td>37</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MOVEMENT_ZONE_OF_CONTROL</code></td>
+<td>38</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TRADE_ROUTE</code></td>
+<td>39</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS</code></td>
+<td>48</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ADJACENCY_BONUS_DISTRICTS</code></td>
+<td>49</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ADJACENCY_BONUS_UNITS</code></td>
+<td>40</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>SELECTION</code></td>
+<td>41</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MAP_HEX_MASK</code></td>
+<td>42</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>PURCHASE_PLOT</code></td>
+<td>43</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MOVEMENT_RANGE</code></td>
+<td>44</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>WORLD_CURSOR</code></td>
+<td>56</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CITIZEN_MANAGEMENT</code></td>
+<td>45</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ATTACK_RANGE</code></td>
+<td>46</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CITY_YIELDS</code></td>
+<td>47</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NUMBERS</code></td>
+<td>50</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_ATTACK</code></td>
+<td>51</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_PLACEMENT</code></td>
+<td>52</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>HEX_COLORING_MOVEMENT</code></td>
+<td>53</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CULTURAL_IDENTITY_LENS</code></td>
+<td>54</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LOYALTY_FREECITY_WARNING</code></td>
+<td>55</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_FIRST</code></td>
+<td>9</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISTRICTS_LAST</code></td>
+<td>23</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NUM_LENS_LAYERS</code></td>
+<td>57</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="mainmenustatedonedata"></a>MainMenuStateDoneData</h3>
+<p>UI and application, 1 members, small numbers. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>1 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eBeginGame</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="optionfiletypes"></a>OptionFileTypes</h3>
+<p>UI and application, 5 members, small numbers, used in 2 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Application</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Audio</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Graphics</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>KeyMap</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>User</code></td>
+<td>5</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="popuppriority"></a>PopupPriority</h3>
+<p>UI and application, 11 members, small numbers, used in 68 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>11 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Low</code></td>
+<td>100</td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>MediumHigh</code></td>
+<td>700</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>Medium</code></td>
+<td>500</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>High</code></td>
+<td>1000</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>Tutorial</code></td>
+<td>2000</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>TutorialHigh</code></td>
+<td>2500</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>Civilopedia</code></td>
+<td>3000</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>Utmost</code></td>
+<td>5000</td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>Achievement</code></td>
+<td>4000</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Current</code></td>
+<td>9999</td>
+<td>88</td>
+</tr>
+<tr>
+<td><code>Default</code></td>
+<td>10000</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="pushdatasearchoptions"></a>PushDataSearchOptions</h3>
+<p>UI and application, 4 members, small numbers, used in 1 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsOpen</code></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>IsClosed</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>IsSeen</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>IsUnseen</code></td>
+<td>8</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="ribbonhudstats"></a>RibbonHUDStats</h3>
+<p>UI and application, 3 members, small numbers, used in 3 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HIDE</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>FOCUS</code></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>SHOW</code></td>
+<td>2</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="savedirectories"></a>SaveDirectories</h3>
+<p>UI and application, 6 members, small numbers, used in 3 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>6 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DEFAULT</code></td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>USER</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>BENCHMARK</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>AUTOMATION</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TUTORIAL</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DEMO</code></td>
+<td>5</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="savefiletypes"></a>SaveFileTypes</h3>
+<p>UI and application, 2 members, small numbers, used in 6 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>2 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAME_STATE</code></td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>GAME_CONFIGURATION</code></td>
+<td>1</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="savelocationoptions"></a>SaveLocationOptions</h3>
+<p>UI and application, 8 members, small numbers, used in 3 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>8 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_OPTIONS</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>NORMAL</code></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>AUTOSAVE</code></td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>QUICKSAVE</code></td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>PREVIOUS</code></td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LOAD_METADATA</code></td>
+<td>32</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>MOST_RECENT_ONLY</code></td>
+<td>64</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>DIRECTORIES</code></td>
+<td>256</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="savelocations"></a>SaveLocations</h3>
+<p>UI and application, 3 members, small numbers, used in 8 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LOCAL_STORAGE</code></td>
+<td>1</td>
+<td>23</td>
+</tr>
+<tr>
+<td><code>STEAM_CLOUD</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>FIRAXIS_CLOUD</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="savetypes"></a>SaveTypes</h3>
+<p>UI and application, 5 members, small numbers, used in 6 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SINGLE_PLAYER</code></td>
+<td>1</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>NETWORK_MULTIPLAYER</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>HOTSEAT</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>WORLDBUILDER_MAP</code></td>
+<td>4</td>
+<td>17</td>
+</tr>
+<tr>
+<td><code>TILED_MAP</code></td>
+<td>5</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="slotstatus"></a>SlotStatus</h3>
+<p>UI and application, 5 members, small numbers, used in 13 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SS_OPEN</code></td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>SS_COMPUTER</code></td>
+<td>1</td>
+<td>17</td>
+</tr>
+<tr>
+<td><code>SS_CLOSED</code></td>
+<td>2</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>SS_TAKEN</code></td>
+<td>3</td>
+<td>29</td>
+</tr>
+<tr>
+<td><code>SS_OBSERVER</code></td>
+<td>4</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="tradeitemdesirability"></a>TradeItemDesirability</h3>
+<p>UI and application, 5 members, small numbers. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIRED</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>NEUTRAL</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISFAVORED</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>POOR</code></td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>FORBIDDEN</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="turnnotifyfrequencymodes"></a>TurnNotifyFrequencyModes</h3>
+<p>UI and application, 2 members, small numbers, used in 1 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>2 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TurnNotify_MyTurn</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>TurnNotify_EveryTurn</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="worldrenderview"></a>WorldRenderView</h3>
+<p>UI and application, 2 members, small numbers, used in 11 script files. Registered by <code>0x4d7c30</code>.</p>
+<details open="open">
+<summary>2 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VIEW_3D</code></td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>VIEW_2D</code></td>
+<td>1</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="boostsources"></a>BoostSources</h3>
+<p>Game state and interface modes, 11 members, small numbers, used in 1 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>11 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_BOOST_SOURCE</code></td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_TRIGGER</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_GOODYHUT</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_WONDER</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_GREAT_PERSON</code></td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_ESPIONAGE</code></td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_RESEARCH_AGREEMENT</code></td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_TEAMMATE</code></td>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_CAPTURED_CITY</code></td>
+<td>7</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_TRADING_POST</code></td>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>BOOST_SOURCE_BARBARIAN_CLAN_STEAL</code></td>
+<td>9</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="cloudnotifytypes"></a>CloudNotifyTypes</h3>
+<p>Game state and interface modes, 4 members, small numbers, used in 2 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLOUDNOTIFY_NONE</code></td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>CLOUDNOTIFY_YOURTURN</code></td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>CLOUDNOTIFY_GAMEREADY</code></td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>CLOUDNOTIFY_ERROR</code></td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="combattypes"></a>CombatTypes</h3>
+<p>Game state and interface modes, 6 members, hash values (32-bit, signed), used in 1 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>6 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MELEE</code></td>
+<td>748940753</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>RANGED</code></td>
+<td>784649805</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>BOMBARD</code></td>
+<td>1338578493</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>AIR</code></td>
+<td>1184946373</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>ICBM</code></td>
+<td>1640240290</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>RELIGIOUS</code></td>
+<td>1580168296</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="directiontypes"></a>DirectionTypes</h3>
+<p>Game state and interface modes, 7 members, small numbers, used in 37 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>7 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_DIRECTION</code></td>
+<td>-1</td>
+<td>11</td>
+</tr>
+<tr>
+<td><code>DIRECTION_NORTHEAST</code></td>
+<td>0</td>
+<td>151</td>
+</tr>
+<tr>
+<td><code>DIRECTION_EAST</code></td>
+<td>1</td>
+<td>108</td>
+</tr>
+<tr>
+<td><code>DIRECTION_SOUTHEAST</code></td>
+<td>2</td>
+<td>57</td>
+</tr>
+<tr>
+<td><code>DIRECTION_SOUTHWEST</code></td>
+<td>3</td>
+<td>74</td>
+</tr>
+<tr>
+<td><code>DIRECTION_WEST</code></td>
+<td>4</td>
+<td>101</td>
+</tr>
+<tr>
+<td><code>DIRECTION_NORTHWEST</code></td>
+<td>5</td>
+<td>152</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="falloutdamages"></a>FalloutDamages</h3>
+<p>Game state and interface modes, 1 members, small numbers, used in 3 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>1 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>USE_FALLOUT_DEFAULT</code></td>
+<td>-1</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="gamemodetypes"></a>GameModeTypes</h3>
+<p>Game state and interface modes, 6 members, hash values (32-bit, signed), used in 4 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>6 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SINGLEPLAYER</code></td>
+<td>-379035929</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>HOTSEAT</code></td>
+<td>208129763</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>INTERNET</code></td>
+<td>1161765858</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>LAN</code></td>
+<td>20463770</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>PLAYBYCLOUD</code></td>
+<td>285185446</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>CROSSPLAY</code></td>
+<td>-413661464</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="gamepadinputtype"></a>GamePadInputType</h3>
+<p>Game state and interface modes, 8 members, small numbers, used in 1 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>8 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INPUT_TYPE_BUMPERS</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>INPUT_TYPE_LEFTSTICK</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>INPUT_TYPE_DPAD</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>INPUT_TYPE_LEFTSTICKDPAD</code></td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>INPUT_TYPE_RIGHTSTICK</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>INPUT_TYPE_PAD_BUTTONS</code></td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>INPUT_TYPE_FIELD</code></td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>INPUT_TYPE_PLOT</code></td>
+<td>7</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="gamestatetypes"></a>GameStateTypes</h3>
+<p>Game state and interface modes, 3 members, hash values (32-bit, signed), used in 6 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAMESTATE_PREGAME</code></td>
+<td>-901772834</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>GAMESTATE_LOAD_PREGAME</code></td>
+<td>-2091470447</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>GAMESTATE_LAUNCHED</code></td>
+<td>-818482450</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="herodiscoverysources"></a>HeroDiscoverySources</h3>
+<p>Game state and interface modes, 8 members, small numbers, used in 1 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>8 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_DISCOVERY_SOURCE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>DISCOVERY_SOURCE_PROJECT</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISCOVERY_SOURCE_GOODY_HUT</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISCOVERY_SOURCE_CITY_STATE_INFLUENCE</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISCOVERY_SOURCE_CITY_STATE_SUZERAIN</code></td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISCOVERY_SOURCE_NEW_CONTINENT</code></td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISCOVERY_SOURCE_NATURAL_WONDER</code></td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISCOVERY_SOURCE_ENCOUNTER</code></td>
+<td>7</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="identityconversionoutcome"></a>IdentityConversionOutcome</h3>
+<p>Game state and interface modes, 3 members, small numbers, used in 4 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STABLE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LOSING_LOYALTY</code></td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>GAINING_LOYALTY</code></td>
+<td>2</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="interfacemodetypes"></a>InterfaceModeTypes</h3>
+<p>Game state and interface modes, 44 members, hash values (32-bit, signed), used in 57 script files. Registered by <code>0x15e0b0</code>.</p>
+<details>
+<summary>44 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NONE</code></td>
+<td>-1</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>DEBUG</code></td>
+<td>372882022</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>SELECTION</code></td>
+<td>-1615000917</td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>MOVE_TO</code></td>
+<td>-1008159109</td>
+<td>17</td>
+</tr>
+<tr>
+<td><code>ROUTE_TO</code></td>
+<td>-985702248</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>ATTACK</code></td>
+<td>1119194277</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>RANGE_ATTACK</code></td>
+<td>-792658014</td>
+<td>11</td>
+</tr>
+<tr>
+<td><code>DEPLOY</code></td>
+<td>-1756456604</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>REBASE</code></td>
+<td>1115649463</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>CITY_RANGE_ATTACK</code></td>
+<td>1538406634</td>
+<td>24</td>
+</tr>
+<tr>
+<td><code>DISTRICT_RANGE_ATTACK</code></td>
+<td>-228309745</td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>AIR_ATTACK</code></td>
+<td>-1611767772</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>WMD_STRIKE</code></td>
+<td>409072336</td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>ICBM_STRIKE</code></td>
+<td>1615466633</td>
+<td>14</td>
+</tr>
+<tr>
+<td><code>COASTAL_RAID</code></td>
+<td>380199913</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>EMBARK</code></td>
+<td>-1837166573</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>DISEMBARK</code></td>
+<td>-630021262</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>CITY_PLOT_SELECTION</code></td>
+<td>438733329</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>BUILDING_PLACEMENT</code></td>
+<td>-85343547</td>
+<td>19</td>
+</tr>
+<tr>
+<td><code>DISTRICT_PLACEMENT</code></td>
+<td>-664236824</td>
+<td>23</td>
+</tr>
+<tr>
+<td><code>MAKE_TRADE_ROUTE</code></td>
+<td>-1756334557</td>
+<td>26</td>
+</tr>
+<tr>
+<td><code>FORM_CORPS</code></td>
+<td>-24202438</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>FORM_ARMY</code></td>
+<td>1356399193</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>AIRLIFT</code></td>
+<td>-1331449691</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>PARADROP</code></td>
+<td>-159775061</td>
+<td>14</td>
+</tr>
+<tr>
+<td><code>TELEPORT_TO_CITY</code></td>
+<td>175937486</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>PLACE_MAP_PIN</code></td>
+<td>807898670</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>CITY_MANAGEMENT</code></td>
+<td>-934432593</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>WB_SELECT_PLOT</code></td>
+<td>828515937</td>
+<td>14</td>
+</tr>
+<tr>
+<td><code>SPY_CHOOSE_MISSION</code></td>
+<td>1070742220</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>SPY_TRAVEL_TO_CITY</code></td>
+<td>-1820340997</td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>NATURAL_WONDER</code></td>
+<td>491433502</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>CINEMATIC</code></td>
+<td>397393512</td>
+<td>21</td>
+</tr>
+<tr>
+<td><code>VIEW_MODAL_LENS</code></td>
+<td>4552534</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>PRIORITY_TARGET</code></td>
+<td>1504273883</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>BUILD_IMPROVEMENT_ADJACENT</code></td>
+<td>-110027413</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>MOVE_JUMP</code></td>
+<td>1627526106</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>FULLSCREEN_MAP</code></td>
+<td>-255747212</td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>CITY_SELECTION</code></td>
+<td>-1771815636</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>SACRIFICE_SELECTION</code></td>
+<td>-57145246</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>KILL_WEAKER_UNIT</code></td>
+<td>-1834615361</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>TRANSFORM_UNIT</code></td>
+<td>-798936508</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>RESTORE_UNIT_MOVES</code></td>
+<td>-1601251582</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>NAVAL_GOLD_RAID</code></td>
+<td>1446743340</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="layoutoverride"></a>LayoutOverride</h3>
+<p>Game state and interface modes, 3 members, small numbers. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LAYOUT_OVERRIDE_NONE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LAYOUT_OVERRIDE_PHONE</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LAYOUT_OVERRIDE_TABLET</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="leaderrandompooltypes"></a>LeaderRandomPoolTypes</h3>
+<p>Game state and interface modes, 3 members, hash values (32-bit, signed), used in 2 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LEADER_RANDOM_POOL_DEFAULT</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>LEADER_RANDOM_POOL_1</code></td>
+<td>-1440298592</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>LEADER_RANDOM_POOL_2</code></td>
+<td>858757146</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="militaryformationtypes"></a>MilitaryFormationTypes</h3>
+<p>Game state and interface modes, 4 members, small numbers, used in 14 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_MILITARY_FORMATION</code></td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>STANDARD_MILITARY_FORMATION</code></td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>CORPS_MILITARY_FORMATION</code></td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr>
+<td><code>ARMY_MILITARY_FORMATION</code></td>
+<td>2</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="playertypes"></a>PlayerTypes</h3>
+<p>Game state and interface modes, 4 members, small numbers, used in 50 script files. Registered by <code>0x15e0b0, 0x4d7c30</code>.</p>
+<details open="open">
+<summary>4 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_PLAYER</code></td>
+<td>-1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>NONE</code></td>
+<td>-1</td>
+<td>91</td>
+</tr>
+<tr>
+<td><code>OBSERVER</code></td>
+<td>1000</td>
+<td>56</td>
+</tr>
+<tr>
+<td><code>BARBARIAN</code></td>
+<td>63</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="plotdynamicpropertykeys"></a>PlotDynamicPropertyKeys</h3>
+<p>Game state and interface modes, 1 members, small numbers. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>1 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DELAYED_DAMAGE_TURN</code></td>
+<td>386561951</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="plothighlighttypes"></a>PlotHighlightTypes</h3>
+<p>Game state and interface modes, 3 members, hash values (32-bit, signed), used in 3 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PLACEMENT</code></td>
+<td>-928433870</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>ATTACK</code></td>
+<td>1541530529</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>MOVEMENT</code></td>
+<td>-325315996</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="revealedstate"></a>RevealedState</h3>
+<p>Game state and interface modes, 3 members, small numbers, used in 14 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HIDDEN</code></td>
+<td>0</td>
+<td>11</td>
+</tr>
+<tr>
+<td><code>REVEALED</code></td>
+<td>1</td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>VISIBLE</code></td>
+<td>2</td>
+<td>46</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="teamtypes"></a>TeamTypes</h3>
+<p>Game state and interface modes, 1 members, small numbers, used in 2 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>1 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_TEAM</code></td>
+<td>-1</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="turnlimittypes"></a>TurnLimitTypes</h3>
+<p>Game state and interface modes, 3 members, hash values (32-bit, signed), used in 2 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NONE</code></td>
+<td>-2137446946</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>GAMESPEED</code></td>
+<td>-554045265</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CUSTOM</code></td>
+<td>40503376</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="turntimertypes"></a>TurnTimerTypes</h3>
+<p>Game state and interface modes, 3 members, hash values (32-bit, signed). Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TURNTIMER_NONE</code></td>
+<td>-1525060181</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TURNTIMER_STANDARD</code></td>
+<td>2133509568</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>TURNTIMER_DYNAMIC</code></td>
+<td>698670180</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="tutoriallevel"></a>TutorialLevel</h3>
+<p>Game state and interface modes, 6 members, small numbers, used in 7 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>6 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_TUTORIAL</code></td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LEVEL_TBS_FAMILIAR</code></td>
+<td>0</td>
+<td>29</td>
+</tr>
+<tr>
+<td><code>LEVEL_CIV_FAMILIAR</code></td>
+<td>1</td>
+<td>34</td>
+</tr>
+<tr>
+<td><code>LEVEL_NEW_TO_XP1</code></td>
+<td>2</td>
+<td>58</td>
+</tr>
+<tr>
+<td><code>LEVEL_NEW_TO_XP2</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>LEVEL_EXPERIENCED_PLAYER</code></td>
+<td>4</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="unitconfirmationlevel"></a>UnitConfirmationLevel</h3>
+<p>Game state and interface modes, 3 members, small numbers. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>3 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CONFIRMATION_LEVEL_NONE</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CONFIRMATION_LEVEL_COMBAT</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CONFIRMATION_LEVEL_ALWAYS</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="unitpropertykeys"></a>UnitPropertyKeys</h3>
+<p>Game state and interface modes, 2 members, hash values (32-bit, signed), used in 1 script files. Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>2 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MaxHitPoints</code></td>
+<td>2101331729</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>LifespanRemaining</code></td>
+<td>-1318296071</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3><a id="wmdstatus"></a>WMDStatus</h3>
+<p>Game state and interface modes, 5 members, hash values (32-bit, signed). Registered by <code>0x15e0b0</code>.</p>
+<details open="open">
+<summary>5 members</summary>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WMD_NONE</code></td>
+<td>-1507201801</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>WMD_OK</code></td>
+<td>447518686</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>WMD_FAIL_NOT_CAPABLE</code></td>
+<td>-1072418246</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>WMD_FAIL_NO_ATTACKER</code></td>
+<td>1885064494</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>WMD_FAIL_ATTACKER_LOW_HEALTH</code></td>
+<td>-106498130</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -1,0 +1,2796 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>UI XML vocabulary</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › UI XML vocabulary</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>UI XML vocabulary (ForgeUI)</h1>
+<p>The XML files that define the game's user interface are read by the exe's UI toolkit, ForgeUI. Each control type has code that reads its attributes and child names; this page lists them straight from that code, so it shows <strong>every attribute a control type understands</strong>, including ones the game's own files never use. The shipped column counts how often the attribute appears on that element in the 346 UI XML files that come with the game.</p>
+<p>Of the 338 names found in the exe, 172 are used in shipped files (the rest are supported but not used by the game, or are child element and style names). Verified: the name is a literal in the control's XML-reading code and the shipped counts. Inferred: the element name of each control type (checked against the tags in the shipped files) and the short explanations.</p>
+<p>Most control types inherit the attributes of <code>ControlBase</code> (the <code>Container</code> element: <code>Anchor</code>, <code>Size</code>, <code>Offset</code>, <code>Hidden</code>, mouse handling, ...); each type section below lists the names its own code reads in addition and marks those that are also in the base list.</p>
+<h2>Control types</h2>
+<table>
+<thead>
+<tr>
+<th>Control type (C++)</th>
+<th>XML element</th>
+<th>Element uses in shipped files</th>
+<th>Names read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#alphaanim">AlphaAnim</a></td>
+<td><code>&lt;AlphaAnim&gt;</code></td>
+<td>387</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="#animcontrol">AnimControl</a></td>
+<td><code>&lt;SlideAnim&gt;</code></td>
+<td>294</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="#buttoncontrol">ButtonControl</a></td>
+<td><code>&lt;Button&gt;</code></td>
+<td>505</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="#buttoncontrolbase">ButtonControlBase</a></td>
+<td>base class, no element</td>
+<td>—</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="#checkboxcontrol">CheckBoxControl</a></td>
+<td><code>&lt;CheckBox&gt;</code></td>
+<td>123</td>
+<td>23</td>
+</tr>
+<tr>
+<td><a href="#colorboxbuttoncontrol">ColorBoxButtonControl</a></td>
+<td><code>&lt;ColorBox&gt;</code></td>
+<td>2</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="#contextbase">ContextBase</a></td>
+<td><code>&lt;Context&gt;</code></td>
+<td>251</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="#controlbase">ControlBase</a></td>
+<td><code>&lt;Container&gt;</code></td>
+<td>2840</td>
+<td>34</td>
+</tr>
+<tr>
+<td><a href="#dragcontrol">DragControl</a></td>
+<td><code>&lt;Drag&gt;</code></td>
+<td>8</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="#editboxcontrol">EditBoxControl</a></td>
+<td><code>&lt;EditBox&gt;</code></td>
+<td>57</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="#flipanim">FlipAnim</a></td>
+<td><code>&lt;FlipAnim&gt;</code></td>
+<td>50</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="#graphcontrol">GraphControl</a></td>
+<td><code>&lt;Graph&gt;</code></td>
+<td>10</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="#gridbuttoncontrol">GridButtonControl</a></td>
+<td><code>&lt;GridButton&gt;</code></td>
+<td>1018</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="#gridcontrol">GridControl</a></td>
+<td><code>&lt;Grid&gt;</code></td>
+<td>2079</td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="#imagecontrol">ImageControl</a></td>
+<td><code>&lt;Image&gt;</code></td>
+<td>3369</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a href="#linecontrol">LineControl</a></td>
+<td><code>&lt;Line&gt;</code></td>
+<td>89</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="#listboxcontrolbase">ListBoxControlBase</a></td>
+<td><code>&lt;ListBox&gt;</code></td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#metercontrol">MeterControl</a></td>
+<td><code>&lt;Meter&gt;</code></td>
+<td>128</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="#moviecontrol">MovieControl</a></td>
+<td><code>&lt;Movie&gt;</code></td>
+<td>11</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="#pulldowncontrol">PullDownControl</a></td>
+<td><code>&lt;PullDown&gt;</code></td>
+<td>132</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="#radiobuttoncontrol">RadioButtonControl</a></td>
+<td><code>&lt;RadioButton&gt;</code></td>
+<td>36</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="#scrollpanelcontrol">ScrollPanelControl</a></td>
+<td><code>&lt;ScrollPanel&gt;</code></td>
+<td>350</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="#scrolltextcontrol">ScrollTextControl</a></td>
+<td><code>&lt;ScrollTextField&gt;</code></td>
+<td>33</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#slidercontrol">SliderControl</a></td>
+<td><code>&lt;Slider&gt;</code></td>
+<td>23</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="#stackcontrol">StackControl</a></td>
+<td><code>&lt;Stack&gt;</code></td>
+<td>1891</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="#tabcontrol">TabControl</a></td>
+<td><code>&lt;Tab&gt;</code></td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#textbuttoncontrol">TextButtonControl</a></td>
+<td><code>&lt;TextButton&gt;</code></td>
+<td>22</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="#textcontrol">TextControl</a></td>
+<td><code>&lt;Label&gt;</code></td>
+<td>3787</td>
+<td>31</td>
+</tr>
+<tr>
+<td><a href="#tutorialcontrol">TutorialControl</a></td>
+<td><code>&lt;Tutorial&gt;</code></td>
+<td>114</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="#tweencontrol">TweenControl</a></td>
+<td>base class, no element</td>
+<td>—</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="#worldanchorcontrol">WorldAnchorControl</a></td>
+<td><code>&lt;WorldAnchor&gt;</code></td>
+<td>14</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="alphaanim"></a>AlphaAnim</h2>
+<p>XML element: <code>&lt;AlphaAnim&gt;</code> (curated alias).</p>
+<details>
+<summary>5 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="alphaanim-alphaend"></a><code>AlphaEnd</code></td>
+<td>366</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="alphaanim-alphabegin"></a><code>AlphaBegin</code></td>
+<td>235</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="alphaanim-alphastart"></a><code>AlphaStart</code></td>
+<td>131</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="alphaanim-texture"></a><code>Texture</code></td>
+<td>—</td>
+<td></td>
+<td>Image file for the control.</td>
+</tr>
+<tr>
+<td><a id="alphaanim-textureoffset"></a><code>TextureOffset</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Cycle</code> (382), <code>Speed</code> (380), <code>ID</code> (287), <code>Size</code> (273), <code>Function</code> (190), <code>Stopped</code> (110), <code>Pause</code> (89), <code>FunctionPower</code> (16).</p>
+<h2><a id="animcontrol"></a>AnimControl</h2>
+<p>XML element: <code>&lt;SlideAnim&gt;</code> (curated alias).</p>
+<details>
+<summary>16 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="animcontrol-cycle"></a><code>Cycle</code></td>
+<td>274</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-function"></a><code>Function</code></td>
+<td>244</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-speed"></a><code>Speed</code></td>
+<td>174</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-stopped"></a><code>Stopped</code></td>
+<td>61</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-pause"></a><code>Pause</code></td>
+<td>30</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-functionpower"></a><code>FunctionPower</code></td>
+<td>24</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-endpause"></a><code>EndPause</code></td>
+<td>15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-bounce"></a><code>Bounce</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-onebounce"></a><code>OneBounce</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-outquad"></a><code>OutQuad</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-outquint"></a><code>OutQuint</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-outsine"></a><code>OutSine</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-square"></a><code>Square</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-texturesize"></a><code>TextureSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-void1"></a><code>Void1</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="animcontrol-void2"></a><code>Void2</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Start</code> (197), <code>ID</code> (155), <code>End</code> (154), <code>Size</code> (145), <code>EndOffset</code> (118), <code>Begin</code> (70), <code>Style</code> (20).</p>
+<h2><a id="buttoncontrol"></a>ButtonControl</h2>
+<p>XML element: <code>&lt;Button&gt;</code> (curated alias).</p>
+<details>
+<summary>16 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="buttoncontrol-texture"></a><code>Texture</code></td>
+<td>293</td>
+<td></td>
+<td>Image file for the control.</td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-stateoffsetincrement"></a><code>StateOffsetIncrement</code></td>
+<td>131</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-nostatechange"></a><code>NoStateChange</code></td>
+<td>71</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-textureoffset"></a><code>TextureOffset</code></td>
+<td>40</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-color"></a><code>Color</code></td>
+<td>10</td>
+<td>yes</td>
+<td>Tint colour, as <code>r,g,b,a</code> or a style colour name.</td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-flipx"></a><code>FlipX</code></td>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-stretchmode"></a><code>StretchMode</code></td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-string"></a><code>String</code></td>
+<td>3</td>
+<td></td>
+<td>Text or text key to show.</td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-singlestatetextureheight"></a><code>SingleStateTextureHeight</code></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-flipy"></a><code>FlipY</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-iconsize"></a><code>IconSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-linear"></a><code>Linear</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-sampler"></a><code>Sampler</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-singlestatetexturewidth"></a><code>SingleStateTextureWidth</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-textanchor"></a><code>TextAnchor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrol-textoffset"></a><code>TextOffset</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (501), <code>Size</code> (372), <code>Style</code> (174).</p>
+<h2><a id="buttoncontrolbase"></a>ButtonControlBase</h2>
+<p>XML element: none, this is a base class of other controls (base class (no element of its own)).</p>
+<details>
+<summary>12 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="buttoncontrolbase-callonhold"></a><code>CallOnHold</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-customignorepressmaxtime"></a><code>CustomIgnorePressMaxTime</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-disabled"></a><code>Disabled</code></td>
+<td>—</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-disabledcallbacks"></a><code>DisabledCallbacks</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-disabledmousemovecallbacks"></a><code>DisabledMouseMoveCallbacks</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-ignorepressaftertime"></a><code>IgnorePressAfterTime</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-mintouchesbeforeinactive"></a><code>MinTouchesBeforeInactive</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-selected"></a><code>Selected</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-soundid"></a><code>SoundID</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-states"></a><code>States</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-void1"></a><code>Void1</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="buttoncontrolbase-void2"></a><code>Void2</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="checkboxcontrol"></a>CheckBoxControl</h2>
+<p>XML element: <code>&lt;CheckBox&gt;</code> (curated alias).</p>
+<details>
+<summary>23 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="checkboxcontrol-buttonsize"></a><code>ButtonSize</code></td>
+<td>45</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-buttontexture"></a><code>ButtonTexture</code></td>
+<td>45</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-checktexture"></a><code>CheckTexture</code></td>
+<td>45</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-ischecked"></a><code>IsChecked</code></td>
+<td>38</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-textoffset"></a><code>TextOffset</code></td>
+<td>31</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-checksize"></a><code>CheckSize</code></td>
+<td>30</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-checktextureoffset"></a><code>CheckTextureOffset</code></td>
+<td>30</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-boxonleft"></a><code>BoxOnLeft</code></td>
+<td>29</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-useselectedtextures"></a><code>UseSelectedTextures</code></td>
+<td>28</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-checkcolor"></a><code>CheckColor</code></td>
+<td>22</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-checkoffset"></a><code>CheckOffset</code></td>
+<td>13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-uncheckoffset"></a><code>UnCheckOffset</code></td>
+<td>13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-unchecksize"></a><code>UnCheckSize</code></td>
+<td>13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-unchecktexture"></a><code>UnCheckTexture</code></td>
+<td>13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-unchecktextureoffset"></a><code>UnCheckTextureOffset</code></td>
+<td>7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-nostatechange"></a><code>NoStateChange</code></td>
+<td>6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-checktexturesize"></a><code>CheckTextureSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-singlestatetextureheight"></a><code>SingleStateTextureHeight</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-stateoffsetincrement"></a><code>StateOffsetIncrement</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-stretchmode"></a><code>StretchMode</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-textanchorside"></a><code>TextAnchorSide</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-uncheckcolor"></a><code>UnCheckColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="checkboxcontrol-unchecktexturesize"></a><code>UnCheckTextureSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (123), <code>Style</code> (107), <code>String</code> (60), <code>Size</code> (20), <code>WrapWidth</code> (13), <code>Align</code> (12).</p>
+<h2><a id="colorboxbuttoncontrol"></a>ColorBoxButtonControl</h2>
+<p>XML element: <code>&lt;ColorBox&gt;</code> (curated alias).</p>
+<details>
+<summary>9 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="colorboxbuttoncontrol-disabledcolor"></a><code>DisabledColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-downcolor"></a><code>DownColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-normalcolor"></a><code>NormalColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-overcolor"></a><code>OverColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-selectedcolor"></a><code>SelectedColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-selecteddisabledcolor"></a><code>SelectedDisabledColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-selecteddowncolor"></a><code>SelectedDownColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-selectednormalcolor"></a><code>SelectedNormalColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="colorboxbuttoncontrol-selectedovercolor"></a><code>SelectedOverColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="contextbase"></a>ContextBase</h2>
+<p>XML element: <code>&lt;Context&gt;</code> (curated alias).</p>
+<details>
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="contextbase-deferload"></a><code>DeferLoad</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="contextbase-filename"></a><code>FileName</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation</code> (102), <code>Style</code> (57), <code>FontStyle</code> (50), <code>ColorSet</code> (46), <code>Name</code> (39).</p>
+<h2><a id="controlbase"></a>ControlBase</h2>
+<p>XML element: <code>&lt;Container&gt;</code> (curated alias).</p>
+<details open="open">
+<summary>34 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="controlbase-offset"></a><code>Offset</code></td>
+<td>1054</td>
+<td></td>
+<td>Position offset from the anchor, as <code>x,y</code>.</td>
+</tr>
+<tr>
+<td><a id="controlbase-anchor"></a><code>Anchor</code></td>
+<td>908</td>
+<td></td>
+<td>Where the control sits in its parent, as <code>horizontal,vertical</code> (for example <code>C,C</code> or <code>L,T</code>).</td>
+</tr>
+<tr>
+<td><a id="controlbase-hidden"></a><code>Hidden</code></td>
+<td>184</td>
+<td></td>
+<td>Starts hidden.</td>
+</tr>
+<tr>
+<td><a id="controlbase-tooltip"></a><code>ToolTip</code></td>
+<td>58</td>
+<td></td>
+<td>Tooltip text key.</td>
+</tr>
+<tr>
+<td><a id="controlbase-minsize"></a><code>MinSize</code></td>
+<td>45</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-anchorside"></a><code>AnchorSide</code></td>
+<td>38</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-autosizepadding"></a><code>AutoSizePadding</code></td>
+<td>26</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-consumemouse"></a><code>ConsumeMouse</code></td>
+<td>19</td>
+<td></td>
+<td>Stops mouse events from reaching controls underneath.</td>
+</tr>
+<tr>
+<td><a id="controlbase-consumemouseover"></a><code>ConsumeMouseOver</code></td>
+<td>17</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-consumemousebutton"></a><code>ConsumeMouseButton</code></td>
+<td>12</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-color"></a><code>Color</code></td>
+<td>8</td>
+<td></td>
+<td>Tint colour, as <code>r,g,b,a</code> or a style colour name.</td>
+</tr>
+<tr>
+<td><a id="controlbase-innerpadding"></a><code>InnerPadding</code></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-consumeallmouse"></a><code>ConsumeAllMouse</code></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-padding"></a><code>Padding</code></td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-consumemousewheel"></a><code>ConsumeMouseWheel</code></td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-inneroffset"></a><code>InnerOffset</code></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-alpha"></a><code>Alpha</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-autosize"></a><code>AutoSize</code></td>
+<td>—</td>
+<td></td>
+<td>Size the control to its content.</td>
+</tr>
+<tr>
+<td><a id="controlbase-clampsize"></a><code>ClampSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-debug"></a><code>debug</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-disabled"></a><code>Disabled</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-false"></a><code>False</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-globalupdate"></a><code>GlobalUpdate</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-hideonmouseover"></a><code>HideOnMouseOver</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-horizontal"></a><code>Horizontal</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-modalblocksinput"></a><code>ModalBlocksInput</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-needsmouseover"></a><code>NeedsMouseOver</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-noclip"></a><code>NoClip</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-showonmouseout"></a><code>ShowOnMouseOut</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-showonmouseover"></a><code>ShowOnMouseOver</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-sizepadding"></a><code>SizePadding</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-tooltiptype"></a><code>ToolTipType</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-tutorialactive"></a><code>TutorialActive</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="controlbase-vertical"></a><code>Vertical</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Size</code> (2406), <code>ID</code> (1558), <code>Style</code> (69).</p>
+<h2><a id="dragcontrol"></a>DragControl</h2>
+<p>XML element: <code>&lt;Drag&gt;</code> (curated alias).</p>
+<details>
+<summary>6 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="dragcontrol-buttons"></a><code>Buttons</code></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="dragcontrol-dragthreshold"></a><code>DragThreshold</code></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="dragcontrol-snapbackspeed"></a><code>SnapBackSpeed</code></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="dragcontrol-clicktodrag"></a><code>ClickToDrag</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="dragcontrol-dragmode"></a><code>DragMode</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="dragcontrol-placeholderalpha"></a><code>PlaceholderAlpha</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="editboxcontrol"></a>EditBoxControl</h2>
+<p>XML element: <code>&lt;EditBox&gt;</code> (curated alias).</p>
+<details>
+<summary>12 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="editboxcontrol-editmode"></a><code>EditMode</code></td>
+<td>47</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-maxlength"></a><code>MaxLength</code></td>
+<td>42</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-focusstop"></a><code>FocusStop</code></td>
+<td>15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-keepfocus"></a><code>KeepFocus</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-highlightcolor"></a><code>HighlightColor</code></td>
+<td>9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-cursorcolor"></a><code>CursorColor</code></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-obscure"></a><code>Obscure</code></td>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-numberinput"></a><code>NumberInput</code></td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-disableprofanitycheck"></a><code>DisableProfanityCheck</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-highlightonfocus"></a><code>HighlightOnFocus</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-mailinput"></a><code>MailInput</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="editboxcontrol-textlocked"></a><code>TextLocked</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (57), <code>Size</code> (56), <code>Style</code> (53), <code>FontStyle</code> (21), <code>ColorSet</code> (15), <code>String</code> (11), <code>CallOnChar</code> (10).</p>
+<h2><a id="flipanim"></a>FlipAnim</h2>
+<p>XML element: <code>&lt;FlipAnim&gt;</code> (curated alias).</p>
+<details>
+<summary>4 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="flipanim-columns"></a><code>Columns</code></td>
+<td>50</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="flipanim-framecount"></a><code>FrameCount</code></td>
+<td>50</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="flipanim-texture"></a><code>Texture</code></td>
+<td>50</td>
+<td></td>
+<td>Image file for the control.</td>
+</tr>
+<tr>
+<td><a id="flipanim-speed"></a><code>Speed</code></td>
+<td>44</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Size</code> (50), <code>ID</code> (28), <code>EndPause</code> (21), <code>Stopped</code> (18).</p>
+<h2><a id="graphcontrol"></a>GraphControl</h2>
+<p>XML element: <code>&lt;Graph&gt;</code> (curated alias).</p>
+<details>
+<summary>12 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="graphcontrol-domain"></a><code>Domain</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-numberinterval"></a><code>NumberInterval</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-range"></a><code>Range</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-showaxes"></a><code>ShowAxes</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-showgridlines"></a><code>ShowGridLines</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-shownumbers"></a><code>ShowNumbers</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-showticks"></a><code>ShowTicks</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-tickinterval"></a><code>TickInterval</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-background"></a><code>Background</code></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-fontstyle"></a><code>FontStyle</code></td>
+<td>5</td>
+<td></td>
+<td>A named style from the style sheets.</td>
+</tr>
+<tr>
+<td><a id="graphcontrol-gridcolor"></a><code>GridColor</code></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="graphcontrol-axiscolor"></a><code>AxisColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (10), <code>Size</code> (10).</p>
+<h2><a id="gridbuttoncontrol"></a>GridButtonControl</h2>
+<p>XML element: <code>&lt;GridButton&gt;</code> (curated alias).</p>
+<details>
+<summary>16 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="gridbuttoncontrol-string"></a><code>String</code></td>
+<td>508</td>
+<td></td>
+<td>Text or text key to show.</td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-slicecorner"></a><code>SliceCorner</code></td>
+<td>186</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-slicetexturesize"></a><code>SliceTextureSize</code></td>
+<td>183</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-slicesize"></a><code>SliceSize</code></td>
+<td>101</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-textoffset"></a><code>TextOffset</code></td>
+<td>86</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-fontstyle"></a><code>FontStyle</code></td>
+<td>60</td>
+<td></td>
+<td>A named style from the style sheets.</td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-fontsize"></a><code>FontSize</code></td>
+<td>44</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-textanchor"></a><code>TextAnchor</code></td>
+<td>34</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-sizetotext"></a><code>SizeToText</code></td>
+<td>25</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-textcolor"></a><code>TextColor</code></td>
+<td>13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-color0"></a><code>Color0</code></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-color1"></a><code>Color1</code></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-griddata"></a><code>GridData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-selectedtextcolor"></a><code>SelectedTextColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-slicestart"></a><code>SliceStart</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridbuttoncontrol-ulsize"></a><code>ULSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Size</code> (959), <code>ID</code> (948), <code>Style</code> (870), <code>Texture</code> (189), <code>StateOffsetIncrement</code> (110), <code>TruncateWidth</code> (29), <code>ColorSet</code> (25), <code>NoStateChange</code> (22), <code>WrapWidth</code> (15), <code>SmallCaps</code> (14), <code>SmallCapsType</code> (14), <code>States</code> (13), <code>Void1</code> (10).</p>
+<h2><a id="gridcontrol"></a>GridControl</h2>
+<p>XML element: <code>&lt;Grid&gt;</code> (curated alias).</p>
+<details>
+<summary>11 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="gridcontrol-texture"></a><code>Texture</code></td>
+<td>1112</td>
+<td></td>
+<td>Image file for the control.</td>
+</tr>
+<tr>
+<td><a id="gridcontrol-slicecorner"></a><code>SliceCorner</code></td>
+<td>1097</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-slicetexturesize"></a><code>SliceTextureSize</code></td>
+<td>948</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-slicesize"></a><code>SliceSize</code></td>
+<td>625</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-slicestart"></a><code>SliceStart</code></td>
+<td>69</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-nostatechange"></a><code>NoStateChange</code></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-stateoffsetincrement"></a><code>StateOffsetIncrement</code></td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-textureoffset"></a><code>TextureOffset</code></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-hkerning"></a><code>HKerning</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-texstart"></a><code>TexStart</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="gridcontrol-vkerning"></a><code>VKerning</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Size</code> (1943), <code>ID</code> (1019), <code>Style</code> (970).</p>
+<h2><a id="imagecontrol"></a>ImageControl</h2>
+<p>XML element: <code>&lt;Image&gt;</code> (curated alias).</p>
+<details>
+<summary>21 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="imagecontrol-texture"></a><code>Texture</code></td>
+<td>3030</td>
+<td></td>
+<td>Image file for the control.</td>
+</tr>
+<tr>
+<td><a id="imagecontrol-stretchmode"></a><code>StretchMode</code></td>
+<td>303</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-flipy"></a><code>FlipY</code></td>
+<td>251</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-textureoffset"></a><code>TextureOffset</code></td>
+<td>221</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-iconsize"></a><code>IconSize</code></td>
+<td>150</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-flipx"></a><code>FlipX</code></td>
+<td>123</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-rotate"></a><code>Rotate</code></td>
+<td>116</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-sampler"></a><code>Sampler</code></td>
+<td>11</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-colorspace"></a><code>ColorSpace</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-linear"></a><code>Linear</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-maskchildren"></a><code>MaskChildren</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-masktexture"></a><code>MaskTexture</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-masktextureoffset"></a><code>MaskTextureOffset</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-normalizedquad"></a><code>NormalizedQuad</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-scale"></a><code>Scale</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-textureoffsetuv"></a><code>TextureOffsetUV</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-texturesizeuv"></a><code>TextureSizeUV</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-tilex"></a><code>TileX</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-tiley"></a><code>TileY</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-uniform"></a><code>Uniform</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="imagecontrol-uniformtofill"></a><code>UniformToFill</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Size</code> (3012), <code>ID</code> (1978), <code>Icon</code> (211), <code>StateOffsetIncrement</code> (15), <code>Speed</code> (15), <code>Style</code> (12).</p>
+<h2><a id="linecontrol"></a>LineControl</h2>
+<p>XML element: <code>&lt;Line&gt;</code> (curated alias).</p>
+<details>
+<summary>6 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="linecontrol-color"></a><code>Color</code></td>
+<td>89</td>
+<td>yes</td>
+<td>Tint colour, as <code>r,g,b,a</code> or a style colour name.</td>
+</tr>
+<tr>
+<td><a id="linecontrol-start"></a><code>Start</code></td>
+<td>89</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="linecontrol-width"></a><code>Width</code></td>
+<td>89</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="linecontrol-ignorepixelscaleforcliprender"></a><code>IgnorePixelScaleForClipRender</code></td>
+<td>7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="linecontrol-worldend"></a><code>WorldEnd</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="linecontrol-worldstart"></a><code>WorldStart</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>End</code> (89), <code>ID</code> (24).</p>
+<h2><a id="listboxcontrolbase"></a>ListBoxControlBase</h2>
+<p>XML element: <code>&lt;ListBox&gt;</code> (curated alias).</p>
+<details>
+<summary>3 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="listboxcontrolbase-listcontainer"></a><code>ListContainer</code></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="listboxcontrolbase-entryinstance"></a><code>EntryInstance</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="listboxcontrolbase-instancedata"></a><code>InstanceData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="metercontrol"></a>MeterControl</h2>
+<p>XML element: <code>&lt;Meter&gt;</code> (curated alias).</p>
+<details>
+<summary>9 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="metercontrol-texture"></a><code>Texture</code></td>
+<td>128</td>
+<td></td>
+<td>Image file for the control.</td>
+</tr>
+<tr>
+<td><a id="metercontrol-follow"></a><code>Follow</code></td>
+<td>50</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="metercontrol-speed"></a><code>Speed</code></td>
+<td>48</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="metercontrol-percent"></a><code>Percent</code></td>
+<td>38</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="metercontrol-counterclockwise"></a><code>CounterClockwise</code></td>
+<td>26</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="metercontrol-color"></a><code>Color</code></td>
+<td>17</td>
+<td>yes</td>
+<td>Tint colour, as <code>r,g,b,a</code> or a style colour name.</td>
+</tr>
+<tr>
+<td><a id="metercontrol-hasshadow"></a><code>HasShadow</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="metercontrol-shadowalpha"></a><code>ShadowAlpha</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="metercontrol-texturesize"></a><code>TextureSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (128), <code>Size</code> (128).</p>
+<h2><a id="moviecontrol"></a>MovieControl</h2>
+<p>XML element: <code>&lt;Movie&gt;</code> (curated alias).</p>
+<details>
+<summary>20 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="moviecontrol-stretchmode"></a><code>StretchMode</code></td>
+<td>11</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-loopmovie"></a><code>LoopMovie</code></td>
+<td>7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-movie"></a><code>Movie</code></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-maskchildren"></a><code>MaskChildren</code></td>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-flipx"></a><code>FlipX</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-flipy"></a><code>FlipY</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-linear"></a><code>Linear</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-loopmoviemask"></a><code>LoopMovieMask</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-masktexture"></a><code>MaskTexture</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-masktextureoffset"></a><code>MaskTextureOffset</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-moviemask"></a><code>MovieMask</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-normalizedquad"></a><code>NormalizedQuad</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-rotate"></a><code>Rotate</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-sampler"></a><code>Sampler</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-scale"></a><code>Scale</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-textureoffsetuv"></a><code>TextureOffsetUV</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-texturesizeuv"></a><code>TextureSizeUV</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-uniform"></a><code>Uniform</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-uniformtofill"></a><code>UniformToFill</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="moviecontrol-uniformtofillcentered"></a><code>UniformToFillCentered</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (11), <code>Size</code> (11).</p>
+<h2><a id="pulldowncontrol"></a>PullDownControl</h2>
+<p>XML element: <code>&lt;PullDown&gt;</code> (curated alias).</p>
+<details>
+<summary>12 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="pulldowncontrol-scrollthreshold"></a><code>ScrollThreshold</code></td>
+<td>93</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-spaceforscroll"></a><code>SpaceForScroll</code></td>
+<td>77</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-autoflip"></a><code>AutoFlip</code></td>
+<td>33</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-autosizepopup"></a><code>AutoSizePopUp</code></td>
+<td>24</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-autosizepopup"></a><code>AutoSizePopup</code></td>
+<td>15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-buttondata"></a><code>ButtonData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-griddata"></a><code>GridData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-instancedata"></a><code>InstanceData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-leftbutton"></a><code>LeftButton</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-rightbutton"></a><code>RightButton</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-scrollpaneldata"></a><code>ScrollPanelData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="pulldowncontrol-stackdata"></a><code>StackData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (132), <code>Size</code> (127), <code>Style</code> (93).</p>
+<h2><a id="radiobuttoncontrol"></a>RadioButtonControl</h2>
+<p>XML element: <code>&lt;RadioButton&gt;</code> (curated alias).</p>
+<details>
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="radiobuttoncontrol-radiogroup"></a><code>RadioGroup</code></td>
+<td>36</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="radiobuttoncontrol-allowclickoff"></a><code>AllowClickOff</code></td>
+<td>33</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (36), <code>Style</code> (36), <code>String</code> (35), <code>TextOffset</code> (33), <code>ButtonTexture</code> (33), <code>ButtonSize</code> (33), <code>CheckTexture</code> (33), <code>CheckSize</code> (33), <code>CheckTextureOffset</code> (33), <code>BoxOnLeft</code> (33).</p>
+<h2><a id="scrollpanelcontrol"></a>ScrollPanelControl</h2>
+<p>XML element: <code>&lt;ScrollPanel&gt;</code> (curated alias).</p>
+<details>
+<summary>13 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="scrollpanelcontrol-vertical"></a><code>Vertical</code></td>
+<td>239</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-autoscrollbar"></a><code>AutoScrollBar</code></td>
+<td>153</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-fullclip"></a><code>FullClip</code></td>
+<td>27</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-hidescrollbar"></a><code>HideScrollBar</code></td>
+<td>6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-scrollbar"></a><code>ScrollBar</code></td>
+<td>6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-disablemousewheelscroll"></a><code>DisableMouseWheelScroll</code></td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-hasexternalchildren"></a><code>HasExternalChildren</code></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-mousewheelareasize"></a><code>MouseWheelAreaSize</code></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-downbutton"></a><code>DownButton</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-enablescrollbar"></a><code>EnableScrollBar</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-singlesteppercent"></a><code>SingleStepPercent</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-singlestepsize"></a><code>SingleStepSize</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrollpanelcontrol-upbutton"></a><code>UpButton</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Size</code> (348), <code>ID</code> (311), <code>Style</code> (87).</p>
+<h2><a id="scrolltextcontrol"></a>ScrollTextControl</h2>
+<p>XML element: <code>&lt;ScrollTextField&gt;</code> (curated alias).</p>
+<details>
+<summary>3 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="scrolltextcontrol-scrollpaneldata"></a><code>ScrollPanelData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrolltextcontrol-slideanimdata"></a><code>SlideAnimData</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="scrolltextcontrol-speedlevel"></a><code>SpeedLevel</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Size</code> (33), <code>Style</code> (33), <code>ID</code> (32), <code>String</code> (14).</p>
+<h2><a id="slidercontrol"></a>SliderControl</h2>
+<p>XML element: <code>&lt;Slider&gt;</code> (curated alias).</p>
+<details>
+<summary>8 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="slidercontrol-steps"></a><code>Steps</code></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="slidercontrol-barovercolor"></a><code>BarOverColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="slidercontrol-gutter"></a><code>Gutter</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="slidercontrol-length"></a><code>Length</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="slidercontrol-thumb"></a><code>Thumb</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="slidercontrol-thumbovercolor"></a><code>ThumbOverColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="slidercontrol-vertical"></a><code>Vertical</code></td>
+<td>—</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><a id="slidercontrol-wheelsteps"></a><code>WheelSteps</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Style</code> (23), <code>Size</code> (23), <code>ID</code> (23).</p>
+<h2><a id="stackcontrol"></a>StackControl</h2>
+<p>XML element: <code>&lt;Stack&gt;</code> (curated alias).</p>
+<details>
+<summary>9 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="stackcontrol-stackgrowth"></a><code>StackGrowth</code></td>
+<td>1570</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-padding"></a><code>Padding</code></td>
+<td>723</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-stackpadding"></a><code>StackPadding</code></td>
+<td>648</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-wrapwidth"></a><code>WrapWidth</code></td>
+<td>115</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-wrapgrowth"></a><code>WrapGrowth</code></td>
+<td>82</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-endpadding"></a><code>EndPadding</code></td>
+<td>7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-wrappadding"></a><code>WrapPadding</code></td>
+<td>6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-bottom"></a><code>Bottom</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="stackcontrol-right"></a><code>Right</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (1129), <code>Size</code> (230).</p>
+<h2><a id="tabcontrol"></a>TabControl</h2>
+<p>XML element: <code>&lt;Tab&gt;</code> (curated alias).</p>
+<details>
+<summary>3 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="tabcontrol-selectedtab"></a><code>SelectedTab</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="tabcontrol-tabbuttons"></a><code>TabButtons</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="tabcontrol-tabcontainer"></a><code>TabContainer</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="textbuttoncontrol"></a>TextButtonControl</h2>
+<p>XML element: <code>&lt;TextButton&gt;</code> (curated alias).</p>
+<details>
+<summary>8 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="textbuttoncontrol-string"></a><code>String</code></td>
+<td>18</td>
+<td></td>
+<td>Text or text key to show.</td>
+</tr>
+<tr>
+<td><a id="textbuttoncontrol-mouseovercolor"></a><code>MouseOverColor</code></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textbuttoncontrol-buttondowncolor"></a><code>ButtonDownColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textbuttoncontrol-buttondownstyle"></a><code>ButtonDownStyle</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textbuttoncontrol-disabledcolor"></a><code>DisabledColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textbuttoncontrol-disabledstyle"></a><code>DisabledStyle</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textbuttoncontrol-mouseoverstyle"></a><code>MouseOverStyle</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textbuttoncontrol-normalcolor"></a><code>NormalColor</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (22), <code>Style</code> (22), <code>Size</code> (14).</p>
+<h2><a id="textcontrol"></a>TextControl</h2>
+<p>XML element: <code>&lt;Label&gt;</code> (curated alias).</p>
+<details>
+<summary>31 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="textcontrol-string"></a><code>String</code></td>
+<td>2807</td>
+<td></td>
+<td>Text or text key to show.</td>
+</tr>
+<tr>
+<td><a id="textcontrol-wrapwidth"></a><code>WrapWidth</code></td>
+<td>825</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-color"></a><code>Color</code></td>
+<td>741</td>
+<td>yes</td>
+<td>Tint colour, as <code>r,g,b,a</code> or a style colour name.</td>
+</tr>
+<tr>
+<td><a id="textcontrol-align"></a><code>Align</code></td>
+<td>530</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-fontstyle"></a><code>FontStyle</code></td>
+<td>397</td>
+<td></td>
+<td>A named style from the style sheets.</td>
+</tr>
+<tr>
+<td><a id="textcontrol-colorset"></a><code>ColorSet</code></td>
+<td>244</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-color0"></a><code>Color0</code></td>
+<td>228</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-smallcaps"></a><code>SmallCaps</code></td>
+<td>213</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-smallcapstype"></a><code>SmallCapsType</code></td>
+<td>197</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-color1"></a><code>Color1</code></td>
+<td>155</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-effectcolor"></a><code>EffectColor</code></td>
+<td>141</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-fontsize"></a><code>FontSize</code></td>
+<td>131</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-truncatewidth"></a><code>TruncateWidth</code></td>
+<td>114</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-truncatedtooltip"></a><code>TruncatedTooltip</code></td>
+<td>73</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-kerningadjustment"></a><code>KerningAdjustment</code></td>
+<td>36</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-smallcapsleading"></a><code>SmallCapsLeading</code></td>
+<td>36</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-color2"></a><code>Color2</code></td>
+<td>29</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-reducewidth"></a><code>ReduceWidth</code></td>
+<td>19</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-leadingoffset"></a><code>LeadingOffset</code></td>
+<td>14</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-truncateheight"></a><code>TruncateHeight</code></td>
+<td>14</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-fonteffect"></a><code>FontEffect</code></td>
+<td>9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-gradientcolor"></a><code>GradientColor</code></td>
+<td>7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-rotate"></a><code>Rotate</code></td>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-allowsplitwords"></a><code>AllowSplitWords</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-center"></a><code>center</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-customiconscale"></a><code>CustomIconScale</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-everyword"></a><code>EveryWord</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-forceime"></a><code>ForceIME</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-forcenonime"></a><code>ForceNonIME</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-generatemips"></a><code>GenerateMips</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="textcontrol-right"></a><code>right</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>Style</code> (3537), <code>ID</code> (2696), <code>Size</code> (224), <code>Text</code> (12).</p>
+<h2><a id="tutorialcontrol"></a>TutorialControl</h2>
+<p>XML element: <code>&lt;Tutorial&gt;</code> (curated alias).</p>
+<details>
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="tutorialcontrol-triggerby"></a><code>TriggerBy</code></td>
+<td>114</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="tutorialcontrol-alwaysshow"></a><code>AlwaysShow</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (114), <code>Style</code> (114).</p>
+<h2><a id="tweencontrol"></a>TweenControl</h2>
+<p>XML element: none, this is a base class of other controls (base class (no element of its own)).</p>
+<details>
+<summary>5 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="tweencontrol-begin"></a><code>Begin</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="tweencontrol-endoffset"></a><code>EndOffset</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="tweencontrol-opacity"></a><code>opacity</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="tweencontrol-position"></a><code>position</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="tweencontrol-start"></a><code>Start</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="worldanchorcontrol"></a>WorldAnchorControl</h2>
+<p>XML element: <code>&lt;WorldAnchor&gt;</code> (curated alias).</p>
+<details>
+<summary>5 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Shipped</th>
+<th>Also on ControlBase</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="worldanchorcontrol-billboard"></a><code>Billboard</code></td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="worldanchorcontrol-scaling"></a><code>Scaling</code></td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="worldanchorcontrol-unitsperpixel"></a><code>UnitsPerPixel</code></td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="worldanchorcontrol-depthadjust"></a><code>DepthAdjust</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="worldanchorcontrol-worldoffset"></a><code>WorldOffset</code></td>
+<td>—</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Used 10 or more times on this element in shipped files but <strong>not found as a literal</strong> in this type's own code (so they are read by shared code, for example <code>ID</code> and <code>Size</code>, or by a parent type): <code>ID</code> (14).</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

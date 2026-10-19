@@ -1,0 +1,669 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ControlBase</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../../index.html">Home</a><a href="../../conventions.html">How to read</a><a href="../../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../../lua/index.html">Lua API</a><a href="../../operations/index.html">Operations</a><a href="../../enums/index.html">Enums</a><a href="../../effects/index.html">Modifier effects</a><a href="../../requirements/index.html">Requirements</a><a href="../../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../../ce/index.html">CE Lua API</a><a href="../../layouts/index.html">Class layouts</a><a href="../../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../../exe/index.html">Overview</a><a href="../../exe/options.html">Option files</a><a href="../../exe/command-line.html">Command line</a><a href="../../exe/console.html">Debug console</a><a href="../../exe/files.html">Files and paths</a><a href="../../exe/modinfo.html">.modinfo vocabulary</a><a href="../../exe/messages.html">Log messages</a><a href="../../exe/uixml.html">UI XML vocabulary</a><a href="../../exe/telemetry.html">Telemetry</a><a href="../../exe/imports.html">Imports</a><a href="../../exe/audio.html">Audio names</a><a href="../../exe/event-data.html">Event data fields</a><a href="../../exe/lua-enums.html">Lua enum tables</a><a href="../../exe/network.html">Multiplayer vocabulary</a><a href="../../exe/lenses.html">Lenses</a><a href="../../exe/loading.html">Load sequence</a><a href="../../exe/input.html">Input actions</a><a href="../../exe/devtools.html">Developer tools</a><a href="../../exe/gamesummary.html">Game summary</a><a href="../../execlass/index.html">Classes</a><a href="../../exeart/index.html">ArtDef vocabulary</a><a href="../../exetypes/index.html">Reflected types</a><a href="../../exedb/index.html">Database access</a><a href="../../exeapi/index.html">Engine Lua tables</a><a href="../../exeevents/index.html">Engine events</a><a href="../../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../../native/index.html">Native functions</a><a href="../../native/all.html">All functions (search)</a></nav><main><p><a href="../../index.html">Home</a> › <a href="../index.html">Engine Lua tables</a> › <a href="index.html">ForgeUI control types</a> › ControlBase</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>ControlBase</h1>
+<p>ForgeUI control type (ForgeUI::ControlBase). 107 methods, called on an instance with a colon: <code>Controls.SomeName:Method(...)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>C++ signature printed by the exe</th>
+<th>Lua signature</th>
+<th>Owner basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="_controlbase.addchildatindex"></a><code>AddChildAtIndex</code></td>
+<td><code>void AddChildAtIndex( ControlBase*, int )</code></td>
+<td><code>ControlBase:AddChildAtIndex(arg1: ControlBase, arg2: integer)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.branchresetanimation"></a><code>BranchResetAnimation</code></td>
+<td><code>void BranchResetAnimation( void )</code></td>
+<td><code>ControlBase:BranchResetAnimation()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.calculatevisibilitybox"></a><code>CalculateVisibilityBox</code></td>
+<td><code>void CalculateVisibilityBox( void )</code></td>
+<td><code>ControlBase:CalculateVisibilityBox()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.changeparent"></a><code>ChangeParent</code></td>
+<td><code>void ChangeParent( ControlBase* )</code></td>
+<td><code>ControlBase:ChangeParent(arg1: ControlBase)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.clearmouseentercallback"></a><code>ClearMouseEnterCallback</code></td>
+<td><code>void ClearMouseEnterCallback( void )</code></td>
+<td><code>ControlBase:ClearMouseEnterCallback()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.clearmouseexitcallback"></a><code>ClearMouseExitCallback</code></td>
+<td><code>void ClearMouseExitCallback( void )</code></td>
+<td><code>ControlBase:ClearMouseExitCallback()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.clearmouseovercallback"></a><code>ClearMouseOverCallback</code></td>
+<td><code>void ClearMouseOverCallback( void )</code></td>
+<td><code>ControlBase:ClearMouseOverCallback()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.clearsizechangedcallback"></a><code>ClearSizeChangedCallback</code></td>
+<td><code>void ClearSizeChangedCallback( void )</code></td>
+<td><code>ControlBase:ClearSizeChangedCallback()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.cleartooltipcallback"></a><code>ClearToolTipCallback</code></td>
+<td><code>void ClearToolTipCallback( void )</code></td>
+<td><code>ControlBase:ClearToolTipCallback()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.clearwhenhiddencallback"></a><code>ClearWhenHiddenCallback</code></td>
+<td><code>void ClearWhenHiddenCallback( void )</code></td>
+<td><code>ControlBase:ClearWhenHiddenCallback()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.clearwhenshowncallback"></a><code>ClearWhenShownCallback</code></td>
+<td><code>void ClearWhenShownCallback( void )</code></td>
+<td><code>ControlBase:ClearWhenShownCallback()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.destroyallchildren"></a><code>DestroyAllChildren</code></td>
+<td><code>void DestroyAllChildren( void )</code></td>
+<td><code>ControlBase:DestroyAllChildren()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.destroychild"></a><code>DestroyChild</code></td>
+<td><code>void DestroyChild( ControlBase* )</code></td>
+<td><code>ControlBase:DestroyChild(arg1: ControlBase)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.disabledebugoutline"></a><code>DisableDebugOutline</code></td>
+<td><code>void DisableDebugOutline( void )</code></td>
+<td><code>ControlBase:DisableDebugOutline()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.doautosize"></a><code>DoAutoSize</code></td>
+<td>—</td>
+<td><code>ControlBase:DoAutoSize(...)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.enabledebugoutline"></a><code>EnableDebugOutline</code></td>
+<td><code>void EnableDebugOutline( void )</code></td>
+<td><code>ControlBase:EnableDebugOutline()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.enabletooltip"></a><code>EnableToolTip</code></td>
+<td><code>void EnableToolTip( bool )</code></td>
+<td><code>ControlBase:EnableToolTip(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.enabletooltipatpos"></a><code>EnableTooltipAtPos</code></td>
+<td><code>void EnableTooltipAtPos( bool, float, float )</code></td>
+<td><code>ControlBase:EnableTooltipAtPos(arg1: boolean, arg2: number, arg3: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.gamepadenabletooltips"></a><code>GamepadEnableTooltips</code></td>
+<td><code>void GamepadEnableTooltips( bool, bool, bool, int, int )</code></td>
+<td><code>ControlBase:GamepadEnableTooltips(arg1: boolean, arg2: boolean, arg3: boolean, arg4: integer, arg5: integer)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.gamepadupdatetooltips"></a><code>GamepadUpdateTooltips</code></td>
+<td><code>void GamepadUpdateTooltips( void )</code></td>
+<td><code>ControlBase:GamepadUpdateTooltips()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getalpha"></a><code>GetAlpha</code></td>
+<td>—</td>
+<td><code>ControlBase:GetAlpha()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getanchor"></a><code>GetAnchor</code></td>
+<td>—</td>
+<td><code>ControlBase:GetAnchor()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getchildren"></a><code>GetChildren</code></td>
+<td>—</td>
+<td><code>ControlBase:GetChildren()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getconsumemousebutton"></a><code>GetConsumeMouseButton</code></td>
+<td><code>bool GetConsumeMouseButton( void ) const</code></td>
+<td><code>ControlBase:GetConsumeMouseButton() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getconsumemouseover"></a><code>GetConsumeMouseOver</code></td>
+<td><code>bool GetConsumeMouseOver( void ) const</code></td>
+<td><code>ControlBase:GetConsumeMouseOver() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getconsumemousewheel"></a><code>GetConsumeMouseWheel</code></td>
+<td><code>bool GetConsumeMouseWheel( void ) const</code></td>
+<td><code>ControlBase:GetConsumeMouseWheel() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getcontext"></a><code>GetContext</code></td>
+<td>—</td>
+<td><code>ControlBase:GetContext()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getid"></a><code>GetID</code></td>
+<td><code>const char* GetID( void ) const</code></td>
+<td><code>ControlBase:GetID() -&gt; string</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getnumchildren"></a><code>GetNumChildren</code></td>
+<td><code>int GetNumChildren( void ) const</code></td>
+<td><code>ControlBase:GetNumChildren() -&gt; integer</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getoffsetval"></a><code>GetOffsetVal</code></td>
+<td>—</td>
+<td><code>ControlBase:GetOffsetVal()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getoffsetx"></a><code>GetOffsetX</code></td>
+<td><code>float GetOffsetX( void ) const</code></td>
+<td><code>ControlBase:GetOffsetX() -&gt; number</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getoffsety"></a><code>GetOffsetY</code></td>
+<td><code>float GetOffsetY( void ) const</code></td>
+<td><code>ControlBase:GetOffsetY() -&gt; number</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getparent"></a><code>GetParent</code></td>
+<td>—</td>
+<td><code>ControlBase:GetParent()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getparentbyid"></a><code>GetParentByID</code></td>
+<td>—</td>
+<td><code>ControlBase:GetParentByID()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getparentbytype"></a><code>GetParentByType</code></td>
+<td>—</td>
+<td><code>ControlBase:GetParentByType()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getparentrelativeoffset"></a><code>GetParentRelativeOffset</code></td>
+<td>—</td>
+<td><code>ControlBase:GetParentRelativeOffset()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getparentrelativesizeval"></a><code>GetParentRelativeSizeVal</code></td>
+<td>—</td>
+<td><code>ControlBase:GetParentRelativeSizeVal()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getparentrelativesizex"></a><code>GetParentRelativeSizeX</code></td>
+<td><code>float GetParentRelativeSizeX( void ) const</code></td>
+<td><code>ControlBase:GetParentRelativeSizeX() -&gt; number</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getparentrelativesizey"></a><code>GetParentRelativeSizeY</code></td>
+<td><code>float GetParentRelativeSizeY( void ) const</code></td>
+<td><code>ControlBase:GetParentRelativeSizeY() -&gt; number</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getpath"></a><code>GetPath</code></td>
+<td>—</td>
+<td><code>ControlBase:GetPath()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getscreenoffset"></a><code>GetScreenOffset</code></td>
+<td>—</td>
+<td><code>ControlBase:GetScreenOffset()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getsize"></a><code>GetSize</code></td>
+<td><code>FGXVector2 GetSize( void ) const</code></td>
+<td><code>ControlBase:GetSize() -&gt; FGXVector2</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getsizeval"></a><code>GetSizeVal</code></td>
+<td>—</td>
+<td><code>ControlBase:GetSizeVal()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getsizex"></a><code>GetSizeX</code></td>
+<td><code>float GetSizeX( void ) const</code></td>
+<td><code>ControlBase:GetSizeX() -&gt; number</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.getsizey"></a><code>GetSizeY</code></td>
+<td><code>float GetSizeY( void ) const</code></td>
+<td><code>ControlBase:GetSizeY() -&gt; number</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.gettag"></a><code>GetTag</code></td>
+<td><code>uint GetTag( void ) const</code></td>
+<td><code>ControlBase:GetTag() -&gt; integer</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.gettooltipstring"></a><code>GetToolTipString</code></td>
+<td><code>const char* GetToolTipString( void ) const</code></td>
+<td><code>ControlBase:GetToolTipString() -&gt; string</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.gettype"></a><code>GetType</code></td>
+<td>—</td>
+<td><code>ControlBase:GetType()</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.hasmouseover"></a><code>HasMouseOver</code></td>
+<td><code>bool HasMouseOver( void ) const</code></td>
+<td><code>ControlBase:HasMouseOver() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.isdisabled"></a><code>IsDisabled</code></td>
+<td><code>bool IsDisabled( void ) const</code></td>
+<td><code>ControlBase:IsDisabled() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.isenabled"></a><code>IsEnabled</code></td>
+<td><code>bool IsEnabled( void ) const</code></td>
+<td><code>ControlBase:IsEnabled() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.ishidden"></a><code>IsHidden</code></td>
+<td><code>bool IsHidden( void ) const</code></td>
+<td><code>ControlBase:IsHidden() -&gt; boolean</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.ismodal"></a><code>IsModal</code></td>
+<td><code>bool IsModal( void ) const</code></td>
+<td><code>ControlBase:IsModal() -&gt; boolean</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.istooltipenabled"></a><code>IsToolTipEnabled</code></td>
+<td><code>bool IsToolTipEnabled( void ) const</code></td>
+<td><code>ControlBase:IsToolTipEnabled() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.isusinghighlightshader"></a><code>IsUsingHighlightShader</code></td>
+<td><code>bool IsUsingHighlightShader( void ) const</code></td>
+<td><code>ControlBase:IsUsingHighlightShader() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.isvisible"></a><code>IsVisible</code></td>
+<td><code>bool IsVisible( void ) const</code></td>
+<td><code>ControlBase:IsVisible() -&gt; boolean</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.lasthitoffset"></a><code>LastHitOffset</code></td>
+<td>—</td>
+<td><code>ControlBase:LastHitOffset()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.localizeandsettooltip"></a><code>LocalizeAndSetToolTip</code></td>
+<td>—</td>
+<td><code>ControlBase:LocalizeAndSetToolTip()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.registermouseentercallback"></a><code>RegisterMouseEnterCallback</code></td>
+<td><code>void RegisterMouseEnterCallback( function )</code></td>
+<td><code>ControlBase:RegisterMouseEnterCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.registermouseexitcallback"></a><code>RegisterMouseExitCallback</code></td>
+<td><code>void RegisterMouseExitCallback( function )</code></td>
+<td><code>ControlBase:RegisterMouseExitCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.registermouseovercallback"></a><code>RegisterMouseOverCallback</code></td>
+<td><code>void RegisterMouseOverCallback( function )</code></td>
+<td><code>ControlBase:RegisterMouseOverCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.registersizechanged"></a><code>RegisterSizeChanged</code></td>
+<td><code>void RegisterSizeChanged( function )</code></td>
+<td><code>ControlBase:RegisterSizeChanged(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.registerwhenhidden"></a><code>RegisterWhenHidden</code></td>
+<td><code>void RegisterWhenHidden( function )</code></td>
+<td><code>ControlBase:RegisterWhenHidden(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.registerwhenshown"></a><code>RegisterWhenShown</code></td>
+<td><code>void RegisterWhenShown( function )</code></td>
+<td><code>ControlBase:RegisterWhenShown(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.releasechild"></a><code>ReleaseChild</code></td>
+<td><code>void ReleaseChild( ControlBase* )</code></td>
+<td><code>ControlBase:ReleaseChild(arg1: ControlBase)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.reparent"></a><code>Reparent</code></td>
+<td><code>void Reparent( void )</code></td>
+<td><code>ControlBase:Reparent()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.reprocessanchoring"></a><code>ReprocessAnchoring</code></td>
+<td>—</td>
+<td><code>ControlBase:ReprocessAnchoring(...)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.reprocessanchoring_2"></a><code>ReprocessAnchoring</code></td>
+<td>—</td>
+<td><code>ControlBase:ReprocessAnchoring(...)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setallchildrenvisible"></a><code>SetAllChildrenVisible</code></td>
+<td><code>void SetAllChildrenVisible( bool )</code></td>
+<td><code>ControlBase:SetAllChildrenVisible(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setalpha"></a><code>SetAlpha</code></td>
+<td><code>void SetAlpha( float )</code></td>
+<td><code>ControlBase:SetAlpha(arg1: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setanchor"></a><code>SetAnchor</code></td>
+<td><code>void SetAnchor( const char* )</code></td>
+<td><code>ControlBase:SetAnchor(arg1: string)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setautosize"></a><code>SetAutoSize</code></td>
+<td>—</td>
+<td><code>ControlBase:SetAutoSize()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setbuttonhighlightcolor"></a><code>SetButtonHighlightColor</code></td>
+<td>—</td>
+<td><code>ControlBase:SetButtonHighlightColor()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setcolor"></a><code>SetColor</code></td>
+<td>—</td>
+<td><code>ControlBase:SetColor()</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setcolorbyname"></a><code>SetColorByName</code></td>
+<td>—</td>
+<td><code>ControlBase:SetColorByName()</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setconsumemousebutton"></a><code>SetConsumeMouseButton</code></td>
+<td><code>void SetConsumeMouseButton( bool )</code></td>
+<td><code>ControlBase:SetConsumeMouseButton(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setconsumemouseover"></a><code>SetConsumeMouseOver</code></td>
+<td><code>void SetConsumeMouseOver( bool )</code></td>
+<td><code>ControlBase:SetConsumeMouseOver(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setconsumemousewheel"></a><code>SetConsumeMouseWheel</code></td>
+<td><code>void SetConsumeMouseWheel( bool )</code></td>
+<td><code>ControlBase:SetConsumeMouseWheel(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setdisabled"></a><code>SetDisabled</code></td>
+<td><code>void SetDisabled( bool )</code></td>
+<td><code>ControlBase:SetDisabled(arg1: boolean)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setenabled"></a><code>SetEnabled</code></td>
+<td><code>void SetEnabled( bool )</code></td>
+<td><code>ControlBase:SetEnabled(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.sethide"></a><code>SetHide</code></td>
+<td><code>void SetHide( bool )</code></td>
+<td><code>ControlBase:SetHide(arg1: boolean)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setid"></a><code>SetID</code></td>
+<td><code>void SetID( const char* )</code></td>
+<td><code>ControlBase:SetID(arg1: string)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setmodal"></a><code>SetModal</code></td>
+<td><code>void SetModal( bool )</code></td>
+<td><code>ControlBase:SetModal(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setnoclip"></a><code>SetNoClip</code></td>
+<td><code>void SetNoClip( bool )</code></td>
+<td><code>ControlBase:SetNoClip(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setoffset"></a><code>SetOffset</code></td>
+<td><code>void SetOffset( FGXVector2 )</code></td>
+<td><code>ControlBase:SetOffset(arg1: FGXVector2)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setoffsetval"></a><code>SetOffsetVal</code></td>
+<td><code>void SetOffsetVal( float, float )</code></td>
+<td><code>ControlBase:SetOffsetVal(arg1: number, arg2: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setoffsetx"></a><code>SetOffsetX</code></td>
+<td><code>void SetOffsetX( float )</code></td>
+<td><code>ControlBase:SetOffsetX(arg1: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setoffsety"></a><code>SetOffsetY</code></td>
+<td><code>void SetOffsetY( float )</code></td>
+<td><code>ControlBase:SetOffsetY(arg1: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setparentrelativesize"></a><code>SetParentRelativeSize</code></td>
+<td><code>void SetParentRelativeSize( FGXVector2 )</code></td>
+<td><code>ControlBase:SetParentRelativeSize(arg1: FGXVector2)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setparentrelativesizeval"></a><code>SetParentRelativeSizeVal</code></td>
+<td><code>void SetParentRelativeSizeVal( float, float )</code></td>
+<td><code>ControlBase:SetParentRelativeSizeVal(arg1: number, arg2: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setparentrelativesizex"></a><code>SetParentRelativeSizeX</code></td>
+<td><code>void SetParentRelativeSizeX( float )</code></td>
+<td><code>ControlBase:SetParentRelativeSizeX(arg1: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setparentrelativesizey"></a><code>SetParentRelativeSizeY</code></td>
+<td><code>void SetParentRelativeSizeY( float )</code></td>
+<td><code>ControlBase:SetParentRelativeSizeY(arg1: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setshow"></a><code>SetShow</code></td>
+<td><code>void SetShow( bool )</code></td>
+<td><code>ControlBase:SetShow(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setshowonmouseout"></a><code>SetShowOnMouseOut</code></td>
+<td><code>void SetShowOnMouseOut( bool )</code></td>
+<td><code>ControlBase:SetShowOnMouseOut(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setshowonmouseover"></a><code>SetShowOnMouseOver</code></td>
+<td><code>void SetShowOnMouseOver( bool )</code></td>
+<td><code>ControlBase:SetShowOnMouseOver(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setsize"></a><code>SetSize</code></td>
+<td><code>void SetSize( FGXVector2 )</code></td>
+<td><code>ControlBase:SetSize(arg1: FGXVector2)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setsizeval"></a><code>SetSizeVal</code></td>
+<td><code>void SetSizeVal( float, float )</code></td>
+<td><code>ControlBase:SetSizeVal(arg1: number, arg2: number)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setsizex"></a><code>SetSizeX</code></td>
+<td><code>void SetSizeX( float )</code></td>
+<td><code>ControlBase:SetSizeX(arg1: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setsizey"></a><code>SetSizeY</code></td>
+<td><code>void SetSizeY( float )</code></td>
+<td><code>ControlBase:SetSizeY(arg1: number)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.settag"></a><code>SetTag</code></td>
+<td><code>void SetTag( uint )</code></td>
+<td><code>ControlBase:SetTag(arg1: integer)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.settooltipcallback"></a><code>SetToolTipCallback</code></td>
+<td><code>void SetToolTipCallback( function )</code></td>
+<td><code>ControlBase:SetToolTipCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.settooltipstring"></a><code>SetToolTipString</code></td>
+<td>—</td>
+<td><code>ControlBase:SetToolTipString()</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.settooltiptype"></a><code>SetToolTipType</code></td>
+<td>—</td>
+<td><code>ControlBase:SetToolTipType()</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_controlbase.setusehighlightshader"></a><code>SetUseHighlightShader</code></td>
+<td><code>void SetUseHighlightShader( bool )</code></td>
+<td><code>ControlBase:SetUseHighlightShader(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.sortchildren"></a><code>SortChildren</code></td>
+<td><code>void SortChildren( function )</code></td>
+<td><code>ControlBase:SortChildren(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.tobuttoncontrol"></a><code>ToButtonControl</code></td>
+<td><code>ButtonControl* ToButtonControl( void )</code></td>
+<td><code>ControlBase:ToButtonControl() -&gt; ButtonControl</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_controlbase.tocontrolbase"></a><code>ToControlBase</code></td>
+<td><code>ControlBase* ToControlBase( void )</code></td>
+<td><code>ControlBase:ToControlBase() -&gt; ControlBase</code></td>
+<td>unique method name</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../../";</script><script src="../../search.js"></script><script src="../../strings.js"></script>

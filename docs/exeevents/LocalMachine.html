@@ -1,0 +1,369 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>LocalMachine bus</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine events</a> › LocalMachine bus</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>LocalMachine bus</h1>
+<p>App-local UI events: resolution changed, show leader screen, toggle grid, exit to menu, and similar. Not part of the game state.</p>
+<table>
+<thead>
+<tr>
+<th>Event (from its data type)</th>
+<th>Id</th>
+<th>Data type</th>
+<th>Handlers in the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="1"></a><code>AppUpdate</code></td>
+<td>1</td>
+<td>AppUpdateData</td>
+<td>AppModdingFramework; AssetCloud::Manager; TunerManager</td>
+</tr>
+<tr>
+<td><a id="2"></a><code>event 2 (no data)</code></td>
+<td>2</td>
+<td>none</td>
+<td>Automation::Manager; TunerManager</td>
+</tr>
+<tr>
+<td><a id="3"></a><code>event 3 (no data)</code></td>
+<td>3</td>
+<td>none</td>
+<td>BenchmarkSystem</td>
+</tr>
+<tr>
+<td><a id="5"></a><code>MouseHexPositionChanged</code></td>
+<td>5</td>
+<td>MouseHexPositionChangedData</td>
+<td>UI::Manager</td>
+</tr>
+<tr>
+<td><a id="6"></a><code>event 6 (no data)</code></td>
+<td>6</td>
+<td>none</td>
+<td>IntroState; OwnershipState</td>
+</tr>
+<tr>
+<td><a id="7"></a><code>event 7 (no data)</code></td>
+<td>7</td>
+<td>none</td>
+<td>Civ6App; Telemetry::Listener; GameViewState; MainMenuState</td>
+</tr>
+<tr>
+<td><a id="8"></a><code>event 8 (no data)</code></td>
+<td>8</td>
+<td>none</td>
+<td>IntroState</td>
+</tr>
+<tr>
+<td><a id="9"></a><code>event 9 (no data)</code></td>
+<td>9</td>
+<td>none</td>
+<td>MainMenuState</td>
+</tr>
+<tr>
+<td><a id="10"></a><code>event 10 (no data)</code></td>
+<td>10</td>
+<td>none</td>
+<td>MainMenuState</td>
+</tr>
+<tr>
+<td><a id="11"></a><code>event 11 (no data)</code></td>
+<td>11</td>
+<td>none</td>
+<td>Telemetry::Listener; GameViewState; LoadGameViewState</td>
+</tr>
+<tr>
+<td><a id="12"></a><code>ShowLeaderScreen</code></td>
+<td>12</td>
+<td>ShowLeaderScreenData</td>
+<td>GameViewState</td>
+</tr>
+<tr>
+<td><a id="13"></a><code>event 13 (no data)</code></td>
+<td>13</td>
+<td>none</td>
+<td>GameViewState</td>
+</tr>
+<tr>
+<td><a id="18"></a><code>event 18 (no data)</code></td>
+<td>18</td>
+<td>none</td>
+<td>UI::Manager; GameViewState; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="19"></a><code>event 19 (no data)</code></td>
+<td>19</td>
+<td>none</td>
+<td>GameViewState; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="20"></a><code>event 20 (no data)</code></td>
+<td>20</td>
+<td>none</td>
+<td>WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="22"></a><code>EnableColorKey</code></td>
+<td>22</td>
+<td>EnableColorKeyData</td>
+<td>WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="23"></a><code>DisableColorKey</code></td>
+<td>23</td>
+<td>DisableColorKeyData</td>
+<td>WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="24"></a><code>Camera_SetPosition</code></td>
+<td>24</td>
+<td>Camera_SetPositionData</td>
+<td>CameraSystem</td>
+</tr>
+<tr>
+<td><a id="25"></a><code>Camera_SetZoom</code></td>
+<td>25</td>
+<td>Camera_SetZoomData</td>
+<td>AudioMiner; CameraSystem</td>
+</tr>
+<tr>
+<td><a id="26"></a><code>Camera_FocusPan</code></td>
+<td>26</td>
+<td>Camera_FocusPanData</td>
+<td>CameraSystem</td>
+</tr>
+<tr>
+<td><a id="27"></a><code>Camera_FocusUpdate</code></td>
+<td>27</td>
+<td>Camera_FocusUpdateData</td>
+<td>CameraSystem</td>
+</tr>
+<tr>
+<td><a id="28"></a><code>Camera_FocusDrag</code></td>
+<td>28</td>
+<td>Camera_FocusDragData</td>
+<td>CameraSystem</td>
+</tr>
+<tr>
+<td><a id="30"></a><code>Camera_OrbitDrag</code></td>
+<td>30</td>
+<td>Camera_OrbitDragData</td>
+<td>CameraSystem</td>
+</tr>
+<tr>
+<td><a id="31"></a><code>Camera_TiltMode</code></td>
+<td>31</td>
+<td>Camera_TiltModeData</td>
+<td>CameraSystem</td>
+</tr>
+<tr>
+<td><a id="32"></a><code>Camera_FixedTilt</code></td>
+<td>32</td>
+<td>Camera_FixedTiltData</td>
+<td>CameraSystem</td>
+</tr>
+<tr>
+<td><a id="33"></a><code>CameraUpdated</code></td>
+<td>33</td>
+<td>CameraUpdatedData</td>
+<td>AppUIManager; Application console handler; AudioMiner</td>
+</tr>
+<tr>
+<td><a id="42"></a><code>ResolutionChanged</code></td>
+<td>42</td>
+<td>ResolutionChangedData</td>
+<td>GameViewState; LeaderScreen_Startup; unnamed system (0x3327e10)</td>
+</tr>
+<tr>
+<td><a id="47"></a><code>ScreenShot</code></td>
+<td>47</td>
+<td>ScreenShotData</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="52"></a><code>event 52 (no data)</code></td>
+<td>52</td>
+<td>none</td>
+<td>Network::Manager</td>
+</tr>
+<tr>
+<td><a id="54"></a><code>event 54 (no data)</code></td>
+<td>54</td>
+<td>none</td>
+<td>Network::Manager; TunerManager</td>
+</tr>
+<tr>
+<td><a id="58"></a><code>MultiplayerGameAbandoned</code></td>
+<td>58</td>
+<td>MultiplayerGameAbandonedData</td>
+<td>TunerManager</td>
+</tr>
+<tr>
+<td><a id="64"></a><code>event 64 (no data)</code></td>
+<td>64</td>
+<td>none</td>
+<td>TunerManager</td>
+</tr>
+<tr>
+<td><a id="68"></a><code>event 68 (no data)</code></td>
+<td>68</td>
+<td>none</td>
+<td>GameCoreController; Network::Manager</td>
+</tr>
+<tr>
+<td><a id="77"></a><code>CloudTurnCheckComplete</code></td>
+<td>77</td>
+<td>CloudTurnCheckCompleteData</td>
+<td>Telemetry::Listener; Network::Manager</td>
+</tr>
+<tr>
+<td><a id="78"></a><code>CloudUnseenCompleteCheckComplete</code></td>
+<td>78</td>
+<td>CloudUnseenCompleteCheckCompleteData</td>
+<td>Network::Manager</td>
+</tr>
+<tr>
+<td><a id="84"></a><code>ArtDefHotload</code></td>
+<td>84</td>
+<td>ArtDefHotloadData</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="85"></a><code>BLPHotload</code></td>
+<td>85</td>
+<td>BLPHotloadData</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="86"></a><code>ArtDefHotload</code></td>
+<td>86</td>
+<td>ArtDefHotloadData</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="87"></a><code>UIHotload</code></td>
+<td>87</td>
+<td>UIHotloadData</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="88"></a><code>HotLoadPacket</code></td>
+<td>88</td>
+<td>HotLoadPacket</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="90"></a><code>event 90 (no data)</code></td>
+<td>90</td>
+<td>none</td>
+<td>AppFiraxisLiveClient</td>
+</tr>
+<tr>
+<td><a id="91"></a><code>event 91 (no data)</code></td>
+<td>91</td>
+<td>none</td>
+<td>AppFiraxisLiveClient</td>
+</tr>
+<tr>
+<td><a id="94"></a><code>PublisherServicesLoginStateChange</code></td>
+<td>94</td>
+<td>PublisherServicesLoginStateChangeData</td>
+<td>Ownership::Authority::FiraxisLiveManager</td>
+</tr>
+<tr>
+<td><a id="95"></a><code>FiraxisLiveActivate</code></td>
+<td>95</td>
+<td>FiraxisLiveActivateData</td>
+<td>Ownership::Authority::FiraxisLiveManager</td>
+</tr>
+<tr>
+<td><a id="96"></a><code>FiraxisLiveKeyListResult</code></td>
+<td>96</td>
+<td>FiraxisLiveKeyListResultData</td>
+<td>Serializer::FiraxisCloud</td>
+</tr>
+<tr>
+<td><a id="97"></a><code>FiraxisLiveKeyDataResult</code></td>
+<td>97</td>
+<td>FiraxisLiveKeyDataResultData</td>
+<td>Serializer::FiraxisCloud</td>
+</tr>
+<tr>
+<td><a id="98"></a><code>FiraxisLiveKeyDataError</code></td>
+<td>98</td>
+<td>FiraxisLiveKeyDataErrorData</td>
+<td>Serializer::FiraxisCloud</td>
+</tr>
+<tr>
+<td><a id="100"></a><code>FiraxisLiveDataPush</code></td>
+<td>100</td>
+<td>FiraxisLiveDataPushData</td>
+<td>AppFiraxisLiveClient</td>
+</tr>
+<tr>
+<td><a id="101"></a><code>FiraxisLiveDataPush</code></td>
+<td>101</td>
+<td>FiraxisLiveDataPushData</td>
+<td>PushData::Manager</td>
+</tr>
+<tr>
+<td><a id="108"></a><code>MatchEndTurnComplete</code></td>
+<td>108</td>
+<td>MatchEndTurnCompleteData</td>
+<td>Network::Manager</td>
+</tr>
+<tr>
+<td><a id="112"></a><code>OptionChanged</code></td>
+<td>112</td>
+<td>OptionChangedData</td>
+<td>Telemetry::Listener</td>
+</tr>
+<tr>
+<td><a id="120"></a><code>event 120 (no data)</code></td>
+<td>120</td>
+<td>none</td>
+<td>Automation::Manager</td>
+</tr>
+<tr>
+<td><a id="128"></a><code>InputActionStarted</code></td>
+<td>128</td>
+<td>InputActionStartedData</td>
+<td>InputAction::Manager</td>
+</tr>
+<tr>
+<td><a id="129"></a><code>InputActionFinished</code></td>
+<td>129</td>
+<td>InputActionFinishedData</td>
+<td>InputAction::Manager</td>
+</tr>
+<tr>
+<td><a id="137"></a><code>SteamOverlayStatus</code></td>
+<td>137</td>
+<td>SteamOverlayStatusData</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="141"></a><code>OwnershipServicesState</code></td>
+<td>141</td>
+<td>OwnershipServicesStateData</td>
+<td>Civ6App</td>
+</tr>
+<tr>
+<td><a id="142"></a><code>event 142 (no data)</code></td>
+<td>142</td>
+<td>none</td>
+<td>AppModdingFramework</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

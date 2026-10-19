@@ -1,0 +1,1529 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Units artdef</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">ArtDef vocabulary</a> › Units artdef</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Units artdef</h1>
+<p>Artdef type <code>Units</code>: 70 shipped files (<code>UnitGreatPeople.artdef</code>, <code>Unit_Bins.artdef</code>, <code>Units.artdef</code>, <code>Units_Great_People.artdef</code>), 185 parameter names, 30 collection names. Back to the <a href="index.html">overview</a>.</p>
+<h2>Reading functions (inferred assignment)</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Exe address</th>
+<th>Names it uses</th>
+<th>Names found in this type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Simulation::Unit::ArtDefinitions::ConfigureFromArtDefs</code></td>
+<td>0x4e0790</td>
+<td>63</td>
+<td>97%</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitFormation::System::ConfigureFromArtDefs</code></td>
+<td>0x62c540</td>
+<td>26</td>
+<td>88%</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitMovement::System::ConfigureFromArtDefs</code></td>
+<td>0x62d9a0</td>
+<td>18</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::ConfigureFromArtDefs</code></td>
+<td>0x6310c0</td>
+<td>44</td>
+<td>86%</td>
+</tr>
+</tbody>
+</table>
+<h2>Collections</h2>
+<table>
+<thead>
+<tr>
+<th>Collection</th>
+<th>Occurrences</th>
+<th>Read by the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="c-bins"></a><code>Bins</code></td>
+<td>2413</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-assets"></a><code>Assets</code></td>
+<td>1903</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-cultures"></a><code>Cultures</code></td>
+<td>1081</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-attachments"></a><code>Attachments</code></td>
+<td>538</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-attachmentvisibility"></a><code>AttachmentVisibility</code></td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-audio"></a><code>Audio</code></td>
+<td>504</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-members"></a><code>Members</code></td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-variations"></a><code>Variations</code></td>
+<td>392</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-colors"></a><code>Colors</code></td>
+<td>269</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-groups"></a><code>Groups</code></td>
+<td>191</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-combatattack"></a><code>CombatAttack</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-combatformation"></a><code>CombatFormation</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-membercombat"></a><code>MemberCombat</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unitattachmentbins"></a><code>UnitAttachmentBins</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unitcombat"></a><code>UnitCombat</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unitdomaintypes"></a><code>UnitDomainTypes</code></td>
+<td>70</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-unitformationlayouttypes"></a><code>UnitFormationLayoutTypes</code></td>
+<td>70</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-unitformationtypes"></a><code>UnitFormationTypes</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unitglobals"></a><code>UnitGlobals</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unitmembertypes"></a><code>UnitMemberTypes</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unitmovementtypes"></a><code>UnitMovementTypes</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unittinttypes"></a><code>UnitTintTypes</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-units"></a><code>Units</code></td>
+<td>70</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-offsets"></a><code>Offsets</code></td>
+<td>25</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-combat"></a><code>Combat</code></td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-eraproxies"></a><code>ERAProxies</code></td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-modifiers"></a><code>Modifiers</code></td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-proxies"></a><code>Proxies</code></td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-timeouts"></a><code>Timeouts</code></td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-unitfadingdistricts"></a><code>UnitFadingDistricts</code></td>
+<td>1</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h2>Parameters (185)</h2>
+<details>
+<summary>185 parameter names</summary>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value class</th>
+<th>Files</th>
+<th>Occurrences</th>
+<th>Read by the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="p-tint"></a><code>Tint</code></td>
+<td>ArtDefReference</td>
+<td>43</td>
+<td>4316</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-scale"></a><code>Scale</code></td>
+<td>Float</td>
+<td>43</td>
+<td>4067</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-asset"></a><code>Asset</code></td>
+<td>BLPEntry</td>
+<td>22</td>
+<td>3201</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-point"></a><code>Point</code></td>
+<td>String</td>
+<td>23</td>
+<td>2413</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-color"></a><code>Color</code></td>
+<td>RGB</td>
+<td>22</td>
+<td>668</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-isattachment"></a><code>IsAttachment</code></td>
+<td>Bool</td>
+<td>23</td>
+<td>538</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-culture"></a><code>Culture</code></td>
+<td>ArtDefReference</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-displaylevel"></a><code>DisplayLevel</code></td>
+<td>Int</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-donotdisplaycharges"></a><code>DoNotDisplayCharges</code></td>
+<td>Bool</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-embarkedunit"></a><code>EmbarkedUnit</code></td>
+<td>ArtDefReference</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-era"></a><code>Era</code></td>
+<td>ArtDefReference</td>
+<td>27</td>
+<td>504</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-escortformation"></a><code>EscortFormation</code></td>
+<td>ArtDefReference</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-formation"></a><code>Formation</code></td>
+<td>ArtDefReference</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-playdeathondestroy"></a><code>PlayDeathOnDestroy</code></td>
+<td>Bool</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-proxyunit"></a><code>ProxyUnit</code></td>
+<td>ArtDefReference</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-unitcombat"></a><code>UnitCombat</code></td>
+<td>ArtDefReference</td>
+<td>27</td>
+<td>504</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-type"></a><code>Type</code></td>
+<td>ArtDefReference</td>
+<td>22</td>
+<td>359</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-xrefname"></a><code>XrefName</code></td>
+<td>String</td>
+<td>22</td>
+<td>333</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-count"></a><code>Count</code></td>
+<td>Int</td>
+<td>22</td>
+<td>328</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-combat"></a><code>Combat</code></td>
+<td>ArtDefReference</td>
+<td>23</td>
+<td>315</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-impactheightoverride"></a><code>ImpactHeightOverride</code></td>
+<td>Float</td>
+<td>23</td>
+<td>315</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-movement"></a><code>Movement</code></td>
+<td>ArtDefReference</td>
+<td>23</td>
+<td>315</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-vfxmaterialtype"></a><code>VFXMaterialType</code></td>
+<td>ArtDefReference</td>
+<td>23</td>
+<td>315</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-vfxweaponimpact"></a><code>VFXWeaponImpact</code></td>
+<td>ArtDefReference</td>
+<td>23</td>
+<td>315</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-alignimpactwithworld"></a><code>AlignImpactWithWorld</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-attackarc"></a><code>AttackArc</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-blastradius"></a><code>BlastRadius</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-boomerangacceleration"></a><code>BoomerangAcceleration</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-bulletspread"></a><code>BulletSpread</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-caninterceptprojectiles"></a><code>CanInterceptProjectiles</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-hasmomentum"></a><code>HasMomentum</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-impactratio"></a><code>ImpactRatio</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-interceptratio"></a><code>InterceptRatio</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-isbroadside"></a><code>IsBroadside</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-isnavalram"></a><code>IsNavalRam</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-killtype_1"></a><code>KillType_1</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_10"></a><code>KillType_10</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_11"></a><code>KillType_11</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_12"></a><code>KillType_12</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_13"></a><code>KillType_13</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_14"></a><code>KillType_14</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_15"></a><code>KillType_15</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_16"></a><code>KillType_16</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_17"></a><code>KillType_17</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_18"></a><code>KillType_18</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_19"></a><code>KillType_19</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_2"></a><code>KillType_2</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_20"></a><code>KillType_20</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_21"></a><code>KillType_21</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_22"></a><code>KillType_22</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_23"></a><code>KillType_23</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_24"></a><code>KillType_24</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_25"></a><code>KillType_25</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_26"></a><code>KillType_26</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_27"></a><code>KillType_27</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_28"></a><code>KillType_28</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_3"></a><code>KillType_3</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_4"></a><code>KillType_4</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_5"></a><code>KillType_5</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_6"></a><code>KillType_6</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_7"></a><code>KillType_7</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_8"></a><code>KillType_8</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-killtype_9"></a><code>KillType_9</code></td>
+<td>Bool</td>
+<td>9</td>
+<td>145</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-offset"></a><code>Offset</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-projectileacceleration"></a><code>ProjectileAcceleration</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-projectilegravity"></a><code>ProjectileGravity</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-projectilespeed"></a><code>ProjectileSpeed</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-range"></a><code>Range</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-torpedoturnradius"></a><code>TorpedoTurnRadius</code></td>
+<td>Float</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-vfximpact"></a><code>VFXImpact</code></td>
+<td>ArtDefReference</td>
+<td>9</td>
+<td>145</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets"></a><code>SpecificTargets</code></td>
+<td>ArtDefReference/Collection</td>
+<td>9</td>
+<td>113</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-combatattack"></a><code>CombatAttack</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-combatattack_1"></a><code>CombatAttack_1</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-combatattack_2"></a><code>CombatAttack_2</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-combatattack_3"></a><code>CombatAttack_3</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-combatattack_4"></a><code>CombatAttack_4</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-combatrunstarttime"></a><code>CombatRunStartTime</code></td>
+<td>Float</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-combatrunstoptime"></a><code>CombatRunStopTime</code></td>
+<td>Float</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-defensiveattack"></a><code>DefensiveAttack</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-defensiveattack_1"></a><code>DefensiveAttack_1</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-defensiveattack_2"></a><code>DefensiveAttack_2</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-defensiveattack_3"></a><code>DefensiveAttack_3</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-dieslast"></a><code>DiesLast</code></td>
+<td>Bool</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heroattack"></a><code>HeroAttack</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heroattack_1"></a><code>HeroAttack_1</code></td>
+<td>ArtDefReference</td>
+<td>11</td>
+<td>96</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-isnaval"></a><code>IsNaval</code></td>
+<td>Bool</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-maxsmallmovedistance"></a><code>MaxSmallMoveDistance</code></td>
+<td>Float</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-noattack"></a><code>NoAttack</code></td>
+<td>Bool</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-nodamage"></a><code>NoDamage</code></td>
+<td>Bool</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-noformup"></a><code>NoFormup</code></td>
+<td>Bool</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-pathturndist"></a><code>PathTurnDist</code></td>
+<td>Float</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-radius"></a><code>Radius</code></td>
+<td>Float</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-speed"></a><code>Speed</code></td>
+<td>Float</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-turnrate"></a><code>TurnRate</code></td>
+<td>Int</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-usesturnanims"></a><code>UsesTurnAnims</code></td>
+<td>Bool</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-vehicleturnradius"></a><code>VehicleTurnRadius</code></td>
+<td>Float</td>
+<td>11</td>
+<td>96</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-forward"></a><code>Forward</code></td>
+<td>Float</td>
+<td>1</td>
+<td>91</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-left"></a><code>Left</code></td>
+<td>Float</td>
+<td>1</td>
+<td>91</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets001"></a><code>SpecificTargets001</code></td>
+<td>ArtDefReference/Collection</td>
+<td>3</td>
+<td>73</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-canhover"></a><code>CanHover</code></td>
+<td>Bool</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-easein"></a><code>EaseIn</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-easeout"></a><code>EaseOut</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-flyingheight"></a><code>FlyingHeight</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-jumpheight"></a><code>JumpHeight</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-jumpleadtime"></a><code>JumpLeadTime</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-jumpstoptime"></a><code>JumpStopTime</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-jumpsubdivisions"></a><code>JumpSubdivisions</code></td>
+<td>Int</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-jumptotaltime"></a><code>JumpTotalTime</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-maxwaterdepth"></a><code>MaxWaterDepth</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-memberdelay"></a><code>MemberDelay</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-roll"></a><code>Roll</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-rowdelay"></a><code>RowDelay</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-runstarttime"></a><code>RunStartTime</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-runstoptime"></a><code>RunStopTime</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-subdivisions"></a><code>Subdivisions</code></td>
+<td>Int</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-totaltime"></a><code>TotalTime</code></td>
+<td>Float</td>
+<td>8</td>
+<td>65</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-attachment_point_name"></a><code>Attachment Point Name</code></td>
+<td>String</td>
+<td>4</td>
+<td>63</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-conditions"></a><code>Conditions</code></td>
+<td>String</td>
+<td>4</td>
+<td>63</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-cohesion"></a><code>Cohesion</code></td>
+<td>Int</td>
+<td>3</td>
+<td>32</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-combatformation"></a><code>CombatFormation</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>32</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-defensiveformation"></a><code>DefensiveFormation</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>32</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-supportunit"></a><code>SupportUnit</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>32</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-arcsize"></a><code>ArcSize</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-blockrandomness"></a><code>BlockRandomness</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-canfliplefttoright"></a><code>CanFlipLeftToRight</code></td>
+<td>Bool</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-canmirrorfronttoback"></a><code>CanMirrorFrontToBack</code></td>
+<td>Bool</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-centerblockwidth"></a><code>CenterBlockWidth</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-facingblend"></a><code>FacingBlend</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-firstrowwidth"></a><code>FirstRowWidth</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-memberrandomness"></a><code>MemberRandomness</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-minimizerows"></a><code>MinimizeRows</code></td>
+<td>Bool</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-minimumradius"></a><code>MinimumRadius</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-perrowincrement"></a><code>PerRowIncrement</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-spacingmultiplier"></a><code>SpacingMultiplier</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-spacingx"></a><code>SpacingX</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-spacingy"></a><code>SpacingY</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-staggerincrement"></a><code>StaggerIncrement</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-xblocksize"></a><code>XBlockSize</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-xblockspacingcount"></a><code>XBlockSpacingCount</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-yblocksize"></a><code>YBlockSize</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-yblockspacingcount"></a><code>YBlockSpacingCount</code></td>
+<td>Int</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-yoffsetincrement"></a><code>YOffsetIncrement</code></td>
+<td>Float</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-yoffsetiscurved"></a><code>YOffsetIsCurved</code></td>
+<td>Bool</td>
+<td>7</td>
+<td>31</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-rowspacing"></a><code>RowSpacing</code></td>
+<td>Float</td>
+<td>1</td>
+<td>25</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets002"></a><code>SpecificTargets002</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>23</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets003"></a><code>SpecificTargets003</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>20</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets004"></a><code>SpecificTargets004</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>20</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets005"></a><code>SpecificTargets005</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>17</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets006"></a><code>SpecificTargets006</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>17</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets007"></a><code>SpecificTargets007</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>15</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets008"></a><code>SpecificTargets008</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>15</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets009"></a><code>SpecificTargets009</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>15</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets010"></a><code>SpecificTargets010</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>14</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets011"></a><code>SpecificTargets011</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>14</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets012"></a><code>SpecificTargets012</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>12</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets013"></a><code>SpecificTargets013</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>12</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets014"></a><code>SpecificTargets014</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>12</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets015"></a><code>SpecificTargets015</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets016"></a><code>SpecificTargets016</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets017"></a><code>SpecificTargets017</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets018"></a><code>SpecificTargets018</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets019"></a><code>SpecificTargets019</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets020"></a><code>SpecificTargets020</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets021"></a><code>SpecificTargets021</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets022"></a><code>SpecificTargets022</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>10</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-garrisonattackunit"></a><code>GarrisonAttackUnit</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-garrisondefenseunit"></a><code>GarrisonDefenseUnit</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets023"></a><code>SpecificTargets023</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>9</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets024"></a><code>SpecificTargets024</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>9</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets025"></a><code>SpecificTargets025</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>9</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets026"></a><code>SpecificTargets026</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>8</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets027"></a><code>SpecificTargets027</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>8</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets028"></a><code>SpecificTargets028</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>6</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets029"></a><code>SpecificTargets029</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>2</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets030"></a><code>SpecificTargets030</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>2</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-specifictargets031"></a><code>SpecificTargets031</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>2</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-wmdtargetplots001"></a><code>WMDTargetPlots001</code></td>
+<td>Collection/String</td>
+<td>1</td>
+<td>2</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-icbmattack"></a><code>ICBMAttack</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-timeout_anim"></a><code>Timeout_Anim</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-timeout_apply"></a><code>Timeout_Apply</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-timeout_attack"></a><code>Timeout_Attack</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-timeout_block"></a><code>Timeout_Block</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-timeout_death"></a><code>Timeout_Death</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-timeout_dodge"></a><code>Timeout_Dodge</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-wmdtargetplots002"></a><code>WMDTargetPlots002</code></td>
+<td>String</td>
+<td>1</td>
+<td>1</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>Names the exe uses that no shipped file contains (11)</h2>
+<p>Strings of the assigned functions that are not collection or parameter names in any shipped file of this type: optional or unused parameters, enum-like values, file names or messages. Not every entry is an artdef name.</p>
+<p><code>Animation</code>, <code>Block</code>, <code>DEFAULT</code>, <code>ExpendAnimation</code>, <code>FillArc</code>, <code>RowArc</code>, <code>UNIT_WMD_TARGET_PLOT</code>, <code>UnitActivationAnimation</code>, <code>UnitActivities</code>, <code>UnitActivity</code>, <code>WMDTargetPlots</code></p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

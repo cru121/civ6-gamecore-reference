@@ -1,0 +1,10 @@
+# ForgeUI XML vocabulary (what the exe reads from UI XML files)
+
+Method: identifier literals referenced by `ForgeUI::<Type>::BuildCoreFromXML` / `BuildFromXML` for 31 control types (338 names), cross-checked against the 346 UI XML files shipped with the game (element and attribute counts only; `docs_proto/tools/extract_exe_uixml.py`).
+Reference page: `docs_proto/docs/exe/uixml.md`. **Verified**: names, their functions, shipped counts. **Inferred**: control type to XML element mapping (aliases in `docs_proto/curated/_exe_uixml.yaml`, each checked against a tag that exists in the shipped files) and the short explanations.
+- 172 of the 338 names occur in shipped files; the rest are supported but unused by the game, or child and style names. `ControlBase` (the `Container` element) reads 34 names (`Anchor`, `Offset`, `Hidden`, `ToolTip`, `MinSize`, `AnchorSide`, mouse consumption flags ...), of which `Alpha`, `AutoSize`, `ClampSize`,
+  `Disabled`, `HideOnMouseOver`, `ModalBlocksInput`, `NeedsMouseOver`, `NoClip`, `ShowOnMouseOut/Over`, `SizePadding`, `ToolTipType`, `TutorialActive` never appear in shipped files.
+- Element mapping: TextControl = `Label`, ImageControl = `Image`, GridControl = `Grid`, StackControl = `Stack`, ButtonControl = `Button`, GridButtonControl = `GridButton`, ScrollPanelControl = `ScrollPanel`, PullDownControl = `PullDown`, MeterControl = `Meter`,
+  CheckBoxControl = `CheckBox`, EditBoxControl = `EditBox`, animations `AlphaAnim` / `FlipAnim` / `SlideAnim` (AnimControl base); ButtonControlBase and TweenControl have no element of their own.
+- `ID`, `Size` and `Style` are heavily used in shipped files but are not literals in any control's XML code: they are read by shared code.
+- Tag names in the shipped files that are not control types: `Row`, `Instance`, `Box`, `Color`, `Include`, `MakeInstance`, `GridData`, `ButtonData`, `StackData`, `ScrollPanelData`, `InstanceData` (templates and data blocks) and about 500 style names (`FontNormal12`, `ButtonControl` ...) from the style sheets.

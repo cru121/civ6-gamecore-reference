@@ -1,0 +1,435 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Engine classes</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › Engine classes</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Engine classes</h1>
+<p>The C++ classes of the engine executable: who inherits from whom, and the <strong>virtual functions</strong> of each class in vtable order. The information comes from the run-time type information (RTTI) of the <strong>Linux build</strong>, which the Windows build does not carry, so this is the only place the class structure of the Windows executable can be read from; the two builds are compiled from the same source, so the structure is expected to match. Windows addresses are given for virtual functions that the <a href="../exefn/index.html">function index</a> could map (high or medium confidence).</p>
+<p>Standard-library, third-party and platform-shim classes are left out (ICU, OpenSSL, the shader language, the Direct3D compatibility layer). 1207 classes remain, with 11959 virtual slots, 1931 of them mapped to a Windows address.</p>
+<p>Verified: class names, base classes, vtable contents (read from the Linux file). Inferred: that the Windows build has the same hierarchy and slot order; for <code>GameCore::EngineUtility</code> this was confirmed on the Windows vtable (46 slots, same order).</p>
+<p><a href="hierarchy.html">Inheritance trees</a> | <a href="#namespaces">Namespaces</a></p>
+<h2><a id="namespaces"></a>Namespaces</h2>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Classes</th>
+<th>Virtual slots</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="global.html">(global namespace)</a></td>
+<td>368</td>
+<td>3635</td>
+</tr>
+<tr>
+<td><a href="AssetObjects.html">AssetObjects</a></td>
+<td>177</td>
+<td>1595</td>
+</tr>
+<tr>
+<td><a href="Firaxis.html">Firaxis</a></td>
+<td>131</td>
+<td>691</td>
+</tr>
+<tr>
+<td><a href="ForgeUI.html">ForgeUI</a></td>
+<td>87</td>
+<td>3084</td>
+</tr>
+<tr>
+<td><a href="WorldView.html">WorldView</a></td>
+<td>54</td>
+<td>172</td>
+</tr>
+<tr>
+<td><a href="Synthesis.html">Synthesis</a></td>
+<td>31</td>
+<td>128</td>
+</tr>
+<tr>
+<td><a href="BLP.html">BLP</a></td>
+<td>29</td>
+<td>202</td>
+</tr>
+<tr>
+<td><a href="Localization.html">Localization</a></td>
+<td>25</td>
+<td>54</td>
+</tr>
+<tr>
+<td><a href="Modding.html">Modding</a></td>
+<td>24</td>
+<td>244</td>
+</tr>
+<tr>
+<td><a href="GameCore.html">GameCore</a></td>
+<td>23</td>
+<td>371</td>
+</tr>
+<tr>
+<td><a href="App.html">App</a></td>
+<td>19</td>
+<td>184</td>
+</tr>
+<tr>
+<td><a href="Simulation.html">Simulation</a></td>
+<td>19</td>
+<td>155</td>
+</tr>
+<tr>
+<td><a href="CivTech.html">CivTech</a></td>
+<td>15</td>
+<td>151</td>
+</tr>
+<tr>
+<td><a href="Database.html">Database</a></td>
+<td>12</td>
+<td>120</td>
+</tr>
+<tr>
+<td><a href="Data.html">Data</a></td>
+<td>11</td>
+<td>277</td>
+</tr>
+<tr>
+<td><a href="Platform.html">Platform</a></td>
+<td>10</td>
+<td>50</td>
+</tr>
+<tr>
+<td><a href="Serialization.html">Serialization</a></td>
+<td>10</td>
+<td>79</td>
+</tr>
+<tr>
+<td><a href="Network.html">Network</a></td>
+<td>9</td>
+<td>141</td>
+</tr>
+<tr>
+<td><a href="Application.html">Application</a></td>
+<td>8</td>
+<td>29</td>
+</tr>
+<tr>
+<td><a href="ArtDefManager.html">ArtDefManager</a></td>
+<td>8</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="Graphics.html">Graphics</a></td>
+<td>8</td>
+<td>35</td>
+</tr>
+<tr>
+<td><a href="StrategicView.html">StrategicView</a></td>
+<td>8</td>
+<td>32</td>
+</tr>
+<tr>
+<td><a href="FGXModelFramework.html">FGXModelFramework</a></td>
+<td>7</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="LandmarkPackageEntry.html">LandmarkPackageEntry</a></td>
+<td>7</td>
+<td>42</td>
+</tr>
+<tr>
+<td><a href="VisualEffectSystem.html">VisualEffectSystem</a></td>
+<td>7</td>
+<td>27</td>
+</tr>
+<tr>
+<td><a href="XML.html">XML</a></td>
+<td>7</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a href="OverlaySystem.html">OverlaySystem</a></td>
+<td>5</td>
+<td>25</td>
+</tr>
+<tr>
+<td><a href="CPreprocessor.html">CPreprocessor</a></td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Civ6App.html">Civ6App</a></td>
+<td>4</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="FNetLobbySteam.html">FNetLobbySteam</a></td>
+<td>4</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="FOW.html">FOW</a></td>
+<td>4</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="cppcodec.html">cppcodec</a></td>
+<td>4</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a href="CityGen.html">CityGen</a></td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="CoastlineWaves.html">CoastlineWaves</a></td>
+<td>3</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="ColorKeySystem.html">ColorKeySystem</a></td>
+<td>3</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="ModelPackageEntry.html">ModelPackageEntry</a></td>
+<td>3</td>
+<td>18</td>
+</tr>
+<tr>
+<td><a href="Particle.html">Particle</a></td>
+<td>3</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a href="WonderMoviePackageEntry.html">WonderMoviePackageEntry</a></td>
+<td>3</td>
+<td>18</td>
+</tr>
+<tr>
+<td><a href="Aspyr.html">Aspyr</a></td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="FGXModel.html">FGXModel</a></td>
+<td>2</td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="IndirectLightingGrid.html">IndirectLightingGrid</a></td>
+<td>2</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a href="LuaSystem.html">LuaSystem</a></td>
+<td>2</td>
+<td>23</td>
+</tr>
+<tr>
+<td><a href="ModelVisSystem.html">ModelVisSystem</a></td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Terrain.html">Terrain</a></td>
+<td>2</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a href="UILensModelSystem.html">UILensModelSystem</a></td>
+<td>2</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="AOSystem.html">AOSystem</a></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="AppHost.html">AppHost</a></td>
+<td>1</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="AudioMiner.html">AudioMiner</a></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="CameraAnimationPackageEntry.html">CameraAnimationPackageEntry</a></td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="Crypto.html">Crypto</a></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Events.html">Events</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="FNetLobbyEOS.html">FNetLobbyEOS</a></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="FOWMeshVisSystem.html">FOWMeshVisSystem</a></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="File.html">File</a></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="GLWarmingContext.html">GLWarmingContext</a></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="LLAudio.html">LLAudio</a></td>
+<td>1</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a href="LibraryHelpers.html">LibraryHelpers</a></td>
+<td>1</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="LightingSystem.html">LightingSystem</a></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="LoadGameViewState.html">LoadGameViewState</a></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="LuaPlus.html">LuaPlus</a></td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Math.html">Math</a></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="Path.html">Path</a></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="RangedArrowSystem.html">RangedArrowSystem</a></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="Reflection.html">Reflection</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="RenderGlobals.html">RenderGlobals</a></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="SkyBoxSystem.html">SkyBoxSystem</a></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="SurfaceSetAllocator.html">SurfaceSetAllocator</a></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="Tuner.html">Tuner</a></td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="WaterPackageEntry.html">WaterPackageEntry</a></td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="XMLSerialization.html">XMLSerialization</a></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="hashidsxx.html">hashidsxx</a></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="int_____BLP.html">int (*)(BLP</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="int_____bool__WorldView.html">int (*)(bool, WorldView</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="int_____bool__char_const___BLP.html">int (<em>)(bool, char const</em>, BLP</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="int_____char_const___bool__BLP.html">int (<em>)(char const</em>, bool, BLP</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="int__BLP.html">int (BLP</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="int__bool__WorldView.html">int (bool, WorldView</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="int__bool__char_const___BLP.html">int (bool, char const*, BLP</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="int__char_const___bool__BLP.html">int (char const*, bool, BLP</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="void_____ctp.html">void (*)(ctp</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="void__ctp.html">void (ctp</a></td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

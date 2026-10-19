@@ -1,0 +1,879 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Multiplayer and lobby vocabulary</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Multiplayer and lobby vocabulary</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Multiplayer, lobby and Firaxis Live vocabulary</h1>
+<p>The names the engine executable uses for multiplayer lobbies, connections and the Firaxis Live service (145 names). Most useful for modders: the <strong>Lua game list entry</strong> (what <code>Matchmaking.GetGameListEntry</code> returns) and the <strong>lobby metadata keys</strong> behind it, each with its integer or string type read from the decompiled code. The network Lua functions themselves are on the <a href="../exeapi/Network.html"><code>Network</code></a> and <a href="../exeapi/Matchmaking.html"><code>Matchmaking</code></a> pages; the numeric enums (<code>ServerType</code>, <code>KickReason</code>, <code>NetworkResult</code>, ...) are on the <a href="lua-enums.html">enum tables</a>. Log and error texts are on the <a href="messages.html">messages</a> page.</p>
+<p><strong>Scope and omissions.</strong> Only names and types are listed. The functions that create the Epic platform and start the Firaxis Live client also contain embedded service identifiers; they were deliberately not read for this page and none of those values are reproduced anywhere in this reference. Nothing here describes what is sent over the network beyond the key names.</p>
+<h2><a id="lua-entry"></a>Fields of the Lua game list entry (20)</h2>
+<p>The table <code>Matchmaking.GetGameListEntry</code> fills for every lobby or cloud game (decompiled <code>AddLobbyToTable</code>, <code>0x266980</code>). The kind is the Lua type of the value. "Script uses" counts reads of the field in the game's own Lua files that use the matchmaking table.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Lua type</th>
+<th>Source</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="lua-entry-servername"></a><code>serverName</code></td>
+<td>string</td>
+<td>lobby name</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="lua-entry-numplayers"></a><code>numPlayers</code></td>
+<td>number</td>
+<td>current player count, from the lobby interface</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="lua-entry-maxplayers"></a><code>maxPlayers</code></td>
+<td>number</td>
+<td>maximum players, from the lobby interface</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="lua-entry-players"></a><code>Players</code></td>
+<td>string</td>
+<td>list of the lobby members, read from the metadata key Members</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="lua-entry-serverid"></a><code>serverID</code></td>
+<td>number</td>
+<td>index of the entry in the lobby list (the argument of the call)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="lua-entry-mapname"></a><code>MapName</code></td>
+<td>string</td>
+<td>metadata key MapName</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="lua-entry-mapsize"></a><code>MapSize</code></td>
+<td>integer</td>
+<td>metadata key MapSize</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="lua-entry-ruleset"></a><code>RuleSet</code></td>
+<td>string</td>
+<td>metadata key RuleSet</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="lua-entry-rulesetname"></a><code>RuleSetName</code></td>
+<td>string</td>
+<td>metadata key RuleSetName</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="lua-entry-enabledmods"></a><code>EnabledMods</code></td>
+<td>string</td>
+<td>metadata key EnabledMods</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="lua-entry-enabledgamemodenames"></a><code>EnabledGameModeNames</code></td>
+<td>string</td>
+<td>metadata key EnabledGameModeNames</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="lua-entry-initialized"></a><code>Initialized</code></td>
+<td>integer</td>
+<td>metadata key Initialized</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="lua-entry-gameversion"></a><code>GameVersion</code></td>
+<td>string</td>
+<td>metadata key GameVersion</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="lua-entry-gamespeed"></a><code>GameSpeed</code></td>
+<td>integer</td>
+<td>metadata key GameSpeed</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="lua-entry-gamespeedname"></a><code>GameSpeedName</code></td>
+<td>string</td>
+<td>metadata key GameSpeedName</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="lua-entry-gamestarted"></a><code>GameStarted</code></td>
+<td>integer</td>
+<td>metadata key GameStarted</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="lua-entry-savedgame"></a><code>SavedGame</code></td>
+<td>integer</td>
+<td>metadata key SavedGame</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="lua-entry-cloudturnplayername"></a><code>CloudTurnPlayerName</code></td>
+<td>string</td>
+<td>metadata key CloudTurnPlayerName</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="lua-entry-victoryname"></a><code>VictoryName</code></td>
+<td>string</td>
+<td>metadata key VictoryName</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="lua-entry-victoryplayername"></a><code>VictoryPlayerName</code></td>
+<td>string</td>
+<td>metadata key VictoryPlayerName</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="lobby-metadata"></a>Lobby metadata keys (18)</h2>
+<p>Keys the host writes into the lobby (or cloud match) metadata and clients read back. The kind comes from which accessor slot the code calls on the lobby interface: set/get integer or set/get string (<strong>Verified</strong> from the decompiled code). <code>GameLaunchReady</code> is written but not shown in the Lua entry; <code>Members</code> is only read.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Kind</th>
+<th>Written by</th>
+<th>Read by</th>
+<th>In the Lua entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="lobby-metadata-initialized"></a><code>Initialized</code></td>
+<td>integer</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-gameversion"></a><code>GameVersion</code></td>
+<td>string</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-gamespeed"></a><code>GameSpeed</code></td>
+<td>integer</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-gamespeedname"></a><code>GameSpeedName</code></td>
+<td>string</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-gamestarted"></a><code>GameStarted</code></td>
+<td>integer</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-savedgame"></a><code>SavedGame</code></td>
+<td>integer</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-gamelaunchready"></a><code>GameLaunchReady</code></td>
+<td>integer</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td>—</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-cloudturnplayername"></a><code>CloudTurnPlayerName</code></td>
+<td>string</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-victoryname"></a><code>VictoryName</code></td>
+<td>string</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-victoryplayername"></a><code>VictoryPlayerName</code></td>
+<td>string</td>
+<td><code>UpdateLobbyGameSettings (0x294ea0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-mapname"></a><code>MapName</code></td>
+<td>string</td>
+<td><code>UpdateLobbyMap (0x2956e0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-mapdisplayname"></a><code>MapDisplayName</code></td>
+<td>string</td>
+<td><code>UpdateLobbyMap (0x2956e0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-mapsize"></a><code>MapSize</code></td>
+<td>integer</td>
+<td><code>UpdateLobbyMap (0x2956e0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-ruleset"></a><code>RuleSet</code></td>
+<td>string</td>
+<td><code>UpdateLobbyMod (0x295bb0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-rulesetname"></a><code>RuleSetName</code></td>
+<td>string</td>
+<td><code>UpdateLobbyMod (0x295bb0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-enabledmods"></a><code>EnabledMods</code></td>
+<td>string</td>
+<td><code>UpdateLobbyMod (0x295bb0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-enabledgamemodenames"></a><code>EnabledGameModeNames</code></td>
+<td>string</td>
+<td><code>UpdateLobbyMod (0x295bb0)</code></td>
+<td><code>AddLobbyToTable</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="lobby-metadata-members"></a><code>Members</code></td>
+<td>string</td>
+<td>—</td>
+<td><code>AddLobbyToTable</code></td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="platform-lobby-key"></a>Platform lobby keys (Epic Online Services and Steam) (11)</h2>
+<p>Internal attribute names the lobby back ends use. The meaning is <strong>Inferred</strong> from the functions that use the names.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning (inferred)</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="platform-lobby-key-_game_started_"></a><code>_GAME_STARTED_</code></td>
+<td>set when the host starts the game</td>
+<td><code>StartGame</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-pack_data"></a><code>PACK_DATA</code></td>
+<td>Steam server string key that carries the packed lobby data</td>
+<td><code>GetServerCustomString</code>, <code>RegisterServerStringKey</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-_name_"></a><code>_NAME_</code></td>
+<td>lobby name key of the Steam lobby</td>
+<td><code>OnLobbyEntered</code>, <code>OnLobbyMatchListCallback</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-lobbyzone"></a><code>LobbyZone</code></td>
+<td>Steam lobby search filter</td>
+<td><code>RequestLobbies</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-_lobby_name_"></a><code>_LOBBY_NAME_</code></td>
+<td>lobby (room) name</td>
+<td><code>CreateLobbyFromLobbyDetails</code>, <code>OnLobbyCreated</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-_lobby_private_"></a><code>_LOBBY_PRIVATE_</code></td>
+<td>private flag; changed by SetLobbyPrivacy</td>
+<td><code>CreateLobbyFromLobbyDetails</code>, <code>RequestLobbies</code>, <code>SetLobbyPrivacy</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-fxs_879689344"></a><code>FXS:879689344</code></td>
+<td>value of the bucket used by the game (matches only lobbies of this game)</td>
+<td><code>OnLobbyCreated</code>, <code>RequestLobbies</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-_bucket_"></a><code>_BUCKET_</code></td>
+<td>search bucket: lobby searches filter on it</td>
+<td><code>OnLobbyCreated</code>, <code>RequestLobbies</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-_lobby_join_code_"></a><code>_LOBBY_JOIN_CODE_</code></td>
+<td>join code players can type to enter a lobby</td>
+<td><code>OnLobbyCreated</code>, <code>RequestLobbies</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-_lobby_max_players_"></a><code>_LOBBY_MAX_PLAYERS_</code></td>
+<td>player limit set when the lobby is created</td>
+<td><code>OnLobbyCreated</code></td>
+</tr>
+<tr>
+<td><a id="platform-lobby-key-chunked_data"></a><code>CHUNKED_DATA</code></td>
+<td>marks lobby data that was split into chunks because one value is limited in size (the exe logs "Meta data too large")</td>
+<td><code>SetLobbyData</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="cloud-key"></a>Firaxis cloud (PlayByCloud) keys (7)</h2>
+<p>Names used for cloud matches and cloud saves. Meaning inferred.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning (inferred)</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="cloud-key-c6game"></a><code>C6GAME</code></td>
+<td>key prefix of cloud game data</td>
+<td><code>OnFiraxisLiveKeyDataError</code></td>
+</tr>
+<tr>
+<td><a id="cloud-key-_meta"></a><code>_META</code></td>
+<td>suffix of the cloud key that holds a save file's metadata</td>
+<td><code>OnFiraxisLiveKeyDataError</code>, <code>OnFiraxisLiveKeyDataResult</code>, <code>Write</code></td>
+</tr>
+<tr>
+<td><a id="cloud-key-matchname"></a><code>MatchName</code></td>
+<td>name of the Firaxis cloud match</td>
+<td><code>BroadcastGame</code>, <code>SetCurrentGameName</code></td>
+</tr>
+<tr>
+<td><a id="cloud-key-maxplayers"></a><code>MaxPlayers</code></td>
+<td>player limit of the cloud match</td>
+<td><code>BroadcastGame</code></td>
+</tr>
+<tr>
+<td><a id="cloud-key-metadata"></a><code>Metadata</code></td>
+<td>match metadata blob (the lobby metadata keys above)</td>
+<td><code>BroadcastGame</code>, <code>RefreshAppServerMetaData</code></td>
+</tr>
+<tr>
+<td><a id="cloud-key-privategame"></a><code>PrivateGame</code></td>
+<td>private flag of the cloud match</td>
+<td><code>BroadcastGame</code>, <code>SetPrivateGame</code></td>
+</tr>
+<tr>
+<td><a id="cloud-key-joinsblocked"></a><code>JoinsBlocked</code></td>
+<td>cloud match attribute that stops new players from joining</td>
+<td><code>SetCloudJoinsBlocked</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="connection-close-reason"></a>Connection close reasons (11)</h2>
+<p>Names the Epic transport logs when a connection ends (<code>OnConnectionDropped</code>). The numeric values are not in the strings.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning (inferred)</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="connection-close-reason-ccr_closedbylocaluser"></a><code>CCR_ClosedByLocalUser</code></td>
+<td>this player closed the connection</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_closedbypeer"></a><code>CCR_ClosedByPeer</code></td>
+<td>the other side closed the connection</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_connectionclosed"></a><code>CCR_ConnectionClosed</code></td>
+<td>connection closed (no specific reason)</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_connectionfailed"></a><code>CCR_ConnectionFailed</code></td>
+<td>connection could not be established</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_invaliddata"></a><code>CCR_InvalidData</code></td>
+<td>received data failed validation</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_invalidmessage"></a><code>CCR_InvalidMessage</code></td>
+<td>received message could not be parsed</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_negotiationfailed"></a><code>CCR_NegotiationFailed</code></td>
+<td>handshake failed</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_timedout"></a><code>CCR_TimedOut</code></td>
+<td>no data arrived in time</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_toomanyconnections"></a><code>CCR_TooManyConnections</code></td>
+<td>connection limit reached</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_unexpectederror"></a><code>CCR_UnexpectedError</code></td>
+<td>unexpected error</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+<tr>
+<td><a id="connection-close-reason-ccr_unknown"></a><code>CCR_Unknown</code></td>
+<td>reason not known</td>
+<td><code>OnConnectionDropped</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="lobby-member-status"></a>Lobby member status codes (6)</h2>
+<p>Names logged when the Epic lobby reports a member change (<code>OnLobbyMemberStatusReceived</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning (inferred)</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="lobby-member-status-lms_closed"></a><code>LMS_CLOSED</code></td>
+<td>the lobby was closed</td>
+<td><code>OnLobbyMemberStatusReceived</code></td>
+</tr>
+<tr>
+<td><a id="lobby-member-status-lms_disconnected"></a><code>LMS_DISCONNECTED</code></td>
+<td>a member dropped</td>
+<td><code>OnLobbyMemberStatusReceived</code></td>
+</tr>
+<tr>
+<td><a id="lobby-member-status-lms_joined"></a><code>LMS_JOINED</code></td>
+<td>a member joined the lobby</td>
+<td><code>OnLobbyMemberStatusReceived</code></td>
+</tr>
+<tr>
+<td><a id="lobby-member-status-lms_kicked"></a><code>LMS_KICKED</code></td>
+<td>a member was removed by the host</td>
+<td><code>OnLobbyMemberStatusReceived</code></td>
+</tr>
+<tr>
+<td><a id="lobby-member-status-lms_left"></a><code>LMS_LEFT</code></td>
+<td>a member left</td>
+<td><code>OnLobbyMemberStatusReceived</code></td>
+</tr>
+<tr>
+<td><a id="lobby-member-status-lms_promoted"></a><code>LMS_PROMOTED</code></td>
+<td>a member became the host</td>
+<td><code>OnLobbyMemberStatusReceived</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="firaxislive-session-field"></a>Firaxis Live session fields (12)</h2>
+<p>Field names the client sets when it creates the Firaxis Live client (names only; the values, including any identifiers, are not listed here).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning (inferred)</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="firaxislive-session-field-buildversion"></a><code>BuildVersion</code></td>
+<td>game build reported to the service</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-firaxisliveid"></a><code>FiraxisLiveID</code></td>
+<td>Firaxis Live account id</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-gamertag"></a><code>GamerTag</code></td>
+<td>player display name</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-sessionid"></a><code>SessionID</code></td>
+<td>id of the current session</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-userid"></a><code>UserID</code></td>
+<td>user id</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-ctpgamedatapath"></a><code>ctpGameDataPath</code></td>
+<td>folder of the game data (for the client library)</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-ctplogpath"></a><code>ctpLogPath</code></td>
+<td>log folder</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-ctppermanentpath"></a><code>ctpPermanentPath</code></td>
+<td>folder for permanent client data</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-ctptemppath"></a><code>ctpTempPath</code></td>
+<td>temporary folder</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-my2kclientid"></a><code>my2KClientID</code></td>
+<td>client identifier of the 2K account service</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-my2klocal"></a><code>my2KLocal</code></td>
+<td>local account state of the 2K service</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-session-field-my2ksecret"></a><code>my2KSecret</code></td>
+<td>name of a credential field (its value is not listed here)</td>
+<td><code>CreateFiraxisLive</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="firaxislive-config"></a>Firaxis Live configuration (5)</h2>
+<p>Data push topics and flags of the online configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning (inferred)</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="firaxislive-config-app_firaxislive_configuration"></a><code>App/FiraxisLive/Configuration</code></td>
+<td>data push topic: online configuration</td>
+<td><code>DoDataPushNotify</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-config-app_firaxislive_marketingmessage"></a><code>App/FiraxisLive/MarketingMessage</code></td>
+<td>data push topic: marketing message for the main menu</td>
+<td><code>DoDataPushNotify</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-config-sendapplogs"></a><code>SendAppLogs</code></td>
+<td>configuration flag: upload application logs</td>
+<td><code>HandleConfigurationUpdates</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-config-sendappminidumps"></a><code>SendAppMinidumps</code></td>
+<td>configuration flag: upload crash dumps</td>
+<td><code>HandleConfigurationUpdates</code></td>
+</tr>
+<tr>
+<td><a id="firaxislive-config-app_firaxislive_onlinetelemetryconfiguration.xml"></a><code>App/FiraxisLive/OnlineTelemetryConfiguration.xml</code></td>
+<td>online telemetry ruleset document (see the telemetry page)</td>
+<td><code>OnOnlineConfigUpdated</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="firaxislive-operation"></a>Firaxis Live operations (20)</h2>
+<p>The server calls the client makes, from the "X failed" messages of the client wrapper. These are the cloud-match and account operations behind PlayByCloud and the 2K account link.</p>
+<details>
+<summary>20 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="firaxislive-operation-endmatch"></a><code>EndMatch</code></td>
+<td><code>EndMatch</code> (0x521dd0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-endturnmatch"></a><code>EndTurnMatch</code></td>
+<td><code>EndTurnMatch</code> (0x521e10)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-getmatchsavegame"></a><code>GetMatchSaveGame</code></td>
+<td><code>GetMatchSaveGame</code> (0x522060)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-kvpdatagetentries"></a><code>KVPDataGetEntries</code></td>
+<td><code>GetKvpDataEntries</code> (0x521f60)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-kickplayermatch"></a><code>KickPlayerMatch</code></td>
+<td><code>KickPlayerMatch</code> (0x522710)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-killmatch"></a><code>KillMatch</code></td>
+<td><code>KillMatch</code> (0x522750)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-matchcreate"></a><code>MatchCreate</code></td>
+<td><code>HostMatch</code> (0x5221a0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-matchgetinfo"></a><code>MatchGetInfo</code></td>
+<td><code>GetMatchInfo</code> (0x521fe0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-matchjoin"></a><code>MatchJoin</code></td>
+<td><code>JoinMatch</code> (0x5226d0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-matchlist"></a><code>MatchList</code></td>
+<td><code>GetMatchList</code> (0x522020)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-matchstartmatch"></a><code>MatchStartMatch</code></td>
+<td><code>StartMatch</code> (0x5252a0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-my2klinkaccount"></a><code>My2KLinkAccount</code></td>
+<td><code>LinkAccount</code> (0x522790)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-my2klogon"></a><code>My2KLogon</code></td>
+<td><code>Logon</code> (0x5228e0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-my2kunlinkaccount"></a><code>My2KUnlinkAccount</code></td>
+<td><code>UnlinkAccount</code> (0x5252e0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-quitmatch"></a><code>QuitMatch</code></td>
+<td><code>QuitMatch</code> (0x524500)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-setmatchplayermetadata"></a><code>SetMatchPlayerMetadata</code></td>
+<td><code>SetMatchPlayerMetadata</code> (0x525160)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-setmatchplayerorder"></a><code>SetMatchPlayerOrder</code></td>
+<td><code>SetMatchPlayerOrder</code> (0x5251b0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-setmatchplayerstatus"></a><code>SetMatchPlayerStatus</code></td>
+<td><code>SetMatchPlayerStatus</code> (0x5251f0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-updatematchattributes"></a><code>UpdateMatchAttributes</code></td>
+<td><code>UpdateMatchAttributes</code> (0x5253c0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-operation-updatematchsavegame"></a><code>UpdateMatchSaveGame</code></td>
+<td><code>UpdateMatchSaveGame</code> (0x525400)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="firaxislive-event"></a>Firaxis Live notifications (35)</h2>
+<p>Notification callbacks the client registers (<code>FiraxisLive_On...</code>), each handled by one function.</p>
+<details>
+<summary>35 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onconnectfailurenotify"></a><code>FiraxisLive_OnConnectFailureNotify</code></td>
+<td><code>OnConnectFailureNotify</code> (0x522b20)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onconnectionstatusnotify"></a><code>FiraxisLive_OnConnectionStatusNotify</code></td>
+<td><code>OnConnectionStatusNotify</code> (0x522bc0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_ondatapushnotify"></a><code>FiraxisLive_OnDataPushNotify</code></td>
+<td><code>OnDataPushNotify</code> (0x522c60)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_ongetdobdatanotify"></a><code>FiraxisLive_OnGetDOBDataNotify</code></td>
+<td><code>OnGetDOBDataNotify</code> (0x522d50)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_ongetgrantedentitlements"></a><code>FiraxisLive_OnGetGrantedEntitlements</code></td>
+<td><code>OnGetGrantedEntitlements</code> (0x522dd0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_ongetlogondatanotify"></a><code>FiraxisLive_OnGetLogonDataNotify</code></td>
+<td><code>OnGetLogonDataNotify</code> (0x522ea0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_ongetnewaccountdatanotify"></a><code>FiraxisLive_OnGetNewAccountDataNotify</code></td>
+<td><code>OnGetNewAccountDataNotify</code> (0x522f40)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onkvpdataerrornotify"></a><code>FiraxisLive_OnKVPDataErrorNotify</code></td>
+<td><code>OnKVPDataErrorNotify</code> (0x522fd0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onkvpdatalistnotify"></a><code>FiraxisLive_OnKVPDataListNotify</code></td>
+<td><code>OnKVPDataListNotify</code> (0x523070)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onkvpdatanotify"></a><code>FiraxisLive_OnKVPDataNotify</code></td>
+<td><code>OnKVPDataNotify</code> (0x523170)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onkvpdataprogressnotify"></a><code>FiraxisLive_OnKVPDataProgressNotify</code></td>
+<td><code>OnKVPDataProgressNotify</code> (0x523210)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onlegalnotify"></a><code>FiraxisLive_OnLegalNotify</code></td>
+<td><code>OnLegalNotify</code> (0x523300)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onloggedoffnotify"></a><code>FiraxisLive_OnLoggedOffNotify</code></td>
+<td><code>OnLoggedOffNotify</code> (0x523650)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onloginstatusnotify"></a><code>FiraxisLive_OnLoginStatusNotify</code></td>
+<td><code>OnLoginStatusNotify</code> (0x5236e0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchcreatedatanotify"></a><code>FiraxisLive_OnMatchCreateDataNotify</code></td>
+<td><code>OnMatchCreateDataNotify</code> (0x5237f0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchendmatchnotify"></a><code>FiraxisLive_OnMatchEndMatchNotify</code></td>
+<td><code>OnMatchEndMatchNotify</code> (0x523890)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchendturnnotify"></a><code>FiraxisLive_OnMatchEndTurnNotify</code></td>
+<td><code>OnMatchEndTurnNotify</code> (0x523930)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchgetinfonotify"></a><code>FiraxisLive_OnMatchGetInfoNotify</code></td>
+<td><code>OnMatchGetInfoNotify</code> (0x5239d0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchgetsavegamenotify"></a><code>FiraxisLive_OnMatchGetSaveGameNotify</code></td>
+<td><code>OnMatchGetSaveGameNotify</code> (0x523a70)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchjoinnotify"></a><code>FiraxisLive_OnMatchJoinNotify</code></td>
+<td><code>OnMatchJoinNotify</code> (0x523b10)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchkickplayernotify"></a><code>FiraxisLive_OnMatchKickPlayerNotify</code></td>
+<td><code>OnMatchKickPlayerNotify</code> (0x523bb0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchkillmatchnotify"></a><code>FiraxisLive_OnMatchKillMatchNotify</code></td>
+<td><code>OnMatchKillMatchNotify</code> (0x523c50)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchlistdatanotify"></a><code>FiraxisLive_OnMatchListDataNotify</code></td>
+<td><code>OnMatchListDataNotify</code> (0x523cf0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchquitmatchnotify"></a><code>FiraxisLive_OnMatchQuitMatchNotify</code></td>
+<td><code>OnMatchQuitMatchNotify</code> (0x523de0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchsetplayermetadatanotify"></a><code>FiraxisLive_OnMatchSetPlayerMetadataNotify</code></td>
+<td><code>OnMatchSetPlayerMetadataNotify</code> (0x523e80)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchsetplayerordernotify"></a><code>FiraxisLive_OnMatchSetPlayerOrderNotify</code></td>
+<td><code>OnMatchSetPlayerOrderNotify</code> (0x523f20)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchsetplayerstatusnotify"></a><code>FiraxisLive_OnMatchSetPlayerStatusNotify</code></td>
+<td><code>OnMatchSetPlayerStatusNotify</code> (0x523fc0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchsetslottypenotify"></a><code>FiraxisLive_OnMatchSetSlotTypeNotify</code></td>
+<td><code>OnMatchSetSlotTypeNotify</code> (0x524060)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchstartmatchnotify"></a><code>FiraxisLive_OnMatchStartMatchNotify</code></td>
+<td><code>OnMatchStartMatchNotify</code> (0x524100)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchupdateattributesnotify"></a><code>FiraxisLive_OnMatchUpdateAttributesNotify</code></td>
+<td><code>OnMatchUpdateAttributesNotify</code> (0x5241a0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onmatchupdatesavegamenotify"></a><code>FiraxisLive_OnMatchUpdateSaveGameNotify</code></td>
+<td><code>OnMatchUpdateSaveGameNotify</code> (0x524240)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onsimplekvpinfonotify"></a><code>FiraxisLive_OnSimpleKVPInfoNotify</code></td>
+<td><code>OnSimpleKVPInfoNotify</code> (0x5242e0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onsimplekvpnotify"></a><code>FiraxisLive_OnSimpleKVPNotify</code></td>
+<td><code>OnSimpleKVPNotify</code> (0x524350)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onstatenotify"></a><code>FiraxisLive_OnStateNotify</code></td>
+<td><code>OnStateNotify</code> (0x5243c0)</td>
+</tr>
+<tr>
+<td><a id="firaxislive-event-firaxislive_onuserstatenotify"></a><code>FiraxisLive_OnUserStateNotify</code></td>
+<td><code>OnUserStateNotify</code> (0x524460)</td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

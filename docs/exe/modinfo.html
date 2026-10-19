@@ -1,0 +1,1403 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>The .modinfo vocabulary</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › The .modinfo vocabulary</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>The .modinfo vocabulary</h1>
+<p>Everything the engine executable understands in a mod: the elements and attributes of a <code>.modinfo</code> file, the component (action) types, the criteria, the properties, and the codes returned to the mod browser. The names are the string literals of the code that parses and applies mods (<code>Modding::XmlModLoader</code>, <code>ModLoaderService</code>, the <code>Modding*</code> handlers and criteria classes); they are cross-checked against the 42 <code>.modinfo</code> files that ship with the game, so each row shows whether the game itself uses the name.</p>
+<p><strong>What is verified.</strong> The name exists in the exe, and the function that uses it (or the count in the shipped files). <strong>What is inferred.</strong> The explanation of what a component or criterion does: it comes from the handler class name, the files that use it and the strings inside its handler, and none of it was tried in the running game.</p>
+<p>There are two styles in use. Old-style files list components under <code>InGameActions</code> / <code>FrontEndActions</code> with a separate <code>ActionCriteria</code> block (used in 36 places by the shipped files); newer files use <code>Components</code> and <code>Settings</code> (6 places). The exe reads both.</p>
+<p>Names that the exe reads but no shipped file uses are options the game supports without showing an example (for example <code>AffectsSavedGames</code> appears once, <code>Blocks</code>, <code>ConflictsWith</code> and <code>Exclude</code> never).</p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#mod_file_element">Elements of a .modinfo file</a> (35)</li>
+<li><a href="#attribute">Attributes the exe reads</a> (6)</li>
+<li><a href="#mod_property">Mod properties (<code>&lt;Properties&gt;</code> of the mod)</a> (14)</li>
+<li><a href="#mod_database_field">Mod database fields</a> (6)</li>
+<li><a href="#component_or_action_type">Component and action types</a> (22)</li>
+<li><a href="#component_property">Component properties</a> (5)</li>
+<li><a href="#setting_type">Setting types (<code>&lt;Settings&gt;</code>)</a> (6)</li>
+<li><a href="#criterion_type">Criterion types</a> (11)</li>
+<li><a href="#criterion_parameter">Criterion parameters</a> (4)</li>
+<li><a href="#setting_criterion_type">Setting criterion types</a> (5)</li>
+<li><a href="#game_mode_value">Values of <code>GameModeInUse</code></a> (4)</li>
+<li><a href="#mod_status_code">Mod requirement status codes</a> (8)</li>
+<li><a href="#subscription_status">Workshop subscription status values</a> (7)</li>
+<li><a href="#getmodinfo_field"><code>Modding.GetModInfo</code> result fields</a> (10)</li>
+</ul>
+<h2><a id="mod_file_element"></a>Elements of a .modinfo file</h2>
+<p>XML elements the exe reads in a mod file (<code>&lt;Mod&gt;</code>, <code>&lt;Properties&gt;</code>, <code>&lt;Components&gt;</code>, ...). "Shipped" counts how many times the element appears in the .modinfo files that come with the game.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="mod_file_element-file"></a><code>File</code></td>
+<td>—</td>
+<td>4767</td>
+<td>Priority</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-properties"></a><code>Properties</code></td>
+<td>Key-value children describing the mod (at the root) or a component.</td>
+<td>210</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-criteria"></a><code>Criteria</code></td>
+<td>—</td>
+<td>140</td>
+<td>id, any</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-mod"></a><code>Mod</code></td>
+<td>—</td>
+<td>62</td>
+<td>id, title</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-files"></a><code>Files</code></td>
+<td>The list of every file of the mod (relative paths); files outside this list are not packaged.</td>
+<td>42</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-actioncriteria"></a><code>ActionCriteria</code></td>
+<td>Container of <code>Criteria</code> blocks (old style). A <code>Criteria</code> has an <code>id</code>; an <code>any</code> attribute makes it true when any child is true instead of all.</td>
+<td>37</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-configurationid"></a><code>ConfigurationId</code></td>
+<td>—</td>
+<td>37</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-group"></a><code>Group</code></td>
+<td>—</td>
+<td>37</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-value"></a><code>Value</code></td>
+<td>—</td>
+<td>37</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-ingameactions"></a><code>InGameActions</code></td>
+<td>Old-style list of components that apply while a game runs; each action may name <code>criteria</code>.</td>
+<td>36</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-frontendactions"></a><code>FrontEndActions</code></td>
+<td>Old-style list of components that apply in the front end (menus).</td>
+<td>35</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-include"></a><code>Include</code></td>
+<td>Pulls in another mod's action: <code>mod_id</code> and <code>action_id</code> select it and <code>required</code> says whether it must exist.</td>
+<td>28</td>
+<td>mod_id, action_id, required</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetComponentReferences</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-items"></a><code>Items</code></td>
+<td>The files a component processes, as <code>File</code> children.</td>
+<td>27</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-references"></a><code>References</code></td>
+<td>Mods this mod works with (soft references).</td>
+<td>17</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-localizedtext"></a><code>LocalizedText</code></td>
+<td>The newer-style name for text content; handled by the text action.</td>
+<td>16</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseLocalizationBuffer</code>; <code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-dependencies"></a><code>Dependencies</code></td>
+<td>Mods that must be present (hard dependencies).</td>
+<td>8</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-reversereferences"></a><code>ReverseReferences</code></td>
+<td>Mods that should treat this mod as a reference (the reverse direction).</td>
+<td>8</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-components"></a><code>Components</code></td>
+<td>New-style list of components (actions that change the game).</td>
+<td>6</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-settings"></a><code>Settings</code></td>
+<td>New-style list of setting components (configuration, maps).</td>
+<td>6</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-text"></a><code>Text</code></td>
+<td>—</td>
+<td>5</td>
+<td>id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-block"></a><code>Block</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetModReferences</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-blocks"></a><code>Blocks</code></td>
+<td>Mods that cannot be enabled together with this one.</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-conflictswith"></a><code>ConflictsWith</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetComponentReferences</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-dependency"></a><code>Dependency</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetModReferences</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-englishtext"></a><code>EnglishText</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseLocalizationBuffer</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-exclude"></a><code>Exclude</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetComponentReferences</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-language"></a><code>Language</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseLocalizationBuffer</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-priority"></a><code>Priority</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-reference"></a><code>Reference</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetActivationOrder</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-replace"></a><code>Replace</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseLocalizationBuffer</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-required"></a><code>Required</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetComponentReferences</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-requires"></a><code>Requires</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-reversedependencies"></a><code>ReverseDependencies</code></td>
+<td>Mods that depend on this mod (the reverse direction).</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-reversedependency"></a><code>ReverseDependency</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModAssociationsService::GetModReferences</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_file_element-reversereference"></a><code>ReverseReference</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code>; <code>ModAssociationsService::GetModReferences</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="attribute"></a>Attributes the exe reads</h2>
+<p>XML attributes the exe reads on those elements (<code>mod_id</code>, <code>action_id</code>, <code>criteria</code>, <code>required</code>, <code>inverse</code>, ...). <code>id</code>, <code>version</code>, <code>title</code> and <code>any</code> are read by generic code and not found as separate strings.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="attribute-en_us"></a><code>en_US</code></td>
+<td>—</td>
+<td>5</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseLocalizationBuffer</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="attribute-action_id"></a><code>action_id</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="attribute-criteria"></a><code>criteria</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="attribute-inverse"></a><code>inverse</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="attribute-mod_id"></a><code>mod_id</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="attribute-required"></a><code>required</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>XmlModLoader::ParseModXml</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="mod_property"></a>Mod properties (<code>&lt;Properties&gt;</code> of the mod)</h2>
+<p>Key-value children that describe the mod.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="mod_property-name"></a><code>Name</code></td>
+<td>—</td>
+<td>49</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-description"></a><code>Description</code></td>
+<td>—</td>
+<td>47</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-authors"></a><code>Authors</code></td>
+<td>—</td>
+<td>42</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-compatibleversions"></a><code>CompatibleVersions</code></td>
+<td>Mod property: game versions the mod claims to work with.</td>
+<td>42</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-teaser"></a><code>Teaser</code></td>
+<td>—</td>
+<td>42</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-enabledbydefault"></a><code>EnabledByDefault</code></td>
+<td>Mod property: enabled when first installed.</td>
+<td>34</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-loadorder"></a><code>LoadOrder</code></td>
+<td>Mod property: ordering among mods.</td>
+<td>17</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-supportssingleplayer"></a><code>SupportsSinglePlayer</code></td>
+<td>Mod property: usable in single player.</td>
+<td>7</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-enablebydefault"></a><code>EnableByDefault</code></td>
+<td>—</td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-affectssavedgames"></a><code>AffectsSavedGames</code></td>
+<td>Mod property: whether the mod changes saved games (saves then record the mod).</td>
+<td>1</td>
+<td>—</td>
+<td><code>ModLoaderService::ParseMod</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-disabledatstartup"></a><code>DisabledAtStartup</code></td>
+<td>Mod property: starts disabled.</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-showinbrowser"></a><code>ShowInBrowser</code></td>
+<td>Mod property: shown in the Additional Content browser.</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-supportsmultiplayer"></a><code>SupportsMultiplayer</code></td>
+<td>Mod property: usable in multiplayer.</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_property-trusted"></a><code>Trusted</code></td>
+<td>Mod property: marks the mod as trusted (shipped content).</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="mod_database_field"></a>Mod database fields</h2>
+<p>Names that the exe handles when it parses a mod into <code>Mods.sqlite</code> rather than as .modinfo input: version, creation and update times, <code>IsBasic</code>, <code>DBVersion</code>, dependencies.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="mod_database_field-created"></a><code>Created</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModLoaderService::ParseMod</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_database_field-dbversion"></a><code>DBVersion</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModLoaderService::ParseMod</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_database_field-dependency"></a><code>Dependency</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModLoaderService::ParseMod</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_database_field-isbasic"></a><code>IsBasic</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModLoaderService::ParseMod</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_database_field-lastupdated"></a><code>LastUpdated</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModLoaderService::ParseMod</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_database_field-version"></a><code>Version</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModLoaderService::ParseMod</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="component_or_action_type"></a>Component and action types</h2>
+<p>The things a mod can do. Old-style files list them under <code>InGameActions</code> and <code>FrontEndActions</code>, newer files under <code>Components</code>. The handler class is the code that applies the component.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="component_or_action_type-updatedatabase"></a><code>UpdateDatabase</code></td>
+<td>Loads the listed XML or SQL files into the game database when the component's criteria are met. A <code>Properties</code> child can carry a <code>RuleSet</code>. In <code>Settings</code> the same files go into the configuration database (game setup options).</td>
+<td>163</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateDatabase</code> (0x260150); <code>ModdingUpdateConfigurationDatabase</code> (0x260880)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-replaceuiscript"></a><code>ReplaceUIScript</code></td>
+<td>Replaces a UI Lua script: <code>Properties</code> carry <code>LuaContext</code> (the original) and <code>LuaReplace</code> (the replacement). Shipped scenarios use it heavily.</td>
+<td>119</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingReplaceUIScriptComponentHandler</code> (0x25cb50)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-updateicons"></a><code>UpdateIcons</code></td>
+<td>Registers icon atlases and icon definitions.</td>
+<td>79</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateIconsAction</code> (0x260cd0)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-updatetext"></a><code>UpdateText</code></td>
+<td>Loads localized text (XML or SQL files) into the text database.</td>
+<td>79</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateTextAction</code> (0x261160)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-updatecolors"></a><code>UpdateColors</code></td>
+<td>Adds colors and player colors to the color manager database.</td>
+<td>68</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateColorsAction</code> (0x24e760)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-updateart"></a><code>UpdateArt</code></td>
+<td>Adds art definition files. The exe's symbol list has no handler class of this name; it may be handled by the generic file path.</td>
+<td>67</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-importfiles"></a><code>ImportFiles</code></td>
+<td>Makes the listed files visible to the game file system so that other components and scripts can use them.</td>
+<td>34</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingImportFilesAction</code> (0x257ac0)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-updatelogitecharx"></a><code>UpdateLogitechARX</code></td>
+<td>Assets for the Logitech ARX second-screen app (the handler works with png and html files).</td>
+<td>27</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateARX</code> (0x25f970)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-updateaudio"></a><code>UpdateAudio</code></td>
+<td>Adds audio data (sound banks).</td>
+<td>25</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateAudio</code> (0x25fe00)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-addgameplayscripts"></a><code>AddGameplayScripts</code></td>
+<td>Adds Lua scripts that run in the gameplay (GameCore) Lua context.</td>
+<td>10</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingGameplayScriptComponentHandler</code> (0x257700)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-adduserinterfaces"></a><code>AddUserInterfaces</code></td>
+<td>Adds a UI context (Lua and XML) to a UI layer. A <code>Properties</code> child names the <code>Context</code> (the layer).</td>
+<td>8</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUserInterfaceComponentHandler</code> (0x261af0); <code>ModdingUISettingHandler</code></td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-addmap"></a><code>AddMap</code></td>
+<td>Registers a map file in the map list (a Settings entry, used by the front end).</td>
+<td>5</td>
+<td>id</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingMapSettingHandler</code> (0x258ba0)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-gameplayscripts"></a><code>GameplayScripts</code></td>
+<td>Newer-style name for AddGameplayScripts.</td>
+<td>4</td>
+<td>id</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingGameplayScriptComponentHandler</code> (0x257700)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-modart"></a><code>ModArt</code></td>
+<td>Newer-style name for art content.</td>
+<td>3</td>
+<td>id, criteria</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-none"></a><code>None</code></td>
+<td>—</td>
+<td>2</td>
+<td>id, criteria</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-icons"></a><code>Icons</code></td>
+<td>The newer-style name for icon content.</td>
+<td>1</td>
+<td>id</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateIconsAction</code> (0x260cd0)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-localizedtext"></a><code>LocalizedText</code></td>
+<td>The newer-style name for text content; handled by the text action.</td>
+<td>1</td>
+<td>id</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateTextAction</code> (0x261160)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-updatearx"></a><code>UpdateARX</code></td>
+<td>Same handler as UpdateLogitechARX under its shorter name.</td>
+<td>1</td>
+<td>id</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUpdateARX</code> (0x25f970)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-addworldbuildermap"></a><code>AddWorldBuilderMap</code></td>
+<td>Registers a World Builder map.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingWorldBuilderSettingHandler</code> (0x262060)</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-custom"></a><code>Custom</code></td>
+<td>A settings container whose <code>Items</code> files are configuration files (loaded into the configuration database).</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-donothing"></a><code>DoNothing</code></td>
+<td>A placeholder component with no effect.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingDoNothingAction</code></td>
+</tr>
+<tr>
+<td><a id="component_or_action_type-userinterface"></a><code>UserInterface</code></td>
+<td>Newer-style name for AddUserInterfaces.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+<td><code>ModdingUserInterfaceComponentHandler</code> (0x261af0); <code>ModdingUISettingHandler</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="component_property"></a>Component properties</h2>
+<p>Key-value children of a component (<code>&lt;Properties&gt;</code> inside it).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="component_property-luacontext"></a><code>LuaContext</code></td>
+<td>—</td>
+<td>119</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_property-luareplace"></a><code>LuaReplace</code></td>
+<td>—</td>
+<td>119</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_property-ruleset"></a><code>RuleSet</code></td>
+<td>—</td>
+<td>19</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_property-context"></a><code>Context</code></td>
+<td>—</td>
+<td>8</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="component_property-group"></a><code>Group</code></td>
+<td>—</td>
+<td>7</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="setting_type"></a>Setting types (<code>&lt;Settings&gt;</code>)</h2>
+<p>Component types that appear under <code>Settings</code> in shipped files.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="setting_type-custom"></a><code>Custom</code></td>
+<td>A settings container whose <code>Items</code> files are configuration files (loaded into the configuration database).</td>
+<td>6</td>
+<td>id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="setting_type-map"></a><code>Map</code></td>
+<td>—</td>
+<td>2</td>
+<td>id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="setting_type-icons"></a><code>Icons</code></td>
+<td>The newer-style name for icon content.</td>
+<td>1</td>
+<td>id</td>
+<td>—</td>
+<td><code>ModdingUpdateIconsAction</code> (0x260cd0)</td>
+</tr>
+<tr>
+<td><a id="setting_type-localizedtext"></a><code>LocalizedText</code></td>
+<td>The newer-style name for text content; handled by the text action.</td>
+<td>1</td>
+<td>id</td>
+<td>—</td>
+<td><code>ModdingUpdateTextAction</code> (0x261160)</td>
+</tr>
+<tr>
+<td><a id="setting_type-modart"></a><code>ModArt</code></td>
+<td>Newer-style name for art content.</td>
+<td>1</td>
+<td>id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="setting_type-updatecolors"></a><code>UpdateColors</code></td>
+<td>Adds colors and player colors to the color manager database.</td>
+<td>1</td>
+<td>id</td>
+<td>—</td>
+<td><code>ModdingUpdateColorsAction</code> (0x24e760)</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="criterion_type"></a>Criterion types</h2>
+<p>Conditions that decide whether a component applies, written in a <code>&lt;Criteria&gt;</code> block (referenced by the <code>criteria</code> attribute of a component). <code>Check</code> is the exe function that evaluates it.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="criterion_type-leaderplayable"></a><code>LeaderPlayable</code></td>
+<td>True when the leader is playable in the current setup.</td>
+<td>126</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>LeaderPlayableCriterion</code> (0x255740)</td>
+</tr>
+<tr>
+<td><a id="criterion_type-rulesetinuse"></a><code>RuleSetInUse</code></td>
+<td>True when the named ruleset is in use.</td>
+<td>111</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>RuleSetInUseCriterion</code></td>
+</tr>
+<tr>
+<td><a id="criterion_type-configurationvaluematches"></a><code>ConfigurationValueMatches</code></td>
+<td>True when a game, map or player configuration value (<code>ConfigurationId</code>) equals <code>Value</code>; <code>Group</code> says which configuration (for example Game, Map, Player) and <code>Player</code> selects the player.</td>
+<td>37</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>ConfigurationValueMatchesCriterion</code> (0x2543d0)</td>
+</tr>
+<tr>
+<td><a id="criterion_type-modinuse"></a><code>ModInUse</code></td>
+<td>True when the mod with the given id is active.</td>
+<td>12</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>ModInUseCriterion</code></td>
+</tr>
+<tr>
+<td><a id="criterion_type-gamecoreinuse"></a><code>GameCoreInUse</code></td>
+<td>True when the named GameCore (ruleset DLL) is in use.</td>
+<td>4</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>GameCoreInUseCriterion</code></td>
+</tr>
+<tr>
+<td><a id="criterion_type-modisenabled"></a><code>ModIsEnabled</code></td>
+<td>Setting criterion: true when the mod is enabled.</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td><code>ModIsEnabledCriterion</code></td>
+</tr>
+<tr>
+<td><a id="criterion_type-alwaysmet"></a><code>AlwaysMet</code></td>
+<td>Criterion that is always true.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>AlwaysMetCriterion</code></td>
+</tr>
+<tr>
+<td><a id="criterion_type-configurationvaluecontains"></a><code>ConfigurationValueContains</code></td>
+<td>True when the configuration value contains the given value (list-style values).</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>ConfigurationValueContainsCriterion</code></td>
+</tr>
+<tr>
+<td><a id="criterion_type-gamemodeinuse"></a><code>GameModeInUse</code></td>
+<td>True when the game mode matches: WorldBuilder, SinglePlayer, HotSeat or MultiPlayer.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>GameModeInUseCriterion</code> (0x2552c0)</td>
+</tr>
+<tr>
+<td><a id="criterion_type-mapinuse"></a><code>MapInUse</code></td>
+<td>True when the named map is selected.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>MapInUseCriterion</code></td>
+</tr>
+<tr>
+<td><a id="criterion_type-nevermet"></a><code>NeverMet</code></td>
+<td>Criterion that is never true.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService</code></td>
+<td><code>NeverMetCriterion</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="criterion_parameter"></a>Criterion parameters</h2>
+<p>Child names of <code>ConfigurationValueMatches</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="criterion_parameter-configurationid"></a><code>ConfigurationId</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ConfigurationValueMatchesCriterion::Check</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="criterion_parameter-group"></a><code>Group</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ConfigurationValueMatchesCriterion::Check</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="criterion_parameter-player"></a><code>Player</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ConfigurationValueMatchesCriterion::Check</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="criterion_parameter-value"></a><code>Value</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>ConfigurationValueMatchesCriterion::Check</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="setting_criterion_type"></a>Setting criterion types</h2>
+<p>Conditions available to settings.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="setting_criterion_type-alwaysmet"></a><code>AlwaysMet</code></td>
+<td>Criterion that is always true.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingSettingDiscoveryService::ModdingSettingDiscoveryService</code></td>
+<td><code>AlwaysMetCriterion</code></td>
+</tr>
+<tr>
+<td><a id="setting_criterion_type-modinuse"></a><code>ModInUse</code></td>
+<td>True when the mod with the given id is active.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingSettingDiscoveryService::ModdingSettingDiscoveryService</code></td>
+<td><code>ModInUseCriterion</code></td>
+</tr>
+<tr>
+<td><a id="setting_criterion_type-modisenabled"></a><code>ModIsEnabled</code></td>
+<td>Setting criterion: true when the mod is enabled.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingSettingDiscoveryService::ModdingSettingDiscoveryService</code></td>
+<td><code>ModIsEnabledCriterion</code></td>
+</tr>
+<tr>
+<td><a id="setting_criterion_type-modisinstalled"></a><code>ModIsInstalled</code></td>
+<td>Setting criterion: true when the mod is installed.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingSettingDiscoveryService::ModdingSettingDiscoveryService</code></td>
+<td><code>ModIsInstalledCriterion</code></td>
+</tr>
+<tr>
+<td><a id="setting_criterion_type-nevermet"></a><code>NeverMet</code></td>
+<td>Criterion that is never true.</td>
+<td>0</td>
+<td>—</td>
+<td><code>ModdingSettingDiscoveryService::ModdingSettingDiscoveryService</code></td>
+<td><code>NeverMetCriterion</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="game_mode_value"></a>Values of <code>GameModeInUse</code></h2>
+<p>The game modes the criterion can test.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="game_mode_value-hotseat"></a><code>HotSeat</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>GameModeInUseCriterion::Check</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="game_mode_value-multiplayer"></a><code>MultiPlayer</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>GameModeInUseCriterion::Check</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="game_mode_value-singleplayer"></a><code>SinglePlayer</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>GameModeInUseCriterion::Check</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="game_mode_value-worldbuilder"></a><code>WorldBuilder</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>GameModeInUseCriterion::Check</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="mod_status_code"></a>Mod requirement status codes</h2>
+<p>Why a mod cannot be enabled (strings returned by <code>Modding.CheckRequirements</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="mod_status_code-blockedbyassociation"></a><code>BlockedByAssociation</code></td>
+<td>Mod status: another mod blocks this one.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_status_code-conflictswithexclusivity"></a><code>ConflictsWithExclusivity</code></td>
+<td>Mod status: conflicts with an exclusive mod.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_status_code-containsduplicates"></a><code>ContainsDuplicates</code></td>
+<td>Mod status: the mod set contains duplicates.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_status_code-invalidmod"></a><code>InvalidMod</code></td>
+<td>Mod status: the mod could not be read.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_status_code-missingdependencies"></a><code>MissingDependencies</code></td>
+<td>Mod status: a required mod is missing.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_status_code-outdatedgameversion"></a><code>OutdatedGameVersion</code></td>
+<td>Mod status: the mod does not list the game version.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_status_code-ownershiprequired"></a><code>OwnershipRequired</code></td>
+<td>Mod status: the player must own content the mod needs.</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="mod_status_code-unknownstatus"></a><code>UnknownStatus</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="subscription_status"></a>Workshop subscription status values</h2>
+<p>Strings returned by <code>Modding.GetSubscriptionDetails</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="subscription_status-downloading"></a><code>Downloading</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="subscription_status-downloadpending"></a><code>DownloadPending</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="subscription_status-installed"></a><code>Installed</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="subscription_status-lastupdated"></a><code>LastUpdated</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="subscription_status-needsupdate"></a><code>NeedsUpdate</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="subscription_status-status"></a><code>Status</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="subscription_status-subscribed"></a><code>Subscribed</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="getmodinfo_field"></a><code>Modding.GetModInfo</code> result fields</h2>
+<p>Field names of the table the Lua function returns.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it is (inferred)</th>
+<th>Shipped</th>
+<th>Seen with</th>
+<th>In the exe</th>
+<th>Handler or check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="getmodinfo_field-allowance"></a><code>Allowance</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-created"></a><code>Created</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-enabled"></a><code>Enabled</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-handle"></a><code>Handle</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-official"></a><code>Official</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-source"></a><code>Source</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-sourcefilename"></a><code>SourceFileName</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-subscriptionid"></a><code>SubscriptionId</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-teaser"></a><code>Teaser</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="getmodinfo_field-unknown"></a><code>Unknown</code></td>
+<td>—</td>
+<td>0</td>
+<td>—</td>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

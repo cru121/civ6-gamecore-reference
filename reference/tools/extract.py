@@ -1,9 +1,9 @@
-"""Generate data/*.json from the analysis artifacts in the analysis workspace. Never hand-edit the output."""
+"""Generate data/*.json from the analysis artifacts in C:/stuff/claude/DLL. Never hand-edit the output."""
 import json, re, collections, os, zlib
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 OUT = os.path.join(ROOT, 'docs_proto', 'data')
-REF_SIG = '<workspace>/community-reference/civ6-lua-signature-index.md'
+REF_SIG = 'C:/stuff/claude/wheat-gpp/civ6-lua-signature-index.md'
 
 
 def P(*a):
@@ -158,6 +158,7 @@ def conv_sig(s, iface):
     params = []
     for p_ in s['params']:
         q = {'name': p_.get('name') or 'arg%d' % (p_['index'] - (1 if not s['static'] else 0)), 'type': p_['lua_type'], 'optional': p_['optional']}
+        q['lua_index'] = p_['index']
         if p_.get('cpp_type'): q['cpp_type'] = p_['cpp_type']
         if p_.get('note'): q['note'] = p_['note']
         if p_.get('name_source'): q['name_source'] = p_['name_source']
@@ -191,6 +192,7 @@ for r in rows:
     s = 'ui-cache' if side == 'UI' else 'gameplay'
     if s not in m['registered_on']:
         m['registered_on'].append(s)
+    m.setdefault('wrapper_rvas', []).append(orva)
     m['builds'].setdefault('symbol', {'rva': orva})
     m['builds'].setdefault('current', {'rva': nrva if (nrva and ',' not in nrva) else None, 'map': cat})
 methods = sorted(M.values(), key=lambda x: x['id'])

@@ -1,0 +1,223 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Engine executable functions</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › Engine executable functions</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Engine executable functions</h1>
+<p>A searchable index of the engine executable <code>CivilizationVI.exe</code> (DX11, July 2024 build). The Windows build has no symbols and no class information, so function names come from the <strong>Linux build of the same engine</strong>, which exports about 199,000 names; a Windows address is listed where the same function could be found there. 1565 functions exist only on Windows (no Linux symbol): the exports named by the PE export table (ForgeUI, Havok), and Lua wrappers and control thunks named by the registration code, WorldView event handlers, the engine utility vtable and the debug console handlers; their Linux address is blank.</p>
+<ul>
+<li><a href="all.html">Search all 50641 functions</a>: by name, Lua method, note, or by address (a Windows RVA such as <code>0x547000</code>, or a Linux address).</li>
+<li>Category pages below list the functions that have a Windows address.</li>
+</ul>
+<h2>What the addresses mean</h2>
+<p>Windows addresses are <strong>RVAs</strong> (add the image base 0x140000000 for the address Ghidra shows). Linux addresses are virtual addresses in the Linux <code>Civ6</code> executable. The DX12 executable has different RVAs and is not covered. Of the 52,101 functions the Windows executable contains, 7566 are named here; the rest have no Linux counterpart or could not be matched. The compiler merges identical functions on Windows, so several Linux names can share one Windows address.</p>
+<h2>Confidence</h2>
+<table>
+<thead>
+<tr>
+<th>Confidence</th>
+<th>Functions</th>
+<th>How the Windows address was found</th>
+<th>How reliable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>high</td>
+<td>2559</td>
+<td>name join with the Windows export table, a string anchor with two or more strings, hand-checked disassembly, name-matched Lua registration wrappers</td>
+<td>every check passed: 26 of 26 string anchors against the export ground truth, 5 of 5 Lua wrappers</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>3183</td>
+<td>a single string or rare-constant anchor, call-graph propagation of non-trivial functions, neighbour scoring at a strict threshold</td>
+<td>about 94-97% on hold-out tests, 12 of 12 Lua wrappers</td>
+</tr>
+<tr>
+<td>low</td>
+<td>1319</td>
+<td>tiny propagated functions, a lenient neighbour threshold, order alignment</td>
+<td><strong>unreliable</strong>: 1 of 19 checked Lua wrappers was right. Verify in the disassembly before using.</td>
+</tr>
+<tr>
+<td>export</td>
+<td>505</td>
+<td>the Windows export table names it (ForgeUI and Havok); no Linux counterpart</td>
+<td>exact</td>
+</tr>
+<tr>
+<td>unmapped</td>
+<td>43075</td>
+<td>no Windows address</td>
+<td>name only</td>
+</tr>
+</tbody>
+</table>
+<p>The measured accuracy per method is in the analysis notes (<code>findings/topics/exe-analysis-tooling.md</code>). Names come from the Linux build and can differ in spelling from the Windows build (template arguments, calling conventions).</p>
+<h2>Categories</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>What it is</th>
+<th>Functions</th>
+<th>With a Windows address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="other.html">other</a></td>
+<td>Everything not matched to a subsystem by its name: template instances, standard-library code, small helpers.</td>
+<td>29038</td>
+<td>2771</td>
+</tr>
+<tr>
+<td><a href="ForgeUI.html">ForgeUI</a></td>
+<td>The UI toolkit: controls, input, tooltips, animation, and the Lua exposure of the controls.</td>
+<td>4942</td>
+<td>1699</td>
+</tr>
+<tr>
+<td><a href="GameCore_bridge.html">GameCore bridge</a></td>
+<td>Code that talks to GameCore: the cache of game state, event translators and handlers, the engine utility interface.</td>
+<td>2794</td>
+<td>880</td>
+</tr>
+<tr>
+<td><a href="WorldView.html">WorldView</a></td>
+<td>The 3D map renderer: terrain, landmarks, units, clutter, water, cameras.</td>
+<td>2409</td>
+<td>337</td>
+</tr>
+<tr>
+<td><a href="Lua.html">Lua</a></td>
+<td>Lua libraries and bindings hosted by the exe (see the <a href="../exeapi/index.html">Lua tables</a>).</td>
+<td>1647</td>
+<td>604</td>
+</tr>
+<tr>
+<td><a href="Lua__Havok_.html">Lua (Havok)</a></td>
+<td>Havok Script (the Lua virtual machine) functions the exe exports.</td>
+<td>1501</td>
+<td>61</td>
+</tr>
+<tr>
+<td><a href="FiraxisLive.html">FiraxisLive</a></td>
+<td>Firaxis Live / My2K online services client.</td>
+<td>1492</td>
+<td>93</td>
+</tr>
+<tr>
+<td><a href="VFX.html">VFX</a></td>
+<td>The visual effects system.</td>
+<td>1292</td>
+<td>155</td>
+</tr>
+<tr>
+<td><a href="base_library.html">base library</a></td>
+<td>Engine base classes: memory, strings, containers, utilities.</td>
+<td>834</td>
+<td>75</td>
+</tr>
+<tr>
+<td><a href="Network.html">Network</a></td>
+<td>Multiplayer: sessions, lobbies, matchmaking, cloud turns.</td>
+<td>585</td>
+<td>191</td>
+</tr>
+<tr>
+<td><a href="Graphics.html">Graphics</a></td>
+<td>The rendering back end: device, shaders, command streams.</td>
+<td>558</td>
+<td>124</td>
+</tr>
+<tr>
+<td><a href="Modding.html">Modding</a></td>
+<td>The mod framework: loading, ownership checks, content handling.</td>
+<td>557</td>
+<td>166</td>
+</tr>
+<tr>
+<td><a href="StrategicView.html">StrategicView</a></td>
+<td>The 2D strategic map.</td>
+<td>498</td>
+<td>34</td>
+</tr>
+<tr>
+<td><a href="Platform.html">Platform</a></td>
+<td>Operating system and platform layer.</td>
+<td>435</td>
+<td>67</td>
+</tr>
+<tr>
+<td><a href="Synthesis.html">Synthesis</a></td>
+<td>Terrain synthesis: ridgelines, rivers, coast splines.</td>
+<td>414</td>
+<td>40</td>
+</tr>
+<tr>
+<td><a href="Audio.html">Audio</a></td>
+<td>Audio integration and the systems that drive it.</td>
+<td>395</td>
+<td>29</td>
+</tr>
+<tr>
+<td><a href="FOW.html">FOW</a></td>
+<td>Fog of war.</td>
+<td>297</td>
+<td>35</td>
+</tr>
+<tr>
+<td><a href="Database.html">Database</a></td>
+<td>Access to the game database.</td>
+<td>279</td>
+<td>27</td>
+</tr>
+<tr>
+<td><a href="Terrain.html">Terrain</a></td>
+<td>Terrain context, cells and baking.</td>
+<td>185</td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="App.html">App</a></td>
+<td>The application: start-up, game states, the main loop.</td>
+<td>183</td>
+<td>52</td>
+</tr>
+<tr>
+<td><a href="library.html">library</a></td>
+<td>Third-party libraries.</td>
+<td>117</td>
+<td>75</td>
+</tr>
+<tr>
+<td><a href="GameState.html">GameState</a></td>
+<td>Game state objects of the application layer.</td>
+<td>106</td>
+<td>26</td>
+</tr>
+<tr>
+<td><a href="Events.html">Events</a></td>
+<td>The event system itself (see <a href="../exeevents/index.html">engine events</a>).</td>
+<td>64</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="Minimap.html">Minimap</a></td>
+<td>The minimap.</td>
+<td>19</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Categories were assigned from the function names and namespaces and are approximate; descriptions are inferred from them.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

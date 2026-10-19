@@ -19,6 +19,8 @@ A global table `Audio`, available in both the gameplay and the UI Lua state:
 | `Audio.SetVolume(id, v)` | Volume of one sound (0..1). |
 | `Audio.SetMasterVolume(v)`, `Audio.GetMasterVolume()` | Volume of everything this API plays, on top of the game's sliders. |
 | `Audio.IsPlaying(id)` | `true` while the sound is playing. A finished sound is forgotten. |
+| `Audio.GetDuration(path)` | Length in seconds of any sound file, without playing it. Returns `-1` if the file is missing or unreadable (`Audio.GetLastError()` has the reason). |
+| `Audio.GetLength(id)`, `Audio.GetPosition(id)` | Length and current play position, in seconds, of a playing or paused sound. `-1` if the id is not known (finished sounds are forgotten). A looping sound's position wraps back to 0. |
 | `Audio.FollowGameVolume(bool)` | Default `true`, see below. |
 | `Audio.AddSearchPath(dir)` | Extra folder for relative paths. |
 | `Audio.GetLastError()` | Text of the last failed `Audio.Play` (cleared by a successful one). |
@@ -37,6 +39,11 @@ Buses: `sfx` (default), `music`, `speech`, `ambience`, `none`. While `FollowGame
 (`Master`, `SFX`, `Music`, `Speech`, `Ambience`), and everything is muted while the game window is not in front when the option "mute when out of focus" is on. The values are read from
 `%LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VI\SoundOpts.txt` (0-100) and re-read when the file changes, so a slider moved in the game applies to a running tune within about
 0.3 seconds. `none` and `FollowGameVolume(false)` ignore the sliders.
+
+## The game's own music
+Not possible with this API. The game's music and sounds are Wwise `.wem` files (in `Base/Platforms/Windows/Audio`, with numeric names), referenced by events in the `.bnk` banks.
+They are Wwise-specific containers (mostly Wwise Vorbis with a stripped header), which miniaudio cannot decode, and the event-to-file mapping lives in the banks. Starting the game's
+own events needs the Wwise engine, which this API deliberately does not use. Converting `.wem` files offline (for example with ww2ogg) and shipping the result in your mod works.
 
 ## Caveats
 * Tested in the game 2026-10-15 (single player, Dev CE test build): wav, mp3 and ogg playback (ogg was still decoded fully into memory in that run; the streaming ogg reader described above came afterwards and is not yet tested in the game), slider changes, a missing file, `StopAll`. Looping and pausing were not part of a logged test.

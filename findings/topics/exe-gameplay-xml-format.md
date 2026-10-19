@@ -1,0 +1,9 @@
+# Gameplay XML data format (Database::XMLSerializer)
+
+Source: Ghidra decompile of the ten `Database::XMLSerializer` functions (0x799e80 BuildTable, 0x79ab90 DeleteMissingReferences, 0x79af50 DeleteRow, 0x79bdc0 IndexTable, 0x79c380 InsertRow, 0x79d320/0x79d3a0 load and root dispatch, 0x79d7b0 PostColumnInsert, 0x79d930 UpdateRow, 0x79e890 UpdateTable). Reference page: `docs_proto/docs/exedb/xml-format.md`; data `docs_proto/data/exe_xmlformat.json`.
+
+- Roots accepted: `GameData`, `GameInfo`, `Database` (shipped: 544 / 1,012 / 6 of 1,562 data files). Root children: `Table`, `Index`, `DeleteMissingReferences`, else the element name is a table.
+- Row operations by element name (mode passed to InsertRow): `Row` 0 = `insert into`, `InsertOrAbort` 1 = `insert or abort into`, `InsertOrIgnore` 2 = `insert or ignore into`, `Replace` 3 = `insert or replace into`; `Update` (Set required, Where optional, each at most once) and `Delete` (equality conditions joined with AND). Anything else: error "'Row' or 'Delete' expected".
+- `Table` columns: attributes `name`, `type` (default `integer`), booleans `unique`, `notnull`, `primarykey`, `autoincrement`, and `default`, `reference` (foreign key). Values read through attribute-name constants in `.rdata` (`name`, `type`). The main schema is SQL (`Assets/Gameplay/Data/Schema/01_GameplaySchema.sql`), only 8 tables are defined in XML.
+- Shipped usage: `Replace` 382,553, `Row` 115,271, `Delete` 10,753, `Update` 1,693 (37 without Where), `InsertOrIgnore` 27. Not used by any shipped file: `Index`, `DeleteMissingReferences`, `InsertOrAbort`, column attributes `autoincrement` and `reference`.
+- `PostColumnInsert` appends a `PackageID` column to the insert for tables in an internal list (the list content and the exact `reference` value form were not read out).

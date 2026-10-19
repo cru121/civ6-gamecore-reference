@@ -1,0 +1,1417 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Modding</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › Modding</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Modding</h1>
+<p>The mod framework: loading, ownership checks, content handling.</p>
+<p>557 functions in this category, 166 with a Windows address (125 high or medium confidence or exported, 41 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Modding::ModId::ModId(char const*)</code></td>
+<td><code>0x1092d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31f2800</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>Modding::ModId::operator=(Modding::ModId&amp;&amp;)</code></td>
+<td><code>0x1093f0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31f3ae0</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::AppModdingFramework()</code></td>
+<td><code>0x244110</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x337c980</code></td>
+<td>8320</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::AfterContentChange(UpdateContentResult&amp;)</code></td>
+<td><code>0x2467f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3382640</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::BootstrapContent()</code></td>
+<td><code>0x2469f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x337f090</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::CheckConfigurationOwnership(GameCore::App::Configuration::Game::Instance const&amp;, std::__1::vector&lt;std::__1::basic_string&lt;char, s…</code></td>
+<td><code>0x246c50</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3380f40</code></td>
+<td>1200</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::CheckPostLoadOwnership() const</code></td>
+<td><code>0x247330</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33826e0</code></td>
+<td>1376</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::ConfigureContent()</code></td>
+<td><code>0x247a80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x337f600</code></td>
+<td>6176</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::FinishedGameplayContentConfigure(Events::EventTemplate&lt;72u, ConfigureContentResult, Events::LinearEventDispatcher, SerialContain…</code></td>
+<td><code>0x249540</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>handles Serial event 72 (ConfigureContentResult)</td>
+<td><code>0x337eb40</code></td>
+<td>1136</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::GetDLLPath(wchar_t*, unsigned int)</code></td>
+<td><code>0x249b90</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3383cf0</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::GetDLLPathFromConfig(wchar_t*, unsigned int)</code></td>
+<td><code>0x249d80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3383ec0</code></td>
+<td>1104</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::GetPathList(char const*, Types::Vector&lt;String::BufferIOPath&lt;260u&gt;, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;&amp;)</code></td>
+<td><code>0x24ac00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3385340</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::ImportFile(wchar_t const*)</code></td>
+<td><code>0x24b030</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3383c70</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::InitializeGameCore()</code></td>
+<td><code>0x24b150</code></td>
+<td>high</td>
+<td>curated (strings ProfileEnabled+ProfileDepth; vtable offset…</td>
+<td></td>
+<td><code>0x3381690</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::LogMods(std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; const&amp;)</code></td>
+<td><code>0x24b690</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3380e70</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::ReloadTunerLoadedStates()</code></td>
+<td><code>0x24c640</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3384820</code></td>
+<td>432</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::RollbackContent()</code></td>
+<td><code>0x24c960</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3382450</code></td>
+<td>496</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::Tick(Events::EventTemplate&lt;1u, AppUpdateData, Events::LinearEventDispatcher, LocalMachineContainer, Events::NullEventClass, Even…</code></td>
+<td><code>0x24cc40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>handles LocalMachine event 1 (AppUpdateData)</td>
+<td><code>0x337ea20</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::UpdateContent(std::__1::function&lt;void (Database::IDatabaseConnection1*, bool)&gt;)</code></td>
+<td><code>0x24ce00</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3381860</code></td>
+<td>1824</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::WriteGameCoreDatabaseData()</code></td>
+<td><code>0x24de00</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3381580</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>Modding::AppFileService::GetModPackage(Modding::ModHandle const&amp;) const</code></td>
+<td><code>0x24e4e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x338cf10</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::ImportImplicitFiles(std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; const&amp;, bool)</code></td>
+<td><code>0x24e630</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3381410</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateColorsAction::Apply(Modding::ModHandle const&amp;, std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt; &gt; const&amp;)</code></td>
+<td><code>0x24e760</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a2e90</code></td>
+<td>400</td>
+</tr>
+<tr>
+<td><code>ModdingComponentDiscoveryService::ModdingComponentDiscoveryService()</code></td>
+<td><code>0x250f50</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x338d2d0</code></td>
+<td>592</td>
+</tr>
+<tr>
+<td><code>ModdingComponentDiscoveryService::CheckCriteria(Database::IDatabaseQuery1*, Database::IDatabaseQuery1*, int, bool, bool&amp;) const</code></td>
+<td><code>0x251800</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x338e4d0</code></td>
+<td>688</td>
+</tr>
+<tr>
+<td><code>ModdingComponentDiscoveryService::CheckDependencies(std::__1::vector&lt;Modding::ComponentHandle, std::__1::allocator&lt;Modding::ComponentHandle&gt; &gt; const&amp;…</code></td>
+<td><code>0x251cb0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x338e810</code></td>
+<td>2064</td>
+</tr>
+<tr>
+<td><code>ModdingComponentDiscoveryService::DiscoverComponents(std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; const&amp;, std::__1:…</code></td>
+<td><code>0x252770</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x338d590</code></td>
+<td>960</td>
+</tr>
+<tr>
+<td><code>ModdingComponentDiscoveryService::FilterComponents(std::__1::vector&lt;Modding::ComponentHandle, std::__1::allocator&lt;Modding::ComponentHandle&gt; &gt;&amp;)</code></td>
+<td><code>0x252be0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x338d950</code></td>
+<td>1024</td>
+</tr>
+<tr>
+<td><code>ModdingGameplayScriptComponentHandler::ApplyComponent(Modding::ComponentHandle const&amp;)</code></td>
+<td><code>0x257700</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3398420</code></td>
+<td>576</td>
+</tr>
+<tr>
+<td><code>ModdingGameplayScriptComponentHandler::BeginApplyComponents(Modding::IFramework*)</code></td>
+<td><code>0x257a00</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3398390</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>ModdingImportFilesAction::ApplyComponent(Modding::ComponentHandle const&amp;)</code></td>
+<td><code>0x257ac0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3398750</code></td>
+<td>368</td>
+</tr>
+<tr>
+<td><code>ModdingImportFilesAction::ApplySettings(Modding::SettingHandle const&amp;)</code></td>
+<td><code>0x257cb0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3398970</code></td>
+<td>368</td>
+</tr>
+<tr>
+<td><code>ModdingImportFilesAction::BeginApplyComponents(Modding::IFramework*)</code></td>
+<td><code>0x257ea0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33986c0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>ModdingLocalizationService::Bundle(Modding::ModHandle const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&amp;)…</code></td>
+<td><code>0x258000</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3398bc0</code></td>
+<td>912</td>
+</tr>
+<tr>
+<td><code>ModdingLocalizationService::HasString(Modding::ModHandle const&amp;, char const*, char const*) const</code></td>
+<td><code>0x258360</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3399030</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>ModdingLocalizationService::HasString(Modding::ModHandle const&amp;, char const*) const</code></td>
+<td><code>0x2584b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3398f50</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>ModdingLocalizationService::LookupString(Modding::ModHandle const&amp;, char const*, char const*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char…</code></td>
+<td><code>0x258580</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3399370</code></td>
+<td>400</td>
+</tr>
+<tr>
+<td><code>ModdingLocalizationService::LookupString(Modding::ModHandle const&amp;, char const*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::…</code></td>
+<td><code>0x258770</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33991c0</code></td>
+<td>432</td>
+</tr>
+<tr>
+<td><code>ModdingLogger::Log(char const*, Modding::LogTypes)</code></td>
+<td><code>0x258a20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3399610</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>ModdingMapSettingHandler::ApplySettings(Modding::SettingHandle const&amp;, char const*)</code></td>
+<td><code>0x258ba0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33998a0</code></td>
+<td>1216</td>
+</tr>
+<tr>
+<td><code>ModdingMapSettingHandler::BeginApplySettings(Modding::IFramework*)</code></td>
+<td><code>0x259060</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3399770</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>Modding::MetaData::AddModEntry(Data::TypedVariantMap&amp;, unsigned int const&amp;, Modding::ModHandle const&amp;)</code></td>
+<td><code>0x2598d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3399e00</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>Modding::MetaData::GetModsConfigurationString(Data::TypedVariantMap const&amp;, Data::TypedVariant const&amp;)</code></td>
+<td><code>0x25ad20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x339a370</code></td>
+<td>1280</td>
+</tr>
+<tr>
+<td><code>ModdingReplaceUIScriptComponentHandler::ApplyComponent(Modding::ComponentHandle const&amp;)</code></td>
+<td><code>0x25cb50</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x339ed30</code></td>
+<td>768</td>
+</tr>
+<tr>
+<td><code>ModdingReplaceUIScriptComponentHandler::BeginApplyComponents(Modding::IFramework*)</code></td>
+<td><code>0x25cec0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x339eca0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>ModdingSettingDiscoveryService::ModdingSettingDiscoveryService()</code></td>
+<td><code>0x25d780</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x339f050</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>ModdingSettingDiscoveryService::FilterSettings(std::__1::vector&lt;Modding::SettingHandle, std::__1::allocator&lt;Modding::SettingHandle&gt; &gt;&amp;)</code></td>
+<td><code>0x25e450</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x339f590</code></td>
+<td>1024</td>
+</tr>
+<tr>
+<td><code>ModdingUISettingHandler::GetDependencyFilePaths(Modding::SettingHandle const&amp;)</code></td>
+<td><code>0x25f120</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a1ea0</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateARX::ApplyComponent(Modding::ComponentHandle const&amp;)</code></td>
+<td><code>0x25f970</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a2790</code></td>
+<td>800</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateAudio::ApplyComponent(Modding::ComponentHandle const&amp;)</code></td>
+<td><code>0x25fe00</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a2b50</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateDatabase::ApplyComponent(Modding::ComponentHandle const&amp;)</code></td>
+<td><code>0x260150</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a3200</code></td>
+<td>832</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateConfigurationDatabase::ApplySettings(Modding::SettingHandle const&amp;)</code></td>
+<td><code>0x260880</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a37e0</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateIconsAction::Apply(Modding::ModHandle const&amp;, std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt; &gt; const&amp;)</code></td>
+<td><code>0x260cd0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a3df0</code></td>
+<td>480</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateTextAction::Apply(Modding::ModHandle const&amp;, std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt; &gt; const&amp;)</code></td>
+<td><code>0x261160</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a4260</code></td>
+<td>592</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateTextAction::LoadSQL(Modding::Path&amp;)</code></td>
+<td><code>0x2616d0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x33a4860</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>ModdingUpdateTextAction::LoadXML(Modding::Path&amp;)</code></td>
+<td><code>0x261780</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a45e0</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>ModdingUserInterfaceComponentHandler::ApplyComponent(Modding::ComponentHandle const&amp;)</code></td>
+<td><code>0x261af0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a4a20</code></td>
+<td>1168</td>
+</tr>
+<tr>
+<td><code>ModdingUserInterfaceComponentHandler::BeginApplyComponents(Modding::IFramework*)</code></td>
+<td><code>0x261fa0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a4990</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>ModdingWorldBuilderSettingHandler::ApplySettings(Modding::SettingHandle const&amp;)</code></td>
+<td><code>0x262060</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a4f20</code></td>
+<td>768</td>
+</tr>
+<tr>
+<td><code>ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase(Modding::Uri const&amp;, Database::IDatabaseConnection1*, ModdingWorldBuilderSettingHandler::…</code></td>
+<td><code>0x262510</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33a5300</code></td>
+<td>1248</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::ApplyComponents(std::__1::vector&lt;Modding::ComponentHandle, std::__1::allocator&lt;Modding::ComponentHandle&gt; &gt; const&amp;)</code></td>
+<td><code>0xb2f990</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c15386</code></td>
+<td>786</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::ApplySettings(std::__1::vector&lt;Modding::SettingHandle, std::__1::allocator&lt;Modding::SettingHandle&gt; &gt; const&amp;)</code></td>
+<td><code>0xb2fea0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c15008</code></td>
+<td>510</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::CanDisableMods(Modding::ModGroupHandle const&amp;, std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; con…</code></td>
+<td><code>0xb30400</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c13468</code></td>
+<td>450</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModHandle(Modding::ModId const&amp;, Modding::ModHandle&amp;) const</code></td>
+<td><code>0xb30830</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c12448</code></td>
+<td>152</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::ChangeSelectedModGroup(Modding::ModGroupHandle const&amp;)</code></td>
+<td><code>0xb31540</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c11f50</code></td>
+<td>98</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::CreateModGroup(char const*, Modding::ModGroupHandle const&amp;, Modding::ModGroupHandle&amp;)</code></td>
+<td><code>0xb31820</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c11fb2</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::DeleteModGroup(Modding::ModGroupHandle const&amp;)</code></td>
+<td><code>0xb31960</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c120c2</code></td>
+<td>86</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::DisableMods(Modding::ModGroupHandle const&amp;, std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; const&amp;)</code></td>
+<td><code>0xb31ad0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c13384</code></td>
+<td>228</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::Do_Shutdown()</code></td>
+<td><code>0xb31d20</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c108b0</code></td>
+<td>454</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::EnableMod(Modding::ModGroupHandle const&amp;, Modding::ModHandle const&amp;, bool)</code></td>
+<td><code>0xb31f10</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c12118</code></td>
+<td>168</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::EnableMods(Modding::ModGroupHandle const&amp;, std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; const&amp;,…</code></td>
+<td><code>0xb32030</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c121c0</code></td>
+<td>648</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetComponentDebugString(Modding::ComponentHandle const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allo…</code></td>
+<td><code>0xb325f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c10fba</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetComponentId(Modding::ComponentHandle const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;cha…</code></td>
+<td><code>0xb327e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1129a</code></td>
+<td>124</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetComponentModHandle(Modding::ComponentHandle const&amp;, Modding::ModHandle&amp;) const</code></td>
+<td><code>0xb32b70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1462c</code></td>
+<td>108</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetComponentType(Modding::ComponentHandle const&amp;, Modding::ComponentType&amp;) const</code></td>
+<td><code>0xb32c00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c11316</code></td>
+<td>220</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetEnabledMods(Modding::ModGroupHandle const&amp;, std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt;&amp;) c…</code></td>
+<td><code>0xb32ce0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c12cb2</code></td>
+<td>1096</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetInstalledMods(std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt;&amp;) const</code></td>
+<td><code>0xb33ac0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c139f8</code></td>
+<td>134</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModComponents(Modding::ModHandle const&amp;, std::__1::vector&lt;Modding::ComponentHandle, std::__1::allocator&lt;Modding::ComponentHand…</code></td>
+<td><code>0xb33ee0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c14592</code></td>
+<td>154</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModDebugString(Modding::ModHandle const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; …</code></td>
+<td><code>0xb34020</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3c1182a</code></td>
+<td>1122</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModGroupDetails(Modding::ModGroupHandle const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;…</code></td>
+<td><code>0xb343b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c11e96</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModGroups(std::__1::vector&lt;Modding::ModGroupHandle, std::__1::allocator&lt;Modding::ModGroupHandle&gt; &gt;&amp;) const</code></td>
+<td><code>0xb344b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c11e0c</code></td>
+<td>138</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModId(Modding::ModHandle const&amp;, Modding::ModId&amp;) const</code></td>
+<td><code>0xb34690</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c11c8c</code></td>
+<td>360</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetSettingModHandle(Modding::SettingHandle const&amp;, Modding::ModHandle&amp;) const</code></td>
+<td><code>0xb34970</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1405c</code></td>
+<td>108</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModSettings(Modding::ModHandle const&amp;, std::__1::vector&lt;Modding::SettingHandle, std::__1::allocator&lt;Modding::SettingHandle&gt; &gt;&amp;…</code></td>
+<td><code>0xb35280</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c13fc2</code></td>
+<td>154</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModVersion(Modding::ModHandle const&amp;, int&amp;) const</code></td>
+<td><code>0xb353c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1398c</code></td>
+<td>108</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetSelectedModGroup(Modding::ModGroupHandle&amp;) const</code></td>
+<td><code>0xb354b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c10a76</code></td>
+<td>94</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetSettingDebugString(Modding::SettingHandle const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocato…</code></td>
+<td><code>0xb35530</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c113f2</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetSettingId(Modding::SettingHandle const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;…</code></td>
+<td><code>0xb35730</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c116d2</code></td>
+<td>124</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetSettingType(Modding::SettingHandle const&amp;, Modding::SettingType&amp;) const</code></td>
+<td><code>0xb35b50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1174e</code></td>
+<td>220</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::Initialize(Database::IDatabaseConnection1*, char const*)</code></td>
+<td><code>0xb35c20</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c0f7e0</code></td>
+<td>3108</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::IsModCompatible(Modding::ModHandle const&amp;) const</code></td>
+<td><code>0xb36790</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c14896</code></td>
+<td>1120</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::IsModHandleValid(Modding::ModHandle const&amp;) const</code></td>
+<td><code>0xb36ea0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c13780</code></td>
+<td>86</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::IsModIgnoreCompatibility(Modding::ModHandle const&amp;) const</code></td>
+<td><code>0xb36f20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c14cf6</code></td>
+<td>150</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::IsModInstalled(Modding::ModId const&amp;) const</code></td>
+<td><code>0xb36fe0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c137d6</code></td>
+<td>88</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::MigrateDatabaseData(Database::IDatabaseConnection1*, char const*, int) const</code></td>
+<td><code>0xb370b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c10432</code></td>
+<td>1126</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::ReconcileEnabledMods(Modding::ModGroupHandle const&amp;)</code></td>
+<td><code>0xb37500</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c10ad4</code></td>
+<td>906</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::ResetGroup(Modding::ModGroupHandle const&amp;)</code></td>
+<td><code>0xb38150</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1362a</code></td>
+<td>164</td>
+</tr>
+<tr>
+<td><code>Modding::Framework::SetModIgnoreCompatibility(Modding::ModHandle const&amp;, bool)</code></td>
+<td><code>0xb386c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c14d8c</code></td>
+<td>228</td>
+</tr>
+<tr>
+<td><code>Modding::Path::Combine(Modding::Path const&amp;, Modding::Path const&amp;)</code></td>
+<td><code>0xb39520</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c28826</code></td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>Modding::FileService::GetEvaluatedPath(Modding::ModHandle const&amp;, Modding::Path const&amp;, Modding::Path&amp;) const</code></td>
+<td><code>0xb3a0f0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3c0e7f4</code></td>
+<td>1018</td>
+</tr>
+<tr>
+<td><code>Modding::FileService::Initialize(Modding::IFramework*)</code></td>
+<td><code>0xb3a810</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c0e134</code></td>
+<td>292</td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::AddSubscribedFolderToDiscoveryService(unsigned long const&amp;, bool)</code></td>
+<td><code>0xb3b360</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c29b8c</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::GetSubscriptionPath(unsigned long const&amp;, Modding::Path&amp;) const</code></td>
+<td><code>0xb3b8e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c2a032</code></td>
+<td>456</td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::Initialize(Modding::IFramework*)</code></td>
+<td><code>0xb3be80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c29790</code></td>
+<td>392</td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::OnDownloadItem(DownloadItemResult_t*)</code></td>
+<td><code>0xb3c3b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c294c8</code></td>
+<td>294</td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::OnItemDetailsUpdated(SteamUGCQueryCompleted_t*, bool)</code></td>
+<td><code>0xb3c5a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c29e6c</code></td>
+<td>234</td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::OnItemInstalled(ItemInstalled_t*)</code></td>
+<td><code>0xb3c760</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c295ee</code></td>
+<td>126</td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::OnItemSubscribed(RemoteStoragePublishedFileSubscribed_t*)</code></td>
+<td><code>0xb3c7f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c2966c</code></td>
+<td>122</td>
+</tr>
+<tr>
+<td><code>Modding::DatabaseLogger::Log(char const*, Database::LogTypes)</code></td>
+<td><code>0xb3cca0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c2be70</code></td>
+<td>764</td>
+</tr>
+<tr>
+<td><code>Modding::ModAssociationsService::GetActivationOrder(std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; const&amp;) const</code></td>
+<td><code>0xb3ec20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1a858</code></td>
+<td>1952</td>
+</tr>
+<tr>
+<td><code>Modding::ModAssociationsService::GetComponentReferences(Modding::ComponentHandle const&amp;, Modding::ComponentAssociation, std::__1::vector&lt;Modding::Com…</code></td>
+<td><code>0xb40a90</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1c494</code></td>
+<td>904</td>
+</tr>
+<tr>
+<td><code>Modding::ModAssociationsService::GetModReferences(Modding::ModHandle const&amp;, Modding::ModAssociation, std::__1::vector&lt;Modding::ModReference, std::__…</code></td>
+<td><code>0xb40db0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1aff8</code></td>
+<td>1130</td>
+</tr>
+<tr>
+<td><code>Modding::ModAssociationsService::Initialize(Modding::IFramework*)</code></td>
+<td><code>0xb413f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1a784</code></td>
+<td>138</td>
+</tr>
+<tr>
+<td><code>Modding::ModDiscoveryService::DiscoverMods(std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt;&amp;, int&amp;, bool)</code></td>
+<td><code>0xb43460</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c1ee44</code></td>
+<td>6658</td>
+</tr>
+<tr>
+<td><code>Modding::ModLoaderService::BeginLoadMods()</code></td>
+<td><code>0xb459a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c2276a</code></td>
+<td>38</td>
+</tr>
+<tr>
+<td><code>Modding::ModLoaderService::EndLoadMods()</code></td>
+<td><code>0xb459d0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3c243d4</code></td>
+<td>52</td>
+</tr>
+<tr>
+<td><code>Modding::ModLoaderService::LoadMod(Modding::Path const&amp;, int const&amp;, std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt;&amp;,…</code></td>
+<td><code>0xb45a10</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c22790</code></td>
+<td>124</td>
+</tr>
+<tr>
+<td><code>Modding::XmlModLoader::Load(Modding::Path const&amp;, int const&amp;, Modding::ModHandle&amp;, std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt;…</code></td>
+<td><code>0xb45b50</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c22a7e</code></td>
+<td>1636</td>
+</tr>
+<tr>
+<td><code>Modding::ModLoaderService::LoadModFromDatabase(Modding::Path const&amp;, int const&amp;, std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::Mo…</code></td>
+<td><code>0xb463b0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3c2294a</code></td>
+<td>308</td>
+</tr>
+<tr>
+<td><code>Modding::XmlModLoader::ParseLocalizationBuffer(char*)</code></td>
+<td><code>0xb46820</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c249a0</code></td>
+<td>1004</td>
+</tr>
+<tr>
+<td><code>Modding::ModLoaderService::ParseMod(Modding::Path const&amp;, Database::IDatabaseConnection1*, int const&amp;, std::__1::vector&lt;Modding::ModHandle, std::__1:…</code></td>
+<td><code>0xb46c10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c230e2</code></td>
+<td>4850</td>
+</tr>
+<tr>
+<td><code>Modding::XmlModLoader::ParseModAssociations(XML::Element const&amp;, Database::IDatabaseQuery1*, char const*, char const*)</code></td>
+<td><code>0xb47c70</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3c27f38</code></td>
+<td>568</td>
+</tr>
+<tr>
+<td><code>Modding::XmlModLoader::ParseModXml(XML::Element const&amp;, std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt; &gt;&amp;)</code></td>
+<td><code>0xb47e70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c24d8c</code></td>
+<td>12716</td>
+</tr>
+<tr>
+<td><code>Modding::XmlModLoader::ParseRootBuffer(char*, int const&amp;, std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt; &gt;&amp;)</code></td>
+<td><code>0xb4a750</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c245a2</code></td>
+<td>690</td>
+</tr>
+<tr>
+<td><code>Modding::PropertyService::Initialize(Modding::IFramework*)</code></td>
+<td><code>0xb4aed0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c2904a</code></td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (41, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AppModdingFramework::OnGameViewStateDone(Events::EventTemplate&lt;4u, GameViewStateDoneData, Events::LinearEvent…</code></td>
+<td><code>0x246400</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x337efb0</code></td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::FinishedContentChange(UpdateContentResult const&amp;)</code></td>
+<td><code>0x2494d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3382c40</code></td>
+</tr>
+<tr>
+<td><code>AppModdingFramework::GetGameplayScripts() const</code></td>
+<td><code>0x249a80</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3383a90</code></td>
+</tr>
+<tr>
+<td><code>ModdingComponentDiscoveryService::~ModdingComponentDiscoveryService()</code></td>
+<td><code>0x251730</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x338d520</code></td>
+</tr>
+<tr>
+<td><code>ModdingComponentDiscoveryService::FilterComponentsOldMethod(std::__1::vector&lt;Modding::ComponentHandle, std::_…</code></td>
+<td><code>0x251770</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x338e440</code></td>
+</tr>
+<tr>
+<td><code>ModdingImportFilesAction::EndApplyComponents()</code></td>
+<td><code>0x257a80</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3398730</code></td>
+</tr>
+<tr>
+<td><code>ModdingLocalizationService::~ModdingLocalizationService()</code></td>
+<td><code>0x257fc0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3398b50</code></td>
+</tr>
+<tr>
+<td><code>ModdingLocalizationService::~ModdingLocalizationService()</code></td>
+<td><code>0x257fd0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3398b60</code></td>
+</tr>
+<tr>
+<td><code>ModdingLogger::ModdingLogger()</code></td>
+<td><code>0x258990</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3399570</code></td>
+</tr>
+<tr>
+<td><code>ModdingLogger::~ModdingLogger()</code></td>
+<td><code>0x2589f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33995f0</code></td>
+</tr>
+<tr>
+<td><code>Modding::ILogger::~ILogger()</code></td>
+<td><code>0x258ab0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33996b0</code></td>
+</tr>
+<tr>
+<td><code>ModdingMapSettingHandler::EndApplySettings()</code></td>
+<td><code>0x258b30</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3399830</code></td>
+</tr>
+<tr>
+<td><code>Modding::MetaData::GetModCount(Data::TypedVariantMap const&amp;, unsigned int const&amp;)</code></td>
+<td><code>0x25abc0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x339a2b0</code></td>
+</tr>
+<tr>
+<td><code>Modding::MetaData::GetModString(Data::TypedVariantMap const&amp;, unsigned int const&amp;, unsigned int, unsigned int…</code></td>
+<td><code>0x25ac50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x339a340</code></td>
+</tr>
+<tr>
+<td><code>ModdingSettingDiscoveryService::DiscoverSettings(std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Mod…</code></td>
+<td><code>0x25ddf0</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x339f1e0</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateARX::~ModdingUpdateARX()</code></td>
+<td><code>0x25f950</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a2720</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateARX::EndApplyComponents()</code></td>
+<td><code>0x25f960</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a2780</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateAudio::~ModdingUpdateAudio()</code></td>
+<td><code>0x25fde0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a2ad0</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateColorsAction::ModdingUpdateColorsAction()</code></td>
+<td><code>0x2600d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a2d70</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateDatabase::ModdingUpdateDatabase()</code></td>
+<td><code>0x260100</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a3170</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateDatabase::~ModdingUpdateDatabase()</code></td>
+<td><code>0x260130</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a3190</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateDatabase::EndApplyComponents()</code></td>
+<td><code>0x260140</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a31f0</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateConfigurationDatabase::~ModdingUpdateConfigurationDatabase()</code></td>
+<td><code>0x260860</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a3770</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateConfigurationDatabase::EndApplySettings()</code></td>
+<td><code>0x260870</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a37d0</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateIconsAction::ModdingUpdateIconsAction()</code></td>
+<td><code>0x260c60</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a3cd0</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateIconsAction::EndApplyComponents()</code></td>
+<td><code>0x260ca0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a3d20</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateIconsAction::ApplySettings(Modding::SettingHandle const&amp;)</code></td>
+<td><code>0x260ef0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a4010</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateTextAction::EndApplyComponents()</code></td>
+<td><code>0x261130</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a4190</code></td>
+</tr>
+<tr>
+<td><code>ModdingUpdateTextAction::BeginApplySettings(Modding::IFramework*)</code></td>
+<td><code>0x261630</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a44b0</code></td>
+</tr>
+<tr>
+<td><code>ModdingWorldBuilderSettingHandler::ModdingWorldBuilderSettingHandler()</code></td>
+<td><code>0x262020</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a4ed0</code></td>
+</tr>
+<tr>
+<td><code>ModdingWorldBuilderSettingHandler::~ModdingWorldBuilderSettingHandler()</code></td>
+<td><code>0x262050</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a4ef0</code></td>
+</tr>
+<tr>
+<td><code>Modding::Framework::GetModLoaderService() const</code></td>
+<td><code>0x517b30</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c10eb0</code></td>
+</tr>
+<tr>
+<td><code>Modding::ModId::c_str() const</code></td>
+<td><code>0xb35470</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2fce330</code></td>
+</tr>
+<tr>
+<td><code>Modding::Framework::LogError(char const*) const</code></td>
+<td><code>0xb37050</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c1041a</code></td>
+</tr>
+<tr>
+<td><code>Modding::Framework::LogMessage(char const*) const</code></td>
+<td><code>0xb37070</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c10404</code></td>
+</tr>
+<tr>
+<td><code>Modding::Framework::LogWarning(char const*) const</code></td>
+<td><code>0xb37090</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c10898</code></td>
+</tr>
+<tr>
+<td><code>Modding::Framework::SetSettingDiscoveryService(Modding::ISettingDiscoveryService*)</code></td>
+<td><code>0xb38840</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c10f14</code></td>
+</tr>
+<tr>
+<td><code>Modding::SteamWorkshopSubscriptionService::IsInstalled(unsigned long const&amp;) const</code></td>
+<td><code>0xb3c280</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c29aa8</code></td>
+</tr>
+<tr>
+<td><code>Modding::DatabaseLogger::DatabaseLogger(Modding::IFramework*)</code></td>
+<td><code>0xb3cc50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c2be54</code></td>
+</tr>
+<tr>
+<td><code>Modding::XmlModLoader::ParseFragmentBuffer(char*, std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding…</code></td>
+<td><code>0xb46620</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x3c24854</code></td>
+</tr>
+<tr>
+<td><code>Modding::Path::operator wchar_t*() const</code></td>
+<td><code>0xf6ea10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c2888a</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

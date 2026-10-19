@@ -31,8 +31,76 @@ devce = load('devce_methods.json') if os.path.exists(B('data', 'devce_methods.js
 natives = load('native.json')
 findex = load('function_index.json')
 op_params = load('op_params.json')
+exe_options = load('exe_options.json')
+exe_switches = load('exe_switches.json')
+exe_console = load('exe_console.json')
+sys.path.insert(0, B('tools'))
+import exe_section
+import exe_lua_section
+exe_lua = load('exe_lua.json')
+exe_lua_tables = load('exe_lua_tables.json')
+exe_lua_val = load('exe_lua_validation.json')
+import exe_events_section
+exe_events = load('exe_events.json')
+exe_buses = load('exe_event_buses.json')
+import exe_fn_section
+exe_fn = load('exe_function_index.json')
+import exe_files_section
+exe_files = load('exe_files.json')
+exe_files_meta = load('exe_files_meta.json')
+import exe_db_section
+exe_sql = load('exe_sql.json')
+exe_text_keys = load('exe_text_keys.json')
+import exe_modinfo_section
+exe_modinfo = load('exe_modinfo.json')
+exe_modinfo_meta = load('exe_modinfo_meta.json')
+import exe_messages_section
+exe_messages = load('exe_messages.json')
+import exe_uixml_section
+exe_uixml = load('exe_uixml.json')
+exe_uixml_types = load('exe_uixml_types.json')
+import exe_telemetry_section
+exe_telemetry = load('exe_telemetry.json')
+exe_telemetry_meta = load('exe_telemetry_meta.json')
+import exe_classes_section
+exe_classes = load('exe_classes.json')
+import exe_imports_section
+exe_imports = load('exe_imports.json')
+exe_import_dlls = load('exe_import_dlls.json')
+import exe_audio_section
+import exe_enums_section
+import exe_network_section
+import exe_artdefs_section
+import exe_xmlformat_section
+import exe_lenses_section
+import exe_reflect_section
+import exe_loading_section
+import exe_input_section
+import exe_devtools_section
+import exe_gamesummary_section
+exe_audio = load('exe_audio.json')
+exe_enums = load('exe_enums.json')
+exe_network = load('exe_network.json')
+exe_artdefs = load('exe_artdefs.json')
+exe_artdef_consumers = load('exe_artdef_consumers.json')
+exe_xmlformat = load('exe_xmlformat.json')
+exe_xmlformat_meta = load('exe_xmlformat_meta.json')
+exe_lenses = load('exe_lenses.json')
+exe_lenses_meta = load('exe_lenses_meta.json')
+exe_reflect = load('exe_reflect.json')
+exe_reflect_meta = load('exe_reflect_meta.json')
+exe_reflect_big = exe_reflect_section.big_namespaces(exe_reflect)
+exe_loading = load('exe_loading.json')
+exe_input = load('exe_input.json')
+exe_input_meta = load('exe_input_meta.json')
+exe_devtools = load('exe_devtools.json')
+exe_gs = load('exe_gamesummary.json')
+exe_gs_meta = load('exe_gamesummary_meta.json')
+import exe_event_data_section
+exe_event_data = load('exe_event_data.json')
 ret_meanings = load('lua_return_meanings.json')
 arg_meanings = load('lua_arg_meanings.json')
+effects = load('lua_effects.json') if os.path.exists(B('data/lua_effects.json')) else {}
 rt_checks = load('lua_runtime_checks.json') if os.path.exists(B('data/lua_runtime_checks.json')) else {}
 for _m in methods:
     _k = '%s.%s' % (_m['object'], _m['method'])
@@ -44,6 +112,18 @@ for _m in methods:
             _m['evidence'].append({'kind': 'runtime', 'note': 'present on the live object in the game (UI state, build 15038592, 2026-10-03); not called'})
     if _k in ret_meanings:
         _m['return_meaning'] = ret_meanings[_k]
+    for _r in _m.get('wrapper_rvas', []):
+        if _r in effects:
+            _e = effects[_r]
+            _m['effects'] = {k: _e[k] for k in ('callee', 'class', 'writes', 'reads', 'calls') if _e.get(k)}
+            _ps = (_m.get('signatures') or [{'params': []}])[0]['params']
+            for _p in _ps:
+                _h = {x['name'] for x in _e['args'].get(str(_p.get('lua_index')), {}).get('name_hints', [])
+                      if x['name'] not in ('this', '_') and len(x['name']) > 2 and not x['name'].startswith('param_')}
+                if len(_h) == 1 and re.match(r'^arg\d+$', _p['name']):
+                    _p['name'] = _h.pop()
+                    _p['name_source'] = 'effect-trace'
+            break
     for _a in arg_meanings.get(_k, []):
         _ps = (_m.get('signatures') or [{'params': []}])[0]['params']
         if _a['index'] < len(_ps):
@@ -59,7 +139,7 @@ for root, _, files in os.walk(B('curated')):
 
 errors = []
 ids = {}
-for kind, recs, schema in (('lua', methods, 'lua_method'), ('op', ops, 'operation'), ('enum', enums, 'enum'), ('layout', layouts, 'layout'), ('global', globs, 'global'), ('ce', ce_methods, 'ce_method'), ('devce', devce, 'devce_method'), ('native', natives, 'native'), ('param', op_params, 'param')):
+for kind, recs, schema in (('lua', methods, 'lua_method'), ('op', ops, 'operation'), ('enum', enums, 'enum'), ('layout', layouts, 'layout'), ('global', globs, 'global'), ('ce', ce_methods, 'ce_method'), ('devce', devce, 'devce_method'), ('native', natives, 'native'), ('param', op_params, 'param'), ('exeopt', exe_options, 'exe_option'), ('exeswitch', exe_switches, 'exe_switch'), ('execmd', exe_console['commands'], 'exe_command'), ('exelua', exe_lua, 'exe_lua_method'), ('exetable', exe_lua_tables, 'exe_lua_table'), ('exeevt', exe_events, 'exe_event'), ('exebus', exe_buses, 'exe_bus'), ('exefile', exe_files, 'exe_file'), ('exesql', exe_sql, 'exe_sql'), ('exeloc', exe_text_keys, 'exe_text_key'), ('exemodinfo', exe_modinfo, 'exe_modinfo'), ('exemsg', exe_messages, 'exe_message'), ('exeui', exe_uixml, 'exe_uixml'), ('exetel', exe_telemetry, 'exe_telemetry'), ('execlass', exe_classes, 'exe_class'), ('exeimp', exe_imports, 'exe_import'), ('exeaudio', exe_audio, 'exe_audio'), ('exeevtdata', exe_event_data, 'exe_event_data'), ('exeenum', exe_enums, 'exe_enum'), ('exenet', exe_network, 'exe_network'), ('exeart', exe_artdefs, 'exe_artdef'), ('exexml', exe_xmlformat, 'exe_xmlformat'), ('exelens', exe_lenses, 'exe_lens'), ('exetype', exe_reflect, 'exe_reflect'), ('exeload', exe_loading, 'exe_loading'), ('exeinput', exe_input, 'exe_input'), ('exedev', exe_devtools, 'exe_devtools'), ('exegs', exe_gs, 'exe_gamesummary')):
     v = validator(schema)
     for r in recs:
         for e in v.iter_errors(r):
@@ -145,6 +225,77 @@ def page_of(rid):
     if kind == 'layout':
         parts = rest.split('::')
         return ('layouts/%s/%s.md' % (safe(parts[0]), safe('.'.join(parts[1:]))) if len(parts) > 1 else 'layouts/Other/%s.md' % safe(parts[0])), None
+    if kind == 'exegs':
+        k_, n_ = rest.split(':', 1)
+        return 'exe/gamesummary.md', safe(('table' if k_ in ('config-table', 'recorded-table') else k_) + '-' + n_).lower()
+    if kind == 'exedev':
+        k_, n_ = rest.split(':', 1)
+        return 'exe/devtools.md', safe(k_ + '-' + n_).lower()
+    if kind == 'exeinput':
+        k_, n_ = rest.split(':', 1)
+        return 'exe/input.md', safe(k_ + '-' + n_).lower()
+    if kind == 'exeload':
+        k_, n_ = rest.split(':', 1)
+        return 'exe/loading.md', safe(k_ + '-' + n_).lower()
+    if kind in ('exetype', 'exetypeenum'):
+        e_ = next(x for x in exe_reflect if x['id'] == rid)
+        return exe_reflect_section.page_for(e_['namespace'], exe_reflect_big), safe(rest).lower()
+    if kind == 'exelens':
+        k_, n_ = rest.split(':', 1)
+        return 'exe/lenses.md', safe(k_ + '-' + n_).lower()
+    if kind == 'exexml':
+        k_, n_ = rest.split(':', 1)
+        return 'exedb/xml-format.md', safe(k_ + '-' + n_).lower()
+    if kind == 'exeart':
+        return exe_artdefs_section.page_for(rest), None
+    if kind == 'exenet':
+        g_, n_ = rest.split(':', 1)
+        return 'exe/network.md', safe(g_ + '-' + n_).lower()
+    if kind == 'exeenum':
+        return 'exe/lua-enums.md', safe(rest).lower()
+    if kind == 'exeevtdata':
+        return 'exe/event-data.md', rest
+    if kind == 'exeaudio':
+        f_, n_ = rest.rsplit(':', 1)
+        return 'exe/audio.md', safe(f_ + '-' + n_).lower()
+    if kind == 'exeimp':
+        return 'exe/imports.md', safe(rest.replace(':', '-', 1)).lower()
+    if kind == 'execlass':
+        c_ = next(x for x in exe_classes if x['id'] == rid)
+        return exe_classes_section.page_for(c_['namespace']), safe(rest).lower()
+    if kind == 'exetel':
+        k_, n_ = rest.split(':', 1)
+        return 'exe/telemetry.md', safe(k_ + '-' + n_).lower()
+    if kind == 'exeui':
+        c_, n_ = rest.split(':', 1)
+        return 'exe/uixml.md', safe(c_ + '-' + n_).lower()
+    if kind == 'exemsg':
+        return 'exe/messages.md', rest
+    if kind == 'exemodinfo':
+        k_, n_ = rest.split(':', 1)
+        return 'exe/modinfo.md', safe(k_ + '-' + n_).lower()
+    if kind == 'exesql':
+        return 'exedb/statements.md', rest
+    if kind == 'exeloc':
+        return 'exedb/text-keys.md', safe(rest).lower()
+    if kind == 'exefile':
+        return 'exe/files.md', safe(rid).lower()
+    if kind == 'exebus':
+        return exe_events_section.page_of_bus(rest), None
+    if kind == 'exeevt':
+        b_, i_ = rest.split('.', 1)
+        return exe_events_section.page_of_bus(b_), i_
+    if kind == 'exetable':
+        return exe_lua_section.page_for(next(t for t in exe_lua_tables if t['id'] == rid)), None
+    if kind == 'exelua':
+        e_ = next(x for x in exe_lua if x['id'] == rid)
+        return exe_lua_section.page_for(next(t for t in exe_lua_tables if t['name'] == e_['object'])), safe(rest).lower()
+    if kind == 'exeopt':
+        return 'exe/options.md', safe(rest).lower()
+    if kind == 'exeswitch':
+        return 'exe/command-line.md', safe(rest).lower()
+    if kind == 'execmd':
+        return 'exe/console.md', safe(rest.replace(':', '-', 1)).lower()
     if kind == 'global':
         parts = rest.split('::')
         return 'globals/%s.md' % safe(parts[0] if len(parts) > 1 else 'Other'), safe(rest)
@@ -233,6 +384,14 @@ def sig_md(o, m):
     if aps:
         parts = ['`%s` — %s%s' % (p['name'], p['meaning']['summary'].replace('|', '/')[:110], '' if p['meaning']['status'] == 'verified' else ' (inferred)') for p in aps[:4]]
         out += '<br><small>args: ' + '; '.join(parts) + (' …' if len(aps) > 4 else '') + '</small>'
+    ef = m.get('effects')
+    if ef and (ef.get('writes') or ef.get('reads')):
+        bits = []
+        if ef.get('writes'):
+            bits.append('writes ' + ', '.join('`%s`' % w['member'] for w in ef['writes'][:4]) + (' …' if len(ef['writes']) > 4 else ''))
+        if ef.get('reads'):
+            bits.append('reads ' + ', '.join('`%s`' % w['member'] for w in ef['reads'][:5]) + (' …' if len(ef['reads']) > 5 else ''))
+        out += '<br><small>touches (inferred from the code): ' + '; '.join(bits) + '</small>'
     rc = m.get('runtime_check')
     if rc and rc.get('called'):
         if rc['result'] == 'err':
@@ -418,6 +577,9 @@ for e in enums:
         for n in un['notes']:
             assert n['event'] in valid, 'event_usage_notes: unknown event ' + n['event']
             LE.append('| `%s` | %s | %s | %s |' % (n['event'], n['text'], n['evidence'], n['status']))
+        LE += ['\n## GameEvents that ask instead of tell\n',
+               'This page lists `Events.*`. A few `GameEvents.*` are tests instead of notifications: every handler must return true or the action is refused. The only one the shipped game dispatches is `GameEvents.CanStartOperation(playerId, unitId, opIndex)` for **unit operations** (verified). '
+               'See [veto events in Lua](../lua-veto-events.md) for how it works, its pitfalls, and the city operation and command versions that do not exist yet.']
         add('enums/LuaEvents.md', 'Lua events', '\n'.join(LE))
         lua_event_rows = ['| [Lua events](LuaEvents.md) | %d | events with parameters | no |' % len(lev)]
     if e['hashed'] and any(not m['hash_matches_name'] for m in e['members']):
@@ -856,6 +1018,17 @@ def type_md(t, from_page):
     return '`%s`' % t.replace('|', '\\|')
 
 
+# reverse index: layout member -> Lua methods that write / read it (static trace, see lua_effects.py)
+rev = {}
+for _m in methods:
+    _e = _m.get('effects') or {}
+    for _kind in ('writes', 'reads'):
+        for _x in _e.get(_kind, []):
+            _cls, _, _mem = re.sub(r'\+0x[0-9a-f]+$', '', _x['member']).rpartition('::')
+            _lst = rev.setdefault((_cls, _mem), {'writes': [], 'reads': []})[_kind]
+            if _m['id'] not in _lst:
+                _lst.append(_m['id'])
+
 by_ns = {}
 for l in layouts:
     parts = l['id'][7:].split('::')
@@ -883,8 +1056,20 @@ for ns, ls in sorted(by_ns.items()):
         if 'curated' in l:
             L.append(notes_md(l['curated'], p) + '\n')
         has_win = any('windows' in m for m in l['members'])
-        L.append('| Linux offset | Member | Type |' + (' Windows |' if has_win else ''))
-        L.append('|---|---|---|' + ('---|' if has_win else ''))
+        has_use = any((l['id'][7:], m['name']) in rev for m in l['members'])
+
+        def use_md(m):
+            u = rev.get((l['id'][7:], m['name']))
+            if not u:
+                return ' |'
+            parts = []
+            for kind, lab in (('writes', 'writes'), ('reads', 'reads')):
+                ids = u[kind][:4]
+                if ids:
+                    parts.append('%s: %s%s' % (lab, ', '.join(link(i, p, i[4:].replace('.', ':', 1)) for i in ids), ' (+%d more)' % (len(u[kind]) - 4) if len(u[kind]) > 4 else ''))
+            return ' %s |' % '; '.join(parts)
+        L.append('| Linux offset | Member | Type |' + (' Windows |' if has_win else '') + (' Lua methods (inferred) |' if has_use else ''))
+        L.append('|---|---|---|' + ('---|' if has_win else '') + ('---|' if has_use else ''))
         for m in sorted(l['members'], key=lambda x: (x['offset'], x['name'])):
             w = ''
             if has_win:
@@ -894,7 +1079,7 @@ for ns, ls in sorted(by_ns.items()):
                 else:
                     w = ' |'
             bits = ' (bit-field, %d bits)' % m['bits'] if m.get('bits') else ''
-            L.append('| `0x%x` | %s%s | %s |%s' % (m['offset'], m['name'], bits, type_md(m['type'], p), w))
+            L.append('| `0x%x` | %s%s | %s |%s%s' % (m['offset'], m['name'], bits, type_md(m['type'], p), w, use_md(m) if has_use else ''))
         if has_win:
             L.append('\nThe Windows column is filled in only for members that were checked against Windows code. For the rest, use the Linux offset with the rule above.')
         add(p, l['id'][7:], '\n'.join(L))
@@ -928,6 +1113,31 @@ for grp, gs in sorted(gby.items()):
             L.append(notes_md(g['curated'], p) + '\n')
     add(p, grp, '\n'.join(L))
 
+exe_section.make(add, exe_options, exe_switches, exe_console)
+exe_lua_section.make(add, exe_lua, exe_lua_tables, exe_lua_val, exe_classes)
+exe_events_section.make(add, exe_events, exe_buses)
+exe_fn_section.make(add, exe_fn)
+exe_files_section.make(add, exe_files, exe_files_meta)
+exe_db_section.make(add, exe_sql, exe_text_keys)
+exe_modinfo_section.make(add, exe_modinfo, exe_modinfo_meta)
+exe_messages_section.make(add, exe_messages)
+exe_uixml_section.make(add, exe_uixml, exe_uixml_types)
+exe_telemetry_section.make(add, exe_telemetry, exe_telemetry_meta)
+exe_classes_section.make(add, exe_classes)
+exe_imports_section.make(add, exe_imports, exe_import_dlls)
+exe_audio_section.make(add, exe_audio)
+exe_enums_section.make(add, exe_enums)
+exe_network_section.make(add, exe_network)
+exe_artdefs_section.make(add, exe_artdefs, exe_artdef_consumers)
+exe_xmlformat_section.make(add, exe_xmlformat, exe_xmlformat_meta)
+exe_lenses_section.make(add, exe_lenses, exe_lenses_meta)
+exe_reflect_section.make(add, exe_reflect, exe_reflect_meta)
+exe_loading_section.make(add, exe_loading)
+exe_input_section.make(add, exe_input, exe_input_meta)
+exe_devtools_section.make(add, exe_devtools)
+exe_gamesummary_section.make(add, exe_gs, exe_gs_meta)
+exe_event_data_section.make(add, exe_event_data)
+
 # ---------------------------------------------------------------- index
 n_ref = sum(1 for m in methods if m['in_community_reference'])
 topic_lines = '\n'.join('- [%s](%s)' % (t, p) for _, p, t in sorted(topics))
@@ -954,6 +1164,10 @@ A reference for what Civ VI's GameCore contains, generated from analysis data pl
 - [Native functions](native/index.md): %d engine functions without a Lua route (%d already wrapped by the Community Extension).
 - Engine ids such as the [event ids](enums/Events.md) are listed for decoding hash values.
 
+<div class="zone zone-exe"><b>Engine executable.</b> Settings, switches and tools of the game program itself (not GameCore); no mod needed, mostly undocumented debug functionality.</div>
+
+- [Engine executable](exe/index.md): [option files reference](exe/options.md), [command-line switches](exe/command-line.md), [debug console](exe/console.md), [files and paths](exe/files.md), the [.modinfo vocabulary](exe/modinfo.md), [log and error messages](exe/messages.md), the [UI XML vocabulary](exe/uixml.md), the [telemetry configuration](exe/telemetry.md), the [imports and dependencies](exe/imports.md), the [audio vocabulary](exe/audio.md), the [event data fields](exe/event-data.md), the [Lua enum tables of the exe](exe/lua-enums.md), the [multiplayer and lobby vocabulary](exe/network.md), the [ArtDef vocabulary](exeart/index.md), the [lenses and lens layers](exe/lenses.md), the [game start, save and load sequence](exe/loading.md), the [input actions](exe/input.md), the [developer tools and crash reports](exe/devtools.md), the [game summary data model](exe/gamesummary.md), the [reflected data types](exetypes/index.md) (layouts of artdef, blueprint and package structures), the [engine classes](execlass/index.md) (inheritance and virtual functions), [database and text access](exedb/index.md) (with the [gameplay XML data format](exedb/xml-format.md)), and the [Lua tables the exe hosts](exeapi/index.md) (`UI`, `Network`, `Locale`, ForgeUI controls, event objects), and the [engine event buses](exeevents/index.md) (which GameCore events the exe receives and which systems handle them), and the [exe function index](exefn/index.md) (49,000 function names with Windows addresses, searchable).
+
 ## Start here
 %s
 
@@ -978,7 +1192,7 @@ Errors in this reference are ours. Corrections and pointers to better sources ar
 SECTION = {'lua': ('lua/index.md', 'Lua API'), 'operations': ('operations/index.md', 'Operations'), 'enums': ('enums/index.md', 'Enums'),
            'layouts': ('layouts/index.md', 'Class layouts'), 'globals': ('globals/index.md', 'Globals'),
            'ce': ('ce/index.md', 'Community Extension'), 'devce': ('devce/index.md', 'Dev CE (experimental)'), 'native': ('native/index.md', 'Native functions'),
-           'effects': ('effects/index.md', 'Effects'), 'requirements': ('requirements/index.md', 'Requirements'), 'collections': ('collections/index.md', 'Collections')}
+           'effects': ('effects/index.md', 'Effects'), 'requirements': ('requirements/index.md', 'Requirements'), 'collections': ('collections/index.md', 'Collections'), 'exe': ('exe/index.md', 'Engine executable'), 'exeapi': ('exeapi/index.md', 'Engine Lua tables'), 'exeevents': ('exeevents/index.md', 'Engine events'), 'exefn': ('exefn/index.md', 'Engine functions'), 'exedb': ('exedb/index.md', 'Database access'), 'execlass': ('execlass/index.md', 'Engine classes'), 'exeart': ('exeart/index.md', 'ArtDef vocabulary'), 'exetypes': ('exetypes/index.md', 'Reflected data types')}
 
 
 def parents(path):
@@ -990,6 +1204,8 @@ def parents(path):
     chain = [sec] if path != sec[0] else []
     if parts[0] == 'operations' and len(parts) == 3:
         chain.append(('operations/%s.md' % parts[1], pages['operations/%s.md' % parts[1]][0]))
+    if parts[0] == 'exeapi' and len(parts) == 3:
+        chain.append(('exeapi/controls/index.md', 'ForgeUI control types'))
     if parts[0] == 'layouts' and len(parts) == 3:
         chain.append(('layouts/%s.md' % parts[1], parts[1]))
     if path in USES_PARENT:
@@ -1003,6 +1219,7 @@ ZONE_TEXT = {
     'vanilla': '<b>Available out of the box.</b> Usable from Lua in the unmodified game.',
     'ce': '<b>Needs the Community Extension.</b> Not available in the unmodified game; works while the Community Extension mod is active (its own functions, or raw memory access with <code>Mem</code>/<code>ObjMem</code>).',
     'devce': '<b>Experimental: needs Dev CE</b> (<a href="https://github.com/cru121/civ6-dev-ce">fork of the Community Extension</a>, release zip and source). A GameCore that adds these Lua methods by calling engine functions directly. Not part of the upstream Community Extension, single-player testing only. Descriptions on these pages were written by an AI assistant from decompiled code and are marked inferred unless a test result confirms them.',
+    'exe': '<b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.',
     'engine': '<b>Engine internals.</b> No scripting access today. Listed for contributors and for understanding the game; using it needs a change to the game library.'}
 
 
@@ -1010,7 +1227,7 @@ def zone_of(path):
     top = path.split('/')[0]
     if path == 'enums/Events.md':
         return 'engine'
-    return {'lua': 'vanilla', 'operations': 'vanilla', 'enums': 'vanilla', 'ce': 'ce', 'devce': 'devce', 'layouts': 'ce', 'globals': 'ce', 'native': 'engine', 'effects': 'vanilla', 'requirements': 'vanilla', 'collections': 'vanilla'}.get(top)
+    return {'lua': 'vanilla', 'operations': 'vanilla', 'enums': 'vanilla', 'ce': 'ce', 'devce': 'devce', 'layouts': 'ce', 'globals': 'ce', 'native': 'engine', 'effects': 'vanilla', 'requirements': 'vanilla', 'collections': 'vanilla', 'exe': 'exe', 'exeapi': 'exe', 'exeevents': 'exe', 'exefn': 'exe', 'exedb': 'exe', 'execlass': 'exe', 'exeart': 'exe', 'exetypes': 'exe'}.get(top)
 
 
 def banner_md(path):
@@ -1039,7 +1256,7 @@ main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,
 @media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
 table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
 code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
-#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}\n.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}\n.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}\n.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}\n.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}'''
 JS = '''let idx=null,stamp=0;const q=document.getElementById('q'),res=document.getElementById('res'),nav=q.parentNode;let sel=-1;
@@ -1068,7 +1285,7 @@ shutil.copy(B('data', 'strings_keys.json'), B('site', 'strings_keys.json'))
 json.dump(KEYMAP, open(B('site', 'keymap.json'), 'w', encoding='utf8'), separators=(',', ':'))
 search = []
 for p, (t, text) in pages.items():
-    body = markdown.markdown(crumbs_md(p) + text, extensions=['tables', 'fenced_code', 'attr_list'])
+    body = markdown.markdown(crumbs_md(p) + text, extensions=['tables', 'fenced_code', 'attr_list', 'md_in_html'])
     body = body.replace('{{ROOT}}', '../' * p.count('/'))
     body = re.sub(r'href="([^"#:]+)\.md(#[^"]*)?"', lambda m: 'href="%s.html%s"' % (m.group(1), m.group(2) or ''), body)
     depth = p.count('/'); root = '../' * depth
@@ -1077,6 +1294,7 @@ for p, (t, text) in pages.items():
     nav = (grp('', 'Start', (('index.html', 'Home'), ('conventions.html', 'How to read'), ('hash-function.html', 'Identifier hash')))
            + grp('g-vanilla', 'Available now', (('lua/index.html', 'Lua API'), ('operations/index.html', 'Operations'), ('enums/index.html', 'Enums'), ('effects/index.html', 'Modifier effects'), ('requirements/index.html', 'Requirements'), ('collections/index.html', 'Collections')))
            + grp('g-ce', 'Needs the Community Extension', (('ce/index.html', 'CE Lua API'), ('layouts/index.html', 'Class layouts'), ('globals/index.html', 'Globals')))
+           + grp('g-exe', 'Engine executable', (('exe/index.html', 'Overview'), ('exe/options.html', 'Option files'), ('exe/command-line.html', 'Command line'), ('exe/console.html', 'Debug console'), ('exe/files.html', 'Files and paths'), ('exe/modinfo.html', '.modinfo vocabulary'), ('exe/messages.html', 'Log messages'), ('exe/uixml.html', 'UI XML vocabulary'), ('exe/telemetry.html', 'Telemetry'), ('exe/imports.html', 'Imports'), ('exe/audio.html', 'Audio names'), ('exe/event-data.html', 'Event data fields'), ('exe/lua-enums.html', 'Lua enum tables'), ('exe/network.html', 'Multiplayer vocabulary'), ('exe/lenses.html', 'Lenses'), ('exe/loading.html', 'Load sequence'), ('exe/input.html', 'Input actions'), ('exe/devtools.html', 'Developer tools'), ('exe/gamesummary.html', 'Game summary'), ('execlass/index.html', 'Classes'), ('exeart/index.html', 'ArtDef vocabulary'), ('exetypes/index.html', 'Reflected types'), ('exedb/index.html', 'Database access'), ('exeapi/index.html', 'Engine Lua tables'), ('exeevents/index.html', 'Engine events'), ('exefn/index.html', 'Engine functions')))
            + grp('g-devce', 'Experimental', (('devce/index.html', 'Dev CE Lua API'),))
            + grp('g-engine', 'Engine internals', (('native/index.html', 'Native functions'), ('native/all.html', 'All functions (search)'))))
     page = ('<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>%s</title>'
@@ -1086,7 +1304,7 @@ for p, (t, text) in pages.items():
     fp = B('site', p[:-3] + '.html'); os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w', encoding='utf8').write(page)
     search.append({'t': t, 'u': p[:-3] + '.html', 'k': re.sub(r'[#|`*\[\]()]', ' ', text[:300]).lower()})
-    sect = {'lua': 'Lua API', 'ce': 'CE', 'devce': 'Dev CE', 'native': 'Native', 'operations': 'Operation', 'enums': 'Enum', 'globals': 'Global', 'effects': 'Effect', 'requirements': 'Requirement', 'collections': 'Collection'}.get(p.split('/')[0])
+    sect = {'lua': 'Lua API', 'ce': 'CE', 'devce': 'Dev CE', 'native': 'Native', 'operations': 'Operation', 'enums': 'Enum', 'globals': 'Global', 'effects': 'Effect', 'requirements': 'Requirement', 'collections': 'Collection', 'exe': 'Engine exe', 'exeapi': 'Engine Lua', 'exeevents': 'Engine events', 'exedb': 'Database access', 'execlass': 'Engine classes', 'exeart': 'ArtDef vocabulary', 'exetypes': 'Reflected data types'}.get(p.split('/')[0])
     if sect and p.count('/') and not p.endswith('index.md') and not p.startswith('layouts') and not p.startswith('effects/u/'):
         for row in re.findall(r'<tr>\s*<td>(.*?)</td>', body, re.S):
             m = re.match(r'<a id="([^"]+)"></a>', row)
@@ -1098,14 +1316,16 @@ for p, (t, text) in pages.items():
 json.dump(search, open(B('site', 'search.json'), 'w'))
 shutil.copy(B('data', 'function_index.json'), B('site', 'function_index.json'))
 open(B('site', 'fnsearch.js'), 'w', encoding='utf8').write(FNJS)
+shutil.copy(B('tools', 'exefnsearch.js'), B('site', 'exefnsearch.js'))
+json.dump(exe_fn_section.compact(exe_fn), open(B('site', 'exe_function_index.json'), 'w', encoding='utf8'), separators=(',', ':'), ensure_ascii=False)
 print('wrote html site (%d pages)' % len(pages))
 
 # ---------------------------------------------------------------- dist
 os.makedirs(B('dist', 'ai'), exist_ok=True)
-for name, data in (('lua_methods.json', methods), ('operations.json', ops), ('enums.json', enums), ('lua_objects.json', objects), ('layouts.json', layouts), ('globals.json', globs), ('ce_methods.json', ce_methods), ('devce_methods.json', devce), ('native.json', natives), ('function_index.json', findex), ('op_params.json', op_params), ('lua_return_meanings.json', ret_meanings), ('lua_arg_meanings.json', arg_meanings), ('lua_runtime_checks.json', rt_checks)):
+for name, data in (('lua_methods.json', methods), ('operations.json', ops), ('enums.json', enums), ('lua_objects.json', objects), ('layouts.json', layouts), ('globals.json', globs), ('ce_methods.json', ce_methods), ('devce_methods.json', devce), ('native.json', natives), ('function_index.json', findex), ('op_params.json', op_params), ('lua_return_meanings.json', ret_meanings), ('lua_arg_meanings.json', arg_meanings), ('lua_runtime_checks.json', rt_checks), ('exe_options.json', exe_options), ('exe_switches.json', exe_switches), ('exe_console.json', exe_console), ('exe_lua.json', exe_lua), ('exe_lua_tables.json', exe_lua_tables), ('exe_events.json', exe_events), ('exe_function_index.json', exe_fn), ('exe_files.json', exe_files), ('exe_sql.json', exe_sql), ('exe_text_keys.json', exe_text_keys), ('exe_modinfo.json', exe_modinfo), ('exe_messages.json', exe_messages), ('exe_uixml.json', exe_uixml), ('exe_telemetry.json', exe_telemetry), ('exe_classes.json', exe_classes), ('exe_imports.json', exe_imports), ('exe_audio.json', exe_audio), ('exe_enums.json', exe_enums), ('exe_network.json', exe_network), ('exe_artdefs.json', exe_artdefs), ('exe_xmlformat.json', exe_xmlformat), ('exe_lenses.json', exe_lenses), ('exe_reflect.json', exe_reflect), ('exe_loading.json', exe_loading), ('exe_input.json', exe_input), ('exe_devtools.json', exe_devtools), ('exe_gamesummary.json', exe_gs), ('exe_event_data.json', exe_event_data)):
     json.dump(data, open(B('dist', name), 'w', encoding='utf8'), indent=1, ensure_ascii=False)
 json.dump({'generated': datetime.date.today().isoformat(), 'builds': builds, 'schema': 'schema/entities.schema.json',
-           'counts': {'lua_methods': len(methods), 'operations': len(ops), 'enums': len(enums), 'layouts': len(layouts), 'globals': len(globs), 'ce_methods': len(ce_methods), 'native': len(natives)}},
+           'counts': {'lua_methods': len(methods), 'operations': len(ops), 'enums': len(enums), 'layouts': len(layouts), 'globals': len(globs), 'ce_methods': len(ce_methods), 'native': len(natives), 'exe_options': len(exe_options), 'exe_switches': len(exe_switches), 'exe_console_commands': len(exe_console['commands']), 'exe_lua_methods': len(exe_lua), 'exe_events': len(exe_events)}},
           open(B('dist', 'manifest.json'), 'w'), indent=1)
 json.dump(EFF, open(B('dist', 'effects.json'), 'w', encoding='utf8'), indent=1, ensure_ascii=False)
 with open(B('dist', 'ai', 'effects.txt'), 'w', encoding='utf8') as f:
@@ -1144,6 +1364,20 @@ with open(B('dist', 'ai', 'globals.txt'), 'w', encoding='utf8') as f:
     f.write('# Globals: name | type | symbol rva | current rva | status\n')
     for g in globs:
         f.write(' | '.join([g['id'][7:], g['type'], g['builds']['symbol']['rva'], g['builds']['current']['rva'] or '-', g['status']]) + '\n')
+with open(B('dist', 'ai', 'exe_reference.txt'), 'w', encoding='utf8') as f:
+    f.write('# Engine executable (CivilizationVI.exe). Options: [Section] Key | file | type | default | description\n')
+    for o in exe_options:
+        f.write('[%s] %s | %s | %s | %s | %s\n' % (o['section'], o['key'], o['file'] or '-', o['value_type'], o['default'] if o['default'] is not None else '-', o['description'] or '-'))
+    f.write('# Command-line switches: switch | effect | status\n')
+    for sw_ in exe_switches:
+        f.write('%s | %s | %s\n' % (sw_['switch'], sw_['effect'], sw_['status']))
+    f.write('# Debug console commands: handler | command | description\n')
+    for c in exe_console['commands']:
+        f.write('%s | %s | %s\n' % (c['handler'], c['command'], c['description'] or '-'))
+with open(B('dist', 'ai', 'exe_lua_api.txt'), 'w', encoding='utf8') as f:
+    f.write('# Lua tables hosted by the engine exe (not GameCore). Signature (inferred from decompiled wrappers and game script call sites; ForgeUI from the exe signature strings) | returns | calls in game scripts\n')
+    for e_ in exe_lua:
+        f.write('%s | %s | %s\n' % (exe_lua_section.sig_text(e_), ', '.join(e_['returns']) or (str(e_['return_count']) + ' values' if e_.get('return_count') else '-'), e_['usage']['calls'] if e_.get('usage') else 0))
 with open(B('dist', 'ai', 'ce_api.txt'), 'w', encoding='utf8') as f:
     f.write('# Lua API added by the Community Extension (works only with that mod). Signature | engine function | current rva\n')
     for m in ce_methods:
@@ -1165,5 +1399,5 @@ with open(B('dist', 'ai', 'native.txt'), 'w', encoding='utf8') as f:
         sg = n['signatures'][0] if n['signatures'] else None
         f.write(' | '.join([n['id'][7:], ('%s(%s)' % (sg['ret'], ', '.join(sg['params']))) if sg else '-', n['builds']['symbol']['rva'], n['builds']['current']['rva'] or '-',
                             n['lua_exposure']['status'], 'yes' if 'analysis' in n else 'no']) + '\n')
-open(B('dist', 'ai', 'README.txt'), 'w').write('Files: lua_api.txt (out of the box), operations.txt, enums.txt, ce_api.txt (needs the Community Extension), layouts.txt and globals.txt (needs CE memory access), native.txt (engine internals, no Lua route). Hash = ~crc32(upper-case name). Full records with evidence: ../operations.json, ../lua_methods.json, ../enums.json.\n')
+open(B('dist', 'ai', 'README.txt'), 'w').write('Files: lua_api.txt (out of the box), operations.txt, enums.txt, ce_api.txt (needs the Community Extension), layouts.txt and globals.txt (needs CE memory access), native.txt (engine internals, no Lua route), exe_reference.txt (engine executable: option files, command-line switches, debug console). Hash = ~crc32(upper-case name). Full records with evidence: ../operations.json, ../lua_methods.json, ../enums.json.\n')
 print('wrote dist')

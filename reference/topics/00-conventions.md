@@ -11,6 +11,7 @@ order: 0
 **Availability.** Every section is colour-coded by how you can use what it lists:
 - **Green, available out of the box:** usable from Lua in the unmodified game (the Lua API, operations and commands you can request, Lua constant tables).
 - **Amber, needs the Community Extension:** only works while that mod is active. This covers the functions it adds and raw memory access (class layouts and globals are used through its `ObjMem` and `Mem`).
+- **Blue, engine executable:** settings, switches and tools of the game program itself (CivilizationVI.exe), usable without a mod. Mostly debug and configuration functionality that was never documented.
 - **Grey, engine internals:** exists in the game library but has no scripting access today. Native functions are listed so contributors can see what could be exposed next; engine ids explain numbers seen in code.
 
 **Status of a statement.**
@@ -18,7 +19,7 @@ order: 0
 - **inferred**: follows from verified facts but was not observed.
 - **unknown**: listed so you know it exists.
 
-**Evidence kinds.** `dll-registration`, `static-analysis`, `dwarf`, `game-script`, `runtime`, `community-reference`.
+**Evidence kinds.** `dll-registration`, `static-analysis`, `dwarf`, `game-script`, `runtime`, `community-reference`, and for the engine executable section `exe-registration`, `exe-string`, `exe-disassembly`, `user-file` (the value is also present in a file the game wrote).
 
 **Identifiers.** Every entry has a stable id such as `lua:Game.GetGreatWorkPlayer`, `op:player.MOVE_GREAT_WORK`, `enum:Events`. Links between entries use these ids.
 

@@ -1,0 +1,1696 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Network</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › Network</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Network</h1>
+<p>Multiplayer: sessions, lobbies, matchmaking, cloud turns.</p>
+<p>585 functions in this category, 191 with a Windows address (168 high or medium confidence or exported, 23 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Network::Manager::GetCloudLobby() const</code></td>
+<td><code>0x2a7f0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33cde20</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>Network::LuaMatchmakingEnumsLibrary::GetLibraryName()</code></td>
+<td><code>0x266970</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b0560</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>Network::LuaMatchmakingLibrary::AddLobbyToTable(lua_State*, FNetLobbyIFace const*, long, int)</code></td>
+<td><code>0x266980</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b0b80</code></td>
+<td>3616</td>
+</tr>
+<tr>
+<td><code>Network::LuaMatchmakingLibrary::Register(lua_State*, lua_State*)</code></td>
+<td><code>0x2679b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b0580</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>Network::LuaMatchmakingLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x267f10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b05a0</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>Network::LuaNetworkEnumsLibrary::GetLibraryName()</code></td>
+<td><code>0x268240</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b19f0</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>Network::LuaNetworkEnumsLibrary::RegisterEnums(lua_State*)</code></td>
+<td><code>0x268250</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b1a00</code></td>
+<td>1808</td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::GetTypeName()</code></td>
+<td><code>0x269340</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b2e10</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::PushMethods(lua_State*, int)</code></td>
+<td><code>0x2694a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b21f0</code></td>
+<td>768</td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::lGetFriendByIndex(lua_State*)</code></td>
+<td><code>0x269be0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua PushMethods(lua_State*, int).GetFriendByIndex</td>
+<td><code>0x33b28c0</code></td>
+<td>400</td>
+</tr>
+<tr>
+<td><code>Network::LuaNetworkLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x26ce30</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b2e40</code></td>
+<td>4496</td>
+</tr>
+<tr>
+<td><code>Network::NetLobbyCallbacks::CanReceiveAppPlayerMetaData()</code></td>
+<td><code>0x26e250</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b7400</code></td>
+<td>1728</td>
+</tr>
+<tr>
+<td><code>Network::NetLobbyCallbacks::GameListUpdate(int, GameListUpdateType, long, FNetLobbyGameListUpdateData*)</code></td>
+<td><code>0x26e8e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b6570</code></td>
+<td>1808</td>
+</tr>
+<tr>
+<td><code>Network::NetLobbyCallbacks::JoinRoomComplete(int, LobbyRoomType, RoomError)</code></td>
+<td><code>0x26f090</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b5ea0</code></td>
+<td>1744</td>
+</tr>
+<tr>
+<td><code>Network::NetLobbyCallbacks::MatchHostMigrated(int, int)</code></td>
+<td><code>0x26f7c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b7bd0</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>Network::NetLobbyCallbacks::ReadAppServerMetaData(Serialization::IStream&amp;)</code></td>
+<td><code>0x26fae0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b6cc0</code></td>
+<td>1856</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::CanReceiveMessages()</code></td>
+<td><code>0x270a20</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bbcf0</code></td>
+<td>1776</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::EmptyCachedSnapshot()</code></td>
+<td><code>0x2711d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b9600</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::GameLaunched()</code></td>
+<td><code>0x2714b0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x33bb480</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::HostMigration(int)</code></td>
+<td><code>0x271c30</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x33bb540</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::OnSaveComplete(Events::EventTemplate&lt;55u, LoadSaveResultData, Events::LinearEventDispatcher, SerialContainer, Events::N…</code></td>
+<td><code>0x271e00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>handles Serial event 55 (LoadSaveResultData)</td>
+<td><code>0x33b8530</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayerAppRegistered(int, bool)</code></td>
+<td><code>0x272060</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b9930</code></td>
+<td>624</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayerConnected(int)</code></td>
+<td><code>0x272370</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b9080</code></td>
+<td>1408</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayerKicked(int)</code></td>
+<td><code>0x272bf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33baa00</code></td>
+<td>2592</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayerLeft(int, bool)</code></td>
+<td><code>0x273690</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33ba3f0</code></td>
+<td>1552</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayerSnapshotProcessed(int, SnapshotReason)</code></td>
+<td><code>0x273ee0</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x33b9c40</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayersSwapped(int, int)</code></td>
+<td><code>0x2740b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b9db0</code></td>
+<td>1584</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::ProcessSnapshot(void*, int, int)</code></td>
+<td><code>0x274720</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bba30</code></td>
+<td>704</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::RequestSnapshotData()</code></td>
+<td><code>0x2749e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bb750</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::SendCachedSnapshotToSession()</code></td>
+<td><code>0x274cf0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33b87c0</code></td>
+<td>624</td>
+</tr>
+<tr>
+<td><code>Network::Manager::AcceptCloudGameInvite(int)</code></td>
+<td><code>0x276670</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cdf50</code></td>
+<td>1504</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CheckCloudInGameLoadRequest()</code></td>
+<td><code>0x276e70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cbe50</code></td>
+<td>1712</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CheckCloudInvite()</code></td>
+<td><code>0x277560</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bd930</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CheckCloudSaveVersion(Data::TypedVariantMap&amp;)</code></td>
+<td><code>0x277840</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c9790</code></td>
+<td>5744</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CheckServerForCloudNotifications(long) const</code></td>
+<td><code>0x278b80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33dc840</code></td>
+<td>1056</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CheckServerForUnseenComplete(long) const</code></td>
+<td><code>0x279040</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33dcc60</code></td>
+<td>1056</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CloudEndGame()</code></td>
+<td><code>0x2794e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33db890</code></td>
+<td>1936</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CloudEndTurn()</code></td>
+<td><code>0x279d40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33db680</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CloudKillGame()</code></td>
+<td><code>0x27a170</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33dc020</code></td>
+<td>2080</td>
+</tr>
+<tr>
+<td><code>Network::Manager::CloudQuitGame()</code></td>
+<td><code>0x27a9f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cb420</code></td>
+<td>2080</td>
+</tr>
+<tr>
+<td><code>Network::Manager::LaunchGame()</code></td>
+<td><code>0x27b790</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c4dd0</code></td>
+<td>1264</td>
+</tr>
+<tr>
+<td><code>Network::Manager::DoUploadSaveToCloudCallback(Serialization::IStream*, GameCore::Serializer::SaveType, GameCore::Serializer::Result, bool*)</code></td>
+<td><code>0x27baa0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c5da0</code></td>
+<td>2912</td>
+</tr>
+<tr>
+<td><code>Network::Manager::EmptyCachedCloudSnapshot()</code></td>
+<td><code>0x27c3f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d06c0</code></td>
+<td>560</td>
+</tr>
+<tr>
+<td><code>Network::Manager::GetCachedModsRemaining(int) const</code></td>
+<td><code>0x27c770</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x33db5f0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Network::Manager::GetCloudLobby()</code></td>
+<td><code>0x27c810</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33c6900</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>Network::Manager::GetCloudSlotNumForPlayerID(int)</code></td>
+<td><code>0x27c850</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33cd160</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>Network::Manager::GetJoinCode() const</code></td>
+<td><code>0x27c9c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33dd490</code></td>
+<td>672</td>
+</tr>
+<tr>
+<td><code>Network::Manager::HandleCloudMatchLaunch()</code></td>
+<td><code>0x27cff0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d1500</code></td>
+<td>1328</td>
+</tr>
+<tr>
+<td><code>Network::Manager::HostGame(ServerType, bool)</code></td>
+<td><code>0x27d5a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bddf0</code></td>
+<td>832</td>
+</tr>
+<tr>
+<td><code>Network::Manager::InitLobby(LobbyType)</code></td>
+<td><code>0x27d990</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33be260</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>Network::Manager::Initialize()</code></td>
+<td><code>0x27dfc0</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x33bd600</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsCloudMatchCompleted() const</code></td>
+<td><code>0x27e2c0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33cdef0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsCloudMatchStarted() const</code></td>
+<td><code>0x27e340</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33c52c0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsEveryoneConnected() const</code></td>
+<td><code>0x27e480</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d7300</code></td>
+<td>576</td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsGameHost() const</code></td>
+<td><code>0x27e710</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c7a90</code></td>
+<td>976</td>
+</tr>
+<tr>
+<td><code>Network::Manager::JoinGame(unsigned int)</code></td>
+<td><code>0x27ede0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c3080</code></td>
+<td>3824</td>
+</tr>
+<tr>
+<td><code>Network::Manager::JoinGame(long)</code></td>
+<td><code>0x27fc80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bf3c0</code></td>
+<td>2560</td>
+</tr>
+<tr>
+<td><code>Network::Manager::JoinGame(char const*)</code></td>
+<td><code>0x2805f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c0050</code></td>
+<td>4512</td>
+</tr>
+<tr>
+<td><code>Network::Manager::JoinGame(CSteamID)</code></td>
+<td><code>0x281680</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c11f0</code></td>
+<td>3712</td>
+</tr>
+<tr>
+<td><code>Network::Manager::LeaveGame()</code></td>
+<td><code>0x282aa0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bfdc0</code></td>
+<td>656</td>
+</tr>
+<tr>
+<td><code>Network::Manager::LoadCloudSaveConfiguration(void const*, int)</code></td>
+<td><code>0x282db0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c7e90</code></td>
+<td>6400</td>
+</tr>
+<tr>
+<td><code>Network::Manager::LoadGame(Path::FixedBuffer&amp;, GameCore::Serializer::SaveLocation::Instance&amp;, ServerType)</code></td>
+<td><code>0x2840d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33be580</code></td>
+<td>1200</td>
+</tr>
+<tr>
+<td><code>Network::Manager::MatchMake()</code></td>
+<td><code>0x284740</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c3f70</code></td>
+<td>3680</td>
+</tr>
+<tr>
+<td><code>Network::Manager::MatchStateChanged(int)</code></td>
+<td><code>0x285620</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cbc40</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnCloudGetSaveGameComplete(Events::EventTemplate&lt;79u, GenericData&lt;bool&gt;, Events::LinearEventDispatcher, LocalMachineContainer, Even…</code></td>
+<td><code>0x285870</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d9610</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnCloudTurnCheckComplete(Events::EventTemplate&lt;77u, CloudTurnCheckCompleteData, Events::LinearEventDispatcher, LocalMachineContaine…</code></td>
+<td><code>0x285b20</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td>handles LocalMachine event 77 (CloudTurnCheckCompleteData)</td>
+<td><code>0x33da530</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnCloudUnseenCompleteCheckComplete(Events::EventTemplate&lt;78u, CloudUnseenCompleteCheckCompleteData, Events::LinearEventDispatcher, …</code></td>
+<td><code>0x285c10</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td>handles LocalMachine event 78 (CloudUnseenCompleteCheckCompleteData)</td>
+<td><code>0x33da660</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnLoadScreenClose(Events::EventTemplate&lt;8u, Events::NullEventClass, Events::LinearEventDispatcher, SequencerContainer, Events::Null…</code></td>
+<td><code>0x285ff0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>handles Sequencer event 8 (Events::NullEventClass)</td>
+<td><code>0x33dac00</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnLoadScreenContentReady(Events::EventTemplate&lt;7u, GenericData&lt;bool&gt;, Events::LinearEventDispatcher, SequencerContainer, Events::Nu…</code></td>
+<td><code>0x2862c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33da790</code></td>
+<td>1136</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnMatchSaveGame(void const*, int)</code></td>
+<td><code>0x286730</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33dd730</code></td>
+<td>6368</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnMultiplayerJoinGameComplete(Events::EventTemplate&lt;54u, Events::NullEventClass, Events::LinearEventDispatcher, LocalMachineContain…</code></td>
+<td><code>0x287cc0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>handles LocalMachine event 54 (Events::NullEventClass)</td>
+<td><code>0x33d9ae0</code></td>
+<td>2640</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnMultiplayerJoinRoomComplete(Events::EventTemplate&lt;52u, Events::NullEventClass, Events::LinearEventDispatcher, LocalMachineContain…</code></td>
+<td><code>0x2887b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>handles LocalMachine event 52 (Events::NullEventClass)</td>
+<td><code>0x33d9300</code></td>
+<td>768</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnMultiplayerPostPlayerDisconnected(Events::EventTemplate&lt;57u, GenericData&lt;int&gt;, Events::LinearEventDispatcher, LocalMachineContain…</code></td>
+<td><code>0x288c00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d9050</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnPlayerDestroyed(GameCoreEvent_Template&lt;272u, GameCoreEvent::PlayerDestroyed_EventData, Events::LinearEventDispatcher, GameCoreCon…</code></td>
+<td><code>0x288e60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>handles GameCore event 272 (GameCoreEvent::PlayerDestroyed_EventData)</td>
+<td><code>0x33dad30</code></td>
+<td>48</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnSaveComplete(Events::EventTemplate&lt;55u, LoadSaveResultData, Events::LinearEventDispatcher, SerialContainer, Events::NullEventClas…</code></td>
+<td><code>0x288f60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>handles Serial event 55 (LoadSaveResultData)</td>
+<td><code>0x33d89b0</code></td>
+<td>1040</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnTeamVictory(GameCoreEvent_Template&lt;18u, GameCoreEvent::TeamVictory_EventData, Events::LinearEventDispatcher, GameCoreContainer, E…</code></td>
+<td><code>0x289470</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>handles GameCore event 18 (GameCoreEvent::TeamVictory_EventData)</td>
+<td><code>0x33dad70</code></td>
+<td>1312</td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnUploadCloudEndTurnComplete(Events::EventTemplate&lt;74u, GenericData&lt;bool&gt;, Events::LinearEventDispatcher, LocalMachineContainer, Ev…</code></td>
+<td><code>0x289a80</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d9890</code></td>
+<td>592</td>
+</tr>
+<tr>
+<td><code>Network::Manager::ParseEOSGameInviteEvent(Events::EventTemplate&lt;22u, MultiplayerInviteData, Events::LinearEventDispatcher, SerialContainer, Events::N…</code></td>
+<td><code>0x289d90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33df010</code></td>
+<td>1968</td>
+</tr>
+<tr>
+<td><code>Network::Manager::ParseSteamGameInviteEvent(Events::EventTemplate&lt;22u, MultiplayerInviteData, Events::LinearEventDispatcher, SerialContainer, Events:…</code></td>
+<td><code>0x28a5e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33df7d0</code></td>
+<td>1936</td>
+</tr>
+<tr>
+<td><code>Network::Manager::PrepareConfigurationForHosting(GameCore::App::Configuration::Game::Instance&amp;, ServerType)</code></td>
+<td><code>0x28ace0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x33bdc70</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>Network::Manager::ProcessInvite()</code></td>
+<td><code>0x28adf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33dff60</code></td>
+<td>1424</td>
+</tr>
+<tr>
+<td><code>Network::Manager::ProcessMultiplayerLoad()</code></td>
+<td><code>0x28b380</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33bea30</code></td>
+<td>2448</td>
+</tr>
+<tr>
+<td><code>Network::Manager::ReadPlayerMetaData(Serialization::IStream&amp;)</code></td>
+<td><code>0x28bd60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cee80</code></td>
+<td>1984</td>
+</tr>
+<tr>
+<td><code>Network::Manager::RefreshCloudSaveConfiguration()</code></td>
+<td><code>0x28c5c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c6b50</code></td>
+<td>3904</td>
+</tr>
+<tr>
+<td><code>Network::Manager::RefreshCloudSlotType(int)</code></td>
+<td><code>0x28d1c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d5ee0</code></td>
+<td>2944</td>
+</tr>
+<tr>
+<td><code>Network::Manager::RefreshGameList()</code></td>
+<td><code>0x28de60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33ce550</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>Network::Manager::RequestCloudSnapshotData()</code></td>
+<td><code>0x28e250</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d08f0</code></td>
+<td>752</td>
+</tr>
+<tr>
+<td><code>Network::Manager::SetCapability(unsigned int, Network::Capability::States)</code></td>
+<td><code>0x28e700</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x33bd7d0</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>Network::Manager::SetCloudJoinsBlocked()</code></td>
+<td><code>0x28e810</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d3790</code></td>
+<td>1984</td>
+</tr>
+<tr>
+<td><code>Network::Manager::SetCloudLaunchState(CloudLaunchStates)</code></td>
+<td><code>0x28ef50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c5320</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>Network::Manager::SetCloudPlayerOrder()</code></td>
+<td><code>0x28f260</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d1a30</code></td>
+<td>6080</td>
+</tr>
+<tr>
+<td><code>Network::Manager::SetCompletedGameSeen(long)</code></td>
+<td><code>0x2907e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33dd080</code></td>
+<td>1040</td>
+</tr>
+<tr>
+<td><code>Network::Manager::SetupFromCommandLine(int, char**)</code></td>
+<td><code>0x290db0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d7930</code></td>
+<td>3104</td>
+</tr>
+<tr>
+<td><code>Network::Manager::StartCloudLaunchState_JoinBlock()</code></td>
+<td><code>0x291a60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d6a90</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>Network::Manager::StartCloudLaunchState_MatchSave()</code></td>
+<td><code>0x291d10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d6cc0</code></td>
+<td>896</td>
+</tr>
+<tr>
+<td><code>Network::Manager::StartCloudMatch()</code></td>
+<td><code>0x292110</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d31f0</code></td>
+<td>1440</td>
+</tr>
+<tr>
+<td><code>Network::Manager::StartCloudVictory()</code></td>
+<td><code>0x292730</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d3f50</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>Network::Manager::SubscribeToEvents()</code></td>
+<td><code>0x292b30</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33d85e0</code></td>
+<td>480</td>
+</tr>
+<tr>
+<td><code>Network::Manager::TriggerCloudTurnWebHook(GameCore::App::Configuration::Player::Instance const&amp;, GameCore::App::Configuration::Player::Instance const…</code></td>
+<td><code>0x292ce0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d4490</code></td>
+<td>4144</td>
+</tr>
+<tr>
+<td><code>Network::Manager::TriggerCloudTurnWebhooks()</code></td>
+<td><code>0x293a30</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d4160</code></td>
+<td>816</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UpdateCloudPlayerStatus(int, Firaxis::Live::PlayerStatus, char const*)</code></td>
+<td><code>0x294270</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d54c0</code></td>
+<td>2592</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UpdateLobbyGameSettingsMetaData(bool)</code></td>
+<td><code>0x294ea0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c55a0</code></td>
+<td>1184</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UpdateLobbyMapMetaData(bool)</code></td>
+<td><code>0x2956e0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33ce7a0</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UpdateLobbyModMetaData(bool)</code></td>
+<td><code>0x295bb0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33ce9a0</code></td>
+<td>1168</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UpdateLocalCloudSlotNum()</code></td>
+<td><code>0x296310</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cd420</code></td>
+<td>2400</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UpdatePauseStatus()</code></td>
+<td><code>0x296cd0</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x33db2d0</code></td>
+<td>416</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UploadCachedCloudSnapshot()</code></td>
+<td><code>0x296f10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cf640</code></td>
+<td>4224</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UploadCloudPlayerConfiguration(GameCore::PlayerTypes)</code></td>
+<td><code>0x297db0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cc510</code></td>
+<td>3152</td>
+</tr>
+<tr>
+<td><code>Network::Manager::UploadCloudSaveConfiguration()</code></td>
+<td><code>0x298960</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33d0be0</code></td>
+<td>2336</td>
+</tr>
+<tr>
+<td><code>Network::Manager::ValidateConfigurationForCloudMatchStart(bool)</code></td>
+<td><code>0x299380</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cae00</code></td>
+<td>1568</td>
+</tr>
+<tr>
+<td><code>Network::Manager::WriteAppServerMetaData(Serialization::OStream&amp;)</code></td>
+<td><code>0x299bb0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33c6940</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>Network::Manager::WritePlayerMetaData(Serialization::OStream&amp;, GameCore::PlayerTypes)</code></td>
+<td><code>0x299dd0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33cd1a0</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::LobbyInfo::LobbyInfo(Network::EOS::Lobby::LobbyID)</code></td>
+<td><code>0x4fde40</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39c2152</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::Send(EOS_ProductUserIdDetails*, unsigned char const*, unsigned long, bool)</code></td>
+<td><code>0x7eda40</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39ba04a</code></td>
+<td>228</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::Authorize(EOS_ELoginCredentialType, char const*, char const*)</code></td>
+<td><code>0x7ee140</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b4fe2</code></td>
+<td>702</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::Connect(EOS_EExternalCredentialType, char const*)</code></td>
+<td><code>0x7ee460</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39b5f18</code></td>
+<td>134</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::Connect()</code></td>
+<td><code>0x7ee510</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b5bd8</code></td>
+<td>832</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::CreateNewAccount(EOS_ContinuanceTokenDetails*)</code></td>
+<td><code>0x7ee870</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39b6a42</code></td>
+<td>78</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::GetSteamAppTicket(Network::EOS::Authorization::SteamAppTicket&amp;)</code></td>
+<td><code>0x7ee940</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b5f9e</code></td>
+<td>684</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::OnAuthExpired(_tagEOS_Connect_AuthExpirationCallbackInfo const*)</code></td>
+<td><code>0x7eec60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b6d30</code></td>
+<td>506</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::OnEOSAuthLogin(_tagEOS_Auth_LoginCallbackInfo const*)</code></td>
+<td><code>0x7eee90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b52a0</code></td>
+<td>2356</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::OnEOSConnectCreateUser(_tagEOS_Connect_CreateUserCallbackInfo const*)</code></td>
+<td><code>0x7ef660</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b6a96</code></td>
+<td>84</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::OnEOSConnectLogin(_tagEOS_Connect_LoginCallbackInfo const*)</code></td>
+<td><code>0x7ef6e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b62cc</code></td>
+<td>1910</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::OnEncryptedAppTicketResponse(EncryptedAppTicketResponse_t*, bool)</code></td>
+<td><code>0x7efd60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b624a</code></td>
+<td>130</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Authorization::Instance::OnLoginStatusChanged(_tagEOS_Auth_LoginStatusChangedCallbackInfo const*)</code></td>
+<td><code>0x7efe10</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b6aea</code></td>
+<td>582</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::AddConnection(EOS_ProductUserIdDetails*)</code></td>
+<td><code>0x81f5f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39bb2da</code></td>
+<td>1752</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::FlushOutputQueue()</code></td>
+<td><code>0x81fb70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39ba12e</code></td>
+<td>1510</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::RemoveConnection(EOS_ProductUserIdDetails*)</code></td>
+<td><code>0x820190</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39bb9b2</code></td>
+<td>1704</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::Run(void*)</code></td>
+<td><code>0x8206b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b807a</code></td>
+<td>8144</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::SendP2PMessage(EOS_ProductUserIdDetails*, EOS_ProductUserIdDetails*, void const*, unsigned int)</code></td>
+<td><code>0x8221d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39ba714</code></td>
+<td>2790</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::SendUnreliable(EOS_ProductUserIdDetails*, unsigned char const*, unsigned long)</code></td>
+<td><code>0x822a50</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39bb1fa</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>Network::EOS::TransportThread::Timeouts() const</code></td>
+<td><code>0x822c70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39bc05a</code></td>
+<td>1662</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::AddAttribute(EOS_LobbyModificationHandle*, char const*, char const*)</code></td>
+<td><code>0x8290d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39c52a8</code></td>
+<td>206</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::AddLobby(Network::EOS::Lobby::LobbyID const&amp;, EOS_ProductUserIdDetails*)</code></td>
+<td><code>0x829200</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39cc6a0</code></td>
+<td>2748</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::AddSearchParam(char const*, char const*, EOS_EComparisonOp)</code></td>
+<td><code>0x829a50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c2c16</code></td>
+<td>650</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::BatchUploadAttributes()</code></td>
+<td><code>0x829d10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39cd27e</code></td>
+<td>3570</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobby(FString const&amp;, int, bool, bool)</code></td>
+<td><code>0x82aab0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c5392</code></td>
+<td>718</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobbyFromLobbyDetails(EOS_LobbyDetailsHandle*, bool*)</code></td>
+<td><code>0x82add0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c4c5a</code></td>
+<td>1066</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::DropPlayer(EOS_ProductUserIdDetails*)</code></td>
+<td><code>0x82b3f0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39cb670</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::GetLobbyDetailsByEOSID(char const*)</code></td>
+<td><code>0x82bc60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c34c4</code></td>
+<td>628</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::JoinEOSLobby(EOS_LobbyDetailsHandle*)</code></td>
+<td><code>0x82c210</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c72fa</code></td>
+<td>582</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::JoinLobby(Network::EOS::Lobby::LobbyID, char const*)</code></td>
+<td><code>0x82c5b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c6e24</code></td>
+<td>1120</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::JoinLobbyIndex(unsigned int, char const*)</code></td>
+<td><code>0x82ca50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c6bdc</code></td>
+<td>584</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::LeaveEOSLobby(Network::EOS::Lobby::LobbyID)</code></td>
+<td><code>0x82ccf0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c7f7a</code></td>
+<td>816</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnFindLobbys(_tagEOS_LobbySearch_FindCallbackInfo const*)</code></td>
+<td><code>0x82d140</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c3738</code></td>
+<td>5410</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnJoinLobby(_tagEOS_Lobby_JoinLobbyCallbackInfo const*)</code></td>
+<td><code>0x82e510</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c7540</code></td>
+<td>2162</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnLeaveLobby(_tagEOS_Lobby_LeaveLobbyCallbackInfo const*)</code></td>
+<td><code>0x82edc0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c82aa</code></td>
+<td>856</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnLobbyCreated(_tagEOS_Lobby_CreateLobbyCallbackInfo const*)</code></td>
+<td><code>0x82f160</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c567c</code></td>
+<td>2928</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnLobbyMemberStatusReceived(_tagEOS_Lobby_LobbyMemberStatusReceivedCallbackInfo const*)</code></td>
+<td><code>0x82fcf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39ca51a</code></td>
+<td>4438</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnLobbyMemberUpdateReceived(_tagEOS_Lobby_LobbyMemberUpdateReceivedCallbackInfo const*)</code></td>
+<td><code>0x830aa0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c982a</code></td>
+<td>3312</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnLobbyOwnerUpdated(_tagEOS_Lobby_PromoteMemberCallbackInfo const*)</code></td>
+<td><code>0x8316c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39cc1e6</code></td>
+<td>570</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnLobbyUpdateReceived(_tagEOS_Lobby_LobbyUpdateReceivedCallbackInfo const*)</code></td>
+<td><code>0x831950</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c9086</code></td>
+<td>1956</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::OnLobbyUpdated(_tagEOS_Lobby_UpdateLobbyCallbackInfo const*, bool)</code></td>
+<td><code>0x832170</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c8b7c</code></td>
+<td>1126</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::RefreshInternalLobbyDetails(char const*)</code></td>
+<td><code>0x832620</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39c61ec</code></td>
+<td>486</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::RefreshInviteCommandLine(bool)</code></td>
+<td><code>0x8327d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39c8fe2</code></td>
+<td>164</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::RequestLobbies(FServerBrowserFilters*)</code></td>
+<td><code>0x8328a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c2eb2</code></td>
+<td>1410</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyData(char const*, char const*)</code></td>
+<td><code>0x832ec0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39c63d2</code></td>
+<td>1916</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyInviteCommandLine(char const*)</code></td>
+<td><code>0x833690</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39c7e82</code></td>
+<td>248</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyOwner(EOS_ProductUserIdDetails*)</code></td>
+<td><code>0x8338e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39cb750</code></td>
+<td>2644</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyPrivacy(bool)</code></td>
+<td><code>0x834070</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39c6b90</code></td>
+<td>76</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::Update()</code></td>
+<td><code>0x834300</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39ce070</code></td>
+<td>952</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::LobbyInfo::LobbyInfo(Network::EOS::Lobby::LobbyInfo const&amp;)</code></td>
+<td><code>0x8348b0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39cf324</code></td>
+<td>226</td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::CreateSearchHandle()</code></td>
+<td><code>0x834af0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39c2bc6</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Network::EOS::NetAccessENet::EventHandler::OnConnectionDropped(_tagEOS_P2P_OnRemoteConnectionClosedInfo const*)</code></td>
+<td><code>0x857460</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b3fa6</code></td>
+<td>1176</td>
+</tr>
+<tr>
+<td><code>Network::EOS::NetAccessENet::EventHandler::OnConnectionRequest(_tagEOS_P2P_OnIncomingConnectionRequestInfo const*)</code></td>
+<td><code>0x857920</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b36a6</code></td>
+<td>2304</td>
+</tr>
+<tr>
+<td><code>Network::EOS::NetAccessENet::EventHandler::OnRefreshNAT(_tagEOS_P2P_OnQueryNATTypeCompleteInfo const*)</code></td>
+<td><code>0x858030</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b331c</code></td>
+<td>906</td>
+</tr>
+<tr>
+<td><code>Network::EOS::NetAccessENet::EventHandler::SubscribeToConnectionRequests()</code></td>
+<td><code>0x8583c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39b2e46</code></td>
+<td>1160</td>
+</tr>
+<tr>
+<td><code>Network::NetworkWorker::Start(unsigned int)</code></td>
+<td><code>0x9800a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c2f17c</code></td>
+<td>83</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (23, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::lActivateGameOverlay(lua_State*)</code></td>
+<td><code>0x269840</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b2520</code></td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::lActivateOverlayToUserGeneratedContent(lua_State*)</code></td>
+<td><code>0x2698b0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b2590</code></td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::lActivateGameOverlayToUrl(lua_State*)</code></td>
+<td><code>0x269990</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b2650</code></td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::lActivateGameOverlayToUser(lua_State*)</code></td>
+<td><code>0x269a30</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b2720</code></td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::lInviteUserToGame(lua_State*)</code></td>
+<td><code>0x269ac0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b27e0</code></td>
+</tr>
+<tr>
+<td><code>Network::Lua::IFriendsInstance::lGetFriendCount(lua_State*)</code></td>
+<td><code>0x269b70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b2880</code></td>
+</tr>
+<tr>
+<td><code>Network::NetLobbyCallbacks::GetSteamID(int)</code></td>
+<td><code>0x26f030</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b7af0</code></td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayerRegistered(int)</code></td>
+<td><code>0x273ce0</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x33b9820</code></td>
+</tr>
+<tr>
+<td><code>Network::NetSessionCallbacks::PlayerSnapshotRequested(int, SnapshotReason)</code></td>
+<td><code>0x273df0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33b9ba0</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::GetLocalPlayerID() const</code></td>
+<td><code>0x27ceb0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x33cdd80</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::CloudMatchGetInfoComplete()</code></td>
+<td><code>0x27cf70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33ce530</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::GetAutoArchiveFactory() const</code></td>
+<td><code>0x27e1d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33d7640</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::InitializeInternetLobbyService()</code></td>
+<td><code>0x27e1e0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x33d7780</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsCrossPlayLobbyServiceAvailable() const</code></td>
+<td><code>0x27e290</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33d77b0</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsUserLoggedIntoCrossPlayLobbyService()</code></td>
+<td><code>0x27e450</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33d77e0</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::AttemptConnectionToCrossPlayLobbyService()</code></td>
+<td><code>0x27e6f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33d7810</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnMultiplayerGameInvite(Events::EventTemplate&lt;22u, MultiplayerInviteData, Events::LinearEve…</code></td>
+<td><code>0x27ec60</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33d87c0</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::OnBeginMainMenu(Events::EventTemplate&lt;20u, Events::NullEventClass, Events::LinearEventDispa…</code></td>
+<td><code>0x27ecd0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33d87e0</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::StartCloundLaunchState()</code></td>
+<td><code>0x291cc0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x33d6a60</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsNetSessionHost() const</code></td>
+<td><code>0x812160</code></td>
+<td>call-graph propagation</td>
+<td><code>0x33cee30</code></td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::GetLobby(Network::EOS::Lobby::LobbyID, unsigned int*) const</code></td>
+<td><code>0x82bb10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x39c72ac</code></td>
+</tr>
+<tr>
+<td><code>Network::EOS::Lobby::EventHandler::GetLobby() const</code></td>
+<td><code>0x82bbc0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x39cc1a4</code></td>
+</tr>
+<tr>
+<td><code>Network::Manager::IsInSession() const</code></td>
+<td><code>0x991610</code></td>
+<td>call-graph propagation</td>
+<td><code>0x33d70f0</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

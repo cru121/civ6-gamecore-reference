@@ -1,0 +1,8 @@
+# Lenses and lens layers
+
+Sources: `LensManager::LensManager` (0x197000, 56 layer name strings), `LensManager::ConfigureFromArtDefs` (0x197d30: reads `Lenses`, `LayersList`, `LayerRef`, `LayerMask`, `ActiveLayers`, `PermissionMask`), the exe `LensLayers` Lua constants (60), `Lenses.artdef` of the base game and Expansion1/2, and the game's UI scripts. Reference: `docs_proto/docs/exe/lenses.md`, data `docs_proto/data/exe_lenses.json`.
+
+- Model: a **lens** (`Lens` collection, 24 names over base + DLC) points to an *ActiveLayers* set and a *PermissionMask* set (collection `LensLayers` in the artdef, 43 sets) of **layer** names (`LayersList`, 68 names). The Lua table `LensLayers` is a different thing (numeric constants for 57+ layers). Scripts select lenses by name with `UILens.SetActive("Name")` (74 calls) and layers by hash with `UILens.CreateLensLayerHash("Layer")` (114 calls).
+- Layer names: 56 registered by the exe, 68 in the artdef union. Only in the artdef: `City_Details`, `Empire_Details`, `MapLabels_*` (Deserts, Lakes, MountainRanges, NationalParks, NaturalWonders, Oceans, Rivers, Seas, Volcanoes), `Power_Lens`, `Purchase_Plot`; only in the exe: `WorldCursor`; hashed by scripts but in neither list: `SupplyDrops`. What the exe does with its 56 names (hash table or index map) was not established.
+- Lenses never chosen by a literal name in scripts: `MovementFOW`, `MovementGood`, `MovementQueue`, `TradeRoutes` (used through variables or not at all). Expansion lenses: `DisasterCinematic`, `Loyalty`, `Plague`, `Power`.
+- Meaning of "permission" set (layers that may be toggled on top of the lens) is inferred from names and use.

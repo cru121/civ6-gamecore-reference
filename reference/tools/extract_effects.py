@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'data')
 ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 DLL = 'C:/Program Files (x86)/Steam/steamapps/content/app_289070/depot_947510/DLC/Expansion2/Binaries/Win64/GameCore_XP2_FinalRelease.dll'
-COMPANION_MD = os.path.join(ROOT, 'community-reference', 'civ6-modifiers-reference.md')
+COMPANION_MD = os.path.join(ROOT, '..', 'wheat-gpp', 'civ6-modifiers-reference.md')
 CACHE_COMPANION = os.path.join(DATA, 'effect_companion.json')
 CACHE_NAMES = os.path.join(DATA, 'effect_typenames.json')
 

@@ -1,0 +1,604 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>library</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › library</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>library</h1>
+<p>Third-party libraries.</p>
+<p>117 functions in this category, 75 with a Windows address (36 high or medium confidence or exported, 39 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; …</code></td>
+<td><code>0x37e50</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39548c4</code></td>
+<td>152</td>
+</tr>
+<tr>
+<td><code>std::__1::__list_imp&lt;std::__1::unique_ptr&lt;App::Ownership::Item::Instance, std::__1::default_delete&lt;App::Ownership::Item::Instance&gt; &gt;, std::__1::alloc…</code></td>
+<td><code>0x41230</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x2f63b90</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>std::__1::__split_buffer&lt;FPendingConnection*, std::__1::allocator&lt;FPendingConnection*&gt;&amp;&gt;::__split_buffer(unsigned long, unsigned long, std::__1::allo…</code></td>
+<td><code>0x77f50</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39d28a2</code></td>
+<td>166</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt; &gt;::reserve(unsigned long)</code></td>
+<td><code>0x77fe0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c283e0</code></td>
+<td>102</td>
+</tr>
+<tr>
+<td><code>std::__1::basic_stringbuf&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;::str(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char…</code></td>
+<td><code>0xa3040</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31e4350</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>std::__1::basic_stringbuf&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;::str() const</code></td>
+<td><code>0xa48b0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x2d91c30</code></td>
+<td>316</td>
+</tr>
+<tr>
+<td><code>std::__1::basic_stringstream&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;::~basic_stringstream()</code></td>
+<td><code>0xb1550</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x2d9274c</code></td>
+<td>122</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;std::__1::tuple&lt;unsigned int, unsigned int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; &gt;,…</code></td>
+<td><code>0xfe000</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31e2d00</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;std::__1::tuple&lt;unsigned int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; &gt;, std::__1::all…</code></td>
+<td><code>0xfe0d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31e2d70</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;Modding::ModId, std::__1::allocator&lt;Modding::ModId&gt; &gt;::reserve(unsigned long)</code></td>
+<td><code>0x10a410</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31f28d0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>eastl::basic_string&lt;char, eastl::allocator&gt;::assign(char const*, char const*)</code></td>
+<td><code>0x1c7980</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31a6dd0</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Uset_traits&lt;GameArtFile const*, std::MSVC2012::Detail::_Uhash_compare&lt;GameArtFile const*, std::M…</code></td>
+<td><code>0x1d3590</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x32bf810</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>std::__1::enable_if&lt;__is_forward_iterator&lt;Modding::ComponentHandle*&gt;::value&amp;&amp;is_constructible&lt;Modding::ComponentHandle, std::__1::iterator_traits&lt;Mod…</code></td>
+<td><code>0x25dbe0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33916d0</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>std::__1::__list_imp&lt;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::__1::allocator&lt;std::__1::basic_strin…</code></td>
+<td><code>0x4c1680</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x36a00b0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;unsigned int, std::__1::allocator&lt;unsigned int&gt; &gt;::reserve(unsigned long)</code></td>
+<td><code>0x4d24e0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x395daa6</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>std::__1::__tree&lt;std::__1::__value_type&lt;FString, FString&gt;, std::__1::__map_value_compare&lt;FString, std::__1::__value_type&lt;FString, FString&gt;, std::__1:…</code></td>
+<td><code>0x51a020</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3a19048</code></td>
+<td>92</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;FiraxisLiveClient::LegalDocument, std::__1::allocator&lt;FiraxisLiveClient::LegalDocument&gt; &gt;::reserve(unsigned long)</code></td>
+<td><code>0x525470</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31b23e0</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; …</code></td>
+<td><code>0x7998a0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39544ce</code></td>
+<td>120</td>
+</tr>
+<tr>
+<td><code>eastl::vector&lt;eastl::basic_string_view&lt;char&gt;, eastl::fixed_vector_allocator&lt;16ul, 16ul, 8ul, 0ul, true, eastl::allocator&gt; &gt;::DoInsertValue(eastl::bas…</code></td>
+<td><code>0x79bb40</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x395ab18</code></td>
+<td>384</td>
+</tr>
+<tr>
+<td><code>std::__1::pair&lt;std::__1::__tree_iterator&lt;std::__1::__value_type&lt;EOS_ProductUserIdDetails*, Platform::SimpleTimer&gt;, std::__1::__tree_node&lt;std::__1::__…</code></td>
+<td><code>0x81ebf0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39bcc1c</code></td>
+<td>146</td>
+</tr>
+<tr>
+<td><code>eastl::vector&lt;TransportPacket, eastl::allocator&gt;::erase(TransportPacket*, TransportPacket*)</code></td>
+<td><code>0x823a70</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39bc8be</code></td>
+<td>166</td>
+</tr>
+<tr>
+<td><code>std::__1::pair&lt;std::__1::__tree_iterator&lt;std::__1::__value_type&lt;long, FNetLinkENet*&gt;, std::__1::__tree_node&lt;std::__1::__value_type&lt;long, FNetLinkENet…</code></td>
+<td><code>0x84cc50</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39df94e</code></td>
+<td>162</td>
+</tr>
+<tr>
+<td><code>eastl::vector&lt;TransportPacket, eastl::allocator&gt;::vector(eastl::vector&lt;TransportPacket, eastl::allocator&gt; const&amp;)</code></td>
+<td><code>0x856c70</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3a057ee</code></td>
+<td>156</td>
+</tr>
+<tr>
+<td><code>std::__1::__tree_iterator&lt;std::__1::__value_type&lt;FString, std::__1::vector&lt;LANServerUDPReplyPacket_t, std::__1::allocator&lt;LANServerUDPReplyPacket_t&gt; …</code></td>
+<td><code>0x85e960</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3a20ea0</code></td>
+<td>170</td>
+</tr>
+<tr>
+<td><code>std::__1::pair&lt;std::__1::__tree_iterator&lt;std::__1::__value_type&lt;EOS_ProductUserIdDetails*, Network::EOS::TransportThread::PingTime&gt;, std::__1::__tree…</code></td>
+<td><code>0x861680</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39bca74</code></td>
+<td>170</td>
+</tr>
+<tr>
+<td><code>std::__1::back_insert_iterator&lt;std::__1::vector&lt;Modding::ModHandle, std::__1::allocator&lt;Modding::ModHandle&gt; &gt; &gt; std::__1::__set_difference&lt;std::__1::…</code></td>
+<td><code>0x969610</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c18904</code></td>
+<td>148</td>
+</tr>
+<tr>
+<td><code>std::__1::enable_if&lt;__is_forward_iterator&lt;std::__1::__wrap_iter&lt;Modding::ModHandle*&gt; &gt;::value&amp;&amp;is_constructible&lt;Modding::ModHandle, std::__1::iterato…</code></td>
+<td><code>0xb2dab0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c1738e</code></td>
+<td>554</td>
+</tr>
+<tr>
+<td><code>std::__1::enable_if&lt;__is_forward_iterator&lt;std::__1::__wrap_iter&lt;Modding::Path*&gt; &gt;::value&amp;&amp;is_constructible&lt;Modding::Path, std::__1::iterator_traits&lt;s…</code></td>
+<td><code>0xb45460</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c28170</code></td>
+<td>624</td>
+</tr>
+<tr>
+<td><code>std::__1::__split_buffer&lt;Modding::ModId, std::__1::allocator&lt;Modding::ModId&gt;&amp;&gt;::__split_buffer(unsigned long, unsigned long, std::__1::allocator&lt;Modd…</code></td>
+<td><code>0xb64080</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31f30f0</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;AssetObjects::IFireFXVisualSystemData const*, std::__1::allocator&lt;AssetObjects::IFireFXVisualSystemData const*&gt; &gt;::reserve(unsigned …</code></td>
+<td><code>0xba1080</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x433edde</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;AssetObjects::IFireFXVisualBlockData const*, std::__1::allocator&lt;AssetObjects::IFireFXVisualBlockData const*&gt; &gt;::reserve(unsigned lo…</code></td>
+<td><code>0xbcefc0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x433e43e</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>eastl::hash_map&lt;unsigned int, FAutoArchiveFactory::AutoArchiveType, eastl::hash&lt;unsigned int&gt;, eastl::equal_to&lt;unsigned int&gt;, eastl::allocator, false…</code></td>
+<td><code>0xdba530</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c49828</code></td>
+<td>252</td>
+</tr>
+<tr>
+<td><code>eastl::hashtable&lt;FSL::Shader*, FSL::Shader*, eastl::allocator, eastl::use_self&lt;FSL::Shader*&gt;, eastl::equal_to&lt;FSL::Shader*&gt;, eastl::hash&lt;FSL::Shader*…</code></td>
+<td><code>0xde2700</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x43c1c18</code></td>
+<td>202</td>
+</tr>
+<tr>
+<td><code>eastl::hashtable&lt;FSL::Shader*, FSL::Shader*, eastl::allocator, eastl::use_self&lt;FSL::Shader*&gt;, eastl::equal_to&lt;FSL::Shader*&gt;, eastl::hash&lt;FSL::Shader*…</code></td>
+<td><code>0xdeb970</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x43c1b1c</code></td>
+<td>252</td>
+</tr>
+<tr>
+<td><code>eastl::vector&lt;DelayedSessionCallback*, eastl::allocator&gt;::DoInsertValue(DelayedSessionCallback**, DelayedSessionCallback* const&amp;)</code></td>
+<td><code>0xdebab0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39f7166</code></td>
+<td>370</td>
+</tr>
+<tr>
+<td><code>eastl::prime_rehash_policy::GetRehashRequired(unsigned int, unsigned int, unsigned int) const</code></td>
+<td><code>0xe943b0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3974c2a</code></td>
+<td>234</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (39, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>std::__1::vector&lt;String::BasicT&lt;Platform::StaticHeapAllocator&lt;5, 0&gt;, (String::Encoding)4&gt;, std::__1::allocato…</code></td>
+<td><code>0xbcfa0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x303d1f0</code></td>
+</tr>
+<tr>
+<td><code>eastl::vector&lt;Data::TypedVariant, eastl::allocator&gt;::end() const</code></td>
+<td><code>0xf1c20</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x31cdef0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;std::__1::tuple&lt;unsigned int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char…</code></td>
+<td><code>0xf9e50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31e3110</code></td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;Modding::ModId, std::__1::allocator&lt;Modding::ModId&gt; &gt;::__swap_out_circular_buffer(std::__1::…</code></td>
+<td><code>0x109230</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31f31a0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::list&lt;App::PushData::DisplayMessage, std::__1::allocator&lt;App::PushData::DisplayMessage&gt; &gt;::push_back…</code></td>
+<td><code>0x265380</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33ae340</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__list_imp&lt;App::PushData::DisplayMessage, std::__1::allocator&lt;App::PushData::DisplayMessage&gt; &gt;::cle…</code></td>
+<td><code>0x265780</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33ae4b0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::shared_ptr&lt;char const&gt;::~shared_ptr()</code></td>
+<td><code>0x2a04f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2fa5600</code></td>
+</tr>
+<tr>
+<td><code>std::__1::list&lt;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::__…</code></td>
+<td><code>0x4c0d40</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a0050</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;Modding::ModReference, std::__1::allocator&lt;Modding::ModReference&gt; &gt;::~__vector_base()</code></td>
+<td><code>0x4cbb60</code></td>
+<td>call-graph propagation</td>
+<td><code>0x36abd00</code></td>
+</tr>
+<tr>
+<td><code>std::__1::shared_ptr&lt;char&gt;::~shared_ptr()</code></td>
+<td><code>0x4cbde0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2fce3d0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__tuple_impl&lt;std::__1::__tuple_indices&lt;0ul, 1ul, 2ul&gt;, Modding::ModId, bool, bool&gt;::__tuple_impl(st…</code></td>
+<td><code>0x4d1850</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36ac1b0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;Modding::Path, std::__1::allocator&lt;Modding::Path&gt; &gt;::~__vector_base()</code></td>
+<td><code>0x4d2560</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2fa0fc0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;Primitives::DisplayMode, std::__1::allocator&lt;Primitives::DisplayMode&gt; &gt;::resize(unsigned lon…</code></td>
+<td><code>0x4d25d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36ad9a0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;Primitives::DisplayMode, std::__1::allocator&lt;Primitives::DisplayMode&gt; &gt;::~__vector_ba…</code></td>
+<td><code>0x4d2610</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36ad9d0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;OptionChangedData::OptionFile, std::__1::allocator&lt;OptionChangedData::OptionFile&gt; &gt;::…</code></td>
+<td><code>0x4d2980</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36ada10</code></td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;OptionChangedData::OptionFile, std::__1::allocator&lt;OptionChangedData::OptionFile&gt; &gt;::max_siz…</code></td>
+<td><code>0x4d4190</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36addf0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::vector&lt;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::…</code></td>
+<td><code>0x4d7310</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b09c0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;Application::Data::FullTextSearch::SearchResult, std::__1::allocator&lt;Application::Dat…</code></td>
+<td><code>0x4d7400</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b0b60</code></td>
+</tr>
+<tr>
+<td><code>std::__1::pair&lt;Application::Data::FullTextSearch::SearchResult*, long&gt; std::__1::get_temporary_buffer&lt;Applica…</code></td>
+<td><code>0x4d7460</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b0ca0</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;…</code></td>
+<td><code>0x4ec6c0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2caf96e</code></td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;std::__1::basic_string&lt;char, std::__1::char_…</code></td>
+<td><code>0x799b50</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x39546a2</code></td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;std::__1::basic_string&lt;char, std::__1::char_…</code></td>
+<td><code>0x799c10</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3954766</code></td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;std::__1::basic_string&lt;char, std::__1::char_…</code></td>
+<td><code>0x799c70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3954812</code></td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;std::__1::basic_string&lt;char, std::__1::char_…</code></td>
+<td><code>0x799d80</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3954b52</code></td>
+</tr>
+<tr>
+<td><code>eastl::hashtable&lt;Path::FixedBuffer, eastl::pair&lt;Path::FixedBuffer const, File::PakFile*&gt;, eastl::allocator, e…</code></td>
+<td><code>0x7eb980</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x39ab3a4</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__split_buffer&lt;Modding::ModId, std::__1::allocator&lt;Modding::ModId&gt;&amp;&gt;::~__split_buffer()</code></td>
+<td><code>0x809040</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31f3230</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__tree&lt;FAutoVariableBase*, std::__1::less&lt;FAutoVariableBase*&gt;, std::__1::allocator&lt;FAutoVariableBas…</code></td>
+<td><code>0x8234b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c477f0</code></td>
+</tr>
+<tr>
+<td><code>eastl::VectorBase&lt;unsigned char, eastl::allocator&gt;::~VectorBase()</code></td>
+<td><code>0x823560</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31a3f80</code></td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;std::__1::basic_string&lt;char, std::__1::char_…</code></td>
+<td><code>0x834da0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x39ce6a8</code></td>
+</tr>
+<tr>
+<td><code>eastl::hashtable&lt;int, eastl::pair&lt;int const, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt; &gt;, eastl::alloc…</code></td>
+<td><code>0x84dc10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x39e4a04</code></td>
+</tr>
+<tr>
+<td><code>eastl::vector&lt;TransportPacket, eastl::allocator&gt;::~vector()</code></td>
+<td><code>0x856ec0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x39b1e86</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__vector_base&lt;LANServerUDPReplyPacket_t, std::__1::allocator&lt;LANServerUDPReplyPacket_t&gt; &gt;::~__vecto…</code></td>
+<td><code>0x85cd40</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3a2036a</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__tree&lt;std::__1::__value_type&lt;unsigned int, LANServerUDPReplyPacket_t&gt;, std::__1::__map_value_compa…</code></td>
+<td><code>0x85ce20</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3a2049a</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__tree&lt;std::__1::__value_type&lt;FString, FString&gt;, std::__1::__map_value_compare&lt;FString, std::__1::_…</code></td>
+<td><code>0x85e0d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3a20808</code></td>
+</tr>
+<tr>
+<td><code>std::__1::__tree_iterator&lt;std::__1::__value_type&lt;FString, FString&gt;, std::__1::__tree_node&lt;std::__1::__value_t…</code></td>
+<td><code>0x85e120</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3a2083c</code></td>
+</tr>
+<tr>
+<td><code>std::__1::unique_ptr&lt;std::__1::__tree_node&lt;std::__1::__value_type&lt;FString, FString&gt;, void*&gt;, std::__1::__tree…</code></td>
+<td><code>0x85e1c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3a208dc</code></td>
+</tr>
+<tr>
+<td><code>eastl::basic_string&lt;char, eastl::allocator&gt;::c_str() const</code></td>
+<td><code>0x98a760</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2f9ff50</code></td>
+</tr>
+<tr>
+<td><code>std::MSVC2012::Detail::_Hash&lt;std::MSVC2012::Detail::_Umap_traits&lt;EOS_ProductUserIdDetails*, Platform::SimpleT…</code></td>
+<td><code>0xbaa090</code></td>
+<td>call-graph propagation</td>
+<td><code>0x39ce718</code></td>
+</tr>
+<tr>
+<td><code>eastl::RBTreeIncrement(eastl::rbtree_node_base const*)</code></td>
+<td><code>0xe94080</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3974d14</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

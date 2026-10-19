@@ -1,0 +1,2114 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Debug console</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Debug console</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Debug console</h1>
+<p>Commands typed into the in-game debug console (the <code>UIE_DebugConsoleInput</code> event). Each handler of the event matches its own commands; <code>help all</code> prints the combined list. The console is only reachable when the debug UI is enabled (see <code>EnableDebugMenu</code> in <a href="options.html#debug">the option files</a>); <strong>not tried in the running game</strong>.</p>
+<h2>Commands with help text</h2>
+<h3>CameraSystem</h3>
+<p>Handler <code>0x1d69c0</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="0x1d69c0-camera_config"></a><code>camera config</code></td>
+<td>Print current config name</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_config__name_"></a><code>camera config &lt;name&gt;</code></td>
+<td>Apply a camera configuration</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_debug"></a><code>camera debug</code></td>
+<td>print lots of information to the log</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_fov"></a><code>camera fov</code></td>
+<td>show fov</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_height"></a><code>camera height</code></td>
+<td>show height</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_hexmax___number__"></a><code>camera hexmax [&lt;number&gt;]</code></td>
+<td>set/print # hexes visible at zoom=1 (strat view)</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_hexmin___number__"></a><code>camera hexmin [&lt;number&gt;]</code></td>
+<td>set/print # hexes visible at zoom=0 (strat view)</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_listconfigs"></a><code>camera listconfigs</code></td>
+<td>Print list of camera config names</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_reset"></a><code>camera reset</code></td>
+<td>go back to initial state</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_svtilt"></a><code>camera svtilt</code></td>
+<td>show strategic view skew tilt</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_svtilt__degrees_"></a><code>camera svtilt &lt;degrees&gt;</code></td>
+<td>change strategic view skew</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_wvtilt"></a><code>camera wvtilt</code></td>
+<td>show worldview tilt</td>
+</tr>
+<tr>
+<td><a id="0x1d69c0-camera_zoom_____percent__"></a><code>camera zoom   [&lt;percent&gt;]</code></td>
+<td>set/print current zoom level</td>
+</tr>
+</tbody>
+</table>
+<h3>Color key system</h3>
+<p>Handler <code>0xa4f8d0</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="0xa4f8d0-colorkey__name___weight___fadetime_"></a><code>colorkey &lt;name&gt; [weight] [fadetime]</code></td>
+<td>transition to a new color key,</td>
+</tr>
+<tr>
+<td><a id="0xa4f8d0-colorkey_disable__fadetime_"></a><code>colorkey disable [fadetime]</code></td>
+<td>transition to no color key, default fadetime=0</td>
+</tr>
+<tr>
+<td><a id="0xa4f8d0-colorkey_listnames"></a><code>colorkey listnames</code></td>
+<td>print names of all colorkeys known to the system</td>
+</tr>
+</tbody>
+</table>
+<h3>GameCoreController (game core)</h3>
+<p>Handler <code>0xf56b0</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="0xf56b0-explore_all"></a><code>explore all</code></td>
+<td>mark all terrain as explored.</td>
+</tr>
+<tr>
+<td><a id="0xf56b0-reveal_all"></a><code>reveal all</code></td>
+<td>mark all terrain as revealed.</td>
+</tr>
+</tbody>
+</table>
+<h3>GameViewState (game view, overlays)</h3>
+<p>Handler <code>0x7d780</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="0x7d780-benchmark__filename___numframes_"></a><code>benchmark {filename} {numframes}</code></td>
+<td>run benchmark</td>
+</tr>
+<tr>
+<td><a id="0x7d780-toggle_overlay__layer_"></a><code>toggle overlay &lt;layer&gt;</code></td>
+<td>Toggle overlay. <layer> is one of:</td>
+</tr>
+<tr>
+<td><a id="0x7d780-worldview"></a><code>worldview</code></td>
+<td>toggle world view</td>
+</tr>
+<tr>
+<td><a id="0x7d780-wrap"></a><code>wrap</code></td>
+<td>toggle world wrap</td>
+</tr>
+</tbody>
+</table>
+<h3>Leader screen</h3>
+<p>Handler <code>0x1ee760</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="0x1ee760-colorkey"></a><code>colorkey</code></td>
+<td>Change active color key for leaders</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leaderaniso"></a><code>toggle leaderaniso</code></td>
+<td>Toggle aniso shader for leaders</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leaderao"></a><code>toggle leaderao</code></td>
+<td>Toggle ambient occlusion for leaders</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leadercloth"></a><code>toggle leadercloth</code></td>
+<td>Toggle cloth shader for leaders</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leadercompute"></a><code>toggle leadercompute</code></td>
+<td>Toggle recalculated normals</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leaderhair"></a><code>toggle leaderhair</code></td>
+<td>Toggle hair shader for leaders</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leaderlights"></a><code>toggle leaderlights</code></td>
+<td>Toggle dyn lights for leaders</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leadermoblur"></a><code>toggle leadermoblur</code></td>
+<td>Toggle motion blur force-off</td>
+</tr>
+<tr>
+<td><a id="0x1ee760-toggle_leaderskin"></a><code>toggle leaderskin</code></td>
+<td>Toggle skin shader for leaders</td>
+</tr>
+</tbody>
+</table>
+<h3>WorldView console (terrain, time of day, rendering)</h3>
+<p>Handler <code>0x540670</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="0x540670-aberration"></a><code>aberration</code></td>
+<td>Print aberration parameters</td>
+</tr>
+<tr>
+<td><a id="0x540670-aberration_scale__num_"></a><code>aberration scale &lt;num&gt;</code></td>
+<td>Set chromatic aberation scale</td>
+</tr>
+<tr>
+<td><a id="0x540670-aberration_weight__num_"></a><code>aberration weight &lt;num&gt;</code></td>
+<td>Set chromatic aberation scale</td>
+</tr>
+<tr>
+<td><a id="0x540670-bloom_only"></a><code>bloom only</code></td>
+<td>Toggle showing just the bloom buffer</td>
+</tr>
+<tr>
+<td><a id="0x540670-bloom____on_off_"></a><code>bloom { \|on\|off}</code></td>
+<td>Toggle bloom effect on/off</td>
+</tr>
+<tr>
+<td><a id="0x540670-camera_play__name___height_"></a><code>camera play &lt;name&gt; [height]</code></td>
+<td>Play a camera animation at the hex at the center</td>
+</tr>
+<tr>
+<td><a id="0x540670-cloudshadows_togglefrustum"></a><code>cloudshadows togglefrustum</code></td>
+<td>Locks / unlocks clip planes for cloud shadow pass</td>
+</tr>
+<tr>
+<td><a id="0x540670-cloudshadows____on_off_"></a><code>cloudshadows { \|on\|off}</code></td>
+<td>Toggle cloud shadows on/off</td>
+</tr>
+<tr>
+<td><a id="0x540670-clutter"></a><code>clutter</code></td>
+<td>Log current clutter instance model/decal counts</td>
+</tr>
+<tr>
+<td><a id="0x540670-clutter_detail__low_high_"></a><code>clutter detail [low\|high]</code></td>
+<td>Set clutter detail level</td>
+</tr>
+<tr>
+<td><a id="0x540670-d_ebug__b_lockers___option_"></a><code>d[ebug] b[lockers] [option]</code></td>
+<td>Toggle Blocker visualization</td>
+</tr>
+<tr>
+<td><a id="0x540670-d_ebug__g_radient___help_"></a><code>d[ebug] g[radient] [help]</code></td>
+<td>Toggle TerrainSampler gradient visualization</td>
+</tr>
+<tr>
+<td><a id="0x540670-d_ebug__h_height___help_"></a><code>d[ebug] h[height] [help]</code></td>
+<td>Toggle TerrainSampler height visualization</td>
+</tr>
+<tr>
+<td><a id="0x540670-d_ebug__r_oads_"></a><code>d[ebug] r[oads]</code></td>
+<td>Toggle road connection point and hex edge visualization</td>
+</tr>
+<tr>
+<td><a id="0x540670-d_ebug__v_isrange___min___max_"></a><code>d[ebug] v[isrange] &lt;min&gt; [max]</code></td>
+<td>Adjust the radius used to show debug geometry</td>
+</tr>
+<tr>
+<td><a id="0x540670-detaillevel_force__level_"></a><code>detaillevel force &lt;level&gt;</code></td>
+<td>Forces detail level for model vis system</td>
+</tr>
+<tr>
+<td><a id="0x540670-detaillevel_reset"></a><code>detaillevel reset</code></td>
+<td>Resets detail level for model vis system</td>
+</tr>
+<tr>
+<td><a id="0x540670-distancefog____on_off_"></a><code>distancefog { \|on\|off}</code></td>
+<td>Toggle distance fog on/off</td>
+</tr>
+<tr>
+<td><a id="0x540670-fogsaturation__value_"></a><code>fogsaturation &lt;value&gt;</code></td>
+<td>Set fog saturation. desaturate &lt; 0 &lt; saturate</td>
+</tr>
+<tr>
+<td><a id="0x540670-height__num_"></a><code>height &lt;num&gt;</code></td>
+<td>Set blocker vis vertical offset from the terrain</td>
+</tr>
+<tr>
+<td><a id="0x540670-help"></a><code>help</code></td>
+<td>Explanation of visualization and color meanings</td>
+</tr>
+<tr>
+<td><a id="0x540670-ids__id_list_"></a><code>ids &lt;id list&gt;</code></td>
+<td>Set filter for which blocker sources are visible.</td>
+</tr>
+<tr>
+<td><a id="0x540670-jointsize"></a><code>jointsize</code></td>
+<td>Set the size for the joint visualization</td>
+</tr>
+<tr>
+<td><a id="0x540670-logvistypes"></a><code>logvistypes</code></td>
+<td>Log vis data by types</td>
+</tr>
+<tr>
+<td><a id="0x540670-rebuild_clutter"></a><code>rebuild clutter</code></td>
+<td>Rebuild all clutter instances</td>
+</tr>
+<tr>
+<td><a id="0x540670-rebuild_culture_borders"></a><code>rebuild culture borders</code></td>
+<td>Rebuild all culture border splines</td>
+</tr>
+<tr>
+<td><a id="0x540670-reflectionmask_toggletexture"></a><code>reflectionmask toggletexture</code></td>
+<td>Renders reflection mask to either primary</td>
+</tr>
+<tr>
+<td><a id="0x540670-set_depthvariance__val_"></a><code>set depthvariance &lt;val&gt;</code></td>
+<td>Set threshold for depth resolve variance</td>
+</tr>
+<tr>
+<td><a id="0x540670-set_desaturation__level_"></a><code>set desaturation &lt;level&gt;</code></td>
+<td>Set the amount of desaturation to apply from 0-1</td>
+</tr>
+<tr>
+<td><a id="0x540670-set_smallcull_aocull__value_"></a><code>set smallcull aocull &lt;value&gt;</code></td>
+<td>Set threshold for culling small geometry</td>
+</tr>
+<tr>
+<td><a id="0x540670-set_smallcull_fade__value_"></a><code>set smallcull fade &lt;value&gt;</code></td>
+<td>Set threshold for fading small geometry</td>
+</tr>
+<tr>
+<td><a id="0x540670-set_smallcull_shadowcull__value_"></a><code>set smallcull shadowcull &lt;value&gt;</code></td>
+<td>Set threshold for culling small geometry</td>
+</tr>
+<tr>
+<td><a id="0x540670-set_smallcull_threshold__value_"></a><code>set smallcull threshold &lt;value&gt;</code></td>
+<td>Set threshold for culling small geometry</td>
+</tr>
+<tr>
+<td><a id="0x540670-smallcull_isolate__value_"></a><code>smallcull isolate &lt;value&gt;</code></td>
+<td>Disables small geo fading and enables small geo culling</td>
+</tr>
+<tr>
+<td><a id="0x540670-ssr_passes__value_"></a><code>ssr passes &lt;value&gt;</code></td>
+<td>Set number of SSR passes</td>
+</tr>
+<tr>
+<td><a id="0x540670-suncolor"></a><code>suncolor</code></td>
+<td>Print sun color</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain"></a><code>terrain</code></td>
+<td>Toggle blocker vis terrain following</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_basecolor"></a><code>terrain mode basecolor</code></td>
+<td>Show basecolor only</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_cellmip"></a><code>terrain mode cellmip</code></td>
+<td>Show terrain cell mips</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_decalmip"></a><code>terrain mode decalmip</code></td>
+<td>Show decal mips</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_decaloverdraw"></a><code>terrain mode decaloverdraw</code></td>
+<td>Show overdrawfor decals. Black=None.  Red=Lots.</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_decaltransparent"></a><code>terrain mode decaltransparent</code></td>
+<td>Show transparent regions of decals</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_detailao"></a><code>terrain mode detailao</code></td>
+<td>Show detailao only (high-quality shader only)</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_fowmask"></a><code>terrain mode fowmask</code></td>
+<td>Show fowmask only</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_height"></a><code>terrain mode height</code></td>
+<td>Show baked height only (high-quality shader only)</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_reset"></a><code>terrain mode reset</code></td>
+<td>Reset to normal rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_mode_srcmip"></a><code>terrain mode srcmip</code></td>
+<td>Show source material mips</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_rebake"></a><code>terrain rebake</code></td>
+<td>Rebake terrain tiles</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_rebuild"></a><code>terrain rebuild</code></td>
+<td>Rebuild terrain edits</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_toggle_cell_wireframe"></a><code>terrain toggle cell wireframe</code></td>
+<td>Toggle wireframe for cell render (DX11 only)</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_toggle_detailao"></a><code>terrain toggle detailao</code></td>
+<td>Toggle terrain detail ao channel</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_toggle_reflection"></a><code>terrain toggle reflection</code></td>
+<td>Toggle terrain reflection mask</td>
+</tr>
+<tr>
+<td><a id="0x540670-terrain_toggle_wireframe"></a><code>terrain toggle wireframe</code></td>
+<td>Toggle terrain wireframe rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-tod"></a><code>tod</code></td>
+<td>Print time of day</td>
+</tr>
+<tr>
+<td><a id="0x540670-tod_animate"></a><code>tod animate</code></td>
+<td>Toggle ambient TOD animation</td>
+</tr>
+<tr>
+<td><a id="0x540670-tod_config__name_"></a><code>tod config &lt;name&gt;</code></td>
+<td>Set time of day configuration</td>
+</tr>
+<tr>
+<td><a id="0x540670-tod_set__time_"></a><code>tod set &lt;time&gt;</code></td>
+<td>Set time of day (0-24)</td>
+</tr>
+<tr>
+<td><a id="0x540670-tod_speed"></a><code>tod speed</code></td>
+<td>Set ambient animation speed to default</td>
+</tr>
+<tr>
+<td><a id="0x540670-tod_speed__number_"></a><code>tod speed &lt;number&gt;</code></td>
+<td>Set  speed (hours per game minute)</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_ao"></a><code>toggle ao</code></td>
+<td>Toggle ao system</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_aocompute"></a><code>toggle aocompute</code></td>
+<td>Toggle ao compute</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_aofilter"></a><code>toggle aofilter</code></td>
+<td>Toggle ao filtering</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_avx"></a><code>toggle avx</code></td>
+<td>Toggle avx codepaths</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_cloudshadows"></a><code>toggle cloudshadows</code></td>
+<td>Toggle cloud shadow rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_coastwaves"></a><code>toggle coastwaves</code></td>
+<td>Toggle coastline waves</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_colorkeyblend"></a><code>toggle colorkeyblend</code></td>
+<td>Toggle color key blend (uses identity)</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_cubemapblend"></a><code>toggle cubemapblend</code></td>
+<td>Toggle cubemap blends for lighting system</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_debugroute"></a><code>toggle debugroute</code></td>
+<td>Toggle debug route replacement</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_distancefog"></a><code>toggle distancefog</code></td>
+<td>Toggle distance fog rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_dynlights"></a><code>toggle dynlights</code></td>
+<td>Toggle dynamic lighting</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_fow"></a><code>toggle fow</code></td>
+<td>Toggle FOW mask</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_joints"></a><code>toggle joints</code></td>
+<td>Toggle joint rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_ocean"></a><code>toggle ocean</code></td>
+<td>Toggle ocean rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_oceanwaves"></a><code>toggle oceanwaves</code></td>
+<td>Toggle waves for water testing</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_overlay"></a><code>toggle overlay</code></td>
+<td>Toggle WorldView overlay rendering.</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_river"></a><code>toggle river</code></td>
+<td>Toggle river rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_river_depth"></a><code>toggle river depth</code></td>
+<td>Toggle river depth buffer writing</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_river_flattening"></a><code>toggle river flattening</code></td>
+<td>Toggle river flattening</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_river_wireframe"></a><code>toggle river wireframe</code></td>
+<td>Toggle river wireframe</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_shadowdepth"></a><code>toggle shadowdepth</code></td>
+<td>Toggle rendering of shadow depth buffers</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_skybox"></a><code>toggle skybox</code></td>
+<td>Toggle skybox rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_ssoverlay"></a><code>toggle ssoverlay</code></td>
+<td>Toggle screen-space overlay</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_ssr"></a><code>toggle ssr</code></td>
+<td>Toggle screen-space reflection</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_statesort"></a><code>toggle statesort</code></td>
+<td>Toggle state sorting by SP enum (default) or SPI handle</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_terrain_update"></a><code>toggle terrain update</code></td>
+<td>Toggle terrain updates</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_vfxoverlay"></a><code>toggle vfxoverlay</code></td>
+<td>Toggle vfx overlay rendering.</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_wavecrashes"></a><code>toggle wavecrashes</code></td>
+<td>Toggle coastline wave crashing particle effects</td>
+</tr>
+<tr>
+<td><a id="0x540670-toggle_wireframe"></a><code>toggle wireframe</code></td>
+<td>Toggle wireframe rendering</td>
+</tr>
+<tr>
+<td><a id="0x540670-vfx_log"></a><code>vfx log</code></td>
+<td>Log all current live VFX</td>
+</tr>
+<tr>
+<td><a id="0x540670-vfx_threading"></a><code>vfx threading</code></td>
+<td>Toggle multithreading in FireFX</td>
+</tr>
+<tr>
+<td><a id="0x540670-vfxlighting"></a><code>vfxlighting</code></td>
+<td>Cycle forced particle lighting mode.</td>
+</tr>
+<tr>
+<td><a id="0x540670-water_fowmask"></a><code>water fowmask</code></td>
+<td>Toggle FOW mask for water</td>
+</tr>
+<tr>
+<td><a id="0x540670-water_offset__value_"></a><code>water offset &lt;value&gt;</code></td>
+<td>Set parallax offset (default 0.00)</td>
+</tr>
+<tr>
+<td><a id="0x540670-water_scale__value_"></a><code>water scale &lt;value&gt;</code></td>
+<td>Set parallax scale (default 0.025)</td>
+</tr>
+<tr>
+<td><a id="0x540670-whitecap_max__value_"></a><code>whitecap max &lt;value&gt;</code></td>
+<td>Set whitecap maximum threshold</td>
+</tr>
+<tr>
+<td><a id="0x540670-whitecap_min__value_"></a><code>whitecap min &lt;value&gt;</code></td>
+<td>Set whitecap minimum threshold</td>
+</tr>
+<tr>
+<td><a id="0x540670-whitecap_power__value_"></a><code>whitecap power &lt;value&gt;</code></td>
+<td>Set whitecap power</td>
+</tr>
+<tr>
+<td><a id="0x540670-worldview"></a><code>worldview</code></td>
+<td>toggles strategic view</td>
+</tr>
+</tbody>
+</table>
+<h2>Command phrases matched in the code</h2>
+<p>The handlers match commands one word at a time, so a command such as <code>terrain rebake</code> appears as <code>terrain</code> and then <code>rebake</code>. This table lists every phrase literal that a handler tests, in code order, with the engine functions called before the next phrase (<strong>heuristic</strong>: it can include calls that belong to a neighbouring check, and names with low confidence are left out). Phrases without help text are mostly sub-words of the commands above, but a few commands have no help line at all.</p>
+<details>
+<summary>Application-level handler (handler 0x4ac10, 6 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clear</code></td>
+<td><code>0x4ac4c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help</code></td>
+<td><code>0x4ac76</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>hlp</code></td>
+<td><code>0x4ac8d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>hlep</code></td>
+<td><code>0x4aca4</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>log</code></td>
+<td><code>0x4ad14</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td><code>0x4b37b</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Audio (handler 0x98290, 3 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>help all</code></td>
+<td><code>0x982b8</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>audio</code></td>
+<td><code>0x982ce</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help audio</code></td>
+<td><code>0x982e1</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>CameraSystem (handler 0x1d69c0, 10 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>camera</code></td>
+<td><code>0x1d6a61</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>debug</code></td>
+<td><code>0x1d6aa2</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>free</code></td>
+<td><code>0x1d6c32</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>noui</code></td>
+<td><code>0x1d6c88</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>svtilt</code></td>
+<td><code>0x1d6cde</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>wvtilt</code></td>
+<td><code>0x1d6d6a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td><code>0x1d6e47</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>zoom</code></td>
+<td><code>0x1d6ea5</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>listconfigs</code></td>
+<td><code>0x1d6fb1</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>0x1d703f</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Civ6App (application and graphics) (handler 0x69f10, 41 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>help all</code></td>
+<td><code>0x69f35</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>civ6</code></td>
+<td><code>0x69f4b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>civ</code></td>
+<td><code>0x69f5e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help civ</code></td>
+<td><code>0x69f71</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>artdef</code></td>
+<td><code>0x6a080</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help artdef</code></td>
+<td><code>0x6a093</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help all</code></td>
+<td><code>0x6a17e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td><code>0x6a191</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help ui</code></td>
+<td><code>0x6a1a4</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help all</code></td>
+<td><code>0x6a343</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td><code>0x6a356</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help command</code></td>
+<td><code>0x6a369</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help all</code></td>
+<td><code>0x6a460</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>graphics</code></td>
+<td><code>0x6a473</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help graphics</code></td>
+<td><code>0x6a486</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>setres</code></td>
+<td><code>0x6a621</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>force</code></td>
+<td><code>0x6a733</code></td>
+<td>Civ6App::ApplyGraphicsOptionsChanges() [medium]</td>
+</tr>
+<tr>
+<td><code>noui</code></td>
+<td><code>0x6acde</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>colorkey</code></td>
+<td><code>0x6ad13</code></td>
+<td>ForgeUI::ControlBase::TestDropFocus() [high]</td>
+</tr>
+<tr>
+<td><code>allowmissingmods</code></td>
+<td><code>0x6b3b7</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td><code>0x6b3fa</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td><code>0x6b42e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>0x6b45e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>off</code></td>
+<td><code>0x6b48e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>graphics SubIndexCB on</code></td>
+<td><code>0x6b80a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>graphics SubIndexCB off</code></td>
+<td><code>0x6b845</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>graphics</code></td>
+<td><code>0x6b8ac</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>log</code></td>
+<td><code>0x6b8e2</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>geometry</code></td>
+<td><code>0x6b943</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>textures</code></td>
+<td><code>0x6b981</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>types</code></td>
+<td><code>0x6b9c4</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>surfaces</code></td>
+<td><code>0x6ba04</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>render on</code></td>
+<td><code>0x6ba52</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>reload shaders</code></td>
+<td><code>0x6bb06</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle interface</code></td>
+<td><code>0x6bbcd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>EnableGameCoreEventLog</code></td>
+<td><code>0x6bc08</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>DisableGameCoreEventLog</code></td>
+<td><code>0x6bc1f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ToggleGameCoreEventLog</code></td>
+<td><code>0x6bc36</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>EnableGameCoreEventProfile</code></td>
+<td><code>0x6bc58</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>DisableGameCoreEventProfile</code></td>
+<td><code>0x6bc6f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ToggleGameCoreEventProfile</code></td>
+<td><code>0x6bc86</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Color key system (handler 0xa4f8d0, 6 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>help all</code></td>
+<td><code>0xa4f904</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>0xa4f918</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help color</code></td>
+<td><code>0xa4f92f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>colorkey</code></td>
+<td><code>0xa4f966</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>listnames</code></td>
+<td><code>0xa4f9a7</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>disable</code></td>
+<td><code>0xa4fa6e</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>ForgeUI debug (UI) (handler 0x8e27a0, 10 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>log</code></td>
+<td><code>0x8e27cb</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Panel</code></td>
+<td><code>0x8e2834</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>stats</code></td>
+<td><code>0x8e2880</code></td>
+<td>ForgeUI::ForgeUI_UIManager::PrintAllocationInfo() [high]; ForgeUI::ForgeUI_UIManager::PrintControlInfo() [high]</td>
+</tr>
+<tr>
+<td><code>controltree</code></td>
+<td><code>0x8e28e0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>mouseover</code></td>
+<td><code>0x8e2a2e</code></td>
+<td>ForgeUI::ForgeUI_UIManager::LogMouseOverControls() [high]</td>
+</tr>
+<tr>
+<td><code>DebugMouseOver</code></td>
+<td><code>0x8e2a6f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td><code>0x8e2aab</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>0x8e2abe</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>off</code></td>
+<td><code>0x8e2ad1</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>0x8e2ae4</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>GameCoreController (game core) (handler 0xf56b0, 8 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>game</code></td>
+<td><code>0xf56f2</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>explore all</code></td>
+<td><code>0xf5709</code></td>
+<td>GameCore::App::Cache::GetLocalObserver() [medium]</td>
+</tr>
+<tr>
+<td><code>reveal all</code></td>
+<td><code>0xf57f2</code></td>
+<td>GameCore::App::Cache::GetLocalObserver() [medium]</td>
+</tr>
+<tr>
+<td><code>gamecore profile on</code></td>
+<td><code>0xf58d0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>gamecore profile off</code></td>
+<td><code>0xf58f6</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>gamecore message record on</code></td>
+<td><code>0xf5946</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>gamecore message record off</code></td>
+<td><code>0xf5966</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>gamecore message playback</code></td>
+<td><code>0xf59a2</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>GameViewState (game view, overlays) (handler 0x7d780, 22 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allgameview</code></td>
+<td><code>0x7d7bb</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>gameview</code></td>
+<td><code>0x7d7ce</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help gameview</code></td>
+<td><code>0x7d947</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>togglegameview</code></td>
+<td><code>0x7d9ae</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggleoverlay</code></td>
+<td><code>0x7da51</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bugtest nullptr</code></td>
+<td><code>0x7db40</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bugtest purevirtual</code></td>
+<td><code>0x7db60</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bugtest assertmsg</code></td>
+<td><code>0x7db8f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bugtest silentassertmsg</code></td>
+<td><code>0x7dba2</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bugtest report</code></td>
+<td><code>0x7dbb5</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle interface</code></td>
+<td><code>0x7dc0f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle ui</code></td>
+<td><code>0x7dc26</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>marketing mode</code></td>
+<td><code>0x7dc3d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle minimap</code></td>
+<td><code>0x7dc97</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle fullmap</code></td>
+<td><code>0x7dcdc</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle shadowclip</code></td>
+<td><code>0x7dd0d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>show leaders</code></td>
+<td><code>0x7dd3e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>hide leaders</code></td>
+<td><code>0x7ddab</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>worldview</code></td>
+<td><code>0x7dde7</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>wrap</code></td>
+<td><code>0x7de27</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle cachecheck</code></td>
+<td><code>0x7df01</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle overlaymatrix</code></td>
+<td><code>0x7df53</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Leader screen (handler 0x1ee760, 10 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>colorkey</code></td>
+<td><code>0x1ee876</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td><code>0x1ee8db</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leaderao</code></td>
+<td><code>0x1ee90f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leaderlights</code></td>
+<td><code>0x1ee94b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leaderskin</code></td>
+<td><code>0x1ee987</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leadercloth</code></td>
+<td><code>0x1ee9c6</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leaderaniso</code></td>
+<td><code>0x1eea05</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leaderhair</code></td>
+<td><code>0x1eea44</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leadermoblur</code></td>
+<td><code>0x1eea83</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>leadercompute</code></td>
+<td><code>0x1eeabb</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Main menu (handler 0x8aa70, 3 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>help all</code></td>
+<td><code>0x8aa79</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>game</code></td>
+<td><code>0x8aa8c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>help game</code></td>
+<td><code>0x8aa9f</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Minimap (handler 0x1f3b20, 6 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toggle</code></td>
+<td><code>0x1f3d86</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fow</code></td>
+<td><code>0x1f3db6</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td><code>0x1f3e10</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>overlays</code></td>
+<td><code>0x1f3e40</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td><code>0x1f3e88</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>transparency</code></td>
+<td><code>0x1f3ebc</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>WorldView console (terrain, time of day, rendering) (handler 0x540670, 143 phrases)</summary>
+<table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Code</th>
+<th>Calls (heuristic)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tod</code></td>
+<td><code>0x541210</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td><code>0x541282</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>0x541302</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>listconfigs</code></td>
+<td><code>0x54138d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>animate</code></td>
+<td><code>0x54141b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>speed</code></td>
+<td><code>0x541474</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>terrain</code></td>
+<td><code>0x541606</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>rebake</code></td>
+<td><code>0x54163a</code></td>
+<td>WorldView::TerrainContext::RebakeCache(bool) [high]</td>
+</tr>
+<tr>
+<td><code>rebuild</code></td>
+<td><code>0x541678</code></td>
+<td>WorldView::TerrainContext::RebuildTerrainEdits() [high]</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td><code>0x5416b4</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>wireframe</code></td>
+<td><code>0x5416e8</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>detailao</code></td>
+<td><code>0x541734</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>cell</code></td>
+<td><code>0x541770</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>wireframe</code></td>
+<td><code>0x5417a0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ssr</code></td>
+<td><code>0x5417dc</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td><code>0x54181a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td><code>0x54184e</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>srcmip</code></td>
+<td><code>0x54188c</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>decalmip</code></td>
+<td><code>0x5418ca</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>decaloverdraw</code></td>
+<td><code>0x541908</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>decaltransparent</code></td>
+<td><code>0x541946</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>cellmip</code></td>
+<td><code>0x541984</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>basecolor</code></td>
+<td><code>0x5419c2</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>fowmask</code></td>
+<td><code>0x541a00</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>detailao</code></td>
+<td><code>0x541a3e</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td><code>0x541a7c</code></td>
+<td>WorldView::TerrainContext::SetDebugRenderMode(unsigned char) [medium]</td>
+</tr>
+<tr>
+<td><code>rebuild</code></td>
+<td><code>0x541ab9</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>clutter</code></td>
+<td><code>0x541aed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>culture</code></td>
+<td><code>0x541ba2</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>flag</code></td>
+<td><code>0x541c36</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>mask</code></td>
+<td><code>0x541d9b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td><code>0x542132</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>vrsimage</code></td>
+<td><code>0x542165</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td><code>0x542197</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>off</code></td>
+<td><code>0x5421d3</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>decal</code></td>
+<td><code>0x542225</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>diffuse</code></td>
+<td><code>0x542259</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>heightedit</code></td>
+<td><code>0x5422a7</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>terrain</code></td>
+<td><code>0x5422fc</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td><code>0x54232c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>asynccompute</code></td>
+<td><code>0x54236a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>avx</code></td>
+<td><code>0x5423a5</code></td>
+<td>ModelVisSystem::Context::SetOptimizationLevel(unsigned int) [medium]; FOWMeshVisSystem::Context::SetOptimizationLevel(unsigned int) [medium]</td>
+</tr>
+<tr>
+<td><code>overlaymip</code></td>
+<td><code>0x542449</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ssoverlay</code></td>
+<td><code>0x542486</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>overlay</code></td>
+<td><code>0x542502</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>vfx</code></td>
+<td><code>0x542549</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>vfxscreen</code></td>
+<td><code>0x542586</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>vfxui</code></td>
+<td><code>0x5425c3</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>terrainview</code></td>
+<td><code>0x542600</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fowvis</code></td>
+<td><code>0x54263d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>meshvis</code></td>
+<td><code>0x54267a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>vfxoverlay</code></td>
+<td><code>0x5426b7</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>dynlights</code></td>
+<td><code>0x5426f4</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>joints</code></td>
+<td><code>0x54273a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aabb</code></td>
+<td><code>0x542781</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td><code>0x5427b5</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>vfx</code></td>
+<td><code>0x5427f3</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fow</code></td>
+<td><code>0x542831</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>smallcull</code></td>
+<td><code>0x54286c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td><code>0x5428a0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>vfx</code></td>
+<td><code>0x5428ec</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fow</code></td>
+<td><code>0x542935</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>smallfade</code></td>
+<td><code>0x54297b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td><code>0x5429ab</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>river</code></td>
+<td><code>0x5429f1</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>wireframe</code></td>
+<td><code>0x542a25</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>flattening</code></td>
+<td><code>0x542a6c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>depth</code></td>
+<td><code>0x542ab9</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>wireframe</code></td>
+<td><code>0x542b39</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ocean</code></td>
+<td><code>0x542ba4</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ssreflect</code></td>
+<td><code>0x542c3e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>oceanwaves</code></td>
+<td><code>0x542c84</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>coastwaves</code></td>
+<td><code>0x542cca</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>wavecrashes</code></td>
+<td><code>0x542d20</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>debugroute</code></td>
+<td><code>0x542d5d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fow</code></td>
+<td><code>0x542d98</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ao</code></td>
+<td><code>0x542dd5</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aofilter</code></td>
+<td><code>0x542e1e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aocompute</code></td>
+<td><code>0x542e5b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aoblocks</code></td>
+<td><code>0x542e98</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>cubemapblend</code></td>
+<td><code>0x542ed5</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>colorkeyblend</code></td>
+<td><code>0x542f12</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>skybox</code></td>
+<td><code>0x542f4f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>shadowdepth</code></td>
+<td><code>0x542f8c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>cloudshadows</code></td>
+<td><code>0x542fd2</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>distancefog</code></td>
+<td><code>0x54300f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>statesort</code></td>
+<td><code>0x54304c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>waterreflection</code></td>
+<td><code>0x543089</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>smallcull</code></td>
+<td><code>0x5430c6</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>isolate</code></td>
+<td><code>0x5430f9</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>lighting</code></td>
+<td><code>0x543216</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>threading</code></td>
+<td><code>0x543261</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>subthreading</code></td>
+<td><code>0x5432c0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>log</code></td>
+<td><code>0x54331f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>setimport</code></td>
+<td><code>0x54335a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fogsaturation</code></td>
+<td><code>0x5434fd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>jointsize</code></td>
+<td><code>0x543569</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aberration</code></td>
+<td><code>0x5435da</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>scale</code></td>
+<td><code>0x54361a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>weight</code></td>
+<td><code>0x54367e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ssr</code></td>
+<td><code>0x54371b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>passes</code></td>
+<td><code>0x54374a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ao</code></td>
+<td><code>0x5437b0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>power</code></td>
+<td><code>0x543828</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>scale</code></td>
+<td><code>0x54385c</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bias</code></td>
+<td><code>0x543890</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>min</code></td>
+<td><code>0x5438c4</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>clutter</code></td>
+<td><code>0x543903</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>log</code></td>
+<td><code>0x543936</code></td>
+<td>WorldView::ClutterLayerManager::LogStats() [high]</td>
+</tr>
+<tr>
+<td><code>detail</code></td>
+<td><code>0x54397e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td><code>0x5439b7</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td><code>0x5439eb</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>camera</code></td>
+<td><code>0x543a29</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>play</code></td>
+<td><code>0x543a61</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td><code>0x543c1a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>smallcull</code></td>
+<td><code>0x543c4d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>threshold</code></td>
+<td><code>0x543cae</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fade</code></td>
+<td><code>0x543ceb</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aocull</code></td>
+<td><code>0x543d25</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>shadowcull</code></td>
+<td><code>0x543d5f</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>desaturation</code></td>
+<td><code>0x543d96</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>depthvariance</code></td>
+<td><code>0x543e34</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>water</code></td>
+<td><code>0x543f2d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>scale</code></td>
+<td><code>0x543f8d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td><code>0x543fc6</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fowmask</code></td>
+<td><code>0x543ffd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>whitecap</code></td>
+<td><code>0x544045</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>min</code></td>
+<td><code>0x5440a5</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>max</code></td>
+<td><code>0x5440de</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>power</code></td>
+<td><code>0x544117</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>extra</code></td>
+<td><code>0x54414e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ev</code></td>
+<td><code>0x54417d</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bloom</code></td>
+<td><code>0x5441e5</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td><code>0x544218</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>off</code></td>
+<td><code>0x544253</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>only</code></td>
+<td><code>0x54428b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>cloudshadows</code></td>
+<td><code>0x5442df</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>togglefrustum</code></td>
+<td><code>0x54438e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>distancefog</code></td>
+<td><code>0x5443cb</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>force</code></td>
+<td><code>0x5444ae</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>executionmode</code></td>
+<td><code>0x54455b</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>jobs</code></td>
+<td><code>0x54458e</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>optimizedjobs</code></td>
+<td><code>0x5445c6</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

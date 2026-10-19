@@ -1,0 +1,1009 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Telemetry configuration</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Telemetry configuration</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Telemetry configuration</h1>
+<p>The engine executable ships with a <strong>default telemetry configuration</strong>: two XML documents embedded in the code that say which events the game can report and which usage counters it keeps. This page lists them as written. It describes the built-in configuration only: the game can also download a configuration from the Firaxis Live service (<code>App/FiraxisLive/OnlineTelemetryConfiguration.xml</code>, fetched through a service discovery step), which can replace it, so what an individual game reports today may differ. This analysis did not look for a way to switch reporting off and makes no claim about what is actually sent on a given machine.</p>
+<p><strong>Verified:</strong> the event names, flags and counters are literals in the exe. <strong>Not determined:</strong> what the <code>SendFlags</code> values 4 and 8 mean, and the data fields of each event.</p>
+<h2>What the code does with it</h2>
+<p>From the messages in the telemetry code: events are put in queues with a priority, can be rejected by sampling or by priority, are flushed periodically (and on shutdown) to a <code>/telemetry/v2</code> service endpoint with retries, and the configuration entries are fetched with retries as well. The game logs a line such as <code>Sending Telemetry: OrgEvent=... Type=... SendFlags=...</code> (function <code>GameCore::App::Telemetry::Listener::OnTelemetryTag</code>). There is one related entry in the option files: <code>[Misc] TelemetryUploadNecessary</code> (see <a href="options.html">the option files</a>).</p>
+<h2>Events of the default ruleset</h2>
+<p>The default ruleset (flagged <code>IsBlacklist</code> in the XML) lists 54 events, 39 of them enabled. Two derived rulesets, <code>Elite Player Ruleset</code> and <code>New Player Ruleset</code>, inherit from it and change the update interval of a few events. <code>TurnInterval</code> means the event is repeated every that many turns.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Enabled</th>
+<th>SendFlags</th>
+<th>TurnInterval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="event-gamestart"></a><code>GameStart</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-gamestartplayers"></a><code>GameStartPlayers</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-savegameprogression"></a><code>SaveGameProgression</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-aisavegameprogression"></a><code>AISaveGameProgression</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-playerprogression"></a><code>PlayerProgression</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-aiprogression"></a><code>AIProgression</code></td>
+<td>yes</td>
+<td>8</td>
+<td>30</td>
+</tr>
+<tr>
+<td><a id="event-tutorial"></a><code>Tutorial</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-gameend"></a><code>GameEnd</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-gameendprogression"></a><code>GameEndProgression</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-aigameendprogression"></a><code>AIGameEndProgression</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-screenbreakdown"></a><code>ScreenBreakdown</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-lensbreakdown"></a><code>LensBreakdown</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-envbreakdown"></a><code>EnvBreakdown</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-prjfrequency"></a><code>PrjFrequency</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-powerstats"></a><code>PowerStats</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-worldcongress"></a><code>WorldCongress</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-gamelevel"></a><code>GameLevel</code></td>
+<td>yes</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-applicationsessionstatus"></a><code>ApplicationSessionStatus</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-igmstatus"></a><code>IGMStatus</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-transactions"></a><code>Transactions</code></td>
+<td>yes</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-cpu"></a><code>CPU</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-sysinfo"></a><code>SysInfo</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-timings"></a><code>Timings</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-slowtick"></a><code>SlowTick</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-ticktimings"></a><code>TickTimings</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-ticktimings2"></a><code>TickTimings2</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-blploadtransient"></a><code>BLPLoadTransient</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-camerazoom"></a><code>CameraZoom</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-pantheonfounded"></a><code>PantheonFounded</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-religionfounded"></a><code>ReligionFounded</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-governmentchanged"></a><code>GovernmentChanged</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-buildingcomplete"></a><code>BuildingComplete</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-unitformation"></a><code>UnitFormation</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-unitpromoted"></a><code>UnitPromoted</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-firstturn"></a><code>FirstTurn</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-benchmarkresult"></a><code>BenchmarkResult</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-hotload"></a><code>HotLoad</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-wallclockload"></a><code>WallClockLoad</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-graphicsoptions"></a><code>GraphicsOptions</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-startupgametimings"></a><code>StartupGameTimings</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-systemconfiguration"></a><code>SystemConfiguration</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-libraryload"></a><code>LibraryLoad</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-unknowndevice"></a><code>UnknownDevice</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-citygen_blocks"></a><code>CityGen_Blocks</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-statistics"></a><code>Statistics</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-playereconomysnapshot"></a><code>PlayerEconomySnapshot</code></td>
+<td>no</td>
+<td>4</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-playereconomysnapshot2"></a><code>PlayerEconomySnapshot2</code></td>
+<td>no</td>
+<td>4</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="event-cityinit"></a><code>CityInit</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-playerscore"></a><code>PlayerScore</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-graphics_dx11"></a><code>Graphics_DX11</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-hitch"></a><code>Hitch</code></td>
+<td>yes</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-techboost"></a><code>TechBoost</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-civicboost"></a><code>CivicBoost</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="event-game_boost"></a><code>Game_Boost</code></td>
+<td>no</td>
+<td>4</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Counter tables</h2>
+<p>Seven tables of counters are kept during a game and reported as events (<code>ScreenBreakdown</code>, <code>LensBreakdown</code>, <code>EnvBreakdown</code>, <code>PrjFrequency</code>, <code>PowerStats</code>, <code>WorldCongress</code>, <code>GameLevel</code>). <code>Kind</code> says what is counted (a UI context, a lens, a terrain state change, a building or district type, or a free-form value), <code>Type</code> how (a count, seconds, or a value that is set).</p>
+<h3>UI:Screens/ (18)</h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Kind</th>
+<th>Context</th>
+<th>Type</th>
+<th>Per session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="counter-civilopediatimesopened"></a><code>CivilopediaTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>Civilopedia</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-civilopediasecondsopen"></a><code>CivilopediaSecondsOpen</code></td>
+<td>ForgeCtx</td>
+<td>Civilopedia</td>
+<td>Seconds</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-techtreetimesopened"></a><code>TechTreeTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>TechTree</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-civicstreetimesopened"></a><code>CivicsTreeTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>CivicsTree</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-productionpaneltimesopened"></a><code>ProductionPanelTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>ProductionPanel</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-worldrankingstimesopened"></a><code>WorldRankingsTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>WorldRankings</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-citystatestimesopened"></a><code>CityStatesTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>CityStates</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-greatpeopletimesopened"></a><code>GreatPeopleTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>GreatPeoplePopup</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-greatworkstimesopened"></a><code>GreatWorksTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>GreatWorksOverview</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-historicmomentstimesopened"></a><code>HistoricMomentsTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>HistoricMoments</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-governorpaneltimesopened"></a><code>GovernorPanelTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>GovernorPanel</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-eraprogresstimesopened"></a><code>EraProgressTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>EraProgressPanel</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-reportscreentimesopened"></a><code>ReportScreenTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>ReportScreen</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-techciviccompletetimesopened"></a><code>TechCivicCompleteTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>TechCivicCompletedPopup</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-eurekatimesopened"></a><code>EurekaTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>BoostUnlockedPopup</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-foundnatwondertimesopened"></a><code>FoundNatWonderTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>NaturalWonderPopup</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-wonderbuilttimesopened"></a><code>WonderBuiltTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>WonderBuiltPopup</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-endgamegraphstimesopened"></a><code>EndGameGraphsTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>EndGameMenu</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>UI:Lenses/ (13)</h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Kind</th>
+<th>Context</th>
+<th>Type</th>
+<th>Per session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="counter-religionlenstimesopened"></a><code>ReligionLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-continentlenstimesopened"></a><code>ContinentLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-appeallenstimesopened"></a><code>AppealLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-settlerlenstimesopened"></a><code>SettlerLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-governmentlenstimesopened"></a><code>GovernmentLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-politicallenstimesopened"></a><code>PoliticalLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tourismlenstimesopened"></a><code>TourismLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-empirelenstimesopened"></a><code>EmpireLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-loyaltylenstimesopened"></a><code>LoyaltyLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-citizenmgtlenstimesopened"></a><code>CitizenMgtLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-districtlenstimesopened"></a><code>DistrictLensTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-traderoutestimesopened"></a><code>TradeRoutesTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-cityyieldstimesopened"></a><code>CityYieldsTimesOpened</code></td>
+<td>Lens</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>EnvironmentalFX:Breakdown/ (25)</h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Kind</th>
+<th>Context</th>
+<th>Type</th>
+<th>Per session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="counter-stormtimescreated"></a><code>StormTimesCreated</code></td>
+<td>StormsCreated</td>
+<td></td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tilesflooded"></a><code>TilesFlooded</code></td>
+<td>TerrainState</td>
+<td>Flood</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tilessubmerged"></a><code>TilesSubmerged</code></td>
+<td>TerrainState</td>
+<td>Submerged</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tileserupted"></a><code>TilesErupted</code></td>
+<td>TerrainState</td>
+<td>Eruption</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-eruptiontimes"></a><code>EruptionTimes</code></td>
+<td>TerrainState</td>
+<td>Active</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-fertilityfromdroughts"></a><code>FertilityFromDroughts</code></td>
+<td>Freeform</td>
+<td>FertilityAddDroughts</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tilesdamagedbydroughts"></a><code>TilesDamagedByDroughts</code></td>
+<td>Freeform</td>
+<td>TilesDamagedDroughts</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-poplosttodroughts"></a><code>PopLostToDroughts</code></td>
+<td>Freeform</td>
+<td>PopLostDroughts</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-unitskilledbydroughts"></a><code>UnitsKilledByDroughts</code></td>
+<td>Freeform</td>
+<td>UnitsKilledDroughts</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-fertilityfromfloods"></a><code>FertilityFromFloods</code></td>
+<td>Freeform</td>
+<td>FertilityAddFloods</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tilesdamagedbyfloods"></a><code>TilesDamagedByFloods</code></td>
+<td>Freeform</td>
+<td>TilesDamagedFloods</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-poplosttofloods"></a><code>PopLostToFloods</code></td>
+<td>Freeform</td>
+<td>PopLostFloods</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-unitskilledbyfloods"></a><code>UnitsKilledByFloods</code></td>
+<td>Freeform</td>
+<td>UnitsKilledFloods</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-fertilityfromstorms"></a><code>FertilityFromStorms</code></td>
+<td>Freeform</td>
+<td>FertilityAddStorms</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tilesdamagedbystorms"></a><code>TilesDamagedByStorms</code></td>
+<td>Freeform</td>
+<td>TilesDamagedStorms</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-poplosttostorms"></a><code>PopLostToStorms</code></td>
+<td>Freeform</td>
+<td>PopLostStorms</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-unitskilledbystorms"></a><code>UnitsKilledByStorms</code></td>
+<td>Freeform</td>
+<td>UnitsKilledStorms</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-fertilityfromvolcanos"></a><code>FertilityFromVolcanos</code></td>
+<td>Freeform</td>
+<td>FertilityAddVolcanos</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-tilesdamagedbyvolcanos"></a><code>TilesDamagedByVolcanos</code></td>
+<td>Freeform</td>
+<td>TilesDamagedVolcanos</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-poplosttovolcanos"></a><code>PopLostToVolcanos</code></td>
+<td>Freeform</td>
+<td>PopLostVolcanos</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-unitskilledbyvolcanos"></a><code>UnitsKilledByVolcanos</code></td>
+<td>Freeform</td>
+<td>UnitsKilledVolcanos</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-totalfloods"></a><code>TotalFloods</code></td>
+<td>Freeform</td>
+<td>NumFloods</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-totalmitigations"></a><code>TotalMitigations</code></td>
+<td>Freeform</td>
+<td>NumMitigated</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-totalcarbonsequestrations"></a><code>TotalCarbonSequestrations</code></td>
+<td>Freeform</td>
+<td>NumCarbonRecaps</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-timessealevelrose"></a><code>TimesSeaLevelRose</code></td>
+<td>Freeform</td>
+<td>SeaLevelRise</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>EngineeringProjects:Frequency/ (6)</h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Kind</th>
+<th>Context</th>
+<th>Type</th>
+<th>Per session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="counter-mountaintunnelsbuilt"></a><code>MountainTunnelsBuilt</code></td>
+<td>Improvement</td>
+<td>IMPROVEMENT_MOUNTAIN_TUNNEL</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-qhapaqnansbuilt"></a><code>QhapaqNansBuilt</code></td>
+<td>Improvement</td>
+<td>IMPROVEMENT_MOUNTAIN_ROAD</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-floodbarriersbuilt"></a><code>FloodBarriersBuilt</code></td>
+<td>Building</td>
+<td>BUILDING_FLOOD_BARRIER</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-canalsbuilt"></a><code>CanalsBuilt</code></td>
+<td>District</td>
+<td>DISTRICT_CANAL</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-damsbuilt"></a><code>DamsBuilt</code></td>
+<td>District</td>
+<td>DISTRICT_DAM</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-railroadsbuilt"></a><code>RailroadsBuilt</code></td>
+<td>Route</td>
+<td>ROUTE_RAILROAD</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>PlayerPower:PowerStats/ (4)</h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Kind</th>
+<th>Context</th>
+<th>Type</th>
+<th>Per session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="counter-temppowerallcities"></a><code>TempPowerAllCities</code></td>
+<td>Power_Total</td>
+<td>Temp</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-renewablepowerallcities"></a><code>RenewablePowerAllCities</code></td>
+<td>Power_Total</td>
+<td>Renewable</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-missingpowerallcities"></a><code>MissingPowerAllCities</code></td>
+<td>Power_Total</td>
+<td>Missing</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-avgmissingpowerallcities"></a><code>AvgMissingPowerAllCities</code></td>
+<td>Power_Average</td>
+<td>Missing</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>WCStats:WorldCongress/ (10)</h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Kind</th>
+<th>Context</th>
+<th>Type</th>
+<th>Per session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="counter-wcspecialsessioncount"></a><code>WCSpecialSessionCount</code></td>
+<td>Freeform</td>
+<td>WCSpecialSesssions</td>
+<td>Count</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfromemergency"></a><code>FavorFromEmergency</code></td>
+<td>Freeform</td>
+<td>FavorEmergency</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfromresolution"></a><code>FavorFromResolution</code></td>
+<td>Freeform</td>
+<td>FavorResolution</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfromprojects"></a><code>FavorFromProjects</code></td>
+<td>Freeform</td>
+<td>FavorProjects</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfromdiplovictory"></a><code>FavorFromDiploVictory</code></td>
+<td>Freeform</td>
+<td>FavorDiploVictory</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfromgovernor"></a><code>FavorFromGovernor</code></td>
+<td>Freeform</td>
+<td>FavorGovernor</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfrominfluence"></a><code>FavorFromInfluence</code></td>
+<td>Freeform</td>
+<td>FavorInfluence</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfromreligion"></a><code>FavorFromReligion</code></td>
+<td>Freeform</td>
+<td>FavorReligion</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorfromplunder"></a><code>FavorFromPlunder</code></td>
+<td>Freeform</td>
+<td>FavorPlunder</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a id="counter-favorearned"></a><code>FavorEarned</code></td>
+<td>Freeform</td>
+<td>Favors</td>
+<td>Set_Value</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>GLStats:GameLevel/ (3)</h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Kind</th>
+<th>Context</th>
+<th>Type</th>
+<th>Per session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="counter-halloffametimesopened"></a><code>HallOfFameTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>HallofFame</td>
+<td>Count</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a id="counter-advancedsetuptimesopened"></a><code>AdvancedSetupTimesOpened</code></td>
+<td>ForgeCtx</td>
+<td>AdvancedSetup</td>
+<td>Count</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a id="counter-numloadssamesession"></a><code>NumLoadsSameSession</code></td>
+<td>Freeform</td>
+<td>LoadedGameSameSession</td>
+<td>Count</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

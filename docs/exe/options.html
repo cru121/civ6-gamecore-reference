@@ -1,0 +1,1919 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Option files reference</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Option files reference</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Option files reference</h1>
+<p>The exe registers 194 options. The game writes them into four text files in <code>AppData/Local/Firaxis Games/Sid Meier's Civilization VI/</code>; each file is read at start-up and the comment line above every key is the description the exe carries. Keys are unique across all files, names are case sensitive, and every option below is in exactly one file. This page is the merged, searchable list.</p>
+<p><strong>Value types.</strong> <em>integer</em>: whole numbers, booleans are 0/1. <em>string</em>: free text. A blank <strong>Default</strong> means the exe passes no constant I could read, most often 0; it is not "none". Floating-point options are probably missing from this list: they use a different register convention and were not scanned.</p>
+<p><strong>Command line.</strong> Integer options can also be set for one launch with <code>-Key value</code>; see <a href="command-line.html">command-line switches</a>.</p>
+<p><strong>Description.</strong> Taken from the exe where its registration call could be read, otherwise from the comment in the option file (marked in the data as <code>options-file</code>). Options with no text have none anywhere.</p>
+<p><strong>Status.</strong> <em>verified</em>: registered in the exe and present in the file the game writes. Sections can be split between files (for example <code>[Video]</code>, <code>[Debug]</code>).</p>
+<h2>Files and sections</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Sections (options)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GraphicsOptions.txt</code></td>
+<td><a href="#ao">AO</a> (1), <a href="#bloom">Bloom</a> (1), <a href="#cloudshadows">CloudShadows</a> (1), <a href="#debug">Debug</a> (1), <a href="#dynamiclighting">DynamicLighting</a> (1), <a href="#general">General</a> (19), <a href="#leaders">Leaders</a> (2), <a href="#shadows">Shadows</a> (1), <a href="#terrain">Terrain</a> (4), <a href="#video">Video</a> (12)</td>
+</tr>
+<tr>
+<td><code>AppOptions.txt</code></td>
+<td><a href="#debug">Debug</a> (22), <a href="#language">Language</a> (5), <a href="#misc">Misc</a> (5), <a href="#performance">Performance</a> (9), <a href="#ui">UI</a> (9), <a href="#video">Video</a> (8)</td>
+</tr>
+<tr>
+<td><code>EOSOptions.txt</code></td>
+<td><a href="#eos_logging">EOS_Logging</a> (8), <a href="#lobby">Lobby</a> (2)</td>
+</tr>
+<tr>
+<td><code>UserOptions.txt</code></td>
+<td><a href="#gameplay">Gameplay</a> (51), <a href="#interface">Interface</a> (18), <a href="#logging">Logging</a> (1), <a href="#multiplayer">Multiplayer</a> (5), <a href="#tutorial">Tutorial</a> (8)</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="ao"></a>[AO]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ao.enableao"></a>EnableAO</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to turn on AO</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="bloom"></a>[Bloom]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="bloom.enablebloom"></a>EnableBloom</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to turn on Bloom</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="cloudshadows"></a>[CloudShadows]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="cloudshadows.enablecloudshadows"></a>EnableCloudShadows</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to turn on Cloud Shadows</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="debug"></a>[Debug]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="debug.enablearbitrarywindowsizing"></a>EnableArbitraryWindowSizing</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enables resolutions greater than the current monitor size (use "setres" in the debug console)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enableasserts"></a>EnableAsserts</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enable assertions.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enableaudio"></a>EnableAudio</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Set to 0 to disable audio.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enablebackgroundartloading"></a>EnableBackgroundArtLoading</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enable ArtManager loading in the background.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enablebugcollection"></a>EnableBugCollection</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enable Automatic Bug Collection.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enabledataerrorcollection"></a>EnableDataErrorCollection</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable Data Error Collection.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enabledebugmenu"></a>EnableDebugMenu</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable Debug menu.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enabledebugplotinfo"></a>EnableDebugPlotInfo</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable Debug information in the plot info tooltips.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enabledumpcollection"></a>EnableDumpCollection</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enable Dump Collection with Bugs.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enablegamecoreeventlog"></a>EnableGameCoreEventLog</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Log all game core events.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enablelandmarklogging"></a>EnableLandmarkLogging</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable logging for the Landmark System.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enablelocalbuildcollection"></a>EnableLocalBuildCollection</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable Local Build Bug Collection.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enablelogcollection"></a>EnableLogCollection</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable Log Collection with Bugs.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enablememorytracker"></a>EnableMemoryTracker</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable MemoryTracker.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enableterrainlogging"></a>EnableTerrainLogging</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable logging for the Terrain System.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enabletuner"></a>EnableTuner</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable FireTuner.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.enableworldbuilder"></a>EnableWorldBuilder</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enable WorldBuilder.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.endgamestate"></a>EndGameState</td>
+<td><code>AppOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>End game state.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.playnowsave"></a>PlayNowSave</td>
+<td><code>AppOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>Forces the game to load only that save file.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.remarks"></a>Remarks</td>
+<td><code>AppOptions</code></td>
+<td>string</td>
+<td><code>/R1</code></td>
+<td>Set remark levels(ex. /R0 / R1:ArtDef - means all off except ArtDef level 1) (default "/R1")</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.suppressinfopopups"></a>SuppressInfoPopups</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Suppress popups that are just informational (e.g., Civic Completed.)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.tutorialstate"></a>TutorialState</td>
+<td><code>AppOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>Tutorial state.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="debug.uionlyrendering"></a>UIOnlyRendering</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 1 to drop all rendering except for UI.  This is a debugging switch</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="dynamiclighting"></a>[DynamicLighting]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="dynamiclighting.enabledynamiclighting"></a>EnableDynamicLighting</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to use dynamic lighting</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="eos_logging"></a>[EOS_Logging]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="eos_logging.enableconnectionlogs"></a>EnableConnectionLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="eos_logging.enablecorelogs"></a>EnableCoreLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="eos_logging.enablelobbylogs"></a>EnableLobbyLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="eos_logging.enableoverlaylogs"></a>EnableOverlayLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="eos_logging.enableownershiplogs"></a>EnableOwnershipLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="eos_logging.enablep2plogs"></a>EnableP2PLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="eos_logging.enablepacketlogs"></a>EnablePacketLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="eos_logging.enabletimeoutlogs"></a>EnableTimeoutLogs</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="gameplay"></a>[Gameplay]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="gameplay.aicitybuildplotlog"></a>AICityBuildPlotLog</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>AI city build plot analysis logging level, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.aioperationevallog"></a>AIOperationEvalLog</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>AI operation evaluation logging level, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.aisettlementevaluationlog"></a>AISettlementEvaluationLog</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>AI settlement analysis logging level (very large), 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.ai_masterlogging"></a>AI_MasterLogging</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Log all AI systems, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.aidiplomaticactionlog"></a>AiDiplomaticActionLog</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>AI diplomatic action logging level, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.allpathson"></a>AllPathsOn</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.attack"></a>Attack</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.autodeselect"></a>AutoDeselect</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.autoendturn"></a>AutoEndTurn</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to automatically end a turn when no more actions are available. (0 = off)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.autoprodqueue"></a>AutoProdQueue</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Forces the Production Panel to open in queue mode, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.autosavefrequency"></a>AutoSaveFrequency</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Number of turns between autosaves</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.autosavekeepcount"></a>AutoSaveKeepCount</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>10</code></td>
+<td>Number of autosaves to keep</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.autounitcycle"></a>AutoUnitCycle</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Does the selection auto cycle to the next available unit? (0 = no, 1 = yes)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.cameralookattimescale"></a>CameraLookAtTimeScale</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Modifies how fast the camera moves to the target location during 'look-at' events.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.cityrangeattackturnblocking"></a>CityRangeAttackTurnBlocking</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Whether or not to treat city range attacks as a turn blocking notification. (0 = not turn blocking)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.clipcursor"></a>ClipCursor</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.difficulty"></a>Difficulty</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.disableonemoreturn"></a>DisableOneMoreTurn</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Removes the 'One More Turn' option after achieving a victory.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.edgepan"></a>EdgePan</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enables always-on screen edge scrolling, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.era"></a>Era</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.gameeffectsloglevel"></a>GameEffectsLogLevel</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Game Effects logging level, 0 = off, 1 = Minimal, 2 = Normal, Detailed = 3, Diagnostic = 4</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.gameeramomentslog"></a>GameEraMomentsLog</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Game Era Moments Log, 0=Top moments only, 1=All moments</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.gamehistoryloglevel"></a>GameHistoryLogLevel</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Game history logging level, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.gamehistorysequentialloglevel"></a>GameHistorySequentialLogLevel</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Sequential Game history logging level, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.lookatplayeroffturncombat"></a>LookAtPlayerOffTurnCombat</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Look at the local player's combat when not their turn. (0 = off, 1 = move camera, 2 = move and zoom camera</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.lookatplayeroffturncombatzoomlevel"></a>LookAtPlayerOffTurnCombatZoomLevel</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>The zoom level to use for player turn combat, 0.0 to 1.0</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.lookatplayerturncombat"></a>LookAtPlayerTurnCombat</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>2</code></td>
+<td>Look at the local player's combat on their turn. (0 = off, 1 = move camera, 2 = move and zoom camera</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.lookatplayerturncombatzoomlevel"></a>LookAtPlayerTurnCombatZoomLevel</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>The zoom level to use for player turn combat, 0.0 to 1.0</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.minimapzoom"></a>MiniMapZoom</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.movementpathon"></a>MovementPathOn</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Set to 1 to see the path a unit will traverse.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.playvignettes"></a>PlayVignettes</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.plottooltipfollowsmouse"></a>PlotToolTipFollowsMouse</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>if the plot tooltip follows the mouse cursor (0 = off)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.profiledepth"></a>ProfileDepth</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Depth of profiling, -1 = all</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.profileenabled"></a>ProfileEnabled</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Profile logging enabled, 0 = off, 1 = on</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.profilesaveifplayertimeexceeds"></a>ProfileSaveIfPlayerTimeExceeds</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>If an AI player's processing time exceeds the time in seconds, keep the turn's autosave, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.quickcombat"></a>QuickCombat</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Skips combat animations, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.quickmovement"></a>QuickMovement</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Skips movement animations, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmapgrid"></a>ShowMapGrid</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsdeserts"></a>ShowMapLabelsDeserts</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelslakes"></a>ShowMapLabelsLakes</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsmountainranges"></a>ShowMapLabelsMountainRanges</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsnationalparks"></a>ShowMapLabelsNationalParks</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsnaturalwonders"></a>ShowMapLabelsNaturalWonders</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsoceans"></a>ShowMapLabelsOceans</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsrivers"></a>ShowMapLabelsRivers</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsseas"></a>ShowMapLabelsSeas</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmaplabelsvolcanoes"></a>ShowMapLabelsVolcanoes</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmapresources"></a>ShowMapResources</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.showmapyields"></a>ShowMapYields</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.startinstrategicview"></a>StartInStrategicView</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 1 to start games in strategic view.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="gameplay.unitcycleproximitytype"></a>UnitCycleProximityType</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>How the unit cycle determines the next closest unit to cycle to. 0 = Last closest, 1 = Closest of last two.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="general"></a>[General]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="general.ambienttimeofday"></a>AmbientTimeOfDay</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable/disable ambient time of day cycling.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.availableviews"></a>AvailableViews</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set which game views are enabled: 0 = Strategic only. 1 = 3D only. 2 = Both.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.clutterdetaillevel"></a>ClutterDetailLevel</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>How much stuff on the map? 0 = not a lot. 1 = a lot</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.defaulttimeofday"></a>DefaultTimeOfDay</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Default time of day</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.enableavx2optimizations"></a>EnableAVX2Optimizations</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>[DEPRECATED] Allow use of AVX code paths on compatible CPUs</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.enableavxoptimizations"></a>EnableAVXOptimizations</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>[DEPRECATED] Allow use of AVX code paths on compatible CPUs</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.enablebreadcrumbs"></a>EnableBreadcrumbs</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Force GPU breadcrumbs, if available.  This is a debugging switch</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.forcedebuglayer"></a>ForceDebugLayer</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Force d3d debug layer.  This is a debugging switch</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.minimapquality"></a>MinimapQuality</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Minimap quality (0 is 4xSuperSampling, 1 is 16xSuperSampling)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.minimapsize"></a>MinimapSize</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Minimap size (0 is minimum size, 1 is maximum size)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.optimizationlevel"></a>OptimizationLevel</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Maximum instruction set extension allowed for optimized code paths on compatible CPUs. Disabled (0), SSE2 (1), or AVX (2)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.ssreflectpasses"></a>SSReflectPasses</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Number of passes when calculating screen-space reflection with 16 samples per pass, default is 4 (64 samples). 0 disables SSR.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.screenspaceoverlay"></a>ScreenSpaceOverlay</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enable screen-space overlay effect.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.smallobjectculling"></a>SmallObjectCulling</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to cull models which are small on screen</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.smallobjectculling_end"></a>SmallObjectCulling_End</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Drop out small models at this threshold (area in pixels)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.smallobjectculling_start"></a>SmallObjectCulling_Start</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Start fading small models at this threshold (area in pixels)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.uselowqualitywatershader"></a>UseLowQualityWaterShader</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Disable high quality water (no refraction or reflection).</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.uselowreswater"></a>UseLowResWater</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Drop highest mip level for water LEAN maps</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="general.vfxdetaillevel"></a>VFXDetailLevel</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Indicates the level of detail for vfx. 0 = low. 1 = high</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="interface"></a>[Interface]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="interface.chattextvalue"></a>ChatTextValue</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>12</code></td>
+<td>The size of the text in the chat box.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.clockformat"></a>ClockFormat</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>In-Game Clock format (0 for 12-hour, 1 for 24-hour)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.copyrightaccept"></a>CopyrightAccept</td>
+<td><code>UserOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>Last version the user accepted the copyright notice.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.fontsizeincrease"></a>FontSizeIncrease</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>EXPERIMENTAL! Force font rendering at a point size beyond what was authored.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.playbycloudclientreadybehavior"></a>PlayByCloudClientReadyBehavior</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>What happens after a client has readied up in a PlayByCloud game? 0 = Ask Me, 1 = Stay in Staging Room, 2 = Exit to Lobby</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.playbycloudendturnbehavior"></a>PlayByCloudEndTurnBehavior</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>What happens after a PlayByCloud turn is committed? 0 = Ask Me, 1 = Do Nothing, 2 = Exit to Main Menu</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.playbycloudnotifyremind"></a>PlayByCloudNotifyRemind</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Display unset PlayByCloud notifications reminder popup.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.playbycloudseencompleted"></a>PlayByCloudSeenCompleted</td>
+<td><code>UserOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>List of PlayByCloud games that we have seen completed. Used by the UI. Do not alter!</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.playhistoricmomentanimation"></a>PlayHistoricMomentAnimation</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Play reveal animation whenever a pride moment is unlocked.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.plottooltipdelay"></a>PlotTooltipDelay</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>The amount of time, in seconds, before displaying the plot tooltip.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.replacedragwithclick"></a>ReplaceDragWithClick</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Replaces the drag functionality of DragControls with click to drag behavior, 0 = off</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.ribbonstats"></a>RibbonStats</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>If stats should be shown below the leaders' portraits in the HUD ribbon.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.savegamebrowsesortdefault"></a>SaveGameBrowseSortDefault</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Sort type for Save Game list, 1 = By Last Modified, 2 = Alphabetical</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.scrollspeed"></a>ScrollSpeed</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Determine the speed multiplier for mouse wheel scrolling.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.scrolltextspeed"></a>ScrollTextSpeed</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Determine the auto scrolling speed for scrolling text.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.seencrossplaymultiplayer"></a>SeenCrossPlayMultiplayer</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Has the user seen the Unified PC Play lobby?  Displays new-game-mode indicator if they have not seen it yet.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.seenplaybycloudlobby"></a>SeenPlayByCloudLobby</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Has the user seen the PlayByCloud lobby?  Displays new-game-mode indicator if they have not looked at it yet.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="interface.worldbuildermapbrowsesortdefault"></a>WorldBuilderMapBrowseSortDefault</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Sort type for World Builder Map list, 1 = By Last Modified, 2 = Alphabetical</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="language"></a>[Language]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="language.audiolanguage"></a>AudioLanguage</td>
+<td><code>AppOptions</code></td>
+<td>string</td>
+<td><code>English(US)</code></td>
+<td>The language to use for all audio in-game.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="language.displaylanguage"></a>DisplayLanguage</td>
+<td><code>AppOptions</code></td>
+<td>string</td>
+<td><code>en_US</code></td>
+<td>The language to use for all text in-game.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="language.enablefallback"></a>EnableFallback</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enable language fall-back.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="language.enablesubtitles"></a>EnableSubtitles</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 1 to enable subtitles.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="language.steamlanguage"></a>SteamLanguage</td>
+<td><code>AppOptions</code></td>
+<td>string</td>
+<td><code>english</code></td>
+<td>The previous language set by steam.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="leaders"></a>[Leaders]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="leaders.enablemotionblur"></a>EnableMotionBlur</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to use motion blur for leaders, requires medium quality (2) or greater</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="leaders.quality"></a>Quality</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Overall leader rendering quality</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="lobby"></a>[Lobby]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="lobby.maxlobbiestolist"></a>MaxLobbiesToList</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Lobby searching will stop when at least this many games have been found.  10 &lt; MaxLobbiesToList &lt; 100.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="lobby.searchduration"></a>SearchDuration</td>
+<td><code>EOSOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Maximum time to perform a full search on the lobby list screen.  1 &lt; SearchDuration &lt; 60.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="logging"></a>[Logging]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="logging.netmessagelogs"></a>NetMessageLogs</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enable network message logging</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="misc"></a>[Misc]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="misc.acceptedoutdateddriver"></a>AcceptedOutdatedDriver</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>User has accepted the outdated driver pop up.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="misc.acceptedunknowndevice"></a>AcceptedUnknownDevice</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>User has accepted the unknown graphics device pop up.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="misc.movieaudioapi"></a>MovieAudioAPI</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Audio API for movie playback: 0 for WaveOut, 1 for DirectSound</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="misc.telemetryuploadnecessary"></a>TelemetryUploadNecessary</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="misc.usersawcloudnew"></a>UserSawCloudNew</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>User has seen the NEW icon for Multiplatform Cloud saves.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="multiplayer"></a>[Multiplayer]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="multiplayer.automoddownload"></a>AutoModDownload</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Automatically download community made additional content when it is required to join a multiplayer game.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="multiplayer.lanplayername"></a>LANPlayerName</td>
+<td><code>UserOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>Player name used during local network games.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="multiplayer.lobbyzone"></a>LobbyZone</td>
+<td><code>UserOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>—</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="multiplayer.turnwebhookfrequency"></a>TurnWebHookFrequency</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Frequency of Play By Cloud turn change WebHooks. (0 = Send on local player's turn, 1 = Send on every player's turn.)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="multiplayer.turnwebhookurl"></a>TurnWebHookURL</td>
+<td><code>UserOptions</code></td>
+<td>string</td>
+<td>—</td>
+<td>URL to send a simple, no-payload WebHook for Play By Cloud turn changes. See TurnWebHookFrequency for frequency setting.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="performance"></a>[Performance]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="performance.gamecorereservethreads"></a>GameCoreReserveThreads</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Number of threads the Game Core should adjust its maximum by so as to not starve other systems of CPU time.  The game may adjust this value based on available hardware. Use -1 to let the game decide</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.inactivetickintervalinms"></a>InactiveTickIntervalInMS</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>32</code></td>
+<td>Tick every N ms while the app is inactive.  0 means tick continuously.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.loadgametickintervalinms"></a>LoadGameTickIntervalInMS</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>16</code></td>
+<td>Tick every N ms during game start. 0 means tick continuously.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.maxgamecorethreads"></a>MaxGameCoreThreads</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Max number of Game Core threads. The game may cap this value based on available hardware. Use -1 to let the game decide.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.maxgamecoretraderoutethreads"></a>MaxGameCoreTradeRouteThreads</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Number of threads to use for trade path finding.  The game may adjust this value based on available hardware or other setting. Use -1 to let the game decide</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.maxgamecoreunitmovementthreads"></a>MaxGameCoreUnitMovementThreads</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Number of threads to use for unit path finding.  The game may adjust this value based on available hardware or other setting. Use -1 to let the game decide</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.maxjobthreads"></a>MaxJobThreads</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Number of engine job threads (including main thread). Use -1 to let game decide</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.throttlewhileinactive"></a>ThrottleWhileInactive</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Should we throttle the game when its not the foreground app?</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="performance.tickintervalinms"></a>TickIntervalInMS</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Frame limiter. Tick app every N ms. 0 means tick continuously.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="shadows"></a>[Shadows]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="shadows.enableshadows"></a>EnableShadows</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Whether or not to turn on Shadows</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="terrain"></a>[Terrain]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="terrain.lowqualityterrainshader"></a>LowQualityTerrainShader</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to use low quality terrain shader (reduces texture filtering quality and specular lighting)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="terrain.reducedterrainmaterials"></a>ReducedTerrainMaterials</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Discard less important terrain materials. Saves memory.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="terrain.terrainquality"></a>TerrainQuality</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Valid settings are 0 to 4.  Higher number = higher quality.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="terrain.terrainsynthesisdetaillevel"></a>TerrainSynthesisDetailLevel</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>1 = full-res, 2 = low-res.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="tutorial"></a>[Tutorial]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="tutorial.haschosentutoriallevel"></a>HasChosenTutorialLevel</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 1 if the user has chosen a tutorial level</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="tutorial.hasseencivroyaleintro"></a>HasSeenCivRoyaleIntro</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Automatically set to 1 after the user has seen the CivRoyale How to Play screen at least once.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="tutorial.hasseenpiratesintro"></a>HasSeenPiratesIntro</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Automatically set to 1 after the user has seen the Pirates How to Play screen at least once.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="tutorial.hasseenxp1featuresscreen"></a>HasSeenXP1FeaturesScreen</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Automatically set to 1 after the user has seen the XP1 features screen at least once.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="tutorial.hasseenxp2featuresscreen"></a>HasSeenXP2FeaturesScreen</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Automatically set to 1 after the user has seen the XP2 features screen at least once.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="tutorial.hidexp1featuresscreen"></a>HideXP1FeaturesScreen</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 1 after the user has opted to no longer show the screen.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="tutorial.hidexp2featuresscreen"></a>HideXP2FeaturesScreen</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 1 after the user has opted to no longer show the screen.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="tutorial.tutoriallevel"></a>TutorialLevel</td>
+<td><code>UserOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Experience level of player for tutorial prompts.</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="ui"></a>[UI]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ui.addminimapsnapshottosaves"></a>AddMinimapSnapshotToSaves</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enables adding a minimap snapshot to Single Player saves for preview</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.colorblindadaptation"></a>ColorblindAdaptation</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Changes game colors for users with color blindness.  0 = No adaptation, 1 = Protanopia, 2 = Deuteranopia, 3 = Tritanopia</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.enablepausedshellmovies"></a>EnablePausedShellMovies</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Enables pausing the background movie in the menu shell; saves bandwidth when playing via remote desktop.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.istouchscreenenabled"></a>IsTouchScreenEnabled</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Is the touch screen support enabled?</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.mousekeyboardhotkeysupport"></a>MouseKeyboardHotkeySupport</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enables mouse and keyboard hotkey support</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.steamcontrollersupport"></a>SteamControllerSupport</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enables Steam Controller support if Steam is running</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.useconsoleactions"></a>UseConsoleActions</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Replaces PC Input Actions with Console Input Actions, 0 = Defaults to PC Input Actions</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.usergblighting"></a>UseRGBLighting</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Enables use of Logitech Gaming Software and Alienware AlienFX compatible lighting effects</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="ui.warnaboutmodcompatibility"></a>WarnAboutModCompatibility</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Warn about mods not marked as compatible with this game version?</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="video"></a>[Video]</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>File</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="video.aodepthresolution"></a>AODepthResolution</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Resolution of ambient occlusion depth map (NxN)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.aorenderresolution"></a>AORenderResolution</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Resolution of ambient occlusion render texture (NxN)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.allowswrenderer"></a>AllowSWRenderer</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 1 to allow the use of software renderers such as Microsoft's WARP</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.dx11_forceimmediate"></a>DX11_ForceImmediate</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Submit draws via the DX11 immediate context</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.deviceid"></a>DeviceID</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Device ID of the GPU device to use (as provided by the OS).</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.fullscreen"></a>FullScreen</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>0 : windowed, 1 : fullscreen, 2 : windowed with no title bar</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.msaa"></a>MSAA</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>MSAA sample count.  0 ==&gt; 1. -1 ==&gt; Max available</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.msaaquality"></a>MSAAQuality</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>MSAA quality, enables EQAA or CSAA if supported</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.memoryimpact"></a>MemoryImpact</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Overrides all other options to achieve desired memory profile. Must be set to -1 for changes in this file to be applied.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.mousegrab"></a>MouseGrab</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>0 : never grab, 1 : only in full screen, 2 : always grab</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.performanceimpact"></a>PerformanceImpact</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Overrides all other options to achieve desired performance profile. Must be set to -1 for changes in this file to be applied.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.playintrovideo"></a>PlayIntroVideo</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>Set to 1 play the intro video on startup.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.reducedassettextures"></a>ReducedAssetTextures</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Set to 0 to use full resolution textures.  Non-zero to reduce them</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.refreshrateinhz"></a>RefreshRateInHz</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Refresh rate for fullscreen mode. Ignored for windowed mode</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.renderheight"></a>RenderHeight</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Render height in pixels.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.renderwidth"></a>RenderWidth</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Render width in pixels.</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.shadowmapresolution"></a>ShadowMapResolution</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Resolution of shadow map (NxN)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.terrainheightmaskresolution"></a>TerrainHeightMaskResolution</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>Resolution of mask for FOW (NxN)</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.uiupscale"></a>UIUpscale</td>
+<td><code>AppOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>UI will be scaled by 1 plus this value, non-integers may cause small artifacts</td>
+<td>verified</td>
+</tr>
+<tr>
+<td><a id="video.vsync"></a>VSync</td>
+<td><code>GraphicsOptions</code></td>
+<td>integer</td>
+<td>—</td>
+<td>1 = Wait for vertical sync. 0 = I don't mind tearing artifacts</td>
+<td>verified</td>
+</tr>
+</tbody>
+</table>
+<h2>Worth knowing</h2>
+<ul>
+<li><code>[General] AvailableViews</code> (GraphicsOptions): 0 = strategic view only, 1 = 3D only, 2 = both. World Builder is a strategic-view-only experience in practice.</li>
+<li><code>[Debug]</code> (AppOptions) holds the switches behind the debug menu, the FireTuner (<code>EnableTuner</code>), World Builder (<code>EnableWorldBuilder</code>), GameCore event logging (<code>EnableGameCoreEventLog</code>) and terrain logging (<code>EnableTerrainLogging</code>).</li>
+<li><code>[Gameplay]</code> and <code>[Interface]</code> (UserOptions) are the in-game Options menu; <code>[Multiplayer]</code> has the Play By Cloud webhook settings (<code>TurnWebHookURL</code>, <code>TurnWebHookFrequency</code>).</li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

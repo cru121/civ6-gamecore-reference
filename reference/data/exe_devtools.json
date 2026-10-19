@@ -1,0 +1,1331 @@
+[
+ {
+  "id": "exedev:tuner-command:LSQ",
+  "kind": "tuner-command",
+  "name": "LSQ",
+  "scope": "application",
+  "handler": "0x4f6d10",
+  "handler_rva": "0x4f6d10",
+  "strings": [],
+  "meaning": "handler not named; the command word suggests a query for the list of Lua states (guess)",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:APP",
+  "kind": "tuner-command",
+  "name": "APP",
+  "scope": "application",
+  "handler": "0x4f13c0",
+  "handler_rva": "0x4f13c0",
+  "strings": [],
+  "meaning": "handler is `RegisterTree` in the function map (low confidence): registers the value tree of the tuner and then sends application information (guess)",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:CLOSE",
+  "kind": "tuner-command",
+  "name": "CLOSE",
+  "scope": "application",
+  "handler": "0x4efee0",
+  "handler_rva": "0x4efee0",
+  "strings": [],
+  "meaning": "close the tuner connection",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:TREE",
+  "kind": "tuner-command",
+  "name": "TREE",
+  "scope": "application",
+  "handler": "Tuner::AppTuner2::Listener::HandleTreeRequest",
+  "handler_rva": "0x4f4e00",
+  "strings": [
+   "D%s = %s"
+  ],
+  "meaning": "request a tree of values (reply lines `D<name> = <value>`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:STRACKERS",
+  "kind": "tuner-command",
+  "name": "STRACKERS",
+  "scope": "application",
+  "handler": "Tuner::AppTuner2::Listener::HandleStatTrackersListRequest",
+  "handler_rva": "0x4f43c0",
+  "strings": [
+   "TrackerList"
+  ],
+  "meaning": "list the statistic trackers (reply `TrackerList`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:START_TRACKER",
+  "kind": "tuner-command",
+  "name": "START_TRACKER",
+  "scope": "application",
+  "handler": "0x4f4380",
+  "handler_rva": "0x4f4380",
+  "strings": [],
+  "meaning": "start a statistic tracker (name; handler not named)",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:STOP_TRACKER",
+  "kind": "tuner-command",
+  "name": "STOP_TRACKER",
+  "scope": "application",
+  "handler": "0x4f4420",
+  "handler_rva": "0x4f4420",
+  "strings": [],
+  "meaning": "stop a statistic tracker (name; handler not named)",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:LOAD",
+  "kind": "tuner-command",
+  "name": "LOAD",
+  "scope": "application",
+  "handler": "0x4f2650",
+  "handler_rva": "0x4f2650",
+  "strings": [],
+  "meaning": "handler not named; the word suggests a load request (guess)",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:HOTLOAD",
+  "kind": "tuner-command",
+  "name": "HOTLOAD",
+  "scope": "application",
+  "handler": "ProcessInput (kind dispatch)",
+  "handler_rva": "0x4f5bf0",
+  "strings": [],
+  "meaning": "reload assets while the game runs: `HOTLOAD:ARTDEF:<name>`, `HOTLOAD:UI:<name>` or `HOTLOAD:<other>:<name>` (blueprint reload)",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:CMD",
+  "kind": "tuner-command",
+  "name": "CMD",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::RunConsoleCommand",
+  "handler_rva": "0x4f6b70",
+  "strings": [
+   "ERR:Invalid Lua State"
+  ],
+  "meaning": "run a console command in the Lua state (`RunConsoleCommand`; error `ERR:Invalid Lua State`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:HELP",
+  "kind": "tuner-command",
+  "name": "HELP",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandleHelpRequest",
+  "handler_rva": "0x4f1ee0",
+  "strings": [
+   "BaseType",
+   "ExposedMembers",
+   "__index"
+  ],
+  "meaning": "help for an object or table: `BaseType`, `ExposedMembers`, `__index` lookups",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:HELPT",
+  "kind": "tuner-command",
+  "name": "HELPT",
+  "scope": "lua-state",
+  "handler": "0x4f5070",
+  "handler_rva": "0x4f5070",
+  "strings": [
+   "Function",
+   "String",
+   "Table"
+  ],
+  "meaning": "help for a table / array (`HandleArrayHelpRequest`, reply `%s (%s)`)",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:VAL",
+  "kind": "tuner-command",
+  "name": "VAL",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandleSetValueRequest",
+  "handler_rva": "0x4f3dc0",
+  "strings": [
+   "ERR:No Query Found",
+   "ERR:SET:",
+   "ERR:SET:Bad lua state",
+   "string"
+  ],
+  "meaning": "set a value (`ERR:SET:`, `ERR:SET:Bad lua state`, `ERR:No Query Found`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:QRY",
+  "kind": "tuner-command",
+  "name": "QRY",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandleQueryRequest",
+  "handler_rva": "0x4f3890",
+  "strings": [
+   "Attempt to call a Lua::Function with an invalid function",
+   "ERR:Bad lua state"
+  ],
+  "meaning": "run a query function (`ERR:Bad lua state`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:KILLQRY",
+  "kind": "tuner-command",
+  "name": "KILLQRY",
+  "scope": "lua-state",
+  "handler": "0x4f1750",
+  "handler_rva": "0x4f1750",
+  "strings": [],
+  "meaning": "cancel a running query",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:TABLE",
+  "kind": "tuner-command",
+  "name": "TABLE",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandleTableInfoRequest",
+  "handler_rva": "0x4f4960",
+  "strings": [
+   "* Metatable *",
+   "Attempt to call a Lua::Function with an invalid function",
+   "function(k) return \"* \" .. tostring(k) .. \" *\"; end"
+  ],
+  "meaning": "list the contents of a Lua table (marks the metatable as `* Metatable *`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:CUSTOM_TABLE",
+  "kind": "tuner-command",
+  "name": "CUSTOM_TABLE",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandleCustomTableRequest",
+  "handler_rva": "0x4f1d10",
+  "strings": [
+   "Populate Table Error"
+  ],
+  "meaning": "populate a custom table (`Populate Table Error`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:CUSTOM_TABLE_SEL",
+  "kind": "tuner-command",
+  "name": "CUSTOM_TABLE_SEL",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandleCustomTableSelectionRequest",
+  "handler_rva": "0x4f2cd0",
+  "strings": [
+   "OnSelection Error",
+   "StateName"
+  ],
+  "meaning": "selection in a custom table (`OnSelection Error`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:LIST",
+  "kind": "tuner-command",
+  "name": "LIST",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandlePopulateListRequest",
+  "handler_rva": "0x4f2f10",
+  "strings": [
+   "Attempt to call a Lua::Function with an invalid function",
+   "Populate List Error",
+   "Populate List Success",
+   "Populate List Success;Selected=%d",
+   "selected"
+  ],
+  "meaning": "populate a list (`Populate List Success`, `Populate List Success;Selected=%d`, `Populate List Error`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:LISTSEL",
+  "kind": "tuner-command",
+  "name": "LISTSEL",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandleCustomTableSelectionRequest",
+  "handler_rva": "0x4f2cd0",
+  "strings": [
+   "OnSelection Error",
+   "StateName"
+  ],
+  "meaning": "selection in a list (same handler as the custom table selection)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:tuner-command:MLIST",
+  "kind": "tuner-command",
+  "name": "MLIST",
+  "scope": "lua-state",
+  "handler": "Tuner::AppTuner2::Listener::HandlePopulateMultiselectListRequest",
+  "handler_rva": "0x4f32f0",
+  "strings": [
+   "Attempt to call a Lua::Function with an invalid function",
+   "Populate List Error",
+   "Populate List Success",
+   "Selected"
+  ],
+  "meaning": "populate a multiselect list (`Populate List Success`)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "compared in the dispatch of Tuner::AppTuner2::Listener::ProcessInput (0x4f5bf0), decompiled; handler names from the Linux function map; meaning inferred from handler names and strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:assetcloud-command:CLOSE",
+  "kind": "assetcloud-command",
+  "name": "CLOSE",
+  "scope": "assetcloud",
+  "handler": "AssetCloud::Listener::ProcessInput",
+  "handler_rva": "0x4ef4f0",
+  "strings": [],
+  "meaning": "close the asset cloud connection (log: \"Received close request.\")",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "command strings compared in AssetCloud::Listener::ProcessInput (0x4ef4f0); log file AssetCloudTuner.log"
+   }
+  ]
+ },
+ {
+  "id": "exedev:assetcloud-command:HOTLOAD",
+  "kind": "assetcloud-command",
+  "name": "HOTLOAD",
+  "scope": "assetcloud",
+  "handler": "AssetCloud::Listener::ProcessInput",
+  "handler_rva": "0x4ef4f0",
+  "strings": [],
+  "meaning": "hot load a file (log: \"Received Hotload request: '%s'.\" then \"HotLoad complete.\"); queue entries are `ARTDEF:` and `DEPENDENCY:` (log: \"Adding ArtDef/BLP '%s' to the hot load queue\")",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "command strings compared in AssetCloud::Listener::ProcessInput (0x4ef4f0); log file AssetCloudTuner.log"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:GUID",
+  "kind": "bug-header",
+  "name": "GUID",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 1 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Application",
+  "kind": "bug-header",
+  "name": "Application",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 2 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:SubmissionType",
+  "kind": "bug-header",
+  "name": "SubmissionType",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 3 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Host",
+  "kind": "bug-header",
+  "name": "Host",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 4 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Time",
+  "kind": "bug-header",
+  "name": "Time",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "formatted %04d-%02d-%02d %02d:%02d:%02d"
+  ],
+  "meaning": "element 5 of the header written to the bug submission folder (formatted %04d-%02d-%02d %02d:%02d:%02d)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:File",
+  "kind": "bug-header",
+  "name": "File",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 6 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Line",
+  "kind": "bug-header",
+  "name": "Line",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 7 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Message",
+  "kind": "bug-header",
+  "name": "Message",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 8 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Callstack",
+  "kind": "bug-header",
+  "name": "Callstack",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 9 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Catalog",
+  "kind": "bug-header",
+  "name": "Catalog",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [],
+  "meaning": "element 10 of the header written to the bug submission folder",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Log",
+  "kind": "bug-header",
+  "name": "Log",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "child File, MD5"
+  ],
+  "meaning": "element 11 of the header written to the bug submission folder (child File, MD5)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Dump",
+  "kind": "bug-header",
+  "name": "Dump",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "child File, MD5"
+  ],
+  "meaning": "element 12 of the header written to the bug submission folder (child File, MD5)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Attachments",
+  "kind": "bug-header",
+  "name": "Attachments",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "child File, MD5"
+  ],
+  "meaning": "element 13 of the header written to the bug submission folder (child File, MD5)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Exception",
+  "kind": "bug-header",
+  "name": "Exception",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "children Message, StackTrace, ModuleInfo"
+  ],
+  "meaning": "element 14 of the header written to the bug submission folder (children Message, StackTrace, ModuleInfo)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:ModuleInfo",
+  "kind": "bug-header",
+  "name": "ModuleInfo",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "attributes file, baseAddr, size, guid1, guid2, guid3, guid4, age, pdbPath"
+  ],
+  "meaning": "element 15 of the header written to the bug submission folder (attributes file, baseAddr, size, guid1, guid2, guid3, guid4, age, pdbPath)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Version",
+  "kind": "bug-header",
+  "name": "Version",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "children Major, Minor, Rev, Build, Changelist"
+  ],
+  "meaning": "element 16 of the header written to the bug submission folder (children Major, Minor, Rev, Build, Changelist)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:bug-header:Session",
+  "kind": "bug-header",
+  "name": "Session",
+  "scope": "bug submission header",
+  "handler": "AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder",
+  "handler_rva": "0x705e70",
+  "strings": [
+   "children Hash, Time"
+  ],
+  "meaning": "element 17 of the header written to the bug submission folder (children Hash, Time)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "element/attribute name string in GenerateHeaderInSubmissionFolder (0x705e70); the grouping into children is inferred from the order of the strings"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_ACCESS_VIOLATION",
+  "kind": "exception",
+  "name": "EXCEPTION_ACCESS_VIOLATION",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000005"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000005",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_ARRAY_BOUNDS_EXCEEDED",
+  "kind": "exception",
+  "name": "EXCEPTION_ARRAY_BOUNDS_EXCEEDED",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC000008C"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC000008C",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_BREAKPOINT",
+  "kind": "exception",
+  "name": "EXCEPTION_BREAKPOINT",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0x80000003"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0x80000003",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_DATATYPE_MISALIGNMENT",
+  "kind": "exception",
+  "name": "EXCEPTION_DATATYPE_MISALIGNMENT",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0x80000002"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0x80000002",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_FLT_DENORMAL_OPERAND",
+  "kind": "exception",
+  "name": "EXCEPTION_FLT_DENORMAL_OPERAND",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC000008D"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC000008D",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_FLT_DIVIDE_BY_ZERO",
+  "kind": "exception",
+  "name": "EXCEPTION_FLT_DIVIDE_BY_ZERO",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC000008E"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC000008E",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_FLT_INEXACT_RESULT",
+  "kind": "exception",
+  "name": "EXCEPTION_FLT_INEXACT_RESULT",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC000008F"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC000008F",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_FLT_INVALID_OPERATION",
+  "kind": "exception",
+  "name": "EXCEPTION_FLT_INVALID_OPERATION",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000090"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000090",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_FLT_OVERFLOW",
+  "kind": "exception",
+  "name": "EXCEPTION_FLT_OVERFLOW",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000091"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000091",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_FLT_STACK_CHECK",
+  "kind": "exception",
+  "name": "EXCEPTION_FLT_STACK_CHECK",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000092"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000092",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_FLT_UNDERFLOW",
+  "kind": "exception",
+  "name": "EXCEPTION_FLT_UNDERFLOW",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000093"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000093",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_GUARD_PAGE",
+  "kind": "exception",
+  "name": "EXCEPTION_GUARD_PAGE",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0x80000001"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0x80000001",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_ILLEGAL_INSTRUCTION",
+  "kind": "exception",
+  "name": "EXCEPTION_ILLEGAL_INSTRUCTION",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC000001D"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC000001D",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_INT_DIVIDE_BY_ZERO",
+  "kind": "exception",
+  "name": "EXCEPTION_INT_DIVIDE_BY_ZERO",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000094"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000094",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_INT_OVERFLOW",
+  "kind": "exception",
+  "name": "EXCEPTION_INT_OVERFLOW",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000095"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000095",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_INVALID_DISPOSITION",
+  "kind": "exception",
+  "name": "EXCEPTION_INVALID_DISPOSITION",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000026"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000026",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_INVALID_HANDLE",
+  "kind": "exception",
+  "name": "EXCEPTION_INVALID_HANDLE",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000008"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000008",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_IN_PAGE_ERROR",
+  "kind": "exception",
+  "name": "EXCEPTION_IN_PAGE_ERROR",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000006"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000006",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_NONCONTINUABLE_EXCEPTION",
+  "kind": "exception",
+  "name": "EXCEPTION_NONCONTINUABLE_EXCEPTION",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000025"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000025",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_PRIV_INSTRUCTION",
+  "kind": "exception",
+  "name": "EXCEPTION_PRIV_INSTRUCTION",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC0000096"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC0000096",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_SINGLE_STEP",
+  "kind": "exception",
+  "name": "EXCEPTION_SINGLE_STEP",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0x80000004"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0x80000004",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:exception:EXCEPTION_STACK_OVERFLOW",
+  "kind": "exception",
+  "name": "EXCEPTION_STACK_OVERFLOW",
+  "scope": "crash handler",
+  "handler": "FDebugHelperNS::GetExceptionDescription",
+  "handler_rva": "0x986d20",
+  "strings": [
+   "0xC00000FD"
+  ],
+  "meaning": "name shown in the crash dialog and report for the Windows exception code 0xC00000FD",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "exception name string in FDebugHelperNS::GetExceptionDescription (0x986d20); code values are the documented Windows constants"
+   }
+  ]
+ },
+ {
+  "id": "exedev:automation:AutomationAppInitComplete",
+  "kind": "automation",
+  "name": "AutomationAppInitComplete",
+  "scope": "automation",
+  "handler": "App::Automation::Manager",
+  "handler_rva": "",
+  "strings": [],
+  "meaning": "raised when the app finished initialising (Automation::Manager::OnAppInitComplete)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "string literal of App::Automation::Manager functions"
+   }
+  ]
+ },
+ {
+  "id": "exedev:automation:AutomationMainMenuStarted",
+  "kind": "automation",
+  "name": "AutomationMainMenuStarted",
+  "scope": "automation",
+  "handler": "App::Automation::Manager",
+  "handler_rva": "",
+  "strings": [],
+  "meaning": "raised when the main menu started",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "string literal of App::Automation::Manager functions"
+   }
+  ]
+ },
+ {
+  "id": "exedev:automation:AutomationPostGameInitialization",
+  "kind": "automation",
+  "name": "AutomationPostGameInitialization",
+  "scope": "automation",
+  "handler": "App::Automation::Manager",
+  "handler_rva": "",
+  "strings": [],
+  "meaning": "raised after game initialisation (Automation::Manager::PostGameInitialization)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "string literal of App::Automation::Manager functions"
+   }
+  ]
+ },
+ {
+  "id": "exedev:automation:$(Automation)",
+  "kind": "automation",
+  "name": "$(Automation)",
+  "scope": "automation",
+  "handler": "App::Automation::Manager",
+  "handler_rva": "",
+  "strings": [],
+  "meaning": "file name tag replaced by the automation folder in output file names",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "string literal of App::Automation::Manager functions"
+   }
+  ]
+ },
+ {
+  "id": "exedev:automation:$(ID)",
+  "kind": "automation",
+  "name": "$(ID)",
+  "scope": "automation",
+  "handler": "App::Automation::Manager",
+  "handler_rva": "",
+  "strings": [],
+  "meaning": "file name tag replaced by the run id",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "string literal of App::Automation::Manager functions"
+   }
+  ]
+ },
+ {
+  "id": "exedev:automation:Automation_%04d_%02d_%02d__%02d_%02d_%02d",
+  "kind": "automation",
+  "name": "Automation_%04d_%02d_%02d__%02d_%02d_%02d",
+  "scope": "automation",
+  "handler": "App::Automation::Manager",
+  "handler_rva": "",
+  "strings": [],
+  "meaning": "default automation output name pattern (date and time)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "string literal of App::Automation::Manager functions"
+   }
+  ]
+ }
+]

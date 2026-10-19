@@ -1,0 +1,220 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game start, save and load sequence</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Game start, save and load sequence</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Game start, save and load sequence</h1>
+<p>When a game starts (a new game or a loaded save) the exe runs one state machine, <code>LoadGameViewState::LaunchNextStage</code> (<code>0x84870</code>), and writes its progress to <code>LoadGameViewState.log</code> (see the <a href="files.html">files</a> page). This page lists its states in the order the code reaches them, the log lines each state writes (useful to read a load log), the steps of the game state loader, the flags of a save location and the keys of the save metadata. <strong>Verified</strong>: state numbers, assigned next states, log texts and names (decompiled code and strings). <strong>Inferred</strong>: the conditions behind a transition and the meaning of state 8 and the failure state 11, which were not analysed.</p>
+<p><strong>Flow.</strong> New game: <code>0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 6 -&gt; 8</code>. Loading a save: <code>0 -&gt; 1 -&gt; 4 -&gt; 5 -&gt; 2 -&gt; 3 -&gt; 7</code>. State 11 is the failure exit used by most states.</p>
+<h2>States</h2>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Name</th>
+<th>Next</th>
+<th>Log lines it writes</th>
+<th>Timed steps</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="state-0"></a>0</td>
+<td>Start</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>Entry: moves on to state 1 (to state 11, the failure state, when the start fails).</td>
+</tr>
+<tr>
+<td><a id="state-1"></a>1</td>
+<td>Decide: load a save or start new</td>
+<td>2 or 4</td>
+<td>—</td>
+<td>—</td>
+<td>Asks the serializer for the request type (function 0x167ce0): when the result is 2 (inferred: a saved game is to be loaded) the next state is 4, otherwise 2.</td>
+</tr>
+<tr>
+<td><a id="state-2"></a>2</td>
+<td>Configure Content</td>
+<td>3</td>
+<td><code>CONFIGURE_CONTENT Begin</code>, <code>CONFIGURE_CONTENT took ...</code></td>
+<td><code>Restarting asset load</code></td>
+<td>Stage label <code>Stage: Configure Content</code>. Configure Content: the game content is configured and the asset load restarted; then state 3 (11 on failure).</td>
+</tr>
+<tr>
+<td><a id="state-3"></a>3</td>
+<td>Set gameplay logging</td>
+<td>6 or 7</td>
+<td>—</td>
+<td>—</td>
+<td>Reads the gameplay logging options (listed below), then goes to 6 (new game) or 7 (unserialize a game state): the value is (x != 0) + 6 for a pointer x read in this state (inferred: whether a saved game stream was loaded).</td>
+</tr>
+<tr>
+<td><a id="state-4"></a>4</td>
+<td>Load a save file</td>
+<td>5</td>
+<td><code>GAMECORE_LOAD_SAVEFILE Begin</code>, <code>GAMECORE_LOAD_SAVEFILE took ...</code></td>
+<td>—</td>
+<td>Stage label <code>Stage: Loading a save</code>. Loads the save file, then state 5 (11 on failure).</td>
+</tr>
+<tr>
+<td><a id="state-5"></a>5</td>
+<td>Save load pending (apply mod state)</td>
+<td>2</td>
+<td><code>GAMECORE_LOAD_SAVEFILE_PENDING Begin</code></td>
+<td><code>ApplyModdingState</code></td>
+<td>Save load pending: when done the mod state is applied (<code>ApplyModdingState</code>) and the sequence continues with Configure Content (state 2); 11 on failure.</td>
+</tr>
+<tr>
+<td><a id="state-6"></a>6</td>
+<td>New game</td>
+<td>8</td>
+<td><code>GAMECORE_NEW_GAME Begin</code></td>
+<td><code>Block on asset load</code>, <code>InitializeNewGame</code></td>
+<td>Starts a new game (<code>InitializeNewGame</code>), records the <code>StartupGameTimings</code> numbers, goes to state 8; 11 on failure.</td>
+</tr>
+<tr>
+<td><a id="state-7"></a>7</td>
+<td>Unserialize game state</td>
+<td>(not read)</td>
+<td><code>GAMECORE_UNSERIALIZE_GAMESTATE Begin</code></td>
+<td><code>Unserialize</code>, <code>InitializeCache</code>, <code>PostGameInitialization</code>, <code>PostInitialize</code></td>
+<td>Stage label <code>Stage: Unserializing Game State</code>. Unserializes the game state, initialises the cache, runs post-initialisation and records the timings; the successor state was not read out.</td>
+</tr>
+</tbody>
+</table>
+<p>Each block logs <code>&lt;NAME&gt; Begin</code> and <code>&lt;NAME&gt; took N seconds</code> with a timestamp prefix; sub-steps are logged as <code>,&lt;step&gt; took N seconds</code>. The times of new-game and load runs are also recorded under <code>Timings</code> / <code>StartupGameTimings</code> (keys <code>Session</code>, <code>InitializeNewGame</code>, <code>PostLoad</code>).</p>
+<h2>Game state loader steps</h2>
+<p><code>GameCore::Serializer::Manager::UnserializeGameState</code> (<code>0x16e340</code>) logs "<step> - Complete" in this order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a id="unserialize-step-loadheader"></a><code>LoadHeader</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a id="unserialize-step-attachtosession"></a><code>AttachToSession</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a id="unserialize-step-loadgamecorestate"></a><code>LoadGameCoreState</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a id="unserialize-step-loadaudiostate"></a><code>LoadAudioState</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a id="unserialize-step-loaduistate"></a><code>LoadUIState</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a id="unserialize-step-loadrecorderstate"></a><code>LoadRecorderState</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Gameplay logging options read in state 3</h2>
+<p>Switches of the <a href="options.html">Gameplay section of UserOptions.txt</a> that are applied before the game starts; the second column is the log id the exe passes along.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Log id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="logging-option-gamehistoryloglevel"></a><code>GameHistoryLogLevel</code></td>
+<td><code>HISTORY_LOGGING_ID</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-gamehistorysequentialloglevel"></a><code>GameHistorySequentialLogLevel</code></td>
+<td><code>HISTORY_LOGGING_SEQUENTIAL_ID</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-ai_masterlogging"></a><code>AI_MasterLogging</code></td>
+<td><code>AI_MASTER_LOGGING</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-aicitybuildplotlog"></a><code>AICityBuildPlotLog</code></td>
+<td><code>CITY_PLOT_ANALYSIS_LOG_ID</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-gameeramomentslog"></a><code>GameEraMomentsLog</code></td>
+<td><code>GAME_ERA_MOMENTS_LOG_ID</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-aisettlementevaluationlog"></a><code>AISettlementEvaluationLog</code></td>
+<td><code>PLAYER_SETTLEMENT_ANALYSIS_LOG_ID</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-aidiplomaticactionlog"></a><code>AiDiplomaticActionLog</code></td>
+<td><code>DIPLOMATIC_ACTION_LOG_ID</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-aioperationevallog"></a><code>AIOperationEvalLog</code></td>
+<td><code>AI_OPERATION_EVAL</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-profileenabled"></a><code>ProfileEnabled</code></td>
+<td><code>CACHE_PERF_LOGGING</code></td>
+</tr>
+<tr>
+<td><a id="logging-option-gameeffectsloglevel"></a><code>GameEffectsLogLevel</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Save location flags</h2>
+<p>Fields of the table <code>GetSaveLocation</code> builds for a save location (<code>0x168310</code>): <code>AccountReference</code>, <code>IsDirectory</code>, <code>IsAutosave</code>, <code>IsQuicksave</code>, <code>IsPrevious</code>.</p>
+<h2>Save metadata</h2>
+<p>A save carries a <code>MetaData</code> table of name and value rows (<code>INSERT INTO MetaData (Name, Value) VALUES (?,?)</code>). The keys the exe writes or reads by name:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="metadata-key-metadataversion"></a><code>MetaDataVersion</code></td>
+<td>Version of the save metadata layout (written by SaveMetaData).</td>
+<td><code>SaveMetaData</code> (0x16d500)</td>
+</tr>
+<tr>
+<td><a id="metadata-key-appversion"></a><code>AppVersion</code></td>
+<td>Game version, written as "%d.%d.%d.%d (%d)" from the application version fields.</td>
+<td><code>SaveMetaData</code> (0x16d500)</td>
+</tr>
+<tr>
+<td><a id="metadata-key-displayname"></a><code>DisplayName</code></td>
+<td>Display name of the save.</td>
+<td><code>SaveMetaData</code> (0x16d500)</td>
+</tr>
+<tr>
+<td><a id="metadata-key-ismod"></a><code>IsMod</code></td>
+<td>Read back by ApplyModdingState (<code>SELECT Value from MetaData where Name = 'IsMod'</code>): whether the game was started with mods.</td>
+<td><code>ApplyModdingState</code> (0x1639b0)</td>
+</tr>
+</tbody>
+</table>
+<p>When a save is applied, <code>ApplyModdingState</code> also reads the save's <code>Players</code> (<code>CivilizationType</code>), <code>ModDependencies</code> (<code>ID</code>, <code>Title</code>), <code>StartPositions</code> (<code>Type</code>, <code>Value</code>) and <code>MapAttributes</code> (<code>Name</code> = <code>Ruleset</code>) tables; see the <a href="../exedb/statements.html">database statements</a>.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

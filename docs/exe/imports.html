@@ -1,0 +1,2674 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Imports and dependencies</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Imports and dependencies</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Imports and dependencies</h1>
+<p>The Windows executable is not a single block: it loads <strong>game libraries</strong> that sit next to it (<code>Base/Binaries/Win64Steam</code>), two <strong>platform SDKs</strong> (Steam and Epic) and the usual Windows and C runtime DLLs. This page lists every DLL the executable imports and, for each function, how many functions of the exe call it. Read from the import table of <code>CivilizationVI.exe</code> (DX11, July 2024); the role of each DLL is inferred from its name and the functions imported.</p>
+<p><strong>Why it matters for modding.</strong> The Lua virtual machine (<code>HavokScript_FinalRelease.dll</code>), the database layer (<code>DatabaseDLL_FinalRelease.dll</code>) and the text system (<code>Localization_FinalRelease.dll</code>) are separate DLLs, so a hook on a Lua or database call can be placed in that DLL as well as in the exe. The exe imports only 4 functions from the database DLL: <code>Initialize</code>, <code>Shutdown</code>, <code>CreateConnection</code>, <code>SetDefaultLogger</code>.</p>
+<h2>DLLs</h2>
+<table>
+<thead>
+<tr>
+<th>DLL</th>
+<th>Role (inferred)</th>
+<th>Kind</th>
+<th>Imports</th>
+<th>Called from the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#bink2w64.dll">bink2w64.dll</a></td>
+<td>Bink video playback (intro movies, subtitles)</td>
+<td>game</td>
+<td>22</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a href="#databasedll_finalrelease.dll">DatabaseDLL_FinalRelease.dll</a></td>
+<td>SQLite database layer: initialise, open connections, logger</td>
+<td>game</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="#havokscript_finalrelease.dll">HavokScript_FinalRelease.dll</a></td>
+<td>Lua virtual machine (Havok Script)</td>
+<td>game</td>
+<td>71</td>
+<td>71</td>
+</tr>
+<tr>
+<td><a href="#localization_finalrelease.dll">Localization_FinalRelease.dll</a></td>
+<td>Text database and language handling (strings, language lists, coverage)</td>
+<td>game</td>
+<td>45</td>
+<td>43</td>
+</tr>
+<tr>
+<td><a href="#eossdk-win64-shipping.dll">EOSSDK-Win64-Shipping.dll</a></td>
+<td>Epic Online Services SDK (lobbies, sessions, networking, ownership)</td>
+<td>platform</td>
+<td>70</td>
+<td>70</td>
+</tr>
+<tr>
+<td><a href="#steam_api64.dll">steam_api64.dll</a></td>
+<td>Steamworks client API (achievements, friends, workshop, overlay, callbacks)</td>
+<td>platform</td>
+<td>17</td>
+<td>16</td>
+</tr>
+<tr>
+<td>ADVAPI32.dll</td>
+<td>Registry and security APIs</td>
+<td>system</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>d3d11.dll</td>
+<td>Direct3D 11 (device creation)</td>
+<td>system</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>dbghelp.dll</td>
+<td>Symbols and mini dumps (crash reports)</td>
+<td>system</td>
+<td>12</td>
+<td>12</td>
+</tr>
+<tr>
+<td>dxgi.dll</td>
+<td>DXGI (adapters and swap chains)</td>
+<td>system</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GDI32.dll</td>
+<td>Graphics device interface</td>
+<td>system</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>IMM32.dll</td>
+<td>Input method editors (text entry for Asian languages)</td>
+<td>system</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IPHLPAPI.DLL</td>
+<td>Network adapter information</td>
+<td>system</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>KERNEL32.dll</td>
+<td>Core Windows API: files, threads, memory, modules</td>
+<td>system</td>
+<td>156</td>
+<td>156</td>
+</tr>
+<tr>
+<td>ole32.dll</td>
+<td>COM</td>
+<td>system</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>OLEAUT32.dll</td>
+<td>COM automation strings</td>
+<td>system</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>SETUPAPI.dll</td>
+<td>Device enumeration (hardware information)</td>
+<td>system</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>SHELL32.dll</td>
+<td>Shell: known folders, opening URLs and folders</td>
+<td>system</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>SHLWAPI.dll</td>
+<td>Path and string helpers</td>
+<td>system</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>USER32.dll</td>
+<td>Windows, messages and input</td>
+<td>system</td>
+<td>68</td>
+<td>68</td>
+</tr>
+<tr>
+<td>VERSION.dll</td>
+<td>File version information</td>
+<td>system</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>WINHTTP.dll</td>
+<td>HTTP client (Firaxis Live, telemetry, downloads)</td>
+<td>system</td>
+<td>10</td>
+<td>10</td>
+</tr>
+<tr>
+<td>WINMM.dll</td>
+<td>Multimedia timers</td>
+<td>system</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>WS2_32.dll</td>
+<td>Windows sockets (multiplayer transport)</td>
+<td>system</td>
+<td>43</td>
+<td>43</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-conio-l1-1-0.dll</td>
+<td>C runtime (universal CRT): conio</td>
+<td>runtime</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-convert-l1-1-0.dll</td>
+<td>C runtime (universal CRT): convert</td>
+<td>runtime</td>
+<td>12</td>
+<td>12</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-environment-l1-1-0.dll</td>
+<td>C runtime (universal CRT): environment</td>
+<td>runtime</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-filesystem-l1-1-0.dll</td>
+<td>C runtime (universal CRT): filesystem</td>
+<td>runtime</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-heap-l1-1-0.dll</td>
+<td>C runtime (universal CRT): heap</td>
+<td>runtime</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-locale-l1-1-0.dll</td>
+<td>C runtime (universal CRT): locale</td>
+<td>runtime</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-math-l1-1-0.dll</td>
+<td>C runtime (universal CRT): math</td>
+<td>runtime</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-runtime-l1-1-0.dll</td>
+<td>C runtime (universal CRT): runtime</td>
+<td>runtime</td>
+<td>30</td>
+<td>30</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-stdio-l1-1-0.dll</td>
+<td>C runtime (universal CRT): stdio</td>
+<td>runtime</td>
+<td>33</td>
+<td>32</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-string-l1-1-0.dll</td>
+<td>C runtime (universal CRT): string</td>
+<td>runtime</td>
+<td>39</td>
+<td>39</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-time-l1-1-0.dll</td>
+<td>C runtime (universal CRT): time</td>
+<td>runtime</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>api-ms-win-crt-utility-l1-1-0.dll</td>
+<td>C runtime (universal CRT): utility</td>
+<td>runtime</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>MSVCP140.dll</td>
+<td>C++ standard library runtime</td>
+<td>runtime</td>
+<td>129</td>
+<td>118</td>
+</tr>
+<tr>
+<td>VCRUNTIME140.dll</td>
+<td>C++ runtime</td>
+<td>runtime</td>
+<td>19</td>
+<td>19</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="databasedll_finalrelease.dll"></a>DatabaseDLL_FinalRelease.dll</h2>
+<p>SQLite database layer: initialise, open connections, logger. 4 imports.</p>
+<details>
+<summary>4 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Calling functions</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool Database::Initialize(void)</code></td>
+<td>1</td>
+<td><code>0xd60968</code></td>
+</tr>
+<tr>
+<td><code>bool Database::Shutdown(void)</code></td>
+<td>1</td>
+<td><code>0xd6096e</code></td>
+</tr>
+<tr>
+<td><code>class Database::IDatabaseConnection1 * Database::CreateConnection(char const *,int,class Database::IDatabaseLo</code></td>
+<td>1</td>
+<td><code>0xd60974</code></td>
+</tr>
+<tr>
+<td><code>void Database::SetDefaultLogger(class Database::IDatabaseLogger *)</code></td>
+<td>1</td>
+<td><code>0xd60962</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="localization_finalrelease.dll"></a>Localization_FinalRelease.dll</h2>
+<p>Text database and language handling (strings, language lists, coverage). 45 imports.</p>
+<details>
+<summary>45 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Calling functions</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public: virtual Localization::String::~String(void)</code></td>
+<td>40</td>
+<td><code>0x4e5a0</code>, <code>0x4e810</code></td>
+</tr>
+<tr>
+<td><code>class Localization::StringDictionary const &amp; Localization::GetStringDictionary(void)</code></td>
+<td>24</td>
+<td><code>GameCore::App::Configuration::Lua::IGame::lGetEnabledMods</code>, <code>GameCore::Serializer::Manager::MakeMetaData</code></td>
+</tr>
+<tr>
+<td><code>class Localization::String Localization::Lookup(char const *)</code></td>
+<td>20</td>
+<td><code>0x4e5a0</code>, <code>Civ6App::InitialInit</code></td>
+</tr>
+<tr>
+<td><code>public: char const * Localization::String::toUTF8(void)</code></td>
+<td>19</td>
+<td><code>Civ6App::InitialInit</code>, <code>GameCore::App::Configuration::Game::Instance::GetTeamName</code></td>
+</tr>
+<tr>
+<td><code>public: char const * Localization::String::toUTF8(unsigned int &amp;,int)</code></td>
+<td>16</td>
+<td><code>0xb4800</code>, <code>0xb6280</code></td>
+</tr>
+<tr>
+<td><code>class Localization::Language const &amp; Localization::GetCurrentLanguage(void)</code></td>
+<td>10</td>
+<td><code>AppUIManager::AppUIManager</code>, <code>0x4fa90</code></td>
+</tr>
+<tr>
+<td><code>public: unsigned int Localization::StringDictionary::GetCurrentLanguageIndex(void)const</code></td>
+<td>9</td>
+<td><code>GameCore::App::Configuration::Lua::IGame::lGetEnabledMods</code>, <code>AppModdingFramework::ConfigureContent</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::String::PushArgument(double)</code></td>
+<td>8</td>
+<td><code>0x4c9110</code>, <code>0x4ca5d0</code></td>
+</tr>
+<tr>
+<td><code>public: char const * Localization::Language::GetType(void)const</code></td>
+<td>8</td>
+<td><code>AppUIManager::AppUIManager</code>, <code>0x4fa90</code></td>
+</tr>
+<tr>
+<td><code>public: Localization::String::String(char const *,unsigned int)</code></td>
+<td>7</td>
+<td><code>AppLuaLocaleLibrary::lToLower</code>, <code>AppLuaLocaleLibrary::lToNumber</code></td>
+</tr>
+<tr>
+<td><code>public: Localization::String::String(void)</code></td>
+<td>7</td>
+<td><code>0x5ef0</code>, <code>0x4e5a0</code></td>
+</tr>
+<tr>
+<td><code>public: Localization::SharedString::~SharedString(void)</code></td>
+<td>6</td>
+<td><code>GameCore::Serializer::Manager::MakeMetaData</code>, <code>0x180d10</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::String::PushArgument(char const *)</code></td>
+<td>6</td>
+<td><code>GameCore::App::Configuration::Game::SetToDefaultGameName</code>, <code>0x4c9110</code></td>
+</tr>
+<tr>
+<td><code>public: char const * Localization::StringDictionary::GetLanguageType(unsigned int)const</code></td>
+<td>6</td>
+<td><code>GameCore::App::Telemetry::Listener::Listener</code>, <code>ModdingLocalizationService::HasString</code></td>
+</tr>
+<tr>
+<td><code>public: class Localization::String Localization::StringDictionary::LookupBundle(char const *,unsigned int,unsi</code></td>
+<td>6</td>
+<td><code>GameCore::App::Configuration::Lua::IGame::lGetEnabledMods</code>, <code>AppModdingFramework::ConfigureContent</code></td>
+</tr>
+<tr>
+<td><code>public: unsigned int Localization::StringDictionary::GetLanguageCount(void)const</code></td>
+<td>6</td>
+<td><code>GameCore::App::Telemetry::Listener::Listener</code>, <code>ModdingLocalizationService::HasString</code></td>
+</tr>
+<tr>
+<td><code>public: class Localization::String &amp; Localization::String::operator=(class Localization::String const &amp;)</code></td>
+<td>5</td>
+<td><code>0x4e5a0</code>, <code>GameCore::App::Configuration::Game::Instance::GetTeamName</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::String::PushArgument(int)</code></td>
+<td>4</td>
+<td><code>GameCore::App::Configuration::Game::Instance::GetTeamName</code>, <code>0x4c9110</code></td>
+</tr>
+<tr>
+<td><code>public: char const * Localization::SharedString::GetString(unsigned int &amp;)const</code></td>
+<td>4</td>
+<td><code>GameCore::Serializer::Manager::MakeMetaData</code>, <code>AppLuaLocaleLibrary::lBundle</code></td>
+</tr>
+<tr>
+<td><code>public: class Localization::SharedString Localization::StringDictionary::Bundle(char const *)const</code></td>
+<td>3</td>
+<td><code>GameCore::Serializer::Manager::MakeMetaData</code>, <code>Network::Manager::OnTeamVictory</code></td>
+</tr>
+<tr>
+<td><code>public: void Localization::StringDictionary::NotifyDatabaseUpdated(void)const</code></td>
+<td>3</td>
+<td><code>AppModdingFramework::ConfigureContent</code>, <code>AppModdingFramework::RollbackContent</code></td>
+</tr>
+<tr>
+<td><code>class Localization::SharedString Localization::GetLanguageDisplayName(char const *,char const *)</code></td>
+<td>2</td>
+<td><code>0x4c9e70</code>, <code>0x4c9f10</code></td>
+</tr>
+<tr>
+<td><code>public: Localization::String::String(char const *)</code></td>
+<td>2</td>
+<td><code>GameCore::App::UI::Lua::ScriptSystemArg_FileList::Push</code>, <code>AppLuaLocaleLibrary::lToNumber</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::Language::CompareNoCase(char const *,unsigned int,char const *,unsigned int,int &amp;)c</code></td>
+<td>2</td>
+<td><code>0x4d61e0</code>, <code>0x4d66a0</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::StringDictionary::HasKey(char const *,unsigned int,unsigned int)const</code></td>
+<td>2</td>
+<td><code>ModdingLocalizationService::HasString</code>, <code>0x4ca090</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::StringDictionary::IsValidKey(char const *)const</code></td>
+<td>2</td>
+<td><code>AppLuaLocaleLibrary::lCompose</code>, <code>0x4ca4d0</code></td>
+</tr>
+<tr>
+<td><code>public: char const * Localization::SharedString::GetBuffer(unsigned int &amp;)const</code></td>
+<td>2</td>
+<td><code>0x180d10</code>, <code>Network::Manager::OnTeamVictory</code></td>
+</tr>
+<tr>
+<td><code>public: class Localization::String Localization::StringDictionary::Lookup(char const *,unsigned int)const</code></td>
+<td>2</td>
+<td><code>0x25a600</code>, <code>0x25b9b0</code></td>
+</tr>
+<tr>
+<td><code>bool Localization::Initialize(char16_t const *,class Database::IDatabaseConnection1 *,char const *,bool,class</code></td>
+<td>1</td>
+<td><code>Civ6App::SetupLocalization</code></td>
+</tr>
+<tr>
+<td><code>bool Localization::Shutdown(void)</code></td>
+<td>1</td>
+<td><code>Civ6App::FinalShutdown</code></td>
+</tr>
+<tr>
+<td><code>public: Localization::SharedString::SharedString(void)</code></td>
+<td>1</td>
+<td><code>0x180d10</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::Language::Compare(char const *,unsigned int,char const *,unsigned int,int &amp;)const</code></td>
+<td>1</td>
+<td><code>AppLuaLocaleLibrary::lCompare</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::String::IsEmpty(void)const</code></td>
+<td>1</td>
+<td><code>Network::LuaMatchmakingLibrary::AddLobbyToTable</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::String::PushArgument(__int64)</code></td>
+<td>1</td>
+<td><code>GameCore::App::UI::Lua::ScriptSystemArg_FileList::Push</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::StringDictionary::GetLanguageCoverage(unsigned int,int &amp;,int &amp;)const</code></td>
+<td>1</td>
+<td><code>0x4c9c10</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::StringDictionary::HasKey(char const *,unsigned int)const</code></td>
+<td>1</td>
+<td><code>ModdingLocalizationService::HasString</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::StringDictionary::TryLookup(char const *,unsigned int,class Localization::String &amp;)</code></td>
+<td>1</td>
+<td><code>ModdingLocalizationService::LookupString</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::StringDictionary::TryLookupLanguage(char const *,unsigned int,unsigned int,class Lo</code></td>
+<td>1</td>
+<td><code>ModdingLocalizationService::LookupString</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::StringDictionary::TryLookupLanguageUncached(char const *,unsigned int,unsigned int,</code></td>
+<td>1</td>
+<td><code>0x180d10</code></td>
+</tr>
+<tr>
+<td><code>public: char const * Localization::StringDictionary::GetLanguageDisplayName(unsigned int)const</code></td>
+<td>1</td>
+<td><code>0x4c9b00</code></td>
+</tr>
+<tr>
+<td><code>public: class Localization::String Localization::StringDictionary::LookupLanguage(char const *,unsigned int)co</code></td>
+<td>1</td>
+<td><code>AppLuaLocaleLibrary::lLookupLanguage</code></td>
+</tr>
+<tr>
+<td><code>public: unsigned int Localization::SharedString::GetLength(void)const</code></td>
+<td>1</td>
+<td><code>Network::Manager::OnTeamVictory</code></td>
+</tr>
+<tr>
+<td><code>public: void Localization::String::NameArgument(unsigned int,char const *)</code></td>
+<td>1</td>
+<td><code>0x4ca5d0</code></td>
+</tr>
+<tr>
+<td><code>public: bool Localization::String::PushArgument(char const *,unsigned int)</code></td>
+<td>0</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>public: bool Localization::String::PushArgument(float)</code></td>
+<td>0</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="havokscript_finalrelease.dll"></a>HavokScript_FinalRelease.dll</h2>
+<p>Lua virtual machine (Havok Script). 71 imports.</p>
+<details>
+<summary>71 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Calling functions</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>char const * hks_obj_tolstring(struct lua_State *,struct HksObject *,unsigned __int64 *)</code></td>
+<td>1</td>
+<td><code>0xdbd6fe</code></td>
+</tr>
+<tr>
+<td><code>char const * luaL_checklstring(struct lua_State *,int,unsigned __int64 *)</code></td>
+<td>1</td>
+<td><code>0xdbd740</code></td>
+</tr>
+<tr>
+<td><code>char const * luaL_optlstring(struct lua_State *,int,char const *,unsigned __int64 *)</code></td>
+<td>1</td>
+<td><code>0xdbd746</code></td>
+</tr>
+<tr>
+<td><code>char const * luaL_typename(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd87e</code></td>
+</tr>
+<tr>
+<td><code>char const * lua_getupvalue(struct lua_State *,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd82a</code></td>
+</tr>
+<tr>
+<td><code>char const * lua_typename(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd860</code></td>
+</tr>
+<tr>
+<td><code>double hks_obj_tonumber(struct lua_State *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd6f8</code></td>
+</tr>
+<tr>
+<td><code>double luaL_checknumber(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd776</code></td>
+</tr>
+<tr>
+<td><code>double luaL_optnumber(struct lua_State *,int,double)</code></td>
+<td>1</td>
+<td><code>0xdbd782</code></td>
+</tr>
+<tr>
+<td><code>int hks_obj_equal(struct lua_State *,struct HksObject const *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd704</code></td>
+</tr>
+<tr>
+<td><code>int hks_obj_getmetatable(struct lua_State *,struct HksObject const *,struct HksObject *)</code></td>
+<td>1</td>
+<td><code>0xdbd70a</code></td>
+</tr>
+<tr>
+<td><code>int hks_obj_isnumber(struct lua_State *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd74c</code></td>
+</tr>
+<tr>
+<td><code>int hks_obj_lessthan(struct lua_State *,struct HksObject const *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd7e8</code></td>
+</tr>
+<tr>
+<td><code>int hks_obj_rawequal(struct lua_State *,struct HksObject const *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd7a6</code></td>
+</tr>
+<tr>
+<td><code>int hks_obj_setfenv(struct lua_State *,struct HksObject const *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd764</code></td>
+</tr>
+<tr>
+<td><code>int hks_obj_setmetatable(struct lua_State *,struct HksObject const *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd710</code></td>
+</tr>
+<tr>
+<td><code>int hksi_lua_error(struct lua_State *)</code></td>
+<td>1</td>
+<td><code>0xdbd7dc</code></td>
+</tr>
+<tr>
+<td><code>int luaL_argerror(struct lua_State *,int,char const *)</code></td>
+<td>1</td>
+<td><code>0xdbd788</code></td>
+</tr>
+<tr>
+<td><code>int luaL_checkinteger(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd758</code></td>
+</tr>
+<tr>
+<td><code>int luaL_checkoption(struct lua_State *,int,char const *,char const * const * const)</code></td>
+<td>1</td>
+<td><code>0xdbd7d6</code></td>
+</tr>
+<tr>
+<td><code>int luaL_error(struct lua_State *,char const *,...)</code></td>
+<td>1</td>
+<td><code>0xdbd75e</code></td>
+</tr>
+<tr>
+<td><code>int luaL_loadbuffer(struct lua_State *,char const *,unsigned __int64,char const *)</code></td>
+<td>1</td>
+<td><code>0xdbd878</code></td>
+</tr>
+<tr>
+<td><code>int luaL_loadstring(struct lua_State *,char const *)</code></td>
+<td>1</td>
+<td><code>0xdbd866</code></td>
+</tr>
+<tr>
+<td><code>int luaL_optinteger(struct lua_State *,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd77c</code></td>
+</tr>
+<tr>
+<td><code>int luaL_ref(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd81e</code></td>
+</tr>
+<tr>
+<td><code>int lua_cpcall(struct lua_State *,int (*)(struct lua_State *),void *)</code></td>
+<td>1</td>
+<td><code>0xdbd842</code></td>
+</tr>
+<tr>
+<td><code>int lua_gc(struct lua_State *,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd73a</code></td>
+</tr>
+<tr>
+<td><code>int lua_getinfo(struct lua_State *,char const *,struct lua_Debug *)</code></td>
+<td>1</td>
+<td><code>0xdbd86c</code></td>
+</tr>
+<tr>
+<td><code>int lua_getstack(struct lua_State *,int,struct lua_Debug *)</code></td>
+<td>1</td>
+<td><code>0xdbd872</code></td>
+</tr>
+<tr>
+<td><code>int lua_pcall(struct lua_State *,int,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd85a</code></td>
+</tr>
+<tr>
+<td><code>public: HksStateSettings::HksStateSettings(void)</code></td>
+<td>1</td>
+<td><code>0xdbd830</code></td>
+</tr>
+<tr>
+<td><code>public: class hks::InternString * hks::StringTable::internHashed(struct lua_State *,char const *,unsigned __in</code></td>
+<td>1</td>
+<td><code>0xdbd7e2</code></td>
+</tr>
+<tr>
+<td><code>public: void hks::CallStack::growApiStack(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd6ec</code></td>
+</tr>
+<tr>
+<td><code>struct HksObject hks_obj_getfield(struct lua_State *,struct HksObject,struct HksObject)</code></td>
+<td>1</td>
+<td><code>0xdbd716</code></td>
+</tr>
+<tr>
+<td><code>struct HksObject hks_obj_gettable(struct lua_State *,struct HksObject,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd7ac</code></td>
+</tr>
+<tr>
+<td><code>struct HksObject hks_obj_newlstringhashed(struct lua_State *,char const *,unsigned __int64,unsigned int)</code></td>
+<td>1</td>
+<td><code>0xdbd6f2</code></td>
+</tr>
+<tr>
+<td><code>struct HksObject hks_obj_rawget_array(struct lua_State *,struct HksObject const *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd80c</code></td>
+</tr>
+<tr>
+<td><code>struct lua_State * lua_newstate(void * (*)(void *,void *,unsigned __int64,unsigned __int64),void *)</code></td>
+<td>1</td>
+<td><code>0xdbd848</code></td>
+</tr>
+<tr>
+<td><code>struct lua_State * lua_newthread(struct lua_State *)</code></td>
+<td>1</td>
+<td><code>0xdbd7a0</code></td>
+</tr>
+<tr>
+<td><code>unsigned __int64 hks_obj_objlen(struct lua_State *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd752</code></td>
+</tr>
+<tr>
+<td><code>unsigned __int64 hks_obj_rawlength(struct lua_State *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd812</code></td>
+</tr>
+<tr>
+<td><code>void * lua_newuserdata(struct lua_State *,unsigned __int64)</code></td>
+<td>1</td>
+<td><code>0xdbd78e</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_gc_write_barrier(struct lua_State *,class hks::ChunkHeader *,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd7ee</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_getfenv(struct lua_State *,struct HksObject const *,struct HksObject *)</code></td>
+<td>1</td>
+<td><code>0xdbd7d0</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_next(struct lua_State *,struct HksObject const *,struct HksObject *,struct HksObject *)</code></td>
+<td>1</td>
+<td><code>0xdbd794</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawget(struct lua_State *,struct HksObject const *,struct HksObject const *,struct HksObject *)</code></td>
+<td>1</td>
+<td><code>0xdbd722</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawgeti(struct lua_State *,struct HksObject const *,int,struct HksObject *)</code></td>
+<td>1</td>
+<td><code>0xdbd728</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawgetslot_outofline(struct lua_State *,class hks::StructInst const *,class hks::InternString *)</code></td>
+<td>1</td>
+<td><code>0xdbd7f4</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawset(struct lua_State *,struct HksObject const *,struct HksObject const *,struct HksObject cons</code></td>
+<td>1</td>
+<td><code>0xdbd72e</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawset_array(struct lua_State *,struct HksObject const *,int,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd812</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawseti(struct lua_State *,struct HksObject const *,int,struct HksObject const *)</code></td>
+<td>1</td>
+<td><code>0xdbd734</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawsetslot_assignment(struct lua_State *,class hks::StructInst *,struct HksObject const *,unsigne</code></td>
+<td>1</td>
+<td><code>0xdbd800</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawsetslot_assignment_nogc(struct lua_State *,class hks::StructInst *,struct HksObject const *,un</code></td>
+<td>1</td>
+<td><code>0xdbd806</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_rawsetslot_outofline(struct lua_State *,class hks::StructInst *,class hks::InternString *)</code></td>
+<td>1</td>
+<td><code>0xdbd7fa</code></td>
+</tr>
+<tr>
+<td><code>void hks_obj_settable(struct lua_State *,struct HksObject const *,struct HksObject const *,struct HksObject co</code></td>
+<td>1</td>
+<td><code>0xdbd71c</code></td>
+</tr>
+<tr>
+<td><code>void hks_pushnamedcclosure(struct lua_State *,int (*)(struct lua_State *),int,char const *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd6e6</code></td>
+</tr>
+<tr>
+<td><code>void hks_seterrorfunction(int (*)(char const *,int,char const *,unsigned int,char const *,char const *))</code></td>
+<td>1</td>
+<td><code>0xdbd836</code></td>
+</tr>
+<tr>
+<td><code>void luaL_addchar(struct luaL_Buffer *,char)</code></td>
+<td>1</td>
+<td><code>0xdbd7b2</code></td>
+</tr>
+<tr>
+<td><code>void luaL_addlstring(struct luaL_Buffer *,char const *,unsigned __int64)</code></td>
+<td>1</td>
+<td><code>0xdbd7b8</code></td>
+</tr>
+<tr>
+<td><code>void luaL_addstring(struct luaL_Buffer *,char const *)</code></td>
+<td>1</td>
+<td><code>0xdbd7be</code></td>
+</tr>
+<tr>
+<td><code>void luaL_addvalue(struct luaL_Buffer *)</code></td>
+<td>1</td>
+<td><code>0xdbd854</code></td>
+</tr>
+<tr>
+<td><code>void luaL_buffinit(struct lua_State *,struct luaL_Buffer *)</code></td>
+<td>1</td>
+<td><code>0xdbd7c4</code></td>
+</tr>
+<tr>
+<td><code>void luaL_checktype(struct lua_State *,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd76a</code></td>
+</tr>
+<tr>
+<td><code>void luaL_openlibs(struct lua_State *)</code></td>
+<td>1</td>
+<td><code>0xdbd84e</code></td>
+</tr>
+<tr>
+<td><code>void luaL_pushresult(struct luaL_Buffer *)</code></td>
+<td>1</td>
+<td><code>0xdbd7ca</code></td>
+</tr>
+<tr>
+<td><code>void luaL_unref(struct lua_State *,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd824</code></td>
+</tr>
+<tr>
+<td><code>void luaL_where(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd770</code></td>
+</tr>
+<tr>
+<td><code>void lua_call(struct lua_State *,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd79a</code></td>
+</tr>
+<tr>
+<td><code>void lua_close(struct lua_State *)</code></td>
+<td>1</td>
+<td><code>0xdbd83c</code></td>
+</tr>
+<tr>
+<td><code>void lua_concat(struct lua_State *,int)</code></td>
+<td>1</td>
+<td><code>0xdbd6da</code></td>
+</tr>
+<tr>
+<td><code>void lua_createtable(struct lua_State *,int,int)</code></td>
+<td>1</td>
+<td><code>0xdbd6e0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="bink2w64.dll"></a>bink2w64.dll</h2>
+<p>Bink video playback (intro movies, subtitles). 22 imports.</p>
+<details>
+<summary>22 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Calling functions</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BinkDoFrameAsyncWait</code></td>
+<td>5</td>
+<td><code>0xdbdb50</code>, <code>Movie::Tick</code></td>
+</tr>
+<tr>
+<td><code>BinkClose</code></td>
+<td>3</td>
+<td><code>0xdbdb50</code>, <code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><code>BinkDoFrameAsyncMulti</code></td>
+<td>3</td>
+<td><code>Movie::Tick</code>, <code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><code>BinkPause</code></td>
+<td>3</td>
+<td><code>Movie::Tick</code>, <code>0xdbf310</code></td>
+</tr>
+<tr>
+<td><code>BinkGetTrackID</code></td>
+<td>2</td>
+<td><code>Movie::OpenClip</code>, <code>0xdbf660</code></td>
+</tr>
+<tr>
+<td><code>BinkRegisterFrameBuffers</code></td>
+<td>2</td>
+<td><code>0xdbdb50</code>, <code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><code>BinkSetVolume</code></td>
+<td>2</td>
+<td><code>Movie::OpenClip</code>, <code>0xdbf660</code></td>
+</tr>
+<tr>
+<td><code>BinkGetFrameBuffersInfo</code></td>
+<td>1</td>
+<td><code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><code>BinkGoto</code></td>
+<td>1</td>
+<td><code>0xdbf470</code></td>
+</tr>
+<tr>
+<td><code>BinkNextFrame</code></td>
+<td>1</td>
+<td><code>Movie::Tick</code></td>
+</tr>
+<tr>
+<td><code>BinkOpen</code></td>
+<td>1</td>
+<td><code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><code>BinkOpenDirectSound</code></td>
+<td>1</td>
+<td><code>0xdbfa00</code></td>
+</tr>
+<tr>
+<td><code>BinkOpenWaveOut</code></td>
+<td>1</td>
+<td><code>0xdbfa00</code></td>
+</tr>
+<tr>
+<td><code>BinkOpenWithOptions</code></td>
+<td>1</td>
+<td><code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><code>BinkRequestStopAsyncThread</code></td>
+<td>1</td>
+<td><code>0xdbf7c0</code></td>
+</tr>
+<tr>
+<td><code>BinkSetMemory</code></td>
+<td>1</td>
+<td><code>0xdbfa00</code></td>
+</tr>
+<tr>
+<td><code>BinkSetSoundSystem</code></td>
+<td>1</td>
+<td><code>0xdbfa00</code></td>
+</tr>
+<tr>
+<td><code>BinkSetWillLoop</code></td>
+<td>1</td>
+<td><code>Movie::Tick</code></td>
+</tr>
+<tr>
+<td><code>BinkShouldSkip</code></td>
+<td>1</td>
+<td><code>Movie::Tick</code></td>
+</tr>
+<tr>
+<td><code>BinkStartAsyncThread</code></td>
+<td>1</td>
+<td><code>0xdbfa00</code></td>
+</tr>
+<tr>
+<td><code>BinkWait</code></td>
+<td>1</td>
+<td><code>Movie::Tick</code></td>
+</tr>
+<tr>
+<td><code>BinkWaitStopAsyncThread</code></td>
+<td>1</td>
+<td><code>0xdbf7c0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="steam_api64.dll"></a>steam_api64.dll</h2>
+<p>Steamworks client API (achievements, friends, workshop, overlay, callbacks). 17 imports.</p>
+<details>
+<summary>17 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Calling functions</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SteamInternal_ContextInit</code></td>
+<td>156</td>
+<td><code>0x3d0c0</code>, <code>0x3f110</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_UnregisterCallback</code></td>
+<td>23</td>
+<td><code>0x5da10</code>, <code>0x5e100</code></td>
+</tr>
+<tr>
+<td><code>SteamInternal_FindOrCreateUserInterface</code></td>
+<td>10</td>
+<td><code>0x40b50</code>, <code>0x75e60</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_GetHSteamUser</code></td>
+<td>9</td>
+<td><code>0x40b50</code>, <code>0x75e60</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_UnregisterCallResult</code></td>
+<td>8</td>
+<td><code>0x5d840</code>, <code>0x715a0</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_RegisterCallResult</code></td>
+<td>5</td>
+<td><code>0x715a0</code>, <code>0x7fc8d0</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_RegisterCallback</code></td>
+<td>5</td>
+<td><code>0x5d070</code>, <code>0x7fbb00</code></td>
+</tr>
+<tr>
+<td><code>SteamInternal_FindOrCreateGameServerInterface</code></td>
+<td>3</td>
+<td><code>0x81ad40</code>, <code>0x81ad70</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_Init</code></td>
+<td>2</td>
+<td><code>App::Steam::Utility::GetLanguage</code>, <code>0x503070</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_RunCallbacks</code></td>
+<td>2</td>
+<td><code>0x76410</code>, <code>0x804710</code></td>
+</tr>
+<tr>
+<td><code>SteamGameServer_GetHSteamUser</code></td>
+<td>2</td>
+<td><code>0x81ad40</code>, <code>0x848890</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_RestartAppIfNecessary</code></td>
+<td>1</td>
+<td><code>0x74960</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_SetMiniDumpComment</code></td>
+<td>1</td>
+<td><code>0x76710</code></td>
+</tr>
+<tr>
+<td><code>SteamAPI_WriteMiniDump</code></td>
+<td>1</td>
+<td><code>0x76710</code></td>
+</tr>
+<tr>
+<td><code>SteamGameServer_Shutdown</code></td>
+<td>1</td>
+<td><code>FNetSteamServer::Shutdown</code></td>
+</tr>
+<tr>
+<td><code>SteamInternal_GameServer_Init</code></td>
+<td>1</td>
+<td><code>FNetSteamServer::InitSteamGameServer</code></td>
+</tr>
+<tr>
+<td><code>SteamGameServer_RunCallbacks</code></td>
+<td>0</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="eossdk-win64-shipping.dll"></a>EOSSDK-Win64-Shipping.dll</h2>
+<p>Epic Online Services SDK (lobbies, sessions, networking, ownership). 70 imports.</p>
+<details>
+<summary>70 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Calling functions</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EOS_ProductUserId_IsValid</code></td>
+<td>16</td>
+<td><code>0x7edd30</code>, <code>0x7edea0</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyDetails_Release</code></td>
+<td>3</td>
+<td><code>0x82c490</code>, <code>Network::EOS::Lobby::EventHandler::OnFindLobbys</code></td>
+</tr>
+<tr>
+<td><code>EOS_Logging_SetLogLevel</code></td>
+<td>3</td>
+<td><code>App::EOS::SetupFromOptions</code>, <code>0x825e40</code></td>
+</tr>
+<tr>
+<td><code>EOS_EResult_ToString</code></td>
+<td>2</td>
+<td><code>0x7edfa0</code>, <code>Network::EOS::NetAccessENet::EventHandler::OnConnectionRequest</code></td>
+</tr>
+<tr>
+<td><code>EOS_EpicAccountId_IsValid</code></td>
+<td>2</td>
+<td><code>EOS_helper::IDToString</code>, <code>0x7ede80</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbySearch_CopySearchResultByIndex</code></td>
+<td>2</td>
+<td><code>0x82c490</code>, <code>Network::EOS::Lobby::EventHandler::OnFindLobbys</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbySearch_Find</code></td>
+<td>2</td>
+<td><code>Network::EOS::Lobby::EventHandler::OnFindLobbys</code>, <code>Network::EOS::Lobby::EventHandler::RequestLobbies</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbySearch_Release</code></td>
+<td>2</td>
+<td><code>Network::EOS::Lobby::EventHandler::RequestLobbies</code>, <code>0x8341a0</code></td>
+</tr>
+<tr>
+<td><code>EOS_Auth_AddNotifyLoginStatusChanged</code></td>
+<td>1</td>
+<td><code>0x7f0080</code></td>
+</tr>
+<tr>
+<td><code>EOS_Auth_CopyUserAuthToken</code></td>
+<td>1</td>
+<td><code>Network::EOS::Authorization::Instance::Connect</code></td>
+</tr>
+<tr>
+<td><code>EOS_Auth_GetLoginStatus</code></td>
+<td>1</td>
+<td><code>Network::EOS::Authorization::Instance::OnEOSAuthLogin</code></td>
+</tr>
+<tr>
+<td><code>EOS_Auth_Login</code></td>
+<td>1</td>
+<td><code>Network::EOS::Authorization::Instance::Authorize</code></td>
+</tr>
+<tr>
+<td><code>EOS_Auth_Token_Release</code></td>
+<td>1</td>
+<td><code>Network::EOS::Authorization::Instance::Connect</code></td>
+</tr>
+<tr>
+<td><code>EOS_ByteArray_ToString</code></td>
+<td>1</td>
+<td><code>Network::EOS::Authorization::Instance::GetSteamAppTicket</code></td>
+</tr>
+<tr>
+<td><code>EOS_Connect_AddNotifyAuthExpiration</code></td>
+<td>1</td>
+<td><code>0x7f0080</code></td>
+</tr>
+<tr>
+<td><code>EOS_Connect_CreateUser</code></td>
+<td>1</td>
+<td><code>Network::EOS::Authorization::Instance::CreateNewAccount</code></td>
+</tr>
+<tr>
+<td><code>EOS_Connect_Login</code></td>
+<td>1</td>
+<td><code>Network::EOS::Authorization::Instance::Connect</code></td>
+</tr>
+<tr>
+<td><code>EOS_EpicAccountId_ToString</code></td>
+<td>1</td>
+<td><code>EOS_helper::IDToString</code></td>
+</tr>
+<tr>
+<td><code>EOS_Initialize</code></td>
+<td>1</td>
+<td><code>0x7ede00</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyDetails_CopyAttributeByIndex</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobbyFromLobbyDetails</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyDetails_CopyInfo</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobbyFromLobbyDetails</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyDetails_GetAttributeCount</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobbyFromLobbyDetails</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyDetails_Info_Release</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobbyFromLobbyDetails</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyModification_AddAttribute</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::AddAttribute</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyModification_Release</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::BatchUploadAttributes</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbyModification_SetMaxMembers</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::BatchUploadAttributes</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbySearch_GetSearchResultCount</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::OnFindLobbys</code></td>
+</tr>
+<tr>
+<td><code>EOS_LobbySearch_SetParameter</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::AddSearchParam</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_AddNotifyLobbyMemberStatusReceived</code></td>
+<td>1</td>
+<td><code>0x834100</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_AddNotifyLobbyMemberUpdateReceived</code></td>
+<td>1</td>
+<td><code>0x834100</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_AddNotifyLobbyUpdateReceived</code></td>
+<td>1</td>
+<td><code>0x834100</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_Attribute_Release</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobbyFromLobbyDetails</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_CopyLobbyDetailsHandle</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::GetLobbyDetailsByEOSID</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_CreateLobby</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::CreateLobby</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_CreateLobbySearch</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::RequestLobbies</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_JoinLobby</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::JoinEOSLobby</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_LeaveLobby</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::LeaveEOSLobby</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_PromoteMember</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyOwner</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_RemoveNotifyLobbyMemberStatusReceived</code></td>
+<td>1</td>
+<td><code>0x834270</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_RemoveNotifyLobbyMemberUpdateReceived</code></td>
+<td>1</td>
+<td><code>0x834270</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_RemoveNotifyLobbyUpdateReceived</code></td>
+<td>1</td>
+<td><code>0x834270</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_UpdateLobby</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::BatchUploadAttributes</code></td>
+</tr>
+<tr>
+<td><code>EOS_Lobby_UpdateLobbyModification</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::BatchUploadAttributes</code></td>
+</tr>
+<tr>
+<td><code>EOS_Logging_SetCallback</code></td>
+<td>1</td>
+<td><code>0x7edfb0</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_AcceptConnection</code></td>
+<td>1</td>
+<td><code>Network::EOS::NetAccessENet::EventHandler::OnConnectionRequest</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_AddNotifyPeerConnectionClosed</code></td>
+<td>1</td>
+<td><code>Network::EOS::NetAccessENet::EventHandler::SubscribeToConnectionRequests</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_AddNotifyPeerConnectionRequest</code></td>
+<td>1</td>
+<td><code>Network::EOS::NetAccessENet::EventHandler::SubscribeToConnectionRequests</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_CloseConnection</code></td>
+<td>1</td>
+<td><code>FNetAccessENetEOS::CloseEOSConnection</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_CloseConnections</code></td>
+<td>1</td>
+<td><code>FNetAccessENetEOS::CloseAllEOSConnections</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_GetNextReceivedPacketSize</code></td>
+<td>1</td>
+<td><code>Network::EOS::TransportThread::Run</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_QueryNATType</code></td>
+<td>1</td>
+<td><code>0x857410</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_ReceivePacket</code></td>
+<td>1</td>
+<td><code>Network::EOS::TransportThread::Run</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_RemoveNotifyPeerConnectionClosed</code></td>
+<td>1</td>
+<td><code>0x858800</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_RemoveNotifyPeerConnectionRequest</code></td>
+<td>1</td>
+<td><code>0x858800</code></td>
+</tr>
+<tr>
+<td><code>EOS_P2P_SendPacket</code></td>
+<td>1</td>
+<td><code>Network::EOS::TransportThread::SendP2PMessage</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_Create</code></td>
+<td>1</td>
+<td><code>0x7ed580</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_GetAuthInterface</code></td>
+<td>1</td>
+<td><code>0x7ed670</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_GetConnectInterface</code></td>
+<td>1</td>
+<td><code>0x7ed690</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_GetLobbyInterface</code></td>
+<td>1</td>
+<td><code>0x7ed6b0</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_GetP2PInterface</code></td>
+<td>1</td>
+<td><code>0x7edc30</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_GetPresenceInterface</code></td>
+<td>1</td>
+<td><code>0x7edc50</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_Release</code></td>
+<td>1</td>
+<td><code>0x7edf70</code></td>
+</tr>
+<tr>
+<td><code>EOS_Platform_Tick</code></td>
+<td>1</td>
+<td><code>0x7edf50</code></td>
+</tr>
+<tr>
+<td><code>EOS_PresenceModification_Release</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyInviteCommandLine</code></td>
+</tr>
+<tr>
+<td><code>EOS_PresenceModification_SetJoinInfo</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyInviteCommandLine</code></td>
+</tr>
+<tr>
+<td><code>EOS_Presence_CreatePresenceModification</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyInviteCommandLine</code></td>
+</tr>
+<tr>
+<td><code>EOS_Presence_SetPresence</code></td>
+<td>1</td>
+<td><code>Network::EOS::Lobby::EventHandler::SetLobbyInviteCommandLine</code></td>
+</tr>
+<tr>
+<td><code>EOS_ProductUserId_FromString</code></td>
+<td>1</td>
+<td><code>0x7edfd0</code></td>
+</tr>
+<tr>
+<td><code>EOS_ProductUserId_ToString</code></td>
+<td>1</td>
+<td><code>0x7edd30</code></td>
+</tr>
+<tr>
+<td><code>EOS_Shutdown</code></td>
+<td>1</td>
+<td><code>0x7ed650</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>System APIs by purpose</h2>
+<p>The Windows API functions the exe imports, grouped by what they do (a pattern match on the name; <code>other</code> is not listed). Useful to see how the exe touches the file system, the network, the registry and other processes.</p>
+<h3>file system (39)</h3>
+<details>
+<summary>39 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>DLL</th>
+<th>Calling functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="kernel32.dll-createfilea"></a><code>CreateFileA</code></td>
+<td>KERNEL32.dll</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-readfile"></a><code>ReadFile</code></td>
+<td>KERNEL32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-writefile"></a><code>WriteFile</code></td>
+<td>KERNEL32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findclose"></a><code>FindClose</code></td>
+<td>KERNEL32.dll</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getmodulefilenamea"></a><code>GetModuleFileNameA</code></td>
+<td>KERNEL32.dll</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createfilew"></a><code>CreateFileW</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findfirstfilea"></a><code>FindFirstFileA</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-deletefilea"></a><code>DeleteFileA</code></td>
+<td>KERNEL32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createdirectorya"></a><code>CreateDirectoryA</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createdirectoryw"></a><code>CreateDirectoryW</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getfileattributesexw"></a><code>GetFileAttributesExW</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getfilesize"></a><code>GetFileSize</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getfilesizeex"></a><code>GetFileSizeEx</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getmodulefilenamew"></a><code>GetModuleFileNameW</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-copyfilea"></a><code>CopyFileA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-copyfilew"></a><code>CopyFileW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createfilemappinga"></a><code>CreateFileMappingA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-deletefilew"></a><code>DeleteFileW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findclosechangenotification"></a><code>FindCloseChangeNotification</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findfirstchangenotificationw"></a><code>FindFirstChangeNotificationW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findfirstfilew"></a><code>FindFirstFileW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findnextchangenotification"></a><code>FindNextChangeNotification</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findnextfilea"></a><code>FindNextFileA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-findnextfilew"></a><code>FindNextFileW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getcurrentdirectorya"></a><code>GetCurrentDirectoryA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getfileattributesa"></a><code>GetFileAttributesA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getfileattributesw"></a><code>GetFileAttributesW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-gettemppatha"></a><code>GetTempPathA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-movefilew"></a><code>MoveFileW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shlwapi.dll-pathcombinew"></a><code>PathCombineW</code></td>
+<td>SHLWAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shlwapi.dll-pathfileexistsa"></a><code>PathFileExistsA</code></td>
+<td>SHLWAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shlwapi.dll-pathfileexistsw"></a><code>PathFileExistsW</code></td>
+<td>SHLWAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shlwapi.dll-pathisrelativea"></a><code>PathIsRelativeA</code></td>
+<td>SHLWAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-readfileex"></a><code>ReadFileEx</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-removedirectoryw"></a><code>RemoveDirectoryW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setcurrentdirectoryw"></a><code>SetCurrentDirectoryW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setfileattributesa"></a><code>SetFileAttributesA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setfileattributesw"></a><code>SetFileAttributesW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setfilepointer"></a><code>SetFilePointer</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3>network (52)</h3>
+<details>
+<summary>52 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>DLL</th>
+<th>Calling functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ws2_32.dll-wsagetlasterror"></a><code>WSAGetLastError</code></td>
+<td>WS2_32.dll</td>
+<td>49</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-htons"></a><code>htons</code></td>
+<td>WS2_32.dll</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-ntohs"></a><code>ntohs</code></td>
+<td>WS2_32.dll</td>
+<td>18</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-closesocket"></a><code>closesocket</code></td>
+<td>WS2_32.dll</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-ntohl"></a><code>ntohl</code></td>
+<td>WS2_32.dll</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsasetlasterror"></a><code>WSASetLastError</code></td>
+<td>WS2_32.dll</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-htonl"></a><code>htonl</code></td>
+<td>WS2_32.dll</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-setsockopt"></a><code>setsockopt</code></td>
+<td>WS2_32.dll</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsacleanup"></a><code>WSACleanup</code></td>
+<td>WS2_32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsastartup"></a><code>WSAStartup</code></td>
+<td>WS2_32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-bind"></a><code>bind</code></td>
+<td>WS2_32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-recv"></a><code>recv</code></td>
+<td>WS2_32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-send"></a><code>send</code></td>
+<td>WS2_32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-select"></a><code>select</code></td>
+<td>WS2_32.dll</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-sendto"></a><code>sendto</code></td>
+<td>WS2_32.dll</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-socket"></a><code>socket</code></td>
+<td>WS2_32.dll</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-getsockname"></a><code>getsockname</code></td>
+<td>WS2_32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-getsockopt"></a><code>getsockopt</code></td>
+<td>WS2_32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-ioctlsocket"></a><code>ioctlsocket</code></td>
+<td>WS2_32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-connect"></a><code>connect</code></td>
+<td>WS2_32.dll</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-freeaddrinfo"></a><code>freeaddrinfo</code></td>
+<td>WS2_32.dll</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-getaddrinfo"></a><code>getaddrinfo</code></td>
+<td>WS2_32.dll</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-inet_ntoa"></a><code>inet_ntoa</code></td>
+<td>WS2_32.dll</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-recvfrom"></a><code>recvfrom</code></td>
+<td>WS2_32.dll</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="iphlpapi.dll-getadaptersaddresses"></a><code>GetAdaptersAddresses</code></td>
+<td>IPHLPAPI.DLL</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-accept"></a><code>accept</code></td>
+<td>WS2_32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-gethostbyname"></a><code>gethostbyname</code></td>
+<td>WS2_32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-listen"></a><code>listen</code></td>
+<td>WS2_32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-shutdown"></a><code>shutdown</code></td>
+<td>WS2_32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsagetoverlappedresult"></a><code>WSAGetOverlappedResult</code></td>
+<td>WS2_32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsapoll"></a><code>WSAPoll</code></td>
+<td>WS2_32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsarecv"></a><code>WSARecv</code></td>
+<td>WS2_32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsasend"></a><code>WSASend</code></td>
+<td>WS2_32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsasocketa"></a><code>WSASocketA</code></td>
+<td>WS2_32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-gethostname"></a><code>gethostname</code></td>
+<td>WS2_32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-inet_addr"></a><code>inet_addr</code></td>
+<td>WS2_32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsacloseevent"></a><code>WSACloseEvent</code></td>
+<td>WS2_32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsacreateevent"></a><code>WSACreateEvent</code></td>
+<td>WS2_32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsaioctl"></a><code>WSAIoctl</code></td>
+<td>WS2_32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsarecvfrom"></a><code>WSARecvFrom</code></td>
+<td>WS2_32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-wsasendto"></a><code>WSASendTo</code></td>
+<td>WS2_32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpaddrequestheaders"></a><code>WinHttpAddRequestHeaders</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpconnect"></a><code>WinHttpConnect</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpopen"></a><code>WinHttpOpen</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpopenrequest"></a><code>WinHttpOpenRequest</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpqueryheaders"></a><code>WinHttpQueryHeaders</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpreaddata"></a><code>WinHttpReadData</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpreceiveresponse"></a><code>WinHttpReceiveResponse</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpsendrequest"></a><code>WinHttpSendRequest</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpsetoption"></a><code>WinHttpSetOption</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="winhttp.dll-winhttpsetstatuscallback"></a><code>WinHttpSetStatusCallback</code></td>
+<td>WINHTTP.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="ws2_32.dll-__wsafdisset"></a><code>__WSAFDIsSet</code></td>
+<td>WS2_32.dll</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3>registry and system information (32)</h3>
+<details>
+<summary>32 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>DLL</th>
+<th>Calling functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="kernel32.dll-getsystemtimeasfiletime"></a><code>GetSystemTimeAsFileTime</code></td>
+<td>KERNEL32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getcomputernamea"></a><code>GetComputerNameA</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getnativesysteminfo"></a><code>GetNativeSystemInfo</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getsystemmetrics"></a><code>GetSystemMetrics</code></td>
+<td>USER32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getsystemtime"></a><code>GetSystemTime</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getversionexa"></a><code>GetVersionExA</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-globalmemorystatus"></a><code>GlobalMemoryStatus</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="advapi32.dll-regopenkeyexw"></a><code>RegOpenKeyExW</code></td>
+<td>ADVAPI32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="advapi32.dll-regqueryvalueexw"></a><code>RegQueryValueExW</code></td>
+<td>ADVAPI32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getcomputernamew"></a><code>GetComputerNameW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="version.dll-getfileversioninfoexw"></a><code>GetFileVersionInfoExW</code></td>
+<td>VERSION.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="version.dll-getfileversioninfosizeexw"></a><code>GetFileVersionInfoSizeExW</code></td>
+<td>VERSION.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="version.dll-getfileversioninfosizew"></a><code>GetFileVersionInfoSizeW</code></td>
+<td>VERSION.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="version.dll-getfileversioninfow"></a><code>GetFileVersionInfoW</code></td>
+<td>VERSION.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getlogicalprocessorinformationex"></a><code>GetLogicalProcessorInformationEx</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getsystemdirectoryw"></a><code>GetSystemDirectoryW</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getsysteminfo"></a><code>GetSystemInfo</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getsystempowerstatus"></a><code>GetSystemPowerStatus</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="advapi32.dll-getusernamea"></a><code>GetUserNameA</code></td>
+<td>ADVAPI32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="advapi32.dll-getusernamew"></a><code>GetUserNameW</code></td>
+<td>ADVAPI32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-globalmemorystatusex"></a><code>GlobalMemoryStatusEx</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-isprocessorfeaturepresent"></a><code>IsProcessorFeaturePresent</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shell32.dll-shgetfolderlocation"></a><code>SHGetFolderLocation</code></td>
+<td>SHELL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shell32.dll-shgetknownfolderpath"></a><code>SHGetKnownFolderPath</code></td>
+<td>SHELL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shell32.dll-shgetpathfromidlista"></a><code>SHGetPathFromIDListA</code></td>
+<td>SHELL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="setupapi.dll-setupdidestroydeviceinfolist"></a><code>SetupDiDestroyDeviceInfoList</code></td>
+<td>SETUPAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="setupapi.dll-setupdienumdeviceinterfaces"></a><code>SetupDiEnumDeviceInterfaces</code></td>
+<td>SETUPAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="setupapi.dll-setupdigetclassdevsw"></a><code>SetupDiGetClassDevsW</code></td>
+<td>SETUPAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="setupapi.dll-setupdigetdeviceinstanceidw"></a><code>SetupDiGetDeviceInstanceIdW</code></td>
+<td>SETUPAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="setupapi.dll-setupdigetdeviceinterfacedetailw"></a><code>SetupDiGetDeviceInterfaceDetailW</code></td>
+<td>SETUPAPI.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="version.dll-verqueryvaluea"></a><code>VerQueryValueA</code></td>
+<td>VERSION.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="version.dll-verqueryvaluew"></a><code>VerQueryValueW</code></td>
+<td>VERSION.dll</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3>processes, threads and modules (32)</h3>
+<details>
+<summary>32 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>DLL</th>
+<th>Calling functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="kernel32.dll-entercriticalsection"></a><code>EnterCriticalSection</code></td>
+<td>KERNEL32.dll</td>
+<td>245</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-waitforsingleobject"></a><code>WaitForSingleObject</code></td>
+<td>KERNEL32.dll</td>
+<td>58</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-initializecriticalsection"></a><code>InitializeCriticalSection</code></td>
+<td>KERNEL32.dll</td>
+<td>23</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getprocaddress"></a><code>GetProcAddress</code></td>
+<td>KERNEL32.dll</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getcurrentthreadid"></a><code>GetCurrentThreadId</code></td>
+<td>KERNEL32.dll</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createeventw"></a><code>CreateEventW</code></td>
+<td>KERNEL32.dll</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-freelibrary"></a><code>FreeLibrary</code></td>
+<td>KERNEL32.dll</td>
+<td>12</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-sleep"></a><code>Sleep</code></td>
+<td>KERNEL32.dll</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getcurrentprocess"></a><code>GetCurrentProcess</code></td>
+<td>KERNEL32.dll</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-loadlibrarya"></a><code>LoadLibraryA</code></td>
+<td>KERNEL32.dll</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setthreadpriority"></a><code>SetThreadPriority</code></td>
+<td>KERNEL32.dll</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createthread"></a><code>CreateThread</code></td>
+<td>KERNEL32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-loadlibraryw"></a><code>LoadLibraryW</code></td>
+<td>KERNEL32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-waitforsingleobjectex"></a><code>WaitForSingleObjectEx</code></td>
+<td>KERNEL32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getmodulehandlea"></a><code>GetModuleHandleA</code></td>
+<td>KERNEL32.dll</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getmodulehandlew"></a><code>GetModuleHandleW</code></td>
+<td>KERNEL32.dll</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getcurrentprocessid"></a><code>GetCurrentProcessId</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getcurrentthread"></a><code>GetCurrentThread</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-getmodulehandleexa"></a><code>GetModuleHandleExA</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setthreadaffinitymask"></a><code>SetThreadAffinityMask</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-sleepex"></a><code>SleepEx</code></td>
+<td>KERNEL32.dll</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createeventa"></a><code>CreateEventA</code></td>
+<td>KERNEL32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-openprocess"></a><code>OpenProcess</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setthreadexecutionstate"></a><code>SetThreadExecutionState</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-setthreadidealprocessor"></a><code>SetThreadIdealProcessor</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-terminateprocess"></a><code>TerminateProcess</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-tlsalloc"></a><code>TlsAlloc</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-createprocessa"></a><code>CreateProcessA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-initializecriticalsectionex"></a><code>InitializeCriticalSectionEx</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="shell32.dll-shellexecutea"></a><code>ShellExecuteA</code></td>
+<td>SHELL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-waitformultipleobjects"></a><code>WaitForMultipleObjects</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-waitformultipleobjectsex"></a><code>WaitForMultipleObjectsEx</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3>windowing and input (33)</h3>
+<details>
+<summary>33 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>DLL</th>
+<th>Calling functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="user32.dll-clipcursor"></a><code>ClipCursor</code></td>
+<td>USER32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="user32.dll-defwindowprocw"></a><code>DefWindowProcW</code></td>
+<td>USER32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="user32.dll-openclipboard"></a><code>OpenClipboard</code></td>
+<td>USER32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="user32.dll-messageboxw"></a><code>MessageBoxW</code></td>
+<td>USER32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="user32.dll-monitorfromwindow"></a><code>MonitorFromWindow</code></td>
+<td>USER32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setclipboarddata"></a><code>SetClipboardData</code></td>
+<td>USER32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setwindowlongptrw"></a><code>SetWindowLongPtrW</code></td>
+<td>USER32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="user32.dll-createwindowexw"></a><code>CreateWindowExW</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-dispatchmessagew"></a><code>DispatchMessageW</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-enumwindows"></a><code>EnumWindows</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getasynckeystate"></a><code>GetAsyncKeyState</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getclipboarddata"></a><code>GetClipboardData</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getcursorpos"></a><code>GetCursorPos</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getkeyboardlayout"></a><code>GetKeyboardLayout</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getkeyboardlayoutnamea"></a><code>GetKeyboardLayoutNameA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getmonitorinfoa"></a><code>GetMonitorInfoA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getwindowinfo"></a><code>GetWindowInfo</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getwindowlongptrw"></a><code>GetWindowLongPtrW</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getwindowtexta"></a><code>GetWindowTextA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getwindowtextlengtha"></a><code>GetWindowTextLengthA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-getwindowthreadprocessid"></a><code>GetWindowThreadProcessId</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="imm32.dll-immgetcompositionstringw"></a><code>ImmGetCompositionStringW</code></td>
+<td>IMM32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="imm32.dll-immgetcontext"></a><code>ImmGetContext</code></td>
+<td>IMM32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-messageboxa"></a><code>MessageBoxA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-peekmessagew"></a><code>PeekMessageW</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-registerclassexw"></a><code>RegisterClassExW</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setcursor"></a><code>SetCursor</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setcursorpos"></a><code>SetCursorPos</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setwindowlongptra"></a><code>SetWindowLongPtrA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setwindowpos"></a><code>SetWindowPos</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setwindowtexta"></a><code>SetWindowTextA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-setwindowshookexa"></a><code>SetWindowsHookExA</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="user32.dll-translatemessage"></a><code>TranslateMessage</code></td>
+<td>USER32.dll</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3>debugging and crash handling (21)</h3>
+<details>
+<summary>21 functions</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>DLL</th>
+<th>Calling functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="kernel32.dll-setunhandledexceptionfilter"></a><code>SetUnhandledExceptionFilter</code></td>
+<td>KERNEL32.dll</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-isdebuggerpresent"></a><code>IsDebuggerPresent</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-rtlcapturecontext"></a><code>RtlCaptureContext</code></td>
+<td>KERNEL32.dll</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-outputdebugstringw"></a><code>OutputDebugStringW</code></td>
+<td>KERNEL32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-raiseexception"></a><code>RaiseException</code></td>
+<td>KERNEL32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-rtllookupfunctionentry"></a><code>RtlLookupFunctionEntry</code></td>
+<td>KERNEL32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-rtlvirtualunwind"></a><code>RtlVirtualUnwind</code></td>
+<td>KERNEL32.dll</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-stackwalk64"></a><code>StackWalk64</code></td>
+<td>dbghelp.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symfunctiontableaccess64"></a><code>SymFunctionTableAccess64</code></td>
+<td>dbghelp.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symgetmodulebase64"></a><code>SymGetModuleBase64</code></td>
+<td>dbghelp.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symgetmoduleinfo64"></a><code>SymGetModuleInfo64</code></td>
+<td>dbghelp.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symloadmoduleex"></a><code>SymLoadModuleEx</code></td>
+<td>dbghelp.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-unhandledexceptionfilter"></a><code>UnhandledExceptionFilter</code></td>
+<td>KERNEL32.dll</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="kernel32.dll-outputdebugstringa"></a><code>OutputDebugStringA</code></td>
+<td>KERNEL32.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symcleanup"></a><code>SymCleanup</code></td>
+<td>dbghelp.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symfromaddr"></a><code>SymFromAddr</code></td>
+<td>dbghelp.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symgetlinefromaddr64"></a><code>SymGetLineFromAddr64</code></td>
+<td>dbghelp.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symgetoptions"></a><code>SymGetOptions</code></td>
+<td>dbghelp.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-syminitialize"></a><code>SymInitialize</code></td>
+<td>dbghelp.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symsetoptions"></a><code>SymSetOptions</code></td>
+<td>dbghelp.dll</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="dbghelp.dll-symunloadmodule64"></a><code>SymUnloadModule64</code></td>
+<td>dbghelp.dll</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

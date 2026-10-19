@@ -1,0 +1,99 @@
+# Hand-written notes for the .modinfo vocabulary read from CivilizationVI.exe (see tools/extract_exe_modinfo.py).
+# All notes are inferred from handler names, shipped .modinfo files and the exe strings; none was tried in the running game.
+handlers:            # component / action type -> handler classes found in the exe (function names of the Linux build)
+  UpdateDatabase: [ModdingUpdateDatabase, ModdingUpdateConfigurationDatabase]
+  AddGameplayScripts: [ModdingGameplayScriptComponentHandler]
+  GameplayScripts: [ModdingGameplayScriptComponentHandler]
+  AddUserInterfaces: [ModdingUserInterfaceComponentHandler, ModdingUISettingHandler]
+  UserInterface: [ModdingUserInterfaceComponentHandler, ModdingUISettingHandler]
+  ReplaceUIScript: [ModdingReplaceUIScriptComponentHandler]
+  ImportFiles: [ModdingImportFilesAction]
+  UpdateText: [ModdingUpdateTextAction]
+  LocalizedText: [ModdingUpdateTextAction]
+  UpdateIcons: [ModdingUpdateIconsAction]
+  Icons: [ModdingUpdateIconsAction]
+  UpdateColors: [ModdingUpdateColorsAction]
+  UpdateAudio: [ModdingUpdateAudio]
+  UpdateARX: [ModdingUpdateARX]
+  UpdateLogitechARX: [ModdingUpdateARX]
+  AddMap: [ModdingMapSettingHandler]
+  AddWorldBuilderMap: [ModdingWorldBuilderSettingHandler]
+  DoNothing: [ModdingDoNothingAction]
+criteria_classes:    # criterion type -> class with Check()
+  AlwaysMet: AlwaysMetCriterion
+  NeverMet: NeverMetCriterion
+  ConfigurationValueMatches: ConfigurationValueMatchesCriterion
+  ConfigurationValueContains: ConfigurationValueContainsCriterion
+  RuleSetInUse: RuleSetInUseCriterion
+  LeaderPlayable: LeaderPlayableCriterion
+  MapInUse: MapInUseCriterion
+  ModInUse: ModInUseCriterion
+  GameCoreInUse: GameCoreInUseCriterion
+  GameModeInUse: GameModeInUseCriterion
+  ModIsEnabled: ModIsEnabledCriterion
+  ModIsInstalled: ModIsInstalledCriterion
+notes:
+  UpdateDatabase: "Loads the listed XML or SQL files into the game database when the component's criteria are met. A `Properties` child can carry a `RuleSet`. In `Settings` the same files go into the configuration database (game setup options)."
+  UpdateText: "Loads localized text (XML or SQL files) into the text database."
+  LocalizedText: "The newer-style name for text content; handled by the text action."
+  UpdateIcons: "Registers icon atlases and icon definitions."
+  Icons: "The newer-style name for icon content."
+  UpdateColors: "Adds colors and player colors to the color manager database."
+  UpdateArt: "Adds art definition files. The exe's symbol list has no handler class of this name; it may be handled by the generic file path."
+  ModArt: "Newer-style name for art content."
+  UpdateAudio: "Adds audio data (sound banks)."
+  UpdateLogitechARX: "Assets for the Logitech ARX second-screen app (the handler works with png and html files)."
+  UpdateARX: "Same handler as UpdateLogitechARX under its shorter name."
+  ImportFiles: "Makes the listed files visible to the game file system so that other components and scripts can use them."
+  AddGameplayScripts: "Adds Lua scripts that run in the gameplay (GameCore) Lua context."
+  GameplayScripts: "Newer-style name for AddGameplayScripts."
+  AddUserInterfaces: "Adds a UI context (Lua and XML) to a UI layer. A `Properties` child names the `Context` (the layer)."
+  UserInterface: "Newer-style name for AddUserInterfaces."
+  ReplaceUIScript: "Replaces a UI Lua script: `Properties` carry `LuaContext` (the original) and `LuaReplace` (the replacement). Shipped scenarios use it heavily."
+  AddMap: "Registers a map file in the map list (a Settings entry, used by the front end)."
+  AddWorldBuilderMap: "Registers a World Builder map."
+  Custom: "A settings container whose `Items` files are configuration files (loaded into the configuration database)."
+  DoNothing: "A placeholder component with no effect."
+  AlwaysMet: "Criterion that is always true."
+  NeverMet: "Criterion that is never true."
+  ConfigurationValueMatches: "True when a game, map or player configuration value (`ConfigurationId`) equals `Value`; `Group` says which configuration (for example Game, Map, Player) and `Player` selects the player."
+  ConfigurationValueContains: "True when the configuration value contains the given value (list-style values)."
+  RuleSetInUse: "True when the named ruleset is in use."
+  LeaderPlayable: "True when the leader is playable in the current setup."
+  MapInUse: "True when the named map is selected."
+  ModInUse: "True when the mod with the given id is active."
+  GameCoreInUse: "True when the named GameCore (ruleset DLL) is in use."
+  GameModeInUse: "True when the game mode matches: WorldBuilder, SinglePlayer, HotSeat or MultiPlayer."
+  ModIsEnabled: "Setting criterion: true when the mod is enabled."
+  ModIsInstalled: "Setting criterion: true when the mod is installed."
+  ActionCriteria: "Container of `Criteria` blocks (old style). A `Criteria` has an `id`; an `any` attribute makes it true when any child is true instead of all."
+  InGameActions: "Old-style list of components that apply while a game runs; each action may name `criteria`."
+  FrontEndActions: "Old-style list of components that apply in the front end (menus)."
+  Components: "New-style list of components (actions that change the game)."
+  Settings: "New-style list of setting components (configuration, maps)."
+  Properties: "Key-value children describing the mod (at the root) or a component."
+  Files: "The list of every file of the mod (relative paths); files outside this list are not packaged."
+  References: "Mods this mod works with (soft references)."
+  Dependencies: "Mods that must be present (hard dependencies)."
+  ReverseReferences: "Mods that should treat this mod as a reference (the reverse direction)."
+  ReverseDependencies: "Mods that depend on this mod (the reverse direction)."
+  Blocks: "Mods that cannot be enabled together with this one."
+  Items: "The files a component processes, as `File` children."
+  Include: "Pulls in another mod's action: `mod_id` and `action_id` select it and `required` says whether it must exist."
+  AffectsSavedGames: "Mod property: whether the mod changes saved games (saves then record the mod)."
+  EnabledByDefault: "Mod property: enabled when first installed."
+  LoadOrder: "Mod property: ordering among mods."
+  ShowInBrowser: "Mod property: shown in the Additional Content browser."
+  AlwaysHidden: "Mod property: never shown in the browser."
+  SupportsSinglePlayer: "Mod property: usable in single player."
+  SupportsMultiplayer: "Mod property: usable in multiplayer."
+  CompatibleVersions: "Mod property: game versions the mod claims to work with."
+  Trusted: "Mod property: marks the mod as trusted (shipped content)."
+  DisabledAtStartup: "Mod property: starts disabled."
+  BlockedByAssociation: "Mod status: another mod blocks this one."
+  ContainsDuplicates: "Mod status: the mod set contains duplicates."
+  MissingDependencies: "Mod status: a required mod is missing."
+  ConflictsWithExclusivity: "Mod status: conflicts with an exclusive mod."
+  OutdatedGameVersion: "Mod status: the mod does not list the game version."
+  OwnershipRequired: "Mod status: the player must own content the mod needs."
+  InvalidMod: "Mod status: the mod could not be read."

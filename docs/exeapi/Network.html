@@ -1,0 +1,687 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Network</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine Lua tables</a> › Network</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Network</h1>
+<p>Static table with 94 methods. <em>named from how the game scripts call it (76 of 94 methods matched).</em> Registering function <code>0x26ce30</code>.</p>
+<p>Methods are called with a dot (<code>Network.Method(...)</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+<th>In game scripts</th>
+<th>Example</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="_network.attemptconnectiontocrossplaylobbyservice"></a><code>Network.AttemptConnectionToCrossPlayLobbyService() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>3 calls, 2 files</td>
+<td><code>Network.AttemptConnectionToCrossPlayLobbyService()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.broadcastgameconfig"></a><code>Network.BroadcastGameConfig([arg1: boolean], …)</code></td>
+<td>—</td>
+<td>24 calls, 6 files</td>
+<td><code>Network.BroadcastGameConfig()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.broadcastplayerinfo"></a><code>Network.BroadcastPlayerInfo([playerID])</code></td>
+<td>—</td>
+<td>12 calls, 7 files</td>
+<td><code>Network.BroadcastPlayerInfo()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.canshowfriendchatwindow"></a><code>Network.CanShowFriendChatWindow() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if Network.CanShowFriendChatWindow()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.canviewfriendprofile"></a><code>Network.CanViewFriendProfile() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if Network.CanViewFriendProfile()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.checkserverforcloudnotifications"></a><code>Network.CheckServerForCloudNotifications(arg1) -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>listing.CloudNotify = Network.CheckServerForCloudNotifications(listing.ServerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.checkserverforunseencomplete"></a><code>Network.CheckServerForUnseenComplete(arg1) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>listing.UnseenComplete = Network.CheckServerForUnseenComplete(listing.ServerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.closeconnection"></a><code>Network.CloseConnection([arg1])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.cloudendturn"></a><code>Network.CloudEndTurn() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.cloudkillgame"></a><code>Network.CloudKillGame() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>Network.CloudKillGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.cloudquitgame"></a><code>Network.CloudQuitGame() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>Network.CloudQuitGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.displaypossiblenetworkerror"></a><code>Network.DisplayPossibleNetworkError()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if(Network.DisplayPossibleNetworkError()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.displayugcrestrictionswarning"></a><code>Network.DisplayUGCRestrictionsWarning()</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.ensurenetworkserviceaccountavailable"></a><code>Network.EnsureNetworkServiceAccountAvailable()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if(not Network.EnsureNetworkServiceAccountAvailable()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.forceresync"></a><code>Network.ForceResync()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getcapability"></a><code>Network.GetCapability(…) -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getchangeplayerid"></a><code>Network.GetChangePlayerID(arg1) -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>local oldDesiredPlayerID = Network.GetChangePlayerID(localPlayerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getelapsedsessiontime"></a><code>Network.GetElapsedSessionTime() -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>local sessionTime :number = Network.GetElapsedSessionTime()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getfriends"></a><code>Network.GetFriends([arg1], …)</code></td>
+<td>—</td>
+<td>22 calls, 13 files</td>
+<td><code>local pFriends = Network.GetFriends()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getgameconfigurationsavetype"></a><code>Network.GetGameConfigurationSaveType() -&gt; number</code></td>
+<td>number</td>
+<td>4 calls, 3 files</td>
+<td><code>g_GameType = Network.GetGameConfigurationSaveType()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getgamehostplayerid"></a><code>Network.GetGameHostPlayerID() -&gt; number</code></td>
+<td>number</td>
+<td>4 calls, 3 files</td>
+<td><code>if iPlayerID == Network.GetGameHostPlayerID()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getinternettransporttype"></a><code>Network.GetInternetTransportType()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if( Network.GetInternetTransportType()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getjoincode"></a><code>Network.GetJoinCode(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>2 calls, 2 files</td>
+<td><code>local joinCode :string = Network.GetJoinCode()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getlastjoinedhostname"></a><code>Network.GetLastJoinedHostName() -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getlocalplayerid"></a><code>Network.GetLocalPlayerID() -&gt; number</code></td>
+<td>number</td>
+<td>36 calls, 13 files</td>
+<td><code>if(playerID == Network.GetLocalPlayerID()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getnetsessionhostplayerid"></a><code>Network.GetNetSessionHostPlayerID() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getnetworkplatform"></a><code>Network.GetNetworkPlatform()</code></td>
+<td>—</td>
+<td>16 calls, 9 files</td>
+<td><code>if(Network.GetNetworkPlatform()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getpingtime"></a><code>Network.GetPingTime(arg1: integer) -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>local iPingTime = Network.GetPingTime( playerID )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getserverhostname"></a><code>Network.GetServerHostName([arg1: number], …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.getsessionid"></a><code>Network.GetSessionID() -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>local networkSessionID:number = Network.GetSessionID()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.gettransporttype"></a><code>Network.GetTransportType() -&gt; number</code></td>
+<td>number</td>
+<td>8 calls, 3 files</td>
+<td><code>if (Network.GetFriends(Network.GetTransportType()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.hascapability"></a><code>Network.HasCapability(arg1: string, …) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>4 calls, 1 files</td>
+<td><code>if(not Network.HasCapability("CloudGame")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.haskickvotedstarted"></a><code>Network.HasKickVotedStarted(arg1) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>and not Network.HasKickVotedStarted(iPlayerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.hasseparatecrossplaylobbyservice"></a><code>Network.HasSeparateCrossPlayLobbyService()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if (Network.HasSeparateCrossPlayLobbyService()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.hassinglefriendinvite"></a><code>Network.HasSingleFriendInvite() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>if allowInvites and Network.HasSingleFriendInvite()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.hasvotedtokick"></a><code>Network.HasVotedToKick(arg1) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>and not Network.HasKickVotedStarted(iPlayerID) and not Network.HasVotedToKick(iPlayerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.hostgame"></a><code>Network.HostGame(arg1: integer) -&gt; number</code></td>
+<td>number</td>
+<td>13 calls, 8 files</td>
+<td><code>Network.HostGame(serverType)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.inviteplaytogetherusers"></a><code>Network.InvitePlayTogetherUsers()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isagerestricted"></a><code>Network.IsAgeRestricted() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>12 calls, 5 files</td>
+<td><code>if( Network.IsAgeRestricted()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.iscloudjoinsblocked"></a><code>Network.IsCloudJoinsBlocked() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>or Network.IsCloudJoinsBlocked()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.iscloudlaunching"></a><code>Network.IsCloudLaunching() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>and not Network.IsCloudLaunching()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.iscloudmatchstarted"></a><code>Network.IsCloudMatchStarted() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if(Network.IsGameHost() and not Network.IsCloudMatchStarted()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.iscloudturnplayer"></a><code>Network.IsCloudTurnPlayer() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>if(Network.IsCloudTurnPlayer()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.iscrossplaylobbyserviceavailable"></a><code>Network.IsCrossPlayLobbyServiceAvailable() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if (Network.IsCrossPlayLobbyServiceAvailable()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.iseveryoneconnected"></a><code>Network.IsEveryoneConnected() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>if(not Network.IsEveryoneConnected()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isgamecoreactive"></a><code>Network.IsGameCoreActive() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isgamehost"></a><code>Network.IsGameHost() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>16 calls, 5 files</td>
+<td><code>if(Network.IsGameHost()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isingamestartedstate"></a><code>Network.IsInGameStartedState() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>3 calls, 3 files</td>
+<td><code>if Network.IsInGameStartedState()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isinsession"></a><code>Network.IsInSession() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>14 calls, 4 files</td>
+<td><code>if Network.IsInSession()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isinternetlobbyserviceavailable"></a><code>Network.IsInternetLobbyServiceAvailable() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>11 calls, 4 files</td>
+<td><code>if (Network.IsInternetLobbyServiceAvailable()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isinternetmultiplayerinitialized"></a><code>Network.IsInternetMultiplayerInitialized(arg1: boolean)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if Network.IsInternetMultiplayerInitialized(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.ismatchmaking"></a><code>Network.IsMatchMaking([arg1: number]) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>4 calls, 2 files</td>
+<td><code>if(Network.IsMatchMaking()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.ismultiplayerrestrictionenabled"></a><code>Network.IsMultiplayerRestrictionEnabled()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if (Network.IsMultiplayerRestrictionEnabled()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isnetsessionhost"></a><code>Network.IsNetSessionHost() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>4 calls, 3 files</td>
+<td><code>if(Network.IsNetSessionHost()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isnetworkavailable"></a><code>Network.IsNetworkAvailable()</code></td>
+<td>—</td>
+<td>4 calls, 1 files</td>
+<td><code>if (not Network.IsNetworkAvailable()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isnetworkserviceaccountavailable"></a><code>Network.IsNetworkServiceAccountAvailable()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if (not Network.IsNetworkServiceAccountAvailable()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isnpreachable"></a><code>Network.IsNpReachable()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if Network.IsNpReachable()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.ispendingagerestriction"></a><code>Network.IsPendingAgeRestriction() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isplayerconnected"></a><code>Network.IsPlayerConnected(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>11 calls, 4 files</td>
+<td><code>if(Network.IsPlayerConnected(iPlayer)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isplayerhotjoining"></a><code>Network.IsPlayerHotJoining(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>3 calls, 2 files</td>
+<td><code>if(Network.IsPlayerHotJoining(playerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isplayerkicked"></a><code>Network.IsPlayerKicked(playerID: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>5 calls, 4 files</td>
+<td><code>if(Network.IsPlayerKicked(playerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isplayerresyncing"></a><code>Network.IsPlayerResyncing(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>elseif(Network.IsPlayerResyncing(playerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.issessionactive"></a><code>Network.IsSessionActive() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.issessionclosing"></a><code>Network.IsSessionClosing() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.issessioninclosestate"></a><code>Network.IsSessionInCloseState() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>and not Network.IsSessionInCloseState()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isupdaterequired"></a><code>Network.IsUpdateRequired()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.isuserloggedintocrossplaylobbyservice"></a><code>Network.IsUserLoggedIntoCrossPlayLobbyService() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if(Network.IsUserLoggedIntoCrossPlayLobbyService()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.joingame"></a><code>Network.JoinGame(arg1: integer) -&gt; boolean, boolean</code></td>
+<td>boolean, boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>Network.JoinGame(serverEntry.serverID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.joingamebyjoincode"></a><code>Network.JoinGameByJoinCode(arg1: string) -&gt; boolean, boolean</code></td>
+<td>boolean, boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>local bSuccess, bPending = Network.JoinGameByJoinCode(joinCodeString)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.kickplayer"></a><code>Network.KickPlayer(arg1: integer)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>Network.KickPlayer( g_kickIdx )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.kickvote"></a><code>Network.KickVote(arg1, arg2: boolean, [arg3])</code></td>
+<td>—</td>
+<td>5 calls, 2 files</td>
+<td><code>Network.KickVote(targetPlayerID, true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.launchgame"></a><code>Network.LaunchGame() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>Network.LaunchGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.leavegame"></a><code>Network.LeaveGame() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>14 calls, 6 files</td>
+<td><code>Network.LeaveGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.loadgame"></a><code>Network.LoadGame(arg1: string, arg2: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>13 calls, 5 files</td>
+<td><code>Network.LoadGame(m_thisLoadFile, serverType)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.logintocrossplaylobbyservice"></a><code>Network.LogIntoCrossPlayLobbyService([arg1: string], [arg2: string]) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.matchmake"></a><code>Network.MatchMake() -&gt; boolean, boolean</code></td>
+<td>boolean, boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>Network.MatchMake()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.psplusavailability"></a><code>Network.PSPlusAvailability()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>local psPlusAvailability = Network.PSPlusAvailability()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.presentnpdisconnectederror"></a><code>Network.PresentNpDisconnectedError()</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>Network.PresentNpDisconnectedError()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.presentpspluscommercedialog"></a><code>Network.PresentPSPlusCommerceDialog()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>Network.PresentPSPlusCommerceDialog()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.profanityfilter"></a><code>Network.ProfanityFilter([arg1: string], …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.requestinternetconnection"></a><code>Network.RequestInternetConnection(arg1: boolean)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if (not Network.RequestInternetConnection(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.requestplayeridchange"></a><code>Network.RequestPlayerIDChange(arg1)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>Network.RequestPlayerIDChange(newDesiredPlayerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.requestsnapshot"></a><code>Network.RequestSnapshot()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.resethasshownnetworkdisconnecterror"></a><code>Network.ResetHasShownNetworkDisconnectError()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.resetplaytogether"></a><code>Network.ResetPlayTogether()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>Network.ResetPlayTogether()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.restartgame"></a><code>Network.RestartGame() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>Network.RestartGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.savegame"></a><code>Network.SaveGame(gameFile) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>8 calls, 5 files</td>
+<td><code>Network.SaveGame(gameFile)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.sendchat"></a><code>Network.SendChat(arg1: string, arg2: number, arg3: integer)</code></td>
+<td>—</td>
+<td>4 calls, 3 files</td>
+<td><code>Network.SendChat( "Test message #"..tostring(i), -1, -1 )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.setcompletedgameseen"></a><code>Network.SetCompletedGameSeen(arg1) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>Network.SetCompletedGameSeen(serverID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.setinpsplusfeature"></a><code>Network.SetInPSPlusFeature(arg1: boolean)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>Network.SetInPSPlusFeature(false)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.setlocalnetworkmode"></a><code>Network.SetLocalNetworkMode(arg1: boolean)</code></td>
+<td>—</td>
+<td>3 calls, 1 files</td>
+<td><code>Network.SetLocalNetworkMode(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.triggertestsync"></a><code>Network.TriggerTestSync()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.ugcrestrictionsenabled"></a><code>Network.UGCRestrictionsEnabled()</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>if Network.UGCRestrictionsEnabled()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_network.useraccountchanged"></a><code>Network.UserAccountChanged() -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>1 calls, 1 files</td>
+<td><code>Network.UserAccountChanged()</code></td>
+<td>inferred</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -1,0 +1,1968 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>WorldView</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine classes</a> › WorldView</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>WorldView</h1>
+<p>54 classes. A class lists its base chain (first base only for multiple inheritance), its direct subclasses, and its virtual slots.</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Base chain</th>
+<th>Subclasses</th>
+<th>Virtual slots</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="worldview__asyncupdatetask"></a><a href="#c-worldview__asyncupdatetask"><code>AsyncUpdateTask</code></a></td>
+<td><code>AsyncJob</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__cloudshadows__context"></a><a href="#c-worldview__cloudshadows__context"><code>CloudShadows::Context</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="worldview__cloudshadows__noisecontext"></a><a href="#c-worldview__cloudshadows__noisecontext"><code>CloudShadows::NoiseContext</code></a></td>
+<td><code>Context</code> &gt; <code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="worldview__cluttersystem"></a><a href="#c-worldview__cluttersystem"><code>ClutterSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__cluttersystem__context"></a><a href="#c-worldview__cluttersystem__context"><code>ClutterSystem::Context</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__cluttersystem__context__clutterupdatejob"></a><a href="#c-worldview__cluttersystem__context__clutterupdatejob"><code>ClutterSystem::Context::ClutterUpdateJob</code></a></td>
+<td><code>Job</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__cluttervis"></a><a href="#c-worldview__cluttervis"><code>ClutterVis</code></a></td>
+<td><code>ModelVis</code> &gt; <code>VisBase</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="worldview__dynamicsystem__context"></a><a href="#c-worldview__dynamicsystem__context"><code>DynamicSystem::Context</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__dynamicsystem__system"></a><a href="#c-worldview__dynamicsystem__system"><code>DynamicSystem::System</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__dynamicvis"></a><a href="#c-worldview__dynamicvis"><code>DynamicVis</code></a></td>
+<td><code>ModelVis</code> &gt; <code>VisBase</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="worldview__farm__context"></a><a href="#c-worldview__farm__context"><code>Farm::Context</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__farm__context__farmjob"></a><a href="#c-worldview__farm__context__farmjob"><code>Farm::Context::FarmJob</code></a></td>
+<td><code>Job</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__farm__system"></a><a href="#c-worldview__farm__system"><code>Farm::System</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__genericobject__context"></a><a href="#c-worldview__genericobject__context"><code>GenericObject::Context</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>9</td>
+</tr>
+<tr>
+<td><a id="worldview__genericobject__objectvis"></a><a href="#c-worldview__genericobject__objectvis"><code>GenericObject::ObjectVis</code></a></td>
+<td><code>ModelVis</code> &gt; <code>VisBase</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="worldview__genericobject__system"></a><a href="#c-worldview__genericobject__system"><code>GenericObject::System</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__growthparamwrapper"></a><a href="#c-worldview__growthparamwrapper"><code>GrowthParamWrapper</code></a></td>
+<td><code>GrowthParams</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="worldview__heightedit__terraineditasyncjob"></a><a href="#c-worldview__heightedit__terraineditasyncjob"><code>HeightEdit::TerrainEditAsyncJob</code></a></td>
+<td><code>AsyncJob</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__hexinteriorgrowthparams"></a><a href="#c-worldview__hexinteriorgrowthparams"><code>HexInteriorGrowthParams</code></a></td>
+<td><code>GrowthParamWrapper</code> &gt; <code>GrowthParams</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="worldview__hexspinegrowthparams"></a><a href="#c-worldview__hexspinegrowthparams"><code>HexSpineGrowthParams</code></a></td>
+<td><code>GrowthParamWrapper</code> &gt; <code>GrowthParams</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="worldview__landmarkcontext"></a><a href="#c-worldview__landmarkcontext"><code>LandmarkContext</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__landmarkmanager"></a><a href="#c-worldview__landmarkmanager"><code>LandmarkManager</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__landmarksystem"></a><a href="#c-worldview__landmarksystem"><code>LandmarkSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__landmarks__artdef_building"></a><a href="#c-worldview__landmarks__artdef_building"><code>Landmarks::ArtDef_Building</code></a></td>
+<td><code>CivEraAppealMap</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="worldview__landmarks__artdef_landmark"></a><a href="#c-worldview__landmarks__artdef_landmark"><code>Landmarks::ArtDef_Landmark</code></a></td>
+<td><code>CivEraAppealMap</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="worldview__landmarks__civeraappealmap"></a><a href="#c-worldview__landmarks__civeraappealmap"><code>Landmarks::CivEraAppealMap</code></a></td>
+<td>—</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="worldview__moaiinsethelper"></a><a href="#c-worldview__moaiinsethelper"><code>MoaiInsetHelper</code></a></td>
+<td><code>SplineBasedInsetHelper</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__naturalwondercontext"></a><a href="#c-worldview__naturalwondercontext"><code>NaturalWonderContext</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__naturalwondercontext__updatejob"></a><a href="#c-worldview__naturalwondercontext__updatejob"><code>NaturalWonderContext::UpdateJob</code></a></td>
+<td><code>Job</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__naturalwondervis"></a><a href="#c-worldview__naturalwondervis"><code>NaturalWonderVis</code></a></td>
+<td><code>ModelVis</code> &gt; <code>VisBase</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="worldview__routecontext"></a><a href="#c-worldview__routecontext"><code>RouteContext</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__routesystem"></a><a href="#c-worldview__routesystem"><code>RouteSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__scriptedartsystem"></a><a href="#c-worldview__scriptedartsystem"><code>ScriptedArtSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__seawallinsethelper"></a><a href="#c-worldview__seawallinsethelper"><code>SeawallInsetHelper</code></a></td>
+<td><code>SplineBasedInsetHelper</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__splinebasedinsethelper"></a><a href="#c-worldview__splinebasedinsethelper"><code>SplineBasedInsetHelper</code></a></td>
+<td>—</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__stormsystem"></a><a href="#c-worldview__stormsystem"><code>StormSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__terraincontext"></a><a href="#c-worldview__terraincontext"><code>TerrainContext</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__terrainsystem"></a><a href="#c-worldview__terrainsystem"><code>TerrainSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__terraintilecallback"></a><a href="#c-worldview__terraintilecallback"><code>TerrainTileCallback</code></a></td>
+<td><code>PassIFace</code></td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td><a id="worldview__tilebasesystem"></a><a href="#c-worldview__tilebasesystem"><code>TilebaseSystem</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__unitformation__system"></a><a href="#c-worldview__unitformation__system"><code>UnitFormation::System</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__unitmovement__system"></a><a href="#c-worldview__unitmovement__system"><code>UnitMovement::System</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__unitsystem"></a><a href="#c-worldview__unitsystem"><code>UnitSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__unitsystem__context"></a><a href="#c-worldview__unitsystem__context"><code>UnitSystem::Context</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__unitvis"></a><a href="#c-worldview__unitvis"><code>UnitVis</code></a></td>
+<td><code>ModelVis</code> &gt; <code>VisBase</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="worldview__watersystem"></a><a href="#c-worldview__watersystem"><code>WaterSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__watersystem__context"></a><a href="#c-worldview__watersystem__context"><code>WaterSystem::Context</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__watersystem__context__riverupdateasyncjob"></a><a href="#c-worldview__watersystem__context__riverupdateasyncjob"><code>WaterSystem::Context::RiverUpdateAsyncJob</code></a></td>
+<td><code>AsyncJob</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__wondermoviesystem"></a><a href="#c-worldview__wondermoviesystem"><code>WonderMovieSystem</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview__wondermoviesystem__context"></a><a href="#c-worldview__wondermoviesystem__context"><code>WonderMovieSystem::Context</code></a></td>
+<td><code>IArtDefChangeListener</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__wondermoviesystem__worldviewterraincontext"></a><a href="#c-worldview__wondermoviesystem__worldviewterraincontext"><code>WonderMovieSystem::WorldViewTerrainContext</code></a></td>
+<td><code>ITerrainContext</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__worldviewapcullingcontext"></a><a href="#c-worldview__worldviewapcullingcontext"><code>WorldViewAPCullingContext</code></a></td>
+<td><code>IAPCullingContext</code></td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="worldview__xrefartdeftranslator"></a><a href="#c-worldview__xrefartdeftranslator"><code>XRefArtDefTranslator</code></a></td>
+<td><code>IArtDefConsumer</code></td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="worldview___farm_internal__farmvis"></a><a href="#c-worldview___farm_internal__farmvis"><code>_FARM_INTERNAL::FarmVis</code></a></td>
+<td><code>ModelVis</code> &gt; <code>VisBase</code></td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h2>Virtual functions by class</h2>
+<details>
+<summary><a id="c-worldview__asyncupdatetask"></a>WorldView::AsyncUpdateTask (3 slots, vtable 0x53abcf0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>Platform::AsyncJob::~AsyncJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::AsyncUpdateTask::~AsyncUpdateTask</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::AsyncUpdateTask::Execute</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__cloudshadows__context"></a>WorldView::CloudShadows::Context (5 slots, vtable 0x53abd40 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>IArtDefConsumer::~IArtDefConsumer</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::CloudShadows::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::CloudShadows::Context::ConfigureFromArtDefs</code></td>
+<td><code>0x56b490</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::CloudShadows::Context::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>WorldView::CloudShadows::Context::Initialize</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__cloudshadows__noisecontext"></a>WorldView::CloudShadows::NoiseContext (5 slots, vtable 0x53abd98 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>IArtDefConsumer::~IArtDefConsumer</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::CloudShadows::NoiseContext::~NoiseContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::CloudShadows::NoiseContext::ConfigureFromArtDefs</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::CloudShadows::NoiseContext::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>WorldView::CloudShadows::NoiseContext::Initialize</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__cluttersystem"></a>WorldView::ClutterSystem (4 slots, vtable 0x53abf38 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::ClutterSystem::~ClutterSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::ClutterSystem::~ClutterSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::ClutterSystem::ConfigureFromArtDefs</code></td>
+<td><code>0x56e670</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::ClutterSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__cluttersystem__context"></a>WorldView::ClutterSystem::Context (3 slots, vtable 0x53abeb0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::ClutterSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::ClutterSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::ClutterSystem::Context::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__cluttersystem__context__clutterupdatejob"></a>WorldView::ClutterSystem::Context::ClutterUpdateJob (3 slots, vtable 0x53abef8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>Platform::Job::~Job</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::ClutterSystem::Context::ClutterUpdateJob::~ClutterUpdateJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::ClutterSystem::Context::ClutterUpdateJob::Execute</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__cluttervis"></a>WorldView::ClutterVis (2 slots, vtable 0x53abe88 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ModelVisSystem::ModelVis::~ModelVis</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::ClutterVis::~ClutterVis</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__dynamicsystem__context"></a>WorldView::DynamicSystem::Context (3 slots, vtable 0x53ac178 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::DynamicSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::DynamicSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::DynamicSystem::Context::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__dynamicsystem__system"></a>WorldView::DynamicSystem::System (4 slots, vtable 0x53ac128 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::DynamicSystem::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::DynamicSystem::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::DynamicSystem::System::ConfigureFromArtDefs</code></td>
+<td><code>0x57b5e0</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::DynamicSystem::System::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__dynamicvis"></a>WorldView::DynamicVis (2 slots, vtable 0x53ac1b8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ModelVisSystem::ModelVis::~ModelVis</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::DynamicVis::~DynamicVis</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__farm__context"></a>WorldView::Farm::Context (3 slots, vtable 0x53ac240 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::Farm::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::Farm::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::Farm::Context::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__farm__context__farmjob"></a>WorldView::Farm::Context::FarmJob (3 slots, vtable 0x53ac2d8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::Farm::Context::FarmJob::~FarmJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::Farm::Context::FarmJob::~FarmJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::Farm::Context::FarmJob::Execute</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__farm__system"></a>WorldView::Farm::System (4 slots, vtable 0x53ac288 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::Farm::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::Farm::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::Farm::System::ConfigureFromArtDefs</code></td>
+<td><code>0x58a610</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::Farm::System::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__genericobject__context"></a>WorldView::GenericObject::Context (9 slots, vtable 0x53ac4e0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::GenericObject::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::GenericObject::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::GenericObject::Context::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::GenericObject::Context::HandleDataReloaded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>typeinfo for WorldView::GenericObject::Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>non-virtual thunk to WorldView::GenericObject::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>non-virtual thunk to WorldView::GenericObject::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>non-virtual thunk to WorldView::GenericObject::Context::HandleDataReloaded</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__genericobject__objectvis"></a>WorldView::GenericObject::ObjectVis (2 slots, vtable 0x53ac4b8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ModelVisSystem::ModelVis::~ModelVis</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::GenericObject::ObjectVis::~ObjectVis</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__genericobject__system"></a>WorldView::GenericObject::System (4 slots, vtable 0x53ac578 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>IArtDefConsumer::~IArtDefConsumer</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::GenericObject::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::GenericObject::System::ConfigureFromArtDefs</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::GenericObject::System::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__growthparamwrapper"></a>WorldView::GrowthParamWrapper (1 slots, vtable 0x53ac698 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::GrowthParamWrapper::AddToGraph</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__heightedit__terraineditasyncjob"></a>WorldView::HeightEdit::TerrainEditAsyncJob (3 slots, vtable 0x53ad360 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::HeightEdit::TerrainEditAsyncJob::~TerrainEditAsyncJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::HeightEdit::TerrainEditAsyncJob::~TerrainEditAsyncJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::HeightEdit::TerrainEditAsyncJob::Execute</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__hexinteriorgrowthparams"></a>WorldView::HexInteriorGrowthParams (1 slots, vtable 0x53ac620 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::HexInteriorGrowthParams::AddToGraph</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__hexspinegrowthparams"></a>WorldView::HexSpineGrowthParams (1 slots, vtable 0x53ac6b0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::HexSpineGrowthParams::AddToGraph</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__landmarkcontext"></a>WorldView::LandmarkContext (3 slots, vtable 0x53acf58 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::LandmarkContext::~LandmarkContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::LandmarkContext::~LandmarkContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::LandmarkContext::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__landmarkmanager"></a>WorldView::LandmarkManager (3 slots, vtable 0x53aca68 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>IArtDefChangeListener::~IArtDefChangeListener</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::LandmarkManager::~LandmarkManager</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::LandmarkManager::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__landmarksystem"></a>WorldView::LandmarkSystem (4 slots, vtable 0x53acf10 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::LandmarkSystem::~LandmarkSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::LandmarkSystem::~LandmarkSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::LandmarkSystem::ConfigureFromArtDefs</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::LandmarkSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__landmarks__artdef_building"></a>WorldView::Landmarks::ArtDef_Building (1 slots, vtable 0x53acae8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::Landmarks::ArtDef_Building::print_error</code></td>
+<td><code>0x5dcda0</code> (high)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__landmarks__artdef_landmark"></a>WorldView::Landmarks::ArtDef_Landmark (1 slots, vtable 0x53acab0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::Landmarks::ArtDef_Landmark::print_error</code></td>
+<td><code>0x5dcea0</code> (medium)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__landmarks__civeraappealmap"></a>WorldView::Landmarks::CivEraAppealMap (1 slots, vtable 0x53aaca8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__moaiinsethelper"></a>WorldView::MoaiInsetHelper (3 slots, vtable 0x53ac470 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::SplineBasedInsetHelper::InitEdge</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::MoaiInsetHelper::GetSplineWeight</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::MoaiInsetHelper::GetVertOffset</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__naturalwondercontext"></a>WorldView::NaturalWonderContext (3 slots, vtable 0x53acfc0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::NaturalWonderContext::~NaturalWonderContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::NaturalWonderContext::~NaturalWonderContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::NaturalWonderContext::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__naturalwondercontext__updatejob"></a>WorldView::NaturalWonderContext::UpdateJob (3 slots, vtable 0x53acfe8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>Platform::Job::~Job</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::NaturalWonderContext::UpdateJob::~UpdateJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::NaturalWonderContext::UpdateJob::Execute</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__naturalwondervis"></a>WorldView::NaturalWonderVis (2 slots, vtable 0x53acf98 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ModelVisSystem::ModelVis::~ModelVis</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::NaturalWonderVis::~NaturalWonderVis</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__routecontext"></a>WorldView::RouteContext (3 slots, vtable 0x53ad178 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::RouteContext::~RouteContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::RouteContext::~RouteContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::RouteContext::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__routesystem"></a>WorldView::RouteSystem (4 slots, vtable 0x53ad130 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::RouteSystem::~RouteSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::RouteSystem::~RouteSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::RouteSystem::ConfigureFromArtDefs</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::RouteSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__scriptedartsystem"></a>WorldView::ScriptedArtSystem (4 slots, vtable 0x53ad1c0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::ScriptedArtSystem::~ScriptedArtSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::ScriptedArtSystem::~ScriptedArtSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::ScriptedArtSystem::ConfigureFromArtDefs</code></td>
+<td><code>0x5ff360</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::ScriptedArtSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__seawallinsethelper"></a>WorldView::SeawallInsetHelper (3 slots, vtable 0x53ac3f8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::SeawallInsetHelper::InitEdge</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::SeawallInsetHelper::GetSplineWeight</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::SeawallInsetHelper::GetVertOffset</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__splinebasedinsethelper"></a>WorldView::SplineBasedInsetHelper (3 slots, vtable 0x53ac448 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::SplineBasedInsetHelper::InitEdge</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__stormsystem"></a>WorldView::StormSystem (4 slots, vtable 0x53ad210 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::StormSystem::~StormSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::StormSystem::~StormSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::StormSystem::ConfigureFromArtDefs</code></td>
+<td><code>0x6030f0</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::StormSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__terraincontext"></a>WorldView::TerrainContext (3 slots, vtable 0x53ad260 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::TerrainContext::~TerrainContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::TerrainContext::~TerrainContext</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::TerrainContext::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__terrainsystem"></a>WorldView::TerrainSystem (4 slots, vtable 0x53ad480 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::TerrainSystem::~TerrainSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::TerrainSystem::~TerrainSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::TerrainSystem::ConfigureFromArtDefs</code></td>
+<td><code>0x6275c0</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::TerrainSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__terraintilecallback"></a>WorldView::TerrainTileCallback (6 slots, vtable 0x53ad300 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>Synthesis::Map::PassIFace::~PassIFace</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::TerrainTileCallback::~TerrainTileCallback</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::TerrainTileCallback::Initialize</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::TerrainTileCallback::Finalize</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>WorldView::TerrainTileCallback::Release</code></td>
+<td><code>0x6133d0</code> (high)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>WorldView::TerrainTileCallback::Build</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__tilebasesystem"></a>WorldView::TilebaseSystem (3 slots, vtable 0x53ad4d0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::TilebaseSystem::~TilebaseSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::TilebaseSystem::~TilebaseSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::TilebaseSystem::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__unitformation__system"></a>WorldView::UnitFormation::System (4 slots, vtable 0x53ad520 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::UnitFormation::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::UnitFormation::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::UnitFormation::System::ConfigureFromArtDefs</code></td>
+<td><code>0x62c540</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::UnitFormation::System::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__unitmovement__system"></a>WorldView::UnitMovement::System (4 slots, vtable 0x53ad570 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::UnitMovement::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::UnitMovement::System::~System</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::UnitMovement::System::ConfigureFromArtDefs</code></td>
+<td><code>0x62d9a0</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::UnitMovement::System::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__unitsystem"></a>WorldView::UnitSystem (4 slots, vtable 0x53ad608 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::UnitSystem::~UnitSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::UnitSystem::~UnitSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::UnitSystem::ConfigureFromArtDefs</code></td>
+<td><code>0x6310c0</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::UnitSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__unitsystem__context"></a>WorldView::UnitSystem::Context (3 slots, vtable 0x53ad5e0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::UnitSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::UnitSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::UnitSystem::Context::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__unitvis"></a>WorldView::UnitVis (2 slots, vtable 0x53ad5b8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::UnitVis::~UnitVis</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::UnitVis::~UnitVis</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__watersystem"></a>WorldView::WaterSystem (4 slots, vtable 0x53ad6e8 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::WaterSystem::~WaterSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::WaterSystem::~WaterSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::WaterSystem::ConfigureFromArtDefs</code></td>
+<td><code>0x646c90</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::WaterSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__watersystem__context"></a>WorldView::WaterSystem::Context (3 slots, vtable 0x53ad738 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::WaterSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::WaterSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::WaterSystem::Context::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__watersystem__context__riverupdateasyncjob"></a>WorldView::WaterSystem::Context::RiverUpdateAsyncJob (3 slots, vtable 0x53ad6a0 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::WaterSystem::Context::RiverUpdateAsyncJob::~RiverUpdateAsyncJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::WaterSystem::Context::RiverUpdateAsyncJob::~RiverUpdateAsyncJob</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::WaterSystem::Context::RiverUpdateAsyncJob::Execute</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__wondermoviesystem"></a>WorldView::WonderMovieSystem (4 slots, vtable 0x53a7958 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::WonderMovieSystem::~WonderMovieSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::WonderMovieSystem::~WonderMovieSystem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::WonderMovieSystem::ConfigureFromArtDefs</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::WonderMovieSystem::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__wondermoviesystem__context"></a>WorldView::WonderMovieSystem::Context (3 slots, vtable 0x53ad800 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::WonderMovieSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::WonderMovieSystem::Context::~Context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::WonderMovieSystem::Context::HandleArtDefChanges</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__wondermoviesystem__worldviewterraincontext"></a>WorldView::WonderMovieSystem::WorldViewTerrainContext (3 slots, vtable 0x53ad828 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::WonderMovieSystem::WorldViewTerrainContext::GetWorldHeight</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::WonderMovieSystem::WorldViewTerrainContext::SetRouteConnectionPoints</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::WonderMovieSystem::WorldViewTerrainContext::ClearRouteConnectionPoints</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__worldviewapcullingcontext"></a>WorldView::WorldViewAPCullingContext (3 slots, vtable 0x53ad868 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::WorldViewAPCullingContext::QueryBlockers</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::WorldViewAPCullingContext::CreateBlockers</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::WorldViewAPCullingContext::ClearBlockers</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview__xrefartdeftranslator"></a>WorldView::XRefArtDefTranslator (4 slots, vtable 0x53a7d08 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>WorldView::XRefArtDefTranslator::~XRefArtDefTranslator</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::XRefArtDefTranslator::~XRefArtDefTranslator</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WorldView::XRefArtDefTranslator::ConfigureFromArtDefs</code></td>
+<td><code>0x559fa0</code> (high)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>WorldView::XRefArtDefTranslator::DependsOnGameCore</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><a id="c-worldview___farm_internal__farmvis"></a>WorldView::_FARM_INTERNAL::FarmVis (2 slots, vtable 0x53ac318 (Linux))</summary>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Function</th>
+<th>Windows RVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ModelVisSystem::ModelVis::~ModelVis</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>WorldView::_FARM_INTERNAL::FarmVis::~FarmVis</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

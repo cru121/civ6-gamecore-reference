@@ -1,0 +1,1382 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Inheritance trees</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine classes</a> › Inheritance trees</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Inheritance trees</h1>
+<p>Classes with at least one subclass, grouped under their root. <code>(n)</code> is the number of virtual slots; a class with several bases appears under each. The UI toolkit tree (<code>ForgeUI</code>) shows which controls share methods: a method registered on a base class is available on its subclasses.</p>
+<h2>App</h2>
+<ul>
+<li><code>App::ContentPath::PathProvider::IInstance</code> (8)</li>
+<li><code>App::ContentPath::PathProvider::ArtDefBLP</code> (8)</li>
+<li><code>App::ContentPath::PathProvider::Catalog</code> (8)</li>
+<li><code>App::FiraxisLive::Telemetry::Config::BaseConfigObject</code> (8)</li>
+<li><code>App::FiraxisLive::Telemetry::Config::Condition</code> (8)</li>
+<li><code>App::FiraxisLive::Telemetry::Config::Conditionals</code> (8)</li>
+<li><code>App::FiraxisLive::Telemetry::Config::Ruleset</code> (20)</li>
+<li><code>App::FiraxisLive::Telemetry::Config::SendableObject</code> (9)<ul>
+<li><code>App::FiraxisLive::Telemetry::Config::Event</code> (17)</li>
+<li><code>App::FiraxisLive::Telemetry::Config::Redirect</code> (9)</li>
+</ul>
+</li>
+<li><code>App::Ownership::Authority::Instance</code> (6)</li>
+<li><code>App::Ownership::Authority::FiraxisLive</code> (6)</li>
+<li><code>App::Ownership::Authority::Steam</code> (6)</li>
+<li><code>App::PushData::Instance</code> (6)</li>
+<li><code>App::PushData::MarketingMessage</code> (6)</li>
+</ul>
+<h2>AppHost</h2>
+<ul>
+<li><code>AppHost::Application</code> (14)</li>
+<li><code>Civ6App</code> (14)</li>
+</ul>
+<h2>ArtDefManager</h2>
+<ul>
+<li><code>ArtDefManager::IArtLoadStrategy</code> (1)</li>
+<li><code>ArtDefManager::DeferredLoader</code> (1)</li>
+<li><code>ArtDefManager::ImmediateLoader</code> (1)</li>
+</ul>
+<h2>Aspyr</h2>
+<ul>
+<li><code>Aspyr::Aspyr_AppBase</code> (8)</li>
+<li><code>Aspyr::Aspyr_AppLinux</code> (8)</li>
+</ul>
+<h2>AssetObjects</h2>
+<ul>
+<li><code>AssetObjects::Error</code> (0)</li>
+<li><code>AssetObjects::AttachmentPointError</code> (3)</li>
+<li><code>AssetObjects::BadDefaultError</code> (3)</li>
+<li><code>AssetObjects::BadEnvironmentMapOptions</code> (3)</li>
+<li><code>AssetObjects::BadInstanceClassError</code> (3)</li>
+<li><code>AssetObjects::BadParamRangeError</code> (3)</li>
+<li><code>AssetObjects::BadTextureExportOptions</code> (3)</li>
+<li><code>AssetObjects::CompileError</code> (3)<ul>
+<li><code>AssetObjects::FirstPassCompileError</code> (3)</li>
+</ul>
+</li>
+<li><code>AssetObjects::CorruptObjectError</code> (3)</li>
+<li><code>AssetObjects::DanglingTransferTriggerError</code> (3)</li>
+<li><code>AssetObjects::DataFileMismatchError</code> (3)</li>
+<li><code>AssetObjects::DuplicateClassFileError</code> (3)</li>
+<li><code>AssetObjects::DuplicateEnumError</code> (3)</li>
+<li><code>AssetObjects::DuplicateInstanceFileError</code> (3)</li>
+<li><code>AssetObjects::DuplicateParameterError</code> (3)</li>
+<li><code>AssetObjects::DuplicateStateError</code> (3)</li>
+<li><code>AssetObjects::DuplicateValueError</code> (3)</li>
+<li><code>AssetObjects::DuplicateXLPEntryError</code> (3)</li>
+<li><code>AssetObjects::IllegalClassError</code> (3)</li>
+<li><code>AssetObjects::IllegalClassOnAssetError</code> (3)</li>
+<li><code>AssetObjects::IllegalNullError</code> (3)</li>
+<li><code>AssetObjects::MissingAssetAnimationError</code> (3)</li>
+<li><code>AssetObjects::MissingAssetDSGError</code> (3)</li>
+<li><code>AssetObjects::MissingAssetGeoError</code> (3)</li>
+<li><code>AssetObjects::MissingAssetLightError</code> (3)</li>
+<li><code>AssetObjects::MissingBehaviorError</code> (3)</li>
+<li><code>AssetObjects::MissingClassError</code> (3)</li>
+<li><code>AssetObjects::MissingDataFileError</code> (3)</li>
+<li><code>AssetObjects::MissingDecisionSlotError</code> (3)</li>
+<li><code>AssetObjects::MissingInstanceError</code> (3)</li>
+<li><code>AssetObjects::MissingStateError</code> (3)</li>
+<li><code>AssetObjects::MissingTimelineError</code> (3)</li>
+<li><code>AssetObjects::MissingTriggerAttachmentPointError</code> (3)</li>
+<li><code>AssetObjects::OrphanedDataFileError</code> (3)</li>
+<li><code>AssetObjects::OrphanedPrimGroupError</code> (3)</li>
+<li><code>AssetObjects::OrphanedValueError</code> (3)</li>
+<li><code>AssetObjects::OutOfRangeError</code> (3)</li>
+<li><code>AssetObjects::TypeMismatchError</code> (3)</li>
+<li><code>AssetObjects::IArtDefCollectionProvider</code> (0)</li>
+<li><code>AssetObjects::ArtDefSet</code> (7)</li>
+<li><code>AssetObjects::IBehaviorDataProvider</code> (0)</li>
+<li><code>AssetObjects::AssetInstance</code> (27)</li>
+<li><code>AssetObjects::BehaviorData</code> (9)</li>
+<li><code>AssetObjects::BehaviorInstance</code> (27)</li>
+<li><code>AssetObjects::ICurveSegment</code> (0)</li>
+<li><code>AssetObjects::ConstantSegment</code> (4)</li>
+<li><code>AssetObjects::ConstantSegmentDefinition</code> (15)</li>
+<li><code>AssetObjects::Curve</code> (4)</li>
+<li><code>AssetObjects::CurveValue</code> (20)</li>
+<li><code>AssetObjects::LinearSegment</code> (4)</li>
+<li><code>AssetObjects::LinearSegmentDefinition</code> (15)</li>
+<li><code>AssetObjects::IFireFXCompiler</code> (0)</li>
+<li><code>AssetObjects::FireFXCompiler</code> (8)</li>
+<li><code>AssetObjects::IFireFXConfigElement</code> (0)</li>
+<li><code>AssetObjects::FireFXConfigElement</code> (7)</li>
+<li><code>AssetObjects::IFireFXEmitter</code> (0)</li>
+<li><code>AssetObjects::FireFXEmitterImpl</code> (8)</li>
+<li><code>AssetObjects::IFireFXInstanceData</code> (0)</li>
+<li><code>AssetObjects::IFireFXConfigData</code> (0)<ul>
+<li><code>AssetObjects::FireFXConfigData</code> (15)</li>
+</ul>
+</li>
+<li><code>AssetObjects::IFireFXEmptyData</code> (0)<ul>
+<li><code>AssetObjects::FireFXEmptyData</code> (6)</li>
+</ul>
+</li>
+<li><code>AssetObjects::IFireFXScriptData</code> (0)<ul>
+<li><code>AssetObjects::FireFXScriptData</code> (14)</li>
+</ul>
+</li>
+<li><code>AssetObjects::IFireFXScript</code> (0)</li>
+<li><code>AssetObjects::FireFXScriptImpl</code> (5)</li>
+<li><code>AssetObjects::IFireFXVisualBlockData</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualBlockData</code> (25)</li>
+<li><code>AssetObjects::IFireFXVisualBlockDataTemplate</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualBlockDataTemplate</code> (87)</li>
+<li><code>AssetObjects::IFireFXVisualCategoryData</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualCategoryData</code> (27)</li>
+<li><code>AssetObjects::IFireFXVisualCategoryTemplate</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualCategoryTemplate</code> (14)</li>
+<li><code>AssetObjects::IFireFXVisualCodeChunkData</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualCodeChunkData</code> (17)</li>
+<li><code>AssetObjects::IFireFXVisualScriptData</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualScriptData</code> (19)</li>
+<li><code>AssetObjects::IFireFXVisualSystemData</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualSystemData</code> (44)</li>
+<li><code>AssetObjects::IFireFXVisualSystemDataTemplate</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualSystemDataTemplate</code> (52)</li>
+<li><code>AssetObjects::IFireFXVisualSystemReferenceData</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualSystemReferenceData</code> (25)</li>
+<li><code>AssetObjects::IFireFXVisualVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualBoolVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualCodeVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualColorVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualEnumVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualFloat2VariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualFloat3VariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualFloat4VariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualFloatVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualIntegerVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualPoint2DVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualPoint3DVariableData</code> (11)</li>
+<li><code>AssetObjects::FireFXVisualStringVariableData</code> (11)</li>
+<li><code>AssetObjects::IFireFXVisualVariableDataTemplate</code> (0)</li>
+<li><code>AssetObjects::FireFXVisualVariableDataTemplate</code> (17)<ul>
+<li><code>AssetObjects::FireFXVisualBoolVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualCodeVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualColorVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualEnumVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualFloat2VariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualFloat3VariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualFloat4VariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualFloatVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualIntegerVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualPoint2DVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualPoint3DVariableDataTemplate</code> (17)</li>
+<li><code>AssetObjects::FireFXVisualStringVariableDataTemplate</code> (17)</li>
+</ul>
+</li>
+<li><code>AssetObjects::IGeneratedEntity</code> (0)</li>
+<li><code>AssetObjects::FireFXInstance</code> (19)</li>
+<li><code>AssetObjects::Parameter</code> (8)</li>
+<li><code>AssetObjects::ArtDefReferenceParameter</code> (8)</li>
+<li><code>AssetObjects::BLPEntryParameter</code> (8)</li>
+<li><code>AssetObjects::BoolParameter</code> (8)</li>
+<li><code>AssetObjects::CollectionParameter</code> (8)</li>
+<li><code>AssetObjects::Coord2DParameter</code> (8)</li>
+<li><code>AssetObjects::Coord3DParameter</code> (8)</li>
+<li><code>AssetObjects::CurveParameter</code> (8)</li>
+<li><code>AssetObjects::DynamicEnumParameter</code> (8)</li>
+<li><code>AssetObjects::EnumParameter</code> (8)</li>
+<li><code>AssetObjects::FloatParameter</code> (8)</li>
+<li><code>AssetObjects::IntParameter</code> (8)</li>
+<li><code>AssetObjects::ObjectParameter</code> (8)</li>
+<li><code>AssetObjects::RGBParameter</code> (8)</li>
+<li><code>AssetObjects::StringParameter</code> (8)</li>
+<li><code>AssetObjects::TupleParameter</code> (8)</li>
+<li><code>AssetObjects::SegmentDefinition</code> (0)</li>
+<li><code>AssetObjects::ConstantSegmentDefinition</code> (15)</li>
+<li><code>AssetObjects::LinearSegmentDefinition</code> (15)</li>
+<li><code>AssetObjects::Value</code> (12)</li>
+<li><code>AssetObjects::ArtDefReferenceValue</code> (12)</li>
+<li><code>AssetObjects::BLPEntryValue</code> (12)</li>
+<li><code>AssetObjects::BoolValue</code> (12)</li>
+<li><code>AssetObjects::CollectionValue</code> (12)</li>
+<li><code>AssetObjects::Coord2DValue</code> (12)</li>
+<li><code>AssetObjects::Coord3DValue</code> (12)</li>
+<li><code>AssetObjects::CurveValue</code> (20)</li>
+<li><code>AssetObjects::FloatValue</code> (12)</li>
+<li><code>AssetObjects::IntValue</code> (12)</li>
+<li><code>AssetObjects::ObjectValue</code> (12)</li>
+<li><code>AssetObjects::RGBValue</code> (12)</li>
+<li><code>AssetObjects::StringValue</code> (12)</li>
+<li><code>AssetObjects::TupleValue</code> (12)</li>
+</ul>
+<h2>BLP</h2>
+<ul>
+<li><code>BLP::BigDataEntry</code> (8)</li>
+<li><code>BLP::AnimationEntry</code> (8)</li>
+<li><code>BLP::BlobEntry</code> (8)</li>
+<li><code>BLP::GPUResourceEntry</code> (8)<ul>
+<li><code>BLP::IndexBufferEntry</code> (8)</li>
+<li><code>BLP::StructuredBufferEntry</code> (8)</li>
+<li><code>BLP::TBufferEntry</code> (8)</li>
+<li><code>BLP::TextureEntry</code> (8)</li>
+<li><code>BLP::VertexBufferEntry</code> (8)</li>
+</ul>
+</li>
+<li><code>BLP::IBLPProvider</code> (1)</li>
+<li><code>ArtDefManager::BLPProvider</code> (1)</li>
+<li><code>BLP::ICollectionEntry</code> (6)</li>
+<li><code>AssetAABBData</code> (6)</li>
+<li><code>AssetBurnMaterialData</code> (6)</li>
+<li><code>AssetMaterialData</code> (6)</li>
+<li><code>AssetSnowMaterialData</code> (6)</li>
+<li><code>AssetTextureOverride</code> (6)</li>
+<li><code>AttachmentPointList</code> (6)</li>
+<li><code>BezierSplineTrack</code> (6)</li>
+<li><code>CameraAnimationPackageEntry::CameraAnimationEntry</code> (6)</li>
+<li><code>FireFXAnalyticLight</code> (7)<ul>
+<li><code>FireFXPointLight</code> (7)</li>
+<li><code>FireFXSpotLight</code> (7)</li>
+</ul>
+</li>
+<li><code>FireFXAnalyticLightSet</code> (6)</li>
+<li><code>FireFXMaterialSet</code> (6)</li>
+<li><code>ForgeUI::UISliceTextureData</code> (6)</li>
+<li><code>LandmarkPackageEntry::AssetMetadata_Entry</code> (6)</li>
+<li><code>LandmarkPackageEntry::DecalDesc2VectorEntry</code> (6)</li>
+<li><code>LandmarkPackageEntry::DecalDescVectorEntry</code> (6)</li>
+<li><code>LandmarkPackageEntry::ObstructionProfileGeometry_Entry</code> (6)</li>
+<li><code>LandmarkPackageEntry::TerrainEditDesc2VectorEntry</code> (6)</li>
+<li><code>LandmarkPackageEntry::TerrainEditDesc3VectorEntry</code> (6)</li>
+<li><code>LandmarkPackageEntry::TerrainEditDescVectorEntry</code> (6)</li>
+<li><code>LeaderComputeData</code> (6)</li>
+<li><code>LeaderMotionBlurSettings</code> (6)</li>
+<li><code>ModelBurnMaterialData</code> (6)</li>
+<li><code>ModelMaterialData</code> (6)</li>
+<li><code>ModelMaterialData_VFX</code> (6)</li>
+<li><code>ModelMiscParams_EntryV1</code> (6)</li>
+<li><code>ModelNullMaterialData</code> (6)</li>
+<li><code>ModelPackageEntry::BaseModelData_Entry</code> (6)</li>
+<li><code>ModelPackageEntry::ModelFOWData_Entry</code> (6)</li>
+<li><code>ModelPackageEntry::ModelStateData_Entry</code> (6)</li>
+<li><code>ModelPrimGroupData</code> (6)</li>
+<li><code>ModelPrimGroupDetailLevelData</code> (6)</li>
+<li><code>ModelSnowMaterialData</code> (6)</li>
+<li><code>ModelSplineSet</code> (6)</li>
+<li><code>ModelWaterMaterialData</code> (6)</li>
+<li><code>SplineCookParams</code> (6)</li>
+<li><code>UILensMaterialData</code> (6)</li>
+<li><code>UILensModelData</code> (6)</li>
+<li><code>UILensModelMaterial</code> (6)</li>
+<li><code>WaterPackageEntry::WhiteCapSettings</code> (6)</li>
+<li><code>WonderMoviePackageEntry::CameraAnimationEntry</code> (6)</li>
+<li><code>WonderMoviePackageEntry::CameraAnimationEntry2</code> (6)</li>
+<li><code>WonderMoviePackageEntry::DecalBehaviorEntry</code> (6)</li>
+<li><code>BLP::Library</code> (12)</li>
+<li><code>CameraAnimationLibrary</code> (12)</li>
+<li><code>CoastlineWaves::WaveLibrary</code> (12)</li>
+<li><code>ColorKeySystem::Library</code> (12)</li>
+<li><code>FOWTextureLibrary</code> (12)</li>
+<li><code>ForgeUI::TextureLibrary</code> (12)</li>
+<li><code>GameEnvironmentLibrary</code> (12)</li>
+<li><code>LeaderFallbackLibrary</code> (12)</li>
+<li><code>LeaderHeadLibrary</code> (12)</li>
+<li><code>Leader_LightRig_Library</code> (12)</li>
+<li><code>LightLibrary</code> (12)</li>
+<li><code>ModelLibrary</code> (12)<ul>
+<li><code>LandmarkLibrary</code> (12)</li>
+<li><code>CityLibrary</code> (12)</li>
+<li><code>DynamicLibrary</code> (12)</li>
+<li><code>TerrainSystemLibrary</code> (12)</li>
+<li><code>UILensModelLibrary</code> (12)</li>
+<li><code>VFXLibrary</code> (12)</li>
+<li><code>WonderMovieLibrary</code> (12)</li>
+</ul>
+</li>
+<li><code>OverlaySystem::OverlayLibrary</code> (12)</li>
+<li><code>RouteLibrary</code> (12)</li>
+<li><code>StrategicView_ArrayPackingLibrary</code> (12)<ul>
+<li><code>StrategicView_SpriteLibrary</code> (12)</li>
+<li><code>StrategicView_TerrainBlendCornersLibrary</code> (12)</li>
+<li><code>StrategicView_TerrainBlendLibrary</code> (12)</li>
+<li><code>StrategicView_TerrainTypeLibrary</code> (12)</li>
+</ul>
+</li>
+<li><code>StrategicView_DirectedAssetLibrary</code> (12)</li>
+<li><code>StrategicView_RouteLibrary</code> (12)</li>
+<li><code>WaterLibrary</code> (12)</li>
+<li><code>BLP::LibraryAssetEntry</code> (0)</li>
+<li><code>ModelLibraryEntry</code> (3)<ul>
+<li><code>LandmarkLibraryEntry</code> (3)</li>
+<li><code>CityAssetBaseLibraryEntry</code> (4)<ul>
+<li><code>CityBlockLibraryEntry</code> (4)</li>
+<li><code>CityLibraryEntry</code> (4)</li>
+</ul>
+</li>
+<li><code>UILensModelLibraryEntry</code> (3)</li>
+<li><code>WonderMovieLibraryEntry</code> (3)</li>
+</ul>
+</li>
+<li><code>BLP::Package</code> (5)</li>
+<li><code>ForgeUI::TexturePackage</code> (5)</li>
+<li><code>ModelPackage</code> (5)<ul>
+<li><code>FireFXPackage</code> (5)</li>
+<li><code>VFXPackage</code> (5)</li>
+</ul>
+</li>
+<li><code>BLP::PackageAssetEntry</code> (4)</li>
+<li><code>CameraAnimationPackageEntry</code> (4)</li>
+<li><code>CoastlineWaves::PackageEntry</code> (4)</li>
+<li><code>ColorKeySystem::PackageEntry</code> (4)</li>
+<li><code>FOWTexturePackageEntry</code> (4)</li>
+<li><code>ForgeUI::TexturePackageEntry</code> (4)<ul>
+<li><code>ForgeUI::BCTexturePackageEntry</code> (4)</li>
+</ul>
+</li>
+<li><code>GameEnvironmentPackageEntry</code> (4)</li>
+<li><code>LeaderFallbackPackage_Entry</code> (4)</li>
+<li><code>LeaderHeadPackageEntry</code> (15)<ul>
+<li><code>LeaderPackageEntryV2</code> (15)</li>
+</ul>
+</li>
+<li><code>Leader_LightRig_PackageEntry</code> (4)</li>
+<li><code>LightPackageEntry</code> (4)</li>
+<li><code>ModelPackageEntry</code> (4)<ul>
+<li><code>FireFXPackageEntry</code> (4)</li>
+<li><code>LandmarkPackageEntry</code> (4)</li>
+<li><code>CityBlockPackageEntry</code> (4)</li>
+<li><code>WonderMoviePackageEntry</code> (4)</li>
+<li><code>UILensModelPackageEntry</code> (4)</li>
+<li><code>VFXPackageEntry</code> (4)</li>
+</ul>
+</li>
+<li><code>OverlaySystem::OverlayPackageEntry</code> (4)</li>
+<li><code>RiverWaterPackageEntry</code> (4)</li>
+<li><code>RouteDecalMaterialPackageEntry</code> (4)</li>
+<li><code>StrategicView_ArrayPackingPackageEntry</code> (6)<ul>
+<li><code>StrategicView_SpritePackageEntry</code> (6)</li>
+<li><code>StrategicView_TerrainBlendCornersPackageEntry</code> (6)</li>
+<li><code>StrategicView_TerrainBlendPackageEntry</code> (6)</li>
+<li><code>StrategicView_TerrainTypePackageEntry</code> (6)</li>
+</ul>
+</li>
+<li><code>StrategicView_DirectedAssetPackageEntry</code> (4)</li>
+<li><code>StrategicView_RoutePackageEntry</code> (4)</li>
+<li><code>TerrainElementPackageEntry</code> (4)</li>
+<li><code>TerrainMaterialPackageEntry</code> (4)</li>
+<li><code>WaterPackageEntry</code> (4)</li>
+<li><code>BLP::Value</code> (8)</li>
+<li><code>BLP::ArtDefReferenceValue</code> (8)</li>
+<li><code>BLP::BLPEntryValue</code> (8)</li>
+<li><code>BLP::BoolValue</code> (8)</li>
+<li><code>BLP::CollectionValue</code> (8)</li>
+<li><code>BLP::Coord2DValue</code> (8)</li>
+<li><code>BLP::Coord3DValue</code> (8)</li>
+<li><code>BLP::FloatValue</code> (8)</li>
+<li><code>BLP::IntValue</code> (8)</li>
+<li><code>BLP::RGBValue</code> (8)</li>
+<li><code>BLP::StringValue</code> (8)</li>
+<li><code>BLP::TupleValue</code> (8)</li>
+</ul>
+<h2>CPreprocessor</h2>
+<ul>
+<li><code>CPreprocessor::ErrorHook</code> (0)</li>
+<li><code>CPreprocessor::_INTERNAL::EmptyErrorHook</code> (2)</li>
+<li><code>FSLErrorHook</code> (2)</li>
+<li><code>CPreprocessor::IncludeHandler</code> (0)</li>
+<li><code>AssetObjects::LayeredIncludeHandler</code> (3)</li>
+<li><code>CPreprocessor::DefaultIncludeHandler</code> (3)</li>
+</ul>
+<h2>CityGen</h2>
+<ul>
+<li><code>CityGen::IDistrictGenerator</code> (4)</li>
+<li><code>CityGen::CityGenerator</code> (4)</li>
+<li><code>CityGen::IDistrictGenerator::GrowthParams</code> (0)</li>
+<li><code>WorldView::GrowthParamWrapper</code> (1)<ul>
+<li><code>WorldView::HexInteriorGrowthParams</code> (1)</li>
+<li><code>WorldView::HexSpineGrowthParams</code> (1)</li>
+</ul>
+</li>
+</ul>
+<h2>CivTech</h2>
+<ul>
+<li><code>CivTech::Input::IGesture</code> (11)</li>
+<li><code>CivTech::Input::ControllerButtonGesture</code> (11)</li>
+<li><code>CivTech::Input::ControllerStickGesture</code> (11)</li>
+<li><code>CivTech::Input::ControllerTriggerGesture</code> (11)</li>
+<li><code>CivTech::Input::KeyPressedGesture</code> (11)</li>
+<li><code>CivTech::Input::MouseButtonPressedGesture</code> (11)</li>
+<li><code>CivTech::Input::SteamControllerGesture</code> (11)</li>
+<li><code>CivTech::Input::IGestureSerializer</code> (7)</li>
+<li><code>CivTech::Input::AppHostInputSerializer</code> (7)</li>
+<li><code>CivTech::Input::ControllerSerializer</code> (7)</li>
+<li><code>CivTech::Input::IInputNotification</code> (9)</li>
+<li><code>InputNotification</code> (9)</li>
+<li><code>CivTech::Input::IInputSource</code> (11)</li>
+<li><code>CivTech::Input::AppHostInputSource</code> (11)</li>
+<li><code>CivTech::Input::SDLInputSource</code> (11)</li>
+<li><code>CivTech::Input::SteamControllerInputSource</code> (11)</li>
+</ul>
+<h2>Data</h2>
+<ul>
+<li><code>Data::VariantChangedSignal</code> (7)</li>
+<li><code>GameCore::App::Configuration::ChangedConfigurationSignalHandler</code> (7)</li>
+<li><code>Data::VariantContainer</code> (12)</li>
+<li><code>Data::TypedVariantKeyedContainer</code> (66)<ul>
+<li><code>Data::TypedVariantMap</code> (66)</li>
+<li><code>Data::TypedVariantVectorMap</code> (66)</li>
+</ul>
+</li>
+<li><code>Data::TypedVariantSingle</code> (12)</li>
+<li><code>Data::TypedVariantVector</code> (12)</li>
+<li><code>Data::VariantMap</code> (12)</li>
+<li><code>Data::VariantVector</code> (12)</li>
+<li><code>Data::VariantManager</code> (6)</li>
+<li><code>Data::TypedVariantManager</code> (6)</li>
+</ul>
+<h2>Database</h2>
+<ul>
+<li><code>Database::IDatabaseLogger</code> (3)</li>
+<li><code>Application::Data::DatabaseLogger</code> (3)</li>
+<li><code>Database::DefaultLogger</code> (3)</li>
+<li><code>Modding::DatabaseLogger</code> (3)</li>
+<li><code>Database::IDatabaseMemoryAllocator</code> (0)</li>
+<li><code>Database::MemoryManagement::DefaultAllocator</code> (7)</li>
+<li><code>Database::IDatabaseScalerFunction</code> (3)</li>
+<li><code>Application::Data::DatabaseHashFunction</code> (3)</li>
+<li><code>Database::IDatabaseUnknown</code> (0)</li>
+<li><code>Database::IDatabaseConnection1</code> (0)<ul>
+<li><code>Database::Connection</code> (39)</li>
+</ul>
+</li>
+<li><code>Database::IDatabaseFunctionContext1</code> (0)<ul>
+<li><code>Database::FunctionContext</code> (19)</li>
+</ul>
+</li>
+<li><code>Database::IDatabaseQuery1</code> (0)<ul>
+<li><code>Database::Query</code> (46)</li>
+</ul>
+</li>
+</ul>
+<h2>Global namespace</h2>
+<ul>
+<li><code>DelayedSessionCallback</code> (0)</li>
+<li><code>DelayedPlayerLeft</code> (4)</li>
+<li><code>FAutoArchive</code> (6)</li>
+<li><code>FAutoArchiveClassLess</code> (6)</li>
+<li><code>FAutoArchiveFactoryInterface</code> (0)</li>
+<li><code>FAutoArchiveFactory</code> (4)</li>
+<li><code>FGameSyncInterface</code> (0)</li>
+<li><code>FGameSyncManager</code> (11)</li>
+<li><code>FInetAddress</code> (2)</li>
+<li><code>FBroadcastAddress</code> (2)</li>
+<li><code>FInetHostAddress</code> (2)</li>
+<li><code>FInetMaskAddress</code> (2)</li>
+<li><code>FNetAccessENet</code> (16)</li>
+<li><code>FNetAccessENetEOS</code> (16)</li>
+<li><code>FNetAccessENetSteam</code> (16)</li>
+<li><code>FNetCallbackIFaceENet</code> (0)</li>
+<li><code>FNetCallbacksENet</code> (9)</li>
+<li><code>FNetLobbyCallbacksIFace</code> (34)</li>
+<li><code>Network::NetLobbyCallbacks</code> (34)</li>
+<li><code>FNetLobbyFactory</code> (3)</li>
+<li><code>FNetLobbyFactorySteam</code> (3)<ul>
+<li><code>AppNetLobbyFactory</code> (3)</li>
+</ul>
+</li>
+<li><code>FNetLobbyGameListUpdateData</code> (2)</li>
+<li><code>CloudLobbyGameListUpdateData</code> (2)</li>
+<li><code>FNetLobbyEOS::GameListUpdateData</code> (2)</li>
+<li><code>FNetLobbySteam::GameListUpdateData</code> (2)</li>
+<li><code>FNetLobbyIFace</code> (68)</li>
+<li><code>FINetLobbyStub</code> (68)</li>
+<li><code>FLANLobby</code> (68)</li>
+<li><code>FNetLobbyEOS</code> (68)</li>
+<li><code>FNetLobbySteamBase</code> (73)<ul>
+<li><code>FNetLobbySteam</code> (74)</li>
+<li><code>FNetSteamServer</code> (75)</li>
+</ul>
+</li>
+<li><code>NetLobbyCloud</code> (68)</li>
+<li><code>FNetMessage</code> (6)</li>
+<li><code>FImmediateNetMessage</code> (6)<ul>
+<li><code>FForgettableNetMessage</code> (0)</li>
+<li><code>NetInvalidLaunch</code> (6)</li>
+<li><code>NetLaunchValidate</code> (8)</li>
+<li><code>NetLaunchValidationResponse</code> (8)</li>
+<li><code>NetPeerFailure</code> (6)</li>
+<li><code>NetPeerFailureResponse</code> (6)</li>
+<li><code>NetPeerInfo</code> (6)</li>
+<li><code>NetPeerInfoEOS</code> (6)</li>
+<li><code>NetPeerInfoSteam</code> (6)</li>
+<li><code>NetRelay</code> (6)</li>
+<li><code>NetVoice</code> (6)</li>
+<li><code>NetAppRegister</code> (6)</li>
+<li><code>NetAuthorizationRequestSteam</code> (6)</li>
+<li><code>NetAuthorizationResponseSteam</code> (6)</li>
+<li><code>NetChangePlayerID</code> (6)</li>
+<li><code>NetChat</code> (6)</li>
+<li><code>NetCloseConnection</code> (6)</li>
+<li><code>NetEndTurn</code> (6)</li>
+<li><code>NetForceCommTurn</code> (6)</li>
+<li><code>NetForcePlayerCommTurn</code> (6)</li>
+<li><code>NetGameOver</code> (6)</li>
+<li><code>NetGameSyncCheck</code> (6)</li>
+<li><code>NetGameSyncProcessed</code> (6)</li>
+<li><code>NetGameSyncSnapshot</code> (6)</li>
+<li><code>NetIntroduction</code> (6)</li>
+<li><code>NetIntroductionEOS</code> (6)</li>
+<li><code>NetIntroductionSteam</code> (6)</li>
+<li><code>NetJoinRefused</code> (6)</li>
+<li><code>NetKickVote</code> (6)</li>
+<li><code>NetKicked</code> (6)</li>
+<li><code>NetLaunchGame</code> (6)</li>
+<li><code>NetMessageBundle</code> (6)</li>
+<li><code>NetMigrationInfo</code> (6)</li>
+<li><code>NetModStatus</code> (6)</li>
+<li><code>NetMuted</code> (6)</li>
+<li><code>NetRegister</code> (6)</li>
+<li><code>NetRequestChangePlayerID</code> (6)</li>
+<li><code>NetRequestHostMigration</code> (6)</li>
+<li><code>NetSessionTimeUpdate</code> (6)</li>
+<li><code>NetSnapshot</code> (6)</li>
+<li><code>NetSnapshotProcessed</code> (6)</li>
+<li><code>NetSnapshotRequest</code> (6)</li>
+<li><code>NetWelcome</code> (6)</li>
+</ul>
+</li>
+<li><code>NetGameConfig</code> (6)</li>
+<li><code>NetGameCoreMessage</code> (6)</li>
+<li><code>NetPlayerInfo</code> (6)</li>
+<li><code>FNetProfileIFace</code> (28)</li>
+<li><code>FNetProfileSteam</code> (28)</li>
+<li><code>FNetSessionCallbacksIFace</code> (58)</li>
+<li><code>Network::NetSessionCallbacks</code> (58)</li>
+<li><code>FNetSessionIFace</code> (125)</li>
+<li><code>FNetSession</code> (131)<ul>
+<li><code>FNetSessionEOS</code> (131)</li>
+<li><code>FNetSessionSteam</code> (131)</li>
+</ul>
+</li>
+<li><code>FNetVoiceBase</code> (28)</li>
+<li><code>FNetVoiceSteam</code> (28)</li>
+<li><code>FPendingConnQueue</code> (9)</li>
+<li><code>FPendingConnQueueEOS</code> (9)</li>
+<li><code>FPendingConnQueueSteam</code> (9)</li>
+<li><code>FPendingConnection</code> (5)</li>
+<li><code>FPendingConnectionEOS</code> (5)</li>
+<li><code>FPendingConnectionSteam</code> (5)</li>
+<li><code>FSecureSession</code> (30)</li>
+<li><code>FSecureSessionSteam</code> (30)</li>
+<li><code>FiraxisLiveClient</code> (35)</li>
+<li><code>AppFiraxisLiveClient</code> (35)</li>
+<li><code>GameCoreEventQueuePreDispatchHandler</code> (2)</li>
+<li><code>GameCore::Events::CacheUpdatePreDispatchHandler</code> (2)</li>
+<li><code>IAPCullingContext</code> (3)</li>
+<li><code>WorldView::WorldViewAPCullingContext</code> (3)</li>
+<li><code>IAchievements</code> (20)</li>
+<li><code>SteamAchievements</code> (20)</li>
+<li><code>IArtDefChangeCompleteListener</code> (3)</li>
+<li><code>WorldView::GenericObject::Context</code> (9)</li>
+<li><code>IArtDefChangeListener</code> (3)</li>
+<li><code>ArtDefIconProvider</code> (18)</li>
+<li><code>FOW::FOWSystem::Context</code> (3)</li>
+<li><code>FOW::FOWSystem::StratViewContext</code> (3)</li>
+<li><code>HighlightHotLoadHelper</code> (3)</li>
+<li><code>IndirectLightingGrid::Context</code> (3)</li>
+<li><code>IndirectLightingGrid::System</code> (10)</li>
+<li><code>PropertiesHotLoadHelper</code> (3)</li>
+<li><code>ProxyArtDefListener</code> (3)</li>
+<li><code>SpriteHotLoadHelper</code> (3)</li>
+<li><code>TemporaryUITextureLoader</code> (27)</li>
+<li><code>TerrainBlendHotLoadHelper</code> (3)</li>
+<li><code>TerrainTypeHotLoadHelper</code> (3)</li>
+<li><code>UILensModelSystem::Context</code> (3)</li>
+<li><code>VisualEffectSystem::Context</code> (3)</li>
+<li><code>VisualEffectSystem::System</code> (10)</li>
+<li><code>WorldView::ClutterSystem::Context</code> (3)</li>
+<li><code>WorldView::DynamicSystem::Context</code> (3)</li>
+<li><code>WorldView::Farm::Context</code> (3)</li>
+<li><code>WorldView::GenericObject::Context</code> (9)</li>
+<li><code>WorldView::LandmarkContext</code> (3)</li>
+<li><code>WorldView::LandmarkManager</code> (3)</li>
+<li><code>WorldView::NaturalWonderContext</code> (3)</li>
+<li><code>WorldView::RouteContext</code> (3)</li>
+<li><code>WorldView::TerrainContext</code> (3)</li>
+<li><code>WorldView::TilebaseSystem</code> (3)</li>
+<li><code>WorldView::UnitSystem::Context</code> (3)</li>
+<li><code>WorldView::WaterSystem::Context</code> (3)</li>
+<li><code>WorldView::WonderMovieSystem::Context</code> (3)</li>
+<li><code>IArtDefChangingListener</code> (3)</li>
+<li><code>TemporaryUITextureLoader</code> (27)</li>
+<li><code>IArtDefConsumer</code> (4)</li>
+<li><code>AOSystem::System</code> (4)</li>
+<li><code>ArtDefIconProvider</code> (18)</li>
+<li><code>AudioMiner::ArtDefinitions</code> (4)</li>
+<li><code>CameraSystem</code> (4)</li>
+<li><code>ClearColorHolder</code> (4)</li>
+<li><code>CoastlineWaves::System</code> (4)</li>
+<li><code>ColorKeySystem::System</code> (4)</li>
+<li><code>FOW::FOWSystem</code> (4)</li>
+<li><code>GameCore::App::UI::Lenses::LensManager</code> (4)</li>
+<li><code>IndirectLightingGrid::System</code> (10)</li>
+<li><code>LeaderArtDefCallbacks</code> (4)</li>
+<li><code>LeaderFallbackArtDefCallbacks</code> (4)</li>
+<li><code>LeaderLightingArtDefCallbacks</code> (4)</li>
+<li><code>LightingSystem::System</code> (4)</li>
+<li><code>MinimapArtdefConsumer</code> (4)</li>
+<li><code>OverlaySystem::System</code> (4)</li>
+<li><code>RangedArrowSystem::System</code> (4)</li>
+<li><code>Simulation::Manager::ArtDefinitions</code> (4)</li>
+<li><code>Simulation::Manager::CultureArtDefinitions</code> (4)</li>
+<li><code>Simulation::Unit::ArtDefinitions</code> (4)</li>
+<li><code>Simulation::UnitActivity::System</code> (4)</li>
+<li><code>SkyBoxSystem::System</code> (4)</li>
+<li><code>StrategicView::HighlightArtDefConsumer</code> (4)</li>
+<li><code>StrategicView::PropertiesArtDefConsumer</code> (4)</li>
+<li><code>StrategicView::RouteArtDefConsumer</code> (4)</li>
+<li><code>StrategicView::SpriteArtDefConsumer</code> (4)</li>
+<li><code>StrategicView::TerrainBlendArtDefConsumer</code> (4)</li>
+<li><code>StrategicView::TerrainBlendCornersArtDefConsumer</code> (4)</li>
+<li><code>StrategicView::TerrainTypeArtDefConsumer</code> (4)</li>
+<li><code>StrategicView::XRefArtDefConsumer</code> (4)</li>
+<li><code>TemporaryUITextureLoader</code> (27)</li>
+<li><code>UILensModelSystem::System</code> (4)</li>
+<li><code>VisualEffectSystem::System</code> (10)</li>
+<li><code>WorldView::CloudShadows::Context</code> (5)<ul>
+<li><code>WorldView::CloudShadows::NoiseContext</code> (5)</li>
+</ul>
+</li>
+<li><code>WorldView::ClutterSystem</code> (4)</li>
+<li><code>WorldView::DynamicSystem::System</code> (4)</li>
+<li><code>WorldView::Farm::System</code> (4)</li>
+<li><code>WorldView::GenericObject::System</code> (4)</li>
+<li><code>WorldView::LandmarkSystem</code> (4)</li>
+<li><code>WorldView::RouteSystem</code> (4)</li>
+<li><code>WorldView::ScriptedArtSystem</code> (4)</li>
+<li><code>WorldView::StormSystem</code> (4)</li>
+<li><code>WorldView::TerrainSystem</code> (4)</li>
+<li><code>WorldView::UnitFormation::System</code> (4)</li>
+<li><code>WorldView::UnitMovement::System</code> (4)</li>
+<li><code>WorldView::UnitSystem</code> (4)</li>
+<li><code>WorldView::WaterSystem</code> (4)</li>
+<li><code>WorldView::WonderMovieSystem</code> (4)</li>
+<li><code>WorldView::XRefArtDefTranslator</code> (4)</li>
+<li><code>IArtDefProvider</code> (13)</li>
+<li><code>ArtDefProvider</code> (13)</li>
+<li><code>ICriterionHandler</code> (5)</li>
+<li><code>BaseCriterionHandler</code> (5)<ul>
+<li><code>AlwaysMetCriterion</code> (5)</li>
+<li><code>ConfigurationValueContainsCriterion</code> (5)</li>
+<li><code>ConfigurationValueMatchesCriterion</code> (5)</li>
+<li><code>GameCoreInUseCriterion</code> (5)</li>
+<li><code>GameModeInUseCriterion</code> (5)</li>
+<li><code>LeaderPlayableCriterion</code> (5)</li>
+<li><code>MapInUseCriterion</code> (5)</li>
+<li><code>ModInUseCriterion</code> (5)</li>
+<li><code>ModIsEnabledCriterion</code> (5)</li>
+<li><code>ModIsInstalledCriterion</code> (5)</li>
+<li><code>NeverMetCriterion</code> (5)</li>
+<li><code>RuleSetInUseCriterion</code> (5)</li>
+</ul>
+</li>
+<li><code>ILibraryMap</code> (4)</li>
+<li><code>GlobalLibraryManager</code> (4)</li>
+<li><code>IOverlayLayer</code> (4)</li>
+<li><code>BorderOverlayLayer</code> (4)</li>
+<li><code>HexGridOverlayLayer</code> (4)</li>
+<li><code>HexHighlightLayer</code> (4)</li>
+<li><code>PathOverlayLayer</code> (4)</li>
+<li><code>PressureOverlayLayer</code> (4)</li>
+<li><code>SpriteOverlayLayer</code> (4)</li>
+<li><code>TextOverlayLayer</code> (4)</li>
+<li><code>IOverlayManager</code> (5)</li>
+<li><code>BorderOverlayManager</code> (5)</li>
+<li><code>HexGridOverlayManager</code> (5)</li>
+<li><code>HexHighlightManager</code> (5)</li>
+<li><code>PathOverlayManager</code> (5)</li>
+<li><code>PressureOverlayManager</code> (5)</li>
+<li><code>SpriteOverlayManager</code> (5)</li>
+<li><code>TextOverlayManager</code> (5)</li>
+<li><code>ISteamMatchmakingPingResponse</code> (0)</li>
+<li><code>FNetLobbySteam::ServerPingCallbacks</code> (4)</li>
+<li><code>ISteamMatchmakingRulesResponse</code> (0)</li>
+<li><code>FNetLobbySteam::ServerRulesCallbacks</code> (5)</li>
+<li><code>ISteamMatchmakingServerListResponse</code> (0)</li>
+<li><code>FNetLobbySteam::ServerBrowserCallbacks</code> (5)</li>
+<li><code>ITerrainContext</code> (3)</li>
+<li><code>WorldView::WonderMovieSystem::WorldViewTerrainContext</code> (3)</li>
+<li><code>ObstructionProfileEntry</code> (0)</li>
+<li><code>LandmarkLibraryEntry</code> (3)<ul>
+<li><code>CityAssetBaseLibraryEntry</code> (4)</li>
+<li><code>CityBlockLibraryEntry</code> (4)</li>
+<li><code>CityLibraryEntry</code> (4)</li>
+</ul>
+</li>
+<li><code>StateRecord</code> (0)</li>
+<li><code>LightEnableRecord</code> (5)</li>
+<li><code>SetCurrentTexturePaletteRecord</code> (5)</li>
+<li><code>SetFVFRecord</code> (5)</li>
+<li><code>SetIndicesRecord</code> (5)</li>
+<li><code>SetLightRecord</code> (5)</li>
+<li><code>SetMaterialRecord</code> (5)</li>
+<li><code>SetPixelShaderConstantBRecord</code> (5)</li>
+<li><code>SetPixelShaderConstantFRecord</code> (5)</li>
+<li><code>SetPixelShaderConstantIRecord</code> (5)</li>
+<li><code>SetPixelShaderRecord</code> (5)</li>
+<li><code>SetRenderStateRecord</code> (5)</li>
+<li><code>SetSamplerStateRecord</code> (5)</li>
+<li><code>SetScissorRectRecord</code> (5)</li>
+<li><code>SetStreamSourceFreqRecord</code> (5)</li>
+<li><code>SetStreamSourceRecord</code> (5)</li>
+<li><code>SetTextureRecord</code> (5)</li>
+<li><code>SetTextureStageStateRecord</code> (5)</li>
+<li><code>SetTransformRecord</code> (5)</li>
+<li><code>SetVertexDeclarationRecord</code> (5)</li>
+<li><code>SetVertexShaderConstantBRecord</code> (5)</li>
+<li><code>SetVertexShaderConstantFRecord</code> (5)</li>
+<li><code>SetVertexShaderConstantIRecord</code> (5)</li>
+<li><code>SetVertexShaderRecord</code> (5)</li>
+<li><code>SetViewportRecord</code> (5)</li>
+<li><code>SyncPrimitive</code> (0)</li>
+<li><code>EventHANDLE</code> (6)</li>
+<li><code>MutexHANDLE</code> (6)</li>
+<li><code>SemaphoreHANDLE</code> (6)</li>
+<li><code>WaitableTimerHANDLE</code> (6)</li>
+<li><code>TransportThreadBase</code> (4)</li>
+<li><code>ENetTransportThread</code> (4)</li>
+<li><code>FSteamTransportThread</code> (4)</li>
+<li><code>Network::EOS::TransportThread</code> (4)</li>
+<li><code>VisBase</code> (0)</li>
+<li><code>ModelVisSystem::ModelVis</code> (2)<ul>
+<li><code>VisualEffectSystem::Context::Visual</code> (2)</li>
+<li><code>WorldView::ClutterVis</code> (2)</li>
+<li><code>WorldView::DynamicVis</code> (2)</li>
+<li><code>WorldView::GenericObject::ObjectVis</code> (2)</li>
+<li><code>WorldView::NaturalWonderVis</code> (2)</li>
+<li><code>WorldView::UnitVis</code> (2)</li>
+<li><code>WorldView::_FARM_INTERNAL::FarmVis</code> (2)</li>
+</ul>
+</li>
+</ul>
+<h2>Events</h2>
+<ul>
+<li><code>Events::EventSubscriber</code> (0)</li>
+<li><code>Civ6GameState</code> (9)<ul>
+<li><code>GameViewState</code> (9)</li>
+<li><code>InitAppState</code> (9)</li>
+<li><code>IntroState</code> (9)</li>
+<li><code>LoadGameViewState</code> (9)</li>
+<li><code>MainMenuState</code> (9)</li>
+<li><code>OwnershipState</code> (9)</li>
+</ul>
+</li>
+</ul>
+<h2>FGXModel</h2>
+<ul>
+<li><code>FGXModel::ModelTemplateBuilder</code> (6)</li>
+<li><code>Civ6ModelTemplateBuilder</code> (6)</li>
+<li><code>FGXModel::ModelTemplateBuilder::IRendererDelegate</code> (9)</li>
+<li><code>LibraryHelpers::Civ6RendererDelegate</code> (9)</li>
+</ul>
+<h2>FGXModelFramework</h2>
+<ul>
+<li><code>FGXModelFramework::ILightSubmission</code> (4)</li>
+<li><code>VisualEffectSystem::_INTERNAL::LightContext</code> (4)</li>
+<li><code>FGXModelFramework::LightInstance</code> (0)</li>
+<li><code>FGXModelFramework::PointLightInstance</code> (3)</li>
+<li><code>FGXModelFramework::SpotLightInstance</code> (3)</li>
+<li><code>FGXModelFramework::LightTemplate</code> (0)</li>
+<li><code>FGXModelFramework::PointLightTemplate</code> (3)</li>
+<li><code>FGXModelFramework::SpotLightTemplate</code> (3)</li>
+</ul>
+<h2>Firaxis</h2>
+<ul>
+<li><code>Firaxis::ICipher</code> (0)</li>
+<li><code>Firaxis::ARC4Plus</code> (10)</li>
+<li><code>Firaxis::FiraxisCipher</code> (10)</li>
+<li><code>Firaxis::NoCipher</code> (10)</li>
+<li><code>Firaxis::RC6</code> (10)</li>
+<li><code>Firaxis::TwoFish</code> (10)</li>
+<li><code>Firaxis::ICompress</code> (0)</li>
+<li><code>Firaxis::NoCompress</code> (8)</li>
+<li><code>Firaxis::ZLib128</code> (8)</li>
+<li><code>Firaxis::IFiraxisLive</code> (0)</li>
+<li><code>Firaxis::FiraxisLive</code> (86)</li>
+<li><code>Firaxis::ILogger</code> (0)</li>
+<li><code>Firaxis::Logger</code> (12)<ul>
+<li><code>Firaxis::flCLientLogger</code> (12)</li>
+</ul>
+</li>
+<li><code>Firaxis::IMy2KFiraxisLive</code> (0)</li>
+<li><code>Firaxis::CTPFiraxisLive</code> (24)</li>
+<li><code>Firaxis::ISocket</code> (0)</li>
+<li><code>Firaxis::TCPSocketBase</code> (38)<ul>
+<li><code>Firaxis::TCPSocket</code> (38)</li>
+</ul>
+</li>
+<li><code>Firaxis::ISocketMgr</code> (0)</li>
+<li><code>Firaxis::SocketMgr</code> (16)</li>
+<li><code>Firaxis::ISocketOption</code> (0)</li>
+<li><code>Firaxis::SOLinger</code> (7)</li>
+<li><code>Firaxis::SOReceiveBuffer</code> (7)</li>
+<li><code>Firaxis::SOReuseAddress</code> (7)</li>
+<li><code>Firaxis::SOSendBuffer</code> (7)</li>
+<li><code>Firaxis::TCPNagle</code> (7)</li>
+<li><code>Firaxis::IThread</code> (0)</li>
+<li><code>Firaxis::Thread</code> (12)</li>
+<li><code>Firaxis::Live::IDebugInfo</code> (5)</li>
+<li><code>DebugInfoHelper</code> (5)</li>
+<li><code>Firaxis::SimpleDebugInfo</code> (5)</li>
+<li><code>Firaxis::Live::INotify</code> (4)</li>
+<li><code>Firaxis::Live::AccessTokenNotify</code> (5)</li>
+<li><code>Firaxis::Live::IConnectFailureNotify</code> (5)</li>
+<li><code>Firaxis::Live::IDataPushNotify</code> (5)</li>
+<li><code>Firaxis::Live::IKVPDataErrorNotify</code> (5)</li>
+<li><code>Firaxis::Live::IKVPDataListNotify</code> (5)</li>
+<li><code>Firaxis::Live::IKVPDataMetadataUpdateNotify</code> (5)</li>
+<li><code>Firaxis::Live::IKVPDataNotify</code> (5)</li>
+<li><code>Firaxis::Live::IKVPDataProgressNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMessageProgressNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KBusyStatusNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KConnectionStatusNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KGetDOBDataNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KGetLogonDataNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KGetNewAccountDataNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KGrantedEntitlementsNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KLanguageNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KLeaderboardNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KLegalNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KLoggedOffNotify</code> (5)</li>
+<li><code>Firaxis::Live::IMy2KLoginStatusNotify</code> (5)</li>
+<li><code>Firaxis::Live::IServerDisconnectNotify</code> (5)</li>
+<li><code>Firaxis::Live::ISimpleKVPInfoNotify</code> (5)</li>
+<li><code>Firaxis::Live::ISimpleKVPNotify</code> (5)</li>
+<li><code>Firaxis::Live::IStateNotify</code> (5)</li>
+<li><code>Firaxis::Live::IUserStateNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchCreateDataNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchEndMatchNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchEndTurnNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchGetInfoNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchGetNotificationSettingsNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchGetPlayerMetadataNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchGetSaveGameNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchJoinNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchKickPlayerNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchKillMatchNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchListDataNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchQuitMatchNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchSetNotificationSettingsNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchSetPlayerMetadataNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchSetPlayerOrderNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchSetPlayerStatusNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchSetSlotTypeNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchStartMatchNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchUpdateAttributesNotify</code> (5)</li>
+<li><code>Firaxis::Live::MatchUpdateSaveGameNotify</code> (5)</li>
+<li><code>Firaxis::Live::INotifyData</code> (0)</li>
+<li><code>Firaxis::Live::AccessTokenData</code> (2)</li>
+<li><code>Firaxis::Live::ChallengeData</code> (2)</li>
+<li><code>Firaxis::Live::ChallengePostValidateResultData</code> (2)</li>
+<li><code>Firaxis::Live::ChallengeReplayData</code> (2)</li>
+<li><code>Firaxis::Live::ChallengeResultData</code> (2)</li>
+<li><code>Firaxis::Live::ChallengeValidateData</code> (2)</li>
+<li><code>Firaxis::Live::ConnectFailureData</code> (2)</li>
+<li><code>Firaxis::Live::GrantedEntitlementData</code> (2)</li>
+<li><code>Firaxis::Live::IServerDisconnectNotify::Data</code> (2)</li>
+<li><code>Firaxis::Live::KVPData</code> (2)</li>
+<li><code>Firaxis::Live::KVPDataUpdateMetadataNotifyData</code> (2)</li>
+<li><code>Firaxis::Live::KVPErrorData</code> (2)</li>
+<li><code>Firaxis::Live::KVPListData</code> (2)</li>
+<li><code>Firaxis::Live::KVPProgressData</code> (2)</li>
+<li><code>Firaxis::Live::MessageProgressData</code> (2)</li>
+<li><code>Firaxis::Live::My2KConnectionData</code> (2)</li>
+<li><code>Firaxis::Live::My2KLeaderboardData</code> (2)</li>
+<li><code>Firaxis::Live::My2KLegalData</code> (2)</li>
+<li><code>Firaxis::Live::My2KLoginStatusData</code> (2)</li>
+<li><code>Firaxis::Live::My2KLogonData</code> (2)</li>
+<li><code>Firaxis::Live::My2KNewAccountData</code> (2)</li>
+<li><code>Firaxis::Live::PushData</code> (2)</li>
+<li><code>Firaxis::Live::ServerDisconnectData</code> (2)</li>
+<li><code>Firaxis::Live::SimpleKVPData</code> (2)</li>
+<li><code>Firaxis::Live::SimpleKVPInfoData</code> (2)</li>
+<li><code>Firaxis::Live::StateData</code> (2)</li>
+<li><code>Firaxis::Live::UserStateData</code> (2)</li>
+<li><code>Firaxis::MatchGetInfoDataNotification</code> (2)</li>
+<li><code>Firaxis::MatchGetPlayerMetadataNotification</code> (2)</li>
+<li><code>Firaxis::MatchGetSaveGameDataNotification</code> (2)</li>
+<li><code>Firaxis::MatchListDataNotification</code> (2)</li>
+<li><code>Firaxis::Live::INotifyResult</code> (3)</li>
+<li><code>Firaxis::Live::My2KResultConnectionStatusData</code> (3)</li>
+<li><code>Firaxis::Live::My2KResultDOBData</code> (3)</li>
+<li><code>Firaxis::Live::My2KResultLegalData</code> (3)</li>
+<li><code>Firaxis::Live::My2KResultLoggedOffData</code> (3)</li>
+<li><code>Firaxis::Live::My2KResultLogonData</code> (3)</li>
+<li><code>Firaxis::Live::My2kResultNewAccountData</code> (3)</li>
+</ul>
+<h2>ForgeUI</h2>
+<ul>
+<li><code>ForgeUI::ControlBase</code> (54)</li>
+<li><code>ForgeUI::AnimControl</code> (60)<ul>
+<li><code>ForgeUI::AlphaAnim</code> (60)</li>
+<li><code>ForgeUI::FlipAnim</code> (60)</li>
+<li><code>ForgeUI::ScrollAnim</code> (60)</li>
+<li><code>ForgeUI::SlideAnim</code> (60)</li>
+<li><code>ForgeUI::SpinAnim</code> (60)</li>
+<li><code>ForgeUI::TweenControl</code> (60)</li>
+</ul>
+</li>
+<li><code>ForgeUI::BarControl</code> (56)</li>
+<li><code>ForgeUI::ButtonControlBase</code> (58)<ul>
+<li><code>ForgeUI::ButtonControl</code> (58)</li>
+<li><code>ForgeUI::CheckBoxControl</code> (60)</li>
+<li><code>ForgeUI::RadioButtonControl</code> (60)</li>
+<li><code>ForgeUI::ColorBoxButtonControl</code> (58)</li>
+<li><code>ForgeUI::GridButtonControl</code> (58)</li>
+<li><code>ForgeUI::SliderControl</code> (58)</li>
+<li><code>ForgeUI::TextButtonControl</code> (59)</li>
+</ul>
+</li>
+<li><code>ForgeUI::ColorBoxControl</code> (54)</li>
+<li><code>ForgeUI::ContextBase</code> (65)<ul>
+<li><code>ForgeUI::DLLContext</code> (65)</li>
+<li><code>ForgeUI::LuaContext</code> (66)</li>
+</ul>
+</li>
+<li><code>ForgeUI::DragControl</code> (54)</li>
+<li><code>ForgeUI::EditBoxControl</code> (59)</li>
+<li><code>ForgeUI::GraphControl</code> (54)</li>
+<li><code>ForgeUI::GridControl</code> (54)</li>
+<li><code>ForgeUI::GroupControl</code> (54)</li>
+<li><code>ForgeUI::ImageControl</code> (54)</li>
+<li><code>ForgeUI::LineControl</code> (54)</li>
+<li><code>ForgeUI::ListBoxControlBase</code> (58)<ul>
+<li><code>ForgeUI::ListBoxControl</code> (58)</li>
+<li><code>ForgeUI::MultiSelectListBoxControl</code> (58)</li>
+</ul>
+</li>
+<li><code>ForgeUI::MeterControl</code> (65)</li>
+<li><code>ForgeUI::MovieControl</code> (54)</li>
+<li><code>ForgeUI::PlatformControl</code> (54)</li>
+<li><code>ForgeUI::PullDownControl</code> (55)<ul>
+<li><code>ForgeUI::SimplePullDownControl</code> (55)</li>
+</ul>
+</li>
+<li><code>ForgeUI::RenderControl</code> (54)</li>
+<li><code>ForgeUI::ScrollPanelControl</code> (57)</li>
+<li><code>ForgeUI::ScrollTextControl</code> (54)</li>
+<li><code>ForgeUI::SlotControl</code> (54)</li>
+<li><code>ForgeUI::SlotListenerControl</code> (56)<ul>
+<li><code>ForgeUI::HorizontalContainerControl</code> (56)</li>
+<li><code>ForgeUI::VerticalContainerControl</code> (56)</li>
+</ul>
+</li>
+<li><code>ForgeUI::StackControl</code> (54)</li>
+<li><code>ForgeUI::TabControl</code> (54)</li>
+<li><code>ForgeUI::TextControl</code> (54)</li>
+<li><code>ForgeUI::TextureBarControl</code> (56)</li>
+<li><code>ForgeUI::TutorialControl</code> (54)</li>
+<li><code>ForgeUI::WorldAnchorControl</code> (56)<ul>
+<li><code>ZoomAnchorControl</code> (56)</li>
+</ul>
+</li>
+<li><code>ForgeUI::ForgeUI_UIManager</code> (91)</li>
+<li><code>AppUIManager</code> (91)</li>
+<li><code>ForgeUI::IIconProvider</code> (4)</li>
+<li><code>ArtDefIconProvider</code> (18)</li>
+<li><code>DatabaseIconProvider</code> (13)</li>
+<li><code>ForgeUI::ILocalizedString</code> (13)</li>
+<li><code>AppUILocalizedString</code> (13)</li>
+<li><code>ForgeUI::NonLocalizedString</code> (13)</li>
+<li><code>UILocalizedString</code> (13)</li>
+<li><code>ForgeUI::ITextureLoader</code> (7)</li>
+<li><code>ForgeUI::BLPTextureLoader</code> (7)</li>
+<li><code>ForgeUI::DefaultTextureLoader</code> (8)<ul>
+<li><code>Civ6UITextureLoader</code> (8)</li>
+</ul>
+</li>
+<li><code>TemporaryUITextureLoader</code> (27)</li>
+<li><code>ForgeUI::IUINodeVisitor</code> (3)</li>
+<li><code>ForgeUI::UIBuildPathFromChild</code> (3)</li>
+<li><code>ForgeUI::UIChildAppLostFocusVisitor</code> (3)</li>
+<li><code>ForgeUI::UIChildAppRegainedFocusVisitor</code> (3)</li>
+<li><code>ForgeUI::UIChildInfoVisitor</code> (3)</li>
+<li><code>ForgeUI::UIGetFilesFromID</code> (3)</li>
+<li><code>ForgeUI::UIGetIdVisitor</code> (3)</li>
+<li><code>ForgeUI::UIGetOffsetVisitor</code> (3)</li>
+<li><code>ForgeUI::UIGetVisibleVisitor</code> (3)</li>
+<li><code>ForgeUI::UIStringBase</code> (4)</li>
+<li><code>ForgeUI::UIString1024</code> (5)</li>
+<li><code>ForgeUI::UIString128</code> (5)</li>
+<li><code>ForgeUI::UIString2048</code> (5)</li>
+<li><code>ForgeUI::UIString256</code> (5)</li>
+<li><code>ForgeUI::UIString32</code> (5)</li>
+<li><code>ForgeUI::UIString4096</code> (5)</li>
+<li><code>ForgeUI::UIString512</code> (5)</li>
+<li><code>ForgeUI::UIString64</code> (5)</li>
+<li><code>ForgeUI::UIString8092</code> (5)</li>
+<li><code>ForgeUI::UITextureInfo</code> (2)</li>
+<li><code>ForgeUI::BLPTextureLoader::TextureRecord</code> (2)</li>
+</ul>
+<h2>GameCore</h2>
+<ul>
+<li><code>GameCore::Interfaces::IAchievements1</code> (15)</li>
+<li><code>GameCore::Achievements</code> (15)</li>
+<li><code>GameCore::Interfaces::ICvUnknown</code> (2)</li>
+<li><code>GameCore::Interfaces::IEngineUtility1</code> (46)<ul>
+<li><code>GameCore::EngineUtility</code> (46)</li>
+</ul>
+</li>
+<li><code>GameCore::Interfaces::IErrorResults1</code> (17)<ul>
+<li><code>GameCore::ErrorResults</code> (17)</li>
+</ul>
+</li>
+<li><code>GameCore::Interfaces::ILogFile1</code> (19)<ul>
+<li><code>GameCore::LogFile</code> (19)</li>
+</ul>
+</li>
+<li><code>GameCore::Interfaces::ILoggingManager1</code> (11)<ul>
+<li><code>GameCore::LoggingManager</code> (11)</li>
+</ul>
+</li>
+<li><code>GameCore::Interfaces::IHallofFame1</code> (13)</li>
+<li><code>Application::GameSummary</code> (13)</li>
+<li><code>GameCore::Interfaces::IScriptSystem1</code> (30)</li>
+<li><code>GameCore::ScriptSystem</code> (32)</li>
+<li><code>GameCore::Interfaces::IScriptSystemArg1</code> (3)</li>
+<li><code>GameCore::App::UI::Lua::ScriptSystemArg_FileList</code> (3)</li>
+<li><code>GameCore::Interfaces::IScriptSystemArgs1</code> (19)</li>
+<li><code>GameCore::ScriptSystemArgs</code> (19)</li>
+</ul>
+<h2>Graphics</h2>
+<ul>
+<li><code>Graphics::CommandStream</code> (4)</li>
+<li><code>Graphics::_INTERNAL::CommandStream_D3D11</code> (4)</li>
+<li><code>Graphics::IShaderInit</code> (0)</li>
+<li><code>Graphics::ShaderInit</code> (9)</li>
+</ul>
+<h2>Localization</h2>
+<ul>
+<li><code>Localization::ConditionalTransform</code> (3)</li>
+<li><code>Localization::GenderConditionalTransform</code> (3)</li>
+<li><code>Localization::PluralityConditionalTransform</code> (3)</li>
+<li><code>Localization::ILocalizationLogger</code> (3)</li>
+<li><code>LocalizationLogger</code> (3)</li>
+<li><code>Localization::IPluralityRule</code> (2)</li>
+<li><code>Localization::PluralRule1</code> (2)</li>
+<li><code>Localization::PluralRule10</code> (2)</li>
+<li><code>Localization::PluralRule11</code> (2)</li>
+<li><code>Localization::PluralRule12</code> (2)</li>
+<li><code>Localization::PluralRule13</code> (2)</li>
+<li><code>Localization::PluralRule14</code> (2)</li>
+<li><code>Localization::PluralRule15</code> (2)</li>
+<li><code>Localization::PluralRule16</code> (2)</li>
+<li><code>Localization::PluralRule2</code> (2)</li>
+<li><code>Localization::PluralRule3</code> (2)</li>
+<li><code>Localization::PluralRule4</code> (2)</li>
+<li><code>Localization::PluralRule5</code> (2)</li>
+<li><code>Localization::PluralRule6</code> (2)</li>
+<li><code>Localization::PluralRule7</code> (2)</li>
+<li><code>Localization::PluralRule8</code> (2)</li>
+<li><code>Localization::PluralRule9</code> (2)</li>
+</ul>
+<h2>LuaSystem</h2>
+<ul>
+<li><code>LuaSystem::LuaScriptSystem</code> (18)</li>
+<li><code>AppLuaScriptSystem</code> (18)</li>
+<li><code>LuaSystem::LuaThread</code> (5)</li>
+<li><code>AppLuaThread</code> (5)</li>
+</ul>
+<h2>Modding</h2>
+<ul>
+<li><code>Modding::IComponentHandler</code> (5)</li>
+<li><code>ModArtLoader</code> (5)</li>
+<li><code>ModdingDoNothingAction</code> (15)</li>
+<li><code>ModdingGameplayScriptComponentHandler</code> (5)</li>
+<li><code>ModdingImportFilesAction</code> (15)</li>
+<li><code>ModdingReplaceUIScriptComponentHandler</code> (5)</li>
+<li><code>ModdingUpdateARX</code> (5)</li>
+<li><code>ModdingUpdateAudio</code> (5)</li>
+<li><code>ModdingUpdateColorsAction</code> (15)</li>
+<li><code>ModdingUpdateDatabase</code> (5)</li>
+<li><code>ModdingUpdateIconsAction</code> (15)</li>
+<li><code>ModdingUpdateTextAction</code> (15)</li>
+<li><code>ModdingUserInterfaceComponentHandler</code> (5)</li>
+<li><code>Modding::IFramework</code> (0)</li>
+<li><code>Modding::Framework</code> (108)</li>
+<li><code>Modding::ILogger</code> (3)</li>
+<li><code>ModdingLogger</code> (3)</li>
+<li><code>Modding::IOwnershipService</code> (8)</li>
+<li><code>ModdingOwnershipService</code> (8)</li>
+<li><code>Modding::IService</code> (4)</li>
+<li><code>Modding::IComponentDiscoveryService</code> (5)<ul>
+<li><code>ModdingComponentDiscoveryService</code> (5)</li>
+</ul>
+</li>
+<li><code>Modding::IFileService</code> (9)<ul>
+<li><code>Modding::FileService</code> (9)</li>
+<li><code>Modding::AppFileService</code> (9)</li>
+</ul>
+</li>
+<li><code>Modding::ILocalizationService</code> (12)<ul>
+<li><code>ModdingLocalizationService</code> (12)</li>
+</ul>
+</li>
+<li><code>Modding::IModAssociationsService</code> (0)<ul>
+<li><code>Modding::ModAssociationsService</code> (8)</li>
+</ul>
+</li>
+<li><code>Modding::IModDiscoveryService</code> (0)<ul>
+<li><code>Modding::ModDiscoveryService</code> (14)</li>
+</ul>
+</li>
+<li><code>Modding::IModLoaderService</code> (0)<ul>
+<li><code>Modding::ModLoaderService</code> (8)</li>
+</ul>
+</li>
+<li><code>Modding::IPropertyService</code> (0)<ul>
+<li><code>Modding::PropertyService</code> (7)</li>
+</ul>
+</li>
+<li><code>Modding::ISettingDiscoveryService</code> (5)<ul>
+<li><code>ModdingSettingDiscoveryService</code> (5)</li>
+</ul>
+</li>
+<li><code>Modding::ISubscriptionService</code> (0)<ul>
+<li><code>Modding::SteamWorkshopSubscriptionService</code> (22)</li>
+</ul>
+</li>
+<li><code>Modding::ISettingHandler</code> (5)</li>
+<li><code>ModdingDoNothingAction</code> (15)</li>
+<li><code>ModdingImportFilesAction</code> (15)</li>
+<li><code>ModdingMapSettingHandler</code> (5)<ul>
+<li><code>ModdingWorldBuilderSettingHandler</code> (5)</li>
+</ul>
+</li>
+<li><code>ModdingUISettingHandler</code> (5)</li>
+<li><code>ModdingUpdateColorsAction</code> (15)</li>
+<li><code>ModdingUpdateConfigurationDatabase</code> (5)</li>
+<li><code>ModdingUpdateIconsAction</code> (15)</li>
+<li><code>ModdingUpdateTextAction</code> (15)</li>
+</ul>
+<h2>Network</h2>
+<ul>
+<li><code>Network::EOS::Lobby::LobbyID</code> (2)</li>
+<li><code>Network::EOS::Lobby::LobbyInfo</code> (2)</li>
+<li><code>Network::Friends::IInstance</code> (21)</li>
+<li><code>App::Steam::Friends::Instance</code> (21)</li>
+<li><code>Network::ISocket</code> (0)</li>
+<li><code>Network::PosixTCPSocket</code> (18)</li>
+</ul>
+<h2>Particle</h2>
+<ul>
+<li><code>Particle::BaseSystem</code> (8)</li>
+<li><code>Particle::System</code> (8)</li>
+</ul>
+<h2>Platform</h2>
+<ul>
+<li><code>Platform::Allocator</code> (2)</li>
+<li><code>Synthesis::Allocator</code> (2)</li>
+<li><code>Platform::AsyncJob</code> (3)</li>
+<li><code>ArtDefManager::LoadAsyncJob</code> (3)</li>
+<li><code>Civ6App::AppInitJob</code> (3)</li>
+<li><code>CompactAsyncJob</code> (3)</li>
+<li><code>GenericSplineBuilder</code> (3)</li>
+<li><code>LoadGameViewState::InitAsyncJob</code> (3)</li>
+<li><code>OverlaySystem::BuildCultureBordersAsyncJob</code> (3)</li>
+<li><code>RenderGlobals::GraphicsEnvironment</code> (3)</li>
+<li><code>WorldView::AsyncUpdateTask</code> (3)</li>
+<li><code>WorldView::HeightEdit::TerrainEditAsyncJob</code> (3)</li>
+<li><code>WorldView::WaterSystem::Context::RiverUpdateAsyncJob</code> (3)</li>
+<li><code>Platform::IDebugHelper</code> (0)</li>
+<li><code>Platform::DebugHelper</code> (16)</li>
+<li><code>Platform::IThread</code> (0)</li>
+<li><code>Platform::WinThread</code> (14)</li>
+<li><code>Platform::Job</code> (3)</li>
+<li><code>ArtDefManager::ConsumerLoadTask</code> (3)</li>
+<li><code>ArtDefManager::Listener</code> (3)</li>
+<li><code>ArtDefManager::ReloadListener</code> (3)</li>
+<li><code>BLP::RequestJob</code> (3)</li>
+<li><code>BLP::SharedDataCache::LoaderJob</code> (3)</li>
+<li><code>Civ6App::AudioUpdateJob</code> (3)</li>
+<li><code>Civ6App::LuaGarbageCollectJob</code> (3)</li>
+<li><code>Civ6App::UIUpdateJob</code> (3)</li>
+<li><code>Graphics::_INTERNAL::CommandStreamJob</code> (3)</li>
+<li><code>Graphics::_INTERNAL::CommandSubsetJob</code> (3)</li>
+<li><code>Graphics::_INTERNAL::LayoutJob</code> (3)</li>
+<li><code>HLSLCompileJob</code> (3)</li>
+<li><code>LeaderNormalRecalculationDataGenJob</code> (3)</li>
+<li><code>Particle::ParticleSimulationJob</code> (3)</li>
+<li><code>PathSplineBuilder</code> (3)</li>
+<li><code>Platform::AsyncJob::AsyncJobRunner</code> (3)</li>
+<li><code>PopulateCommandStreamsJob_Sprites</code> (3)</li>
+<li><code>ReligiousPressureUpdateJob</code> (3)</li>
+<li><code>Serialization::DeserializeResourceJob</code> (3)</li>
+<li><code>StateSortJob</code> (3)</li>
+<li><code>StrategicViewFOWBuildJob</code> (3)</li>
+<li><code>SurfaceSetAllocator::StateSortJob</code> (3)</li>
+<li><code>Synthesis::HexTexture::CopySubregionPackedUINT32toFLOAT32_Job</code> (3)</li>
+<li><code>Synthesis::Map::BlendedHexHeightJob</code> (3)</li>
+<li><code>Synthesis::Map::FlatLandJob</code> (3)</li>
+<li><code>Synthesis::Map::HeightFromHexGridJob</code> (3)</li>
+<li><code>Synthesis::Map::IDFromMaskJob</code> (3)</li>
+<li><code>Synthesis::Map::MountainHeightJob</code> (3)</li>
+<li><code>Synthesis::Map::PartitionMaskJob</code> (3)</li>
+<li><code>Synthesis::Map::RiverJob</code> (3)</li>
+<li><code>Synthesis::Map::SandDuneJob</code> (3)</li>
+<li><code>Synthesis::Map::TransitionHeightBlendJob</code> (3)</li>
+<li><code>Synthesis::Tessellation::BuildIDMapFromMask_Internal_Job</code> (3)</li>
+<li><code>Synthesis::Tessellation::EmitTessMask_CurvatureAndHeightBoundary_Job</code> (3)</li>
+<li><code>Synthesis::Tessellation::FillTestMask_Internal_Job</code> (3)</li>
+<li><code>Synthesis::Tessellation::MaterialIDDownsample_Internal_Job</code> (3)</li>
+<li><code>Synthesis::Tessellation::UpsampleTessMask_Internal_Job</code> (3)</li>
+<li><code>Synthesis::TileSynthesisJob</code> (3)</li>
+<li><code>VisJobBase</code> (3)<ul>
+<li><code>FOWMeshVisSystem::Context::FOWVisJob</code> (3)</li>
+<li><code>ModelVisSystem::ModelVisRenderingJob</code> (3)</li>
+</ul>
+</li>
+<li><code>VisualEffectSystem::Context::PostRenderJob</code> (3)</li>
+<li><code>VisualEffectSystem::Context::PreRenderJob</code> (3)</li>
+<li><code>WorldView::ClutterSystem::Context::ClutterUpdateJob</code> (3)</li>
+<li><code>WorldView::Farm::Context::FarmJob</code> (3)</li>
+<li><code>WorldView::NaturalWonderContext::UpdateJob</code> (3)</li>
+<li><code>WorldView_BuildSortedModelVisCommandStreams</code> (3)</li>
+<li><code>WorldView_BuildVFXCommandStreams</code> (3)</li>
+<li><code>WorldView_DynamicLights_Update</code> (3)</li>
+<li><code>WorldView_FOWMeshVis_Render</code> (3)</li>
+<li><code>WorldView_RenderAOJob</code> (3)</li>
+<li><code>WorldView_RenderFOWJob</code> (3)</li>
+<li><code>WorldView_TerrainContextRenderJob</code> (3)</li>
+<li><code>WorldView_TerrainViewRenderJob</code> (3)</li>
+<li><code>WorldView_UpdateWater</code> (3)</li>
+</ul>
+<h2>Reflection</h2>
+<ul>
+<li><code>Reflection::IQueryObject</code> (0)</li>
+<li><code>AssetObjects::Entity</code> (7)<ul>
+<li><code>AssetObjects::ClassEntity</code> (10)</li>
+<li><code>AssetObjects::AnimationClass</code> (10)</li>
+<li><code>AssetObjects::AssetClass</code> (10)</li>
+<li><code>AssetObjects::BehaviorClass</code> (10)</li>
+<li><code>AssetObjects::CurveClass</code> (10)</li>
+<li><code>AssetObjects::DSGClass</code> (10)</li>
+<li><code>AssetObjects::FireFXClass</code> (10)</li>
+<li><code>AssetObjects::GeometryClass</code> (10)</li>
+<li><code>AssetObjects::LightClass</code> (0)<ul>
+<li><code>AssetObjects::AnalyticLightClass</code> (10)</li>
+<li><code>AssetObjects::EnvironmentLightClass</code> (10)</li>
+</ul>
+</li>
+<li><code>AssetObjects::LightRigClass</code> (10)</li>
+<li><code>AssetObjects::MaterialClass</code> (10)</li>
+<li><code>AssetObjects::ParticleEffectClass</code> (10)</li>
+<li><code>AssetObjects::SplineClass</code> (10)</li>
+<li><code>AssetObjects::TextureClass</code> (10)</li>
+<li><code>AssetObjects::TriggerClass</code> (10)</li>
+<li><code>AssetObjects::TupleClass</code> (10)</li>
+<li><code>AssetObjects::InstanceEntity</code> (11)</li>
+<li><code>AssetObjects::AssetInstance</code> (27)</li>
+<li><code>AssetObjects::BehaviorInstance</code> (27)</li>
+<li><code>AssetObjects::DSGInstance</code> (11)</li>
+<li><code>AssetObjects::FireFXInstance</code> (19)</li>
+<li><code>AssetObjects::ImportedEntity</code> (11)<ul>
+<li><code>AssetObjects::AnimationInstance</code> (11)</li>
+<li><code>AssetObjects::GeometryInstance</code> (11)</li>
+<li><code>AssetObjects::LightInstance</code> (0)</li>
+<li><code>AssetObjects::AnalyticLightInstance</code> (11)</li>
+<li><code>AssetObjects::EnvironmentLightInstance</code> (11)</li>
+<li><code>AssetObjects::ParticleEffectInstance</code> (11)</li>
+<li><code>AssetObjects::TextureInstance</code> (11)</li>
+</ul>
+</li>
+<li><code>AssetObjects::LightRigInstance</code> (11)</li>
+<li><code>AssetObjects::MaterialInstance</code> (11)</li>
+</ul>
+</li>
+</ul>
+<h2>Serialization</h2>
+<ul>
+<li><code>Serialization::IStream</code> (0)</li>
+<li><code>Serialization::FileIStream</code> (13)</li>
+<li><code>Serialization::FileISynchStream</code> (13)</li>
+<li><code>Serialization::MemoryIStream</code> (13)<ul>
+<li><code>GameCore::MemoryIStream</code> (13)</li>
+</ul>
+</li>
+<li><code>Serialization::ZLibIStream</code> (13)</li>
+<li><code>Serialization::OStream</code> (0)</li>
+<li><code>AssetObjects::StringOStream</code> (8)</li>
+<li><code>Serialization::FileOStream</code> (8)</li>
+<li><code>Serialization::MemoryOStream</code> (8)<ul>
+<li><code>GameCore::MemoryOStream</code> (8)</li>
+</ul>
+</li>
+<li><code>Serialization::ZLibOStream</code> (8)</li>
+</ul>
+<h2>Simulation</h2>
+<ul>
+<li><code>Simulation::Combat::CombatUnitMember</code> (13)</li>
+<li><code>Simulation::Combat::CombatUnitMemberAirVehicle</code> (13)</li>
+<li><code>Simulation::Combat::CombatUnitMemberNaval</code> (13)</li>
+<li><code>Simulation::Combat::CombatUnitMemberVehicle</code> (13)</li>
+<li><code>Simulation::Combat::Instance</code> (9)</li>
+<li><code>Simulation::Combat::PhasedCombatInstance</code> (9)</li>
+<li><code>Simulation::Combat::PhaseLogic</code> (8)</li>
+<li><code>Simulation::Combat::MeleeAttackPhaseLogic</code> (8)</li>
+<li><code>Simulation::Combat::MeleeDefensePhaseLogic</code> (8)</li>
+<li><code>Simulation::Combat::RangedAttackPhaseLogic</code> (8)<ul>
+<li><code>Simulation::Combat::SupportEngagePhaseLogic</code> (8)</li>
+</ul>
+</li>
+<li><code>Simulation::Combat::ReformPhaseLogic</code> (8)</li>
+<li><code>Simulation::Combat::VictoryDancePhaseLogic</code> (8)</li>
+</ul>
+<h2>Synthesis</h2>
+<ul>
+<li><code>Synthesis::Map::PassIFace</code> (6)</li>
+<li><code>Synthesis::Map::BlendedHexHeightPass</code> (6)</li>
+<li><code>Synthesis::Map::ClearMaskPass</code> (6)</li>
+<li><code>Synthesis::Map::FlatLandPass</code> (6)</li>
+<li><code>Synthesis::Map::HeightFromConstantPass</code> (6)</li>
+<li><code>Synthesis::Map::HeightFromHeightHexGridPass</code> (6)</li>
+<li><code>Synthesis::Map::IDFromMaskPass</code> (6)</li>
+<li><code>Synthesis::Map::MountainFeaturelinePass</code> (6)</li>
+<li><code>Synthesis::Map::PartitionMaskPass</code> (6)</li>
+<li><code>Synthesis::Map::RiverFeaturelinePass</code> (6)</li>
+<li><code>Synthesis::Map::SandDunePass</code> (6)</li>
+<li><code>Synthesis::Map::TerrainElementPass</code> (6)</li>
+<li><code>Synthesis::Map::TransitionHeightBlendPass</code> (6)</li>
+<li><code>WorldView::TerrainTileCallback</code> (6)</li>
+<li><code>Synthesis::Map::TileData</code> (0)</li>
+<li><code>Synthesis::TileSynthesisJob</code> (3)</li>
+</ul>
+<h2>WorldView</h2>
+<ul>
+<li><code>WorldView::Landmarks::CivEraAppealMap</code> (1)</li>
+<li><code>WorldView::Landmarks::ArtDef_Building</code> (1)</li>
+<li><code>WorldView::Landmarks::ArtDef_Landmark</code> (1)</li>
+<li><code>WorldView::SplineBasedInsetHelper</code> (3)</li>
+<li><code>WorldView::MoaiInsetHelper</code> (3)</li>
+<li><code>WorldView::SeawallInsetHelper</code> (3)</li>
+</ul>
+<h2>XML</h2>
+<ul>
+<li><code>XML::DocumentWriter</code> (0)</li>
+<li><code>XML::FileWriter</code> (1)</li>
+<li><code>XMLSerialization::OStreamXMLWriter</code> (1)</li>
+<li><code>XML::NVPair</code> (0)</li>
+<li><code>XML::Attribute</code> (6)</li>
+<li><code>XML::Element</code> (6)<ul>
+<li><code>XML::Traverser</code> (6)</li>
+</ul>
+</li>
+</ul>
+<h2>cppcodec</h2>
+<ul>
+<li><code>cppcodec::parse_error</code> (3)</li>
+<li><code>cppcodec::invalid_input_length</code> (3)<ul>
+<li><code>cppcodec::padding_error</code> (3)</li>
+</ul>
+</li>
+<li><code>cppcodec::symbol_error</code> (3)</li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

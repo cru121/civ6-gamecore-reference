@@ -1,0 +1,5299 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Lua</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › Lua</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Lua</h1>
+<p>Lua libraries and bindings hosted by the exe (see the <a href="../exeapi/index.html">Lua tables</a>).</p>
+<p>1647 functions in this category, 604 with a Windows address (543 high or medium confidence or exported, 61 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Lua::TypeExposures::DefaultToString(lua_State*)</code></td>
+<td><code>0x4ebd0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2f82600</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Userdata metatable A:__eq</code></td>
+<td><code>0x4f230</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Userdata metatable A.__eq</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposures::PushMembersTable(lua_State*)</code></td>
+<td><code>0x50a90</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2f82cf0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposures::PushTypesTable(lua_State*)</code></td>
+<td><code>0x50d90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2f81eb0</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::ForgeUI_UIManager&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x51090</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3abf600</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposures::TypeToString(lua_State*)</code></td>
+<td><code>0x51430</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2f82120</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.AddColumn</code></td>
+<td><code>0x54aa0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.AddColumn</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetCameraZoom</code></td>
+<td><code>0x54b10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetCameraZoom</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetGPUStallThreshold</code></td>
+<td><code>0x54b40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetGPUStallThreshold</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetLookAtCount</code></td>
+<td><code>0x54b70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetLookAtCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetLookAtFrames</code></td>
+<td><code>0x54ba0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetLookAtFrames</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetStateString</code></td>
+<td><code>0x54bd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetStateString</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetTestName</code></td>
+<td><code>0x54c60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetTestName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetTimeRemaining</code></td>
+<td><code>0x54cc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetTimeRemaining</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetWaitForLandmarks</code></td>
+<td><code>0x54d00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetWaitForLandmarks</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.GetWaitForTerrain</code></td>
+<td><code>0x54d30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.GetWaitForTerrain</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.IsIdle</code></td>
+<td><code>0x54d60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.IsIdle</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.RunCommand</code></td>
+<td><code>0x551a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.RunCommand</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetCameraZoom</code></td>
+<td><code>0x55210</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetCameraZoom</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetFilePath</code></td>
+<td><code>0x55260</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetFilePath</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetGPUStallThreshold</code></td>
+<td><code>0x553a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetGPUStallThreshold</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetLookAtCount</code></td>
+<td><code>0x553f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetLookAtCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetLookAtFrames</code></td>
+<td><code>0x55430</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetLookAtFrames</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetTestName</code></td>
+<td><code>0x55470</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetTestName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetWaitForLandmarks</code></td>
+<td><code>0x55520</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetWaitForLandmarks</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.SetWaitForTerrain</code></td>
+<td><code>0x55570</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.SetWaitForTerrain</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AutoProfiler.Start</code></td>
+<td><code>0x555c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AutoProfiler.Start</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Benchmark.IsEnabled</code></td>
+<td><code>0x58d30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Benchmark.IsEnabled</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Benchmark.RunAIBenchmark</code></td>
+<td><code>0x58d70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Benchmark.RunAIBenchmark</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Benchmark.RunExp2AIBenchmark</code></td>
+<td><code>0x58e40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Benchmark.RunExp2AIBenchmark</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Benchmark.RunExp2GraphicsBenchmark</code></td>
+<td><code>0x58f10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Benchmark.RunExp2GraphicsBenchmark</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Benchmark.RunGraphicsBenchmark</code></td>
+<td><code>0x58fe0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Benchmark.RunGraphicsBenchmark</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.BindCarouselEntryImageToButtonControl</code></td>
+<td><code>0xb3c10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.BindCarouselEntryImageToButtonControl</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.BindChallengeCarouselImageToControl</code></td>
+<td><code>0xb3e60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.BindChallengeCarouselImageToControl</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.BindClickoutCarouselImageToControl</code></td>
+<td><code>0xb4000</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.BindClickoutCarouselImageToControl</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.BindCustomChallengeBadgeImageToControl</code></td>
+<td><code>0xb41a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.BindCustomChallengeBadgeImageToControl</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.ChallengeHasCustomBadge</code></td>
+<td><code>0xb4350</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.ChallengeHasCustomBadge</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetCarouselAnimationDurationMS</code></td>
+<td><code>0xb4530</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetCarouselAnimationDurationMS</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetCarouselDisplayDurationMS</code></td>
+<td><code>0xb45d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetCarouselDisplayDurationMS</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetCarouselEntryCount</code></td>
+<td><code>0xb4670</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetCarouselEntryCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetCarouselEntryType</code></td>
+<td><code>0xb46e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetCarouselEntryType</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetChallengeBadgeDisplayInfo</code></td>
+<td><code>0xb4800</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetChallengeBadgeDisplayInfo</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetChallengeLeaderProgress</code></td>
+<td><code>0xb4bd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetChallengeLeaderProgress</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetChallengeVictoryProgress</code></td>
+<td><code>0xb55b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetChallengeVictoryProgress</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetGames</code></td>
+<td><code>0xb5e10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetGames</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetHasOnlyOneWinForActiveChallenge</code></td>
+<td><code>0xb6130</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetHasOnlyOneWinForActiveChallenge</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetLocalizedChallengeLoadingScreenDescriptionText</code></td>
+<td><code>0xb6280</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetLocalizedChallengeLoadingScreenDescriptionText</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetLocalizedChallengeNameText</code></td>
+<td><code>0xb6430</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetLocalizedChallengeNameText</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetLocalizedNewChallengePackagePopupText</code></td>
+<td><code>0xb65f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetLocalizedNewChallengePackagePopupText</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.GetLocalizedTextForBadgeEarnedPopup</code></td>
+<td><code>0xb66e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.GetLocalizedTextForBadgeEarnedPopup</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.IsChallengeActive</code></td>
+<td><code>0xb67f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.IsChallengeActive</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.IsNullChallengeUuid</code></td>
+<td><code>0xb6840</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.IsNullChallengeUuid</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.LoadCarouselEntry</code></td>
+<td><code>0xb68d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.LoadCarouselEntry</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.PublishCarouselEntryClick</code></td>
+<td><code>0xb6920</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.PublishCarouselEntryClick</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.PublishCarouselEntryImpression</code></td>
+<td><code>0xb6bd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.PublishCarouselEntryImpression</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.PublishHallOfFameBadgeEarned</code></td>
+<td><code>0xb6ec0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.PublishHallOfFameBadgeEarned</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.ShouldShowNewPackageAvailablePopup</code></td>
+<td><code>0xb7150</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.ShouldShowNewPackageAvailablePopup</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Challenges.ShouldShowRestartToGetNewPackagePopup</code></td>
+<td><code>0xb7260</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Challenges.ShouldShowRestartToGetNewPackagePopup</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper GameConfiguration.GetHiddenPlayerIDs</code></td>
+<td><code>0x10b3b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua GameConfiguration.GetHiddenPlayerIDs</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper MapPinConfiguration:GetName</code></td>
+<td><code>0x10e910</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua MapPinConfiguration.GetName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper MapPinConfiguration:GetPlayerID</code></td>
+<td><code>0x10e970</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua MapPinConfiguration.GetPlayerID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper MapPinConfiguration:SetIconName</code></td>
+<td><code>0x10eac0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua MapPinConfiguration.SetIconName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper MapPinConfiguration:SetVisibility</code></td>
+<td><code>0x10eb60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua MapPinConfiguration.SetVisibility</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:DeleteMapPin</code></td>
+<td><code>0x10fe70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.DeleteMapPin</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetCivilizationDescription</code></td>
+<td><code>0x10fec0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetCivilizationDescription</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetCivilizationLevelTypeID</code></td>
+<td><code>0x10ff20</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetCivilizationLevelTypeID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetCivilizationShortDescription</code></td>
+<td><code>0x10ff70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetCivilizationShortDescription</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetCivilizationTypeID</code></td>
+<td><code>0x10ffd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetCivilizationTypeID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetCivilizationTypeName</code></td>
+<td><code>0x110020</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetCivilizationTypeName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetHandicapTypeID</code></td>
+<td><code>0x110080</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetHandicapTypeID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetHotseatPassword</code></td>
+<td><code>0x1100d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetHotseatPassword</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetLeaderName</code></td>
+<td><code>0x110130</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetLeaderName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetLeaderRandomPoolID</code></td>
+<td><code>0x110190</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetLeaderRandomPoolID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetLeaderTypeID</code></td>
+<td><code>0x1101e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetLeaderTypeID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetLeaderTypeName</code></td>
+<td><code>0x110230</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetLeaderTypeName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetMapPinID</code></td>
+<td><code>0x110490</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetMapPinID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetMapPins</code></td>
+<td><code>0x110570</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetMapPins</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetModReady</code></td>
+<td><code>0x110600</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetModReady</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetNetworkIdentifer</code></td>
+<td><code>0x110650</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetNetworkIdentifer</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetNickName</code></td>
+<td><code>0x1106b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetNickName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetPlayerName</code></td>
+<td><code>0x110710</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetPlayerName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetReady</code></td>
+<td><code>0x110770</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetReady</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetSlotName</code></td>
+<td><code>0x1107c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetSlotName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetSlotStatus</code></td>
+<td><code>0x110820</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetSlotStatus</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetStartingPosition</code></td>
+<td><code>0x110870</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetStartingPosition</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetTeam</code></td>
+<td><code>0x1108d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetTeam</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetTeamName</code></td>
+<td><code>0x110920</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetTeamName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetValue</code></td>
+<td><code>0x110980</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:GetWantsPause</code></td>
+<td><code>0x110a90</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.GetWantsPause</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsAI</code></td>
+<td><code>0x110ae0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsAI</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsAlive</code></td>
+<td><code>0x110b30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsAlive</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsAvailable</code></td>
+<td><code>0x110b80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsAvailable</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsHidden</code></td>
+<td><code>0x110bd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsHidden</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsHuman</code></td>
+<td><code>0x110c20</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsHuman</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsHumanRequired</code></td>
+<td><code>0x110c70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsHumanRequired</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsInUse</code></td>
+<td><code>0x110cc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsInUse</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsLocked</code></td>
+<td><code>0x110d10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsLocked</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsObserver</code></td>
+<td><code>0x110d60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsObserver</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsParticipant</code></td>
+<td><code>0x110db0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsParticipant</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:IsPossibleParticipant</code></td>
+<td><code>0x110e00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.IsPossibleParticipant</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetCivilizationTypeName</code></td>
+<td><code>0x110e50</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetCivilizationTypeName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetHandicapTypeID</code></td>
+<td><code>0x110ea0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetHandicapTypeID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetHidden</code></td>
+<td><code>0x110ef0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetHidden</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetHotseatName</code></td>
+<td><code>0x110f40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetHotseatName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetHotseatPassword</code></td>
+<td><code>0x110f90</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetHotseatPassword</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetLeaderName</code></td>
+<td><code>0x110fe0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetLeaderName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetLeaderRandomPoolID</code></td>
+<td><code>0x111030</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetLeaderRandomPoolID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetLeaderTypeName</code></td>
+<td><code>0x111080</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetLeaderTypeName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetLocked</code></td>
+<td><code>0x1110d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetLocked</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetMajorCiv</code></td>
+<td><code>0x111120</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetMajorCiv</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetReady</code></td>
+<td><code>0x111140</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetReady</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetSlotStatus</code></td>
+<td><code>0x111190</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetSlotStatus</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetTeam</code></td>
+<td><code>0x1111e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetTeam</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetValue</code></td>
+<td><code>0x111230</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper PlayerConfiguration:SetWantsPause</code></td>
+<td><code>0x111440</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua PlayerConfiguration.SetWantsPause</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua::GetNumberOrArtHash(lua_State*, int)</code></td>
+<td><code>0x1609c0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3244980</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::GetNumberOrHash(lua_State*, int)</code></td>
+<td><code>0x160a30</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3244820</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::GetTypeHash(lua_State*, int)</code></td>
+<td><code>0x160e90</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x32445b0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetAvailableFreeTurnDLC</code></td>
+<td><code>0x1615c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetAvailableFreeTurnDLC</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua::ITypedDataVariantParameters::GetTypeName()</code></td>
+<td><code>0x19d370</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x32955f0</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.DisableTimeOfDayOverride</code></td>
+<td><code>0x1a5ba0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.DisableTimeOfDayOverride</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.EnableTimeOfDayOverride</code></td>
+<td><code>0x1a5d80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.EnableTimeOfDayOverride</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetARXDeviceType</code></td>
+<td><code>0x1a5f10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetARXDeviceType</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetAmbientTimeOfDaySpeed</code></td>
+<td><code>0x1a5fc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetAmbientTimeOfDaySpeed</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetAspyrAppVersion</code></td>
+<td><code>0x1a6070</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetAspyrAppVersion</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetElapsedTime</code></td>
+<td><code>0x1a6650</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetElapsedTime</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetInterfaceMode</code></td>
+<td><code>0x1a6810</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetInterfaceMode</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetLockedWorldRect</code></td>
+<td><code>0x1a6ad0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetLockedWorldRect</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetManualSaveUsageSize</code></td>
+<td><code>0x1a6ba0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetManualSaveUsageSize</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetMaxMSAACount</code></td>
+<td><code>0x1a6c60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetMaxMSAACount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetNetworkVersion</code></td>
+<td><code>0x1a6d20</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetNetworkVersion</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.GetWorldZ</code></td>
+<td><code>0x1a93a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.GetWorldZ</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.HasARX</code></td>
+<td><code>0x1a9580</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.HasARX</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.HasOutdatedDriver</code></td>
+<td><code>0x1a9630</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.HasOutdatedDriver</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.HasUnknownDevice</code></td>
+<td><code>0x1a96b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.HasUnknownDevice</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsARXDisplayPortrait</code></td>
+<td><code>0x1a9bc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsARXDisplayPortrait</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsFinalRelease</code></td>
+<td><code>0x1aa060</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsFinalRelease</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsFixedTiltModeOn</code></td>
+<td><code>0x1aa080</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsFixedTiltModeOn</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsInFrontEnd</code></td>
+<td><code>0x1aa150</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsInFrontEnd</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsInGame</code></td>
+<td><code>0x1aa1a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsInGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsInMarketingMode</code></td>
+<td><code>0x1aa1f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsInMarketingMode</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsInterfaceTypeVisibile</code></td>
+<td><code>0x1aa230</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsInterfaceTypeVisibile</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsVendorAMD</code></td>
+<td><code>0x1aa620</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsVendorAMD</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.IsVendorNVIDIA</code></td>
+<td><code>0x1aa660</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.IsVendorNVIDIA</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.WorldWrapEnabled</code></td>
+<td><code>0x1b1010</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.WorldWrapEnabled</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper DirtyComponentsManager:AddComponent</code></td>
+<td><code>0x1cb460</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua DirtyComponentsManager.AddComponent</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper DirtyComponentsManager:AddEvent</code></td>
+<td><code>0x1cb630</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua DirtyComponentsManager.AddEvent</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper DirtyComponentsManager:Clear</code></td>
+<td><code>0x1cb680</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua DirtyComponentsManager.Clear</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper DirtyComponentsManager:GetCount</code></td>
+<td><code>0x1cb6a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua DirtyComponentsManager.GetCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper DirtyComponentsManager:MembersAux</code></td>
+<td><code>0x1cb750</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua DirtyComponentsManager.MembersAux</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;IOverlayLayer&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x21c2e0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33f7ba0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;BorderOverlayLayer&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x21f2b0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33fd120</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;HexHighlightLayer&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x225560</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3402710</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;PathOverlayLayer&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x2282f0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3405a90</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;PressureOverlayLayer&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x22bd10</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3409ef0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;TextOverlayLayer&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x236030</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x34150e0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.AcceptCloudGameInvite</code></td>
+<td><code>0x2679d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.AcceptCloudGameInvite</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.GetGameList</code></td>
+<td><code>0x267a60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.GetGameList</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.GetGameListEntry</code></td>
+<td><code>0x267b10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.GetGameListEntry</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.InitLobby</code></td>
+<td><code>0x267bc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.InitLobby</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.IsGameListAtEnd</code></td>
+<td><code>0x267c60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.IsGameListAtEnd</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.IsRefreshingGameList</code></td>
+<td><code>0x267cc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.IsRefreshingGameList</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.RefreshGameList</code></td>
+<td><code>0x267d10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.RefreshGameList</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.SetBrowseMode</code></td>
+<td><code>0x267d60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.SetBrowseMode</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.SetBrowseOffset</code></td>
+<td><code>0x267dc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.SetBrowseOffset</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.SetGameListType</code></td>
+<td><code>0x267e20</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.SetGameListType</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Matchmaking.StopRefreshingGameList</code></td>
+<td><code>0x267ee0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Matchmaking.StopRefreshingGameList</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):AcceptInvite</code></td>
+<td><code>0x2697d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).AcceptInvite</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):ActivateGameOverlayToFriendRequest</code></td>
+<td><code>0x269910</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).ActivateGameOverlayToFriendRequest</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):ActivateGameOverlayToUrl</code></td>
+<td><code>0x2699e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).ActivateGameOverlayToUrl</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):ActivateInviteOverlay</code></td>
+<td><code>0x269a90</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).ActivateInviteOverlay</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):ClearRichPresence</code></td>
+<td><code>0x269b40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).ClearRichPresence</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):GetFriendCount</code></td>
+<td><code>0x269e70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).GetFriendCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):GetRichPresence</code></td>
+<td><code>0x269ed0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).GetRichPresence</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):InviteUserToGame</code></td>
+<td><code>0x269fd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).InviteUserToGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):IsOverlayEnabled</code></td>
+<td><code>0x26a030</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).IsOverlayEnabled</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (second platform):SetRichPresence</code></td>
+<td><code>0x26a090</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (second platform).SetRichPresence</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.AttemptConnectionToCrossPlayLobbyService</code></td>
+<td><code>0x26a520</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.AttemptConnectionToCrossPlayLobbyService</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.BroadcastGameConfig</code></td>
+<td><code>0x26a570</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.BroadcastGameConfig</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.BroadcastPlayerInfo</code></td>
+<td><code>0x26a610</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.BroadcastPlayerInfo</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.CheckServerForCloudNotifications</code></td>
+<td><code>0x26a6f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.CheckServerForCloudNotifications</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.CheckServerForUnseenComplete</code></td>
+<td><code>0x26a790</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.CheckServerForUnseenComplete</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.CloseConnection</code></td>
+<td><code>0x26a830</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.CloseConnection</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.CloudEndTurn</code></td>
+<td><code>0x26a890</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.CloudEndTurn</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.CloudKillGame</code></td>
+<td><code>0x26a8e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.CloudKillGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.CloudQuitGame</code></td>
+<td><code>0x26a930</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.CloudQuitGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.ForceResync</code></td>
+<td><code>0x26a980</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.ForceResync</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetCapability</code></td>
+<td><code>0x26a9a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetCapability</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetChangePlayerID</code></td>
+<td><code>0x26aa00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetChangePlayerID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetElapsedSessionTime</code></td>
+<td><code>0x26aab0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetElapsedSessionTime</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetFriends</code></td>
+<td><code>0x26aaf0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetFriends</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetGameConfigurationSaveType</code></td>
+<td><code>0x26abd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetGameConfigurationSaveType</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetGameHostPlayerID</code></td>
+<td><code>0x26ac10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetGameHostPlayerID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetInternetTransportType</code></td>
+<td><code>0x26ac60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetInternetTransportType</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetJoinCode</code></td>
+<td><code>0x26ac90</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetJoinCode</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetLastJoinedHostName</code></td>
+<td><code>0x26ad80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetLastJoinedHostName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetLocalPlayerID</code></td>
+<td><code>0x26af00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetLocalPlayerID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetNetSessionHostPlayerID</code></td>
+<td><code>0x26af50</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetNetSessionHostPlayerID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetPingTime</code></td>
+<td><code>0x26afa0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetPingTime</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetServerHostName</code></td>
+<td><code>0x26b030</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetServerHostName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetSessionID</code></td>
+<td><code>0x26b120</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetSessionID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.GetTransportType</code></td>
+<td><code>0x26b170</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.GetTransportType</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.HasCapability</code></td>
+<td><code>0x26b1d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.HasCapability</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.HasKickVotedStarted</code></td>
+<td><code>0x26b230</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.HasKickVotedStarted</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.HasSingleFriendInvite</code></td>
+<td><code>0x26b2e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.HasSingleFriendInvite</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.HasVotedToKick</code></td>
+<td><code>0x26b320</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.HasVotedToKick</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.HostGame</code></td>
+<td><code>0x26b3d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.HostGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsAgeRestricted</code></td>
+<td><code>0x26b4c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsAgeRestricted</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsCloudJoinsBlocked</code></td>
+<td><code>0x26b510</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsCloudJoinsBlocked</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsCloudLaunching</code></td>
+<td><code>0x26b560</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsCloudLaunching</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsCloudMatchStarted</code></td>
+<td><code>0x26b5b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsCloudMatchStarted</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsCloudTurnPlayer</code></td>
+<td><code>0x26b600</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsCloudTurnPlayer</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsCrossPlayLobbyServiceAvailable</code></td>
+<td><code>0x26b650</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsCrossPlayLobbyServiceAvailable</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsEveryoneConnected</code></td>
+<td><code>0x26b6a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsEveryoneConnected</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsGameCoreActive</code></td>
+<td><code>0x26b6f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsGameCoreActive</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsGameHost</code></td>
+<td><code>0x26b740</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsGameHost</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsInGameStartedState</code></td>
+<td><code>0x26b790</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsInGameStartedState</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsInSession</code></td>
+<td><code>0x26b7e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsInSession</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsInternetLobbyServiceAvailable</code></td>
+<td><code>0x26b830</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsInternetLobbyServiceAvailable</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsMatchMaking</code></td>
+<td><code>0x26b880</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsMatchMaking</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsNetSessionHost</code></td>
+<td><code>0x26b8f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsNetSessionHost</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsPendingAgeRestriction</code></td>
+<td><code>0x26b940</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsPendingAgeRestriction</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsPlayerConnected</code></td>
+<td><code>0x26b980</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsPlayerConnected</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsPlayerHotJoining</code></td>
+<td><code>0x26ba00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsPlayerHotJoining</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsPlayerKicked</code></td>
+<td><code>0x26ba80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsPlayerKicked</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsPlayerResyncing</code></td>
+<td><code>0x26bb00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsPlayerResyncing</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsSessionActive</code></td>
+<td><code>0x26bb80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsSessionActive</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsSessionClosing</code></td>
+<td><code>0x26bbe0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsSessionClosing</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsSessionInCloseState</code></td>
+<td><code>0x26bc40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsSessionInCloseState</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper UI.HasUnsupportedDevice</code></td>
+<td><code>0x26bca0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua UI.HasUnsupportedDevice</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.IsUserLoggedIntoCrossPlayLobbyService</code></td>
+<td><code>0x26bcc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.IsUserLoggedIntoCrossPlayLobbyService</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.JoinGame</code></td>
+<td><code>0x26bd10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.JoinGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.JoinGameByJoinCode</code></td>
+<td><code>0x26bdb0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.JoinGameByJoinCode</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.KickPlayer</code></td>
+<td><code>0x26bef0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.KickPlayer</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.KickVote</code></td>
+<td><code>0x26bf80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.KickVote</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.LaunchGame</code></td>
+<td><code>0x26c0b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.LaunchGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.LeaveGame</code></td>
+<td><code>0x26c100</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.LeaveGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.LoadGame</code></td>
+<td><code>0x26c150</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.LoadGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.LogIntoCrossPlayLobbyService</code></td>
+<td><code>0x26c670</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.LogIntoCrossPlayLobbyService</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.MatchMake</code></td>
+<td><code>0x26c880</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.MatchMake</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.PSPlusAvailability</code></td>
+<td><code>0x26c8f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.PSPlusAvailability</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.ProfanityFilter</code></td>
+<td><code>0x26c920</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.ProfanityFilter</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.RequestPlayerIDChange</code></td>
+<td><code>0x26ca40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.RequestPlayerIDChange</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.RequestSnapshot</code></td>
+<td><code>0x26ca90</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.RequestSnapshot</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.RestartGame</code></td>
+<td><code>0x26cad0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.RestartGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.SaveGame</code></td>
+<td><code>0x26cb10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.SaveGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.SendChat</code></td>
+<td><code>0x26cbf0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.SendChat</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.SetCompletedGameSeen</code></td>
+<td><code>0x26cd70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.SetCompletedGameSeen</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Network.TriggerTestSync</code></td>
+<td><code>0x26ce10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Network.TriggerTestSync</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Automation.SetLocalParameter</code></td>
+<td><code>0x29d790</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Automation.SetLocalParameter</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaAchievementsLibrary::Register(lua_State*, lua_State*)</code></td>
+<td><code>0x29d880</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3428530</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>AppLuaAchievementsLibrary::lGetAchievementData(lua_State*)</code></td>
+<td><code>0x29d8a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetAchievementData</td>
+<td><code>0x34289c0</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Achievements.GetAchievementHash</code></td>
+<td><code>0x29dc60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Achievements.GetAchievementHash</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Achievements.GetStat</code></td>
+<td><code>0x29dd70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Achievements.GetStat</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Achievements.IsAchievementUnlocked</code></td>
+<td><code>0x29ddf0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Achievements.IsAchievementUnlocked</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaAchievementsLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x29de60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3428550</code></td>
+<td>400</td>
+</tr>
+<tr>
+<td><code>LuaSupport::FromLua(lua_State*, CameraUpdatedData&amp;)</code></td>
+<td><code>0x29f050</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3429190</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>LuaSupport::PushComponentID(lua_State*, GameCore::Player::ComponentID const&amp;)</code></td>
+<td><code>0x29f060</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342a290</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>LuaSupport::ToLua(lua_State*, CombatVisData&amp;)</code></td>
+<td><code>0x29f390</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342a340</code></td>
+<td>576</td>
+</tr>
+<tr>
+<td><code>LuaSupport::ToLua(lua_State*, ConfigureContentResult&amp;)</code></td>
+<td><code>0x29f760</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342b290</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>LuaSupport::ToLua(lua_State*, SubscriptionDownloadData&amp;)</code></td>
+<td><code>0x2a03f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342b440</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>LuaSupport::ToLua(lua_State*, UpdateContentResult&amp;)</code></td>
+<td><code>0x2a08a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342b380</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::Register(lua_State*, lua_State*)</code></td>
+<td><code>0x2a0b40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342ba70</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::lQuery(lua_State*)</code></td>
+<td><code>0x2a0d00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342c0e0</code></td>
+<td>672</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::lGameInfo_ErrorReadOnly(lua_State*)</code></td>
+<td><code>0x2a1120</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua IDatabaseConnection1*).__newindex</td>
+<td><code>0x342d800</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::lGameInfo_IterateTable(lua_State*)</code></td>
+<td><code>0x2a1330</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua IDatabaseConnection1*).__call</td>
+<td><code>0x342d9b0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::lua_RegisterDatabase(lua_State*, int, Database::IDatabaseConnection1*)</code></td>
+<td><code>0x2a18f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342c690</code></td>
+<td>3680</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::lua_RegisterGlobalParametersLibrary(lua_State*, int, Database::IDatabaseConnection1*)</code></td>
+<td><code>0x2a2cf0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342d520</code></td>
+<td>432</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::pReleaseDatabaseCache(lua_State*)</code></td>
+<td><code>0x2a3020</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342bf10</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::pRegisterDBLibrary(lua_State*)</code></td>
+<td><code>0x2a31b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342bad0</code></td>
+<td>560</td>
+</tr>
+<tr>
+<td><code>AppLuaEventLibrary::CreateEventFactory(lua_State*, unsigned int)</code></td>
+<td><code>0x2efbf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342de30</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>AppLuaEventLibrary::lRegisterAllGameCoreEvents(lua_State*)</code></td>
+<td><code>0x4694e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3430780</code></td>
+<td>15248</td>
+</tr>
+<tr>
+<td><code>AppLuaEventLibrary::lRegisterAllLocalMachineEvents(lua_State*)</code></td>
+<td><code>0x46d720</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342f190</code></td>
+<td>5616</td>
+</tr>
+<tr>
+<td><code>AppLuaEventLibrary::lRegisterAllLuaOnlyEvents(lua_State*)</code></td>
+<td><code>0x46f1e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3434310</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>AppLuaEventLibrary::lRegisterAllNonSerialEvents(lua_State*)</code></td>
+<td><code>0x46f2e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342df70</code></td>
+<td>784</td>
+</tr>
+<tr>
+<td><code>AppLuaEventLibrary::lRegisterAllSerialEvents(lua_State*)</code></td>
+<td><code>0x46f740</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x342e280</code></td>
+<td>3856</td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.CheckForCloudNotifications</code></td>
+<td><code>0x4c1770</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.CheckForCloudNotifications</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.ClearCloudGames</code></td>
+<td><code>0x4c1800</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.ClearCloudGames</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsCOPPALocked</code></td>
+<td><code>0x4c1910</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsCOPPALocked</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsFiraxisLiveConnected</code></td>
+<td><code>0x4c1980</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsFiraxisLiveConnected</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsFiraxisLiveLoggedIn</code></td>
+<td><code>0x4c19f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsFiraxisLiveLoggedIn</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsFullyLoggedIn</code></td>
+<td><code>0x4c1a60</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsFullyLoggedIn</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsKandoConnected</code></td>
+<td><code>0x4c1ad0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsKandoConnected</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsMy2KAccountLinked</code></td>
+<td><code>0x4c1b40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsMy2KAccountLinked</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsMy2KConnected</code></td>
+<td><code>0x4c1bb0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsMy2KConnected</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsMy2KLoggedIn</code></td>
+<td><code>0x4c1c20</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsMy2KLoggedIn</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.IsPlatformOrFullAccount</code></td>
+<td><code>0x4c1c90</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.IsPlatformOrFullAccount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KBeginLogin</code></td>
+<td><code>0x4c1d00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KBeginLogin</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KCreateNewUser</code></td>
+<td><code>0x4c1d90</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KCreateNewUser</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KEmailResponse</code></td>
+<td><code>0x4c1dd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KEmailResponse</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KLegalResponse</code></td>
+<td><code>0x4c1f10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KLegalResponse</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KLoginUser</code></td>
+<td><code>0x4c2310</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KLoginUser</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KMessageResponse</code></td>
+<td><code>0x4c2520</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KMessageResponse</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KNewUserResponse</code></td>
+<td><code>0x4c25c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KNewUserResponse</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.My2KUnlinkAccount</code></td>
+<td><code>0x4c26e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.My2KUnlinkAccount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.SetAutoCloudNotificationChecks</code></td>
+<td><code>0x4c2770</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.SetAutoCloudNotificationChecks</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper FiraxisLive.SetUIReady</code></td>
+<td><code>0x4c2870</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua FiraxisLive.SetUIReady</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetGames(lua_State*)</code></td>
+<td><code>0x4c4ee0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetGames</td>
+<td><code>0x36a0860</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>Lua wrapper HallofFame.DeleteAggregateData</code></td>
+<td><code>0x4c5080</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua HallofFame.DeleteAggregateData</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper HallofFame.DeleteGame</code></td>
+<td><code>0x4c50a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua HallofFame.DeleteGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetAvailableRulesets(lua_State*)</code></td>
+<td><code>0x4c50e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetAvailableRulesets</td>
+<td><code>0x36a07d0</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetGameData(lua_State*)</code></td>
+<td><code>0x4c5170</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetGameData</td>
+<td><code>0x36a0a30</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetGameDataPoints(lua_State*)</code></td>
+<td><code>0x4c52d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetGameDataPoints</td>
+<td><code>0x36a2af0</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetGameObjects(lua_State*)</code></td>
+<td><code>0x4c5360</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetGameObjects</td>
+<td><code>0x36a0b80</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>Lua wrapper HallofFame.GetGames</code></td>
+<td><code>0x4c5440</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua HallofFame.GetGames</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetGraphs(lua_State*)</code></td>
+<td><code>0x4c54e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetGraphs</td>
+<td><code>0x36a23b0</code></td>
+<td>864</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetLeaderProgress(lua_State*)</code></td>
+<td><code>0x4c5800</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetLeaderProgress</td>
+<td><code>0x36a0c70</code></td>
+<td>1840</td>
+</tr>
+<tr>
+<td><code>Lua wrapper HallofFame.GetLocalizedVictoryTypeText</code></td>
+<td><code>0x4c61f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua HallofFame.GetLocalizedVictoryTypeText</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetObjectDataPoints(lua_State*)</code></td>
+<td><code>0x4c6310</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetObjectDataPoints</td>
+<td><code>0x36a2ba0</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetReports(lua_State*)</code></td>
+<td><code>0x4c63a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetReports</td>
+<td><code>0x36a2710</code></td>
+<td>800</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetRulesetDataPoints(lua_State*)</code></td>
+<td><code>0x4c6690</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetRulesetDataPoints</td>
+<td><code>0x36a2a30</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetRulesetPlayableLeaders(lua_State*)</code></td>
+<td><code>0x4c6730</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td>Lua pRegister.GetRulesetPlayableLeaders</td>
+<td><code>0x36a1f10</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetRulesetTypes(lua_State*)</code></td>
+<td><code>0x4c6970</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetRulesetTypes</td>
+<td><code>0x36a1af0</code></td>
+<td>1056</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetStatistics(lua_State*)</code></td>
+<td><code>0x4c6fc0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetStatistics</td>
+<td><code>0x36a2150</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetStatisticsCategories(lua_State*)</code></td>
+<td><code>0x4c70b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetStatisticsCategories</td>
+<td><code>0x36a2280</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lGetVictoryProgress(lua_State*)</code></td>
+<td><code>0x4c71a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetVictoryProgress</td>
+<td><code>0x36a13a0</code></td>
+<td>1872</td>
+</tr>
+<tr>
+<td><code>Lua wrapper HallofFame.ResetAllData</code></td>
+<td><code>0x4c7ae0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua HallofFame.ResetAllData</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper HallofFame.UpdateAggregateData</code></td>
+<td><code>0x4c7b10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua HallofFame.UpdateAggregateData</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x4c7b30</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36a0350</code></td>
+<td>1056</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.BeginRecordingGestures</code></td>
+<td><code>0x4c7fb0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.BeginRecordingGestures</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.BindAction</code></td>
+<td><code>0x4c7fe0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.BindAction</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.ClearGesture</code></td>
+<td><code>0x4c80e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.ClearGesture</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.ClearGestures</code></td>
+<td><code>0x4c8130</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.ClearGestures</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.ClearRecordedGestures</code></td>
+<td><code>0x4c8160</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.ClearRecordedGestures</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActionCategory</code></td>
+<td><code>0x4c8180</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActionCategory</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActionContext</code></td>
+<td><code>0x4c81f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActionContext</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActionCount</code></td>
+<td><code>0x4c8260</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActionCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActionDescription</code></td>
+<td><code>0x4c82a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActionDescription</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActionEnabled</code></td>
+<td><code>0x4c8310</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActionEnabled</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActionId</code></td>
+<td><code>0x4c8360</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActionId</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActionName</code></td>
+<td><code>0x4c8490</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActionName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActiveContext</code></td>
+<td><code>0x4c8500</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActiveContext</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetActiveLayout</code></td>
+<td><code>0x4c8560</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetActiveLayout</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetGestureDisplayIcons</code></td>
+<td><code>0x4c85a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetGestureDisplayIcons</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetGestureDisplayString</code></td>
+<td><code>0x4c86f0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetGestureDisplayString</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.GetRecordedGestureCount</code></td>
+<td><code>0x4c8790</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.GetRecordedGestureCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.HasGesture</code></td>
+<td><code>0x4c87d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.HasGesture</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.IsRecordingGestures</code></td>
+<td><code>0x4c8880</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.IsRecordingGestures</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.PopContext</code></td>
+<td><code>0x4c88c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.PopContext</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.PushActiveContext</code></td>
+<td><code>0x4c8900</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.PushActiveContext</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.SetActiveContext</code></td>
+<td><code>0x4c8950</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.SetActiveContext</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.SetActiveLayout</code></td>
+<td><code>0x4c89a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.SetActiveLayout</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Input.ShouldShowActionKeybinding</code></td>
+<td><code>0x4c8a00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Input.ShouldShowActionKeybinding</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaInputLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x4c8ab0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36a4640</code></td>
+<td>1200</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lBundle(lua_State*)</code></td>
+<td><code>0x4c92d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.Bundle</td>
+<td><code>0x36a5d40</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lCompare(lua_State*)</code></td>
+<td><code>0x4c93a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.Compare</td>
+<td><code>0x36a76f0</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lCompose(lua_State*)</code></td>
+<td><code>0x4c9470</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.Compose</td>
+<td><code>0x36a6460</code></td>
+<td>560</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.EndsWith</code></td>
+<td><code>0x4c96d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.EndsWith</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lGetAudioLanguages(lua_State*)</code></td>
+<td><code>0x4c9970</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetAudioLanguages</td>
+<td><code>0x36a6030</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.GetCurrentLanguage</code></td>
+<td><code>0x4c9b00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.GetCurrentLanguage</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.GetLanguageCoverage</code></td>
+<td><code>0x4c9c10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.GetLanguageCoverage</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.GetLanguageDisplayName</code></td>
+<td><code>0x4c9e70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.GetLanguageDisplayName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.GetLanguages</code></td>
+<td><code>0x4c9f10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.GetLanguages</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.HasTextKey</code></td>
+<td><code>0x4ca090</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.HasTextKey</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.IsASCII</code></td>
+<td><code>0x4ca120</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.IsASCII</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.IsNilOrEmpty</code></td>
+<td><code>0x4ca1d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.IsNilOrEmpty</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.IsNilOrWhitespace</code></td>
+<td><code>0x4ca250</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.IsNilOrWhitespace</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.IsUTF8</code></td>
+<td><code>0x4ca400</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.IsUTF8</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.IsValidKey</code></td>
+<td><code>0x4ca4d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.IsValidKey</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.Length</code></td>
+<td><code>0x4ca540</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.Length</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lLookupBundle(lua_State*)</code></td>
+<td><code>0x4ca830</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.LookupBundle</td>
+<td><code>0x36a5e10</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lLookupLanguage(lua_State*)</code></td>
+<td><code>0x4ca920</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.LookupLanguage</td>
+<td><code>0x36a6890</code></td>
+<td>480</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Locale.SplitString</code></td>
+<td><code>0x4caaf0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Locale.SplitString</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lToLower(lua_State*)</code></td>
+<td><code>0x4cb080</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.ToLower</td>
+<td><code>0x36a72c0</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lToNumber(lua_State*)</code></td>
+<td><code>0x4cb120</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.ToNumber</td>
+<td><code>0x36a7350</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lToOrdinal(lua_State*)</code></td>
+<td><code>0x4cb290</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.ToOrdinal</td>
+<td><code>0x36a7660</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lToPercent(lua_State*)</code></td>
+<td><code>0x4cb330</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.ToPercent</td>
+<td><code>0x36a74b0</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lToRomanNumeral(lua_State*)</code></td>
+<td><code>0x4cb3d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.ToRomanNumeral</td>
+<td><code>0x36a7540</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lToSpellout(lua_State*)</code></td>
+<td><code>0x4cb470</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.ToSpellout</td>
+<td><code>0x36a75d0</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lToUpper(lua_State*)</code></td>
+<td><code>0x4cb510</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.ToUpper</td>
+<td><code>0x36a7230</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x4cb5b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36a57a0</code></td>
+<td>1440</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.BundleModText</code></td>
+<td><code>0x4cc000</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.BundleModText</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.CanDisableMod</code></td>
+<td><code>0x4cc160</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.CanDisableMod</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.CanEnableMod</code></td>
+<td><code>0x4cc4a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.CanEnableMod</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lCheckRequirements(lua_State*)</code></td>
+<td><code>0x4cc800</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.CheckRequirements</td>
+<td><code>0x36a9f70</code></td>
+<td>720</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.CreateModGroup</code></td>
+<td><code>0x4ccc40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.CreateModGroup</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.DisableMod</code></td>
+<td><code>0x4ccd50</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.DisableMod</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.EnableMod</code></td>
+<td><code>0x4ccfe0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.EnableMod</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetActiveMods</code></td>
+<td><code>0x4cd290</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetActiveMods</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetDLCNeeedsUpdateMessage</code></td>
+<td><code>0x4cd2c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetDLCNeeedsUpdateMessage</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetCurrentModGroup</code></td>
+<td><code>0x4cd2e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetCurrentModGroup</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetGameModesFromConfigurationString</code></td>
+<td><code>0x4cd350</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetGameModesFromConfigurationString</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetInstalledMods</code></td>
+<td><code>0x4cd6c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetInstalledMods</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetLastLoadError</code></td>
+<td><code>0x4cd740</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetLastLoadError</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetLastModErrorString</code></td>
+<td><code>0x4cd7e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetLastModErrorString</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetModAssociations</code></td>
+<td><code>0x4cd8a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetModAssociations</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetModGroups(lua_State*)</code></td>
+<td><code>0x4cdbb0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetModGroups</td>
+<td><code>0x36aa2f0</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetModHandle</code></td>
+<td><code>0x4cde80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetModHandle</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetModProperty</code></td>
+<td><code>0x4ce040</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetModProperty</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetModsFromConfigurationString</code></td>
+<td><code>0x4ce290</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetModsFromConfigurationString</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDetails(lua_State*)</code></td>
+<td><code>0x4ce640</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetSubscriptionDetails</td>
+<td><code>0x36aa6d0</code></td>
+<td>704</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.GetSubscriptions</code></td>
+<td><code>0x4cead0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.GetSubscriptions</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetUserInterfaces(lua_State*)</code></td>
+<td><code>0x4ced70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegister.GetUserInterfaces</td>
+<td><code>0x36a9320</code></td>
+<td>480</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.IsJoinGameAllowed</code></td>
+<td><code>0x4cf040</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.IsJoinGameAllowed</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.IsLeaderAllowed</code></td>
+<td><code>0x4cf0b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.IsLeaderAllowed</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.IsModActive</code></td>
+<td><code>0x4cf270</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.IsModActive</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.IsModEnabled</code></td>
+<td><code>0x4cf4a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.IsModEnabled</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.IsModInstalled</code></td>
+<td><code>0x4cf5c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.IsModInstalled</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.IsModOfficial</code></td>
+<td><code>0x4cf6d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.IsModOfficial</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.ParseModUri</code></td>
+<td><code>0x4cf7c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.ParseModUri</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.Unsubscribe</code></td>
+<td><code>0x4cfa80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.Unsubscribe</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lUpdateParameter(lua_State*)</code></td>
+<td><code>0x4cfb00</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.UpdateParameter</td>
+<td><code>0x36a8830</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Modding.UpdateSubscription</code></td>
+<td><code>0x4cfd30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Modding.UpdateSubscription</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lua_PushModInfo(lua_State*, Modding::ModHandle const&amp;, bool)</code></td>
+<td><code>0x4cfde0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36ab550</code></td>
+<td>1952</td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lua_PushModRequirementsStatus(lua_State*, Modding::ModRequirementsStatus)</code></td>
+<td><code>0x4d0c80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36ab100</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x4d0d70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36a7ca0</code></td>
+<td>2464</td>
+</tr>
+<tr>
+<td><code>AppLuaOnlyEventLibrary::Send(char const*, GameCore::Interfaces::IScriptSystemArgs1*)</code></td>
+<td><code>0x4d1810</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x36ac360</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>AppLuaOnlyEventLibrary::pDispatch(lua_State*)</code></td>
+<td><code>0x4d1890</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36ac260</code></td>
+<td>256</td>
+</tr>
+<tr>
+<td><code>AppLuaOptionsLibrary::SetOption(lua_State*, OptionChangedData::OptionFile const&amp;)</code></td>
+<td><code>0x4d2050</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36ad670</code></td>
+<td>416</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.GetAvailableDisplayAdapters</code></td>
+<td><code>0x4d2650</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.GetAvailableDisplayAdapters</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaOptionsLibrary::lGetAvailableDisplayModes(lua_State*)</code></td>
+<td><code>0x4d2710</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua pRegisterLibrary.GetAvailableDisplayModes</td>
+<td><code>0x36ac8a0</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.GetDisplayHeight</code></td>
+<td><code>0x4d2920</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.GetDisplayHeight</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.GetDisplayWidth</code></td>
+<td><code>0x4d2950</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.GetDisplayWidth</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.IsAppInMainMenuState</code></td>
+<td><code>0x4d29e0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.IsAppInMainMenuState</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.IsMultiNodeGPU</code></td>
+<td><code>0x4d2a30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.IsMultiNodeGPU</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.IsUIUpscaleAllowed</code></td>
+<td><code>0x4d2a70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.IsUIUpscaleAllowed</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.RevertOptions</code></td>
+<td><code>0x4d2fb0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.RevertOptions</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.RevertResolutionChanges</code></td>
+<td><code>0x4d3500</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.RevertResolutionChanges</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.SaveOptions</code></td>
+<td><code>0x4d3520</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.SaveOptions</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.SetAppOption</code></td>
+<td><code>0x4d3a70</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.SetAppOption</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaOptionsLibrary::lSetAudioOption(lua_State*)</code></td>
+<td><code>0x4d3a90</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td>Lua pRegisterLibrary.SetAudioOption</td>
+<td><code>0x36acb80</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.SetGraphicsOption</code></td>
+<td><code>0x4d3c10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.SetGraphicsOption</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Options.SetUserOption</code></td>
+<td><code>0x4d3c50</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Options.SetUserOption</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaOptionsLibrary::pRegisterLibrary(lua_State*)</code></td>
+<td><code>0x4d3c70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36ac400</code></td>
+<td>1024</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Path.GetDirectoryName</code></td>
+<td><code>0x4d41b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Path.GetDirectoryName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Path.GetExtension</code></td>
+<td><code>0x4d4330</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Path.GetExtension</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Path.GetFileName</code></td>
+<td><code>0x4d44b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Path.GetFileName</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Path.GetFileNameWithoutExtension</code></td>
+<td><code>0x4d4630</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Path.GetFileNameWithoutExtension</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Path.NormalizePath</code></td>
+<td><code>0x4d47b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Path.NormalizePath</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Path.UsesExtension</code></td>
+<td><code>0x4d4930</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Path.UsesExtension</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaPathLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x4d4ae0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36adf40</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>AppLuaSearchLibrary::lAddData(lua_State*)</code></td>
+<td><code>0x4d68b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>Lua pRegister.AddData</td>
+<td><code>0x36afac0</code></td>
+<td>1616</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Search.ClearData</code></td>
+<td><code>0x4d72b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Search.ClearData</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Search.Search</code></td>
+<td><code>0x4d74c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Search.Search</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaSearchLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x4d7990</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36af7f0</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>AppLuaUIEnumsLibrary::GetLibraryName()</code></td>
+<td><code>0x4d7c20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36b1110</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>AppLuaUIEnumsLibrary::RegisterEnums(lua_State*)</code></td>
+<td><code>0x4d7c30</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36b1120</code></td>
+<td>3856</td>
+</tr>
+<tr>
+<td><code>AppLuaUtils::lReadOnlyError(lua_State*)</code></td>
+<td><code>0x4d9ff0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua CreateReadOnlyProxy.__newindex</td>
+<td><code>0x36b2330</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEvent::RegisterMethods(lua_State*, int, int, int)</code></td>
+<td><code>0x4da540</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36b2bf0</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEventLibrary::lEventFactoryIndexer(lua_State*)</code></td>
+<td><code>0x4dbc20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36b4270</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>Lua::Table::Field::ToString() const</code></td>
+<td><code>0x4ef190</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x32834f0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Lua::Value Lua::Function::operator()&lt;char*&gt;(char*) const</code></td>
+<td><code>0x4f0620</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x36f1810</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateGameOverlay</code></td>
+<td><code>0x503150</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateGameOverlay</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateGameOverlayToChat</code></td>
+<td><code>0x503190</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateGameOverlayToChat</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateGameOverlayToFriendRequest</code></td>
+<td><code>0x5031d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateGameOverlayToFriendRequest</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateGameOverlayToStore</code></td>
+<td><code>0x503240</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateGameOverlayToStore</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateGameOverlayToUrl</code></td>
+<td><code>0x503280</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateGameOverlayToUrl</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateGameOverlayToUser</code></td>
+<td><code>0x5032c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateGameOverlayToUser</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateGameOverlayToWorkshop</code></td>
+<td><code>0x503300</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateGameOverlayToWorkshop</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ActivateInviteOverlay</code></td>
+<td><code>0x503380</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ActivateInviteOverlay</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):ClearRichPresence</code></td>
+<td><code>0x5033a0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).ClearRichPresence</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):GetAppID</code></td>
+<td><code>0x5033d0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).GetAppID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):GetFriendByIndex</code></td>
+<td><code>0x503430</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).GetFriendByIndex</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):GetFriendCount</code></td>
+<td><code>0x5036c0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).GetFriendCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):GetMySteamID</code></td>
+<td><code>0x503710</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).GetMySteamID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):GetRichPresence</code></td>
+<td><code>0x503960</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).GetRichPresence</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):InviteUserToGame</code></td>
+<td><code>0x503a30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).InviteUserToGame</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):IsOverlayEnabled</code></td>
+<td><code>0x503a80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).IsOverlayEnabled</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Friends (Steam):SetRichPresence</code></td>
+<td><code>0x503b40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Friends (Steam).SetRichPresence</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AssetPreview.GetLandmarkAssetList</code></td>
+<td><code>0x660560</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AssetPreview.GetLandmarkAssetList</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper AssetPreview.GetLandmarkCount</code></td>
+<td><code>0x660850</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua AssetPreview.GetLandmarkCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::IconManager&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x869df0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3aa58e0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::InputStruct&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x893ec0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3abf810</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::ButtonControlBase&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x8a2640</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3a421d0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::ListBoxControlBase&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x8cb130</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3a696b0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::ToolTipManager&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x8e6c50</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3acafc0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::EffectsManager&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x8e8df0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3aa12f0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::ITypedDataVariant::GetTypeName()</code></td>
+<td><code>0x8ede50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3a3a520</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>Lua::Details::PushFunction&lt;int (*)(lua_State*)&gt;(lua_State*, int (*)(lua_State*), char const*)::LuaInterface::ToString(lua_State*)</code></td>
+<td><code>0x8eeba0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3a3a050</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::AnimControl&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x8f4420</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3ade3e0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::TouchManager&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x8f8060</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3acebe0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::TypeExposure&lt;ForgeUI::DragStruct&gt;::NameRegistrar::NameRegistrar(char const*)</code></td>
+<td><code>0x911710</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3aee1a0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::LoadFileHelper(lua_State*, wchar_t const*, bool)</code></td>
+<td><code>0x9722e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfea0c</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::Setup(void* (*)(void*, void*, unsigned long, unsigned long), int, int)</code></td>
+<td><code>0x972af0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfc5e0</code></td>
+<td>396</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Global functions.CollectLuaMemoryUsage</code></td>
+<td><code>0x972d50</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Global functions.CollectLuaMemoryUsage</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Global functions._CreateThread</code></td>
+<td><code>0x972e10</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Global functions._CreateThread</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::lGetMemoryUsage(lua_State*)</code></td>
+<td><code>0x972f80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfd84e</code></td>
+<td>1734</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::pCreateThread(lua_State*)</code></td>
+<td><code>0x9731b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfd1a0</code></td>
+<td>188</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::pDestroyThread(lua_State*)</code></td>
+<td><code>0x9732a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfd2ee</code></td>
+<td>232</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::pGlobal_Print(lua_State*)</code></td>
+<td><code>0x9733b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfe32e</code></td>
+<td>754</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::pInitializeMainState(lua_State*)</code></td>
+<td><code>0x973790</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfc866</code></td>
+<td>2082</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Global functions.clamp</code></td>
+<td><code>0x973bc0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Global functions.clamp</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Global functions.count</code></td>
+<td><code>0x973c40</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Global functions.count</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Global functions.fill</code></td>
+<td><code>0x973ce0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Global functions.fill</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>AppLuaUtils::CreateReadOnlyProxy(lua_State*)</code></td>
+<td><code>0x973fe0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36b2280</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>AppLuaUtils::pExposeLibraryToThread(lua_State*)</code></td>
+<td><code>0x974290</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36b2380</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaOnlyEventLibrary::PushLuaOnlyEventFactory(lua_State*, int, bool)</code></td>
+<td><code>0x9745b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfbb72</code></td>
+<td>1672</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaOnlyEventLibrary::pRegister(lua_State*)</code></td>
+<td><code>0x974be0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3bfba5e</code></td>
+<td>276</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaExposureLibrary::pCreateFLuaData(lua_State*)</code></td>
+<td><code>0x974ce0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf996e</code></td>
+<td>834</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaStdLibLibrary::RegisterInclude(lua_State*)</code></td>
+<td><code>0x975110</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bff254</code></td>
+<td>496</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaStdLibLibrary::RegisterTraceback(lua_State*)</code></td>
+<td><code>0x975290</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bff444</code></td>
+<td>348</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaStdLibLibrary::lInclude(lua_State*)</code></td>
+<td><code>0x975410</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bff966</code></td>
+<td>3566</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Global functions (include).RefreshIncludeFileList</code></td>
+<td><code>0x975c00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Global functions (include).RefreshIncludeFileList</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaStdLibLibrary::pRegisterSafeStdLibs(lua_State*)</code></td>
+<td><code>0x975e90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfef0c</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaOnlyEvent::lRemoveAll(lua_State*)</code></td>
+<td><code>0x977b70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bfb6fc</code></td>
+<td>238</td>
+</tr>
+<tr>
+<td><code>Lua::Value::Value(Lua::Value const&amp;)</code></td>
+<td><code>0xdb1840</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3bf7b00</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>Lua::Function::Create(lua_State*, char const*)</code></td>
+<td><code>0xdb1e10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf9470</code></td>
+<td>480</td>
+</tr>
+<tr>
+<td><code>Lua::Table::GetField(Lua::Value const&amp;) const</code></td>
+<td><code>0xdb2120</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf8d10</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>Lua::Value::GetTypeName() const</code></td>
+<td><code>0xdb24c0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3bf7fb0</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>Lua::Value::Value(lua_State*, int)</code></td>
+<td><code>0xdb2810</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3bf7bb0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Lua::Value::Set(lua_State*, int)</code></td>
+<td><code>0xdb28a0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3bf7d50</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Lua::String::c_str() const</code></td>
+<td><code>0xdb2950</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3bf8220</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Lua::Table::Field const&amp; Lua::Table::Field::operator=&lt;Lua::Table&gt;(Lua::Table)</code></td>
+<td><code>0xdb2d70</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3296170</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Lua::Details::CallWithErrorHandling(lua_State*, unsigned int, unsigned int)</code></td>
+<td><code>0xdb35e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf1210</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>Lua::ConsoleCommand(lua_State*, char const*, char*, unsigned long)</code></td>
+<td><code>0xdb3700</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf1820</code></td>
+<td>752</td>
+</tr>
+<tr>
+<td><code>Lua::Details::Error(lua_State*, char const*, ...)</code></td>
+<td><code>0xdb3b80</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf1e30</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>Lua::Execute(lua_State*, char const*)</code></td>
+<td><code>0xdb3de0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3bf1130</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>Lua::ExpectStackSize(lua_State*, int)</code></td>
+<td><code>0xdb3f00</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3bf0fe0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Lua::Details::FunctionToString(lua_State*)</code></td>
+<td><code>0xdb3fc0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>Lua PushFunctionDocumentationTable.__tostring</td>
+<td><code>0x3bf20f0</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>Lua::LoadBuffer(lua_State*, char const*, unsigned long, char const*)</code></td>
+<td><code>0xdb4760</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf12f0</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>Lua::LuaStackToString(lua_State*, char*, unsigned long)</code></td>
+<td><code>0xdb4900</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf16f0</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>Lua::Details::Push(lua_State*, Lua::Function const&amp;)</code></td>
+<td><code>0xdb4e40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf2610</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>Lua::Details::Push(lua_State*, Lua::Table const&amp;)</code></td>
+<td><code>0xdb4ff0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf2540</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>Lua::Details::Push(lua_State*, Lua::Value const&amp;)</code></td>
+<td><code>0xdb50d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf2480</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>Lua::Details::PushCodeBuddyTable(lua_State*)</code></td>
+<td><code>0xdb51c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf21e0</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>Lua::Details::PushFunctionDocumentationTable(lua_State*)</code></td>
+<td><code>0xdb52c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf1bc0</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>Lua::Details::SetToStringForFunc(lua_State*, int (*)(lua_State*))</code></td>
+<td><code>0xdb5470</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf2260</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>Lua::Details::ArgValidator&lt;Lua::Function&gt;::Validate(Lua::StackValue&amp;, bool&amp;, lua_State*)</code></td>
+<td><code>0xdb5520</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf26d0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Lua::Details::TableToTypedVariantMap(lua_State*, int, Data::TypedVariantMap*)</code></td>
+<td><code>0xdb6bd0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3bf4310</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Lua::Details::TableToTypedVariantMap(lua_State*, int, Data::TypedVariantVectorMap*)</code></td>
+<td><code>0xdb6c30</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3bf4ea0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Lua::ITypedDataVariant::PushMethods(lua_State*, int)</code></td>
+<td><code>0xdb7bb0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3bf5560</code></td>
+<td>672</td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:Add</code></td>
+<td><code>0xdb8030</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.Add</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container (read only):Add</code></td>
+<td><code>0xdb8170</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container (read only).Add</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:AppendValue</code></td>
+<td><code>0xdb8310</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.AppendValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:ContainsValue</code></td>
+<td><code>0xdb84b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.ContainsValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:Get</code></td>
+<td><code>0xdb8810</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.Get</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container (read only):Get</code></td>
+<td><code>0xdb88b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container (read only).Get</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:GetAt</code></td>
+<td><code>0xdb89b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.GetAt</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:GetCount</code></td>
+<td><code>0xdb8ad0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.GetCount</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:GetKeyAt</code></td>
+<td><code>0xdb8bd0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.GetKeyAt</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:GetValue</code></td>
+<td><code>0xdb8d80</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.GetValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container (read only):GetValue</code></td>
+<td><code>0xdb8e30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container (read only).GetValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:GetValueAt</code></td>
+<td><code>0xdb8f00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.GetValueAt</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:GetValueIndex</code></td>
+<td><code>0xdb9050</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.GetValueIndex</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:InsertValueAt</code></td>
+<td><code>0xdb9390</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.InsertValueAt</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:Remove</code></td>
+<td><code>0xdb95b0</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.Remove</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container (read only):Remove</code></td>
+<td><code>0xdb9640</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container (read only).Remove</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:RemoveAt</code></td>
+<td><code>0xdb9720</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.RemoveAt</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:SetValue</code></td>
+<td><code>0xdb9850</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.SetValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container (read only):SetValue</code></td>
+<td><code>0xdb9a00</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container (read only).SetValue</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua wrapper Variant container:SetValueAt</code></td>
+<td><code>0xdb9b30</code></td>
+<td>high</td>
+<td>Lua registration code (the exe registers this wrapper under…</td>
+<td>Lua Variant container.SetValueAt</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Lua::Details::IsNull(lua_State*)</code></td>
+<td><code>0xdba0f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x43aef80</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>Lua::Details::TypeInfo(lua_State*)</code></td>
+<td><code>0xdba3d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x43aebf0</code></td>
+<td>176</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (61, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Lua::TypeExposures::IndexFunction(lua_State*)</code></td>
+<td><code>0x50000</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x2f82810</code></td>
+</tr>
+<tr>
+<td><code>Lua::StaticFunctions::Registrar::Registrar(char const*, int (*)(lua_State*), int (*)(lua_State*), unsigned in…</code></td>
+<td><code>0x20c550</code></td>
+<td>call-graph propagation</td>
+<td><code>0x330b1e0</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::ToLua(lua_State*, AppUpdateData&amp;)</code></td>
+<td><code>0x29e040</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3428fd0</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::FromLua(lua_State*, CityHandleCreatedData&amp;)</code></td>
+<td><code>0x29e090</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3429000</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::ToLua(lua_State*, CityHandleCreatedData&amp;)</code></td>
+<td><code>0x29e270</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3429040</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::ToLua(lua_State*, TFGXInt2&lt;int&gt;&amp;)</code></td>
+<td><code>0x29e600</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3429120</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::FromLua(lua_State*, UpdateContentResult&amp;)</code></td>
+<td><code>0x29fc10</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x342b370</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::FromLua(lua_State*, SubscriptionDownloadData&amp;)</code></td>
+<td><code>0x2a0230</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x342b430</code></td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::ReleaseDatabaseCache(lua_State*)</code></td>
+<td><code>0x2a0ba0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x342bf00</code></td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::lConfigurationQuerySQL(lua_State*)</code></td>
+<td><code>0x2a0ca0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x342c090</code></td>
+</tr>
+<tr>
+<td><code>AppLuaDBLibrary::lConfigurationChanges(lua_State*)</code></td>
+<td><code>0x2a1040</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x342c620</code></td>
+</tr>
+<tr>
+<td><code>AppLuaGameSummaryLibrary::lResetAllData(lua_State*)</code></td>
+<td><code>0x4c26c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a0770</code></td>
+</tr>
+<tr>
+<td><code>AppLuaInputLibrary::Register(lua_State*, lua_State*)</code></td>
+<td><code>0x4c8a90</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a4620</code></td>
+</tr>
+<tr>
+<td><code>AppLuaInputLibrary::lHasGesture(lua_State*)</code></td>
+<td><code>0x4c9030</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a5470</code></td>
+</tr>
+<tr>
+<td><code>AppLuaInputLibrary::lSetActiveContext(lua_State*)</code></td>
+<td><code>0x4c9110</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a5610</code></td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lLookup(lua_State*)</code></td>
+<td><code>0x4ca5d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a6690</code></td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lIsNilOrEmpty(lua_State*)</code></td>
+<td><code>0x4cad30</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a6cb0</code></td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lIsNilOrWhitespace(lua_State*)</code></td>
+<td><code>0x4cadc0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a6d10</code></td>
+</tr>
+<tr>
+<td><code>AppLuaLocaleLibrary::lSubString(lua_State*)</code></td>
+<td><code>0x4caed0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36a6e40</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetCurrentModGroup(lua_State*)</code></td>
+<td><code>0x4cccf0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aa240</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lSetCurrentModGroup(lua_State*)</code></td>
+<td><code>0x4cd660</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aa2a0</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lCreateModGroup(lua_State*)</code></td>
+<td><code>0x4cdfa0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aa4c0</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetSubscriptions(lua_State*)</code></td>
+<td><code>0x4ce170</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aa5b0</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetSubscriptionDownloadStatus(lua_State*)</code></td>
+<td><code>0x4ce9e0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aa990</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lUnsubscribe(lua_State*)</code></td>
+<td><code>0x4cf410</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aaaf0</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetDLCNeeedsUpdateMessage(lua_State*)</code></td>
+<td><code>0x4cf780</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aae70</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lGetIgnoreCompatibilityWarnings(lua_State*)</code></td>
+<td><code>0x4cf930</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aaed0</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lSetIgnoreCompatibilityWarnings(lua_State*)</code></td>
+<td><code>0x4cf990</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aaf20</code></td>
+</tr>
+<tr>
+<td><code>AppLuaModdingLibrary::lShouldShowCompatibilityWarnings(lua_State*)</code></td>
+<td><code>0x4cfa00</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36aaf80</code></td>
+</tr>
+<tr>
+<td><code>AppLuaOptionsLibrary::lResetOptions(lua_State*)</code></td>
+<td><code>0x4d2b30</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x36acde0</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaEnumsLibrary&lt;Network::LuaMatchmakingEnumsLibrary&gt;::pRegister(lua_State*)</code></td>
+<td><code>0x4d5600</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36af690</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaEnumsLibrary&lt;Network::LuaNetworkEnumsLibrary&gt;::pRegister(lua_State*)</code></td>
+<td><code>0x4d5720</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36af730</code></td>
+</tr>
+<tr>
+<td><code>AppLuaSearchLibrary::lCreateContext(lua_State*)</code></td>
+<td><code>0x4d5c70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36af950</code></td>
+</tr>
+<tr>
+<td><code>AppLuaSearchLibrary::lHasContext(lua_State*)</code></td>
+<td><code>0x4d5d00</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36af9d0</code></td>
+</tr>
+<tr>
+<td><code>AppLuaThread::AppLuaThread(LuaSystem::LuaThread::ThreadType)</code></td>
+<td><code>0x4d7b00</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b1010</code></td>
+</tr>
+<tr>
+<td><code>AppLuaThread::RegisterEvents(unsigned int)</code></td>
+<td><code>0x4d7b70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b1060</code></td>
+</tr>
+<tr>
+<td><code>AppLuaThread::RegisterGameCore()</code></td>
+<td><code>0x4d7ba0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b1090</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEvent::lCall(lua_State*)</code></td>
+<td><code>0x4da8f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b2ef0</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEvent::lAccumulate(lua_State*)</code></td>
+<td><code>0x4dab70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b3150</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEventLibrary::CallAccumulator(lua_State*, char const*, GameCore::Interfaces::IScriptSystemArg…</code></td>
+<td><code>0x4db8c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b3e20</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEventLibrary::CallAccumulator(lua_State*, char const*, GameCore::Interfaces::IScriptSystemArg…</code></td>
+<td><code>0x4db910</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b3f60</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEventLibrary::CallTestAll(lua_State*, char const*, GameCore::Interfaces::IScriptSystemArgs1*,…</code></td>
+<td><code>0x4dba10</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b40b0</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEventLibrary::CallTestAny(lua_State*, char const*, GameCore::Interfaces::IScriptSystemArgs1*,…</code></td>
+<td><code>0x4dba60</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b4100</code></td>
+</tr>
+<tr>
+<td><code>LuaSupport::GameEventLibrary::CreateLuaOnlyEventFactory(lua_State*)</code></td>
+<td><code>0x4dbab0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b4190</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::~LuaScriptSystem()</code></td>
+<td><code>0x972f20</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfd100</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::~LuaScriptSystem()</code></td>
+<td><code>0x973190</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfd15a</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::pGlobal_ipairsaux(lua_State*)</code></td>
+<td><code>0x973610</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfe620</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::pGlobal_ipairs(lua_State*)</code></td>
+<td><code>0x9736c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfe6a0</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::pGlobal_where(lua_State*)</code></td>
+<td><code>0x973760</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfe736</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::lDestroyThread(lua_State*)</code></td>
+<td><code>0x973b70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfe9c0</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::FileExists(wchar_t const*, bool)</code></td>
+<td><code>0x973dd0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfec34</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaUtils::ExposeLibraryToThread(lua_State*, lua_State*, char const*, int (*)(lua_State*))</code></td>
+<td><code>0x9740e0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c02328</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::RegisterThreadLibraries(LuaSystem::LuaThread*)</code></td>
+<td><code>0x9743d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfece8</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::SetTunerRemoveLuaStateDelegate(fastdelegate::FastDelegate1&lt;lua_State*, void&gt; cons…</code></td>
+<td><code>0x9744c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfed40</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::SetTunerClose(fastdelegate::FastDelegate0&lt;void&gt; const&amp;)</code></td>
+<td><code>0x974cc0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bfed80</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaStdLibLibrary::RefreshIncludeFileList(lua_State*)</code></td>
+<td><code>0x9750d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bff1ec</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaStdLibLibrary::lGetTickCount(lua_State*)</code></td>
+<td><code>0x9753c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3bff6fe</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaUtils::CreateReadOnlyProxy(lua_State*)</code></td>
+<td><code>0x9774b0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3c02124</code></td>
+</tr>
+<tr>
+<td><code>LuaSystem::LuaScriptSystem::Get()</code></td>
+<td><code>0x983730</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2f7cdc0</code></td>
+</tr>
+<tr>
+<td><code>Lua::Table::GetMetatable() const</code></td>
+<td><code>0xdb23b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3bf8960</code></td>
+</tr>
+<tr>
+<td><code>Lua::Function Lua::Details::Get&lt;Lua::Function&gt;(lua_State*, int)</code></td>
+<td><code>0xdb3410</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3bf2600</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

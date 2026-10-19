@@ -1,0 +1,910 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Lenses and lens layers</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Lenses and lens layers</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Lenses and lens layers</h1>
+<p>The map lenses (appeal, religion, continent, movement range, ...) are built from <strong>layers</strong>. A layer is a named group of map decorations (hex colouring, icons, labels, borders) that a UI script switches on and off with the <code>UILens</code> Lua table. A <strong>lens</strong> is a named combination: it lists the layers that are active and the layers the player may still toggle on top (the permission set). Lenses and layer sets are defined in <code>Lenses.artdef</code>; the exe registers the layer names and the UI scripts select lenses by name. This page collects the names from the three places and how the game's own scripts use them. <strong>Verified</strong>: the names (exe strings, artdef, script call arguments) and the Lua <code>LensLayers</code> constants. <strong>Inferred</strong>: the meaning of the "permission" set (from its name and use).</p>
+<p><strong>How it fits together.</strong> <code>UILens.SetActive("&lt;lens&gt;")</code> switches to a lens from the <code>Lens</code> collection (24 lenses in the base game and DLC artdefs); the lens points to an <em>ActiveLayers</em> set and a <em>PermissionMask</em> set of the <code>LensLayers</code> collection, each a list of layer names from the <code>LayersList</code> collection (68 names; note that the artdef collection called <code>LensLayers</code> holds these sets and is not the Lua table <code>LensLayers</code>, which only holds numeric constants). Scripts get a layer's id with <code>UILens.CreateLensLayerHash("&lt;layer&gt;")</code> (110 calls in the game scripts) and toggle it with <code>ToggleLayerOn</code>/<code>ToggleLayerOff</code>; the numeric <code>LensLayers.&lt;NAME&gt;</code> constants of the <a href="lua-enums.html#lenslayers">enum tables</a> number the same layers. See the <a href="../exeapi/UILens.html"><code>UILens</code></a> table for the functions and the <a href="../exeart/lenses.html">ArtDef vocabulary</a> for the artdef parameters.</p>
+<p><strong>Differences between the sources.</strong> The exe registers 56 layer names (<code>LensManager</code> constructor, <code>0x197000</code>); the artdef layer list has 68 names (base game and DLC). Names only in the artdef: <code>City_Details</code>, <code>Empire_Details</code>, <code>MapLabels_Deserts</code>, <code>MapLabels_Lakes</code>, <code>MapLabels_MountainRanges</code>, <code>MapLabels_NationalParks</code>, <code>MapLabels_NaturalWonders</code>, <code>MapLabels_Oceans</code>, <code>MapLabels_Rivers</code>, <code>MapLabels_Seas</code>, <code>MapLabels_Volcanoes</code>, <code>Power_Lens</code>, <code>Purchase_Plot</code>. Name only in the exe: <code>WorldCursor</code>. Layer names that scripts hash but neither list contains: <code>SupplyDrops</code>. Lenses never selected by a literal name in the game scripts (they may be selected through a variable): <code>MovementFOW</code>, <code>MovementGood</code>, <code>MovementQueue</code>, <code>TradeRoutes</code>.</p>
+<h2>Lenses (24)</h2>
+<table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Active layers</th>
+<th>Permission layers</th>
+<th>Defined in</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="lens-appeal"></a><code>Appeal</code></td>
+<td>9 (Appeal_ActiveLayers)</td>
+<td>54 (Appeal_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-cinematic"></a><code>Cinematic</code></td>
+<td>4 (Cinematic_ActiveLayers)</td>
+<td>4 (Cinematic_PermissionMask)</td>
+<td>base game</td>
+<td>5 in 5 files</td>
+</tr>
+<tr>
+<td><a id="lens-citydetails"></a><code>CityDetails</code></td>
+<td>14 (CityDetails_ActiveLayers)</td>
+<td>39 (CityDetails_PermissionMask)</td>
+<td>base game</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-citymanagement"></a><code>CityManagement</code></td>
+<td>10 (CityManagement_ActiveLayers)</td>
+<td>37 (CityManagement_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-continent"></a><code>Continent</code></td>
+<td>9 (Continent_ActiveLayers)</td>
+<td>54 (Continent_PermissionMask)</td>
+<td>base game</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-default"></a><code>Default</code></td>
+<td>16 (Default_ActiveLayers)</td>
+<td>63 (Default_PermissionMask)</td>
+<td>base game</td>
+<td>29 in 11 files</td>
+</tr>
+<tr>
+<td><a id="lens-disastercinematic"></a><code>DisasterCinematic</code></td>
+<td>5 (DisasterCinematic_ActiveLayers)</td>
+<td>5 (DisasterCinematic_PermissionMask)</td>
+<td>Expansion2</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-districtplacement"></a><code>DistrictPlacement</code></td>
+<td>25 (DistrictPlacement_ActiveLayers)</td>
+<td>33 (DistrictPlacement_PermissionMask)</td>
+<td>base game</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-empiredetails"></a><code>EmpireDetails</code></td>
+<td>13 (EmpireDetails_ActiveLayers)</td>
+<td>39 (EmpireDetails_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-enemycitydetails"></a><code>EnemyCityDetails</code></td>
+<td>13 (EnemyCityDetails_ActiveLayers)</td>
+<td>38 (EnemyCityDetails_PermissionMask)</td>
+<td>base game</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-government"></a><code>Government</code></td>
+<td>9 (Government_ActiveLayers)</td>
+<td>54 (Government_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-loyalty"></a><code>Loyalty</code></td>
+<td>17 (Loyalty_ActiveLayers)</td>
+<td>54 (Loyalty_PermissionMask)</td>
+<td>Expansion1, Expansion2</td>
+<td>8 in 3 files</td>
+</tr>
+<tr>
+<td><a id="lens-movementbad"></a><code>MovementBad</code></td>
+<td>16 (MovementBadLens_ActiveLayers)</td>
+<td>63 (MovementLens_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-movementfow"></a><code>MovementFOW</code></td>
+<td>17 (MovementFOW_ActiveLayers)</td>
+<td>63 (MovementFOW_PermissionMask)</td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="lens-movementgood"></a><code>MovementGood</code></td>
+<td>17 (MovementLens_ActiveLayers)</td>
+<td>63 (MovementLens_PermissionMask)</td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="lens-movementqueue"></a><code>MovementQueue</code></td>
+<td>17 (MovementQueueLens_ActiveLayers)</td>
+<td>63 (MovementLens_PermissionMask)</td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="lens-owningciv"></a><code>OwningCiv</code></td>
+<td>10 (OwningCiv_ActiveLayers)</td>
+<td>54 (OwningCiv_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-plague"></a><code>Plague</code></td>
+<td>16 (Default_ActiveLayers)</td>
+<td>63 (Default_PermissionMask)</td>
+<td>Expansion2</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-power"></a><code>Power</code></td>
+<td>16 (Power_ActiveLayers)</td>
+<td>53 (Power_PermissionMask)</td>
+<td>Expansion2</td>
+<td>2 in 2 files</td>
+</tr>
+<tr>
+<td><a id="lens-religion"></a><code>Religion</code></td>
+<td>13 (Religion_ActiveLayers)</td>
+<td>53 (Religion_PermissionMask)</td>
+<td>base game</td>
+<td>5 in 5 files</td>
+</tr>
+<tr>
+<td><a id="lens-tourism"></a><code>Tourism</code></td>
+<td>4 (Tourism_ActiveLayers)</td>
+<td>54 (Tourism_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="lens-tourismwithunits"></a><code>TourismWithUnits</code></td>
+<td>8 (TourismWithUnits_ActiveLayers)</td>
+<td>54 (Tourism_PermissionMask)</td>
+<td>base game</td>
+<td>2 in 2 files</td>
+</tr>
+<tr>
+<td><a id="lens-traderoutes"></a><code>TradeRoutes</code></td>
+<td>10 (TradeRoute_ActiveLayers)</td>
+<td>54 (TradeRoute_PermissionMask)</td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="lens-wateravailability"></a><code>WaterAvailability</code></td>
+<td>10 (WaterAvail_ActiveLayers)</td>
+<td>54 (WaterAvail_PermissionMask)</td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Layers of each lens</summary>
+<table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Active layers</th>
+<th>Permission layers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Appeal</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Religious</code>, <code>Units_Military</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Selection</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Movement</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>Cinematic</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code></td>
+</tr>
+<tr>
+<td><code>CityDetails</code></td>
+<td><code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Hex_Coloring_Attack</code>, <code>Culture_Borders</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Resources_Bonus</code>, <code>Improvements</code>, <code>Yield_Icons</code>, <code>City_Details</code>, <code>Adjacency_Bonus_Districts</code>, <code>MapLabels_NationalParks</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Improvements</code>, <code>Map_Hex_Mask</code>, <code>Purchase_Plot</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Yield_Icons</code>, <code>City_Details</code>, <code>MapLabels_NationalParks</code></td>
+</tr>
+<tr>
+<td><code>CityManagement</code></td>
+<td><code>Improvements</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Hex_Coloring_Attack</code>, <code>Culture_Borders</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Improvements</code>, <code>Map_Hex_Mask</code>, <code>Purchase_Plot</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>Continent</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Religious</code>, <code>Units_Military</code>, <code>Selection</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Attack</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>Default</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Great_People</code>, <code>Movement_Zone_Of_Control</code>, <code>Selection</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Movement_Range</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>Movement_Path</code>, <code>Numbers</code>, <code>Loyalty_FreeCity_Warning</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code>, <code>Loyalty_FreeCity_Warning</code>, <code>MapLabels_NaturalWonders</code>, <code>MapLabels_NationalParks</code>, <code>MapLabels_Volcanoes</code>, <code>MapLabels_Rivers</code>, <code>MapLabels_Deserts</code>, <code>MapLabels_MountainRanges</code>, <code>MapLabels_Lakes</code>, <code>MapLabels_Oceans</code>, <code>MapLabels_Seas</code></td>
+</tr>
+<tr>
+<td><code>DisasterCinematic</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>MapLabels_Rivers</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>MapLabels_Rivers</code></td>
+</tr>
+<tr>
+<td><code>DistrictPlacement</code></td>
+<td><code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Movement</code>, <code>Selection</code>, <code>Map_Hex_Mask</code>, <code>Purchase_Plot</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Adjacency_Bonus_Districts</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>City_Yields</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Improvements</code>, <code>Map_Hex_Mask</code>, <code>Movement_Range</code>, <code>Purchase_Plot</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>EmpireDetails</code></td>
+<td><code>Improvements</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Hex_Coloring_Attack</code>, <code>Culture_Borders</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Yield_Icons</code>, <code>Empire_Details</code>, <code>MapLabels_NationalParks</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Improvements</code>, <code>Map_Hex_Mask</code>, <code>Purchase_Plot</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Yield_Icons</code>, <code>Empire_Details</code>, <code>MapLabels_NationalParks</code></td>
+</tr>
+<tr>
+<td><code>EnemyCityDetails</code></td>
+<td><code>Improvements</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Hex_Coloring_Attack</code>, <code>Culture_Borders</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Yield_Icons</code>, <code>City_Details</code>, <code>Adjacency_Bonus_Districts</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>City_Details</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Improvements</code>, <code>Map_Hex_Mask</code>, <code>Purchase_Plot</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>Government</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Selection</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>Loyalty</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Great_People</code>, <code>Movement_Zone_Of_Control</code>, <code>Selection</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Movement_Range</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>Movement_Path</code>, <code>Numbers</code>, <code>Cultural_Identity_Lens</code>, <code>Loyalty_FreeCity_Warning</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Cultural_Identity_Lens</code>, <code>Loyalty_FreeCity_Warning</code></td>
+</tr>
+<tr>
+<td><code>MovementBad</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Culture_Borders</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Selection</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Placement</code>, <code>Districts</code>, <code>Hex_Coloring_Great_People</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>Loyalty_FreeCity_Warning</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code>, <code>Loyalty_FreeCity_Warning</code>, <code>MapLabels_Deserts</code>, <code>MapLabels_MountainRanges</code>, <code>MapLabels_NationalParks</code>, <code>MapLabels_NaturalWonders</code>, <code>MapLabels_Rivers</code>, <code>MapLabels_Volcanoes</code>, <code>MapLabels_Lakes</code>, <code>MapLabels_Oceans</code>, <code>MapLabels_Seas</code></td>
+</tr>
+<tr>
+<td><code>MovementFOW</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Great_People</code>, <code>Movement_Path</code>, <code>Movement_Zone_Of_Control</code>, <code>Selection</code>, <code>Citizen_Management</code>, <code>Attack_Range</code>, <code>Movement_Range</code>, <code>Districts</code>, <code>Numbers</code>, <code>Loyalty_FreeCity_Warning</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code>, <code>Loyalty_FreeCity_Warning</code>, <code>MapLabels_Deserts</code>, <code>MapLabels_MountainRanges</code>, <code>MapLabels_NationalParks</code>, <code>MapLabels_NaturalWonders</code>, <code>MapLabels_Rivers</code>, <code>MapLabels_Volcanoes</code>, <code>MapLabels_Lakes</code>, <code>MapLabels_Oceans</code>, <code>MapLabels_Seas</code></td>
+</tr>
+<tr>
+<td><code>MovementGood</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Placement</code>, <code>Numbers</code>, <code>Culture_Borders</code>, <code>Movement_Path</code>, <code>Movement_Zone_Of_Control</code>, <code>Hex_Coloring_Great_People</code>, <code>Selection</code>, <code>Attack_Range</code>, <code>Movement_Range</code>, <code>Citizen_Management</code>, <code>Loyalty_FreeCity_Warning</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code>, <code>Loyalty_FreeCity_Warning</code>, <code>MapLabels_Deserts</code>, <code>MapLabels_MountainRanges</code>, <code>MapLabels_NationalParks</code>, <code>MapLabels_NaturalWonders</code>, <code>MapLabels_Rivers</code>, <code>MapLabels_Volcanoes</code>, <code>MapLabels_Lakes</code>, <code>MapLabels_Oceans</code>, <code>MapLabels_Seas</code></td>
+</tr>
+<tr>
+<td><code>MovementQueue</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Placement</code>, <code>Numbers</code>, <code>Culture_Borders</code>, <code>Movement_Path</code>, <code>Movement_Zone_Of_Control</code>, <code>Hex_Coloring_Great_People</code>, <code>Selection</code>, <code>Attack_Range</code>, <code>Movement_Range</code>, <code>Citizen_Management</code>, <code>Loyalty_FreeCity_Warning</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code>, <code>Loyalty_FreeCity_Warning</code>, <code>MapLabels_Deserts</code>, <code>MapLabels_MountainRanges</code>, <code>MapLabels_NationalParks</code>, <code>MapLabels_NaturalWonders</code>, <code>MapLabels_Rivers</code>, <code>MapLabels_Volcanoes</code>, <code>MapLabels_Lakes</code>, <code>MapLabels_Oceans</code>, <code>MapLabels_Seas</code></td>
+</tr>
+<tr>
+<td><code>OwningCiv</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Attack_Range</code>, <code>Selection</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>Plague</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Great_People</code>, <code>Movement_Zone_Of_Control</code>, <code>Selection</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Movement_Range</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>Movement_Path</code>, <code>Numbers</code>, <code>Loyalty_FreeCity_Warning</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code>, <code>Loyalty_FreeCity_Warning</code>, <code>MapLabels_NaturalWonders</code>, <code>MapLabels_NationalParks</code>, <code>MapLabels_Volcanoes</code>, <code>MapLabels_Rivers</code>, <code>MapLabels_Deserts</code>, <code>MapLabels_MountainRanges</code>, <code>MapLabels_Lakes</code>, <code>MapLabels_Oceans</code>, <code>MapLabels_Seas</code></td>
+</tr>
+<tr>
+<td><code>Power</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Great_People</code>, <code>Movement_Zone_Of_Control</code>, <code>Selection</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Movement_Range</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>Movement_Path</code>, <code>Numbers</code>, <code>Power_Lens</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Power_Lens</code></td>
+</tr>
+<tr>
+<td><code>Religion</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Citizen_Management</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Religion</code>, <code>Selection</code>, <code>Attack_Range</code>, <code>Movement_Path</code>, <code>Numbers</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>Tourism</code></td>
+<td><code>Tourist_Tokens</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>TourismWithUnits</code></td>
+<td><code>Tourist_Tokens</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>TradeRoutes</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Districts_City_Center</code>, <code>TradeRoutes</code>, <code>Attack_Range</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+<tr>
+<td><code>WaterAvailability</code></td>
+<td><code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Selection</code>, <code>Attack_Range</code></td>
+<td><code>Adjacency_Bonus_Districts</code>, <code>Adjacency_Bonus_Units</code>, <code>Attack_Range</code>, <code>Citizen_Management</code>, <code>City_Yields</code>, <code>Culture_Borders</code>, <code>Districts</code>, <code>Districts_Aerodrome</code>, <code>Districts_Aqueduct</code>, <code>Districts_Campus</code>, <code>Districts_City_Center</code>, <code>Districts_Commercial_Hub</code>, <code>Districts_Encampment_Defense</code>, <code>Districts_Encampment_Military</code>, <code>Districts_Entertainment_Complex</code>, <code>Districts_Harbor</code>, <code>Districts_Holy_Site</code>, <code>Districts_Industrial_Zone</code>, <code>Districts_Nearby_Mountain</code>, <code>Districts_Neighborhood</code>, <code>Districts_Spaceport</code>, <code>Districts_Theater_District</code>, <code>Hex_Coloring_Appeal_Level</code>, <code>Hex_Coloring_Attack</code>, <code>Hex_Coloring_Continent</code>, <code>Hex_Coloring_Government</code>, <code>Hex_Coloring_Great_People</code>, <code>Hex_Coloring_Movement</code>, <code>Hex_Coloring_Owning_Civ</code>, <code>Hex_Coloring_Placement</code>, <code>Hex_Coloring_Religion</code>, <code>Hex_Coloring_Water_Availablity</code>, <code>Improvements</code>, <code>Labels_Continent</code>, <code>Labels_Empire</code>, <code>Map_Hex_Mask</code>, <code>Movement_Path</code>, <code>Movement_Range</code>, <code>Movement_Zone_Of_Control</code>, <code>Numbers</code>, <code>Purchase_Plot</code>, <code>Recommendation_Builder</code>, <code>Recommendation_Settler</code>, <code>Resources_Bonus</code>, <code>Resources_Luxury</code>, <code>Resources_Strategic</code>, <code>Selection</code>, <code>Tourist_Tokens</code>, <code>TradeRoutes</code>, <code>Units_Archaeology</code>, <code>Units_Civilian</code>, <code>Units_Military</code>, <code>Units_Religious</code>, <code>Yield_Icons</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>Layers (70)</h2>
+<p>Columns: whether the exe registers the name, whether the artdef layer list has it (base game / DLC), the <code>LensLayers</code> constant (the number scripts can use), script hash calls, and in how many layer sets (active or permission lists) it appears.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Exe</th>
+<th>Artdef</th>
+<th><code>LensLayers</code> constant</th>
+<th>Hash calls</th>
+<th>Layer sets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="layer-adjacency_bonus_districts"></a><code>Adjacency_Bonus_Districts</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>ADJACENCY_BONUS_DISTRICTS</code> = 49</td>
+<td>6 in 5 files</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a id="layer-adjacency_bonus_units"></a><code>Adjacency_Bonus_Units</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>ADJACENCY_BONUS_UNITS</code> = 40</td>
+<td>0</td>
+<td>18</td>
+</tr>
+<tr>
+<td><a id="layer-attack_range"></a><code>Attack_Range</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>ATTACK_RANGE</code> = 46</td>
+<td>1 in 1 files</td>
+<td>32</td>
+</tr>
+<tr>
+<td><a id="layer-citizen_management"></a><code>Citizen_Management</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>CITIZEN_MANAGEMENT</code> = 45</td>
+<td>2 in 2 files</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a id="layer-city_details"></a><code>City_Details</code></td>
+<td>no</td>
+<td>base game</td>
+<td>—</td>
+<td>4 in 2 files</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a id="layer-city_yields"></a><code>City_Yields</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>CITY_YIELDS</code> = 47</td>
+<td>1 in 1 files</td>
+<td>23</td>
+</tr>
+<tr>
+<td><a id="layer-cultural_identity_lens"></a><code>Cultural_Identity_Lens</code></td>
+<td>yes</td>
+<td>Expansion1, Expansion2</td>
+<td><code>CULTURAL_IDENTITY_LENS</code> = 54</td>
+<td>9 in 5 files</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="layer-culture_borders"></a><code>Culture_Borders</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>CULTURE_BORDERS</code> = 27</td>
+<td>0</td>
+<td>24</td>
+</tr>
+<tr>
+<td><a id="layer-districts"></a><code>Districts</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS</code> = 48</td>
+<td>2 in 2 files</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a id="layer-districts_aerodrome"></a><code>Districts_Aerodrome</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_AERODROME</code> = 22</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_aqueduct"></a><code>Districts_Aqueduct</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_AQUEDUCT</code> = 18</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_campus"></a><code>Districts_Campus</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_CAMPUS</code> = 11</td>
+<td>3 in 2 files</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_city_center"></a><code>Districts_City_Center</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_CITY_CENTER</code> = 9</td>
+<td>0</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a id="layer-districts_commercial_hub"></a><code>Districts_Commercial_Hub</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_COMMERICAL_HUB</code> = 15</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_encampment_defense"></a><code>Districts_Encampment_Defense</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_ENCAMPMENT_DEFENSE</code> = 10</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_encampment_military"></a><code>Districts_Encampment_Military</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_ENCAMPMENT_MILITARY</code> = 14</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_entertainment_complex"></a><code>Districts_Entertainment_Complex</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_ENTERTAINMENT_COMPLEX</code> = 19</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_harbor"></a><code>Districts_Harbor</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_HARBOR</code> = 17</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_holy_site"></a><code>Districts_Holy_Site</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_HOLY_SITE</code> = 13</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_industrial_zone"></a><code>Districts_Industrial_Zone</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_INDUSTRIAL_ZONE</code> = 20</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_nearby_mountain"></a><code>Districts_Nearby_Mountain</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_NEARBY_MOUNTAIN</code> = 12</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_neighborhood"></a><code>Districts_Neighborhood</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_NEIGHBORHOOD</code> = 21</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_spaceport"></a><code>Districts_Spaceport</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_SPACEPORT</code> = 23</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-districts_theater_district"></a><code>Districts_Theater_District</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>DISTRICTS_THEATER_DISTRICT</code> = 16</td>
+<td>0</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-empire_details"></a><code>Empire_Details</code></td>
+<td>no</td>
+<td>base game</td>
+<td>—</td>
+<td>6 in 4 files</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_appeal_level"></a><code>Hex_Coloring_Appeal_Level</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_APPEAL_LEVEL</code> = 33</td>
+<td>2 in 2 files</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_attack"></a><code>Hex_Coloring_Attack</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_ATTACK</code> = 51</td>
+<td>1 in 1 files</td>
+<td>39</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_continent"></a><code>Hex_Coloring_Continent</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_CONTINENT</code> = 32</td>
+<td>2 in 2 files</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_government"></a><code>Hex_Coloring_Government</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_GOVERNMENT</code> = 30</td>
+<td>2 in 2 files</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_great_people"></a><code>Hex_Coloring_Great_People</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_GREAT_PEOPLE</code> = 36</td>
+<td>2 in 2 files</td>
+<td>25</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_movement"></a><code>Hex_Coloring_Movement</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_MOVEMENT</code> = 53</td>
+<td>1 in 1 files</td>
+<td>39</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_owning_civ"></a><code>Hex_Coloring_Owning_Civ</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_OWNING_CIV</code> = 31</td>
+<td>2 in 2 files</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_placement"></a><code>Hex_Coloring_Placement</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_PLACEMENT</code> = 52</td>
+<td>1 in 1 files</td>
+<td>39</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_religion"></a><code>Hex_Coloring_Religion</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_RELIGION</code> = 35</td>
+<td>9 in 6 files</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-hex_coloring_water_availablity"></a><code>Hex_Coloring_Water_Availablity</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>HEX_COLORING_WATER_AVAILABLITY</code> = 34</td>
+<td>8 in 7 files</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a id="layer-improvements"></a><code>Improvements</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>IMPROVEMENTS</code> = 5</td>
+<td>0</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a id="layer-labels_continent"></a><code>Labels_Continent</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>LABELS_CONTINENT</code> = 29</td>
+<td>0</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a id="layer-labels_empire"></a><code>Labels_Empire</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>LABELS_EMPIRE</code> = 28</td>
+<td>0</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a id="layer-loyalty_freecity_warning"></a><code>Loyalty_FreeCity_Warning</code></td>
+<td>yes</td>
+<td>Expansion1, Expansion2</td>
+<td><code>LOYALTY_FREECITY_WARNING</code> = 55</td>
+<td>2 in 1 files</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a id="layer-map_hex_mask"></a><code>Map_Hex_Mask</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>MAP_HEX_MASK</code> = 42</td>
+<td>3 in 2 files</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_deserts"></a><code>MapLabels_Deserts</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_lakes"></a><code>MapLabels_Lakes</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_mountainranges"></a><code>MapLabels_MountainRanges</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_nationalparks"></a><code>MapLabels_NationalParks</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>1 in 1 files</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_naturalwonders"></a><code>MapLabels_NaturalWonders</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>1 in 1 files</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_oceans"></a><code>MapLabels_Oceans</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_rivers"></a><code>MapLabels_Rivers</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_seas"></a><code>MapLabels_Seas</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="layer-maplabels_volcanoes"></a><code>MapLabels_Volcanoes</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a id="layer-movement_path"></a><code>Movement_Path</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>MOVEMENT_PATH</code> = 37</td>
+<td>4 in 3 files</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a id="layer-movement_range"></a><code>Movement_Range</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>MOVEMENT_RANGE</code> = 44</td>
+<td>2 in 2 files</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a id="layer-movement_zone_of_control"></a><code>Movement_Zone_Of_Control</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>MOVEMENT_ZONE_OF_CONTROL</code> = 38</td>
+<td>5 in 4 files</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a id="layer-numbers"></a><code>Numbers</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>NUMBERS</code> = 50</td>
+<td>1 in 1 files</td>
+<td>20</td>
+</tr>
+<tr>
+<td><a id="layer-power_lens"></a><code>Power_Lens</code></td>
+<td>no</td>
+<td>Expansion2</td>
+<td>—</td>
+<td>2 in 2 files</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="layer-purchase_plot"></a><code>Purchase_Plot</code></td>
+<td>no</td>
+<td>base game</td>
+<td><code>PURCHASE_PLOT</code> = 43</td>
+<td>2 in 2 files</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-recommendation_builder"></a><code>Recommendation_Builder</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>RECOMMENDATION_BUILDER</code> = 26</td>
+<td>0</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a id="layer-recommendation_settler"></a><code>Recommendation_Settler</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>RECOMMENDATION_SETTLER</code> = 25</td>
+<td>0</td>
+<td>13</td>
+</tr>
+<tr>
+<td><a id="layer-resources_bonus"></a><code>Resources_Bonus</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>RESOURCES_BONUS</code> = 6</td>
+<td>0</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a id="layer-resources_luxury"></a><code>Resources_Luxury</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>RESOURCES_LUXURY</code> = 7</td>
+<td>0</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a id="layer-resources_strategic"></a><code>Resources_Strategic</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>RESOURCES_STRATEGIC</code> = 8</td>
+<td>0</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a id="layer-selection"></a><code>Selection</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>SELECTION</code> = 41</td>
+<td>2 in 2 files</td>
+<td>32</td>
+</tr>
+<tr>
+<td><a id="layer-supplydrops"></a><code>SupplyDrops</code></td>
+<td>no</td>
+<td>no</td>
+<td>—</td>
+<td>1 in 1 files</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="layer-tourist_tokens"></a><code>Tourist_Tokens</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>TOURIST_TOKENS</code> = 24</td>
+<td>5 in 4 files</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a id="layer-traderoutes"></a><code>TradeRoutes</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>TRADE_ROUTE</code> = 39</td>
+<td>1 in 1 files</td>
+<td>18</td>
+</tr>
+<tr>
+<td><a id="layer-units_archaeology"></a><code>Units_Archaeology</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>UNITS_ARCHAELOGY</code> = 3</td>
+<td>2 in 1 files</td>
+<td>32</td>
+</tr>
+<tr>
+<td><a id="layer-units_civilian"></a><code>Units_Civilian</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>UNITS_CIVILIAN</code> = 2</td>
+<td>2 in 1 files</td>
+<td>32</td>
+</tr>
+<tr>
+<td><a id="layer-units_military"></a><code>Units_Military</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>UNITS_MILITARY</code> = 0</td>
+<td>5 in 3 files</td>
+<td>32</td>
+</tr>
+<tr>
+<td><a id="layer-units_religious"></a><code>Units_Religious</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>UNITS_RELIGIOUS</code> = 1</td>
+<td>2 in 1 files</td>
+<td>32</td>
+</tr>
+<tr>
+<td><a id="layer-worldcursor"></a><code>WorldCursor</code></td>
+<td>yes</td>
+<td>no</td>
+<td><code>WORLD_CURSOR</code> = 56</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="layer-yield_icons"></a><code>Yield_Icons</code></td>
+<td>yes</td>
+<td>base game</td>
+<td><code>YIELD_ICONS</code> = 4</td>
+<td>3 in 3 files</td>
+<td>19</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note on the constants.</strong> The <code>LensLayers</code> table also has <code>DISTRICTS_FIRST</code> (= <code>DISTRICTS_CITY_CENTER</code>), <code>DISTRICTS_LAST</code> (= <code>DISTRICTS_SPACEPORT</code>) and <code>NUM_LENS_LAYERS</code> (57) as range markers, and the enum spells a few names differently from the layer names (<code>COMMERICAL</code>, <code>WATER_AVAILABLITY</code>, <code>ARCHAELOGY</code>); the table above matches them ignoring case and those spellings.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

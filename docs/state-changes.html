@@ -1,0 +1,704 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Lua methods that change game state</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Lua methods that change game state</p>
+<h1>Lua methods that change game state</h1>
+<p>Generated from a static trace of the code behind each Lua method: which class members the method (and the functions it calls) writes directly. <strong>Everything here is inferred</strong>: offsets come from the Windows build and are mapped to member names through the Linux debug info (Windows offset + 8 or equal, kept only when exactly one member fits).</p>
+<p>Read the lists with these limits in mind:</p>
+<ul>
+<li>Many mutators change state by calling game functions that wrap the write (tracked variables, containers). Those show no direct write here, so this list is <strong>incomplete</strong>, not a list of every mutator.</li>
+<li>Virtual calls, writes through aliases and values stored and loaded back are not followed.</li>
+<li>Members shown as <code>m_x</code> are the member of the class in the first column; <code>Other::m_y</code> is a member reached through a pointer.</li>
+<li>UI-side (<code>Cache::</code>) twins of these methods are left out.</li>
+</ul>
+<p>Where a method name suggests a different effect than the member list, trust the code reading: the trace only says <em>what is written</em>, not <em>when</em>.</p>
+<h2>AI::Military</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AiMilitary:AllowUnitConstruction</code></td>
+<td><code>m_allowUnitConstruction</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>AiMilitary:StartScriptedOperation</code></td>
+<td><code>m_activeOperations</code>, <code>m_opEvaluators</code></td>
+<td><code>m_perWarOperationTypes</code>, <code>m_allowedOperationTypes</code>, <code>m_currentOperationTypes</code>, <code>Player::Instance::m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>AI::Religious</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AiReligious:SetFavoredReligion</code></td>
+<td><code>m_favoredReligion</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Barbarian::Manager</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BarbarianTribes:CreateSpecificTribe</code></td>
+<td><code>m_managingCampsDirectly</code></td>
+<td><code>m_campImprovement</code></td>
+</tr>
+<tr>
+<td><code>BarbarianTribes:CreateTribeOfType</code></td>
+<td><code>m_managingCampsDirectly</code></td>
+<td><code>m_campImprovement</code></td>
+</tr>
+</tbody>
+</table>
+<h2>City::Buildings</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CityBuildings:RemoveBuilding</code></td>
+<td><code>m_aGreatWorkBuildings</code></td>
+<td><code>m_aExtraGreatWorks</code></td>
+</tr>
+<tr>
+<td><code>CityBuildings:SetBuildingLocation</code></td>
+<td><code>m_aGreatWorkBuildings</code>, <code>City::Instance::m_bCapital</code></td>
+<td><code>m_aiBuildingLoc</code>, <code>City::Instance::m_eOwner</code>, <code>City::Instance::m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>City::Instance</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>City:ChangeLoyalty</code></td>
+<td><code>m_kCulturalIdentity+0x200</code>, <code>m_kCulturalIdentity+0x204</code></td>
+<td><code>m_kCulturalIdentity+0xe0</code>, <code>m_kCulturalIdentity+0x1b0</code>, <code>m_kCulturalIdentity+0xa8</code></td>
+</tr>
+<tr>
+<td><code>City:ChangePopulation</code></td>
+<td><code>m_iPopulation</code></td>
+<td><code>m_eOwner</code>, <code>m_id</code></td>
+</tr>
+<tr>
+<td><code>City:SetName</code></td>
+<td><code>m_szName</code></td>
+<td><code>m_kLocation</code>, <code>m_eOwner</code>, <code>m_id</code></td>
+</tr>
+<tr>
+<td><code>CityManager:SetAsCapital</code></td>
+<td><code>m_bCapital</code></td>
+<td><code>m_eOwner</code>, <code>m_id</code></td>
+</tr>
+<tr>
+<td><code>CityManager:SetAsOriginalCapital</code></td>
+<td><code>m_bOriginalCapital</code></td>
+<td><code>m_eOwner</code>, <code>m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>City::Religion</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CityReligion:RemoveOtherReligions</code></td>
+<td><code>m_ReligionStatus</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Diplomacy::Deal::Instance</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Deal:AddItemOfType</code></td>
+<td><code>m_Items</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Deal:ClearItemsByType</code></td>
+<td><code>m_Items</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Deal:ClearItemsByValue</code></td>
+<td><code>m_Items</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Deal:RemoveItem</code></td>
+<td><code>m_Items</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Deal:RemoveItemByID</code></td>
+<td><code>m_Items</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Deal:Validate</code></td>
+<td><code>m_Items</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>District::Instance</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>District:ChangeDamage</code></td>
+<td><code>m_iGarrisonDamage</code>, <code>m_iOuterDefensesDamage</code>, <code>m_iLastTurnDamaged</code></td>
+<td><code>m_iCityID</code>, <code>m_kLocation</code>, <code>m_eDistrictType</code>, <code>m_id</code></td>
+</tr>
+<tr>
+<td><code>District:SetDamage</code></td>
+<td><code>m_iGarrisonDamage</code>, <code>m_iOuterDefensesDamage</code></td>
+<td><code>m_iCityID</code>, <code>m_eDistrictType</code>, <code>m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Fractal::Instance</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Fractal:BuildRidges</code></td>
+<td><code>m_aaiFrac</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Game::DiplomaticRelations</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GameDiplomacy:SetAlliesShareVisFlag</code></td>
+<td><code>m_alliesShareVis</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Game::Fallout::Manager</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GameFalloutManager:SetFalloutDamageOverride</code></td>
+<td><code>m_damageOverride</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Game::Instance</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Game:SetCurrentGameTurn</code></td>
+<td><code>m_iCurrentTurn</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>GameSummary::Instance</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HallofFame:GetPlayerObject</code></td>
+<td><code>m_Repository+0x10</code></td>
+<td><code>m_Repository+0x58</code>, <code>m_Repository+0x60</code>, <code>m_Repository+0xb8</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Map::StartPositioner</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MapStartPositioner:DivideMapIntoMajorRegions</code></td>
+<td><code>m_StartPositions</code>, <code>m_ContinentInfo</code>, <code>m_MajorStartRegions</code>, <code>m_MinorStartRegions</code>, <code>m_aOceanStartTiles</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>MapStartPositioner:PlaceOceanStartCivs</code></td>
+<td><code>m_aOceanStartTiles</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Cities</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerCities:Create</code></td>
+<td><code>m_kCities</code>, <code>m_eHomeContinent</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>PlayerCities:Destroy</code></td>
+<td><code>m_kCities</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Congress</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TeamDiplomacy:ChangeFavor</code></td>
+<td><code>m_iPlayerFavor</code>, <code>m_iLifetimeFavor</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Culture</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerCulture:Reset</code></td>
+<td><code>m_eCurrentGovernment</code>, <code>m_ePostAnarchyGovernment</code>, <code>m_iTurnAdopted</code>, <code>m_iAnarchyEndTurn</code>, <code>m_uiCivicArraySize</code>, <code>m_xCulturalOverflow</code> …</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>PlayerCulture:ReverseBoost</code></td>
+<td><code>m_iNumCivicsRepeated</code>, <code>m_xLifetimeCulture</code>, <code>m_iStaycationers</code>, <code>m_bCivicCompletedThisTurn</code>, <code>m_eCivicCompletedThisTurn</code></td>
+<td><code>Player::Instance::m_id</code>, <code>m_abHasCivic</code>, <code>Player::EventManager::m_governmentRevokedHandle+0x8</code>, <code>Player::EventManager::m_pPlayer</code> …</td>
+</tr>
+<tr>
+<td><code>PlayerCulture:SetCivic</code></td>
+<td><code>m_iNumCivicsRepeated</code></td>
+<td><code>m_abHasCivic</code>, <code>Player::Instance::m_id</code>, <code>Player::EventManager::m_governmentRevokedHandle+0x8</code>, <code>Player::Units::m_aCurrentUnitCost</code> …</td>
+</tr>
+<tr>
+<td><code>PlayerCulture:SetCivicCompletedThisTurn</code></td>
+<td><code>m_bCivicCompletedThisTurn</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>PlayerCulture:TriggerBoost</code></td>
+<td><code>m_iNumCivicsRepeated</code>, <code>m_xLifetimeCulture</code>, <code>m_iStaycationers</code>, <code>m_bCivicCompletedThisTurn</code>, <code>m_eCivicCompletedThisTurn</code>, <code>m_xCulturalOverflow</code></td>
+<td><code>m_abBoostTriggered</code>, <code>m_abHasCivic</code>, <code>m_axCulturalProgress</code>, <code>Player::Instance::m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Eras</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerEras:SetEra</code></td>
+<td><code>m_eEra</code></td>
+<td><code>Player::Instance::m_id</code>, <code>Player::EventManager::m_tradePostToBeCreatedHandle+0x8</code>, <code>Player::Cities::m_kCities</code></td>
+</tr>
+<tr>
+<td><code>PlayerEras:SetStartingEra</code></td>
+<td><code>m_eEra</code></td>
+<td><code>Player::Instance::m_id</code>, <code>Player::EventManager::m_tradePostToBeCreatedHandle+0x8</code>, <code>Player::Cities::m_kCities</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Influence</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerInfluence:ChangeTokensToGive</code></td>
+<td><code>m_iTokensToGive</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Manager</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerManager:SetLocalObserverTo</code></td>
+<td><code>m_kDefaultProperties</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>PlayerManager:SetLocalPlayerAndObserver</code></td>
+<td><code>m_kDefaultProperties</code></td>
+<td><code>m_aIDToPlayer</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Religion</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerReligion:ChangeFaithBalance</code></td>
+<td><code>m_xFaithBalance</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>PlayerReligion:ChangeNumBeliefsEarned</code></td>
+<td><code>m_iNumBeliefsEarned</code></td>
+<td><code>Player::Instance::m_id</code>, <code>Game::Religion::m_kReligions</code></td>
+</tr>
+<tr>
+<td><code>PlayerReligion:SetFaithBalance</code></td>
+<td><code>m_xFaithBalance</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>PlayerReligion:SetHolyCity</code></td>
+<td><code>m_kHolyCityCoord</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Stats</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerStats:ChangeScienceVictoryPoints</code></td>
+<td><code>m_xScienceVictoryPoints</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>PlayerStats:UpdateMaxBombardStrengthTrained</code></td>
+<td><code>m_iMaxBombardStrengthTrained</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>PlayerStats:UpdateMaxMeleeStrengthTrained</code></td>
+<td><code>m_iMaxMeleeStrengthTrained</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>PlayerStats:UpdateMaxRangedStrengthTrained</code></td>
+<td><code>m_iMaxRangedStrengthTrained</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Techs</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerTechs:ReverseBoost</code></td>
+<td><code>m_iNumTechsRepeated</code></td>
+<td><code>m_abHasTech</code>, <code>Player::Instance::m_id</code>, <code>Player::Units::m_kUnits</code>, <code>Player::EventManager::m_pPlayer</code> …</td>
+</tr>
+<tr>
+<td><code>PlayerTechs:SetTech</code></td>
+<td><code>m_iNumTechsRepeated</code></td>
+<td><code>m_abHasTech</code>, <code>Player::Instance::m_id</code>, <code>Player::Units::m_aCurrentUnitCost</code>, <code>Player::Units::m_aiCurrentUnitResourceCost</code> …</td>
+</tr>
+<tr>
+<td><code>PlayerTechs:TriggerBoost</code></td>
+<td><code>m_iNumTechsRepeated</code>, <code>m_xResearchOverflow</code></td>
+<td><code>m_axResearchProgress</code>, <code>m_abHasTech</code>, <code>Player::Instance::m_id</code>, <code>m_abBoostTriggered</code> …</td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Treasury</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerTreasury:ChangeGoldBalance</code></td>
+<td><code>m_xGoldBalance</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>PlayerTreasury:ChangeGoldBalanceByPercentage</code></td>
+<td><code>m_xGoldBalance</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>PlayerTreasury:SetGoldBalance</code></td>
+<td><code>m_xGoldBalance</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Player::Units</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayerUnits:Create</code></td>
+<td><code>m_kUnits</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>PlayerUnits:Destroy</code></td>
+<td><code>m_kUnits</code>, <code>Player::Formations::m_kFormations</code></td>
+<td><code>Player::Instance::m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Unit::Experience</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UnitExperience:ChangeExperience</code></td>
+<td><code>m_iLevel</code></td>
+<td><code>Unit::Instance::m_eOwner</code>, <code>Unit::Instance::m_iDamage</code>, <code>Unit::Instance::m_eTypeIndex</code>, <code>Unit::Instance::m_id</code></td>
+</tr>
+<tr>
+<td><code>UnitExperience:SetVeteranName</code></td>
+<td><code>m_sVeteranName</code></td>
+<td><code>Unit::Instance::m_id</code>, <code>Unit::Instance::m_eOwner</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Unit::Instance</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unit:ChangeActionCharges</code></td>
+<td><code>m_iActionCharges</code></td>
+<td><code>m_eOwner</code>, <code>m_id</code></td>
+</tr>
+<tr>
+<td><code>Unit:ChangeDamage</code></td>
+<td><code>m_iDamage</code></td>
+<td><code>m_eOwner</code>, <code>m_id</code>, <code>m_kHero</code></td>
+</tr>
+<tr>
+<td><code>Unit:SetDamage</code></td>
+<td><code>m_iDamage</code></td>
+<td><code>m_eOwner</code>, <code>m_id</code>, <code>m_kHero</code></td>
+</tr>
+<tr>
+<td><code>Unit:SetFortifyTurns</code></td>
+<td><code>m_iFortifyTurns</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Unit:SetMilitaryFormation</code></td>
+<td><code>m_eMilitaryFormation</code></td>
+<td><code>m_eOwner</code>, <code>m_id</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Unit::Religion</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UnitReligion:ChangeEvictPercent</code></td>
+<td><code>m_iEvictPercent</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>UnitReligion:SetEvictPercent</code></td>
+<td><code>m_iEvictPercent</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>WorldBuilder::Mod::LocalizationStringTable</h2>
+<table>
+<thead>
+<tr>
+<th>Lua method</th>
+<th>Writes</th>
+<th>Also reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WorldBuilderModManager:SetString</code></td>
+<td><code>m_kList</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>

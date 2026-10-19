@@ -1,0 +1,1012 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Graphics</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › Graphics</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Graphics</h1>
+<p>The rendering back end: device, shaders, command streams.</p>
+<p>558 functions in this category, 124 with a Windows address (74 high or medium confidence or exported, 50 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Graphics::StartupParams::StartupParams(void*)</code></td>
+<td><code>0x5d2c0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x2fa0bd0</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::AddCommandSetToRenderList(Graphics::CommandStream*, unsigned int)</code></td>
+<td><code>0x940370</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7e358</code></td>
+<td>316</td>
+</tr>
+<tr>
+<td><code>Graphics::BlockAllocResourceList&lt;Primitives::FGXSurface, 1310720u, 4096u, 16384u, 1u, unsigned int&gt;::AddResource()</code></td>
+<td><code>0x940610</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b85d3a</code></td>
+<td>340</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;ID3D11Buffer*, 8192u, 128u, 4u, unsigned short&gt;::AddResource()</code></td>
+<td><code>0x940770</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b85406</code></td>
+<td>322</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;Graphics::_INTERNAL::SurfaceSet_DX11*, 1024u, 128u, 1u, unsigned short&gt;::AddResource()</code></td>
+<td><code>0x9408c0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b85ad0</code></td>
+<td>322</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;Graphics::_INTERNAL::DepthStencilData, 64u, 64u, 4u, unsigned short&gt;::AddResource()</code></td>
+<td><code>0x940a10</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b85908</code></td>
+<td>318</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;Graphics::_INTERNAL::TextureViews, 32768u, 512u, 4u, unsigned short&gt;::AddResource()</code></td>
+<td><code>0x940b60</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b8573c</code></td>
+<td>322</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;Graphics::_INTERNAL::FGXShaderPackageInstance, 16384u, 512u, 1u, unsigned short&gt;::AddResource()</code></td>
+<td><code>0x940e00</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b8506e</code></td>
+<td>322</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::Layout_BufferSet::AllocateCBRebaseBuffer()</code></td>
+<td><code>0x940fe0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b87dde</code></td>
+<td>482</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::AppActivated()</code></td>
+<td><code>0x9419c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7d79a</code></td>
+<td>1284</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::AppDeactivated()</code></td>
+<td><code>0x941f00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7e057</code></td>
+<td>195</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateStructuredBuffer(Graphics::FGX_BUFFER_USAGE, unsigned int, unsigned int, void const*, unsigned int, char const*, char const…</code></td>
+<td><code>0x9426e0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b759c0</code></td>
+<td>78</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::SetActiveDevices(Graphics::DeviceSet)</code></td>
+<td><code>0x943530</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b6bcbb</code></td>
+<td>692</td>
+</tr>
+<tr>
+<td><code>Graphics::CreateComputeShader(void const*, unsigned int, Graphics::ShaderDef::Shader const*)</code></td>
+<td><code>0x943a50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b72891</code></td>
+<td>309</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::SetScreenMode(Graphics::ScreenModeDesc const&amp;, Graphics::SetScreenModeResults*)</code></td>
+<td><code>0x944080</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b6eab6</code></td>
+<td>2987</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateDepthStencilResource(Graphics::Renderer::DSDesc const&amp;, unsigned int)</code></td>
+<td><code>0x944650</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b782f4</code></td>
+<td>138</td>
+</tr>
+<tr>
+<td><code>Graphics::CreateDomainShader(void const*, unsigned int, Graphics::ShaderDef::Shader const*)</code></td>
+<td><code>0x944ab0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7275c</code></td>
+<td>309</td>
+</tr>
+<tr>
+<td><code>Graphics::ReloadGeometryShader(unsigned char, void const*, unsigned int, Graphics::ShaderDef::Shader const*)</code></td>
+<td><code>0x944cd0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b72e7a</code></td>
+<td>309</td>
+</tr>
+<tr>
+<td><code>Graphics::ReloadHullShader(unsigned char, void const*, unsigned int, Graphics::ShaderDef::Shader const*)</code></td>
+<td><code>0x944e50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b72faf</code></td>
+<td>312</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateIB(Graphics::FGX_BUFFER_USAGE, Primitives::_FGX_INDEXFORMATS, unsigned int, void const*, unsigned int, unsigned int, char c…</code></td>
+<td><code>0x944fe0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b74331</code></td>
+<td>78</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::CreateIBAtHandle(unsigned short, Graphics::FGX_BUFFER_USAGE, Primitives::_FGX_INDEXFORMATS, unsigned int, void const*, unsigned …</code></td>
+<td><code>0x945070</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b69ef3</code></td>
+<td>804</td>
+</tr>
+<tr>
+<td><code>Graphics::CreatePixelShader(void const*, unsigned int, Graphics::ShaderDef::Shader const*)</code></td>
+<td><code>0x945390</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b723c0</code></td>
+<td>316</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateRenderCubemap(unsigned int, unsigned int, Primitives::FGX_FORMAT, char const*, unsigned int, unsigned int)</code></td>
+<td><code>0x945910</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b77733</code></td>
+<td>314</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateRenderTargetView(unsigned short, Graphics::Renderer::RTViewDesc const&amp;)</code></td>
+<td><code>0x945af0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3b77ad1</code></td>
+<td>2083</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::RecreateRenderTexture(unsigned short, Graphics::Renderer::RTDesc const&amp;, char const*, unsigned int)</code></td>
+<td><code>0x946350</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b7702d</code></td>
+<td>439</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateSurfaceSet(Graphics::SurfaceSetDesc const&amp;, unsigned int, char const*)</code></td>
+<td><code>0x946f90</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b78f50</code></td>
+<td>65</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateTBuffer(Graphics::FGX_BUFFER_USAGE, Primitives::FGX_FORMAT, unsigned int, void const*, unsigned int, char const*, char cons…</code></td>
+<td><code>0x946ff0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7508e</code></td>
+<td>1042</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateTextureArray(Primitives::TextureData*, unsigned int, char const*, unsigned int)</code></td>
+<td><code>0x947730</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b74f15</code></td>
+<td>86</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::CreateTextureArrayAtHandle(unsigned short, Primitives::TextureData*, unsigned int, char const*, unsigned int)</code></td>
+<td><code>0x9477c0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3b6afc4</code></td>
+<td>1484</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::CreateTextureAtHandle(unsigned short, Primitives::TextureData*, char const*, D3D11_USAGE, unsigned int)</code></td>
+<td><code>0x947d10</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b6a217</code></td>
+<td>3476</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateVB(Graphics::FGX_BUFFER_USAGE, unsigned int, unsigned int, void const*, unsigned int, unsigned int, char const*)</code></td>
+<td><code>0x948cb0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b742e3</code></td>
+<td>78</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::CreateVBAtHandle(unsigned short, Graphics::FGX_BUFFER_USAGE, unsigned int, unsigned int, void const*, unsigned int, char const*,…</code></td>
+<td><code>0x948d40</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b69bf3</code></td>
+<td>768</td>
+</tr>
+<tr>
+<td><code>Graphics::ReloadVertexShader(unsigned short, void const*, unsigned int, unsigned int, void const*, Graphics::ShaderDef::Shader const*)</code></td>
+<td><code>0x949050</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b72be0</code></td>
+<td>358</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::Enum32BitDisplayModes(Primitives::DisplayMode*, unsigned int)</code></td>
+<td><code>0x9499d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b6c170</code></td>
+<td>2006</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::EnumDisplayAdapters(Graphics::DeviceInfo*, unsigned int)</code></td>
+<td><code>0x949ef0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b6b66a</code></td>
+<td>630</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::Layout_BufferSet::GetBuffers(Graphics::_INTERNAL::Layout_ThreadState*)</code></td>
+<td><code>0x94bce0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8a2d8</code></td>
+<td>1212</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetSubmittedCommandSetNames(char const**, unsigned int*, unsigned int)</code></td>
+<td><code>0x94da00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7cafc</code></td>
+<td>235</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::InitFromShaderDef(wchar_t const*, Platform::MemoryBuffer&amp;, Graphics::InitResultState&amp;, bool)</code></td>
+<td><code>0x94e0c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b6fdd6</code></td>
+<td>9334</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::Render(Graphics::RenderDesc)</code></td>
+<td><code>0x950170</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7e8e4</code></td>
+<td>4003</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::LockConstantSet(unsigned short, unsigned int, unsigned int)</code></td>
+<td><code>0x9518d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b792ca</code></td>
+<td>104</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::LockDynamicTexture(unsigned short, unsigned long*, unsigned long*, Primitives::TextureData*, unsigned int)</code></td>
+<td><code>0x951980</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b74cf9</code></td>
+<td>441</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::LogSubmittedWork()</code></td>
+<td><code>0x952150</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7cbe7</code></td>
+<td>2994</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::Validation::PrintSupportedRTVFormats()</code></td>
+<td><code>0x9530d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b69a8a</code></td>
+<td>318</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::Validation::PrintSupportedUAVLoadFormats()</code></td>
+<td><code>0x9532d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b697f8</code></td>
+<td>318</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::Validation::PrintSupportedUAVStoreFormats()</code></td>
+<td><code>0x9534d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b6994c</code></td>
+<td>318</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;ID3D11Buffer*, 8192u, 128u, 4u, unsigned short&gt;::ReleaseResource(unsigned short)</code></td>
+<td><code>0x956600</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b856b2</code></td>
+<td>138</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;Graphics::ConstantSet, 32768u, 512u, 4u, unsigned short&gt;::ReleaseResource(unsigned short)</code></td>
+<td><code>0x956870</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b90fa4</code></td>
+<td>138</td>
+</tr>
+<tr>
+<td><code>Graphics::ResourceList&lt;Graphics::_INTERNAL::FGXShaderPackageInstance, 16384u, 512u, 1u, unsigned short&gt;::ReleaseResource(unsigned short)</code></td>
+<td><code>0x956a10</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b851b0</code></td>
+<td>138</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::ReleaseShaderPackageInstance(unsigned short)</code></td>
+<td><code>0x956ae0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b79199</code></td>
+<td>129</td>
+</tr>
+<tr>
+<td><code>Graphics::CreateVertexShader(void const*, unsigned int, unsigned int, void const*, Graphics::ShaderDef::Shader const*)</code></td>
+<td><code>0x957530</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3b7225a</code></td>
+<td>358</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::Shutdown()</code></td>
+<td><code>0x95cb40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b73363</code></td>
+<td>1587</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::Layout_ThreadState::Startup()</code></td>
+<td><code>0x95d930</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b878d6</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::Startup(Graphics::StartupParams const&amp;, Graphics::SetScreenModeResults*)</code></td>
+<td><code>0x95da30</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b6cf8a</code></td>
+<td>4544</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::UnlockConstantSet(unsigned short, unsigned int, unsigned int)</code></td>
+<td><code>0x95f770</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b79332</code></td>
+<td>105</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::ValidateMSAAQualityLevel(Primitives::FGX_FORMAT, unsigned int, unsigned int*)</code></td>
+<td><code>0x9603d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7c4f7</code></td>
+<td>321</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::ValidateMSAASampleCount(Primitives::FGX_FORMAT, unsigned int*)</code></td>
+<td><code>0x960530</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7c3cc</code></td>
+<td>299</td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::ViewResized(unsigned int, unsigned int)</code></td>
+<td><code>0x960cc0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b7e11b</code></td>
+<td>573</td>
+</tr>
+<tr>
+<td><code>Graphics::DeviceInfo::clear()</code></td>
+<td><code>0x960f00</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b8786a</code></td>
+<td>108</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::AppendUpdateSubresourceData(unsigned long)</code></td>
+<td><code>0x961930</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8c57e</code></td>
+<td>548</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::CopyRenderTexture(Graphics::CopyRenderTextureDesc const&amp;)</code></td>
+<td><code>0x962620</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8c7c6</code></td>
+<td>182</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::CopyTexture(Graphics::CopyTextureDesc const&amp;)</code></td>
+<td><code>0x962710</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8cf16</code></td>
+<td>182</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::CopyToReadbackTexture(unsigned short, unsigned short, Graphics::MultiGPUState)</code></td>
+<td><code>0x962800</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8cfd6</code></td>
+<td>252</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::DrawSurface(unsigned int, Primitives::DynamicCSPtr, unsigned short, unsigned short)</code></td>
+<td><code>0x962ae0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3b8b6b0</code></td>
+<td>92</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::DrawSurfaceSet(unsigned short, unsigned int, unsigned int)</code></td>
+<td><code>0x962bc0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b8b8ca</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::ReconstructTexture(Graphics::ReconstructTextureDesc const&amp;)</code></td>
+<td><code>0x962fc0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8ce3a</code></td>
+<td>184</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::ResolveRenderTexture(Graphics::ResolveRenderTextureDesc const&amp;)</code></td>
+<td><code>0x963130</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8cd90</code></td>
+<td>170</td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::UpdateSubResource(Graphics::UpdateSubresourceDesc&amp;, bool)</code></td>
+<td><code>0x9636b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8c23a</code></td>
+<td>836</td>
+</tr>
+<tr>
+<td><code>Graphics::ShaderDef::Serialize(Platform::MemoryBuffer&amp;, Graphics::ShaderDef::Defs const*)</code></td>
+<td><code>0x965140</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b8e3ce</code></td>
+<td>4093</td>
+</tr>
+<tr>
+<td><code>Graphics::ConstantSet::Initialize(Graphics::FGX_CONSTANTTYPE, unsigned int, void const*)</code></td>
+<td><code>0x966830</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b90a0c</code></td>
+<td>276</td>
+</tr>
+<tr>
+<td><code>Graphics::ConstantSetManager::ReleaseConstantSet(unsigned short)</code></td>
+<td><code>0x966d40</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3b90dde</code></td>
+<td>78</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::DefaultObjects::CreateDefaultTextures()</code></td>
+<td><code>0x966e10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8d8de</code></td>
+<td>1302</td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::DefaultObjects::CreateDefaultVBandIBs(void*, unsigned int)</code></td>
+<td><code>0x967610</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b8d7e4</code></td>
+<td>230</td>
+</tr>
+<tr>
+<td><code>Graphics::DeviceDatabase::GetDriverWorkAroundFlags(unsigned int, char const*)</code></td>
+<td><code>0x967bf0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3b696e8</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>Graphics::getEnumByHash_FGX_SM_VERTEXFORMATS(unsigned int)</code></td>
+<td><code>0xdc13a0</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x3c6d327</code></td>
+<td>792</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (50, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Graphics::ShaderDef::HashString(char const*)</code></td>
+<td><code>0x702b60</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8f84f</code></td>
+</tr>
+<tr>
+<td><code>Graphics::BlockAllocResourceList&lt;Primitives::FGXSurface, 1310720u, 4096u, 16384u, 1u, unsigned int&gt;::AddBlock…</code></td>
+<td><code>0x940250</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x3b8a794</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::AddRefIB(unsigned short)</code></td>
+<td><code>0x9404d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b747b3</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::AddRefTexture(unsigned short)</code></td>
+<td><code>0x940570</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b76706</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::AddRefVB(unsigned short)</code></td>
+<td><code>0x9405c0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b74771</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::UnlockVB(unsigned short, unsigned int, unsigned int)</code></td>
+<td><code>0x945520</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b7450c</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateShaderPackageInstance(unsigned short const*, unsigned int, unsigned int)</code></td>
+<td><code>0x946a10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b790e1</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateSurface(Primitives::FGXSurface const&amp;)</code></td>
+<td><code>0x946f00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b78fe3</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateTexture(Primitives::TextureData*, char const*, unsigned int)</code></td>
+<td><code>0x9476d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b74b34</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::LockDynamicTSBuffer(unsigned short, unsigned int)</code></td>
+<td><code>0x947cf0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b75a5a</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::CreateTextureFromDepthResource(unsigned short, char const*)</code></td>
+<td><code>0x948a10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b76321</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetBackbufferHandle()</code></td>
+<td><code>0x94bcd0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b7487e</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetDepthStencilDesc(unsigned short)</code></td>
+<td><code>0x94cd30</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b74886</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetMSAAMaxSampleCount(Primitives::FGX_FORMAT)</code></td>
+<td><code>0x94d250</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b7cac6</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetRenderOptions()</code></td>
+<td><code>0x94d7c0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b7b80c</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetScreenHeight()</code></td>
+<td><code>0x94d8a0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b7a33b</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetScreenMode()</code></td>
+<td><code>0x94d8b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b7a326</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetScreenWidth()</code></td>
+<td><code>0x94d8c0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b7a334</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::ClearAllCommandSetHooks()</code></td>
+<td><code>0x94d9f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b7cafb</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::SetMIPDisplay(char const*, Graphics::FGX_MIP_DISPLAY)</code></td>
+<td><code>0x94db00</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b7d799</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::GetTextureDesc(unsigned short)</code></td>
+<td><code>0x94dc70</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b74837</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::LogResources(Platform::MemoryBuffer*, unsigned int)</code></td>
+<td><code>0x94fe90</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b7e49b</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::PushDynamicConstants(unsigned int, unsigned int)</code></td>
+<td><code>0x9536d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b7939b</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::PushTransientSurface(Primitives::FGXSurface const&amp;, unsigned int)</code></td>
+<td><code>0x953730</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b79069</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::ReleaseCommandStream(Graphics::CommandStream*)</code></td>
+<td><code>0x9562d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b78fa8</code></td>
+</tr>
+<tr>
+<td><code>Graphics::Renderer::ReleaseTexture(unsigned short)</code></td>
+<td><code>0x956bb0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b74f6b</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::CommandStream(Graphics::CommandStreamDesc const&amp;, unsigned int, char const*)</code></td>
+<td><code>0x961260</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x3b8b34c</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::AddAllCommandSetsToRenderQueue()</code></td>
+<td><code>0x961700</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8c1cc</code></td>
+</tr>
+<tr>
+<td><code>Graphics::SurfaceSet::AddSurfaceVisID(unsigned int, Primitives::DynamicCSPtr, unsigned short, unsigned short,…</code></td>
+<td><code>0x961850</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8d282</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::AliasGlobal(unsigned short, unsigned short)</code></td>
+<td><code>0x9618f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8bb4c</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::BeginCommandSet(Graphics::BeginCommandSetDesc const&amp;, char const*)</code></td>
+<td><code>0x961b50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8bc16</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::BeginCommandSet(unsigned short, unsigned char, unsigned short const*, unsigned short…</code></td>
+<td><code>0x961df0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8bbc6</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::Clear(unsigned int, FGXVector4, float, unsigned char)</code></td>
+<td><code>0x9620f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8be90</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::ResolveRenderTexture(unsigned short, unsigned short, unsigned int)</code></td>
+<td><code>0x9626e0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b8cd6a</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::CreateLocalSurface(Primitives::FGXSurface const&amp;)</code></td>
+<td><code>0x962930</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8d0d2</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::EndCommandSet()</code></td>
+<td><code>0x962c60</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8c07e</code></td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::DefaultObjects::ColorIdentity(FGXVector4*, FGXVector3 const&amp;, FGXVector3 const&amp;, void*)</code></td>
+<td><code>0x963110</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b8d8ca</code></td>
+</tr>
+<tr>
+<td><code>Graphics::CommandStream::SubmitInternalSurfaceSets()</code></td>
+<td><code>0x9635b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8b94a</code></td>
+</tr>
+<tr>
+<td><code>Graphics::DynamicConstantAllocator::Alloc(unsigned int, unsigned int, unsigned int)</code></td>
+<td><code>0x963a50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8df88</code></td>
+</tr>
+<tr>
+<td><code>Graphics::DynamicConstantAllocator::Reset()</code></td>
+<td><code>0x963af0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b8e002</code></td>
+</tr>
+<tr>
+<td><code>Graphics::ShaderDef::CustomVertexFormatDef::FindVertexAttribute(char const*) const</code></td>
+<td><code>0x963b20</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b8fa96</code></td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::TransientSurfacePool::AllocSurface(Primitives::FGXSurface const&amp;, unsigned int)</code></td>
+<td><code>0x963b70</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8fc69</code></td>
+</tr>
+<tr>
+<td><code>Graphics::RegisterCustomVertexFormat(unsigned int, Primitives::FGXVertexElement const*, unsigned int)</code></td>
+<td><code>0x9643d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b9069d</code></td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::CommandStream_D3D11::CommandStream_D3D11(Graphics::CommandStreamDesc const&amp;, unsigned in…</code></td>
+<td><code>0x9644a0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b907dc</code></td>
+</tr>
+<tr>
+<td><code>Graphics::_INTERNAL::CommandStream_D3D11::~CommandStream_D3D11()</code></td>
+<td><code>0x966620</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b909bc</code></td>
+</tr>
+<tr>
+<td><code>Graphics::ConstantSet::Lock(unsigned int, ID3D11DeviceContext*)</code></td>
+<td><code>0x966970</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b90b4a</code></td>
+</tr>
+<tr>
+<td><code>Graphics::GetVertexElementName(Primitives::FGX_VERTEXELEMENTTYPES)</code></td>
+<td><code>0x967f30</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b90722</code></td>
+</tr>
+<tr>
+<td><code>Graphics::GetVertexElementTypeFromString(char const*)</code></td>
+<td><code>0x967f50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b90738</code></td>
+</tr>
+<tr>
+<td><code>Graphics::getMutableCSDesc_ShaderAutoGen(Graphics::MutableConstantSetTypes, void**, unsigned int*)</code></td>
+<td><code>0xdc3e60</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c71bcf</code></td>
+</tr>
+<tr>
+<td><code>Graphics::DeviceDatabase::GetDeviceProfile(unsigned int, unsigned int, char const*)</code></td>
+<td><code>0xf53250</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3b8dece</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

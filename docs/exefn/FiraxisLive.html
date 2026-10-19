@@ -1,0 +1,820 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>FiraxisLive</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › FiraxisLive</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>FiraxisLive</h1>
+<p>Firaxis Live / My2K online services client.</p>
+<p>1492 functions in this category, 93 with a Windows address (72 high or medium confidence or exported, 21 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FiraxisLiveClient::AcceptLegalAgreements()</code></td>
+<td><code>0x521750</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1060</code></td>
+<td>576</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::CreateFiraxisLive(char const*, char const*, char const*, char const*, unsigned long, char const*, char const*, char const*, char c…</code></td>
+<td><code>0x521940</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b05a0</code></td>
+<td>624</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::DeclineLegalAgreements()</code></td>
+<td><code>0x521bf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b12a0</code></td>
+<td>576</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::EndMatch(unsigned int)</code></td>
+<td><code>0x521dd0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1bf0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::EndTurnMatch(unsigned int, void const*, unsigned int)</code></td>
+<td><code>0x521e10</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1cb0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::GetKvpData(char const*, unsigned int, FiraxisLiveClient::RequestResult*)</code></td>
+<td><code>0x521e80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1940</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::GetKvpDataEntries(FiraxisLiveClient::RequestResult*)</code></td>
+<td><code>0x521f60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1a20</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::GetMatchInfo(unsigned int)</code></td>
+<td><code>0x521fe0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1eb0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::GetMatchList(Firaxis::Live::ListType, int)</code></td>
+<td><code>0x522020</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1ab0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::GetMatchSaveGame(unsigned int)</code></td>
+<td><code>0x522060</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1ef0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::HostMatch(Firaxis::Live::Attributes&amp;)</code></td>
+<td><code>0x5221a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1af0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::Initialize(char const*, char const*, char const*, char const*, unsigned long, char const*, char const*, char const*, char const*, …</code></td>
+<td><code>0x522200</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31aefe0</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::InitializeDebugInfo()</code></td>
+<td><code>0x5224c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0810</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::JoinMatch(unsigned int)</code></td>
+<td><code>0x522690</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1b30</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::JoinMatch(char const*)</code></td>
+<td><code>0x5226d0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x31b1b70</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::KickPlayerMatch(unsigned int, unsigned char)</code></td>
+<td><code>0x522710</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1cf0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::KillMatch(unsigned int)</code></td>
+<td><code>0x522750</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1c30</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::LinkAccount(char const*, char const*, bool)</code></td>
+<td><code>0x522790</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1560</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::Logon()</code></td>
+<td><code>0x5228e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0f90</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnConnectFailureNotify(Firaxis::Live::IConnectFailureNotify const*, Firaxis::Live::ConnectFailure const&amp;)</code></td>
+<td><code>0x522b20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af3e0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnConnectionStatusNotify(Firaxis::Live::IMy2KConnectionStatusNotify const*, Firaxis::Live::IMy2KConnectionStatusNotify::Connection…</code></td>
+<td><code>0x522bc0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af7b0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnDataPushNotify(Firaxis::Live::IDataPushNotify const*, Firaxis::Live::IDataPushNotify::PushInfo const&amp;)</code></td>
+<td><code>0x522c60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afcd0</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnGetDOBDataNotify(Firaxis::Live::IMy2KGetDOBDataNotify const*, Firaxis::Live::IMy2KGetDOBDataNotify::DOBInfo const&amp;)</code></td>
+<td><code>0x522d50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af510</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnGetGrantedEntitlements(Firaxis::Live::IMy2KGrantedEntitlementsNotify const*, Firaxis::Live::IMy2KGrantedEntitlementsNotify::Gran…</code></td>
+<td><code>0x522dd0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af940</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnGetLogonDataNotify(Firaxis::Live::IMy2KGetLogonDataNotify const*, Firaxis::Live::IMy2KGetLogonDataNotify::LogonInfo const&amp;)</code></td>
+<td><code>0x522ea0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af450</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnGetNewAccountDataNotify(Firaxis::Live::IMy2KGetNewAccountDataNotify const*, Firaxis::Live::IMy2KGetNewAccountDataNotify::NewAcco…</code></td>
+<td><code>0x522f40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af4b0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnKVPDataErrorNotify(Firaxis::Live::IKVPDataErrorNotify const*, Firaxis::Live::IKVPDataErrorNotify::ErrorData const&amp;)</code></td>
+<td><code>0x522fd0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afa60</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnKVPDataListNotify(Firaxis::Live::IKVPDataListNotify const*, Firaxis::Live::IKVPDataListNotify::ListData const&amp;)</code></td>
+<td><code>0x523070</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afb70</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnKVPDataNotify(Firaxis::Live::IKVPDataNotify const*, Firaxis::Live::IKVPDataNotify::KVPInfo const&amp;)</code></td>
+<td><code>0x523170</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afa00</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnKVPDataProgressNotify(Firaxis::Live::IKVPDataProgressNotify const*, Firaxis::Live::IKVPDataProgressNotify::ProgressData const&amp;)</code></td>
+<td><code>0x523210</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afac0</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnLegalNotify(Firaxis::Live::IMy2KLegalNotify const*, Firaxis::Live::IMy2KLegalNotify::LegalInfo const&amp;)</code></td>
+<td><code>0x523300</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af550</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnLoggedOffNotify(Firaxis::Live::IMy2KLoggedOffNotify const*, Firaxis::Live::IMy2KLoggedOffNotify::LoggedOffInfo const&amp;)</code></td>
+<td><code>0x523650</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af810</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnLoginStatusNotify(Firaxis::Live::IMy2KLoginStatusNotify const*, Firaxis::Live::IMy2KLoginStatusNotify::LoginInfo const&amp;)</code></td>
+<td><code>0x5236e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af870</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchCreateDataNotify(Firaxis::Live::MatchCreateDataNotify const*, Firaxis::Live::MatchCreateDataNotify::Data const&amp;)</code></td>
+<td><code>0x5237f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afe70</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchEndMatchNotify(Firaxis::Live::MatchEndMatchNotify const*, Firaxis::Live::MatchEndMatchNotify::Data const&amp;)</code></td>
+<td><code>0x523890</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31affc0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchEndTurnNotify(Firaxis::Live::MatchEndTurnNotify const*, Firaxis::Live::MatchEndTurnNotify::Data const&amp;)</code></td>
+<td><code>0x523930</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0110</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchGetInfoNotify(Firaxis::Live::MatchGetInfoNotify const*, Firaxis::Live::MatchGetInfoNotify::Data const&amp;)</code></td>
+<td><code>0x5239d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0490</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchGetSaveGameNotify(Firaxis::Live::MatchGetSaveGameNotify const*, Firaxis::Live::MatchGetSaveGameNotify::Data const&amp;)</code></td>
+<td><code>0x523a70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0500</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchJoinNotify(Firaxis::Live::MatchJoinNotify const*, Firaxis::Live::MatchJoinNotify::Data const&amp;)</code></td>
+<td><code>0x523b10</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afee0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchKickPlayerNotify(Firaxis::Live::MatchKickPlayerNotify const*, Firaxis::Live::MatchKickPlayerNotify::Data const&amp;)</code></td>
+<td><code>0x523bb0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0180</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchKillMatchNotify(Firaxis::Live::MatchKillMatchNotify const*, Firaxis::Live::MatchKillMatchNotify::Data const&amp;)</code></td>
+<td><code>0x523c50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0030</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchListDataNotify(Firaxis::Live::MatchListDataNotify const*, Firaxis::Live::MatchListDataNotify::MatchData const&amp;)</code></td>
+<td><code>0x523cf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afda0</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchQuitMatchNotify(Firaxis::Live::MatchQuitMatchNotify const*, Firaxis::Live::MatchQuitMatchNotify::Data const&amp;)</code></td>
+<td><code>0x523de0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b00a0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchSetPlayerMetadataNotify(Firaxis::Live::MatchSetPlayerMetadataNotify const*, Firaxis::Live::MatchSetPlayerMetadataNotify::Da…</code></td>
+<td><code>0x523e80</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b02d0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchSetPlayerOrderNotify(Firaxis::Live::MatchSetPlayerOrderNotify const*, Firaxis::Live::MatchSetPlayerOrderNotify::Data const&amp;)</code></td>
+<td><code>0x523f20</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0340</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchSetPlayerStatusNotify(Firaxis::Live::MatchSetPlayerStatusNotify const*, Firaxis::Live::MatchSetPlayerStatusNotify::Data con…</code></td>
+<td><code>0x523fc0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b03b0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchSetSlotTypeNotify(Firaxis::Live::MatchSetSlotTypeNotify const*, Firaxis::Live::MatchSetSlotTypeNotify::Data const&amp;)</code></td>
+<td><code>0x524060</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0420</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchStartMatchNotify(Firaxis::Live::MatchStartMatchNotify const*, Firaxis::Live::MatchStartMatchNotify::Data const&amp;)</code></td>
+<td><code>0x524100</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31aff50</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchUpdateAttributesNotify(Firaxis::Live::MatchUpdateAttributesNotify const*, Firaxis::Live::MatchUpdateAttributesNotify::Data …</code></td>
+<td><code>0x5241a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b01f0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnMatchUpdateSaveGameNotify(Firaxis::Live::MatchUpdateSaveGameNotify const*, Firaxis::Live::MatchUpdateSaveGameNotify::Data const&amp;)</code></td>
+<td><code>0x524240</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0260</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnSimpleKVPInfoNotify(Firaxis::Live::ISimpleKVPInfoNotify const*, Firaxis::Live::ISimpleKVPInfoNotify::SimpleKVPRights const&amp;)</code></td>
+<td><code>0x5242e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afc90</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnSimpleKVPNotify(Firaxis::Live::ISimpleKVPNotify const*, Firaxis::Live::ISimpleKVPNotify::KeyValueData const&amp;)</code></td>
+<td><code>0x524350</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31afc50</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnStateNotify(Firaxis::Live::IStateNotify const*, Firaxis::Live::State const&amp;)</code></td>
+<td><code>0x5243c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af320</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::OnUserStateNotify(Firaxis::Live::IUserStateNotify const*, Firaxis::Live::UserState const&amp;)</code></td>
+<td><code>0x524460</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31af380</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::QuitMatch(unsigned int)</code></td>
+<td><code>0x524500</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1c70</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::RegisterMy2KNotificationHandlers()</code></td>
+<td><code>0x524540</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x31b0a90</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::RegisterNotificationHandlers()</code></td>
+<td><code>0x524690</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b08a0</code></td>
+<td>496</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::RemoveKvpData(char const*, unsigned int, FiraxisLiveClient::RequestResult*)</code></td>
+<td><code>0x524a90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1850</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SendCancelCreateAccountResponse()</code></td>
+<td><code>0x524b80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b2130</code></td>
+<td>416</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SendCreateAccountResponse()</code></td>
+<td><code>0x524cf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1f80</code></td>
+<td>432</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SendLinkAccountResponse()</code></td>
+<td><code>0x524e70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b0b90</code></td>
+<td>560</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SetKvpData(char const*, void const*, unsigned int, FiraxisLiveClient::RequestResult*)</code></td>
+<td><code>0x525070</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1760</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SetMatchPlayerMetadata(unsigned int, unsigned char, void const*, unsigned int)</code></td>
+<td><code>0x525160</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1db0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SetMatchPlayerOrder(unsigned int, unsigned char const*, unsigned int)</code></td>
+<td><code>0x5251b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1df0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SetMatchPlayerStatus(unsigned int, unsigned char, Firaxis::Live::PlayerStatus)</code></td>
+<td><code>0x5251f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1e30</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::StartMatch(unsigned int)</code></td>
+<td><code>0x5252a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1bb0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::UnlinkAccount()</code></td>
+<td><code>0x5252e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1680</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::UpdateMatchAttributes(unsigned int, Firaxis::Live::Attributes const&amp;)</code></td>
+<td><code>0x5253c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1d30</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::UpdateMatchSaveGame(unsigned int, void const*, unsigned int)</code></td>
+<td><code>0x525400</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x31b1d70</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>Firaxis_Zlib128::adler32(unsigned long, unsigned char const*, unsigned int)</code></td>
+<td><code>0x6fc320</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x3ef72f0</code></td>
+<td>944</td>
+</tr>
+<tr>
+<td><code>Firaxis::MTRand::seed(unsigned long)</code></td>
+<td><code>0x97ec30</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x3ed4a30</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::Attributes::Attributes()</code></td>
+<td><code>0xb4b190</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3dd3600</code></td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (21, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FiraxisLiveClient::IsReadyForCreateOrLinkAccount() const</code></td>
+<td><code>0x5225f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31b0e30</code></td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::IsReadyForLogon() const</code></td>
+<td><code>0x522640</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31b0de0</code></td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::SetMatchSlotType(unsigned int, unsigned char, Firaxis::Live::SlotType)</code></td>
+<td><code>0x525230</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31b1e70</code></td>
+</tr>
+<tr>
+<td><code>FiraxisLiveClient::LegalDocument::LegalDocument(FiraxisLiveClient::LegalDocument&amp;&amp;)</code></td>
+<td><code>0x525570</code></td>
+<td>call-graph propagation</td>
+<td><code>0x31b4860</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::MTRand::reload()</code></td>
+<td><code>0x97eb20</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3ed4cb0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::Attributes::Add(char const*, char const*)</code></td>
+<td><code>0xb4b1d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd38f0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::Attributes::Add(char const*, bool)</code></td>
+<td><code>0xb4b1f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3dd3970</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::Attributes::Add(char const*, unsigned char const*, unsigned int)</code></td>
+<td><code>0xb4b210</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd3990</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::Attributes::Add(char const*, unsigned long)</code></td>
+<td><code>0xb4b250</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd3930</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::MatchNotifyBaseData::GetMatchID() const</code></td>
+<td><code>0xb4b2a0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd5d90</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::MatchNotifyBaseData::GetResult() const</code></td>
+<td><code>0xb4b2b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd5d70</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::MatchGetInfoNotify::GetResultText(Firaxis::Live::MatchGetInfoNotify::Result) const</code></td>
+<td><code>0xb4b2d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd66a0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::MatchListDataNotify::GetResultText(Firaxis::Live::MatchListDataNotify::Result) const</code></td>
+<td><code>0xb4b3a0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd5fc0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::MatchCreateDataNotify::Data::GetJoinCode() const</code></td>
+<td><code>0xb4b3f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3dd63c0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::MatchJoinNotify::Data::IsInMatch() const</code></td>
+<td><code>0xb4b410</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd63f0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::IMy2KLoginStatusNotify::LoginTypeName(Firaxis::Live::IMy2KLoginStatusNotify::LoginType) const</code></td>
+<td><code>0xb4bc00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd8670</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::IMy2KLoginStatusNotify::AccountTypeName(Firaxis::Live::IMy2KLoginStatusNotify::AccountType) co…</code></td>
+<td><code>0xb4be00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd8690</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::IKVPDataListNotify::GetErrorText(Firaxis::Live::IKVPDataListNotify::ErrorCode) const</code></td>
+<td><code>0xb4c610</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd7aa0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::IUserStateNotify::UserStateName(Firaxis::Live::UserState) const</code></td>
+<td><code>0xb4ce00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd7ef0</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::InternalAttributes::InternalAttributes()</code></td>
+<td><code>0xb4dea0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd3d30</code></td>
+</tr>
+<tr>
+<td><code>Firaxis::Live::Attributes::~Attributes()</code></td>
+<td><code>0xbcfe60</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3dd3640</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

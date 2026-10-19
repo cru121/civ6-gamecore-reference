@@ -1,0 +1,3587 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AssetObjects</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Reflected data types</a> › AssetObjects</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Reflected types: AssetObjects</h1>
+<p>Back to the <a href="index.html">overview</a>.</p>
+<p><a id="assetobjects"></a>Asset and artdef object model (artdef sets, collections, elements, values, instances) (inferred).</p>
+<h3><a id="assetobjects__instancetype"></a>AssetObjects::InstanceType (enum)</h3>
+<p>Members and values stored by <code>GetEnumInfo</code> (<code>0x7267d0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INVALID</code></td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>ASSET</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>MATERIAL</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>GEOMETRY</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>TEXTURE</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>ANIMATION</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>DSG</code></td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>ANALYTIC_LIGHT</code></td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>ENVIRONMENT_LIGHT</code></td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>LIGHT_RIG</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>PARTICLE_EFFECT</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>BEHAVIOR</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>FIREFX</code></td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__texturetype"></a>AssetObjects::TextureType (enum)</h3>
+<p>Members and values stored by <code>GetEnumInfo</code> (<code>0x727210</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2D</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>CUBE</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>3D</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>3D_COLORKEY</code></td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__triggertype"></a>AssetObjects::TriggerType (enum)</h3>
+<p>Members and values stored by <code>GetEnumInfo</code> (<code>0x727430</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SOUND</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ASSET_FX</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>TRANSFER</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>ACTION</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>ARTDEF_VFX</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>LIGHT</code></td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__animationbindingset"></a>AssetObjects::AnimationBindingSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75dab0</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Bindings</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::AnimationBinding&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artconsumer"></a>AssetObjects::ArtConsumer</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x721530</code>), size 160 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>consumerName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>relativeArtDefPaths</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>88 (0x58)</td>
+<td><code>libraryDependencies</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>152 (0x98)</td>
+<td><code>loadsLibraries</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdefdependencydata"></a>AssetObjects::ArtDefDependencyData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x723dc0</code>), size 88 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>ArtDefPath</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>ArtDefDependencyPaths</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdefelement"></a>AssetObjects::ArtDefElement</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x71c3a0</code>), size 184 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Fields</code></td>
+<td><code>AssetObjects::ValueSet</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_AppendMergedParameterCollections</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>m_ChildCollections</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ArtDefCollection&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdefelementtemplate"></a>AssetObjects::ArtDefElementTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x71c730</code>), size 176 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_kBlock</code></td>
+<td>(not resolved)</td>
+</tr>
+<tr>
+<td>16 (0x10)</td>
+<td><code>m_nCurrSize</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_Params</code></td>
+<td><code>AssetObjects::ParameterSet</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_Children</code></td>
+<td><code>AssetObjects::ArtDefElementTemplate</code></td>
+</tr>
+<tr>
+<td>136 (0x88)</td>
+<td><code>m_nMaximumCount</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>144 (0x90)</td>
+<td><code>m_CustomEditor</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>168 (0xa8)</td>
+<td><code>m_AppendMergedParameterCollections</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>169 (0xa9)</td>
+<td><code>m_ReplaceMergedCollectionElements</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdefreferenceparameter"></a>AssetObjects::ArtDefReferenceParameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72bbb0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_Default</code></td>
+<td><code>AssetObjects::ArtDefReferenceValue</code></td>
+</tr>
+<tr>
+<td>272 (0x110)</td>
+<td><code>m_CollectionName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>296 (0x128)</td>
+<td><code>m_CollectionNames</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>360 (0x168)</td>
+<td><code>m_TemplateNames</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>424 (0x1a8)</td>
+<td><code>m_bAllowNull</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdefreferencevalue"></a>AssetObjects::ArtDefReferenceValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x710be0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_ElementName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_RootCollectionName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_ArtDefPath</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_TemplateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>152 (0x98)</td>
+<td><code>m_CollectionIsLocked</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdefset"></a>AssetObjects::ArtDefSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x71cbc0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_TemplateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_RootCollections</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ArtDefCollection&gt;</code></td>
+</tr>
+<tr>
+<td>224 (0xe0)</td>
+<td><code>m_Version</code></td>
+<td><code>AssetObjects::VersionInfo</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdeftemplate"></a>AssetObjects::ArtDefTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x71cf40</code>), size 72 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_Collections</code></td>
+<td><code>AssetObjects::ArtDefElementTemplate</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__artdeftemplateset"></a>AssetObjects::ArtDefTemplateSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x71d290</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Templates</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ArtDefTemplate&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__assetclass"></a>AssetObjects::AssetClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x74ecc0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_AttachmentParams</code></td>
+<td><code>AssetObjects::ParameterSet</code></td>
+</tr>
+<tr>
+<td>368 (0x170)</td>
+<td><code>m_States</code></td>
+<td><code>AssetObjects::AssetClassState</code></td>
+</tr>
+<tr>
+<td>432 (0x1b0)</td>
+<td><code>m_ArtDefReferences</code></td>
+<td><code>AssetObjects::AssetArtDefReference</code></td>
+</tr>
+<tr>
+<td>496 (0x1f0)</td>
+<td><code>m_AllowedPlatforms</code></td>
+<td><code>AssetObjects::Platforms</code></td>
+</tr>
+<tr>
+<td>560 (0x230)</td>
+<td><code>m_AllowedAnimClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>624 (0x270)</td>
+<td><code>m_AllowedGeoClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>688 (0x2b0)</td>
+<td><code>m_AllowedDSGClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>752 (0x2f0)</td>
+<td><code>m_AllowedParticleEffectClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>816 (0x330)</td>
+<td><code>m_AllowedBehaviorClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>880 (0x370)</td>
+<td><code>m_AllowedSplineClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>944 (0x3b0)</td>
+<td><code>m_AllowedTriggerClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__assetinstance"></a>AssetObjects::AssetInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73cd30</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>328 (0x148)</td>
+<td><code>m_SplineSet</code></td>
+<td><code>AssetObjects::SplineSet</code></td>
+</tr>
+<tr>
+<td>392 (0x188)</td>
+<td><code>m_BehaviorData</code></td>
+<td><code>AssetObjects::BehaviorData</code></td>
+</tr>
+<tr>
+<td>1200 (0x4b0)</td>
+<td><code>m_GeometrySet</code></td>
+<td><code>AssetObjects::GeometrySet</code></td>
+</tr>
+<tr>
+<td>1264 (0x4f0)</td>
+<td><code>m_ParticleEffects</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>1336 (0x538)</td>
+<td><code>m_Geometries</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>1400 (0x578)</td>
+<td><code>m_Animations</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>1464 (0x5b8)</td>
+<td><code>m_Materials</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__attachmentpoint"></a>AssetObjects::AttachmentPoint</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75dd70</code>), size 168 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_BoneName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_ModelInstanceName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>72 (0x48)</td>
+<td><code>m_CookParams</code></td>
+<td><code>AssetObjects::ValueSet</code></td>
+</tr>
+<tr>
+<td>136 (0x88)</td>
+<td><code>m_position</code></td>
+<td><code>FGXVector3</code></td>
+</tr>
+<tr>
+<td>148 (0x94)</td>
+<td><code>m_orientation</code></td>
+<td><code>FGXVector3</code></td>
+</tr>
+<tr>
+<td>160 (0xa0)</td>
+<td><code>m_scale</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__attachmentpointset"></a>AssetObjects::AttachmentPointSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75e1e0</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Points</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::AttachmentPoint&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__blpentryparameter"></a>AssetObjects::BLPEntryParameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72bfc0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_LibraryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>136 (0x88)</td>
+<td><code>m_XLPClassName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>160 (0xa0)</td>
+<td><code>m_Default</code></td>
+<td><code>AssetObjects::BLPEntryValue</code></td>
+</tr>
+<tr>
+<td>336 (0x150)</td>
+<td><code>m_bAllowNull</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__blpentryvalue"></a>AssetObjects::BLPEntryValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x710fd0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_EntryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_LibraryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_XLPClass</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_XLPPath</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>152 (0x98)</td>
+<td><code>m_BLPPackage</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__behaviorclass"></a>AssetObjects::BehaviorClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x74f580</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_AttachmentParams</code></td>
+<td><code>AssetObjects::ParameterSet</code></td>
+</tr>
+<tr>
+<td>368 (0x170)</td>
+<td><code>m_ArtDefReferences</code></td>
+<td><code>AssetObjects::AssetArtDefReference</code></td>
+</tr>
+<tr>
+<td>432 (0x1b0)</td>
+<td><code>m_AllowedAnimClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>496 (0x1f0)</td>
+<td><code>m_AllowedDSGClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>560 (0x230)</td>
+<td><code>m_AllowedGeoClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__behaviordata"></a>AssetObjects::BehaviorData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73d1e0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_behaviorDataSets</code></td>
+<td><code>AssetObjects::BehaviorDataSets</code></td>
+</tr>
+<tr>
+<td>328 (0x148)</td>
+<td><code>m_dsgName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>352 (0x160)</td>
+<td><code>m_behaviorInstances</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>416 (0x1a0)</td>
+<td><code>m_referenceGeometryNames</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__behaviordatasets"></a>AssetObjects::BehaviorDataSets</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73d590</code>), size 320 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_animationBindings</code></td>
+<td><code>AssetObjects::AnimationBindingSet</code></td>
+</tr>
+<tr>
+<td>64 (0x40)</td>
+<td><code>m_timelineBindings</code></td>
+<td><code>AssetObjects::TimelineBindingSet</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_timelines</code></td>
+<td><code>AssetObjects::TimelineSet</code></td>
+</tr>
+<tr>
+<td>192 (0xc0)</td>
+<td><code>m_attachmentPoints</code></td>
+<td><code>AssetObjects::AttachmentPointSet</code></td>
+</tr>
+<tr>
+<td>256 (0x100)</td>
+<td><code>m_stateSet</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__behaviorinstance"></a>AssetObjects::BehaviorInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73d960</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>328 (0x148)</td>
+<td><code>m_BehaviorData</code></td>
+<td><code>AssetObjects::BehaviorData</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__boolvalue"></a>AssetObjects::BoolValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7113c0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_bValue</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__classdatafile"></a>AssetObjects::ClassDataFile</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x74f980</code>), size 56 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_ID</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Extension</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_IsGenerated</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__classentity"></a>AssetObjects::ClassEntity</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x74fcc0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>152 (0x98)</td>
+<td><code>m_CookParams</code></td>
+<td><code>AssetObjects::ParameterSet</code></td>
+</tr>
+<tr>
+<td>216 (0xd8)</td>
+<td><code>m_Files</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ClassDataFile&gt;</code></td>
+</tr>
+<tr>
+<td>280 (0x118)</td>
+<td><code>m_PreviewModuleName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__classset"></a>AssetObjects::ClassSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x750000</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Classes</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::ClassEntity&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__collectionparameter"></a>AssetObjects::CollectionParameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72c650</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>232 (0xe8)</td>
+<td><code>m_eObjectType</code></td>
+<td><code>AssetObjects::InstanceType</code></td>
+</tr>
+<tr>
+<td>236 (0xec)</td>
+<td><code>m_eValueType</code></td>
+<td><code>AssetObjects::ValueType</code></td>
+</tr>
+<tr>
+<td>240 (0xf0)</td>
+<td><code>m_eParameterType</code></td>
+<td><code>AssetObjects::ParameterType</code></td>
+</tr>
+<tr>
+<td>248 (0xf8)</td>
+<td><code>m_Parameter</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::Parameter&gt;</code></td>
+</tr>
+<tr>
+<td>312 (0x138)</td>
+<td><code>m_bHasNamedEntries</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>313 (0x139)</td>
+<td><code>m_bFixedSize</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__collectionvalue"></a>AssetObjects::CollectionValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7116a0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_eObjectType</code></td>
+<td><code>AssetObjects::InstanceType</code></td>
+</tr>
+<tr>
+<td>52 (0x34)</td>
+<td><code>m_eValueType</code></td>
+<td><code>AssetObjects::ValueType</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_Values</code></td>
+<td><code>AssetObjects::Value</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__constantsegment"></a>AssetObjects::ConstantSegment</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x711a00</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_value</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__constantsegmentdefinition"></a>AssetObjects::ConstantSegmentDefinition</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x711ce0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_segment</code></td>
+<td><code>AssetObjects::ConstantSegment</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__consumerdependencydata"></a>AssetObjects::ConsumerDependencyData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7240c0</code>), size 160 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>ConsumerName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>ArtDefDependencyPaths</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>88 (0x58)</td>
+<td><code>LibraryDependencies</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>152 (0x98)</td>
+<td><code>LoadsLibraries</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__curve"></a>AssetObjects::Curve</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x712650</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_segments</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::SegmentDefinition&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__curveclass"></a>AssetObjects::CurveClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7502c0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_allowedCurveSegmentTypes</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::CurveSegmentType&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__curveparameter"></a>AssetObjects::CurveParameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72d040</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_Default</code></td>
+<td><code>AssetObjects::CurveValue</code></td>
+</tr>
+<tr>
+<td>240 (0xf0)</td>
+<td><code>m_allowedCurveClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_DomainMaxValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>308 (0x134)</td>
+<td><code>m_DomainMinValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>312 (0x138)</td>
+<td><code>m_AllowEmpty</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>313 (0x139)</td>
+<td><code>m_ClampDomain</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__curvevalue"></a>AssetObjects::CurveValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x712960</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_curveData</code></td>
+<td><code>AssetObjects::Curve</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__dsginstance"></a>AssetObjects::DSGInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73dc40</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>320 (0x140)</td>
+<td><code>m_AnimationSlots</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>384 (0x180)</td>
+<td><code>m_TimelineSlots</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__dynamicenumparameter"></a>AssetObjects::DynamicEnumParameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72d470</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_SourceProperty</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__environmentlightclass"></a>AssetObjects::EnvironmentLightClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x750830</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_ImportOptions</code></td>
+<td><code>AssetObjects::EnvironmentMapImportOptions</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__environmentlightdirectiontag"></a>AssetObjects::EnvironmentLightDirectionTag</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73df60</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_x</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>4 (0x4)</td>
+<td><code>m_y</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_z</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>12 (0xc)</td>
+<td><code>m_fDiameterInDegrees</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>16 (0x10)</td>
+<td><code>m_fAngularFalloff</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>20 (0x14)</td>
+<td><code>m_CastShadows</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Intensity</code></td>
+<td><code>FGXVector3</code></td>
+</tr>
+<tr>
+<td>40 (0x28)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__environmentlightinstance"></a>AssetObjects::EnvironmentLightInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73e400</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>384 (0x180)</td>
+<td><code>m_DirectionTags</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::EnvironmentLightDirectionTag&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__environmentmapimportoptions"></a>AssetObjects::EnvironmentMapImportOptions</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x750b10</code>), size 16 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>PixelFormat</code></td>
+<td><code>TextureExport::PixelFormat</code></td>
+</tr>
+<tr>
+<td>4 (0x4)</td>
+<td><code>AllowArtistMips</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>5 (0x5)</td>
+<td><code>RequirePow2</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>8 (0x8)</td>
+<td><code>MaxWidth</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>12 (0xc)</td>
+<td><code>MinWidth</code></td>
+<td><code>uint32</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxclass"></a>AssetObjects::FireFXClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x750ee0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_Options</code></td>
+<td><code>AssetObjects::FireFXValidationOptions</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxconfigdata"></a>AssetObjects::FireFXConfigData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xeec820</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_configs</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::IFireFXConfigElement&gt;</code></td>
+</tr>
+<tr>
+<td>72 (0x48)</td>
+<td><code>m_scripts</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxinstance"></a>AssetObjects::FireFXInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xeecf90</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>328 (0x148)</td>
+<td><code>m_dataPtr</code></td>
+<td><code>AssetObjects::IFireFXInstanceData*</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxintermediatescript"></a>AssetObjects::FireFXIntermediateScript</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf05be0</code>), size 128 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_includes</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>64 (0x40)</td>
+<td><code>m_codeChunks</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::IFireFXVisualCodeChunkData&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxscriptdata"></a>AssetObjects::FireFXScriptData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xeed270</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_script</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_isVisual</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>40 (0x28)</td>
+<td><code>m_intermediateScript</code></td>
+<td><code>AssetObjects::FireFXIntermediateScript*</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_visualScript</code></td>
+<td><code>AssetObjects::IFireFXVisualScriptData*</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualblockdatatemplate"></a>AssetObjects::FireFXVisualBlockDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf06170</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_templateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_userName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_categoryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_blockType</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_backgroundColor</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>152 (0x98)</td>
+<td><code>m_isUnique</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>156 (0x9c)</td>
+<td><code>m_injectionPriority</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td>160 (0xa0)</td>
+<td><code>m_includes</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>224 (0xe0)</td>
+<td><code>m_codeChunks</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::IFireFXVisualCodeChunkData&gt;</code></td>
+</tr>
+<tr>
+<td>288 (0x120)</td>
+<td><code>m_variables</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::IFireFXVisualVariableDataTemplate&gt;</code></td>
+</tr>
+<tr>
+<td>352 (0x160)</td>
+<td><code>m_tags</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>416 (0x1a0)</td>
+<td><code>m_requiredTypesBefore</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>480 (0x1e0)</td>
+<td><code>m_requiredTypesAnywhere</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>544 (0x220)</td>
+<td><code>m_requiredTypesAfter</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>608 (0x260)</td>
+<td><code>m_excludesTypes</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualcategorytemplate"></a>AssetObjects::FireFXVisualCategoryTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf071b0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_templateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_userName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_iconPathData</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_color</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_isHiddenByDefault</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualcodechunkdata"></a>AssetObjects::FireFXVisualCodeChunkData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf075d0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_templateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_requiredVariableName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_requiredVariableValue</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_exclusiveIdentifier</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_exclusivePriority</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_code</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualcolorvariabledata"></a>AssetObjects::FireFXVisualColorVariableData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf080a0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16 (0x10)</td>
+<td><code>m_template</code></td>
+<td><code>AssetObjects::FireFXVisualColorVariableDataTemplate*</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_rValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>28 (0x1c)</td>
+<td><code>m_gValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_bValue</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualcolorvariabledatatemplate"></a>AssetObjects::FireFXVisualColorVariableDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf08480</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>96 (0x60)</td>
+<td><code>m_minimumR</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>100 (0x64)</td>
+<td><code>m_maximumR</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_defaultRValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>108 (0x6c)</td>
+<td><code>m_minimumG</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_maximumG</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>116 (0x74)</td>
+<td><code>m_defaultGValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>m_minimumB</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>124 (0x7c)</td>
+<td><code>m_maximumB</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_defaultBValue</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualenumvariabledatatemplate"></a>AssetObjects::FireFXVisualEnumVariableDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf08d00</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>96 (0x60)</td>
+<td><code>m_choices</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>160 (0xa0)</td>
+<td><code>m_defaultValue</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualfloat3variabledatatemplate"></a>AssetObjects::FireFXVisualFloat3VariableDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf09be0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>96 (0x60)</td>
+<td><code>m_minimumX</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>100 (0x64)</td>
+<td><code>m_maximumX</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_defaultXValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>108 (0x6c)</td>
+<td><code>m_minimumY</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_maximumY</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>116 (0x74)</td>
+<td><code>m_defaultYValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>m_minimumZ</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>124 (0x7c)</td>
+<td><code>m_maximumZ</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_defaultZValue</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualfloat4variabledata"></a>AssetObjects::FireFXVisualFloat4VariableData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf0a0e0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16 (0x10)</td>
+<td><code>m_template</code></td>
+<td><code>AssetObjects::FireFXVisualFloat4VariableDataTemplate*</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_xValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>28 (0x1c)</td>
+<td><code>m_yValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_zValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>36 (0x24)</td>
+<td><code>m_wValue</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualfloat4variabledatatemplate"></a>AssetObjects::FireFXVisualFloat4VariableDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf0a500</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>96 (0x60)</td>
+<td><code>m_minimumX</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>100 (0x64)</td>
+<td><code>m_maximumX</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_defaultXValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>108 (0x6c)</td>
+<td><code>m_minimumY</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_maximumY</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>116 (0x74)</td>
+<td><code>m_defaultYValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>m_minimumZ</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>124 (0x7c)</td>
+<td><code>m_maximumZ</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_defaultZValue</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>132 (0x84)</td>
+<td><code>m_minimumW</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>136 (0x88)</td>
+<td><code>m_maximumW</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>140 (0x8c)</td>
+<td><code>m_defaultWValue</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualfloatvariabledatatemplate"></a>AssetObjects::FireFXVisualFloatVariableDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf0ae20</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>96 (0x60)</td>
+<td><code>m_minimum</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>100 (0x64)</td>
+<td><code>m_maximum</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_defaultValue</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualscriptdeserializationcache"></a>AssetObjects::FireFXVisualScriptDeserializationCache</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf0cb70</code>), size 48 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_pantryRoot</code></td>
+<td><code>m_sz</code></td>
+</tr>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_script</code></td>
+<td><code>AssetObjects::IFireFXVisualScriptData*</code></td>
+</tr>
+<tr>
+<td>16 (0x10)</td>
+<td><code>m_systemTemplate</code></td>
+<td><code>AssetObjects::IFireFXVisualSystemDataTemplate*</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_blockTemplate</code></td>
+<td><code>AssetObjects::IFireFXVisualBlockDataTemplate*</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualsystemdatatemplate"></a>AssetObjects::FireFXVisualSystemDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf0d7f0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_templateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_userName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_categoryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_backgroundColor</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_injectionPriority</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td>136 (0x88)</td>
+<td><code>m_categories</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::IFireFXVisualCategoryTemplate&gt;</code></td>
+</tr>
+<tr>
+<td>200 (0xc8)</td>
+<td><code>m_includes</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>264 (0x108)</td>
+<td><code>m_codeChunks</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::IFireFXVisualCodeChunkData&gt;</code></td>
+</tr>
+<tr>
+<td>328 (0x148)</td>
+<td><code>m_variables</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::IFireFXVisualVariableDataTemplate&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__firefxvisualvariabledatatemplate"></a>AssetObjects::FireFXVisualVariableDataTemplate</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf0e010</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_variableType</code></td>
+<td><code>AssetObjects::FireFXVisualScriptVariableType</code></td>
+</tr>
+<tr>
+<td>16 (0x10)</td>
+<td><code>m_templateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>40 (0x28)</td>
+<td><code>m_userName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>64 (0x40)</td>
+<td><code>m_description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>88 (0x58)</td>
+<td><code>m_defineInReference</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>89 (0x59)</td>
+<td><code>m_useValueAsName</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__floatvalue"></a>AssetObjects::FloatValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x712c40</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_fValue</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__gameartid"></a>AssetObjects::GameArtID</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7218c0</code>), size 56 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>id</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__gameartspecification"></a>AssetObjects::GameArtSpecification</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x721bc0</code>), size 248 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>id</code></td>
+<td><code>AssetObjects::GameArtID</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>artConsumers</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ArtConsumer&gt;</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>gameLibraries</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::GameLibrary&gt;</code></td>
+</tr>
+<tr>
+<td>184 (0xb8)</td>
+<td><code>requiredGameArtIDs</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::GameArtID&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__gamedependencydata"></a>AssetObjects::GameDependencyData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x724450</code>), size 312 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>ID</code></td>
+<td><code>AssetObjects::GameArtID</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>RequiredGameArtIDs</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::GameArtID&gt;</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>SystemDependencies</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ConsumerDependencyData&gt;</code></td>
+</tr>
+<tr>
+<td>184 (0xb8)</td>
+<td><code>ArtDefDependencies</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ArtDefDependencyData&gt;</code></td>
+</tr>
+<tr>
+<td>248 (0xf8)</td>
+<td><code>LibraryDependencies</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::LibraryData&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__gamelibrary"></a>AssetObjects::GameLibrary</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x721f50</code>), size 88 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>libraryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>relativePackagePaths</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__geomesh"></a>AssetObjects::GeoMesh</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73e6e0</code>), size 192 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_nBoundBoneCount</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>4 (0x4)</td>
+<td><code>m_nPrimitiveCount</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_nVertexCount</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>16 (0x10)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>40 (0x28)</td>
+<td><code>m_Groups</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::GeoPrimGroup&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__geoprimgroup"></a>AssetObjects::GeoPrimGroup</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73eab0</code>), size 32 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_nFirstPrim</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>28 (0x1c)</td>
+<td><code>m_nPrims</code></td>
+<td><code>uint32</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__geometryclass"></a>AssetObjects::GeometryClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x751430</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_TrigroupParams</code></td>
+<td><code>AssetObjects::ParameterSet</code></td>
+</tr>
+<tr>
+<td>368 (0x170)</td>
+<td><code>m_eExportType</code></td>
+<td><code>AssetObjects::DCCExportType</code></td>
+</tr>
+<tr>
+<td>372 (0x174)</td>
+<td><code>m_maxSkinnedBones</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>376 (0x178)</td>
+<td><code>m_minTriangleArea</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>380 (0x17c)</td>
+<td><code>m_enableDegenerateCheck</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__geometryinstance"></a>AssetObjects::GeometryInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73edf0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>384 (0x180)</td>
+<td><code>m_ModelName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>408 (0x198)</td>
+<td><code>m_Bones</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>472 (0x1d8)</td>
+<td><code>m_Meshes</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::GeoMesh&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__geometryset"></a>AssetObjects::GeometrySet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75e4a0</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_ModelInstances</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ModelInstance&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__importedentity"></a>AssetObjects::ImportedEntity</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73f170</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>320 (0x140)</td>
+<td><code>m_SourceFilePath</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>344 (0x158)</td>
+<td><code>m_SourceObjectName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>368 (0x170)</td>
+<td><code>m_ImportedTime</code></td>
+<td><code>uint64</code></td>
+</tr>
+<tr>
+<td>376 (0x178)</td>
+<td><code>m_ExportedTime</code></td>
+<td><code>uint64</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__instancedatafile"></a>AssetObjects::InstanceDataFile</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73f500</code>), size 56 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_ID</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_RelativePath</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__instanceentity"></a>AssetObjects::InstanceEntity</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73f800</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>168 (0xa8)</td>
+<td><code>m_CookParams</code></td>
+<td><code>AssetObjects::ValueSet</code></td>
+</tr>
+<tr>
+<td>232 (0xe8)</td>
+<td><code>m_ClassName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>256 (0x100)</td>
+<td><code>m_DataFiles</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::InstanceDataFile&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__instanceset"></a>AssetObjects::InstanceSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x73fb40</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Entities</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::InstanceEntity&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__intvalue"></a>AssetObjects::IntValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x712f20</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_nValue</code></td>
+<td><code>int</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__librarydata"></a>AssetObjects::LibraryData</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x724820</code>), size 88 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>LibraryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>PackageDependencies</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__lightreferencecollection"></a>AssetObjects::LightReferenceCollection</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x740320</code>), size 128 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_AnalyticLights</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::LightReference&gt;</code></td>
+</tr>
+<tr>
+<td>64 (0x40)</td>
+<td><code>m_EnvironmentLights</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::LightReference&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__lightrigclass"></a>AssetObjects::LightRigClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x751a80</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_AllowedLightClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>368 (0x170)</td>
+<td><code>m_AllowedAnimClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>432 (0x1b0)</td>
+<td><code>m_AllowedDSGClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__lightriginstance"></a>AssetObjects::LightRigInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x740620</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>320 (0x140)</td>
+<td><code>m_DSG</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>344 (0x158)</td>
+<td><code>m_AnimationSet</code></td>
+<td><code>AssetObjects::AnimationBindingSet</code></td>
+</tr>
+<tr>
+<td>416 (0x1a0)</td>
+<td><code>m_LightRefs</code></td>
+<td><code>AssetObjects::LightReferenceCollection</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__linearsegment"></a>AssetObjects::LinearSegment</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x713200</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_first</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>12 (0xc)</td>
+<td><code>m_last</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__linearsegmentdefinition"></a>AssetObjects::LinearSegmentDefinition</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x713520</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_segment</code></td>
+<td><code>AssetObjects::LinearSegment</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__materialclass"></a>AssetObjects::MaterialClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x751de0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_Options</code></td>
+<td><code>AssetObjects::MaterialValidationOptions</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__materialvalidationoptions"></a>AssetObjects::MaterialValidationOptions</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7520c0</code>), size 1 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>RequireUniformTextureSize</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__modelinstance"></a>AssetObjects::ModelInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75e760</code>), size 216 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_GeoName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_GroupStates</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::PrimGroupState&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__objectparameter"></a>AssetObjects::ObjectParameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72e440</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_eObjectType</code></td>
+<td><code>AssetObjects::InstanceType</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>m_Default</code></td>
+<td><code>AssetObjects::ObjectValue</code></td>
+</tr>
+<tr>
+<td>208 (0xd0)</td>
+<td><code>m_AllowedClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+<tr>
+<td>272 (0x110)</td>
+<td><code>m_bAllowNull</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__objectvalue"></a>AssetObjects::ObjectValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x713810</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_ObjectName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_eObjectType</code></td>
+<td><code>AssetObjects::InstanceType</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__parameter"></a>AssetObjects::Parameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72e7f0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_Description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_CustomEditor</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_CategoryName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__parameterset"></a>AssetObjects::ParameterSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72eb80</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Parameters</code></td>
+<td><code>AssetObjects::PolymorphicContainer&lt;AssetObjects::Parameter&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__particlebinding"></a>AssetObjects::ParticleBinding</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75eaa0</code>), size 56 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_SlotName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_ParticleName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__particlebindingset"></a>AssetObjects::ParticleBindingSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75eda0</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Bindings</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::ParticleBinding&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__primgroupstate"></a>AssetObjects::PrimGroupState</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75f060</code>), size 136 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_MeshName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_GroupName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_StateName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>72 (0x48)</td>
+<td><code>m_Values</code></td>
+<td><code>AssetObjects::ValueSet</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__projectconfig"></a>AssetObjects::ProjectConfig</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf15250</code>), size 240 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Classes</code></td>
+<td><code>AssetObjects::ClassSet</code></td>
+</tr>
+<tr>
+<td>88 (0x58)</td>
+<td><code>m_ArtDefTemplates</code></td>
+<td><code>AssetObjects::ArtDefTemplateSet</code></td>
+</tr>
+<tr>
+<td>152 (0x98)</td>
+<td><code>m_XLPClasses</code></td>
+<td><code>AssetObjects::XLPClassSet</code></td>
+</tr>
+<tr>
+<td>216 (0xd8)</td>
+<td><code>m_Revision</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>220 (0xdc)</td>
+<td><code>m_Version</code></td>
+<td><code>AssetObjects::VersionInfo</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__segmentdefinition"></a>AssetObjects::SegmentDefinition</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x713e90</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_begin</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__spline"></a>AssetObjects::Spline</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75f3f0</code>), size 184 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_ClassName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_CookParams</code></td>
+<td><code>AssetObjects::ValueSet</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_bClosedLoop</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>120 (0x78)</td>
+<td><code>m_Verts</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::SplineVertex&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__splineset"></a>AssetObjects::SplineSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75f7c0</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Splines</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::Spline&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__splinevertex"></a>AssetObjects::SplineVertex</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75fa80</code>), size 40 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Position</code></td>
+<td><code>FGXVector3</code></td>
+</tr>
+<tr>
+<td>12 (0xc)</td>
+<td><code>m_vLeftUserTangent</code></td>
+<td><code>FGXVector3</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_vRightUserTangent</code></td>
+<td><code>FGXVector3</code></td>
+</tr>
+<tr>
+<td>36 (0x24)</td>
+<td><code>m_bSharpCorner</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>37 (0x25)</td>
+<td><code>m_bUseUserTangents</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__stringparameter"></a>AssetObjects::StringParameter</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x72f120</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_Default</code></td>
+<td><code>AssetObjects::StringValue</code></td>
+</tr>
+<tr>
+<td>184 (0xb8)</td>
+<td><code>m_UIHints</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__stringvalue"></a>AssetObjects::StringValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x714130</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_Value</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__textureclass"></a>AssetObjects::TextureClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7528f0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>304 (0x130)</td>
+<td><code>m_Options</code></td>
+<td><code>AssetObjects::TextureExportOptions</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__textureexportoptions"></a>AssetObjects::TextureExportOptions</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x752bd0</code>), size 60 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>ExportPixelFormat</code></td>
+<td><code>TextureExport::PixelFormat</code></td>
+</tr>
+<tr>
+<td>4 (0x4)</td>
+<td><code>DefaultMipFilter</code></td>
+<td><code>TextureExport::Filter_Type</code></td>
+</tr>
+<tr>
+<td>8 (0x8)</td>
+<td><code>DefaultMipSupportScale</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>12 (0xc)</td>
+<td><code>MaxWidth</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>16 (0x10)</td>
+<td><code>MinWidth</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>20 (0x14)</td>
+<td><code>MaxHeight</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>MinHeight</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>28 (0x1c)</td>
+<td><code>MaxDepth</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>MinDepth</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>36 (0x24)</td>
+<td><code>ExportGammaIn</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>40 (0x28)</td>
+<td><code>ExportGammaOut</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>44 (0x2c)</td>
+<td><code>ExportClampMin</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>ExportClampMax</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>52 (0x34)</td>
+<td><code>AllowArtistMips</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>53 (0x35)</td>
+<td><code>RequireSquare</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>54 (0x36)</td>
+<td><code>RequirePow2</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>Type</code></td>
+<td><code>AssetObjects::TextureType</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__textureinstance"></a>AssetObjects::TextureInstance</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x740ea0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>384 (0x180)</td>
+<td><code>m_ExportSettings</code></td>
+<td><code>TextureExport::ExportSettingsParams</code></td>
+</tr>
+<tr>
+<td>452 (0x1c4)</td>
+<td><code>m_Height</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>456 (0x1c8)</td>
+<td><code>m_Width</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>460 (0x1cc)</td>
+<td><code>m_Depth</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>464 (0x1d0)</td>
+<td><code>m_NumMipMaps</code></td>
+<td><code>uint32</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__timeline"></a>AssetObjects::Timeline</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x75fe50</code>), size 216 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_Description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_AnimationName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>72 (0x48)</td>
+<td><code>m_fDuration</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_Triggers</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::Trigger&gt;</code></td>
+</tr>
+<tr>
+<td>144 (0x90)</td>
+<td><code>m_Tracks</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::Track&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__timelinebinding"></a>AssetObjects::TimelineBinding</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x760270</code>), size 56 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_SlotName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_TimelineName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__timelinebindingset"></a>AssetObjects::TimelineBindingSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x760570</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Bindings</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::TimelineBinding&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__timelineset"></a>AssetObjects::TimelineSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x760830</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Timelines</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::Timeline&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__trigger"></a>AssetObjects::Trigger</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x760df0</code>), size 144 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_eType</code></td>
+<td><code>AssetObjects::TriggerType</code></td>
+</tr>
+<tr>
+<td>8 (0x8)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>32 (0x20)</td>
+<td><code>m_FXName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>56 (0x38)</td>
+<td><code>m_CollectionName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_AttachmentPointName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>104 (0x68)</td>
+<td><code>m_Description</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>128 (0x80)</td>
+<td><code>m_fStartTime</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>132 (0x84)</td>
+<td><code>m_fDuration</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td>136 (0x88)</td>
+<td><code>m_nTrackIndex</code></td>
+<td><code>int</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__tuplevalue"></a>AssetObjects::TupleValue</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x714410</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_Elements</code></td>
+<td><code>AssetObjects::ValueSet</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__value"></a>AssetObjects::Value</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x7146f0</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_ParamName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__valueset"></a>AssetObjects::ValueSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x714990</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Values</code></td>
+<td><code>AssetObjects::Value</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__versioninfo"></a>AssetObjects::VersionInfo</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0x743be0</code>), size 16 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>major</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td>4 (0x4)</td>
+<td><code>minor</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td>8 (0x8)</td>
+<td><code>build</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td>12 (0xc)</td>
+<td><code>revision</code></td>
+<td><code>int</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__xlp"></a>AssetObjects::XLP</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf14140</code>), size 192 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_ClassName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_PackageName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_Entries</code></td>
+<td><code>AssetObjects::XLPEntry</code></td>
+</tr>
+<tr>
+<td>112 (0x70)</td>
+<td><code>m_AllowedPlatforms</code></td>
+<td><code>AssetObjects::Platforms</code></td>
+</tr>
+<tr>
+<td>176 (0xb0)</td>
+<td><code>m_Version</code></td>
+<td><code>AssetObjects::VersionInfo</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__xlpclass"></a>AssetObjects::XLPClass</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf14520</code>), size 144 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Name</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_CookModuleName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>48 (0x30)</td>
+<td><code>m_ErrorAssetName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>72 (0x48)</td>
+<td><code>m_eInstanceEntityType</code></td>
+<td><code>AssetObjects::InstanceType</code></td>
+</tr>
+<tr>
+<td>80 (0x50)</td>
+<td><code>m_AllowedClasses</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::String&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__xlpclassset"></a>AssetObjects::XLPClassSet</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf148f0</code>), size 64 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_Classes</code></td>
+<td><code>AssetObjects::Container&lt;AssetObjects::XLPClass&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="assetobjects__xlpentry"></a>AssetObjects::XLPEntry</h3>
+<p>Layout read from <code>GetTypeInfo</code> (<code>0xf14bb0</code>), size 48 bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (0x0)</td>
+<td><code>m_EntryID</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+<tr>
+<td>24 (0x18)</td>
+<td><code>m_ObjectName</code></td>
+<td><code>AssetObjects::String</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

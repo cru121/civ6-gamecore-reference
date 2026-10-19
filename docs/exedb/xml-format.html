@@ -1,0 +1,374 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Gameplay XML data format</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Database access</a> › Gameplay XML data format</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Gameplay XML data format</h1>
+<p>The XML files that fill the game databases (the <code>GameData</code>/<code>GameInfo</code> files of the base game, DLCs and mods' <code>UpdateDatabase</code> actions) are read by one loader in the exe, <code>Database::XMLSerializer</code>. This page lists the elements and attributes the loader recognises and the SQL each one produces. <strong>Verified</strong>: names and behaviour read from the decompiled loader functions (addresses in the tables); the shipped-file counts are from 1562 data XML files of the installed game (names only). The loader itself is the same for mods; which tables exist is defined by the game (see the <a href="statements.html">database statements</a> and the GameCore reference).</p>
+<p><strong>What the counts show.</strong> The shipped files use <code>Replace</code> (382553) and <code>Row</code> (115271) for almost everything, plus <code>Update</code> (1693), <code>Delete</code> (10753) and <code>InsertOrIgnore</code> (27). They define only 8 tables with <code>Table</code> elements (the three files <code>Color_Tables.xml</code>, <code>Diplomacy_Tables.xml</code> and <code>Leader_Tables.xml</code> in the <code>Assets/Gameplay/Data/Schema/</code> folder of the base game; the main schema is SQL, <code>01_GameplaySchema.sql</code> and <code>02_AddTriggers.sql</code> in the same folder); <code>Index</code>, <code>DeleteMissingReferences</code>, <code>InsertOrAbort</code> and the column attributes <code>autoincrement</code> and <code>reference</code> appear in no shipped file, so they are known only from the loader code. Column types used in shipped table definitions: <code>text</code> (31), <code>float</code> (4), <code>integer</code> (1).</p>
+<h2>Structure</h2>
+<p>An illustrative file (invented names) showing each construct:</p>
+<pre><code class="language-xml">&lt;GameData&gt;
+  &lt;Table name=&quot;MyThings&quot;&gt;
+    &lt;Column name=&quot;ThingType&quot; type=&quot;text&quot; primarykey=&quot;true&quot;/&gt;
+    &lt;Column name=&quot;Cost&quot; type=&quot;integer&quot; notnull=&quot;true&quot; default=&quot;0&quot;/&gt;
+  &lt;/Table&gt;
+  &lt;MyThings&gt;
+    &lt;Row ThingType=&quot;THING_A&quot; Cost=&quot;10&quot;/&gt;
+    &lt;Replace ThingType=&quot;THING_B&quot; Cost=&quot;20&quot;/&gt;
+    &lt;Update&gt;&lt;Where ThingType=&quot;THING_A&quot;/&gt;&lt;Set Cost=&quot;15&quot;/&gt;&lt;/Update&gt;
+    &lt;Delete ThingType=&quot;THING_B&quot;/&gt;
+  &lt;/MyThings&gt;
+&lt;/GameData&gt;
+</code></pre>
+<p>Values are given as attributes of the row element or as child elements named after the column (both forms occur in the shipped files); a column named twice is an error. For tables in the loader's package list (it keeps a list of table names) the loader adds a <code>PackageID</code> column with the id of the package being loaded to the insert (<code>PostColumnInsert</code>, <code>0x79d7b0</code>); which tables are in that list was not read out.</p>
+<h2>Root elements</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>SQL</th>
+<th>Function</th>
+<th>Shipped uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="root-gamedata"></a><code>GameData</code></td>
+<td>Root element of a gameplay data file. The three root names are accepted equally.</td>
+<td></td>
+<td><code>XMLSerializer (root dispatch)</code> (0x79d3a0)</td>
+<td>544</td>
+</tr>
+<tr>
+<td><a id="root-gameinfo"></a><code>GameInfo</code></td>
+<td>Root element, same as GameData (older style).</td>
+<td></td>
+<td><code>XMLSerializer (root dispatch)</code> (0x79d3a0)</td>
+<td>1012</td>
+</tr>
+<tr>
+<td><a id="root-database"></a><code>Database</code></td>
+<td>Root element, same as GameData.</td>
+<td></td>
+<td><code>XMLSerializer (root dispatch)</code> (0x79d3a0)</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<h2>Children of the root</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>SQL</th>
+<th>Function</th>
+<th>Shipped uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="toplevel-table"></a><code>Table</code></td>
+<td>Defines a table; its children must all be Column elements (at least one). The table name is the name attribute.</td>
+<td><code>create table &lt;name&gt; (&lt;columns&gt;, PRIMARY KEY (...), foreign key (...) references ...)</code></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>8 in 3 files</td>
+</tr>
+<tr>
+<td><a id="toplevel-index"></a><code>Index</code></td>
+<td>Creates an index; needs name and table attributes and at least one Column child with a name attribute.</td>
+<td><code>CREATE INDEX IF NOT EXISTS '&lt;name&gt;' on &lt;table&gt; (&lt;columns&gt;)</code></td>
+<td><code>IndexTable</code> (0x79bdc0)</td>
+<td>0 (not used by any shipped file)</td>
+</tr>
+<tr>
+<td><a id="toplevel-deletemissingreferences"></a><code>DeleteMissingReferences</code></td>
+<td>Cleans up rows whose foreign keys point at rows that no longer exist; the table and column attributes pick what to clean (the code reads the foreign key list of each table).</td>
+<td><code>DELETE FROM &lt;table&gt; WHERE &lt;column&gt; NOT IN (SELECT &lt;column&gt; FROM &lt;referenced table&gt;)</code></td>
+<td><code>DeleteMissingReferences</code> (0x79ab90)</td>
+<td>0 (not used by any shipped file)</td>
+</tr>
+<tr>
+<td><a id="toplevel-_any_table_name_"></a><code>(any table name)</code></td>
+<td>Any other child of the root names a table; its children are row operations (Row, Replace, InsertOrIgnore, InsertOrAbort, Update, Delete). Anything else is an error ("Row or Delete expected").</td>
+<td></td>
+<td><code>UpdateTable</code> (0x79e890)</td>
+<td>7118 in 1456 files</td>
+</tr>
+</tbody>
+</table>
+<h2>Row operations (children of a table element)</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>SQL</th>
+<th>Function</th>
+<th>Shipped uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="rowop-row"></a><code>Row</code></td>
+<td>Inserts a row. The attributes and child elements of the element are the column values.</td>
+<td><code>insert into &lt;table&gt; (&lt;columns&gt;) values (...)</code></td>
+<td><code>InsertRow</code> (0x79c380)</td>
+<td>115271 in 1256 files</td>
+</tr>
+<tr>
+<td><a id="rowop-replace"></a><code>Replace</code></td>
+<td>Inserts a row, replacing an existing row with the same key.</td>
+<td><code>insert or replace into &lt;table&gt; ...</code></td>
+<td><code>InsertRow</code> (0x79c380)</td>
+<td>382553 in 126 files</td>
+</tr>
+<tr>
+<td><a id="rowop-insertorignore"></a><code>InsertOrIgnore</code></td>
+<td>Inserts a row unless a row with the same key exists (the existing row is kept).</td>
+<td><code>insert or ignore into &lt;table&gt; ...</code></td>
+<td><code>InsertRow</code> (0x79c380)</td>
+<td>27 in 6 files</td>
+</tr>
+<tr>
+<td><a id="rowop-insertorabort"></a><code>InsertOrAbort</code></td>
+<td>Inserts a row and fails on a key conflict.</td>
+<td><code>insert or abort into &lt;table&gt; ...</code></td>
+<td><code>InsertRow</code> (0x79c380)</td>
+<td>0 (not used by any shipped file)</td>
+</tr>
+<tr>
+<td><a id="rowop-update"></a><code>Update</code></td>
+<td>Changes rows. Needs exactly one Set element (the new values) and may have one Where element (the condition; shipped files contain Update elements without Where, which then change every row). Both take attributes or child elements, conditions are joined with AND.</td>
+<td><code>UPDATE &lt;table&gt; SET &lt;col&gt; = ? ... WHERE &lt;col&gt; = ? AND ...</code></td>
+<td><code>UpdateRow</code> (0x79d930)</td>
+<td>1693 in 195 files</td>
+</tr>
+<tr>
+<td><a id="rowop-delete"></a><code>Delete</code></td>
+<td>Deletes rows; the attributes are conditions joined with AND (equality only, a column named twice is an error).</td>
+<td><code>DELETE FROM &lt;table&gt; WHERE &lt;col&gt; = ? AND ...</code></td>
+<td><code>DeleteRow</code> (0x79af50)</td>
+<td>10753 in 144 files</td>
+</tr>
+</tbody>
+</table>
+<h2>Update parts and key columns</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>SQL</th>
+<th>Function</th>
+<th>Shipped uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="child-where"></a><code>Where</code></td>
+<td>Condition of an Update (attributes or child elements, at least one, at most one Where per Update).</td>
+<td></td>
+<td><code>UpdateRow</code> (0x79d930)</td>
+<td>1656</td>
+</tr>
+<tr>
+<td><a id="child-set"></a><code>Set</code></td>
+<td>New values of an Update (attributes or child elements, at least one, exactly one Set per Update).</td>
+<td></td>
+<td><code>UpdateRow</code> (0x79d930)</td>
+<td>1693</td>
+</tr>
+<tr>
+<td><a id="child-column"></a><code>Column</code></td>
+<td>A column of a Table (or a key column of an Index).</td>
+<td></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>36</td>
+</tr>
+</tbody>
+</table>
+<h2>Column attributes (inside a Table definition)</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>SQL</th>
+<th>Function</th>
+<th>Shipped uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="colattr-name"></a><code>name</code></td>
+<td>Column name (required).</td>
+<td></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>36</td>
+</tr>
+<tr>
+<td><a id="colattr-type"></a><code>type</code></td>
+<td>SQL type name written as is into the create statement. Default when missing: integer.</td>
+<td></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>36</td>
+</tr>
+<tr>
+<td><a id="colattr-unique"></a><code>unique</code></td>
+<td>Boolean: adds "unique".</td>
+<td><code>unique</code></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>24</td>
+</tr>
+<tr>
+<td><a id="colattr-notnull"></a><code>notnull</code></td>
+<td>Boolean: adds "not null".</td>
+<td><code>not null</code></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>22</td>
+</tr>
+<tr>
+<td><a id="colattr-primarykey"></a><code>primarykey</code></td>
+<td>Boolean: the column joins the PRIMARY KEY clause (several columns make a composite key).</td>
+<td><code>PRIMARY KEY (...)</code></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>15</td>
+</tr>
+<tr>
+<td><a id="colattr-autoincrement"></a><code>autoincrement</code></td>
+<td>Boolean: with the key, writes "primary key autoincrement".</td>
+<td><code>primary key autoincrement</code></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>0 (not used by any shipped file)</td>
+</tr>
+<tr>
+<td><a id="colattr-default"></a><code>default</code></td>
+<td>Default value of the column (written as a quoted literal, or NULL when empty).</td>
+<td><code>default &lt;value&gt;</code></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a id="colattr-reference"></a><code>reference</code></td>
+<td>Foreign key: the attribute value is written after "references" in a foreign key clause (no shipped file uses it, so the accepted value form, table or table and column, is not confirmed).</td>
+<td><code>foreign key (&lt;col&gt;) references &lt;table&gt;</code></td>
+<td><code>BuildTable</code> (0x799e80)</td>
+<td>0 (not used by any shipped file)</td>
+</tr>
+</tbody>
+</table>
+<h2>Error messages of the loader</h2>
+<p>Messages the loader reports (they are also on the <a href="../exe/messages.html">messages</a> page). Every one is prefixed <code>Database::XMLSerializer (&lt;file&gt;):</code>, and a failed table update adds "In XMLSerializer while updating table T from file F." or "... building table ...".</p>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'Column' element inside of 'Index' requires 'name' attribute.</td>
+<td><code>IndexTable</code></td>
+</tr>
+<tr>
+<td>'Column' expected, got '%.*s'.</td>
+<td><code>BuildTable</code></td>
+</tr>
+<tr>
+<td>'Index' requires at least 1 child 'Column' element.</td>
+<td><code>IndexTable</code></td>
+</tr>
+<tr>
+<td>'Row' or 'Delete' expected, got '%.*s'.</td>
+<td><code>UpdateTable</code></td>
+</tr>
+<tr>
+<td>'column' attribute expected.</td>
+<td><code>DeleteMissingReferences</code></td>
+</tr>
+<tr>
+<td>'name' is a required attribute of 'Index'.</td>
+<td><code>IndexTable</code></td>
+</tr>
+<tr>
+<td>'table' attribute expected.</td>
+<td><code>DeleteMissingReferences</code></td>
+</tr>
+<tr>
+<td>'table' is a required attribute of 'Index'.</td>
+<td><code>IndexTable</code></td>
+</tr>
+<tr>
+<td><Set> Needs at least one attribute or child element.</td>
+<td><code>UpdateRow</code></td>
+</tr>
+<tr>
+<td><Update> element requires a child <Set> element.</td>
+<td><code>UpdateRow</code></td>
+</tr>
+<tr>
+<td>A database error occurred while creating an index.</td>
+<td><code>IndexTable</code></td>
+</tr>
+<tr>
+<td>Cannot parse file. Error at Line = %d, col = %d</td>
+<td><code>LoadFromMemory</code></td>
+</tr>
+<tr>
+<td>Could not determine data type for attribute. (Value: %.*s)</td>
+<td><code>UpdateRow</code></td>
+</tr>
+<tr>
+<td>Duplicate <Set> elements are not allowed.</td>
+<td><code>UpdateRow</code></td>
+</tr>
+<tr>
+<td>Duplicate <Where> elements are not allowed.</td>
+<td><code>UpdateRow</code></td>
+</tr>
+<tr>
+<td>Duplicate column names detected in <Delete>. Name: %.<em>s, Value: %.</em>s</td>
+<td><code>DeleteRow</code></td>
+</tr>
+<tr>
+<td>Duplicate column names detected in <Row>. Name: %.<em>s, Value: %.</em>s</td>
+<td><code>InsertRow</code></td>
+</tr>
+<tr>
+<td>Empty</td>
+<td><code>InsertRow</code></td>
+</tr>
+<tr>
+<td>Input XML does not contain database entry tags. GameData, GameInfo or Database</td>
+<td><code>LoadFromMemory</code></td>
+</tr>
+<tr>
+<td>Table contains no 'Column' elements.</td>
+<td><code>BuildTable</code></td>
+</tr>
+<tr>
+<td>There is a size mismatch between columns (%i) and values (%i)</td>
+<td><code>DeleteRow</code></td>
+</tr>
+<tr>
+<td>There was an error executing the delete statement! See Database.log for details.</td>
+<td><code>DeleteRow</code></td>
+</tr>
+<tr>
+<td>There was an error executing the update statement! See Database.log for details.</td>
+<td><code>UpdateRow</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -1,0 +1,347 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Landmarks artdef</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">ArtDef vocabulary</a> › Landmarks artdef</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Landmarks artdef</h1>
+<p>Artdef type <code>Landmarks</code>: 33 shipped files (<code>Landmarks.artdef</code>, <code>Landmarks_Shared.artdef</code>), 32 parameter names, 9 collection names. Back to the <a href="index.html">overview</a>.</p>
+<h2>Reading functions (inferred assignment)</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Exe address</th>
+<th>Names it uses</th>
+<th>Names found in this type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WorldView::Landmarks::LandmarkArtDefManager::Configure</code></td>
+<td>0x5c6cd0</td>
+<td>14</td>
+<td>64%</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Loading::ConfigureDistrict</code></td>
+<td>0x5b6a50</td>
+<td>25</td>
+<td>76%</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Loading::ConfigureLandmark</code></td>
+<td>0x5b90d0</td>
+<td>10</td>
+<td>80%</td>
+</tr>
+</tbody>
+</table>
+<h2>Collections</h2>
+<table>
+<thead>
+<tr>
+<th>Collection</th>
+<th>Occurrences</th>
+<th>Read by the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="c-eras"></a><code>Eras</code></td>
+<td>160</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-basevariants"></a><code>BaseVariants</code></td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-buildingsets"></a><code>BuildingSets</code></td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-buildingvariants"></a><code>BuildingVariants</code></td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-districts"></a><code>Districts</code></td>
+<td>33</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-globals"></a><code>Globals</code></td>
+<td>33</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-landmarks"></a><code>Landmarks</code></td>
+<td>33</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-resourcetags"></a><code>ResourceTags</code></td>
+<td>33</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-terraintags"></a><code>TerrainTags</code></td>
+<td>33</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2>Parameters (32)</h2>
+<details open="open">
+<summary>32 parameter names</summary>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value class</th>
+<th>Files</th>
+<th>Occurrences</th>
+<th>Read by the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="p-asset"></a><code>Asset</code></td>
+<td>BLPEntry</td>
+<td>23</td>
+<td>2263</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-priority"></a><code>Priority</code></td>
+<td>Float/Int</td>
+<td>23</td>
+<td>2263</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-selectionrule"></a><code>SelectionRule</code></td>
+<td>String</td>
+<td>23</td>
+<td>2263</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tag_appeal"></a><code>Tag_Appeal</code></td>
+<td>ArtDefReference</td>
+<td>23</td>
+<td>2263</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tag_culture"></a><code>Tag_Culture</code></td>
+<td>ArtDefReference</td>
+<td>23</td>
+<td>2263</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tag_era"></a><code>Tag_Era</code></td>
+<td>ArtDefReference</td>
+<td>23</td>
+<td>2263</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-placement"></a><code>Placement</code></td>
+<td>String</td>
+<td>15</td>
+<td>973</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-set_herobuildings"></a><code>Set_HeroBuildings</code></td>
+<td>ArtDefReference</td>
+<td>15</td>
+<td>973</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-set001"></a><code>Set001</code></td>
+<td>ArtDefReference/Collection</td>
+<td>15</td>
+<td>496</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-tag_herobuilding"></a><code>Tag_HeroBuilding</code></td>
+<td>ArtDefReference</td>
+<td>21</td>
+<td>328</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-flattenterrain"></a><code>FlattenTerrain</code></td>
+<td>Bool</td>
+<td>23</td>
+<td>236</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-set"></a><code>Set</code></td>
+<td>ArtDefReference/Collection</td>
+<td>13</td>
+<td>226</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-set002"></a><code>Set002</code></td>
+<td>ArtDefReference</td>
+<td>14</td>
+<td>185</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-rotationtype"></a><code>RotationType</code></td>
+<td>String</td>
+<td>18</td>
+<td>158</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-set003"></a><code>Set003</code></td>
+<td>ArtDefReference</td>
+<td>14</td>
+<td>124</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-districtdamagepillagesbuildings"></a><code>DistrictDamagePillagesBuildings</code></td>
+<td>Bool</td>
+<td>21</td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-districtgenerator"></a><code>DistrictGenerator</code></td>
+<td>ArtDefReference</td>
+<td>21</td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-isalignedtocoast"></a><code>IsAlignedToCoast</code></td>
+<td>Bool</td>
+<td>21</td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-proceduralplacementmode"></a><code>ProceduralPlacementMode</code></td>
+<td>String</td>
+<td>21</td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tintcolor"></a><code>TintColor</code></td>
+<td>RGB</td>
+<td>21</td>
+<td>78</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-busecityscale"></a><code>bUseCityScale</code></td>
+<td>Bool</td>
+<td>21</td>
+<td>78</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-set_1"></a><code>Set_1</code></td>
+<td>ArtDefReference</td>
+<td>5</td>
+<td>65</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-set_2"></a><code>Set_2</code></td>
+<td>ArtDefReference</td>
+<td>4</td>
+<td>37</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-asset_attachmentbaseerror"></a><code>Asset_AttachmentBaseError</code></td>
+<td>BLPEntry</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-asset_herobuildingerror"></a><code>Asset_HeroBuildingError</code></td>
+<td>BLPEntry</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-asset_subattachmentbaseerror"></a><code>Asset_SubAttachmentBaseError</code></td>
+<td>BLPEntry</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-set_1_2"></a><code>Set_1_2</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>1</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-this_space_intentionally_left_blank"></a><code>THIS SPACE INTENTIONALLY LEFT BLANK</code></td>
+<td>String</td>
+<td>1</td>
+<td>1</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-var_buildingstateinfluencerange"></a><code>Var_BuildingStateInfluenceRange</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-var_cityscale"></a><code>Var_CityScale</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-var_ignoreunknownbuildings"></a><code>Var_IgnoreUnknownBuildings</code></td>
+<td>Bool</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-var_terrainflattening"></a><code>Var_TerrainFlattening</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>Names the exe uses that no shipped file contains (12)</h2>
+<p>Strings of the assigned functions that are not collection or parameter names in any shipped file of this type: optional or unused parameters, enum-like values, file names or messages. Not every entry is an artdef name.</p>
+<p><code>AffectsDistrictBuildingSet</code>, <code>Anywhere and everywhere.</code>, <code>AttachmentPointName</code>, <code>Building</code>, <code>Change one of these strings. Or complain to a programmer.</code>, <code>CityGenerators</code>, <code>Generator</code>, <code>GroundingMaterials</code>, <code>SelectionScript</code>, <code>TerrainFollowMode</code>, <code>UsesDecalMaterialOverrides</code>, <code>mquickel</code></p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

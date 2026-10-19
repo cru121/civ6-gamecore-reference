@@ -1,0 +1,27 @@
+# Command-line switches of CivilizationVI.exe (hand-curated from string references + disassembly; see findings/topics/exe-command-line.md).
+# status: verified = literal string and the function using it were seen; the "effect" text is inferred from the function name unless noted.
+switches:
+  - {switch: "-NoAsserts", function: "Civ6App::SetupErrorHandling", rva: "0x721f0", effect: "Disable assertion popups, call stacks, logging and bug collection (one switch per aspect, see the -NoAssert* family).", status: inferred}
+  - {switch: "-NoAssertPopups", function: "Civ6App::SetupErrorHandling", rva: "0x721f0", effect: "Suppress assertion popups.", status: inferred}
+  - {switch: "-NoAssertCallstack", function: "Civ6App::SetupErrorHandling", rva: "0x721f0", effect: "Do not record call stacks for assertions.", status: inferred}
+  - {switch: "-NoAssertLogging", function: "Civ6App::SetupErrorHandling", rva: "0x721f0", effect: "Do not log assertions.", status: inferred}
+  - {switch: "-NoAssertCollection", function: "Civ6App::SetupErrorHandling", rva: "0x721f0", effect: "Do not collect assertion data for bug reports.", status: inferred}
+  - {switch: "-NoAssertAnything", function: "Civ6App::SetupErrorHandling", rva: "0x721f0", effect: "Switch off all assertion handling.", status: inferred}
+  - {switch: "-FullDump", function: "Civ6App::SetupErrorHandling", rva: "0x721f0", effect: "Write full crash dumps.", status: inferred}
+  - {switch: "-autoscript", function: "App::Automation::Manager::Startup", rva: "0x29c060", effect: "Automation harness: script to run (Lua Automation interface).", status: inferred}
+  - {switch: "-autoparams", function: "App::Automation::Manager::Startup", rva: "0x29c060", effect: "Automation harness: parameters.", status: inferred}
+  - {switch: "-autojson", function: "App::Automation::Manager::Startup", rva: "0x29c060", effect: "Automation harness: JSON output.", status: inferred}
+  - {switch: "-benchmark", function: "BenchmarkSystem::ParseArguments", rva: "0x560b0", effect: "Run the benchmark mode.", status: inferred}
+  - {switch: "-gameviewscript", function: "GameViewState::SetFromCommandLine", rva: "0x7ec80", effect: "Run a script in the game view.", status: inferred}
+  - {switch: "-PlatformContent", function: "App::ContentPath::Local::SetupCommandLineOverrides", rva: "0x2ea70", effect: "Content path override.", status: inferred}
+  - {switch: "-appFolder=", function: "AppHost::StartBugHelper", rva: "0x709c90", effect: "Passes the application folder to the bug-report helper process.", status: inferred}
+  - {switch: "--rail_connect_to_railid=", function: "Network::Manager::SetupFromCommandLine", rva: "0x290db0", effect: "Rail platform (not Steam) join-by-invite argument.", status: inferred}
+  - {switch: "--rail_connect_cmd=", function: "Network::Manager::SetupFromCommandLine", rva: "0x290db0", effect: "Rail platform (not Steam) join-by-invite argument.", status: inferred}
+generic:
+  switch: "-<OptionKey> <integer>"
+  function: "AppHost::OptionSet::SetFromCommandLine"
+  rva: null
+  linux_va: "0x42b6820"
+  effect: "Any registered integer AppOptions key can be overridden for one launch, for example `-EnableTuner 1`. The argument after the dash is hashed (the key name only, not the section); if it names an integer option, the next argument is parsed as the number. String and floating-point options are skipped. The override is not written back to AppOptions.txt."
+  status: inferred
+  evidence_note: "Disassembly of the Linux build (verified there); the Windows copy is unmapped, and the behaviour has not been tested in game."

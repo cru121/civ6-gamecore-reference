@@ -1,0 +1,9 @@
+# ArtDef vocabulary read by the exe
+
+Source: strings referenced by the exe's `ConfigureFromArtDefs`, `LoadFromArtDef`, `InitFromArtDef` and Landmarks loading functions (66 functions, serialization classes of the format excluded), matched against the collection and parameter names (`m_CollectionName`, `m_ParamName`) of the 584 shipped `.artdef` files (base game + DLC, 47 template types; names, value classes and counts only). Reference: `docs_proto/docs/exeart/`, data `docs_proto/data/exe_artdefs.json`, `exe_artdef_consumers.json`.
+
+- Artdef value classes in the shipped files: ArtDefReference (36.5k occurrences), Float (22k), Bool (18k), BLPEntry (15.5k), String (12.5k), Int (9k), Coord2D (6k), RGB (1.6k), Collection (0.9k), Coord3D (18).
+- Types are grouped by the template name inside the file (`Units` covers `Units`, `Unit_Bins`, `Units_Great_People`; `TimeOfDay` covers `GameLighting` and `Lighting`; `TerrainMaterialSet` = `TerrainStyle.artdef`; `FOWConfig` = `FOW.artdef`; `DynamicGeo` = `Walls.artdef`; `WaterSettings` = `Water.artdef`).
+- Largest vocabularies: Units (185 parameters), TerrainMaterialSet (about 127), FOWConfig (51), Overlay (45), StrategicView (37, plus 15 in a DLC file named `StrateicView.artdef`, a typo in the shipped file name).
+- Consumer to type assignment is **Inferred** (name overlap of at least 50 percent and 0.1 ahead of the second best): 53 of 66 assigned, e.g. `CameraSystem` -> Camera (89 percent), `CoastlineWaves::System` -> WaveSettings (100 percent), `FOWSystem` -> FOWConfig (96 percent), `Simulation::Unit::ArtDefinitions` -> Units (97 percent). Unassigned: cross-reference consumers (`XRefArtDefConsumer`, `XRefArtDefTranslator`, `AudioMiner`) and tiny helpers.
+- Limits: a name the assigned functions do not use may be read by another function or shared helper (camera curve keyframe fields `Time`, `FOV`, `Tilt`), so "not read" is a hint, not proof; what the exe does with an unknown name was not tested.

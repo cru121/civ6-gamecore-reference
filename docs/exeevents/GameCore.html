@@ -1,0 +1,2598 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>GameCore bus</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine events</a> › GameCore bus</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>GameCore bus</h1>
+<p>Events from GameCore (the game rules library), translated by the exe and delivered to the UI, renderer, audio and telemetry systems.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Id</th>
+<th>Lua event</th>
+<th>Data type</th>
+<th>Translator (Windows)</th>
+<th>Handlers in the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="2"></a><code>LOCAL_PLAYER_END_TURN_BLOCKING_CHANGED</code></td>
+<td>2</td>
+<td>—</td>
+<td>GameCoreEvent::EndTurnBlockingChanged_EventData</td>
+<td><code>EndTurnBlockingChanged</code></td>
+<td>UI::Manager</td>
+</tr>
+<tr>
+<td><a id="3"></a><code>PRE_TURN_BEGIN</code></td>
+<td>3</td>
+<td><code>PreTurnBegin</code></td>
+<td>GameCoreEvent::TurnState_EventData</td>
+<td><code>PreTurnBegin</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="4"></a><code>TURN_BEGIN</code></td>
+<td>4</td>
+<td><code>TurnBegin</code></td>
+<td>GameCoreEvent::TurnState_EventData</td>
+<td><code>TurnBegin</code></td>
+<td>Telemetry::Listener (0x187be0); GameCoreController</td>
+</tr>
+<tr>
+<td><a id="5"></a><code>TURN_END</code></td>
+<td>5</td>
+<td><code>TurnEnd</code></td>
+<td>GameCoreEvent::TurnState_EventData</td>
+<td><code>TurnEnd</code></td>
+<td>Telemetry::Listener (0x183940); GameCoreController</td>
+</tr>
+<tr>
+<td><a id="6"></a><code>PHASE_BEGIN</code></td>
+<td>6</td>
+<td><code>PhaseBegin</code></td>
+<td>GameCoreEvent::PhaseState_EventData</td>
+<td><code>PhaseBegin</code></td>
+<td>GameCoreController</td>
+</tr>
+<tr>
+<td><a id="7"></a><code>PHASE_END</code></td>
+<td>7</td>
+<td><code>PhaseEnd</code></td>
+<td>GameCoreEvent::PhaseState_EventData</td>
+<td><code>PhaseEnd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="8"></a><code>LOCAL_PLAYER_TURN_BEGIN</code></td>
+<td>8</td>
+<td><code>LocalPlayerTurnBegin</code></td>
+<td>none</td>
+<td><code>LocalPlayerTurnBegin</code></td>
+<td>AmbientAudio (0x8c320); GameCoreController; StrategicAudio; UI event dispatcher</td>
+</tr>
+<tr>
+<td><a id="9"></a><code>LOCAL_PLAYER_TURN_END</code></td>
+<td>9</td>
+<td><code>LocalPlayerTurnEnd</code></td>
+<td>none</td>
+<td><code>LocalPlayerTurnEnd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="10"></a><code>LOCAL_PLAYER_TURN_UNREADY</code></td>
+<td>10</td>
+<td><code>LocalPlayerTurnUnready</code></td>
+<td>none</td>
+<td><code>LocalPlayerTurnUnready</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="11"></a><code>REMOTE_PLAYER_TURN_BEGIN</code></td>
+<td>11</td>
+<td><code>RemotePlayerTurnBegin</code></td>
+<td>GameCoreEvent::RemotePlayerTurnState_EventData</td>
+<td><code>RemotePlayerTurnBegin</code></td>
+<td>GameCoreController (0xf5ae0)</td>
+</tr>
+<tr>
+<td><a id="12"></a><code>REMOTE_PLAYER_TURN_END</code></td>
+<td>12</td>
+<td><code>RemotePlayerTurnEnd</code></td>
+<td>GameCoreEvent::RemotePlayerTurnState_EventData</td>
+<td><code>RemotePlayerTurnEnd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="13"></a><code>REMOTE_PLAYER_TURN_UNREADY</code></td>
+<td>13</td>
+<td><code>RemotePlayerTurnUnready</code></td>
+<td>GameCoreEvent::RemotePlayerTurnState_EventData</td>
+<td><code>RemotePlayerTurnUnready</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="14"></a><code>PLAYER_DEFEAT</code></td>
+<td>14</td>
+<td><code>PlayerDefeat</code></td>
+<td>GameCoreEvent::PlayerDefeat_EventData</td>
+<td><code>PlayerDefeat</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="15"></a><code>PLAYER_TURN_ACTIVATED</code></td>
+<td>15</td>
+<td><code>PlayerTurnActivated</code></td>
+<td>GameCoreEvent::PlayerTurnActivated_EventData</td>
+<td><code>PlayerTurnActivated</code></td>
+<td>BenchmarkSystem; UI::Manager; GameCoreController; Network::Manager</td>
+</tr>
+<tr>
+<td><a id="16"></a><code>PLAYER_TURN_DEACTIVATED</code></td>
+<td>16</td>
+<td><code>PlayerTurnDeactivated</code></td>
+<td>GameCoreEvent::PlayerTurnDeactivated_EventData</td>
+<td><code>PlayerTurnDeactivated</code></td>
+<td>UI::Manager; GameCoreController</td>
+</tr>
+<tr>
+<td><a id="17"></a><code>PLAYER_TURN_COMPLETE_IGNORED</code></td>
+<td>17</td>
+<td><code>PlayerTurnCompleteIgnored</code></td>
+<td>GenericData</td>
+<td><code>PlayerTurnCompleteIgnored</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="18"></a><code>TEAM_VICTORY</code></td>
+<td>18</td>
+<td><code>TeamVictory</code></td>
+<td>GameCoreEvent::TeamVictory_EventData</td>
+<td><code>TeamVictory</code></td>
+<td>Telemetry::Listener (0x1868d0); Network::Manager (0x289470)</td>
+</tr>
+<tr>
+<td><a id="19"></a><code>PLAYER_RESTORED</code></td>
+<td>19</td>
+<td><code>PlayerRestored</code></td>
+<td>GameCoreEvent::PlayerRestored_EventData</td>
+<td><code>PlayerRestored</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="20"></a><code>PLAYER_INTRODUCED</code></td>
+<td>20</td>
+<td><code>PlayerIntroduced</code></td>
+<td>GameCoreEvent::PlayerIntroduced_EventData</td>
+<td><code>PlayerIntroduced</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="21"></a><code>OBJECT_PAIRING</code></td>
+<td>21</td>
+<td><code>ObjectPairing</code></td>
+<td>GameCoreEvent::ObjectPairing_EventData</td>
+<td><code>ObjectPairing</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="22"></a><code>UNIT_TELEPORTED</code></td>
+<td>22</td>
+<td><code>UnitTeleported</code></td>
+<td>GameCoreEvent::UnitAndPosition_EventData</td>
+<td><code>UnitTeleported</code></td>
+<td>Manager</td>
+</tr>
+<tr>
+<td><a id="23"></a><code>UNIT_MOVED</code></td>
+<td>23</td>
+<td><code>UnitMoved</code></td>
+<td>GameCoreEvent::UnitMoved_EventData</td>
+<td><code>UnitMoved</code> (0x1578b0)</td>
+<td>Manager; StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="24"></a><code>UNIT_MOVE_COMPLETE</code></td>
+<td>24</td>
+<td><code>UnitMoveComplete</code></td>
+<td>GameCoreEvent::UnitMoveComplete_EventData</td>
+<td><code>UnitMoveComplete</code></td>
+<td>Minimap_Startup; Manager; StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="25"></a><code>UNIT_MOVEMENT_POINTS_CHANGED</code></td>
+<td>25</td>
+<td><code>UnitMovementPointsChanged</code></td>
+<td>GameCoreEvent::UnitMovementPointsChanged_EventData</td>
+<td><code>UnitMovementPointsChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="26"></a><code>UNIT_MOVEMENT_POINTS_CLEARED</code></td>
+<td>26</td>
+<td><code>UnitMovementPointsCleared</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitMovementPointsCleared</code></td>
+<td>UI::Manager</td>
+</tr>
+<tr>
+<td><a id="27"></a><code>UNIT_MOVEMENT_POINTS_RESTORED</code></td>
+<td>27</td>
+<td><code>UnitMovementPointsRestored</code></td>
+<td>GameCoreEvent::UnitMovementPointsChanged_EventData</td>
+<td><code>UnitMovementPointsRestored</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="28"></a><code>UNIT_ADDED_TO_MAP</code></td>
+<td>28</td>
+<td><code>UnitAddedToMap</code></td>
+<td>GameCoreEvent::UnitAddedToMap_EventData</td>
+<td><code>UnitAddedToMap</code></td>
+<td>UI::Manager; Manager; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="29"></a><code>UNIT_REMOVED_FROM_MAP</code></td>
+<td>29</td>
+<td><code>UnitRemovedFromMap</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitRemovedFromMap</code></td>
+<td>AudioMiner; UI::Manager; Manager; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="30"></a><code>UNIT_KILLED_IN_COMBAT</code></td>
+<td>30</td>
+<td><code>UnitKilledInCombat</code></td>
+<td>GameCoreEvent::UnitKilledInCombat_EventData</td>
+<td><code>UnitKilledInCombat</code></td>
+<td>StrategicAudio (0x9dd20)</td>
+</tr>
+<tr>
+<td><a id="31"></a><code>UNIT_KILLED_BY_FALLOUT</code></td>
+<td>31</td>
+<td><code>UnitKilledByFallout</code></td>
+<td>GameCoreEvent::UnitKilledByFallout_EventData</td>
+<td><code>UnitKilledByFallout</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="32"></a><code>UNIT_KILLED_LIFESPAN_EXPIRED</code></td>
+<td>32</td>
+<td><code>UnitKilledLifespanExpired</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitKilledLifespanExpired</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="33"></a><code>UNIT_DAMAGE_CHANGED</code></td>
+<td>33</td>
+<td><code>UnitDamageChanged</code></td>
+<td>GameCoreEvent::UnitDamageChanged_EventData</td>
+<td><code>UnitDamageChanged</code></td>
+<td>WorldView (3D map renderer) (0x547a70)</td>
+</tr>
+<tr>
+<td><a id="34"></a><code>UNIT_ARTIFACT_CHANGED</code></td>
+<td>34</td>
+<td><code>UnitArtifactChanged</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitArtifactChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="35"></a><code>UNIT_ACTIVITY_CHANGED</code></td>
+<td>35</td>
+<td><code>UnitActivityChanged</code></td>
+<td>GameCoreEvent::UnitActivityChanged_EventData</td>
+<td><code>UnitActivityChanged</code> (0x154a30)</td>
+<td>UI::Manager (0x1b78c0); Manager</td>
+</tr>
+<tr>
+<td><a id="36"></a><code>UNIT_VISIBILITY_CHANGED</code></td>
+<td>36</td>
+<td><code>UnitVisibilityChanged</code></td>
+<td>GameCoreEvent::UnitVisibilityChanged_EventData</td>
+<td><code>UnitVisibilityChanged</code></td>
+<td>Manager; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="37"></a><code>UNIT_CAPTURED</code></td>
+<td>37</td>
+<td><code>UnitCaptured</code></td>
+<td>GameCoreEvent::UnitCaptured_EventData</td>
+<td><code>UnitCaptured</code></td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="38"></a><code>UNIT_ENTER_FORMATION</code></td>
+<td>38</td>
+<td><code>UnitEnterFormation</code></td>
+<td>GameCoreEvent::Unit_Formation_EventData</td>
+<td><code>UnitEnterFormation</code></td>
+<td>Telemetry::Listener (0x188230); StrategicAudio; WorldView (3D map renderer) (0x547c80)</td>
+</tr>
+<tr>
+<td><a id="39"></a><code>UNIT_EXIT_FORMATION / UNIT_FORMATION_CHANGED</code></td>
+<td>39</td>
+<td><code>UnitExitFormation</code>, <code>UnitFormationChanged</code></td>
+<td>GameCoreEvent::Unit_Formation_EventData</td>
+<td><code>UnitExitFormation</code> , <code>UnitFormationChanged</code></td>
+<td>StrategicAudio; WorldView (3D map renderer) (0x547cd0)</td>
+</tr>
+<tr>
+<td><a id="41"></a><code>UNIT_FORM_CORPS</code></td>
+<td>41</td>
+<td><code>UnitFormCorps</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitFormCorps</code></td>
+<td>StrategicAudio; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="42"></a><code>UNIT_FORM_ARMY</code></td>
+<td>42</td>
+<td><code>UnitFormArmy</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitFormArmy</code></td>
+<td>StrategicAudio; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="43"></a><code>UNIT_FORTIFICATION_CHANGED</code></td>
+<td>43</td>
+<td><code>UnitFortificationChanged</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitFortificationChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="44"></a><code>UNIT_EMBARK_CHANGED</code></td>
+<td>44</td>
+<td>—</td>
+<td>GameCoreEvent::UnitEmbarkedState_EventData</td>
+<td><code>UnitEmbarkStateChanged</code></td>
+<td>Manager; StrategicAudio (0x9d900)</td>
+</tr>
+<tr>
+<td><a id="45"></a><code>UNIT_PROMOTED</code></td>
+<td>45</td>
+<td><code>UnitPromoted</code></td>
+<td>GameCoreEvent::UnitPromoted_EventData</td>
+<td><code>UnitPromoted</code></td>
+<td>Telemetry::Listener (0x188570); StrategicAudio; WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="46"></a><code>UNIT_CHARGES_CHANGED</code></td>
+<td>46</td>
+<td><code>UnitChargesChanged</code></td>
+<td>GameCoreEvent::UnitChargesChanged_EventData</td>
+<td><code>UnitChargesChanged</code></td>
+<td>WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="47"></a><code>UNIT_UPGRADED</code></td>
+<td>47</td>
+<td><code>UnitUpgraded</code></td>
+<td>GameCoreEvent::UnitUpgraded_EventData</td>
+<td><code>UnitUpgraded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="48"></a><code>UNIT_AIRLIFTED</code></td>
+<td>48</td>
+<td><code>UnitAirlifted</code></td>
+<td>GameCoreEvent::UnitAirlifted_EventData</td>
+<td><code>UnitAirlifted</code></td>
+<td>StrategicAudio (0x9d410)</td>
+</tr>
+<tr>
+<td><a id="49"></a><code>UNIT_PARADROPPED</code></td>
+<td>49</td>
+<td><code>UnitParadropped</code></td>
+<td>GameCoreEvent::UnitAirlifted_EventData</td>
+<td><code>UnitParadropped</code></td>
+<td>WorldView (3D map renderer) (0x5485c0)</td>
+</tr>
+<tr>
+<td><a id="50"></a><code>UNIT_SACRIFICED</code></td>
+<td>50</td>
+<td>—</td>
+<td>GameCoreEvent::UnitSacrificed_EventData</td>
+<td><code>UnitSacrificed</code></td>
+<td>WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="51"></a><code>UNIT_HERO_ACTIVATED</code></td>
+<td>51</td>
+<td>—</td>
+<td>GameCoreEvent::UnitHeroActivated_EventData</td>
+<td><code>UnitHeroActivated</code></td>
+<td>WorldView (3D map renderer) (0x5481a0)</td>
+</tr>
+<tr>
+<td><a id="52"></a><code>UNIT_CREATE_RANDOM_RESOURCE</code></td>
+<td>52</td>
+<td>—</td>
+<td>GameCoreEvent::UnitCreateResource_EventData</td>
+<td><code>UnitCreateResource</code></td>
+<td>WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="53"></a><code>UNIT_RESOURCE_INSPIRE</code></td>
+<td>53</td>
+<td>—</td>
+<td>GameCoreEvent::UnitResourceInspire_EventData</td>
+<td><code>UnitResourceInspire</code></td>
+<td>WorldView (3D map renderer) (0x548b10)</td>
+</tr>
+<tr>
+<td><a id="54"></a><code>UNIT_KILL_WEAKER_UNIT</code></td>
+<td>54</td>
+<td>—</td>
+<td>GameCoreEvent::UnitKillWeakerUnit_EventData</td>
+<td><code>UnitKillWeakerUnit</code></td>
+<td>WorldView (3D map renderer) (0x548350)</td>
+</tr>
+<tr>
+<td><a id="55"></a><code>UNIT_DESTROY_DEVELOPMENT</code></td>
+<td>55</td>
+<td>—</td>
+<td>GameCoreEvent::UnitDestroyDevelopment_EventData</td>
+<td><code>UnitDestroyDevelopment</code></td>
+<td>WorldView (3D map renderer) (0x547ac0)</td>
+</tr>
+<tr>
+<td><a id="56"></a><code>UNIT_FORCE_LEVY_MILITARY</code></td>
+<td>56</td>
+<td>—</td>
+<td>GameCoreEvent::UnitForceLevyMilitary_EventData</td>
+<td><code>UnitForceLevyMilitary</code></td>
+<td>WorldView (3D map renderer) (0x547d20)</td>
+</tr>
+<tr>
+<td><a id="57"></a><code>UNIT_GRANT_ENVOY</code></td>
+<td>57</td>
+<td>—</td>
+<td>GameCoreEvent::UnitGrantEnvoy_EventData</td>
+<td><code>UnitGrantEnvoy</code></td>
+<td>WorldView (3D map renderer) (0x547fe0)</td>
+</tr>
+<tr>
+<td><a id="58"></a><code>UNIT_NAVAL_GOLD_RAID</code></td>
+<td>58</td>
+<td>—</td>
+<td>GameCoreEvent::UnitNavalGoldRaid_EventData</td>
+<td><code>UnitNavalGoldRaid</code></td>
+<td>WorldView (3D map renderer) (0x5483e0)</td>
+</tr>
+<tr>
+<td><a id="59"></a><code>UNIT_RESTORE_UNIT_MOVES</code></td>
+<td>59</td>
+<td>—</td>
+<td>GameCoreEvent::UnitRestoreMovement_EventData</td>
+<td><code>UnitRestoreMovement</code></td>
+<td>WorldView (3D map renderer) (0x5479e0)</td>
+</tr>
+<tr>
+<td><a id="60"></a><code>UNIT_AREA_DAMAGE</code></td>
+<td>60</td>
+<td>—</td>
+<td>GameCoreEvent::UnitAreaDamage_EventData</td>
+<td><code>UnitAreaDamage</code></td>
+<td>WorldView (3D map renderer) (0x547910)</td>
+</tr>
+<tr>
+<td><a id="61"></a><code>UNIT_AREA_HEAL</code></td>
+<td>61</td>
+<td>—</td>
+<td>GameCoreEvent::UnitAreaHeal_EventData</td>
+<td><code>UnitAreaHeal</code></td>
+<td>WorldView (3D map renderer) (0x547860)</td>
+</tr>
+<tr>
+<td><a id="62"></a><code>UNIT_TOURISM_BOMB</code></td>
+<td>62</td>
+<td><code>UnitTourismBomb</code></td>
+<td>GameCoreEvent::UnitTourismBomb_EventData</td>
+<td><code>UnitTourismBomb</code></td>
+<td>WorldView (3D map renderer) (0x96f20)</td>
+</tr>
+<tr>
+<td><a id="63"></a><code>POST_TOURISM_BOMB</code></td>
+<td>63</td>
+<td><code>PostTourismBomb</code></td>
+<td>GameCoreEvent::PostTourismBomb_EventData</td>
+<td><code>PostTourismBomb</code></td>
+<td>StrategicAudio (0x9ce30)</td>
+</tr>
+<tr>
+<td><a id="64"></a><code>POST_TOURISM_BOMB</code></td>
+<td>64</td>
+<td><code>PostTourismBomb</code></td>
+<td>GameCoreEvent::PostTourismBomb_EventData</td>
+<td><code>PostTourismBomb</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="65"></a><code>UNIT_ABILITY_GAINED</code></td>
+<td>65</td>
+<td><code>UnitAbilityGained</code></td>
+<td>GameCoreEvent::UnitAbilityGained_EventData</td>
+<td><code>UnitAbilityGained</code></td>
+<td>StrategicAudio (0x9d090); WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="66"></a><code>UNIT_ABILITY_LOST</code></td>
+<td>66</td>
+<td><code>UnitAbilityLost</code></td>
+<td>GameCoreEvent::UnitAbilityLost_EventData</td>
+<td><code>UnitAbilityLost</code></td>
+<td>StrategicAudio (0x9d1c0); WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="67"></a><code>UNIT_OPERATION_ADDED</code></td>
+<td>67</td>
+<td><code>UnitOperationAdded</code></td>
+<td>GameCoreEvent::UnitOperation_EventData</td>
+<td><code>UnitOperationAdded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="68"></a><code>UNIT_OPERATION_STARTED</code></td>
+<td>68</td>
+<td><code>UnitOperationStarted</code></td>
+<td>GameCoreEvent::UnitOperation_EventData</td>
+<td><code>UnitOperationStarted</code></td>
+<td>StrategicAudio (0x9e250)</td>
+</tr>
+<tr>
+<td><a id="69"></a><code>UNIT_OPERATION_SEGMENT_COMPLETE</code></td>
+<td>69</td>
+<td><code>UnitOperationSegmentComplete</code></td>
+<td>GameCoreEvent::UnitOperation_EventData</td>
+<td><code>UnitOperationSegmentComplete</code></td>
+<td>UI::Manager</td>
+</tr>
+<tr>
+<td><a id="70"></a><code>UNIT_OPERATION_DEACTIVATED</code></td>
+<td>70</td>
+<td><code>UnitOperationDeactivated</code></td>
+<td>GameCoreEvent::UnitOperation_EventData</td>
+<td><code>UnitOperationDeactivated</code></td>
+<td>UI::Manager</td>
+</tr>
+<tr>
+<td><a id="71"></a><code>UNIT_OPERATIONS_CLEARED</code></td>
+<td>71</td>
+<td><code>UnitOperationsCleared</code></td>
+<td>GameCoreEvent::UnitOperation_EventData</td>
+<td><code>UnitOperationsCleared</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="72"></a><code>UNIT_COMMAND_STARTED</code></td>
+<td>72</td>
+<td><code>UnitCommandStarted</code></td>
+<td>GameCoreEvent::UnitCommand_EventData</td>
+<td><code>UnitCommandStarted</code></td>
+<td>StrategicAudio (0x9d4f0)</td>
+</tr>
+<tr>
+<td><a id="73"></a><code>UNIT_ACTIVATE</code></td>
+<td>73</td>
+<td><code>UnitActivate</code></td>
+<td>GameCoreEvent::UnitActivate_EventData</td>
+<td><code>UnitActivate</code></td>
+<td>StrategicAudio (0x9d2e0); WorldView (3D map renderer) (0x547390)</td>
+</tr>
+<tr>
+<td><a id="74"></a><code>UNIT_EXPERIENCE_CHANGED</code></td>
+<td>74</td>
+<td><code>UnitExperienceChanged</code></td>
+<td>GameCoreEvent::UnitPromoted_EventData</td>
+<td><code>UnitExperienceChanged</code> (0x1561b0)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="75"></a><code>UNIT_GREATPERSON_CREATED</code></td>
+<td>75</td>
+<td><code>UnitGreatPersonCreated</code></td>
+<td>GameCoreEvent::UnitGreatPerson_EventData</td>
+<td><code>UnitGreatPersonCreated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="76"></a><code>UNIT_GREATPERSON_CHANGED</code></td>
+<td>76</td>
+<td><code>UnitGreatPersonChanged</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitGreatPersonChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="77"></a><code>UNIT_GREATPERSON_ACTIVATED</code></td>
+<td>77</td>
+<td><code>UnitGreatPersonActivated</code></td>
+<td>GameCoreEvent::UnitGreatPerson_EventData</td>
+<td><code>UnitGreatPersonActivated</code></td>
+<td>WorldView (3D map renderer) (0x548070)</td>
+</tr>
+<tr>
+<td><a id="78"></a><code>UNIT_TRADE_CHANGED</code></td>
+<td>78</td>
+<td><code>UnitTradeChanged</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitTradeChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="79"></a><code>UNIT_EXPERIENCE_CHANGED</code></td>
+<td>79</td>
+<td><code>UnitExperienceChanged</code></td>
+<td>GameCoreEvent::UnitPromoted_EventData</td>
+<td><code>UnitExperienceChanged</code> (0x1561b0)</td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="80"></a><code>UNIT_PROPERTY_CHANGED</code></td>
+<td>80</td>
+<td><code>UnitPropertyChanged</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitPropertyChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="81"></a><code>UNIT_ATTACKS_REMAINING_CHANGED</code></td>
+<td>81</td>
+<td><code>UnitAttacksRemainingChanged</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitAttacksRemainingChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="82"></a><code>SPY_ADDED</code></td>
+<td>82</td>
+<td><code>SpyAdded</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>SpyAdded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="83"></a><code>SPY_REMOVED</code></td>
+<td>83</td>
+<td><code>SpyRemoved</code></td>
+<td>GameCoreEvent::TwoPlayers_EventData</td>
+<td><code>SpyRemoved</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="84"></a><code>SPY_UPDATED</code></td>
+<td>84</td>
+<td><code>SpyUpdated</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>SpyUpdated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="85"></a><code>SPY_MISSION_UPDATED</code></td>
+<td>85</td>
+<td><code>SpyMissionUpdated</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>SpyMissionUpdated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="86"></a><code>SPY_MISSION_COMPLETED</code></td>
+<td>86</td>
+<td><code>SpyMissionCompleted</code></td>
+<td>GameCoreEvent::SpyMission_EventData</td>
+<td><code>SpyMissionCompleted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="87"></a><code>CITY_ADDED_TO_MAP</code></td>
+<td>87</td>
+<td><code>CityAddedToMap</code></td>
+<td>GameCoreEvent::CityAddedToMap_EventData</td>
+<td><code>CityAddedToMap</code></td>
+<td>AmbientAudio; UI::Manager; Minimap_Startup; StrategicAudio; StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x53ffd0)</td>
+</tr>
+<tr>
+<td><a id="88"></a><code>CITY_INITIALIZED</code></td>
+<td>88</td>
+<td><code>CityInitialized</code></td>
+<td>GameCoreEvent::CityAddedToMap_EventData</td>
+<td><code>CityInitialized</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="89"></a><code>CITY_NAME_CHANGED</code></td>
+<td>89</td>
+<td><code>CityNameChanged</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityNameChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="90"></a><code>CITY_PROPERTY_CHANGED</code></td>
+<td>90</td>
+<td><code>CityPropertyChanged</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityPropertyChanged</code></td>
+<td>WorldView (3D map renderer) (0x5400d0)</td>
+</tr>
+<tr>
+<td><a id="91"></a><code>CITY_CHANGED</code></td>
+<td>91</td>
+<td><code>CityChanged</code></td>
+<td>GameCoreEvent::CityChanged_EventData</td>
+<td><code>CityChanged</code></td>
+<td>StrategicView (2D map)</td>
+</tr>
+<tr>
+<td><a id="92"></a><code>CITY_VISIBILITY_CHANGED</code></td>
+<td>92</td>
+<td><code>CityVisibilityChanged</code></td>
+<td>GameCoreEvent::CityVisibilityChanged_EventData</td>
+<td><code>CityVisibilityChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); UI event dispatcher</td>
+</tr>
+<tr>
+<td><a id="93"></a><code>CITY_REMOVED_FROM_MAP</code></td>
+<td>93</td>
+<td><code>CityRemovedFromMap</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityRemovedFromMap</code></td>
+<td>UI::Manager; Minimap_Startup; StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x540250)</td>
+</tr>
+<tr>
+<td><a id="95"></a><code>CITY_PRODUCTION_CHANGED</code></td>
+<td>95</td>
+<td><code>CityProductionChanged</code></td>
+<td>GameCoreEvent::CityProductionChanged_EventData</td>
+<td><code>CityProductionChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="96"></a><code>CITY_PRODUCTION_COMPLETED</code></td>
+<td>96</td>
+<td><code>CityProductionCompleted</code></td>
+<td>GameCoreEvent::CityProductionCompleted_EventData</td>
+<td><code>CityProductionCompleted</code></td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="97"></a><code>CITY_PRODUCTION_UPDATED</code></td>
+<td>97</td>
+<td><code>CityProductionUpdated</code></td>
+<td>GameCoreEvent::CityProductionUpdated_EventData</td>
+<td><code>CityProductionUpdated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="98"></a><code>CITY_PRODUCTION_QUEUE_CHANGED</code></td>
+<td>98</td>
+<td><code>CityProductionQueueChanged</code></td>
+<td>GameCoreEvent::CityProductionQueueChanged_EventData</td>
+<td><code>CityProductionQueueChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="99"></a><code>CITY_PRODUCTION_COMPLETED</code></td>
+<td>99</td>
+<td><code>CityProductionCompleted</code></td>
+<td>GameCoreEvent::CityProjectCompleted_EventData</td>
+<td><code>CityProductionCompleted</code></td>
+<td>Telemetry::Listener (0x183130)</td>
+</tr>
+<tr>
+<td><a id="100"></a><code>CITY_PRODUCTION_COMPLETED</code></td>
+<td>100</td>
+<td><code>CityProductionCompleted</code></td>
+<td>GameCoreEvent::CityProjectCompleted_EventData</td>
+<td><code>CityProductionCompleted</code></td>
+<td>WorldView (3D map renderer) (0x540040)</td>
+</tr>
+<tr>
+<td><a id="102"></a><code>CITY_POPULATION_CHANGED</code></td>
+<td>102</td>
+<td><code>CityPopulationChanged</code></td>
+<td>GameCoreEvent::CityPopulationChanged_EventData</td>
+<td><code>CityPopulationChanged</code></td>
+<td>UI event dispatcher; WorldView (3D map renderer) (0x540010)</td>
+</tr>
+<tr>
+<td><a id="103"></a><code>CITY_RELIGION_CHANGED</code></td>
+<td>103</td>
+<td><code>CityReligionChanged</code></td>
+<td>GameCoreEvent::CityReligionChanged_EventData</td>
+<td><code>CityReligionChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="104"></a><code>CITY_RELIGION_FOLLOWERS_CHANGED</code></td>
+<td>104</td>
+<td><code>CityReligionFollowersChanged</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityReligionFollowersChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="105"></a><code>CITY_MADE_PURCHASE</code></td>
+<td>105</td>
+<td><code>CityMadePurchase</code></td>
+<td>GameCoreEvent::CityMadePurchase_EventData</td>
+<td><code>CityMadePurchase</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="106"></a><code>CITY_FORCE_WORKER</code></td>
+<td>106</td>
+<td>—</td>
+<td>GameCoreEvent::CityWorkerChanged_EventData</td>
+<td><code>CityWorkerChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="107"></a><code>CITY_TILE_OWNERSHIP_CHANGED</code></td>
+<td>107</td>
+<td><code>CityTileOwnershipChanged</code></td>
+<td>GameCoreEvent::CityAndPosition_EventData</td>
+<td><code>CityTileOwnershipChanged</code></td>
+<td>WorldView (3D map renderer) (0x5403e0)</td>
+</tr>
+<tr>
+<td><a id="108"></a><code>CAPITAL_CITY_CHANGED</code></td>
+<td>108</td>
+<td><code>CapitalCityChanged</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CapitalCityChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="109"></a><code>CITY_COMMAND_STARTED</code></td>
+<td>109</td>
+<td><code>CityCommandStarted</code></td>
+<td>GameCoreEvent::CityCommandStarted_EventData</td>
+<td><code>CityCommandStarted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="110"></a><code>CITY_DEFENSE_STATUS_CHANGED</code></td>
+<td>110</td>
+<td><code>CityDefenseStatusChanged</code></td>
+<td>GameCoreEvent::CityDefenseStatusChanged_EventData</td>
+<td><code>CityDefenseStatusChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="111"></a><code>CITY_LIBERATED</code></td>
+<td>111</td>
+<td><code>CityLiberated</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityLiberated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="112"></a><code>UNIT_ARRIVED_AT_CITY / UNIT_LEFT_CITY</code></td>
+<td>112</td>
+<td>—</td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>UnitArrivedAtCity</code> , <code>UnitLeftCity</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="113"></a><code>CITY_SIEGE_STATUS_CHANGED</code></td>
+<td>113</td>
+<td><code>CitySiegeStatusChanged</code></td>
+<td>GameCoreEvent::CitySiegeStatusChanged_EventData</td>
+<td><code>CitySiegeStatusChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="114"></a><code>CITY_OCCUPATION_CHANGED</code></td>
+<td>114</td>
+<td><code>CityOccupationChanged</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityOccupationChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="115"></a><code>CITY_TRANSFERED</code></td>
+<td>115</td>
+<td><code>CityTransfered</code></td>
+<td>GameCoreEvent::CityTransfered_EventData</td>
+<td><code>CityTransfered</code> (0x142460)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="116"></a><code>FEATURE_ADDED_TO_MAP</code></td>
+<td>116</td>
+<td><code>FeatureAddedToMap</code></td>
+<td>GameCoreEvent::FeatureAddedToMap_EventData</td>
+<td><code>FeatureAddedToMap</code></td>
+<td>AudioMiner (0x93040); Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x544eb0)</td>
+</tr>
+<tr>
+<td><a id="117"></a><code>FEATURE_CHANGED</code></td>
+<td>117</td>
+<td><code>FeatureChanged</code></td>
+<td>GameCoreEvent::Feature_EventData</td>
+<td><code>FeatureChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map)</td>
+</tr>
+<tr>
+<td><a id="118"></a><code>FEATURE_VISIBILITY_CHANGED</code></td>
+<td>118</td>
+<td>—</td>
+<td>GameCoreEvent::FeatureVisibilityChanged_EventData</td>
+<td><code>FeatureVisibilityChanged</code></td>
+<td>Minimap_Startup; StrategicAudio; StrategicView (2D map); WorldView (3D map renderer) (0x545020)</td>
+</tr>
+<tr>
+<td><a id="119"></a><code>FEATURE_REMOVED_FROM_MAP</code></td>
+<td>119</td>
+<td><code>FeatureRemovedFromMap</code></td>
+<td>GameCoreEvent::Plot_EventData</td>
+<td><code>FeatureRemovedFromMap</code></td>
+<td>AudioMiner; Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x544fa0)</td>
+</tr>
+<tr>
+<td><a id="120"></a><code>NATURAL_WONDER_REVEALED</code></td>
+<td>120</td>
+<td><code>NaturalWonderRevealed</code></td>
+<td>GameCoreEvent::NaturalWonderRevealed_EventData</td>
+<td><code>NaturalWonderRevealed</code></td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="121"></a><code>NATURAL_WONDER_REVEALED</code></td>
+<td>121</td>
+<td><code>NaturalWonderRevealed</code></td>
+<td>GameCoreEvent::NaturalWonderRevealed_EventData</td>
+<td><code>NaturalWonderRevealed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="122"></a><code>RIVER_ADDED_TO_MAP</code></td>
+<td>122</td>
+<td><code>RiverAddedToMap</code></td>
+<td>GameCoreEvent::Edge_EventData</td>
+<td><code>RiverAddedToMap</code></td>
+<td>StrategicView (2D map)</td>
+</tr>
+<tr>
+<td><a id="123"></a><code>RIVER_REMOVED_FROM_MAP</code></td>
+<td>123</td>
+<td><code>RiverRemovedFromMap</code></td>
+<td>GameCoreEvent::Edge_EventData</td>
+<td><code>RiverRemovedFromMap</code></td>
+<td>StrategicView (2D map)</td>
+</tr>
+<tr>
+<td><a id="124"></a><code>CLIFF_ADDED_TO_MAP</code></td>
+<td>124</td>
+<td>—</td>
+<td>GameCoreEvent::Edge_EventData</td>
+<td><code>CliffAddedToMap</code></td>
+<td>StrategicView (2D map)</td>
+</tr>
+<tr>
+<td><a id="125"></a><code>CLIFF_REMOVED_FROM_MAP</code></td>
+<td>125</td>
+<td>—</td>
+<td>GameCoreEvent::Edge_EventData</td>
+<td><code>CliffRemovedFromMap</code></td>
+<td>StrategicView (2D map)</td>
+</tr>
+<tr>
+<td><a id="126"></a><code>DIPLOMACY_REFUSE_PEACE</code></td>
+<td>126</td>
+<td><code>DiplomacyRefusePeace</code></td>
+<td>GameCoreEvent::Diplomacy_EventData</td>
+<td><code>DiplomacyRefusePeace</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="127"></a><code>DIPLOMACY_DECLARE_WAR</code></td>
+<td>127</td>
+<td><code>DiplomacyDeclareWar</code></td>
+<td>GameCoreEvent::Diplomacy_EventData</td>
+<td><code>DiplomacyDeclareWar</code></td>
+<td>AmbientAudio; StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="128"></a><code>DIPLOMACY_MAKE_PEACE</code></td>
+<td>128</td>
+<td><code>DiplomacyMakePeace</code></td>
+<td>GameCoreEvent::Diplomacy_EventData</td>
+<td><code>DiplomacyMakePeace</code></td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="129"></a><code>DIPLOMACY_MEET</code></td>
+<td>129</td>
+<td><code>DiplomacyMeet</code></td>
+<td>GameCoreEvent::TwoPlayers_EventData</td>
+<td><code>DiplomacyMeet</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="130"></a><code>DIPLOMACY_MEET_MAJOR_MINOR</code></td>
+<td>130</td>
+<td><code>DiplomacyMeetMajorMinor</code></td>
+<td>GameCoreEvent::TwoPlayers_EventData</td>
+<td><code>DiplomacyMeetMajorMinor</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="131"></a><code>DIPLOMACY_MEET_MAJORS</code></td>
+<td>131</td>
+<td><code>DiplomacyMeetMajors</code></td>
+<td>GameCoreEvent::TwoPlayers_EventData</td>
+<td><code>DiplomacyMeetMajors</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="132"></a><code>DIPLOMACY</code></td>
+<td>132</td>
+<td>—</td>
+<td>GameCoreEvent::Diplomacy_EventData</td>
+<td><code>DiplomacyStatement</code></td>
+<td>AmbientAudio (0x8be80); StrategicAudio (0x9c5f0)</td>
+</tr>
+<tr>
+<td><a id="133"></a><code>DIPLOMACY_SESSION_CLOSED</code></td>
+<td>133</td>
+<td><code>DiplomacySessionClosed</code></td>
+<td>GameCoreEvent::DiplomacySessionClosed_EventData</td>
+<td><code>DiplomacySessionClosed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="134"></a><code>DIPLOMACY_INCOMING_DEAL</code></td>
+<td>134</td>
+<td><code>DiplomacyIncomingDeal</code></td>
+<td>GameCoreEvent::DiplomacyIncomingDeal_EventData</td>
+<td><code>DiplomacyIncomingDeal</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="135"></a><code>DIPLOMACY_DEAL_ENACTED</code></td>
+<td>135</td>
+<td><code>DiplomacyDealEnacted</code></td>
+<td>GameCoreEvent::TwoPlayers_EventData</td>
+<td><code>DiplomacyDealEnacted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="136"></a><code>DIPLOMACY_DEAL_EXPIRED</code></td>
+<td>136</td>
+<td><code>DiplomacyDealExpired</code></td>
+<td>GameCoreEvent::TwoPlayers_EventData</td>
+<td><code>DiplomacyDealExpired</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="137"></a><code>DIPLOMACY_RELATIONSHIP_CHANGED</code></td>
+<td>137</td>
+<td><code>DiplomacyRelationshipChanged</code></td>
+<td>GameCoreEvent::DiplomacyRelationshipChanged_EventData</td>
+<td><code>DiplomacyRelationshipChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="138"></a><code>RESOURCE_ADDED_TO_MAP</code></td>
+<td>138</td>
+<td><code>ResourceAddedToMap</code></td>
+<td>GameCoreEvent::ResourceAddedToMap_EventData</td>
+<td><code>ResourceAddedToMap</code></td>
+<td>AudioMiner; WorldView (3D map renderer) (0x5468d0)</td>
+</tr>
+<tr>
+<td><a id="139"></a><code>RESOURCE_CHANGED</code></td>
+<td>139</td>
+<td>—</td>
+<td>GameCoreEvent::ResourceChanged_EventData</td>
+<td><code>ResourceChanged</code></td>
+<td>AudioMiner; WorldView (3D map renderer) (0x5468a0)</td>
+</tr>
+<tr>
+<td><a id="140"></a><code>RESOURCE_VISIBILITY_CHANGED</code></td>
+<td>140</td>
+<td><code>ResourceVisibilityChanged</code></td>
+<td>GameCoreEvent::ResourceVisibilityChanged_EventData</td>
+<td><code>ResourceVisibilityChanged</code></td>
+<td>WorldView (3D map renderer) (0x5469d0)</td>
+</tr>
+<tr>
+<td><a id="141"></a><code>RESOURCE_REMOVED_FROM_MAP</code></td>
+<td>141</td>
+<td><code>ResourceRemovedFromMap</code></td>
+<td>GameCoreEvent::Plot_EventData</td>
+<td><code>ResourceRemovedFromMap</code></td>
+<td>AudioMiner; WorldView (3D map renderer) (0x546950)</td>
+</tr>
+<tr>
+<td><a id="142"></a><code>PLAYER_RESOURCE_CHANGED</code></td>
+<td>142</td>
+<td><code>PlayerResourceChanged</code></td>
+<td>GameCoreEvent::PlayerResourceChanged_EventData</td>
+<td><code>PlayerResourceChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="143"></a><code>IMPROVEMENT_ADDED_TO_MAP</code></td>
+<td>143</td>
+<td><code>ImprovementAddedToMap</code></td>
+<td>GameCoreEvent::Improvement_EventData</td>
+<td><code>ImprovementAddedToMap</code></td>
+<td>AudioMiner (0x93340); Telemetry::Listener; Minimap_Startup; StrategicAudio (0x9ca30); StrategicView (2D map); WorldView (3D map renderer) (0x545310)</td>
+</tr>
+<tr>
+<td><a id="144"></a><code>IMPROVEMENT_CHANGED</code></td>
+<td>144</td>
+<td><code>ImprovementChanged</code></td>
+<td>GameCoreEvent::Improvement_EventData</td>
+<td><code>ImprovementChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x545120)</td>
+</tr>
+<tr>
+<td><a id="145"></a><code>IMPROVEMENT_VISIBILITY_CHANGED</code></td>
+<td>145</td>
+<td><code>ImprovementVisibilityChanged</code></td>
+<td>GameCoreEvent::ImprovementVisibilityChanged_EventData</td>
+<td><code>ImprovementVisibilityChanged</code></td>
+<td>Minimap_Startup; StrategicAudio; StrategicView (2D map); WorldView (3D map renderer) (0x545710)</td>
+</tr>
+<tr>
+<td><a id="146"></a><code>IMPROVEMENT_REMOVED_FROM_MAP</code></td>
+<td>146</td>
+<td><code>ImprovementRemovedFromMap</code></td>
+<td>GameCoreEvent::ImprovementRemovedFromMap_EventData</td>
+<td><code>ImprovementRemovedFromMap</code></td>
+<td>AudioMiner; Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x5455f0)</td>
+</tr>
+<tr>
+<td><a id="147"></a><code>IMPROVEMENT_ACTIVATED</code></td>
+<td>147</td>
+<td><code>ImprovementActivated</code></td>
+<td>GameCoreEvent::ImprovementActivated_EventData</td>
+<td><code>ImprovementActivated</code></td>
+<td>AudioMiner</td>
+</tr>
+<tr>
+<td><a id="148"></a><code>IMPROVEMENT_OWNERSHIP_CHANGED</code></td>
+<td>148</td>
+<td><code>ImprovementOwnershipChanged</code></td>
+<td>GameCoreEvent::Improvement_EventData</td>
+<td><code>ImprovementOwnershipChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="149"></a><code>TERRAIN_TYPE_CHANGED</code></td>
+<td>149</td>
+<td><code>TerrainTypeChanged</code></td>
+<td>GameCoreEvent::TerrainTypeChanged_EventData</td>
+<td><code>TerrainTypeChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map)</td>
+</tr>
+<tr>
+<td><a id="150"></a><code>TERRAIN_SUBTYPE_CHANGED</code></td>
+<td>150</td>
+<td>—</td>
+<td>GameCoreEvent::TerrainSubTypeChanged_EventData</td>
+<td><code>TerrainSubTypeChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="151"></a><code>TERRAIN_STATE_CHANGED</code></td>
+<td>151</td>
+<td>—</td>
+<td>GameCoreEvent::TerrainStateChanged_EventData</td>
+<td><code>TerrainStateChanged</code> (0x153ce0)</td>
+<td>AudioMiner; Telemetry::Listener; StrategicView (2D map); WorldView (3D map renderer) (0x547000)</td>
+</tr>
+<tr>
+<td><a id="152"></a><code>ROUTE_ADDED_TO_MAP</code></td>
+<td>152</td>
+<td><code>RouteAddedToMap</code></td>
+<td>GameCoreEvent::Route_EventData</td>
+<td><code>RouteAddedToMap</code></td>
+<td>Telemetry::Listener; Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x546b70)</td>
+</tr>
+<tr>
+<td><a id="153"></a><code>ROUTE_CHANGED</code></td>
+<td>153</td>
+<td><code>RouteChanged</code></td>
+<td>GameCoreEvent::Route_EventData</td>
+<td><code>RouteChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x546af0)</td>
+</tr>
+<tr>
+<td><a id="154"></a><code>ROUTE_VISIBILITY_CHANGED</code></td>
+<td>154</td>
+<td><code>RouteVisibilityChanged</code></td>
+<td>GameCoreEvent::RouteVisibilityChanged_EventData</td>
+<td><code>RouteVisibilityChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x546c30)</td>
+</tr>
+<tr>
+<td><a id="155"></a><code>ROUTE_REMOVED_FROM_MAP</code></td>
+<td>155</td>
+<td><code>RouteRemovedFromMap</code></td>
+<td>GameCoreEvent::Plot_EventData</td>
+<td><code>RouteRemovedFromMap</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x546bf0)</td>
+</tr>
+<tr>
+<td><a id="156"></a><code>DISTRICT_ADDED_TO_MAP</code></td>
+<td>156</td>
+<td><code>DistrictAddedToMap</code></td>
+<td>GameCoreEvent::DistrictAddedToMap_EventData</td>
+<td><code>DistrictAddedToMap</code> (0x144650)</td>
+<td>Telemetry::Listener; Minimap_Startup; StrategicAudio; StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x5446a0)</td>
+</tr>
+<tr>
+<td><a id="157"></a><code>DISTRICT_CHANGED</code></td>
+<td>157</td>
+<td>—</td>
+<td>GameCoreEvent::DistrictChanged_EventData</td>
+<td><code>DistrictChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x544bd0)</td>
+</tr>
+<tr>
+<td><a id="158"></a><code>DISTRICT_VISIBILITY_CHANGED</code></td>
+<td>158</td>
+<td><code>DistrictVisibilityChanged</code></td>
+<td>GameCoreEvent::DistrictVisibilityChanged_EventData</td>
+<td><code>DistrictVisibilityChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x96f20)</td>
+</tr>
+<tr>
+<td><a id="159"></a><code>DISTRICT_DAMAGE_CHANGED</code></td>
+<td>159</td>
+<td><code>DistrictDamageChanged</code></td>
+<td>GameCoreEvent::DistrictDamageChanged_EventData</td>
+<td><code>DistrictDamageChanged</code></td>
+<td>WorldView (3D map renderer) (0x544ca0)</td>
+</tr>
+<tr>
+<td><a id="160"></a><code>DISTRICT_REMOVED_FROM_MAP</code></td>
+<td>160</td>
+<td><code>DistrictRemovedFromMap</code></td>
+<td>GameCoreEvent::District_EventData</td>
+<td><code>DistrictRemovedFromMap</code></td>
+<td>Minimap_Startup; StrategicAudio; StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x544cf0)</td>
+</tr>
+<tr>
+<td><a id="161"></a><code>DISTRICT_COMBAT_CHANGED</code></td>
+<td>161</td>
+<td><code>DistrictCombatChanged</code></td>
+<td>GameCoreEvent::DistrictCombatChanged_EventData</td>
+<td><code>DistrictCombatChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="162"></a><code>DISTRICT_BUILDING_RESTORE</code></td>
+<td>162</td>
+<td>—</td>
+<td>GameCoreEvent::DistrictBuildingRestore_EventData</td>
+<td><code>DistrictBuildingRestore</code></td>
+<td>StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x544840)</td>
+</tr>
+<tr>
+<td><a id="163"></a><code>DISTRICT_CHANGED</code></td>
+<td>163</td>
+<td>—</td>
+<td>GameCoreEvent::DistrictChanged_EventData</td>
+<td><code>DistrictChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="164"></a><code>UNIT_ARRIVED_AT_DISTRICT / UNIT_LEFT_DISTRICT</code></td>
+<td>164</td>
+<td>—</td>
+<td>GameCoreEvent::PlayerComponent_EventData</td>
+<td><code>UnitArrivedAtDistrict</code> , <code>UnitLeftDistrict</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="165"></a><code>BUILDING_ADDED_TO_MAP</code></td>
+<td>165</td>
+<td><code>BuildingAddedToMap</code></td>
+<td>GameCoreEvent::BuildingAddedToMap_EventData</td>
+<td><code>BuildingAddedToMap</code></td>
+<td>Telemetry::Listener; Minimap_Startup; StrategicAudio; StrategicView (2D map); WorldView (3D map renderer) (0x53f7c0)</td>
+</tr>
+<tr>
+<td><a id="166"></a><code>BUILDING_CHANGED</code></td>
+<td>166</td>
+<td><code>BuildingChanged</code></td>
+<td>GameCoreEvent::Building_EventData</td>
+<td><code>BuildingChanged</code> (0x13fd70)</td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x53fbd0)</td>
+</tr>
+<tr>
+<td><a id="167"></a><code>BUILDING_VISIBILITY_CHANGED</code></td>
+<td>167</td>
+<td><code>BuildingVisibilityChanged</code></td>
+<td>GameCoreEvent::BuildingVisibilityChanged_EventData</td>
+<td><code>BuildingVisibilityChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x53fe40)</td>
+</tr>
+<tr>
+<td><a id="168"></a><code>BUILDING_REMOVED_FROM_MAP</code></td>
+<td>168</td>
+<td><code>BuildingRemovedFromMap</code></td>
+<td>GameCoreEvent::Building_IDData</td>
+<td><code>BuildingRemovedFromMap</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x53fd00)</td>
+</tr>
+<tr>
+<td><a id="169"></a><code>BUILDING_CHANGED</code></td>
+<td>169</td>
+<td><code>BuildingChanged</code></td>
+<td>GameCoreEvent::BuildingBuildProgress_EventData</td>
+<td><code>BuildingChanged</code> (0x13fd70)</td>
+<td>Telemetry::Listener (0x182dc0); WorldView (3D map renderer) (0x53fa10)</td>
+</tr>
+<tr>
+<td><a id="170"></a><code>BUILDING_CHANGED</code></td>
+<td>170</td>
+<td><code>BuildingChanged</code></td>
+<td>GameCoreEvent::BuildingPillaged_EventData</td>
+<td><code>BuildingChanged</code> (0x13fd70)</td>
+<td>Minimap_Startup; StrategicAudio; StrategicView (2D map); WorldView (3D map renderer) (0x53fc40)</td>
+</tr>
+<tr>
+<td><a id="171"></a><code>BUILDING_EFFECT_ADDED</code></td>
+<td>171</td>
+<td>—</td>
+<td>GameCoreEvent::BuildingEffect_EventData</td>
+<td><code>BuildingEffectAdded</code> (0x140540)</td>
+<td>StrategicView (2D map); WorldView (3D map renderer) (0x53fc20)</td>
+</tr>
+<tr>
+<td><a id="172"></a><code>BUILDING_EFFECT_CHANGED</code></td>
+<td>172</td>
+<td>—</td>
+<td>GameCoreEvent::BuildingEffect_EventData</td>
+<td><code>BuildingEffectChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="173"></a><code>BUILDING_EFFECT_REMOVED</code></td>
+<td>173</td>
+<td>—</td>
+<td>GameCoreEvent::BuildingEffect_EventData</td>
+<td><code>BuildingEffectRemoved</code></td>
+<td>StrategicView (2D map); WorldView (3D map renderer) (0x53fc20)</td>
+</tr>
+<tr>
+<td><a id="174"></a><code>BUILDING_CHANGED</code></td>
+<td>174</td>
+<td><code>BuildingChanged</code></td>
+<td>GameCoreEvent::Building_EventData</td>
+<td><code>BuildingChanged</code> (0x13fd70)</td>
+<td>StrategicAudio; WorldView (3D map renderer) (0x549470)</td>
+</tr>
+<tr>
+<td><a id="175"></a><code>BUILDING_CHANGED</code></td>
+<td>175</td>
+<td><code>BuildingChanged</code></td>
+<td>GameCoreEvent::BuildingBuildProgress_EventData</td>
+<td><code>BuildingChanged</code> (0x13fd70)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="176"></a><code>AI_ADVISOR_UPDATED</code></td>
+<td>176</td>
+<td>—</td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>OnAiAdvisorUpdated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="177"></a><code>CITY_FOCUS_CHANGED</code></td>
+<td>177</td>
+<td><code>CityFocusChanged</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityFocusChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="178"></a><code>TECH_BOOST_TRIGGERED</code></td>
+<td>178</td>
+<td><code>TechBoostTriggered</code></td>
+<td>GameCoreEvent::TechBoostTriggered_EventData</td>
+<td><code>TechBoostTriggered</code></td>
+<td>AudioMiner; Telemetry::Listener (0x186ad0)</td>
+</tr>
+<tr>
+<td><a id="179"></a><code>CIVIC_BOOST_TRIGGERED</code></td>
+<td>179</td>
+<td><code>CivicBoostTriggered</code></td>
+<td>GameCoreEvent::CivicBoostTriggered_EventData</td>
+<td><code>CivicBoostTriggered</code></td>
+<td>Telemetry::Listener (0x1831e0); StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="180"></a><code>PLOT_OWNERSHIP_CHANGED</code></td>
+<td>180</td>
+<td>—</td>
+<td>GameCoreEvent::PlotOwnershipChanged_EventData</td>
+<td><code>PlotOwnershipChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x546550)</td>
+</tr>
+<tr>
+<td><a id="181"></a><code>PLOT_VISIBILITY_CHANGED</code></td>
+<td>181</td>
+<td><code>PlotVisibilityChanged</code></td>
+<td>GameCoreEvent::PlotVisibilityChanged_EventData</td>
+<td><code>PlotVisibilityChanged</code></td>
+<td>GameViewState; Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x546620)</td>
+</tr>
+<tr>
+<td><a id="182"></a><code>PLOT_MARKER_CHANGED</code></td>
+<td>182</td>
+<td><code>PlotMarkerChanged</code></td>
+<td>GameCoreEvent::PlotMarkerChanged_EventData</td>
+<td><code>PlotMarkerChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="183"></a><code>APPEAL_CHANGED_NEAR</code></td>
+<td>183</td>
+<td>—</td>
+<td>GameCoreEvent::PlotAppealChanged_EventData</td>
+<td><code>AppealChangedNear</code></td>
+<td>WorldView (3D map renderer) (0x546510)</td>
+</tr>
+<tr>
+<td><a id="184"></a><code>PLOT_PROPERTY_CHANGED</code></td>
+<td>184</td>
+<td><code>PlotPropertyChanged</code></td>
+<td>GameCoreEvent::Plot_EventData</td>
+<td><code>PlotPropertyChanged</code></td>
+<td>WorldView (3D map renderer) (0x5465b0)</td>
+</tr>
+<tr>
+<td><a id="185"></a><code>RESEARCH_YIELD_CHANGED</code></td>
+<td>185</td>
+<td><code>ResearchYieldChanged</code></td>
+<td>GameCoreEvent::ResearchYieldChanged_EventData</td>
+<td><code>ResearchYieldChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="186"></a><code>RESEARCH_CHANGED</code></td>
+<td>186</td>
+<td><code>ResearchChanged</code></td>
+<td>GameCoreEvent::ResearchChanged_EventData</td>
+<td><code>ResearchChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="187"></a><code>RESEARCH_QUEUE_CHANGED</code></td>
+<td>187</td>
+<td><code>ResearchQueueChanged</code></td>
+<td>GameCoreEvent::ResearchQueueChanged_EventData</td>
+<td><code>ResearchQueueChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="188"></a><code>RESEARCH_COMPLETED</code></td>
+<td>188</td>
+<td><code>ResearchCompleted</code></td>
+<td>GameCoreEvent::ResearchCompleted_EventData</td>
+<td><code>ResearchCompleted</code></td>
+<td>StrategicAudio; WorldView (3D map renderer) (0x5464e0)</td>
+</tr>
+<tr>
+<td><a id="189"></a><code>CULTURE_YIELD_CHANGED</code></td>
+<td>189</td>
+<td><code>CultureYieldChanged</code></td>
+<td>GameCoreEvent::CultureYieldChanged_EventData</td>
+<td><code>CultureYieldChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="190"></a><code>CIVIC_CHANGED</code></td>
+<td>190</td>
+<td><code>CivicChanged</code></td>
+<td>GameCoreEvent::CivicChanged_EventData</td>
+<td><code>CivicChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="191"></a><code>CIVIC_QUEUE_CHANGED</code></td>
+<td>191</td>
+<td><code>CivicQueueChanged</code></td>
+<td>GameCoreEvent::CivicQueueChanged_EventData</td>
+<td><code>CivicQueueChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="192"></a><code>CIVIC_COMPLETED</code></td>
+<td>192</td>
+<td><code>CivicCompleted</code></td>
+<td>GameCoreEvent::CivicCompleted_EventData</td>
+<td><code>CivicCompleted</code></td>
+<td>WorldView (3D map renderer) (0x546440)</td>
+</tr>
+<tr>
+<td><a id="193"></a><code>TREASURY_CHANGED</code></td>
+<td>193</td>
+<td><code>TreasuryChanged</code></td>
+<td>GameCoreEvent::TreasuryChanged_EventData</td>
+<td><code>TreasuryChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="194"></a><code>FAITH_CHANGED</code></td>
+<td>194</td>
+<td><code>FaithChanged</code></td>
+<td>GameCoreEvent::FaithChanged_EventData</td>
+<td><code>FaithChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="195"></a><code>PANTHEON_FOUNDED</code></td>
+<td>195</td>
+<td><code>PantheonFounded</code></td>
+<td>GameCoreEvent::PantheonFounded_EventData</td>
+<td><code>PantheonFounded</code></td>
+<td>Telemetry::Listener</td>
+</tr>
+<tr>
+<td><a id="196"></a><code>RELIGION_FOUNDED</code></td>
+<td>196</td>
+<td><code>ReligionFounded</code></td>
+<td>GameCoreEvent::ReligionFounded_EventData</td>
+<td><code>ReligionFounded</code></td>
+<td>Telemetry::Listener</td>
+</tr>
+<tr>
+<td><a id="197"></a><code>BELIEF_ADDED</code></td>
+<td>197</td>
+<td><code>BeliefAdded</code></td>
+<td>GameCoreEvent::BeliefAdded_EventData</td>
+<td><code>BeliefAdded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="198"></a><code>WMD_COUNT_CHANGED</code></td>
+<td>198</td>
+<td><code>WMDCountChanged</code></td>
+<td>GameCoreEvent::WMDChanged_EventData</td>
+<td><code>WMDCountChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="199"></a><code>WMD_DETONATED</code></td>
+<td>199</td>
+<td><code>WMDDetonated</code></td>
+<td>GameCoreEvent::WMDDetonated_EventData</td>
+<td><code>WMDDetonated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="200"></a><code>WMD_FALLOUT_CHANGED</code></td>
+<td>200</td>
+<td><code>WMDFalloutChanged</code></td>
+<td>GameCoreEvent::FalloutChanged_EventData</td>
+<td><code>WMDFalloutChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x549440)</td>
+</tr>
+<tr>
+<td><a id="201"></a><code>WMD_FALLOUT_VISIBILITY_CHANGED</code></td>
+<td>201</td>
+<td><code>WMDFalloutVisibilityChanged</code></td>
+<td>GameCoreEvent::FalloutVisibilityChanged_EventData</td>
+<td><code>WMDFalloutVisibilityChanged</code></td>
+<td>Minimap_Startup; StrategicView (2D map); WorldView (3D map renderer) (0x96f20)</td>
+</tr>
+<tr>
+<td><a id="202"></a><code>NUCLEAR_REACTOR_CHANGED</code></td>
+<td>202</td>
+<td><code>NuclearReactorChanged</code></td>
+<td>GameCoreEvent::NuclearReactorChanged_EventData</td>
+<td><code>NuclearReactorChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="203"></a><code>GOVERNMENT_CHANGED</code></td>
+<td>203</td>
+<td><code>GovernmentChanged</code></td>
+<td>GameCoreEvent::GovernmentChanged_EventData</td>
+<td><code>GovernmentChanged</code></td>
+<td>Telemetry::Listener</td>
+</tr>
+<tr>
+<td><a id="204"></a><code>ANARCHY_BEGINS</code></td>
+<td>204</td>
+<td><code>AnarchyBegins</code></td>
+<td>GameCoreEvent::GovernmentChanged_EventData</td>
+<td><code>AnarchyBegins</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="205"></a><code>ANARCHY_ENDS</code></td>
+<td>205</td>
+<td><code>AnarchyEnds</code></td>
+<td>GameCoreEvent::GovernmentChanged_EventData</td>
+<td><code>AnarchyEnds</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="206"></a><code>GOVERNMENT_POLICY_CHANGED</code></td>
+<td>206</td>
+<td><code>GovernmentPolicyChanged</code></td>
+<td>GameCoreEvent::GovernmentPolicyChanged_EventData</td>
+<td><code>GovernmentPolicyChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="207"></a><code>GOVERNMENT_POLICY_OBSOLETED</code></td>
+<td>207</td>
+<td><code>GovernmentPolicyObsoleted</code></td>
+<td>GameCoreEvent::GovernmentPolicyChanged_EventData</td>
+<td><code>GovernmentPolicyObsoleted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="208"></a><code>CIVICS_UNLOCKED</code></td>
+<td>208</td>
+<td><code>CivicsUnlocked</code></td>
+<td>none</td>
+<td><code>CivicsUnlocked</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="209"></a><code>INFLUENCE_CHANGED</code></td>
+<td>209</td>
+<td><code>InfluenceChanged</code></td>
+<td>GameCoreEvent::InfluenceChanged_EventData</td>
+<td><code>InfluenceChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="210"></a><code>INFLUENCE_GIVEN</code></td>
+<td>210</td>
+<td><code>InfluenceGiven</code></td>
+<td>GameCoreEvent::InfluenceGiven_EventData</td>
+<td><code>InfluenceGiven</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="211"></a><code>LEVY_COUNTER_CHANGED</code></td>
+<td>211</td>
+<td><code>LevyCounterChanged</code></td>
+<td>GameCoreEvent::LevyCounterChanged_EventData</td>
+<td><code>LevyCounterChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="212"></a><code>QUEST_CHANGED</code></td>
+<td>212</td>
+<td><code>QuestChanged</code></td>
+<td>GameCoreEvent::QuestChanged_EventData</td>
+<td><code>QuestChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="213"></a><code>TRADE_ROUTE_ADDED_TO_MAP</code></td>
+<td>213</td>
+<td><code>TradeRouteAddedToMap</code></td>
+<td>GameCoreEvent::TradeRouteLocation_EventData</td>
+<td><code>TradeRouteAddedToMap</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="214"></a><code>TRADE_ROUTE_REMOVED_FROM_MAP</code></td>
+<td>214</td>
+<td><code>TradeRouteRemovedFromMap</code></td>
+<td>GameCoreEvent::TradeRouteLocation_EventData</td>
+<td><code>TradeRouteRemovedFromMap</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="215"></a><code>TRADE_ROUTE_ACTIVITY_CHANGED</code></td>
+<td>215</td>
+<td><code>TradeRouteActivityChanged</code></td>
+<td>GameCoreEvent::TradeRouteCities_EventData</td>
+<td><code>TradeRouteActivityChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="216"></a><code>TRADE_ROUTE_CAPACITY_CHANGED</code></td>
+<td>216</td>
+<td><code>TradeRouteCapacityChanged</code></td>
+<td>GameCoreEvent::TradeRoute_EventData</td>
+<td><code>TradeRouteCapacityChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="217"></a><code>TRADE_ROUTE_RANGE_CHANGED</code></td>
+<td>217</td>
+<td><code>TradeRouteRangeChanged</code></td>
+<td>GameCoreEvent::TradeRoute_EventData</td>
+<td><code>TradeRouteRangeChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="218"></a><code>GREAT_PEOPLE_TIMELINE_CHANGED</code></td>
+<td>218</td>
+<td><code>GreatPeopleTimelineChanged</code></td>
+<td>none</td>
+<td><code>GreatPeopleTimelineChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="219"></a><code>GREAT_PEOPLE_POINTS_CHANGED</code></td>
+<td>219</td>
+<td><code>GreatPeoplePointsChanged</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>GreatPeoplePointsChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="220"></a><code>GREAT_WORK_CREATED</code></td>
+<td>220</td>
+<td><code>GreatWorkCreated</code></td>
+<td>GameCoreEvent::GreatWorkCreated_EventData</td>
+<td><code>GreatWorkCreated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="221"></a><code>GREAT_WORK_MOVED</code></td>
+<td>221</td>
+<td><code>GreatWorkMoved</code></td>
+<td>GameCoreEvent::GreatWorkMoved_EventData</td>
+<td><code>GreatWorkMoved</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="222"></a><code>GOVERNOR_APPOINTED</code></td>
+<td>222</td>
+<td><code>GovernorAppointed</code></td>
+<td>GameCoreEvent::GovernorAppointed_EventData</td>
+<td><code>GovernorAppointed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="223"></a><code>GOVERNOR_ASSIGNED</code></td>
+<td>223</td>
+<td><code>GovernorAssigned</code></td>
+<td>GameCoreEvent::GovernorAssigned_EventData</td>
+<td><code>GovernorAssigned</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="224"></a><code>GOVERNOR_CHANGED</code></td>
+<td>224</td>
+<td><code>GovernorChanged</code></td>
+<td>GameCoreEvent::GovernorChanged_EventData</td>
+<td><code>GovernorChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="225"></a><code>GOVERNOR_POINTS_CHANGED</code></td>
+<td>225</td>
+<td><code>GovernorPointsChanged</code></td>
+<td>GameCoreEvent::GovernorPointsChanged_EventData</td>
+<td><code>GovernorPointsChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="226"></a><code>GOVERNOR_PROMOTED</code></td>
+<td>226</td>
+<td><code>GovernorPromoted</code></td>
+<td>GameCoreEvent::GovernorPromoted_EventData</td>
+<td><code>GovernorPromoted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="227"></a><code>GOVERNOR_ESTABLISHED</code></td>
+<td>227</td>
+<td><code>GovernorEstablished</code></td>
+<td>GameCoreEvent::GovernorAssigned_EventData</td>
+<td><code>GovernorEstablished</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="228"></a><code>GOVERNOR_EJECTED</code></td>
+<td>228</td>
+<td><code>GovernorEjected</code></td>
+<td>GameCoreEvent::GovernorEjected_EventData</td>
+<td><code>GovernorEjected</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="229"></a><code>CORPORATION_ADDED</code></td>
+<td>229</td>
+<td><code>CorporationAdded</code></td>
+<td>GameCoreEvent::CorporationChanged_EventData</td>
+<td><code>CorporationAdded</code></td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="230"></a><code>CORPORATION_REMOVED</code></td>
+<td>230</td>
+<td><code>CorporationRemoved</code></td>
+<td>GameCoreEvent::CorporationChanged_EventData</td>
+<td><code>CorporationRemoved</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="231"></a><code>CORPORATION_NAME_CHANGED</code></td>
+<td>231</td>
+<td><code>CorporationNameChanged</code></td>
+<td>GameCoreEvent::CorporationChanged_EventData</td>
+<td><code>CorporationNameChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="232"></a><code>MONOPOLY_GAINED / MONOPOLY_LOST</code></td>
+<td>232</td>
+<td><code>MonopolyGained</code>, <code>MonopolyLost</code></td>
+<td>GameCoreEvent::MonopolyChanged_EventData</td>
+<td><code>MonopolyGained</code> , <code>MonopolyLost</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="234"></a><code>SECRET_SOCIETY_DISCOVERED</code></td>
+<td>234</td>
+<td><code>SecretSocietyDiscovered</code></td>
+<td>GameCoreEvent::SecretSociety_EventData</td>
+<td><code>SecretSocietyDiscovered</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="235"></a><code>SECRET_SOCIETY_JOINED</code></td>
+<td>235</td>
+<td><code>SecretSocietyJoined</code></td>
+<td>GameCoreEvent::SecretSociety_EventData</td>
+<td><code>SecretSocietyJoined</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="236"></a><code>SECRET_SOCIETY_LEFT</code></td>
+<td>236</td>
+<td><code>SecretSocietyLeft</code></td>
+<td>GameCoreEvent::SecretSociety_EventData</td>
+<td><code>SecretSocietyLeft</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="237"></a><code>PLAYER_DISCOVERED_HERO</code></td>
+<td>237</td>
+<td><code>PlayerDiscoveredHero</code></td>
+<td>GameCoreEvent::HeroDiscovery_EventData</td>
+<td><code>PlayerDiscoveredHero</code> (0x14b660)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="238"></a><code>UNIT_HERO_CREATED</code></td>
+<td>238</td>
+<td><code>UnitHeroCreated</code></td>
+<td>GameCoreEvent::UnitHero_EventData</td>
+<td><code>UnitHeroCreated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="239"></a><code>CITY_LOYALTY_CHANGED</code></td>
+<td>239</td>
+<td><code>CityLoyaltyChanged</code></td>
+<td>GameCoreEvent::CityLoyaltyChanged_EventData</td>
+<td><code>CityLoyaltyChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="240"></a><code>CULTURAL_IDENTITY_CITIZEN_CONVERTED</code></td>
+<td>240</td>
+<td><code>CulturalIdentityCitizenConverted</code></td>
+<td>GameCoreEvent::CulturalIdentityCitizenConverted_EventData</td>
+<td><code>CulturalIdentityCitizenConverted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="241"></a><code>CULTURAL_IDENTITY_CONVERSION_OUTCOME_CHANGED</code></td>
+<td>241</td>
+<td><code>CulturalIdentityConversionOutcomeChanged</code></td>
+<td>GameCoreEvent::CulturalIdentityConversionOutcomeChanged_EventData</td>
+<td><code>CulturalIdentityConversionOutcomeChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="242"></a><code>CULTURAL_IDENTITY_PER_TURN_FROM_MODIFIERS_CHANGED</code></td>
+<td>242</td>
+<td><code>CulturalIdentityPerturnFromModifiersChanged</code></td>
+<td>GameCoreEvent::CulturalIdentityPerturnFromModifiersChanged_EventData</td>
+<td><code>CulturalIdentityPerturnFromModifiersChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="243"></a><code>CULTURAL_IDENTITY_CITY_CONVERTED</code></td>
+<td>243</td>
+<td><code>CulturalIdentityCityConverted</code></td>
+<td>GameCoreEvent::CulturalIdentityCitizenConverted_EventData</td>
+<td><code>CulturalIdentityCityConverted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="244"></a><code>NATIONAL_PARK_ADDED_TO_MAP</code></td>
+<td>244</td>
+<td>—</td>
+<td>GameCoreEvent::NationalParkAdded_EventData</td>
+<td><code>NationalParkAddedToMap</code></td>
+<td>StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x545e80)</td>
+</tr>
+<tr>
+<td><a id="245"></a><code>NationalParkRemoved</code></td>
+<td>245</td>
+<td>—</td>
+<td>GameCoreEvent::NationalParkRemoved_EventData</td>
+<td>none</td>
+<td>StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x545f20)</td>
+</tr>
+<tr>
+<td><a id="246"></a><code>NATIONAL_PARK_VISIBILITY_CHANGED</code></td>
+<td>246</td>
+<td><code>NationalParkVisibilityChanged</code></td>
+<td>GameCoreEvent::NationalParkVisibilityChanged_EventData</td>
+<td><code>NationalParkVisibilityChanged</code> (0x149df0)</td>
+<td>StrategicView (2D map); WorldView (3D map renderer) (0x545fb0)</td>
+</tr>
+<tr>
+<td><a id="248"></a><code>COMBAT</code></td>
+<td>248</td>
+<td><code>Combat</code></td>
+<td>GameCoreEvent::Combat_EventData</td>
+<td><code>CombatOccurred</code> (0x142fe0)</td>
+<td>Combat::Manager; Unit::System; StrategicAudio (0x9bfc0)</td>
+</tr>
+<tr>
+<td><a id="249"></a><code>Events::NullEventClass</code></td>
+<td>249</td>
+<td>—</td>
+<td>none</td>
+<td>none</td>
+<td>GameCoreController (0xf5660)</td>
+</tr>
+<tr>
+<td><a id="250"></a><code>WORLD_TEXT_MESSAGE</code></td>
+<td>250</td>
+<td><code>WorldTextMessage</code></td>
+<td>GameCoreEvent::WorldTextMessage_EventData</td>
+<td><code>WorldTextMessage</code> (0x15a300)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="251"></a><code>EVENT_POPUP_REQUEST</code></td>
+<td>251</td>
+<td><code>EventPopupRequest</code></td>
+<td>GameCoreEvent::TypedVariantMap_EventData</td>
+<td><code>EventPopupRequest</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="252"></a><code>EVENT_POPUP_RESPONSE</code></td>
+<td>252</td>
+<td><code>EventPopupResponse</code></td>
+<td>GameCoreEvent::TypedVariantMap_EventData</td>
+<td><code>EventPopupResponse</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="253"></a><code>EVENT_SOUND_REQUEST</code></td>
+<td>253</td>
+<td><code>EventSoundRequest</code></td>
+<td>GameCoreEvent::EventSoundRequest_EventData</td>
+<td><code>EventSoundRequest</code> (0x146300)</td>
+<td>UI::Manager</td>
+</tr>
+<tr>
+<td><a id="254"></a><code>APP_LUA_EVENT</code></td>
+<td>254</td>
+<td>—</td>
+<td>GameCoreEvent::SendLuaEventToApp_EventData</td>
+<td><code>SendLuaEventToApp</code></td>
+<td>Events::Translate</td>
+</tr>
+<tr>
+<td><a id="255"></a><code>NOTIFICATION_REFRESH_REQUESTED</code></td>
+<td>255</td>
+<td><code>NotificationRefreshRequested</code></td>
+<td>GameCoreEvent::Notification_EventData</td>
+<td><code>NotificationRefreshRequested</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="256"></a><code>NOTIFICATION_ADDED</code></td>
+<td>256</td>
+<td><code>NotificationAdded</code></td>
+<td>GameCoreEvent::Notification_EventData</td>
+<td><code>NotificationAdded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="257"></a><code>NOTIFICATION_ACTIVATED</code></td>
+<td>257</td>
+<td><code>NotificationActivated</code></td>
+<td>GameCoreEvent::NotificationActivated_EventData</td>
+<td><code>NotificationActivated</code> (0x14a1e0)</td>
+<td>Telemetry::Listener</td>
+</tr>
+<tr>
+<td><a id="258"></a><code>NOTIFICATION_DISMISSED</code></td>
+<td>258</td>
+<td><code>NotificationDismissed</code></td>
+<td>GameCoreEvent::Notification_EventData</td>
+<td><code>NotificationDismissed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="259"></a><code>GOODY_HUT_REWARD</code></td>
+<td>259</td>
+<td><code>GoodyHutReward</code></td>
+<td>GameCoreEvent::GoodyHutReward_EventData</td>
+<td><code>GoodyHutReward</code></td>
+<td>AudioMiner; StrategicAudio (0x9c950)</td>
+</tr>
+<tr>
+<td><a id="260"></a><code>GAME_ERA_CHANGED</code></td>
+<td>260</td>
+<td><code>GameEraChanged</code></td>
+<td>GameCoreEvent::GameEraChanged_EventData</td>
+<td><code>GameEraChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="261"></a><code>GAME_HISTORY_MOMENT_RECORDED</code></td>
+<td>261</td>
+<td><code>GameHistoryMomentRecorded</code></td>
+<td>GameCoreEvent::GameHistoryMomentRecorded_EventData</td>
+<td><code>GameHistoryMomentRecorded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="262"></a><code>GAME_PROPERTY_CHANGED</code></td>
+<td>262</td>
+<td><code>GamePropertyChanged</code></td>
+<td>none</td>
+<td><code>GamePropertyChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="263"></a><code>PLAYER_AGE_CHANGED</code></td>
+<td>263</td>
+<td><code>PlayerAgeChanged</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>PlayerAgeChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="264"></a><code>PLAYER_DARK_AGE_CHANGED</code></td>
+<td>264</td>
+<td><code>PlayerDarkAgeChanged</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>PlayerDarkAgeChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="265"></a><code>PLAYER_ERA_CHANGED</code></td>
+<td>265</td>
+<td><code>PlayerEraChanged</code></td>
+<td>GameCoreEvent::PlayerEraChanged_EventData</td>
+<td><code>PlayerEraChanged</code></td>
+<td>AmbientAudio; Telemetry::Listener (0x184be0); WorldView (3D map renderer) (0x546470)</td>
+</tr>
+<tr>
+<td><a id="266"></a><code>PLAYER_ERA_SCORE_CHANGED</code></td>
+<td>266</td>
+<td><code>PlayerEraScoreChanged</code></td>
+<td>GameCoreEvent::PlayerEraScoreChanged_EventData</td>
+<td><code>PlayerEraScoreChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="267"></a><code>PLAYER_ERA_TRANSITION_BEGINS</code></td>
+<td>267</td>
+<td><code>PlayerEraTransitionBegins</code></td>
+<td>GameCoreEvent::PlayerEraTransitionBegins_EventData</td>
+<td><code>PlayerEraTransitionBegins</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="268"></a><code>PLAYER_BORDERS_CHANGED</code></td>
+<td>268</td>
+<td><code>PlayerBordersChanged</code></td>
+<td>GameCoreEvent::PlayerBordersChanged_EventData</td>
+<td><code>PlayerBordersChanged</code></td>
+<td>UI event dispatcher</td>
+</tr>
+<tr>
+<td><a id="269"></a><code>CULTURE_CHANGED</code></td>
+<td>269</td>
+<td><code>CultureChanged</code></td>
+<td>GameCoreEvent::CultureChanged_EventData</td>
+<td><code>CultureChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="270"></a><code>PLAYER_OPERATION_COMPLETE</code></td>
+<td>270</td>
+<td><code>PlayerOperationComplete</code></td>
+<td>GameCoreEvent::PlayerOperationComplete_EventData</td>
+<td><code>PlayerOperationComplete</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="271"></a><code>PLAYER_AGENDA_ADDED</code></td>
+<td>271</td>
+<td>—</td>
+<td>GameCoreEvent::PlayerAgendaAdded_EventData</td>
+<td><code>PlayerAgendaAdded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="272"></a><code>PLAYER_ALIVE_CHANGED</code></td>
+<td>272</td>
+<td>—</td>
+<td>GameCoreEvent::PlayerDestroyed_EventData</td>
+<td><code>PlayerAliveChanged</code></td>
+<td>AmbientAudio (0x8cc10); GameCoreController; Network::Manager (0x288e60)</td>
+</tr>
+<tr>
+<td><a id="273"></a><code>PLAYER_ALIVE_CHANGED</code></td>
+<td>273</td>
+<td>—</td>
+<td>GameCoreEvent::PlayerRevived_EventData</td>
+<td><code>PlayerAliveChanged</code></td>
+<td>Network::Manager</td>
+</tr>
+<tr>
+<td><a id="274"></a><code>LOCAL_PLAYER_CHANGED</code></td>
+<td>274</td>
+<td><code>LocalPlayerChanged</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>LocalPlayerChanged</code></td>
+<td>AmbientAudio (0x8bf80); Configuration::User::Instance; GameCoreController; GameViewState; Minimap_Startup; Manager; StrategicAudio; StrategicView (2D map); UI event dispatcher; WorldView (3D map renderer) (0x545da0)</td>
+</tr>
+<tr>
+<td><a id="275"></a><code>CacheUpdate</code></td>
+<td>275</td>
+<td>—</td>
+<td>GameCoreEvent::CacheUpdate_EventData</td>
+<td>none</td>
+<td>Events::Translate</td>
+</tr>
+<tr>
+<td><a id="276"></a><code>BARBARIAN_SPOTTED_CITY</code></td>
+<td>276</td>
+<td><code>BarbarianSpottedCity</code></td>
+<td>GameCoreEvent::BarbarianSpottedCity_EventData</td>
+<td><code>BarbarianSpottedCity</code></td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="277"></a><code>BARBARIAN_RAID_STARTED</code></td>
+<td>277</td>
+<td><code>BarbarianRaidStarted</code></td>
+<td>GameCoreEvent::BarbarianRaidStarted_EventData</td>
+<td><code>BarbarianRaidStarted</code></td>
+<td>StrategicAudio</td>
+</tr>
+<tr>
+<td><a id="278"></a><code>UNIT_ENTERED_BARBARIAN_CAMP</code></td>
+<td>278</td>
+<td><code>UnitEnteredBarbarianCamp</code></td>
+<td>GameCoreEvent::Unit_EventData</td>
+<td><code>UnitEnteredBarbarianCamp</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="279"></a><code>BARBARIAN_CLAN_DISPERSED</code></td>
+<td>279</td>
+<td>—</td>
+<td>GameCoreEvent::BarbarianClanDispersed_EventData</td>
+<td><code>BarbarianClanDispersed</code></td>
+<td>StrategicAudio (0x9bb90); WorldView (3D map renderer) (0x53f6c0)</td>
+</tr>
+<tr>
+<td><a id="280"></a><code>BARBARIAN_CLAN_RAIDED</code></td>
+<td>280</td>
+<td>—</td>
+<td>GameCoreEvent::BarbarianClanRaided_EventData</td>
+<td><code>BarbarianClanRaided</code></td>
+<td>StrategicAudio (0x9bd10); WorldView (3D map renderer) (0x53f640)</td>
+</tr>
+<tr>
+<td><a id="281"></a><code>BARBARIAN_CLAN_HIRED</code></td>
+<td>281</td>
+<td>—</td>
+<td>GameCoreEvent::BarbarianClanHired_EventData</td>
+<td><code>BarbarianClanHired</code></td>
+<td>StrategicAudio (0x9bc10); WorldView (3D map renderer) (0x53f5c0)</td>
+</tr>
+<tr>
+<td><a id="282"></a><code>BARBARIAN_CLAN_BRIBED</code></td>
+<td>282</td>
+<td>—</td>
+<td>GameCoreEvent::BarbarianClanBribed_EventData</td>
+<td><code>BarbarianClanBribed</code></td>
+<td>StrategicAudio (0x9bb10); WorldView (3D map renderer) (0x53f700)</td>
+</tr>
+<tr>
+<td><a id="283"></a><code>BARBARIAN_CLAN_RANSOMED</code></td>
+<td>283</td>
+<td>—</td>
+<td>GameCoreEvent::BarbarianClanRansomed_EventData</td>
+<td><code>BarbarianClanRansomed</code></td>
+<td>StrategicAudio (0x9bd90); WorldView (3D map renderer) (0x53f680)</td>
+</tr>
+<tr>
+<td><a id="284"></a><code>BARBARIAN_CLAN_INCITED</code></td>
+<td>284</td>
+<td>—</td>
+<td>GameCoreEvent::BarbarianClanIncited_EventData</td>
+<td><code>BarbarianClanIncited</code></td>
+<td>StrategicAudio (0x9bc90); WorldView (3D map renderer)</td>
+</tr>
+<tr>
+<td><a id="285"></a><code>BARBARIAN_CLAN_CONVERSION_ENABLED</code></td>
+<td>285</td>
+<td><code>BarbarianClanConversionEnabled</code></td>
+<td>GameCoreEvent::BarbarianTribe_EventData</td>
+<td><code>BarbarianClanConversionEnabled</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="286"></a><code>BARBARIAN_CLAN_CONVERSION_DISABLED</code></td>
+<td>286</td>
+<td><code>BarbarianClanConversionDisabled</code></td>
+<td>GameCoreEvent::BarbarianTribe_EventData</td>
+<td><code>BarbarianClanConversionDisabled</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="287"></a><code>PLOT_YIELD_CHANGED</code></td>
+<td>287</td>
+<td><code>PlotYieldChanged</code></td>
+<td>GameCoreEvent::Plot_EventData</td>
+<td><code>PlotYieldChanged</code></td>
+<td>WorldView (3D map renderer) (0x546830)</td>
+</tr>
+<tr>
+<td><a id="288"></a><code>MAP_YIELDS_CHANGED</code></td>
+<td>288</td>
+<td><code>MapYieldsChanged</code></td>
+<td>none</td>
+<td><code>MapYieldsChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="289"></a><code>EMERGENCY_AVAILABLE</code></td>
+<td>289</td>
+<td><code>EmergencyAvailable</code></td>
+<td>GameCoreEvent::Emergency_EventData</td>
+<td><code>EmergencyAvailable</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="290"></a><code>EMERGENCY_AVAILABLE_PARTICIPANT</code></td>
+<td>290</td>
+<td><code>EmergencyAvailableParticipant</code></td>
+<td>GameCoreEvent::Emergency_EventData</td>
+<td><code>EmergencyAvailableParticipant</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="291"></a><code>EMERGENCY_STARTED</code></td>
+<td>291</td>
+<td><code>EmergencyStarted</code></td>
+<td>GameCoreEvent::Emergency_EventData</td>
+<td><code>EmergencyStarted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="292"></a><code>EMERGENCY_COMPLETE</code></td>
+<td>292</td>
+<td>—</td>
+<td>GameCoreEvent::Emergency_EventData</td>
+<td><code>EmergencyCompleted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="293"></a><code>EMERGENCY_COMPLETE_PARTICIPANTS</code></td>
+<td>293</td>
+<td><code>EmergencyCompleteParticipants</code></td>
+<td>GameCoreEvent::EmergencyParticipant_EventData</td>
+<td><code>EmergencyCompleteParticipants</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="294"></a><code>EMERGENCY_REJECTED</code></td>
+<td>294</td>
+<td><code>EmergencyRejected</code></td>
+<td>GameCoreEvent::Emergency_EventData</td>
+<td><code>EmergencyRejected</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="295"></a><code>EMERGENCIES_UPDATED</code></td>
+<td>295</td>
+<td><code>EmergenciesUpdated</code></td>
+<td>none</td>
+<td><code>EmergenciesUpdated</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="296"></a><code>ALLIANCE_ENDED</code></td>
+<td>296</td>
+<td><code>AllianceEnded</code></td>
+<td>GameCoreEvent::Alliance_EventData</td>
+<td><code>AllianceEnded</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="297"></a><code>ALLIANCE_AVAILABLE</code></td>
+<td>297</td>
+<td><code>AllianceAvailable</code></td>
+<td>GameCoreEvent::Alliance_EventData</td>
+<td><code>AllianceAvailable</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="298"></a><code>GOVDISTRICT_UNLOCKS_POLICY</code></td>
+<td>298</td>
+<td>—</td>
+<td>GameCoreEvent::GovernmentDistrictPolicy_EventData</td>
+<td><code>GovDistrictPolicyUnlocked</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="299"></a><code>GOVDISTRICT_LOCKS_POLICY</code></td>
+<td>299</td>
+<td>—</td>
+<td>GameCoreEvent::GovernmentDistrictPolicy_EventData</td>
+<td><code>GovDistrictPolicyLocked</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="300"></a><code>WORLD_CONGRESS_STAGE1</code></td>
+<td>300</td>
+<td><code>WorldCongressStage1</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>WorldCongressStage1</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="301"></a><code>WORLD_CONGRESS_STAGE2</code></td>
+<td>301</td>
+<td><code>WorldCongressStage2</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>WorldCongressStage2</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="302"></a><code>WORLD_CONGRESS_STAGE3</code></td>
+<td>302</td>
+<td><code>WorldCongressStage3</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>WorldCongressStage3</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="303"></a><code>WORLD_CONGRESS_PLAYERS_CHOICE</code></td>
+<td>303</td>
+<td><code>WorldCongressPlayersChoice</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>WorldCongressPlayersChoice</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="304"></a><code>WORLD_CONGRESS_DECISION_REACHED</code></td>
+<td>304</td>
+<td>—</td>
+<td>none</td>
+<td><code>WorldCongressFinished</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="305"></a><code>WORLD_CONGRESS_RIBBON_UPDATE</code></td>
+<td>305</td>
+<td><code>WorldCongressRibbonUpdate</code></td>
+<td>none</td>
+<td><code>WorldCongressRibbonUpdate</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="306"></a><code>Events::NullEventClass</code></td>
+<td>306</td>
+<td>—</td>
+<td>none</td>
+<td>none</td>
+<td>Telemetry::Listener (0x188890)</td>
+</tr>
+<tr>
+<td><a id="307"></a><code>WORLD_CONGRESS_EMERGENCY_READY</code></td>
+<td>307</td>
+<td><code>WorldCongressEmergencyReady</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>WorldCongressEmergencyReady</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="308"></a><code>WORLD_CONGRESS_SPECIAL_SESSION_BEING_CALLED</code></td>
+<td>308</td>
+<td><code>WorldCongressSpecialSessionBeingCalled</code></td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>WorldCongressSpecialSessionBeingCalled</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="309"></a><code>RANDOM_EVENT_STARTING</code></td>
+<td>309</td>
+<td>—</td>
+<td>GameCoreEvent::RandomEvent_EventData</td>
+<td><code>RandomEventStarted</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="310"></a><code>RANDOM_EVENT_OCCURRED</code></td>
+<td>310</td>
+<td><code>RandomEventOccurred</code></td>
+<td>GameCoreEvent::RandomEvent_EventData</td>
+<td><code>RandomEventOccurred</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="311"></a><code>RANDOM_EVENT_OCCURRED</code></td>
+<td>311</td>
+<td><code>RandomEventOccurred</code></td>
+<td>GameCoreEvent::RandomEvent_EventData</td>
+<td><code>RandomEventOccurred</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="312"></a><code>STORM_ADDED_TO_MAP</code></td>
+<td>312</td>
+<td><code>StormAddedToMap</code></td>
+<td>GameCoreEvent::Storm_EventData</td>
+<td><code>StormAddedToMap</code></td>
+<td>AudioMiner (0x93a10); Telemetry::Listener; StrategicView (2D map); WorldView (3D map renderer) (0x546df0)</td>
+</tr>
+<tr>
+<td><a id="313"></a><code>STORM_REMOVED_FROM_MAP</code></td>
+<td>313</td>
+<td><code>StormRemovedFromMap</code></td>
+<td>GameCoreEvent::Storm_EventData</td>
+<td><code>StormRemovedFromMap</code></td>
+<td>AudioMiner (0x96110); StrategicView (2D map); WorldView (3D map renderer) (0x546f80)</td>
+</tr>
+<tr>
+<td><a id="314"></a><code>STORM_CHANGED</code></td>
+<td>314</td>
+<td><code>StormChanged</code></td>
+<td>GameCoreEvent::StormChanged_EventData</td>
+<td><code>StormChanged</code></td>
+<td>AudioMiner (0x96180); StrategicView (2D map); WorldView (3D map renderer) (0x546ea0)</td>
+</tr>
+<tr>
+<td><a id="315"></a><code>DROUGHT_ADDED_TO_MAP</code></td>
+<td>315</td>
+<td><code>DroughtAddedToMap</code></td>
+<td>GameCoreEvent::Drought_EventData</td>
+<td><code>DroughtAddedToMap</code></td>
+<td>StrategicView (2D map); WorldView (3D map renderer) (0x544de0)</td>
+</tr>
+<tr>
+<td><a id="316"></a><code>DROUGHT_REMOVED_FROM_MAP</code></td>
+<td>316</td>
+<td><code>DroughtRemovedFromMap</code></td>
+<td>GameCoreEvent::Drought_EventData</td>
+<td><code>DroughtRemovedFromMap</code></td>
+<td>StrategicView (2D map); WorldView (3D map renderer) (0x544de0)</td>
+</tr>
+<tr>
+<td><a id="317"></a><code>FLOODPLAIN_REVEALED</code></td>
+<td>317</td>
+<td><code>FloodplainRevealed</code></td>
+<td>GameCoreEvent::SpecialFeatureRevealed_EventData</td>
+<td><code>FloodplainRevealed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="318"></a><code>VOLCANO_REVEALED</code></td>
+<td>318</td>
+<td><code>VolcanoRevealed</code></td>
+<td>GameCoreEvent::SpecialFeatureRevealed_EventData</td>
+<td><code>VolcanoRevealed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="319"></a><code>GEOTHERMAL_FISSURE_REVEALED</code></td>
+<td>319</td>
+<td><code>GeothermalFissureRevealed</code></td>
+<td>GameCoreEvent::SpecialFeatureRevealed_EventData</td>
+<td><code>GeothermalFissureRevealed</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="320"></a><code>POWER_GENERATED_FROM_RESOURCE</code></td>
+<td>320</td>
+<td><code>PowerGeneratedFromResource</code></td>
+<td>GameCoreEvent::PowerGeneratedFromResource_EventData</td>
+<td><code>PowerGeneratedFromResource</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="321"></a><code>CITY_POWER_CHANGED</code></td>
+<td>321</td>
+<td><code>CityPowerChanged</code></td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>CityPowerChanged</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="322"></a><code>FAVOR_CHANGED</code></td>
+<td>322</td>
+<td><code>FavorChanged</code></td>
+<td>GameCoreEvent::FavorChanged_EventData</td>
+<td><code>FavorChanged</code></td>
+<td>Telemetry::Listener (0x183770)</td>
+</tr>
+<tr>
+<td><a id="323"></a><code>FLOOD_OCCURED</code></td>
+<td>323</td>
+<td>—</td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>FloodOccured</code></td>
+<td>Telemetry::Listener (0x183f70)</td>
+</tr>
+<tr>
+<td><a id="324"></a><code>FLOOD_MITIGATED</code></td>
+<td>324</td>
+<td>—</td>
+<td>GameCoreEvent::City_EventData</td>
+<td><code>FloodMitigated</code></td>
+<td>Telemetry::Listener (0x183f40)</td>
+</tr>
+<tr>
+<td><a id="325"></a><code>CLIMATE_CHANGE_EVENT</code></td>
+<td>325</td>
+<td><code>ClimateChangeEvent</code></td>
+<td>GameCoreEvent::ClimateChangeEvent_EventData</td>
+<td><code>ClimateChangeEvent</code></td>
+<td>Telemetry::Listener (0x183500)</td>
+</tr>
+<tr>
+<td><a id="326"></a><code>UNIT_JUMPED</code></td>
+<td>326</td>
+<td>—</td>
+<td>GameCoreEvent::UnitMoved_EventData</td>
+<td><code>UnitJumped</code></td>
+<td>StrategicAudio (0x9dbd0)</td>
+</tr>
+<tr>
+<td><a id="327"></a><code>PLAYER_CAN_CONSTRUCT_CHANGED</code></td>
+<td>327</td>
+<td>—</td>
+<td>GameCoreEvent::Player_EventData</td>
+<td><code>PlayerCanConstructChanged</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><em>Windows addresses in brackets are the translator and handler RVAs; those of the WorldView handlers come from matching the registration order of the Linux and Windows builds (inferred). Handler addresses of other systems are not mapped to Windows yet.</em></p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

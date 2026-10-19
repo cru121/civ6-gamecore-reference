@@ -1,0 +1,586 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>base library</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › base library</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>base library</h1>
+<p>Engine base classes: memory, strings, containers, utilities.</p>
+<p>834 functions in this category, 75 with a Windows address (30 high or medium confidence or exported, 45 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Types::ChunkedAllocator&lt;Platform::StaticHeapAllocator&lt;1020, 0&gt;, 4096, 16&gt;::Allocate(unsigned long, unsigned long)</code></td>
+<td><code>0x1db850</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x32cd9b0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;128u, (String::Encoding)0&gt;::Assign(char const*, unsigned long)</code></td>
+<td><code>0x55c880</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x33750b0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Types::ChunkedAllocator&lt;Platform::StaticHeapAllocator&lt;1017, 0&gt;, 4096, 16&gt;::Allocate(unsigned long, unsigned long)</code></td>
+<td><code>0x570790</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x370c420</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;WorldView::Landmarks::ADRList::Entry, Types::LinearAlloc::DefaultInline&lt;WorldView::Landmarks::ADRList::Entry, 8u, 1u, 0u&gt; &gt;::~Vector()</code></td>
+<td><code>0x5b5c70</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3754ce0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;BLP::SharedDataCache::LoaderJob, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::RequestLinearBlock(unsigned int, bool)</code></td>
+<td><code>0x7781c0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x4374cde</code></td>
+<td>294</td>
+</tr>
+<tr>
+<td><code>Data::ArrayVariant::DebugPrintElement(Data::VariantValueType, void*) const</code></td>
+<td><code>0x7a0bf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39677a0</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>Data::VariantManager::RegisterKey(char const*)</code></td>
+<td><code>0x7a1220</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x396a2b0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>Data::VariantValueTypeToString(Data::VariantValueType)</code></td>
+<td><code>0x7a1b40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39673a0</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>Data::TypedVariantMap::TypedVariantMap()</code></td>
+<td><code>0x7a44a0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x395f070</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>Data::TypedVariantMap::DebugPrint(char*, unsigned long) const</code></td>
+<td><code>0x7a5160</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3961150</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Data::TypedVariantVectorMap::SetVariant(unsigned int, char const*)</code></td>
+<td><code>0x7a6760</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3965950</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>Data::TypedVariantMap::toString() const</code></td>
+<td><code>0x7a70e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3960fd0</code></td>
+<td>384</td>
+</tr>
+<tr>
+<td><code>Data::TypedVariantVectorMap::TypedVariantVectorMap()</code></td>
+<td><code>0x7a7400</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3964b20</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;CISL::IR::Builder::Identifier, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::RequestLinearBlock(unsigned int, bool)</code></td>
+<td><code>0x867910</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x43e3b90</code></td>
+<td>136</td>
+</tr>
+<tr>
+<td><code>Types::LinearAlloc::DefaultPackage::GetTypeName()</code></td>
+<td><code>0x9a09a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3c60834</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>String::BasicT&lt;Platform::StaticHeapAllocator&lt;5, 0&gt;, (String::Encoding)0&gt;::Assign(char const*)</code></td>
+<td><code>0x9ae2d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c78b3c</code></td>
+<td>212</td>
+</tr>
+<tr>
+<td><code>String::BasicT&lt;Platform::StaticHeapAllocator&lt;5, 0&gt;, (String::Encoding)0&gt;::Replace(char const*, char const*)</code></td>
+<td><code>0x9ae890</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c796fe</code></td>
+<td>838</td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::~Tokenizer()</code></td>
+<td><code>0x9aef30</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c84fe6</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>String::PaletteAllocator&lt;1048576u, Platform::StaticHeapAllocator&lt;5, 0&gt; &gt;::Alloc(unsigned int, unsigned int)</code></td>
+<td><code>0x9af750</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x3c84814</code></td>
+<td>234</td>
+</tr>
+<tr>
+<td><code>String::GlobalID::Assign(char const*)</code></td>
+<td><code>0x9b0110</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c83f2a</code></td>
+<td>74</td>
+</tr>
+<tr>
+<td><code>Types::ChunkedAllocator&lt;Platform::StaticHeapAllocator&lt;0, 0&gt;, 4096, 16&gt;::Allocate(unsigned long, unsigned long)</code></td>
+<td><code>0xaad2b0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x392e4c0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;CISL::IR::Variable*, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::RequestLinearBlock(unsigned int, bool)</code></td>
+<td><code>0xab7e40</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x43e3c18</code></td>
+<td>120</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;FireFX::Runtime::InstanceImportDesc, Types::LinearAlloc::DefaultInline&lt;FireFX::Runtime::InstanceImportDesc, 16u, 0u, 0u&gt; &gt;::push_back(F…</code></td>
+<td><code>0xb04210</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3931f70</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;Types::ListNodePolicy&lt;Particle::System::Effect&gt;, Types::LinearAlloc::Default&lt;21u, 0u&gt; &gt;::RequestLinearBlock(unsigned int, bool)</code></td>
+<td><code>0xc22370</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c3a418</code></td>
+<td>172</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;Particle::ShaderData, Types::LinearAlloc::Default&lt;21u, 0u&gt; &gt;::RequestLinearBlock(unsigned int, bool)</code></td>
+<td><code>0xc225a0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3c3a532</code></td>
+<td>136</td>
+</tr>
+<tr>
+<td><code>Types::CustomList_Core&lt;Types::ListNodePolicy&lt;Particle::System::Effect&gt;, Types::SparseVector&lt;Types::ListNodePolicy&lt;Particle::System::Effect&gt;, Types::L…</code></td>
+<td><code>0xc23550</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3c3a8a2</code></td>
+<td>218</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;String::Buffer&lt;256u, (String::Encoding)0&gt;, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::push_back(String::Buffer&lt;256u, (String::Encoding)0&gt; c…</code></td>
+<td><code>0xc38160</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x379f090</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;FSL::HLSLToCISLJob, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::resize(unsigned long)</code></td>
+<td><code>0xded2c0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x43d3b3a</code></td>
+<td>186</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;Types::Vector&lt;unsigned int, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::resize(unsigned long)</code></td>
+<td><code>0xdef570</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x43d60c0</code></td>
+<td>156</td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;CISL::IR::Builder::IdentifierScope, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::RequestAndAppendLinearBlock(unsigned int, CISL::IR::Builder:…</code></td>
+<td><code>0xe09c00</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x43e3a6e</code></td>
+<td>164</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (45, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String::Buffer&lt;256u, (String::Encoding)0&gt;::Format(char const*, ...)</code></td>
+<td><code>0x48c50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2f723f0</code></td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;8192u, (String::Encoding)0&gt;::Format(char const*, ...)</code></td>
+<td><code>0x79010</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x2fb87c0</code></td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;2048u, (String::Encoding)0&gt;::Format(char const*, ...)</code></td>
+<td><code>0x79120</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2fb88d0</code></td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;8192u, (String::Encoding)0&gt;::FormatV(char const*, __va_list_tag*)</code></td>
+<td><code>0x79760</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x2fb8b70</code></td>
+</tr>
+<tr>
+<td><code>String::StaticHash_FNV1A::Hash(char const*, unsigned int, unsigned int)</code></td>
+<td><code>0x92bd0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2fec900</code></td>
+</tr>
+<tr>
+<td><code>Data::TypedVariantVector::begin() const</code></td>
+<td><code>0xf1be0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x31cdea0</code></td>
+</tr>
+<tr>
+<td><code>Data::TypedVariantVector::end() const</code></td>
+<td><code>0xf1bf0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x31cdeb0</code></td>
+</tr>
+<tr>
+<td><code>Types::LinearAlloc::LinearBlock&lt;wchar_t const*&gt; Types::LinearAlloc::DefaultStatic&lt;Platform::StaticHeapAllocat…</code></td>
+<td><code>0x25f8b0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x33a2680</code></td>
+</tr>
+<tr>
+<td><code>String::BasicT&lt;Platform::StaticTempAllocator&lt;5, 0&gt;, (String::Encoding)0&gt;::operator+=(char const*)</code></td>
+<td><code>0x4d73a0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36b0b00</code></td>
+</tr>
+<tr>
+<td><code>Types::CustomBlockAllocator&lt;Types::DefaultBlockAllocatorElement&lt;CameraAnimationLibraryEntry&gt;, 4096, Platform:…</code></td>
+<td><code>0x56b180</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3703f00</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;WorldView::DynamicSystem::ModelSet, Types::LinearAlloc::DefaultStatic&lt;Platform::StaticHeapAlloc…</code></td>
+<td><code>0x581bd0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x371bc30</code></td>
+</tr>
+<tr>
+<td><code>Types::ChunkedAllocator&lt;Platform::StaticHeapAllocator&lt;50, 2&gt;, 8192, 16&gt;::Allocate(unsigned long, unsigned lon…</code></td>
+<td><code>0x70a9f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x42c6cf0</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;BLP::SharedDataCache::LoaderJob, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::push_back(BLP::SharedDa…</code></td>
+<td><code>0x775710</code></td>
+<td>call-graph propagation</td>
+<td><code>0x437486a</code></td>
+</tr>
+<tr>
+<td><code>Data::VariantParameters::ParameterSetEntry::GetRootMap()</code></td>
+<td><code>0x7a30b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x396de20</code></td>
+</tr>
+<tr>
+<td><code>Data::operator&gt;&gt;(Serialization::IStream&amp;, Data::TypedVariantMap&amp;)</code></td>
+<td><code>0x7a4740</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3961f40</code></td>
+</tr>
+<tr>
+<td><code>Data::operator&lt;&lt;(Serialization::OStream&amp;, Data::TypedVariantMap const&amp;)</code></td>
+<td><code>0x7a47d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3961f20</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;File::CatalogEntry const*, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::RequestAndAppendLinearBlock(u…</code></td>
+<td><code>0x7ebac0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x39ab69a</code></td>
+</tr>
+<tr>
+<td><code>Types::HashTable&lt;FireFX::AST::ExportBlockStatement const*, 1u, 0u&gt;::Set(unsigned int, FireFX::AST::ExportBloc…</code></td>
+<td><code>0x7ed500</code></td>
+<td>call-graph propagation</td>
+<td><code>0x438ef42</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;Graphics::_INTERNAL::TransientSurfacePool::TransientResourcePool&lt;Primitives::FGXSurface, Platfo…</code></td>
+<td><code>0x964250</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b90382</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;Graphics::_INTERNAL::TransientSurfacePool::TransientResourcePool&lt;Primitives::FGXSurface, Platfo…</code></td>
+<td><code>0x964290</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b903b8</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;Graphics::_INTERNAL::TransientSurfacePool::TransientResourcePool&lt;Primitives::FGXComputeSurface,…</code></td>
+<td><code>0x964350</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3b90500</code></td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::iterator::operator*() const</code></td>
+<td><code>0x983830</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2f9ff30</code></td>
+</tr>
+<tr>
+<td><code>Types::DynamicArray&lt;unsigned short, Platform::StaticTempHeapFallbackAllocator&lt;1020, 0&gt;, false&gt;::at(unsigned l…</code></td>
+<td><code>0x98a430</code></td>
+<td>call-graph propagation</td>
+<td><code>0x32d47a0</code></td>
+</tr>
+<tr>
+<td><code>String::Hash(char const*, unsigned long)</code></td>
+<td><code>0x9addb0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c80cf3</code></td>
+</tr>
+<tr>
+<td><code>String::HashNoCase(char const*)</code></td>
+<td><code>0x9ade20</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3c80d07</code></td>
+</tr>
+<tr>
+<td><code>String::HashNoCase(char const*, unsigned long)</code></td>
+<td><code>0x9ade90</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3c80d2d</code></td>
+</tr>
+<tr>
+<td><code>String::Substring(char const*, unsigned long)</code></td>
+<td><code>0x9adf30</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c80d44</code></td>
+</tr>
+<tr>
+<td><code>String::ToInt(char const*)</code></td>
+<td><code>0x9aee80</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c84ddc</code></td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::Tokenizer()</code></td>
+<td><code>0x9aeed0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c84fbc</code></td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::iterator::operator++()</code></td>
+<td><code>0x9aef90</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c85264</code></td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::Begin(String::Tokenizer::ITERATION_TYPE)</code></td>
+<td><code>0x9af210</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c85210</code></td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::SetSeparatorCharacters(char const*)</code></td>
+<td><code>0x9af280</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c8517e</code></td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::SetSeparatorCharacters(char const*, bool)</code></td>
+<td><code>0x9af2b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c85158</code></td>
+</tr>
+<tr>
+<td><code>String::Tokenizer::SetString(char const*)</code></td>
+<td><code>0x9af2f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c85128</code></td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;256u, (String::Encoding)0&gt;::Buffer()</code></td>
+<td><code>0xa21700</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2f4d160</code></td>
+</tr>
+<tr>
+<td><code>String::Base&lt;(String::Encoding)0&gt;::CompareNoCase(char const*) const</code></td>
+<td><code>0xa21860</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3c77610</code></td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;152u, (String::Encoding)0&gt;::FormatV(char const*, __va_list_tag*)</code></td>
+<td><code>0xa22e40</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3d1b8b6</code></td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;1077u, (String::Encoding)0&gt;::FormatV(char const*, __va_list_tag*)</code></td>
+<td><code>0xa22eb0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3d1b91c</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;FSL::CISLCompileJob, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::~Vector()</code></td>
+<td><code>0xdecde0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x43d3848</code></td>
+</tr>
+<tr>
+<td><code>Types::ArrayMap&lt;CISL::IR::LValueExpression*, CISL::IR::ConstantSet*, 512u, 23u, 0u, Platform::StaticHeapAlloc…</code></td>
+<td><code>0xe05c00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x43e34fc</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;CISL::IR::Builder::IdentifierScope, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::push_back(CISL::IR::…</code></td>
+<td><code>0xe09810</code></td>
+<td>call-graph propagation</td>
+<td><code>0x43e3588</code></td>
+</tr>
+<tr>
+<td><code>Types::Vector&lt;CISL::StructureTypeInfo const*, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;::RequestLinearBlock(unsig…</code></td>
+<td><code>0xe0c9e0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x43e903e</code></td>
+</tr>
+<tr>
+<td><code>Types::ChunkedAllocator&lt;Platform::StaticAllocatorWrapper, 4096, 16&gt;::Allocate(unsigned long, unsigned long)</code></td>
+<td><code>0xe499a0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x4382778</code></td>
+</tr>
+<tr>
+<td><code>Types::ChunkedAllocator&lt;Platform::StaticHeapAllocator&lt;58, 0&gt;, 1024, 16&gt;::Allocate(unsigned long, unsigned lon…</code></td>
+<td><code>0xf20300</code></td>
+<td>call-graph propagation</td>
+<td><code>0x43820f2</code></td>
+</tr>
+<tr>
+<td><code>String::Buffer&lt;256u, (String::Encoding)0&gt;::operator=(char const*)</code></td>
+<td><code>0xf5e520</code></td>
+<td>call-graph propagation</td>
+<td><code>0x2f9ff60</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

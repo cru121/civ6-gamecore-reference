@@ -1,0 +1,5631 @@
+[
+ {
+  "id": "exesql:0001",
+  "sql": "DELETE FROM Games WHERE GameId = ?",
+  "operation": "DELETE",
+  "tables": [
+   "Games"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x32dd0",
+    "name": "Application::GameSummary::DeleteGame"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0002",
+  "sql": "SELECT seq from sqlite_sequence where name = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "sqlite_sequence"
+  ],
+  "columns": [
+   "seq"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0003",
+  "sql": "INSERT INTO Games('Ruleset','GameMode','TurnCount','GameSpeedType','MapSizeType','Map','StartEraType','StartTurn','VictorTeamId','VictoryType','LastPlayed') VALUES(?,?,?,?,?,?,?,?,?,?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "Games"
+  ],
+  "columns": [
+   "Ruleset",
+   "GameMode",
+   "TurnCount",
+   "GameSpeedType",
+   "MapSizeType",
+   "Map",
+   "StartEraType",
+   "StartTurn",
+   "VictorTeamId",
+   "VictoryType",
+   "LastPlayed"
+  ],
+  "parameters": 11,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0004",
+  "sql": "INSERT INTO GameObjects('GameId','PlayerObjectId','Type','Name','PlotIndex','ExtraData','Icon') VALUES(?,?,?,?,?,?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "GameObjects"
+  ],
+  "columns": [
+   "GameId",
+   "PlayerObjectId",
+   "Type",
+   "Name",
+   "PlotIndex",
+   "ExtraData",
+   "Icon"
+  ],
+  "parameters": 7,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0005",
+  "sql": "INSERT INTO GamePlayers('PlayerObjectId','IsLocal','IsAI','IsMajor','LeaderType','LeaderName','CivilizationType', 'CivilizationName','DifficultyType','Score','PlayerId','TeamId') VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "GamePlayers"
+  ],
+  "columns": [
+   "PlayerObjectId",
+   "IsLocal",
+   "IsAI",
+   "IsMajor",
+   "LeaderType",
+   "LeaderName",
+   "CivilizationType",
+   "CivilizationName",
+   "DifficultyType",
+   "Score",
+   "PlayerId",
+   "TeamId"
+  ],
+  "parameters": 12,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0006",
+  "sql": "INSERT INTO ObjectDataPointValues('DataPoint','ObjectId','ValueObjectId','ValueType','ValueString','ValueNumeric') VALUES(?,?,?,?,?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "ObjectDataPointValues"
+  ],
+  "columns": [
+   "DataPoint",
+   "ObjectId",
+   "ValueObjectId",
+   "ValueType",
+   "ValueString",
+   "ValueNumeric"
+  ],
+  "parameters": 6,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0007",
+  "sql": "INSERT INTO GameDataPointValues('DataPoint','GameId','ValueObjectId','ValueType','ValueString','ValueNumeric') VALUES(?,?,?,?,?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "GameDataPointValues"
+  ],
+  "columns": [
+   "DataPoint",
+   "GameId",
+   "ValueObjectId",
+   "ValueType",
+   "ValueString",
+   "ValueNumeric"
+  ],
+  "parameters": 6,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0008",
+  "sql": "INSERT INTO DataSets('DataSet','ObjectId','Type') VALUES(?,?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "DataSets"
+  ],
+  "columns": [
+   "DataSet",
+   "ObjectId",
+   "Type"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0009",
+  "sql": "INSERT INTO DataSets('DataSet','GameId','Type') VALUES(?,?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "DataSets"
+  ],
+  "columns": [
+   "DataSet",
+   "GameId",
+   "Type"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0010",
+  "sql": "INSERT INTO DataSetValues('DataSetId','X','Y') VALUES(?,?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "DataSetValues"
+  ],
+  "columns": [
+   "DataSetId",
+   "X",
+   "Y"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0011",
+  "sql": "INSERT INTO ChallengeGames('ChallengeId','GameId') VALUES(?,?);",
+  "operation": "INSERT",
+  "tables": [
+   "ChallengeGames"
+  ],
+  "columns": [
+   "ChallengeId",
+   "GameId"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x316f0",
+    "name": "Application::GameSummary::BeginGameTransfer"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0012",
+  "sql": "SELECT AggregateDataPoint from DataPointAggregateUpdates where Scope = ? order by SortIndex",
+  "operation": "SELECT",
+  "tables": [
+   "DataPointAggregateUpdates"
+  ],
+  "columns": [
+   "AggregateDataPoint"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x328e0",
+    "name": "Application::GameSummary::DeleteAggregateDataPoints"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0013",
+  "sql": "DELETE FROM RulesetDataPointValues where DataPoint = ? and Ruleset =?",
+  "operation": "DELETE",
+  "tables": [
+   "RulesetDataPointValues"
+  ],
+  "columns": [],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x328e0",
+    "name": "Application::GameSummary::DeleteAggregateDataPoints"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0014",
+  "sql": "SELECT AggregateDataPoint, Operation, DataPoint, ExtraData, DataPointAggregateUpdates.Query, SQL from DataPointAggregateUpdates inner join DataPointAggregateQueries using(Query) where Scope = ? order by SortIndex",
+  "operation": "SELECT",
+  "tables": [
+   "DataPointAggregateUpdates",
+   "DataPointAggregateQueries"
+  ],
+  "columns": [
+   "AggregateDataPoint",
+   "Operation",
+   "DataPoint",
+   "ExtraData",
+   "Query",
+   "SQL"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x36440",
+    "name": "Application::GameSummary::UpdateAggregateDataPoints"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0015",
+  "sql": "SELECT 1 FROM ObjectDataPointValues WHERE DataPoint = @DataPoint AND ObjectId = @ObjectId LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ObjectDataPointValues"
+  ],
+  "columns": [
+   "1"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x36440",
+    "name": "Application::GameSummary::UpdateAggregateDataPoints"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0016",
+  "sql": "SELECT 1 FROM GameDataPointValues where DataPoint = @DataPoint and GameId = @GameId LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "GameDataPointValues"
+  ],
+  "columns": [
+   "1"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x36440",
+    "name": "Application::GameSummary::UpdateAggregateDataPoints"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0017",
+  "sql": "SELECT SupportsSmallCaps FROM Languages WHERE Locale = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Languages"
+  ],
+  "columns": [
+   "SupportsSmallCaps"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4e620",
+    "name": "AppUIManager::AppUIManager"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0018",
+  "sql": "SELECT StyleSheet, DefaultFont from FontStyleSheets where Language = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "FontStyleSheets"
+  ],
+  "columns": [
+   "StyleSheet",
+   "DefaultFont"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4fc90",
+    "name": "AppUIManager::GetStyleSheetAndDefaultFont"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0019",
+  "sql": "SELECT StyleOverride FROM FontStyleSheets WHERE Language = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "FontStyleSheets"
+  ],
+  "columns": [
+   "StyleOverride"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4fe30",
+    "name": "AppUIManager::GetStyleSheetLanguageOverrides"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0020",
+  "sql": "SELECT AudioLanguage from DefaultAudioLanguages where Locale = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "DefaultAudioLanguages"
+  ],
+  "columns": [
+   "AudioLanguage"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x777d0",
+    "name": "Civ6App::UpdateLanguageIniSettings"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0021",
+  "sql": "SELECT Locale from SteamLanguages where SteamLanguage = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "SteamLanguages"
+  ],
+  "columns": [
+   "Locale"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x777d0",
+    "name": "Civ6App::UpdateLanguageIniSettings"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0022",
+  "sql": "SELECT count(*) from CivilizationAudioTags",
+  "operation": "SELECT",
+  "tables": [
+   "CivilizationAudioTags"
+  ],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x8da00",
+    "name": "AmbientAudio::StartupStrategyGame"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0023",
+  "sql": "SELECT CivilizationType, MusicOverride from CivilizationAudioTags",
+  "operation": "SELECT",
+  "tables": [
+   "CivilizationAudioTags"
+  ],
+  "columns": [
+   "CivilizationType",
+   "MusicOverride"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x8da00",
+    "name": "AmbientAudio::StartupStrategyGame"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0024",
+  "sql": "SELECT VictoryDomain FROM Rulesets WHERE RulesetType = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Rulesets"
+  ],
+  "columns": [
+   "VictoryDomain"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb55b0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0025",
+  "sql": "SELECT DISTINCT VictoryType AS 'Type', Name, Icon FROM Victories WHERE Domain = ? AND Visible = 1",
+  "operation": "SELECT",
+  "tables": [
+   "Victories"
+  ],
+  "columns": [
+   "VictoryType",
+   "Name",
+   "Icon"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb55b0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0026",
+  "sql": "SELECT VictoryType, GamePlayers.LeaderType FROM GAMES INNER JOIN GamePlayers ON GamePlayers.PlayerObjectId = (SELECT GamePlayers.PlayerObjectId FROM GamePlayers INNER JOIN GameObjects ON GamePlayers.PlayerObjectId = GameObjects.ObjectId WHERE GamePlayers.IsLocal = 1 and GameObjects.GameId = Games.GameId and GamePlayers.TeamId = Games.VictorTeamId LIMIT 1) WHERE GameId IN (SELECT GameId FROM ChallengeGames WHERE ChallengeId in (",
+  "operation": "SELECT",
+  "tables": [
+   "GAMES",
+   "GamePlayers",
+   "GameObjects",
+   "ChallengeGames"
+  ],
+  "columns": [
+   "VictoryType",
+   "LeaderType"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb55b0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0027",
+  "sql": "SELECT Domain FROM RulesetDomainOverrides WHERE Ruleset = ? AND ParameterId = 'PlayerLeader' LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "RulesetDomainOverrides"
+  ],
+  "columns": [
+   "Domain"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb4bd0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0028",
+  "sql": "SELECT LeaderType, LeaderName, CivilizationType, CivilizationName, LeaderIcon, CivilizationIcon FROM Players WHERE Domain = @Domain AND HumanPlayable = 1 AND LeaderType NOT IN (SELECT value FROM RulesetUnSupportedValues WHERE Domain=@Domain AND Ruleset=@Ruleset)",
+  "operation": "SELECT",
+  "tables": [
+   "Players",
+   "RulesetUnSupportedValues"
+  ],
+  "columns": [
+   "LeaderType",
+   "LeaderName",
+   "CivilizationType",
+   "CivilizationName",
+   "LeaderIcon",
+   "CivilizationIcon"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb4bd0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0029",
+  "sql": "SELECT LeaderType, CASE WHEN GamePlayers.TeamId = Games.VictorTeamId THEN Games.VictoryType ELSE NULL END VictoryType FROM GamePlayers INNER JOIN GameObjects ON GamePlayers.PlayerObjectId = GameObjects.ObjectId INNER JOIN Games ON GameObjects.GameId = Games.GameId WHERE GamePlayers.IsLocal = 1 AND Games.Ruleset = ? AND Games.GameId IN (SELECT GameId FROM ChallengeGames WHERE ChallengeId in (",
+  "operation": "SELECT",
+  "tables": [
+   "GamePlayers",
+   "GameObjects",
+   "Games",
+   "ChallengeGames"
+  ],
+  "columns": [
+   "LeaderType"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb4bd0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0030",
+  "sql": "SELECT * FROM Games WHERE Games.GameId IN (SELECT GameId FROM ChallengeGames WHERE ChallengeId in (",
+  "operation": "SELECT",
+  "tables": [
+   "Games",
+   "ChallengeGames"
+  ],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb5e10",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0031",
+  "sql": "SELECT COUNT(VictoryType) FROM GAMES INNER JOIN GamePlayers ON GamePlayers.PlayerObjectId = (SELECT GamePlayers.PlayerObjectId FROM GamePlayers INNER JOIN GameObjects ON GamePlayers.PlayerObjectId = GameObjects.ObjectId WHERE GamePlayers.IsLocal = 1 and GameObjects.GameId = Games.GameId and GamePlayers.TeamId = Games.VictorTeamId LIMIT 1) WHERE GameId IN (SELECT GameId FROM ChallengeGames WHERE ChallengeId = ?) LIMIT 2",
+  "operation": "SELECT",
+  "tables": [
+   "GAMES",
+   "GamePlayers",
+   "GameObjects",
+   "ChallengeGames"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb6130",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0032",
+  "sql": "SELECT GamePlayers.LeaderName, COUNT(VictoryType)FROM GAMES INNER JOIN GamePlayers ON GamePlayers.PlayerObjectId = (SELECT GamePlayers.PlayerObjectId FROM GamePlayers INNER JOIN GameObjects ON GamePlayers.PlayerObjectId = GameObjects.ObjectId WHERE GamePlayers.IsLocal = 1 and GameObjects.GameId = Games.GameId and GamePlayers.TeamId = Games.VictorTeamId LIMIT 1) WHERE GameId IN (SELECT GameId FROM ChallengeGames WHERE ChallengeId = ?) ORDER BY LastPlayed DESC LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "GAMES",
+   "GamePlayers",
+   "GameObjects",
+   "ChallengeGames"
+  ],
+  "columns": [
+   "LeaderName",
+   "PlayerObjectId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb4800",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0033",
+  "sql": "SELECT Domain, File FROM Maps WHERE Name = ?",
+  "operation": "SELECT",
+  "tables": [
+   "Maps"
+  ],
+  "columns": [
+   "Domain",
+   "File"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb8840",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0034",
+  "sql": "PRAGMA foreign_keys = ON;",
+  "operation": "PRAGMA",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbc880",
+    "name": "Application::Data::ConfigurationDatabase::CreateConnection"
+   },
+   {
+    "rva": "0xbf6a0",
+    "name": "Application::Data::GameplayDatabase::CreateConnection"
+   },
+   {
+    "rva": "0xc0550",
+    "name": "Application::Data::GameSummaryDatabase::Initialize"
+   }
+  ],
+  "function_count": 7,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 7 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0035",
+  "sql": "PRAGMA recursive_triggers = ON;",
+  "operation": "PRAGMA",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbc880",
+    "name": "Application::Data::ConfigurationDatabase::CreateConnection"
+   },
+   {
+    "rva": "0xbf6a0",
+    "name": "Application::Data::GameplayDatabase::CreateConnection"
+   }
+  ],
+  "function_count": 2,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0036",
+  "sql": "PRAGMA defer_foreign_keys = ON;",
+  "operation": "PRAGMA",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbc330",
+    "name": null
+   },
+   {
+    "rva": "0xbf120",
+    "name": "Application::Data::GameplayDatabase::Bootstrap"
+   },
+   {
+    "rva": "0xbfff0",
+    "name": "Application::Data::GameSummaryDatabase::Bootstrap"
+   }
+  ],
+  "function_count": 10,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 10 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0037",
+  "sql": "INSERT INTO %s(%s, rank) VALUES('rank', 'bm25(15.0, 10.0, 5.0)')",
+  "operation": "INSERT",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbe1d0",
+    "name": "Application::Data::FullTextSearch::CreateContext"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0038",
+  "sql": "INSERT INTO %s(type, name, description, tags) values(?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [],
+  "columns": [],
+  "parameters": 4,
+  "functions": [
+   {
+    "rva": "0xbe1d0",
+    "name": "Application::Data::FullTextSearch::CreateContext"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0039",
+  "sql": "DELETE FROM %s",
+  "operation": "DELETE",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbe130",
+    "name": "Application::Data::FullTextSearch::ClearData"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0040",
+  "sql": "INSERT INTO %s(%s) VALUES('optimize');",
+  "operation": "INSERT",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbe6a0",
+    "name": "Application::Data::FullTextSearch::Optimize"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0041",
+  "sql": "PRAGMA foreign_keys = OFF;",
+  "operation": "PRAGMA",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbf120",
+    "name": "Application::Data::GameplayDatabase::Bootstrap"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0042",
+  "sql": "PRAGMA defer_foreign_keys = OFF;",
+  "operation": "PRAGMA",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xbf120",
+    "name": "Application::Data::GameplayDatabase::Bootstrap"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0043",
+  "sql": "SELECT Value from GlobalParameters where Name = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "GlobalParameters"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xbfa00",
+    "name": "Application::Data::GameplayDatabase::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0044",
+  "sql": "SELECT SQL from Migrations where MinVersion <= ?1 AND MaxVersion >= ?1 ORDER by SortIndex",
+  "operation": "SELECT",
+  "tables": [
+   "Migrations"
+  ],
+  "columns": [
+   "SQL"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xc0b00",
+    "name": "Application::Data::GameSummaryDatabase::MigrateDatabaseData"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0045",
+  "sql": "INSERT INTO Colors(Type, Color) VALUES(?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Colors"
+  ],
+  "columns": [
+   "Type",
+   "Color"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xfbe40",
+    "name": "GameCore::Color::Manager::PopulateDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0046",
+  "sql": "SELECT Type, Color, Red, Green, Blue, Alpha from Colors",
+  "operation": "SELECT",
+  "tables": [
+   "Colors"
+  ],
+  "columns": [
+   "Type",
+   "Color",
+   "Red",
+   "Green",
+   "Blue",
+   "Alpha"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xfbe40",
+    "name": "GameCore::Color::Manager::PopulateDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0047",
+  "sql": "INSERT INTO PlayerColors(Type, Usage, PrimaryColor, SecondaryColor) VALUES(?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "PlayerColors"
+  ],
+  "columns": [
+   "Type",
+   "Usage",
+   "PrimaryColor",
+   "SecondaryColor"
+  ],
+  "parameters": 4,
+  "functions": [
+   {
+    "rva": "0xfbe40",
+    "name": "GameCore::Color::Manager::PopulateDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0048",
+  "sql": "SELECT Type, Usage, PrimaryColor, SecondaryColor from PlayerColors",
+  "operation": "SELECT",
+  "tables": [
+   "PlayerColors"
+  ],
+  "columns": [
+   "Type",
+   "Usage",
+   "PrimaryColor",
+   "SecondaryColor"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xfbe40",
+    "name": "GameCore::Color::Manager::PopulateDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0049",
+  "sql": "SELECT count(*) from Colors",
+  "operation": "SELECT",
+  "tables": [
+   "Colors"
+  ],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xfd110",
+    "name": "GameCore::Color::Manager::ScrapeDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0050",
+  "sql": "SELECT Type, Color from Colors",
+  "operation": "SELECT",
+  "tables": [
+   "Colors"
+  ],
+  "columns": [
+   "Type",
+   "Color"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xfd110",
+    "name": "GameCore::Color::Manager::ScrapeDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0051",
+  "sql": "SELECT Type, Usage, PrimaryColor, SecondaryColor, Alt1PrimaryColor, Alt1SecondaryColor, Alt2PrimaryColor, Alt2SecondaryColor, Alt3PrimaryColor, Alt3SecondaryColor from PlayerColors",
+  "operation": "SELECT",
+  "tables": [
+   "PlayerColors"
+  ],
+  "columns": [
+   "Type",
+   "Usage",
+   "PrimaryColor",
+   "SecondaryColor",
+   "Alt1PrimaryColor",
+   "Alt1SecondaryColor",
+   "Alt2PrimaryColor",
+   "Alt2SecondaryColor",
+   "Alt3PrimaryColor",
+   "Alt3SecondaryColor"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xfd110",
+    "name": "GameCore::Color::Manager::ScrapeDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0052",
+  "sql": "SELECT Type, Value from StartPositions",
+  "operation": "SELECT",
+  "tables": [
+   "StartPositions"
+  ],
+  "columns": [
+   "Type",
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1639b0",
+    "name": "GameCore::Serializer::Manager::ApplyModdingState"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0053",
+  "sql": "SELECT CivilizationType from Players",
+  "operation": "SELECT",
+  "tables": [
+   "Players"
+  ],
+  "columns": [
+   "CivilizationType"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1639b0",
+    "name": "GameCore::Serializer::Manager::ApplyModdingState"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0054",
+  "sql": "SELECT Value from MapAttributes where Name = 'Ruleset' LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "MapAttributes"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1639b0",
+    "name": "GameCore::Serializer::Manager::ApplyModdingState"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0055",
+  "sql": "SELECT Value from MetaData where Name = 'IsMod' LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "MetaData"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1639b0",
+    "name": "GameCore::Serializer::Manager::ApplyModdingState"
+   },
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0056",
+  "sql": "SELECT ID FROM ModDependencies",
+  "operation": "SELECT",
+  "tables": [
+   "ModDependencies"
+  ],
+  "columns": [
+   "ID"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1639b0",
+    "name": "GameCore::Serializer::Manager::ApplyModdingState"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0057",
+  "sql": "INSERT INTO MetaData (Name, Value) VALUES (?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "MetaData"
+  ],
+  "columns": [
+   "Name",
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x16d500",
+    "name": "GameCore::Serializer::Manager::SaveMetaData"
+   },
+   {
+    "rva": "0x8b23a0",
+    "name": null
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0058",
+  "sql": "SELECT Value from ModProperties where Name = 'DBVersion'",
+  "operation": "SELECT",
+  "tables": [
+   "ModProperties"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x16f530",
+    "name": "GameCore::Serializer::Manager::UnserializeWorldBuilderState"
+   },
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0059",
+  "sql": "SELECT FeatureType, Name FROM Features WHERE NaturalWonder=1",
+  "operation": "SELECT",
+  "tables": [
+   "Features"
+  ],
+  "columns": [
+   "FeatureType",
+   "Name"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x17e810",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0060",
+  "sql": "SELECT Name, VictoryType, EnabledByDefault FROM Victories",
+  "operation": "SELECT",
+  "tables": [
+   "Victories"
+  ],
+  "columns": [
+   "Name",
+   "VictoryType",
+   "EnabledByDefault"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1801f0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0061",
+  "sql": "SELECT Name FROM DomainValues where Domain = ? and Value = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "DomainValues"
+  ],
+  "columns": [
+   "Name"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x181380",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0062",
+  "sql": "SELECT L.LeaderType from Leaders as L inner join CivilizationLeaders AS CL on CL.LeaderType = L.LeaderType inner join Civilizations as C on CL.CivilizationType = C.CivilizationType  where IsBarbarianLeader=0 and StartingCivilizationLevelType='CIVILIZATION_LEVEL_FULL_CIV' ORDER BY L.rowid",
+  "operation": "SELECT",
+  "tables": [
+   "Leaders",
+   "CivilizationLeaders",
+   "Civilizations"
+  ],
+  "columns": [
+   "LeaderType"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x184df0",
+    "name": "GameCore::App::Telemetry::Listener::OnPostLoadBegin"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0063",
+  "sql": "SELECT count(*) from Eras",
+  "operation": "SELECT",
+  "tables": [
+   "Eras"
+  ],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1c1bc0",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetEraList"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0064",
+  "sql": "SELECT EraType, ChronologyIndex from Eras",
+  "operation": "SELECT",
+  "tables": [
+   "Eras"
+  ],
+  "columns": [
+   "EraType",
+   "ChronologyIndex"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1c1bc0",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetEraList"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0065",
+  "sql": "SELECT Cost, EraType, UITreeRow FROM %s where %s = ?",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [
+   "Cost",
+   "EraType",
+   "UITreeRow"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x1c2880",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromGameCore"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0066",
+  "sql": "SELECT 1 FROM sqlite_master where type='table' AND name='%s' LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "sqlite_master"
+  ],
+  "columns": [
+   "1"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1c1d50",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromDB"
+   },
+   {
+    "rva": "0x1c2880",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromGameCore"
+   }
+  ],
+  "function_count": 2,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0067",
+  "sql": "SELECT RandomPrereqs from %s WHERE %s = ?",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [
+   "RandomPrereqs"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x1c1d50",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromDB"
+   },
+   {
+    "rva": "0x1c2880",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromGameCore"
+   }
+  ],
+  "function_count": 2,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0068",
+  "sql": "SELECT count(*) FROM %s",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1c1d50",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromDB"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0069",
+  "sql": "SELECT rowid, %s, Cost, EraType, UITreeRow FROM %s",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [
+   "rowid",
+   "Cost",
+   "EraType",
+   "UITreeRow"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x1c1d50",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromDB"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0070",
+  "sql": "SELECT %s from %sPrereqs WHERE %s = ?",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x1c1d50",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetListFromDB"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0071",
+  "sql": "SELECT %s FROM %s WHERE %s = ?",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x1c34d0",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetUnlocks"
+   },
+   {
+    "rva": "0x1c3ac0",
+    "name": "GameCore::App::UI::Tree::TreeManager::GetUnlocksForDBRow"
+   }
+  ],
+  "function_count": 2,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0072",
+  "sql": "SELECT PackageId, DllPrefix, GameCores.GameCore from GameCores inner join Rulesets on Rulesets.GameCore = GameCores.GameCore where RuleSetType = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "GameCores",
+   "Rulesets"
+  ],
+  "columns": [
+   "PackageId",
+   "DllPrefix",
+   "GameCore"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x249d80",
+    "name": "AppModdingFramework::GetDLLPathFromConfig"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0073",
+  "sql": "SELECT Criteria.CriteriaRowId, Criteria.Any from ComponentCriteria inner join Criteria on ComponentCriteria.CriteriaRowId = Criteria.CriteriaRowId where ComponentRowId = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ComponentCriteria",
+   "Criteria"
+  ],
+  "columns": [
+   "CriteriaRowId",
+   "Any"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x252be0",
+    "name": "ModdingComponentDiscoveryService::FilterComponents"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0074",
+  "sql": "SELECT GameCore FROM Rulesets WHERE RuleSetType = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Rulesets"
+  ],
+  "columns": [
+   "GameCore"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x2542c0",
+    "name": "GameCoreInUseCriterion::BeforeCheck"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0075",
+  "sql": "INSERT INTO Maps(File, Name, Description, StaticMap, Domain) VALUES(?,?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Maps"
+  ],
+  "columns": [
+   "File",
+   "Name",
+   "Description",
+   "StaticMap",
+   "Domain"
+  ],
+  "parameters": 5,
+  "functions": [
+   {
+    "rva": "0x259060",
+    "name": "ModdingMapSettingHandler::BeginApplySettings"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0076",
+  "sql": "INSERT INTO Maps(File, Name, Description, StaticMap) VALUES(?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Maps"
+  ],
+  "columns": [
+   "File",
+   "Name",
+   "Description",
+   "StaticMap"
+  ],
+  "parameters": 4,
+  "functions": [
+   {
+    "rva": "0x259060",
+    "name": "ModdingMapSettingHandler::BeginApplySettings"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0077",
+  "sql": "SELECT Criteria.CriteriaRowId, Criteria.Any from SettingCriteria inner join Criteria on SettingCriteria.CriteriaRowId = Criteria.CriteriaRowId where SettingRowId = ?",
+  "operation": "SELECT",
+  "tables": [
+   "SettingCriteria",
+   "Criteria"
+  ],
+  "columns": [
+   "CriteriaRowId",
+   "Any"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x25e450",
+    "name": "ModdingSettingDiscoveryService::FilterSettings"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0078",
+  "sql": "INSERT INTO MapLeaders (Map, LeaderType) VALUES (?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "MapLeaders"
+  ],
+  "columns": [
+   "Map",
+   "LeaderType"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0079",
+  "sql": "SELECT LeaderType from Players WHERE LeaderType <> 'RANDOM' AND LeaderType <> 'UNDEFINED' ORDER BY LeaderType",
+  "operation": "SELECT",
+  "tables": [
+   "Players"
+  ],
+  "columns": [
+   "LeaderType"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0080",
+  "sql": "INSERT INTO MapSupportedValues (Map, Domain, Value) VALUES (?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "MapSupportedValues"
+  ],
+  "columns": [
+   "Map",
+   "Domain",
+   "Value"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0081",
+  "sql": "SELECT MapSizeType from Map",
+  "operation": "SELECT",
+  "tables": [
+   "Map"
+  ],
+  "columns": [
+   "MapSizeType"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0082",
+  "sql": "SELECT Value from MapAttributes WHERE Name = 'Ruleset'",
+  "operation": "SELECT",
+  "tables": [
+   "MapAttributes"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0083",
+  "sql": "SELECT Domain from RulesetDomainOverrides WHERE Ruleset = ? and ParameterId = 'Map'",
+  "operation": "SELECT",
+  "tables": [
+   "RulesetDomainOverrides"
+  ],
+  "columns": [
+   "Domain"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0084",
+  "sql": "SELECT Language, ID, Value from ModText",
+  "operation": "SELECT",
+  "tables": [
+   "ModText"
+  ],
+  "columns": [
+   "Language",
+   "ID",
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x262510",
+    "name": "ModdingWorldBuilderSettingHandler::LoadWorldBuilderDatabase"
+   },
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0085",
+  "sql": "SELECT Name FROM Victories where VictoryType = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Victories"
+  ],
+  "columns": [
+   "Name"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x289470",
+    "name": "Network::Manager::OnTeamVictory"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0086",
+  "sql": "SELECT rowid, * FROM %s order by rowid",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [
+   "rowid"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x2a18f0",
+    "name": "AppLuaDBLibrary::lua_RegisterDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0087",
+  "sql": "SELECT BaseTable, PropertyName, TargetTable, IsCollection, Query from NavigationProperties;",
+  "operation": "SELECT",
+  "tables": [
+   "NavigationProperties"
+  ],
+  "columns": [
+   "BaseTable",
+   "PropertyName",
+   "TargetTable",
+   "IsCollection",
+   "Query"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x2a18f0",
+    "name": "AppLuaDBLibrary::lua_RegisterDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0088",
+  "sql": "SELECT Name, Value FROM GlobalParameters",
+  "operation": "SELECT",
+  "tables": [
+   "GlobalParameters"
+  ],
+  "columns": [
+   "Name",
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x2a2cf0",
+    "name": "AppLuaDBLibrary::lua_RegisterGlobalParametersLibrary"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0089",
+  "sql": "SELECT NULL as RulesetType, * from StatisticCategories where Category NOT IN(Select Category from StatisticCategoryRulesetOverrides where RulesetType = ?1) UNION Select * from StatisticCategoryRulesetOverrides where RulesetType = ?1",
+  "operation": "SELECT",
+  "tables": [
+   "StatisticCategories",
+   "StatisticCategoryRulesetOverrides"
+  ],
+  "columns": [
+   "NULL"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x4c70b0",
+    "name": "AppLuaGameSummaryLibrary::lGetStatisticsCategories"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0090",
+  "sql": "SELECT NULL as RulesetType, * from Statistics where Visible = 1 and DataPoint NOT IN(Select DataPoint from StatisticRulesetOverrides where RulesetType = ?1) UNION Select * from StatisticRulesetOverrides where Visible = 1 and RulesetType = ?1",
+  "operation": "SELECT",
+  "tables": [
+   "Statistics",
+   "StatisticRulesetOverrides"
+  ],
+  "columns": [
+   "NULL"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0x4c6fc0",
+    "name": "AppLuaGameSummaryLibrary::lGetStatistics"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0091",
+  "sql": "SELECT GamePlayers.PlayerObjectId from GamePlayers inner join GameObjects on GamePlayers.PlayerObjectId = GameObjects.ObjectId where GameObjects.GameId = ?",
+  "operation": "SELECT",
+  "tables": [
+   "GamePlayers",
+   "GameObjects"
+  ],
+  "columns": [
+   "PlayerObjectId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c54e0",
+    "name": "AppLuaGameSummaryLibrary::lGetGraphs"
+   },
+   {
+    "rva": "0x4c63a0",
+    "name": "AppLuaGameSummaryLibrary::lGetReports"
+   }
+  ],
+  "function_count": 2,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0092",
+  "sql": "SELECT MIN(X), MAX(X) from DataSetValues where DataSetId = ?",
+  "operation": "SELECT",
+  "tables": [
+   "DataSetValues"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c54e0",
+    "name": "AppLuaGameSummaryLibrary::lGetGraphs"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0093",
+  "sql": "SELECT X,Y from DataSetValues where DataSetId = ? order by X",
+  "operation": "SELECT",
+  "tables": [
+   "DataSetValues"
+  ],
+  "columns": [
+   "X",
+   "Y"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c54e0",
+    "name": "AppLuaGameSummaryLibrary::lGetGraphs"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0094",
+  "sql": "SELECT * from Graphs inner join GraphQueries on Graphs.Query = GraphQueries.Query where Scope = ?",
+  "operation": "SELECT",
+  "tables": [
+   "Graphs",
+   "GraphQueries"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c54e0",
+    "name": "AppLuaGameSummaryLibrary::lGetGraphs"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0095",
+  "sql": "SELECT NULL as RulesetType, * from Graphs g inner join GraphQueries gq on g.Query = gq.Query where Visible = 1 and Scope = ?1 and g.Graph NOT IN(SELECT Graph from GraphRulesetOverrides where RulesetType = ?2 and Scope = ?1) UNION SELECT * from GraphRulesetOverrides g inner join GraphQueries gq on g.Query = gq.Query where Visible = 1 and RulesetType = ?2 and Scope = ?1",
+  "operation": "SELECT",
+  "tables": [
+   "Graphs",
+   "GraphQueries",
+   "GraphRulesetOverrides"
+  ],
+  "columns": [
+   "NULL"
+  ],
+  "parameters": 5,
+  "functions": [
+   {
+    "rva": "0x4c54e0",
+    "name": "AppLuaGameSummaryLibrary::lGetGraphs"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0096",
+  "sql": "SELECT * from Reports inner join ReportQueries on Reports.Query = ReportQueries.Query where Scope = ?",
+  "operation": "SELECT",
+  "tables": [
+   "Reports",
+   "ReportQueries"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c63a0",
+    "name": "AppLuaGameSummaryLibrary::lGetReports"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0097",
+  "sql": "SELECT * from ReportColumns where Report = ? order by SortOrder",
+  "operation": "SELECT",
+  "tables": [
+   "ReportColumns"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c63a0",
+    "name": "AppLuaGameSummaryLibrary::lGetReports"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0098",
+  "sql": "SELECT NULL as RulesetType, * from Reports r inner join ReportQueries rq on r.Query = rq.Query where Visible = 1 and Scope = ?1 and r.Report NOT IN(SELECT Report from ReportRulesetOverrides where Scope = ?1 and RulesetType = ?2) UNION SELECT * from ReportRulesetOverrides r inner join ReportQueries rq on r.Query = rq.Query where Visible = 1 and Scope = ?1 and RulesetType = ?2 ",
+  "operation": "SELECT",
+  "tables": [
+   "Reports",
+   "ReportQueries",
+   "ReportRulesetOverrides"
+  ],
+  "columns": [
+   "NULL"
+  ],
+  "parameters": 5,
+  "functions": [
+   {
+    "rva": "0x4c63a0",
+    "name": "AppLuaGameSummaryLibrary::lGetReports"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0099",
+  "sql": "SELECT NULL as RulesetType, * from ReportColumns where Visible = 1 and Report = ?1 and Report NOT IN(SELECT Report from ReportColumnRulesetOverrides where Report = ?1 and RulesetType = ?2) UNION SELECT * from ReportColumnRulesetOverrides where Visible = 1 and Report = ?1 and RulesetType = ?2 ORDER BY SortOrder",
+  "operation": "SELECT",
+  "tables": [
+   "ReportColumns",
+   "ReportColumnRulesetOverrides"
+  ],
+  "columns": [
+   "NULL"
+  ],
+  "parameters": 5,
+  "functions": [
+   {
+    "rva": "0x4c63a0",
+    "name": "AppLuaGameSummaryLibrary::lGetReports"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0100",
+  "sql": "SELECT RulesetType as 'Ruleset', Name, Description, IsScenario, SortIndex from Rulesets",
+  "operation": "SELECT",
+  "tables": [
+   "Rulesets"
+  ],
+  "columns": [
+   "RulesetType",
+   "Name",
+   "Description",
+   "IsScenario",
+   "SortIndex"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x4c50e0",
+    "name": "AppLuaGameSummaryLibrary::lGetAvailableRulesets"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0101",
+  "sql": "SELECT Domain from RulesetDomainOverrides where Ruleset = ? and ParameterId = 'PlayerLeader' LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "RulesetDomainOverrides"
+  ],
+  "columns": [
+   "Domain"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c5800",
+    "name": "AppLuaGameSummaryLibrary::lGetLeaderProgress"
+   },
+   {
+    "rva": "0x4c6730",
+    "name": "AppLuaGameSummaryLibrary::lGetRulesetPlayableLeaders"
+   }
+  ],
+  "function_count": 2,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0102",
+  "sql": "SELECT LeaderType, LeaderName, CivilizationType, CivilizationName, LeaderIcon, CivilizationIcon from Players where Domain = @Domain and HumanPlayable = 1 and LeaderType not in (select value from RulesetUnSupportedValues where Domain=@Domain and Ruleset=@Ruleset)",
+  "operation": "SELECT",
+  "tables": [
+   "Players",
+   "RulesetUnSupportedValues"
+  ],
+  "columns": [
+   "LeaderType",
+   "LeaderName",
+   "CivilizationType",
+   "CivilizationName",
+   "LeaderIcon",
+   "CivilizationIcon"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0x4c5800",
+    "name": "AppLuaGameSummaryLibrary::lGetLeaderProgress"
+   },
+   {
+    "rva": "0x4c6730",
+    "name": "AppLuaGameSummaryLibrary::lGetRulesetPlayableLeaders"
+   }
+  ],
+  "function_count": 2,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0103",
+  "sql": "SELECT VictoryType as 'Type', Name, Icon from Victories where Domain = ? and Visible = 1",
+  "operation": "SELECT",
+  "tables": [
+   "Victories"
+  ],
+  "columns": [
+   "VictoryType",
+   "Name",
+   "Icon"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c71a0",
+    "name": "AppLuaGameSummaryLibrary::lGetVictoryProgress"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0104",
+  "sql": "select VictoryType, GamePlayers.LeaderType from Games inner join GamePlayers on GamePlayers.PlayerObjectId = (select GamePlayers.PlayerObjectId from GamePlayers inner join GameObjects on GamePlayers.PlayerObjectId = GameObjects.ObjectId where GamePlayers.IsLocal = 1 and GameObjects.GameId = Games.GameId and GamePlayers.TeamId = Games.VictorTeamId order by GamePlayers.PlayerId limit 1)where Games.Ruleset = ? and GameId not in (SELECT GameId FROM ChallengeGames) order by LastPlayed desc",
+  "operation": "SELECT",
+  "tables": [
+   "Games",
+   "GamePlayers",
+   "GameObjects",
+   "ChallengeGames"
+  ],
+  "columns": [
+   "VictoryType",
+   "LeaderType"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c71a0",
+    "name": "AppLuaGameSummaryLibrary::lGetVictoryProgress"
+   }
+  ],
+  "function_count": 1,
+  "database": "HallofFame.sqlite (game summary)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0105",
+  "sql": "SELECT Type, Kind, Name, Icon from RulesetTypes where Ruleset = ?",
+  "operation": "SELECT",
+  "tables": [
+   "RulesetTypes"
+  ],
+  "columns": [
+   "Type",
+   "Kind",
+   "Name",
+   "Icon"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4c6970",
+    "name": "AppLuaGameSummaryLibrary::lGetRulesetTypes"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (summary queries)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0106",
+  "sql": "SELECT AudioLanguage, Locale from AudioLanguages ORDER BY AudioLanguage",
+  "operation": "SELECT",
+  "tables": [
+   "AudioLanguages"
+  ],
+  "columns": [
+   "AudioLanguage",
+   "Locale"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x4c9970",
+    "name": "AppLuaLocaleLibrary::lGetAudioLanguages"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0107",
+  "sql": "SELECT TranslateCharacter FROM CivilopediaTranslateCharacters where Character = ?",
+  "operation": "SELECT",
+  "tables": [
+   "CivilopediaTranslateCharacters"
+  ],
+  "columns": [
+   "TranslateCharacter"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x4d68b0",
+    "name": "AppLuaSearchLibrary::lAddData"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0108",
+  "sql": "SELECT Name, OtherName from IconAliases",
+  "operation": "SELECT",
+  "tables": [
+   "IconAliases"
+  ],
+  "columns": [
+   "Name",
+   "OtherName"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x4ff770",
+    "name": "DatabaseIconProvider::ScrapeDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0109",
+  "sql": "SELECT Name, IconSize, IconsPerRow, FileName, OffsetH, OffsetV, Baseline from IconTextureAtlases order by Name, IconSize DESC",
+  "operation": "SELECT",
+  "tables": [
+   "IconTextureAtlases"
+  ],
+  "columns": [
+   "Name",
+   "IconSize",
+   "IconsPerRow",
+   "FileName",
+   "OffsetH",
+   "OffsetV",
+   "Baseline"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x4ff770",
+    "name": "DatabaseIconProvider::ScrapeDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0110",
+  "sql": "SELECT Name, Atlas, \"Index\" from IconDefinitions order by Name",
+  "operation": "SELECT",
+  "tables": [
+   "IconDefinitions"
+  ],
+  "columns": [
+   "Name",
+   "Atlas"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x4ff770",
+    "name": "DatabaseIconProvider::ScrapeDatabase"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0111",
+  "sql": "SELECT Make_Hash(FeatureType),AddsFreshWater from Features",
+  "operation": "SELECT",
+  "tables": [
+   "Features"
+  ],
+  "columns": [
+   "AddsFreshWater"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x551980",
+    "name": "WorldView_StartupGame"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0112",
+  "sql": "DELETE FROM %s WHERE %s NOT IN (SELECT %s FROM %s)",
+  "operation": "DELETE",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x79ab90",
+    "name": "Database::XMLSerializer::DeleteMissingReferences"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0113",
+  "sql": "DELETE FROM ",
+  "operation": "DELETE",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x79af50",
+    "name": "Database::XMLSerializer::DeleteRow"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0114",
+  "sql": "UPDATE ",
+  "operation": "UPDATE",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x79d930",
+    "name": "Database::XMLSerializer::UpdateRow"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0115",
+  "sql": "SELECT ActionId, InputActions.Name AS 'Name',Description, InputCategories.Name AS 'Category', InputContexts.Value AS 'Context', LayoutType FROM InputActions INNER JOIN InputCategories ON InputActions.CategoryId = InputCategories.CategoryId INNER JOIN InputContexts ON InputActions.ContextId = InputContexts.ContextId ORDER BY InputActions.ActionId",
+  "operation": "SELECT",
+  "tables": [
+   "InputActions",
+   "InputCategories",
+   "InputContexts"
+  ],
+  "columns": [
+   "ActionId",
+   "Name",
+   "Description",
+   "Name",
+   "Value",
+   "LayoutType"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x96c950",
+    "name": "CivTech::Input::Manager::ReloadInputActions"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0116",
+  "sql": "SELECT \"Index\", GestureType, GestureData FROM InputActionDefaultGestures WHERE ActionId = ?",
+  "operation": "SELECT",
+  "tables": [
+   "InputActionDefaultGestures"
+  ],
+  "columns": [
+   "GestureType",
+   "GestureData"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0x96c950",
+    "name": "CivTech::Input::Manager::ReloadInputActions"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0117",
+  "sql": "SELECT KeyId, KeyString, KeyIcon, KeyType FROM InputKeyData",
+  "operation": "SELECT",
+  "tables": [
+   "InputKeyData"
+  ],
+  "columns": [
+   "KeyId",
+   "KeyString",
+   "KeyIcon",
+   "KeyType"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0x96b8e0",
+    "name": "CivTech::Input::Manager::LoadKeyData"
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0118",
+  "sql": "SELECT 1 FROM ModCompatibilityWhitelist WHERE ModRowId = ? AND GameVersion = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ModCompatibilityWhitelist"
+  ],
+  "columns": [
+   "1"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb36f20",
+    "name": "Modding::Framework::IsModIgnoreCompatibility"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0119",
+  "sql": "SELECT 1 FROM Mods WHERE ModId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Mods"
+  ],
+  "columns": [
+   "1"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb36fe0",
+    "name": "Modding::Framework::IsModInstalled"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0120",
+  "sql": "SELECT 1 FROM Mods WHERE ModRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Mods"
+  ],
+  "columns": [
+   "1"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb36ea0",
+    "name": "Modding::Framework::IsModHandleValid"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0121",
+  "sql": "SELECT ModRowId FROM Mods WHERE ModId = ? ORDER BY ModRowId LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Mods"
+  ],
+  "columns": [
+   "ModRowId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb30830",
+    "name": "Modding::Framework::GetModHandle"
+   },
+   {
+    "rva": "0xb32030",
+    "name": "Modding::Framework::EnableMods"
+   },
+   {
+    "rva": "0xb345d0",
+    "name": null
+   }
+  ],
+  "function_count": 3,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 3 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0122",
+  "sql": "SELECT ModId FROM Mods WHERE ModRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Mods"
+  ],
+  "columns": [
+   "ModId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb34690",
+    "name": "Modding::Framework::GetModId"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0123",
+  "sql": "SELECT Version FROM Mods WHERE ModRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Mods"
+  ],
+  "columns": [
+   "Version"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb353c0",
+    "name": "Modding::Framework::GetModVersion"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0124",
+  "sql": "SELECT ModRowId FROM Mods ORDER BY ModRowId",
+  "operation": "SELECT",
+  "tables": [
+   "Mods"
+  ],
+  "columns": [
+   "ModRowId"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb33ac0",
+    "name": "Modding::Framework::GetInstalledMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0125",
+  "sql": "SELECT ModGroupItems.ModRowId, Disabled FROM ModGroupItems WHERE ModGroupItems.ModGroupRowId = ? ORDER BY ModGroupItems.ModRowId",
+  "operation": "SELECT",
+  "tables": [
+   "ModGroupItems"
+  ],
+  "columns": [
+   "ModRowId",
+   "Disabled"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb32ce0",
+    "name": "Modding::Framework::GetEnabledMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0126",
+  "sql": "DELETE FROM ModGroupItems where ModGroupRowId = ?",
+  "operation": "DELETE",
+  "tables": [
+   "ModGroupItems"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb38150",
+    "name": "Modding::Framework::ResetGroup"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0127",
+  "sql": "SELECT SettingRowId FROM Settings WHERE ModRowId = ? ORDER BY SettingRowId;",
+  "operation": "SELECT",
+  "tables": [
+   "Settings"
+  ],
+  "columns": [
+   "SettingRowId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb35280",
+    "name": "Modding::Framework::GetModSettings"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0128",
+  "sql": "SELECT SettingId FROM Settings WHERE SettingRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Settings"
+  ],
+  "columns": [
+   "SettingId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb35730",
+    "name": "Modding::Framework::GetSettingId"
+   },
+   {
+    "rva": "0xb35a10",
+    "name": null
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0129",
+  "sql": "SELECT ModRowId FROM Settings WHERE SettingRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Settings"
+  ],
+  "columns": [
+   "ModRowId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb34970",
+    "name": "Modding::Framework::GetSettingModHandle"
+   },
+   {
+    "rva": "0xb35ac0",
+    "name": null
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0130",
+  "sql": "SELECT SettingType FROM Settings WHERE SettingRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Settings"
+  ],
+  "columns": [
+   "SettingType"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb35b50",
+    "name": "Modding::Framework::GetSettingType"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0131",
+  "sql": "SELECT ComponentRowId FROM Components WHERE ModRowId = ? ORDER BY ComponentRowId",
+  "operation": "SELECT",
+  "tables": [
+   "Components"
+  ],
+  "columns": [
+   "ComponentRowId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb33ee0",
+    "name": "Modding::Framework::GetModComponents"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0132",
+  "sql": "SELECT ComponentId FROM Components WHERE ComponentRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Components"
+  ],
+  "columns": [
+   "ComponentId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb327e0",
+    "name": "Modding::Framework::GetComponentId"
+   },
+   {
+    "rva": "0xb32ac0",
+    "name": null
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0133",
+  "sql": "SELECT ModRowId FROM Components WHERE ComponentRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Components"
+  ],
+  "columns": [
+   "ModRowId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb32b70",
+    "name": "Modding::Framework::GetComponentModHandle"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0134",
+  "sql": "SELECT ComponentType FROM Components WHERE ComponentRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Components"
+  ],
+  "columns": [
+   "ComponentType"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb32c00",
+    "name": "Modding::Framework::GetComponentType"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0135",
+  "sql": "SELECT ModGroupRowId from ModGroups ORDER BY ModGroupRowId",
+  "operation": "SELECT",
+  "tables": [
+   "ModGroups"
+  ],
+  "columns": [
+   "ModGroupRowId"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb344b0",
+    "name": "Modding::Framework::GetModGroups"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0136",
+  "sql": "SELECT Name, CanDelete, SortIndex from ModGroups WHERE ModGroupRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ModGroups"
+  ],
+  "columns": [
+   "Name",
+   "CanDelete",
+   "SortIndex"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb343b0",
+    "name": "Modding::Framework::GetModGroupDetails"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0137",
+  "sql": "SELECT ModGroupRowId from ModGroups where Selected = 1 LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ModGroups"
+  ],
+  "columns": [
+   "ModGroupRowId"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb354b0",
+    "name": "Modding::Framework::GetSelectedModGroup"
+   },
+   {
+    "rva": "0xb35c20",
+    "name": "Modding::Framework::Initialize"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0138",
+  "sql": "UPDATE ModGroups SET Selected = CASE WHEN ModGroupRowId = ? THEN 1 ELSE 0 END",
+  "operation": "UPDATE",
+  "tables": [
+   "ModGroups"
+  ],
+  "columns": [
+   "Selected"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb31540",
+    "name": "Modding::Framework::ChangeSelectedModGroup"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0139",
+  "sql": "INSERT INTO ModGroups(Name) VALUES(?)",
+  "operation": "INSERT",
+  "tables": [
+   "ModGroups"
+  ],
+  "columns": [
+   "Name"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb31820",
+    "name": "Modding::Framework::CreateModGroup"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0140",
+  "sql": "INSERT INTO ModGroupItems(ModGroupRowId, ModRowId, Disabled) SELECT ?, ModRowId, Disabled from ModGroupItems where ModGroupRowId = ?",
+  "operation": "INSERT",
+  "tables": [
+   "ModGroupItems"
+  ],
+  "columns": [
+   "ModGroupRowId",
+   "ModRowId",
+   "Disabled"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb31820",
+    "name": "Modding::Framework::CreateModGroup"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0141",
+  "sql": "DELETE FROM ModGroups where ModGroupRowId = ? and CanDelete = 1",
+  "operation": "DELETE",
+  "tables": [
+   "ModGroups"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb31960",
+    "name": "Modding::Framework::DeleteModGroup"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0142",
+  "sql": "DELETE FROM ModCompatibilityWhitelist WHERE ModRowId = ? AND GameVersion = ?",
+  "operation": "DELETE",
+  "tables": [
+   "ModCompatibilityWhitelist"
+  ],
+  "columns": [],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb386c0",
+    "name": "Modding::Framework::SetModIgnoreCompatibility"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0143",
+  "sql": "SELECT SQL from Migrations where MinVersion < ?1 AND MaxVersion >= ?1 ORDER by SortIndex",
+  "operation": "SELECT",
+  "tables": [
+   "Migrations"
+  ],
+  "columns": [
+   "SQL"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb370b0",
+    "name": "Modding::Framework::MigrateDatabaseData"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0144",
+  "sql": "SELECT Path from ModFiles a inner join ComponentFiles b on a.FileRowId = b.FileRowId where b.ComponentRowId = ? ORDER BY b.Priority DESC, Path ASC",
+  "operation": "SELECT",
+  "tables": [
+   "ModFiles",
+   "ComponentFiles"
+  ],
+  "columns": [
+   "Path"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb3a810",
+    "name": "Modding::FileService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0145",
+  "sql": "SELECT Path from ModFiles a inner join SettingFiles b on a.FileRowId = b.FileRowId where b.SettingRowId = ? ORDER BY b.Priority DESC, Path ASC",
+  "operation": "SELECT",
+  "tables": [
+   "ModFiles",
+   "SettingFiles"
+  ],
+  "columns": [
+   "Path"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb3a810",
+    "name": "Modding::FileService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0146",
+  "sql": "SELECT Path FROM ModFiles WHERE ModRowId = ? ORDER BY Path ASC",
+  "operation": "SELECT",
+  "tables": [
+   "ModFiles"
+  ],
+  "columns": [
+   "Path"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb3a810",
+    "name": "Modding::FileService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0147",
+  "sql": "SELECT 1 FROM ModFiles WHERE ModRowId = ? AND Path = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ModFiles"
+  ],
+  "columns": [
+   "1"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb3a810",
+    "name": "Modding::FileService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0148",
+  "sql": "SELECT Path FROM ScannedFiles INNER JOIN Mods ON ScannedFiles.ScannedFileRowId = Mods.ScannedFileRowId WHERE ModRowId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ScannedFiles",
+   "Mods"
+  ],
+  "columns": [
+   "Path"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb3a810",
+    "name": "Modding::FileService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0149",
+  "sql": "SELECT OtherModId, OtherModTitle from ModRelationships where ModRowId = ? and Relationship = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ModRelationships"
+  ],
+  "columns": [
+   "OtherModId",
+   "OtherModTitle"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb413f0",
+    "name": "Modding::ModAssociationsService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0150",
+  "sql": "SELECT OtherModId, OtherComponentId from ComponentRelationships where ComponentRowId = ? and Relationship = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ComponentRelationships"
+  ],
+  "columns": [
+   "OtherModId",
+   "OtherComponentId"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb413f0",
+    "name": "Modding::ModAssociationsService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0151",
+  "sql": "DELETE FROM ScannedFiles WHERE Path = ?",
+  "operation": "DELETE",
+  "tables": [
+   "ScannedFiles"
+  ],
+  "columns": [],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb43460",
+    "name": "Modding::ModDiscoveryService::DiscoverMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0152",
+  "sql": "INSERT INTO ScannedFiles(Path, LastWriteTime) VALUES(?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ScannedFiles"
+  ],
+  "columns": [
+   "Path",
+   "LastWriteTime"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb43460",
+    "name": "Modding::ModDiscoveryService::DiscoverMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0153",
+  "sql": "INSERT INTO AdditionalScannedFiles(ScannedFileRowId, Path, LastWriteTime) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "AdditionalScannedFiles"
+  ],
+  "columns": [
+   "ScannedFileRowId",
+   "Path",
+   "LastWriteTime"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb43460",
+    "name": "Modding::ModDiscoveryService::DiscoverMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0154",
+  "sql": "SELECT ScannedFileRowId, Path, LastWriteTime FROM ScannedFiles",
+  "operation": "SELECT",
+  "tables": [
+   "ScannedFiles"
+  ],
+  "columns": [
+   "ScannedFileRowId",
+   "Path",
+   "LastWriteTime"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb43460",
+    "name": "Modding::ModDiscoveryService::DiscoverMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0155",
+  "sql": "SELECT ModGroupItems.ModGroupRowId, Mods.ModId FROM ModGroupItems INNER JOIN Mods ON ModGroupItems.ModRowId = Mods.ModRowId WHERE Mods.ScannedFileRowId = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ModGroupItems",
+   "Mods"
+  ],
+  "columns": [
+   "ModGroupRowId",
+   "ModId"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb43460",
+    "name": "Modding::ModDiscoveryService::DiscoverMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0156",
+  "sql": "SELECT Path, LastWriteTime FROM AdditionalScannedFiles WHERE ScannedFileRowId = ?",
+  "operation": "SELECT",
+  "tables": [
+   "AdditionalScannedFiles"
+  ],
+  "columns": [
+   "Path",
+   "LastWriteTime"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb43460",
+    "name": "Modding::ModDiscoveryService::DiscoverMods"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0157",
+  "sql": "INSERT INTO ModRelationships(ModRowID, OtherModID, Relationship, OtherModTitle) VALUES(?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ModRelationships"
+  ],
+  "columns": [
+   "ModRowID",
+   "OtherModID",
+   "Relationship",
+   "OtherModTitle"
+  ],
+  "parameters": 4,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0158",
+  "sql": "INSERT INTO ModFiles(ModRowId, Path) VALUES(?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ModFiles"
+  ],
+  "columns": [
+   "ModRowId",
+   "Path"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0159",
+  "sql": "INSERT INTO Mods(ScannedFileRowId, ModId, Version) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Mods"
+  ],
+  "columns": [
+   "ScannedFileRowId",
+   "ModId",
+   "Version"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb4a750",
+    "name": "Modding::XmlModLoader::ParseRootBuffer"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0160",
+  "sql": "INSERT INTO ModProperties(ModRowId, Name, Value) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ModProperties"
+  ],
+  "columns": [
+   "ModRowId",
+   "Name",
+   "Value"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0161",
+  "sql": "INSERT INTO LocalizedText(ModRowId, Tag, Locale, Text) VALUES(?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "LocalizedText"
+  ],
+  "columns": [
+   "ModRowId",
+   "Tag",
+   "Locale",
+   "Text"
+  ],
+  "parameters": 4,
+  "functions": [
+   {
+    "rva": "0xb46820",
+    "name": "Modding::XmlModLoader::ParseLocalizationBuffer"
+   },
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 3,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 3 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0162",
+  "sql": "SELECT FileRowId from ModFiles WHERE ModRowId = ? and Path = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ModFiles"
+  ],
+  "columns": [
+   "FileRowId"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0163",
+  "sql": "SELECT ComponentRowId from Components WHERE ModRowId = ? and ComponentId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Components"
+  ],
+  "columns": [
+   "ComponentRowId"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0164",
+  "sql": "INSERT INTO Settings(ModRowId, SettingId, SettingType) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Settings"
+  ],
+  "columns": [
+   "ModRowId",
+   "SettingId",
+   "SettingType"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0165",
+  "sql": "INSERT INTO SettingCriteria(SettingRowId, CriteriaRowId) VALUES (?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "SettingCriteria"
+  ],
+  "columns": [
+   "SettingRowId",
+   "CriteriaRowId"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0166",
+  "sql": "INSERT INTO SettingFiles(SettingRowId, FileRowId, Priority) VALUES (?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "SettingFiles"
+  ],
+  "columns": [
+   "SettingRowId",
+   "FileRowId",
+   "Priority"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0167",
+  "sql": "INSERT INTO SettingProperties(SettingRowId, Name, Value) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "SettingProperties"
+  ],
+  "columns": [
+   "SettingRowId",
+   "Name",
+   "Value"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0168",
+  "sql": "INSERT INTO Components(ModRowId, ComponentId, ComponentType) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Components"
+  ],
+  "columns": [
+   "ModRowId",
+   "ComponentId",
+   "ComponentType"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0169",
+  "sql": "INSERT INTO ComponentCriteria(ComponentRowId, CriteriaRowId) VALUES (?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ComponentCriteria"
+  ],
+  "columns": [
+   "ComponentRowId",
+   "CriteriaRowId"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0170",
+  "sql": "INSERT INTO ComponentFiles(ComponentRowId, FileRowId, Priority) VALUES (?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ComponentFiles"
+  ],
+  "columns": [
+   "ComponentRowId",
+   "FileRowId",
+   "Priority"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0171",
+  "sql": "INSERT INTO ComponentReferences(ComponentRowId, Uri, Priority) VALUES (?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ComponentReferences"
+  ],
+  "columns": [
+   "ComponentRowId",
+   "Uri",
+   "Priority"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0172",
+  "sql": "INSERT INTO ComponentRelationships(ComponentRowId, OtherModId, OtherComponentId, Relationship) VALUES (?,?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ComponentRelationships"
+  ],
+  "columns": [
+   "ComponentRowId",
+   "OtherModId",
+   "OtherComponentId",
+   "Relationship"
+  ],
+  "parameters": 4,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0173",
+  "sql": "INSERT INTO ComponentProperties(ComponentRowId, Name, Value) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "ComponentProperties"
+  ],
+  "columns": [
+   "ComponentRowId",
+   "Name",
+   "Value"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   },
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 2,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 2 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0174",
+  "sql": "INSERT INTO Criteria(ModRowId, CriteriaId, Any) VALUES (?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Criteria"
+  ],
+  "columns": [
+   "ModRowId",
+   "CriteriaId",
+   "Any"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0175",
+  "sql": "INSERT INTO Criterion(CriteriaRowId, CriterionType, Inverse) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "Criterion"
+  ],
+  "columns": [
+   "CriteriaRowId",
+   "CriterionType",
+   "Inverse"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0176",
+  "sql": "INSERT INTO CriterionProperties(CriterionRowId, Name, Value) VALUES(?,?,?)",
+  "operation": "INSERT",
+  "tables": [
+   "CriterionProperties"
+  ],
+  "columns": [
+   "CriterionRowId",
+   "Name",
+   "Value"
+  ],
+  "parameters": 3,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0177",
+  "sql": "SELECT CriteriaRowId from Criteria where ModRowId = ? and CriteriaId = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "Criteria"
+  ],
+  "columns": [
+   "CriteriaRowId"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb47e70",
+    "name": "Modding::XmlModLoader::ParseModXml"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0178",
+  "sql": "SELECT Name, Value from ModProperties",
+  "operation": "SELECT",
+  "tables": [
+   "ModProperties"
+  ],
+  "columns": [
+   "Name",
+   "Value"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0179",
+  "sql": "SELECT Value from MetaData where Name = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "MetaData"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 1,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0180",
+  "sql": "SELECT ID, Title from ModDependencies",
+  "operation": "SELECT",
+  "tables": [
+   "ModDependencies"
+  ],
+  "columns": [
+   "ID",
+   "Title"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0181",
+  "sql": "SELECT Type, ID from ModSettings",
+  "operation": "SELECT",
+  "tables": [
+   "ModSettings"
+  ],
+  "columns": [
+   "Type",
+   "ID"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0182",
+  "sql": "SELECT Name, Value from ModSettings_Items WHERE Type = ? and ID = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ModSettings_Items"
+  ],
+  "columns": [
+   "Name",
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0183",
+  "sql": "SELECT Name, Value from ModSettings_Properties WHERE Type = ? and ID = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ModSettings_Properties"
+  ],
+  "columns": [
+   "Name",
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0184",
+  "sql": "SELECT Type, ID from ModComponents",
+  "operation": "SELECT",
+  "tables": [
+   "ModComponents"
+  ],
+  "columns": [
+   "Type",
+   "ID"
+  ],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0185",
+  "sql": "SELECT Name, Value from ModComponents_Items WHERE Type = ? and ID = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ModComponents_Items"
+  ],
+  "columns": [
+   "Name",
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0186",
+  "sql": "SELECT Name, Value from ModComponents_Properties WHERE Type = ? and ID = ?",
+  "operation": "SELECT",
+  "tables": [
+   "ModComponents_Properties"
+  ],
+  "columns": [
+   "Name",
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb46c10",
+    "name": "Modding::ModLoaderService::ParseMod"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0187",
+  "sql": "SELECT Value FROM ModProperties WHERE ModRowId = ? AND Name = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ModProperties"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb4aed0",
+    "name": "Modding::PropertyService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0188",
+  "sql": "SELECT Value FROM ComponentProperties WHERE ComponentRowId = ? AND Name = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "ComponentProperties"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb4aed0",
+    "name": "Modding::PropertyService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0189",
+  "sql": "SELECT Value FROM SettingProperties WHERE SettingRowId = ? AND Name = ? LIMIT 1",
+  "operation": "SELECT",
+  "tables": [
+   "SettingProperties"
+  ],
+  "columns": [
+   "Value"
+  ],
+  "parameters": 2,
+  "functions": [
+   {
+    "rva": "0xb4aed0",
+    "name": "Modding::PropertyService::Initialize"
+   }
+  ],
+  "function_count": 1,
+  "database": "Mods.sqlite (mod framework)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0190",
+  "sql": "Cannot SELECT without a mailbox.",
+  "operation": "CANNOT",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xc00ba0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ },
+ {
+  "id": "exesql:0191",
+  "sql": "SELECT %s",
+  "operation": "SELECT",
+  "tables": [],
+  "columns": [],
+  "parameters": 0,
+  "functions": [
+   {
+    "rva": "0xc00ba0",
+    "name": null
+   }
+  ],
+  "function_count": 1,
+  "database": "game databases (Gameplay, Configuration or Localization; the exe code does not say which)",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "SQL string literal referenced by 1 function(s) of CivilizationVI.exe; which database it runs against is inferred"
+   }
+  ]
+ }
+]

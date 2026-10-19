@@ -1,0 +1,262 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>GameState</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › GameState</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>GameState</h1>
+<p>Game state objects of the application layer.</p>
+<p>106 functions in this category, 26 with a Windows address (20 high or medium confidence or exported, 6 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GameViewState::Begin()</code></td>
+<td><code>0x7bb30</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fbc300</code></td>
+<td>656</td>
+</tr>
+<tr>
+<td><code>GameViewState::End()</code></td>
+<td><code>0x7c870</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fbc720</code></td>
+<td>688</td>
+</tr>
+<tr>
+<td><code>GameViewState::LoadUI()</code></td>
+<td><code>0x7d490</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fb9d50</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>GameViewState::OnConsoleMessage(Events::EventTemplate&lt;15u, UIE_DebugConsoleInput, Events::LinearEventDispatcher, UIEventContainer, Events::NullEventC…</code></td>
+<td><code>0x7d780</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>handles UIEvent event 15 (UIE_DebugConsoleInput); console: wrap; console: toggl…</td>
+<td><code>0x2fba1f0</code></td>
+<td>2432</td>
+</tr>
+<tr>
+<td><code>GameViewState::OnShowLeaderScreen(Events::EventTemplate&lt;12u, ShowLeaderScreenData, Events::LinearEventDispatcher, LocalMachineContainer, Events::Null…</code></td>
+<td><code>0x7e4a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td>handles LocalMachine event 12 (ShowLeaderScreenData)</td>
+<td><code>0x2fbc590</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>GameViewState::SetFromCommandLine(int, char**)</code></td>
+<td><code>0x7ec80</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fba050</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>GameViewState::ShutdownGame()</code></td>
+<td><code>0x7ee30</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fbbcc0</code></td>
+<td>1120</td>
+</tr>
+<tr>
+<td><code>GameViewState::StartupGame(unsigned int, unsigned int)</code></td>
+<td><code>0x7f670</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fbab70</code></td>
+<td>2640</td>
+</tr>
+<tr>
+<td><code>GameViewState::Tick(GameStateTickArgs const&amp;, Platform::Job*)</code></td>
+<td><code>0x802c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fbd330</code></td>
+<td>1328</td>
+</tr>
+<tr>
+<td><code>GameViewState::UpdateGameCore(float)</code></td>
+<td><code>0x81160</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x2fbca10</code></td>
+<td>976</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::InitAsyncJob::InitAsyncJob()</code></td>
+<td><code>0x836b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd0d50</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::Begin()</code></td>
+<td><code>0x83a40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd14c0</code></td>
+<td>624</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::End()</code></td>
+<td><code>0x83d50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd1760</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::InitializeNewGameLinuxPre()</code></td>
+<td><code>0x840e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd62f0</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::LaunchNextStage(unsigned int)</code></td>
+<td><code>0x84870</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd2180</code></td>
+<td>16528</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::LoadUI()</code></td>
+<td><code>0x89690</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd0fe0</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::Tick(GameStateTickArgs const&amp;)</code></td>
+<td><code>0x89ac0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd19d0</code></td>
+<td>1536</td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::UnloadUI()</code></td>
+<td><code>0x8a210</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x2fd1260</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>MainMenuState::HandleConsoleMessage(Events::EventTemplate&lt;15u, UIE_DebugConsoleInput, Events::LinearEventDispatcher, UIEventContainer, Events::NullEv…</code></td>
+<td><code>0x8aa70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td>handles UIEvent event 15 (UIE_DebugConsoleInput)</td>
+<td><code>0x2fd8380</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>MainMenuState::LoadUI()</code></td>
+<td><code>0x8ab40</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x2fd82a0</code></td>
+<td>224</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (6, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GameViewState::OnHideLeaderScreen(Events::EventTemplate&lt;13u, Events::NullEventClass, Events::LinearEventDispa…</code></td>
+<td><code>0x7e560</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x2fbc630</code></td>
+</tr>
+<tr>
+<td><code>GameViewState::RunScript()</code></td>
+<td><code>0x7eab0</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x2fba0d0</code></td>
+</tr>
+<tr>
+<td><code>GameViewState::OnToggleGrid(Events::EventTemplate&lt;37u, GenericData&lt;bool&gt;, Events::LinearEventDispatcher, Loca…</code></td>
+<td><code>0x7ec70</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x2fbc650</code></td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::~LoadGameViewState()</code></td>
+<td><code>0x83990</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x2fd0f10</code></td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::GameAbandoned(KickReason)</code></td>
+<td><code>0x84050</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x2fd2070</code></td>
+</tr>
+<tr>
+<td><code>LoadGameViewState::BeginAsyncLoad()</code></td>
+<td><code>0x84060</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x2fd2080</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

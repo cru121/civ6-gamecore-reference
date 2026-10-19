@@ -1,0 +1,4275 @@
+[
+ {
+  "id": "exegs:table:StatisticCategories",
+  "kind": "config-table",
+  "name": "StatisticCategories",
+  "columns": [
+   {
+    "name": "Category",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "IsHidden",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "SortOrder",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 100"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Category')"
+  ],
+  "shipped_rows": 8,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetStatisticsCategories"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:StatisticCategoryRulesetOverrides",
+  "kind": "config-table",
+  "name": "StatisticCategoryRulesetOverrides",
+  "columns": [
+   {
+    "name": "RulesetType",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Category",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "IsHidden",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "SortOrder",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 100"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('RulesetType','Category')"
+  ],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetStatisticsCategories"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Statistics",
+  "kind": "config-table",
+  "name": "Statistics",
+  "columns": [
+   {
+    "name": "DataPoint",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Icon",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconDefault",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconOverride",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Annotation",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Direction",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Category",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Importance",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY ('DataPoint')",
+   "FOREIGN KEY('Category') REFERENCES 'StatisticCategories'('Category') ON DELETE SET NULL ON UPDATE SET NULL"
+  ],
+  "shipped_rows": 28,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetStatistics"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:StatisticRulesetOverrides",
+  "kind": "config-table",
+  "name": "StatisticRulesetOverrides",
+  "columns": [
+   {
+    "name": "RulesetType",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "DataPoint",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Icon",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconDefault",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconOverride",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Annotation",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Direction",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Category",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Importance",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY ('RulesetType', 'DataPoint')",
+   "FOREIGN KEY('Category') REFERENCES 'StatisticCategories'('Category') ON DELETE SET NULL ON UPDATE SET NULL"
+  ],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetStatistics"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Highlights",
+  "kind": "config-table",
+  "name": "Highlights",
+  "columns": [
+   {
+    "name": "DataPoint",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Caption",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Icon",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "MinValue",
+    "type": "NUMERIC",
+    "rest": ""
+   },
+   {
+    "name": "MaxValue",
+    "type": "NUMERIC",
+    "rest": ""
+   },
+   {
+    "name": "Importance",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('DataPoint','Name')"
+  ],
+  "shipped_rows": 0,
+  "exe_ops": {},
+  "exe_functions": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:DataPointAggregateScopeQueries",
+  "kind": "config-table",
+  "name": "DataPointAggregateScopeQueries",
+  "columns": [
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SQL",
+    "type": "TEXT",
+    "rest": ""
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Query')"
+  ],
+  "shipped_rows": 11,
+  "exe_ops": {},
+  "exe_functions": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:DataPointAggregateScopes",
+  "kind": "config-table",
+  "name": "DataPointAggregateScopes",
+  "columns": [
+   {
+    "name": "Scope",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ExtraData",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SortIndex",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Scope')",
+   "FOREIGN KEY('Query') REFERENCES 'DataPointAggregateScopeQueries'('Query') ON DELETE CASCADE ON UPDATE CASCADE"
+  ],
+  "shipped_rows": 8,
+  "exe_ops": {},
+  "exe_functions": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:DataPointAggregateQueries",
+  "kind": "config-table",
+  "name": "DataPointAggregateQueries",
+  "columns": [
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SQL",
+    "type": "TEXT",
+    "rest": ""
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Query')"
+  ],
+  "shipped_rows": 16,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "Application::GameSummary::UpdateAggregateDataPoints"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:DataPointAggregateUpdates",
+  "kind": "config-table",
+  "name": "DataPointAggregateUpdates",
+  "columns": [
+   {
+    "name": "AggregateDataPoint",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Scope",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Operation",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "DataPoint",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ExtraData",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SortIndex",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('AggregateDataPoint', 'Scope')",
+   "FOREIGN KEY('Scope') REFERENCES 'DataPointAggregateScopes'('Scope') ON DELETE CASCADE ON UPDATE CASCADE",
+   "FOREIGN KEY('Query') REFERENCES 'DataPointAggregateQueries'('Query') ON DELETE CASCADE ON UPDATE CASCADE"
+  ],
+  "shipped_rows": 83,
+  "exe_ops": {
+   "SELECT": 2
+  },
+  "exe_functions": [
+   "Application::GameSummary::DeleteAggregateDataPoints",
+   "Application::GameSummary::UpdateAggregateDataPoints"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:GraphQueries",
+  "kind": "config-table",
+  "name": "GraphQueries",
+  "columns": [
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SQL",
+    "type": "TEXT",
+    "rest": ""
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Query')"
+  ],
+  "shipped_rows": 6,
+  "exe_ops": {
+   "SELECT": 2
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetGraphs"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Graphs",
+  "kind": "config-table",
+  "name": "Graphs",
+  "columns": [
+   {
+    "name": "Graph",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Scope",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Description",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Direction",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "XLabel",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "YLabel",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "XUnit",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "YUnit",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "DataSet",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ExtraData",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "UxHint",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Importance",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY ('Graph', 'Scope')"
+  ],
+  "shipped_rows": 38,
+  "exe_ops": {
+   "SELECT": 2
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetGraphs"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:GraphRulesetOverrides",
+  "kind": "config-table",
+  "name": "GraphRulesetOverrides",
+  "columns": [
+   {
+    "name": "RulesetType",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Graph",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Scope",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Description",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Direction",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "XLabel",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "YLabel",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "XUnit",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "YUnit",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "DataSet",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ExtraData",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "UxHint",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Importance",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY ('RulesetType', 'Graph', 'Scope')"
+  ],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetGraphs"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:ReportQueries",
+  "kind": "config-table",
+  "name": "ReportQueries",
+  "columns": [
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SQL",
+    "type": "TEXT",
+    "rest": ""
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Query')"
+  ],
+  "shipped_rows": 5,
+  "exe_ops": {
+   "SELECT": 2
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetReports"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Reports",
+  "kind": "config-table",
+  "name": "Reports",
+  "columns": [
+   {
+    "name": "Report",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Scope",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Description",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnName",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnDescription",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnUxHint",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnValueIconDefault",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnValueIconOverride",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ShowEmptyRows",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "ExtraData",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Importance",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Report')",
+   "FOREIGN KEY('Query') REFERENCES 'ReportQueries'('Query') ON DELETE CASCADE ON UPDATE CASCADE"
+  ],
+  "shipped_rows": 5,
+  "exe_ops": {
+   "SELECT": 2
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetReports"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:ReportRulesetOverrides",
+  "kind": "config-table",
+  "name": "ReportRulesetOverrides",
+  "columns": [
+   {
+    "name": "RulesetType",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Report",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Scope",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Description",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnName",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnDescription",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnUxHint",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnValueIconDefault",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "InitialColumnValueIconOverride",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ShowEmptyRows",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Query",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "ExtraData",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Importance",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('RulesetType','Report')",
+   "FOREIGN KEY('Query') REFERENCES 'ReportQueries'('Query') ON DELETE CASCADE ON UPDATE CASCADE"
+  ],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetReports"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:ReportColumns",
+  "kind": "config-table",
+  "name": "ReportColumns",
+  "columns": [
+   {
+    "name": "Report",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Description",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SortOrder",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 100"
+   },
+   {
+    "name": "DataPoint",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "UxHint",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Minor",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "AlwaysShow",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "EmptyValue",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "DefaultValue",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconDefault",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconOverride",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('Report','Name')",
+   "FOREIGN KEY('Report') REFERENCES 'Reports'('Report') ON DELETE CASCADE ON UPDATE CASCADE"
+  ],
+  "shipped_rows": 21,
+  "exe_ops": {
+   "SELECT": 2
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetReports"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:ReportColumnRulesetOverrides",
+  "kind": "config-table",
+  "name": "ReportColumnRulesetOverrides",
+  "columns": [
+   {
+    "name": "RulesetType",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Report",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Name",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "Description",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "SortOrder",
+    "type": "INTEGER",
+    "rest": "NOT NULL DEFAULT 100"
+   },
+   {
+    "name": "DataPoint",
+    "type": "TEXT",
+    "rest": "NOT NULL"
+   },
+   {
+    "name": "UxHint",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Minor",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "AlwaysShow",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 0"
+   },
+   {
+    "name": "EmptyValue",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "DefaultValue",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconDefault",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "ValueIconOverride",
+    "type": "TEXT",
+    "rest": ""
+   },
+   {
+    "name": "Visible",
+    "type": "BOOLEAN",
+    "rest": "NOT NULL DEFAULT 1"
+   }
+  ],
+  "keys": [
+   "PRIMARY KEY('RulesetType','Report','Name')",
+   "FOREIGN KEY('Report') REFERENCES 'Reports'('Report') ON DELETE CASCADE ON UPDATE CASCADE"
+  ],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetReports"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "CREATE TABLE in Configuration/Data/Schema/HallofFame.sql and rows of HallofFame.xml (column names and counts only)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Games",
+  "kind": "recorded-table",
+  "name": "Games",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "GameMode",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "GameSpeedType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LastPlayed",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Map",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "MapSizeType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Ruleset",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "StartEraType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "StartTurn",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "TurnCount",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "VictorTeamId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "VictoryType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "DELETE": 1,
+   "INSERT": 1,
+   "SELECT": 3
+  },
+  "exe_functions": [
+   "0xb4bd0",
+   "0xb5e10",
+   "AppLuaGameSummaryLibrary::lGetVictoryProgress",
+   "Application::GameSummary::BeginGameTransfer",
+   "Application::GameSummary::DeleteGame"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:GameObjects",
+  "kind": "recorded-table",
+  "name": "GameObjects",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "ExtraData",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "GameId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Icon",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Name",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "PlayerObjectId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "PlotIndex",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Type",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "VictoryType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "INSERT": 1,
+   "SELECT": 6
+  },
+  "exe_functions": [
+   "0xb4800",
+   "0xb4bd0",
+   "0xb55b0",
+   "0xb6130",
+   "AppLuaGameSummaryLibrary::lGetGraphs",
+   "AppLuaGameSummaryLibrary::lGetReports"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:GamePlayers",
+  "kind": "recorded-table",
+  "name": "GamePlayers",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "CivilizationName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "CivilizationType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "DifficultyType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "IsAI",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "IsLocal",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "IsMajor",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "PlayerId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "PlayerObjectId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Score",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "TeamId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "VictoryType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "INSERT": 1,
+   "SELECT": 6
+  },
+  "exe_functions": [
+   "0xb4800",
+   "0xb4bd0",
+   "0xb55b0",
+   "0xb6130",
+   "AppLuaGameSummaryLibrary::lGetGraphs",
+   "AppLuaGameSummaryLibrary::lGetReports"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:ObjectDataPointValues",
+  "kind": "recorded-table",
+  "name": "ObjectDataPointValues",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "DataPoint",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ObjectId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueNumeric",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueObjectId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueString",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "INSERT": 1,
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "Application::GameSummary::BeginGameTransfer",
+   "Application::GameSummary::UpdateAggregateDataPoints"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:GameDataPointValues",
+  "kind": "recorded-table",
+  "name": "GameDataPointValues",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "DataPoint",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "GameId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueNumeric",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueObjectId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueString",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ValueType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "INSERT": 1,
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "Application::GameSummary::BeginGameTransfer",
+   "Application::GameSummary::UpdateAggregateDataPoints"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:DataSets",
+  "kind": "recorded-table",
+  "name": "DataSets",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "DataSet",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "GameId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "ObjectId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Type",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "INSERT": 2
+  },
+  "exe_functions": [
+   "Application::GameSummary::BeginGameTransfer"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:DataSetValues",
+  "kind": "recorded-table",
+  "name": "DataSetValues",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "DataSetId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "X",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Y",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "INSERT": 1,
+   "SELECT": 2
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetGraphs",
+   "Application::GameSummary::BeginGameTransfer"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:ChallengeGames",
+  "kind": "recorded-table",
+  "name": "ChallengeGames",
+  "database": "summary database",
+  "columns": [
+   {
+    "name": "ChallengeId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "GameId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "PlayerObjectId",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "VictoryType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "INSERT": 1,
+   "SELECT": 6
+  },
+  "exe_functions": [
+   "0xb4800",
+   "0xb4bd0",
+   "0xb55b0",
+   "0xb5e10",
+   "0xb6130",
+   "AppLuaGameSummaryLibrary::lGetVictoryProgress"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:RulesetDataPointValues",
+  "kind": "recorded-table",
+  "name": "RulesetDataPointValues",
+  "database": "summary database",
+  "columns": [],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "DELETE": 1
+  },
+  "exe_functions": [
+   "Application::GameSummary::DeleteAggregateDataPoints"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Rulesets",
+  "kind": "recorded-table",
+  "name": "Rulesets",
+  "database": "game",
+  "columns": [
+   {
+    "name": "Description",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "IsScenario",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Name",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "RulesetType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "SortIndex",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetAvailableRulesets"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:RulesetDomainOverrides",
+  "kind": "recorded-table",
+  "name": "RulesetDomainOverrides",
+  "database": "game",
+  "columns": [
+   {
+    "name": "Domain",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetLeaderProgress",
+   "AppLuaGameSummaryLibrary::lGetRulesetPlayableLeaders"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Players",
+  "kind": "recorded-table",
+  "name": "Players",
+  "database": "game",
+  "columns": [
+   {
+    "name": "CivilizationIcon",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "CivilizationName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "CivilizationType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderIcon",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetLeaderProgress",
+   "AppLuaGameSummaryLibrary::lGetRulesetPlayableLeaders"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:RulesetUnSupportedValues",
+  "kind": "recorded-table",
+  "name": "RulesetUnSupportedValues",
+  "database": "game",
+  "columns": [
+   {
+    "name": "CivilizationIcon",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "CivilizationName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "CivilizationType",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderIcon",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderName",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "LeaderType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetLeaderProgress",
+   "AppLuaGameSummaryLibrary::lGetRulesetPlayableLeaders"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:Victories",
+  "kind": "recorded-table",
+  "name": "Victories",
+  "database": "game",
+  "columns": [
+   {
+    "name": "Icon",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Name",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "VictoryType",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetVictoryProgress"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:table:RulesetTypes",
+  "kind": "recorded-table",
+  "name": "RulesetTypes",
+  "database": "game",
+  "columns": [
+   {
+    "name": "Icon",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Kind",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Name",
+    "type": "",
+    "rest": ""
+   },
+   {
+    "name": "Type",
+    "type": "",
+    "rest": ""
+   }
+  ],
+  "keys": [],
+  "shipped_rows": 0,
+  "exe_ops": {
+   "SELECT": 1
+  },
+  "exe_functions": [
+   "AppLuaGameSummaryLibrary::lGetRulesetTypes"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "table named in SQL statements of the exe (columns are those the statements name)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:CitiesFounded",
+  "kind": "datapoint",
+  "name": "CitiesFounded",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_CITIES_FOUNDED",
+  "aggregates": [
+   "Sum of CitiesFounded over MajorPlayers",
+   "Sum of CitiesFounded over Games",
+   "Sum of CitiesFounded over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:CitiesLost",
+  "kind": "datapoint",
+  "name": "CitiesLost",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_CITIES_LOST",
+  "aggregates": [
+   "Sum of CitiesLost over MajorPlayers",
+   "Sum of CitiesLost over Games",
+   "Sum of CitiesLost over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:CitiesConquered",
+  "kind": "datapoint",
+  "name": "CitiesConquered",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_CITIES_CAPTURED",
+  "aggregates": [
+   "Sum of CitiesConquered over MajorPlayers",
+   "Sum of CitiesConquered over Games",
+   "Sum of CitiesConquered over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:CityWithHighestPopulation",
+  "kind": "datapoint",
+  "name": "CityWithHighestPopulation",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_LARGEST_CITY",
+  "aggregates": [
+   "Max of Population over MajorPlayers",
+   "Max of Population over Games",
+   "MaxSum of Population over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:NukesLaunched",
+  "kind": "datapoint",
+  "name": "NukesLaunched",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_NUKES",
+  "aggregates": [
+   "Sum of NukesLaunched over MajorPlayers",
+   "Sum of NukesLaunched over Games",
+   "Sum of NukesLaunched over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:GoodyHutsPopped",
+  "kind": "datapoint",
+  "name": "GoodyHutsPopped",
+  "statistic": true,
+  "category": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_HOF_STAT_GOODY_HUTS",
+  "aggregates": [
+   "Sum of GoodyHutsPopped over MajorPlayers",
+   "Sum of GoodyHutsPopped over Games",
+   "Sum of GoodyHutsPopped over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:BarbariansKilled",
+  "kind": "datapoint",
+  "name": "BarbariansKilled",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_BARBARIANS_KILLED",
+  "aggregates": [
+   "First of BarbariansKilled over MajorPlayers",
+   "Sum of BarbariansKilled over Games",
+   "Sum of BarbariansKilled over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:BarbarianCampsCleared",
+  "kind": "datapoint",
+  "name": "BarbarianCampsCleared",
+  "statistic": true,
+  "category": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_HOF_STAT_BARBARIAN_CAMPS",
+  "aggregates": [
+   "First of BarbarianCampsCleared over MajorPlayers",
+   "Sum of BarbarianCampsCleared over Games",
+   "Sum of BarbarianCampsCleared over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:UnitsTrained",
+  "kind": "datapoint",
+  "name": "UnitsTrained",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_UNITS_TRAINED",
+  "aggregates": [
+   "Sum of UnitsTrainedByType over MajorPlayers",
+   "Sum of UnitsTrainedByType over Games",
+   "Sum of UnitsTrainedByType over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:UnitsKilled",
+  "kind": "datapoint",
+  "name": "UnitsKilled",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_UNITS_KILLED",
+  "aggregates": [
+   "Sum of UnitsKilledByType over MajorPlayers",
+   "Sum of UnitsKilledByType over Games",
+   "Sum of UnitsKilledByType over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:UnitsLost",
+  "kind": "datapoint",
+  "name": "UnitsLost",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_UNITS_LOST",
+  "aggregates": [
+   "Sum of UnitsLostByType over MajorPlayers",
+   "Sum of UnitsLostByType over Games",
+   "Sum of UnitsLostByType over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:FavoriteUnit",
+  "kind": "datapoint",
+  "name": "FavoriteUnit",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_FAVORITE_UNIT",
+  "aggregates": [
+   "Max of UnitsTrainedByType over MajorPlayers",
+   "MaxSum of UnitsTrainedByType over Games",
+   "MaxSum of UnitsTrainedByType over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:WeakestUnit",
+  "kind": "datapoint",
+  "name": "WeakestUnit",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_WEAKEST_UNIT",
+  "aggregates": [
+   "Max of UnitsLostByType over MajorPlayers",
+   "MaxSum of UnitsLostByType over Games",
+   "MaxSum of UnitsLostByType over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:StrongestUnit",
+  "kind": "datapoint",
+  "name": "StrongestUnit",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_STRONGEST_UNIT",
+  "aggregates": [
+   "Max of UnitsKilledByType over MajorPlayers",
+   "MaxSum of UnitsKilledByType over Games",
+   "MaxSum of UnitsKilledByType over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:FavoriteGovernment",
+  "kind": "datapoint",
+  "name": "FavoriteGovernment",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_FAVORITE_GOVERNMENT",
+  "aggregates": [
+   "Max of GovernmentInUseByType over MajorPlayers",
+   "MaxSum of GovernmentInUseByType over Games",
+   "MaxSum of GovernmentInUseByType over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:ReligionsFounded",
+  "kind": "datapoint",
+  "name": "ReligionsFounded",
+  "statistic": true,
+  "category": "CATEGORY_RELIGION",
+  "name_key": "LOC_HOF_STAT_RELGIONS_FOUNDED",
+  "aggregates": [
+   "Count of Followers over Games",
+   "Count of Followers over Rulesets"
+  ],
+  "aggregate_count": 2,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:MostFollowedReligion",
+  "kind": "datapoint",
+  "name": "MostFollowedReligion",
+  "statistic": true,
+  "category": "CATEGORY_RELIGION",
+  "name_key": "LOC_HOF_STAT_POPULAR_RELIGION",
+  "aggregates": [
+   "Max of Followers over Games",
+   "Max of Followers over Rulesets"
+  ],
+  "aggregate_count": 2,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:WondersConstructed",
+  "kind": "datapoint",
+  "name": "WondersConstructed",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_WONDERS",
+  "aggregates": [
+   "Sum of WondersConstructed over MajorPlayers",
+   "Sum of WondersConstructed over Games",
+   "Sum of WondersConstructed over Rulesets",
+   "Last of WondersConstructed over MajorCityObjects"
+  ],
+  "aggregate_count": 4,
+  "reports": [
+   "PlayerCityStatus"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:NaturalWondersDiscovered",
+  "kind": "datapoint",
+  "name": "NaturalWondersDiscovered",
+  "statistic": true,
+  "category": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_HOF_STAT_NATURAL_WONDERS",
+  "aggregates": [
+   "Sum of NaturalWondersDiscovered over MajorPlayers",
+   "Sum of NaturalWondersDiscovered over Games",
+   "Sum of NaturalWondersDiscovered over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Combats",
+  "kind": "datapoint",
+  "name": "Combats",
+  "statistic": true,
+  "category": "CATEGORY_COMBAT",
+  "name_key": "LOC_HOF_STAT_COMBATS",
+  "aggregates": [
+   "Sum of Combats over MajorPlayers",
+   "Sum of Combats over Games",
+   "Sum of Combats over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:GreatPeopleEarned",
+  "kind": "datapoint",
+  "name": "GreatPeopleEarned",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_GREAT_PEOPLE",
+  "aggregates": [
+   "Sum of GreatPeopleEarned over MajorPlayers",
+   "Sum of GreatPeopleEarned over Games",
+   "Sum of GreatPeopleEarned over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:WarsDeclared",
+  "kind": "datapoint",
+  "name": "WarsDeclared",
+  "statistic": true,
+  "category": "CATEGORY_DIPLOMACY",
+  "name_key": "LOC_HOF_STAT_WARS_DECLARED",
+  "aggregates": [
+   "Sum of WarsDeclared over MajorPlayers",
+   "Sum of WarsDeclared over Games",
+   "Sum of WarsDeclared over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:WarsReceived",
+  "kind": "datapoint",
+  "name": "WarsReceived",
+  "statistic": true,
+  "category": "CATEGORY_DIPLOMACY",
+  "name_key": "LOC_HOF_STAT_WARS_RECEIVED",
+  "aggregates": [
+   "Sum of WarsReceived over MajorPlayers",
+   "Sum of WarsReceived over Games",
+   "Sum of WarsReceived over Rulesets"
+  ],
+  "aggregate_count": 3,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:CurrentGovernment",
+  "kind": "datapoint",
+  "name": "CurrentGovernment",
+  "statistic": true,
+  "category": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_HOF_STAT_GOVERNMENT",
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:CivicsBoosted",
+  "kind": "datapoint",
+  "name": "CivicsBoosted",
+  "statistic": true,
+  "category": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_HOF_STAT_CIVIC_BOOSTS",
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:CivicsAcquired",
+  "kind": "datapoint",
+  "name": "CivicsAcquired",
+  "statistic": true,
+  "category": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_HOF_STAT_CIVICS",
+  "aggregates": [
+   "First of CivicsAcquired over MajorPlayers"
+  ],
+  "aggregate_count": 1,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:TechsBoosted",
+  "kind": "datapoint",
+  "name": "TechsBoosted",
+  "statistic": true,
+  "category": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_HOF_STAT_TECH_BOOSTS",
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:TechsAcquired",
+  "kind": "datapoint",
+  "name": "TechsAcquired",
+  "statistic": true,
+  "category": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_HOF_STAT_TECHS",
+  "aggregates": [
+   "First of TechsAcquired over MajorPlayers"
+  ],
+  "aggregate_count": 1,
+  "reports": [],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Culture",
+  "kind": "datapoint",
+  "name": "Culture",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Culture over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityYields"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Faith",
+  "kind": "datapoint",
+  "name": "Faith",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Faith over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityYields"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Food",
+  "kind": "datapoint",
+  "name": "Food",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Food over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityYields"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Gold",
+  "kind": "datapoint",
+  "name": "Gold",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Gold over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityYields"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Population",
+  "kind": "datapoint",
+  "name": "Population",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Population over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityStatus"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Production",
+  "kind": "datapoint",
+  "name": "Production",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Production over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityYields"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Science",
+  "kind": "datapoint",
+  "name": "Science",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Science over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityYields"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Tourism",
+  "kind": "datapoint",
+  "name": "Tourism",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Tourism over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityStatus"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:BuildingsConstructed",
+  "kind": "datapoint",
+  "name": "BuildingsConstructed",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of BuildingsConstructed over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityStatus"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:DistrictsConstructed",
+  "kind": "datapoint",
+  "name": "DistrictsConstructed",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of DistrictsConstructed over MajorCityObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "PlayerCityStatus"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Beliefs",
+  "kind": "datapoint",
+  "name": "Beliefs",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Beliefs over ReligionObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "Religions"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Cities",
+  "kind": "datapoint",
+  "name": "Cities",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Cities over ReligionObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "Religions"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Followers",
+  "kind": "datapoint",
+  "name": "Followers",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [
+   "Last of Followers over ReligionObjects"
+  ],
+  "aggregate_count": 1,
+  "reports": [
+   "Religions"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:Founder",
+  "kind": "datapoint",
+  "name": "Founder",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [
+   "Religions"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:HolyCity",
+  "kind": "datapoint",
+  "name": "HolyCity",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [
+   "Religions"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:TurnFounded",
+  "kind": "datapoint",
+  "name": "TurnFounded",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [
+   "Religions"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:GovernmentInUseByType",
+  "kind": "datapoint",
+  "name": "GovernmentInUseByType",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [
+   "PlayerGovernments"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:UnitsTrainedByType",
+  "kind": "datapoint",
+  "name": "UnitsTrainedByType",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [
+   "PlayerUnits"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:UnitsKilledByType",
+  "kind": "datapoint",
+  "name": "UnitsKilledByType",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [
+   "PlayerUnits"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:datapoint:UnitsLostByType",
+  "kind": "datapoint",
+  "name": "UnitsLostByType",
+  "statistic": false,
+  "category": null,
+  "name_key": null,
+  "aggregates": [],
+  "aggregate_count": 0,
+  "reports": [
+   "PlayerUnits"
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "DataPoint name in Statistics, DataPointAggregateUpdates or ReportColumns of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:ReligiousBeliefs",
+  "kind": "graph",
+  "name": "ReligiousBeliefs",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_RELIGION_BELIEFS",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:ReligiousCities",
+  "kind": "graph",
+  "name": "ReligiousCities",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_RELIGION_CITIES",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:ReligiousFollowers",
+  "kind": "graph",
+  "name": "ReligiousFollowers",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_RELIGION_FOLLOWERS",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerGold",
+  "kind": "graph",
+  "name": "PlayerGold",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_GOLD",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerCulture",
+  "kind": "graph",
+  "name": "PlayerCulture",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_CULTURE",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerFaith",
+  "kind": "graph",
+  "name": "PlayerFaith",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_FAITH",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerScience",
+  "kind": "graph",
+  "name": "PlayerScience",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_SCIENCE",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerScore",
+  "kind": "graph",
+  "name": "PlayerScore",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_SCORE",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerBuildingsConstructed",
+  "kind": "graph",
+  "name": "PlayerBuildingsConstructed",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_BUILDINGS",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerDistrictsConstructed",
+  "kind": "graph",
+  "name": "PlayerDistrictsConstructed",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_DISTRICTS",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerCitiesConquered",
+  "kind": "graph",
+  "name": "PlayerCitiesConquered",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_CITIES_CAPTURED",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerCitiesFounded",
+  "kind": "graph",
+  "name": "PlayerCitiesFounded",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_CITIES_FOUNDED",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerCitiesLost",
+  "kind": "graph",
+  "name": "PlayerCitiesLost",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_CITIES_LOST",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerGreatPeopleEarned",
+  "kind": "graph",
+  "name": "PlayerGreatPeopleEarned",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_GREAT_PEOPLE",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerCombats",
+  "kind": "graph",
+  "name": "PlayerCombats",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_COMBATS",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerUnitsKilled",
+  "kind": "graph",
+  "name": "PlayerUnitsKilled",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_UNITS_KILLED",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerUnitsLost",
+  "kind": "graph",
+  "name": "PlayerUnitsLost",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_UNITS_LOST",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerWarsReceived",
+  "kind": "graph",
+  "name": "PlayerWarsReceived",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_WARS_RECEIVED",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerWarsDeclared",
+  "kind": "graph",
+  "name": "PlayerWarsDeclared",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_WARS_DECLARED",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerWondersConstructed",
+  "kind": "graph",
+  "name": "PlayerWondersConstructed",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_WONDERS",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerTechsAcquired",
+  "kind": "graph",
+  "name": "PlayerTechsAcquired",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_TECHS",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerCivicsAcquired",
+  "kind": "graph",
+  "name": "PlayerCivicsAcquired",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_CIVICS",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerBarbariansKilled",
+  "kind": "graph",
+  "name": "PlayerBarbariansKilled",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_BARBARIAN_KILLS",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerBarbarianCampsCleared",
+  "kind": "graph",
+  "name": "PlayerBarbarianCampsCleared",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_BARBARIAN_CAMPS",
+  "query": "GameDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerNukesLaunched",
+  "kind": "graph",
+  "name": "PlayerNukesLaunched",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_NUKES",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerGoodyHutsPopped",
+  "kind": "graph",
+  "name": "PlayerGoodyHutsPopped",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_GOODY_HUTS",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:PlayerNaturalWondersDiscovered",
+  "kind": "graph",
+  "name": "PlayerNaturalWondersDiscovered",
+  "scope": "Game",
+  "name_key": "LOC_HOF_GRAPH_PLAYER_NATURAL_WONDERS",
+  "query": "GameDeltaDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityProduction",
+  "kind": "graph",
+  "name": "CityProduction",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_PRODUCTION",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityCulture",
+  "kind": "graph",
+  "name": "CityCulture",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_CULTURE",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityFaith",
+  "kind": "graph",
+  "name": "CityFaith",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_FAITH",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityGold",
+  "kind": "graph",
+  "name": "CityGold",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_GOLD",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityFood",
+  "kind": "graph",
+  "name": "CityFood",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_FOOD",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityScience",
+  "kind": "graph",
+  "name": "CityScience",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_SCIENCE",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityTourism",
+  "kind": "graph",
+  "name": "CityTourism",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_TOURISM",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityPopulation",
+  "kind": "graph",
+  "name": "CityPopulation",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_POPULATION",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityBuildings",
+  "kind": "graph",
+  "name": "CityBuildings",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_BUILDINGS",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityDistricts",
+  "kind": "graph",
+  "name": "CityDistricts",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_DISTRICTS",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:graph:CityWonders",
+  "kind": "graph",
+  "name": "CityWonders",
+  "scope": "Player",
+  "name_key": "LOC_HOF_GRAPH_CITY_WONDERS",
+  "query": "PlayerDataSetsByType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Graphs row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:report:PlayerUnits",
+  "kind": "report",
+  "name": "PlayerUnits",
+  "scope": "Player",
+  "name_key": "LOC_HOF_REPORTS_UNITS",
+  "columns": [
+   {
+    "name_key": "LOC_HOF_REPORTS_UNITS_TRAINED",
+    "data_point": "UnitsTrainedByType",
+    "sort": "10"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_UNITS_KILLS",
+    "data_point": "UnitsKilledByType",
+    "sort": "20"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_UNITS_LOST",
+    "data_point": "UnitsLostByType",
+    "sort": "30"
+   }
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Reports and ReportColumns rows of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:report:PlayerGovernments",
+  "kind": "report",
+  "name": "PlayerGovernments",
+  "scope": "Player",
+  "name_key": "LOC_HOF_REPORTS_GOVERNMENTS",
+  "columns": [
+   {
+    "name_key": "LOC_HOF_REPORTS_GOVERNMENTS_TURNS_ACTIVE",
+    "data_point": "GovernmentInUseByType",
+    "sort": "10"
+   }
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Reports and ReportColumns rows of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:report:PlayerCityYields",
+  "kind": "report",
+  "name": "PlayerCityYields",
+  "scope": "Player",
+  "name_key": "LOC_HOF_REPORTS_CITY_YIELDS",
+  "columns": [
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_YIELDS_PRODUCTION",
+    "data_point": "Production",
+    "sort": "10"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_YIELDS_FOOD",
+    "data_point": "Food",
+    "sort": "20"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_YIELDS_GOLD",
+    "data_point": "Gold",
+    "sort": "30"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_YIELDS_FAITH",
+    "data_point": "Faith",
+    "sort": "40"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_YIELDS_SCIENCE",
+    "data_point": "Science",
+    "sort": "50"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_YIELDS_CULTURE",
+    "data_point": "Culture",
+    "sort": "60"
+   }
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Reports and ReportColumns rows of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:report:PlayerCityStatus",
+  "kind": "report",
+  "name": "PlayerCityStatus",
+  "scope": "Player",
+  "name_key": "LOC_HOF_REPORTS_CITY_STATUS",
+  "columns": [
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_STATUS_POPULATION",
+    "data_point": "Population",
+    "sort": "10"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_YIELDS_TOURISM",
+    "data_point": "Tourism",
+    "sort": "20"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_STATUS_BUILDINGS",
+    "data_point": "BuildingsConstructed",
+    "sort": "30"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_STATUS_DISTRICTS",
+    "data_point": "DistrictsConstructed",
+    "sort": "40"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_CITY_STATUS_WONDERS",
+    "data_point": "WondersConstructed",
+    "sort": "50"
+   }
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Reports and ReportColumns rows of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:report:Religions",
+  "kind": "report",
+  "name": "Religions",
+  "scope": "Game",
+  "name_key": "LOC_HOF_REPORTS_RELIGIONS",
+  "columns": [
+   {
+    "name_key": "LOC_HOF_REPORTS_RELIGIONS_FOUNDER",
+    "data_point": "Founder",
+    "sort": "10"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_RELIGIONS_HOLY_CITY",
+    "data_point": "HolyCity",
+    "sort": "20"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_RELIGIONS_TURN_FOUNDED",
+    "data_point": "TurnFounded",
+    "sort": "30"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_RELIGIONS_FOLLOWERS",
+    "data_point": "Followers",
+    "sort": "40"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_RELIGIONS_CITIES",
+    "data_point": "Cities",
+    "sort": "40"
+   },
+   {
+    "name_key": "LOC_HOF_REPORTS_RELIGIONS_BELIEFS",
+    "data_point": "Beliefs",
+    "sort": "50"
+   }
+  ],
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "Reports and ReportColumns rows of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_GENERAL",
+  "kind": "category",
+  "name": "CATEGORY_GENERAL",
+  "name_key": "LOC_GAMESUMMARY_CATEGORY_GENERAL",
+  "sort": "100",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_DIPLOMACY",
+  "kind": "category",
+  "name": "CATEGORY_DIPLOMACY",
+  "name_key": "LOC_GAMESUMMARY_CATEGORY_DIPLOMACY",
+  "sort": "200",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_DISCOVERY",
+  "kind": "category",
+  "name": "CATEGORY_DISCOVERY",
+  "name_key": "LOC_GAMESUMMARY_CATEGORY_DISCOVERY",
+  "sort": "200",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_COMBAT",
+  "kind": "category",
+  "name": "CATEGORY_COMBAT",
+  "name_key": "LOC_GAMESUMMARY_CATEGORY_COMBAT",
+  "sort": "200",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_PROSPERITY",
+  "kind": "category",
+  "name": "CATEGORY_PROSPERITY",
+  "name_key": "LOC_GAMESUMMARY_CATEGORY_PROSPERITY",
+  "sort": "200",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_RELIGION",
+  "kind": "category",
+  "name": "CATEGORY_RELIGION",
+  "name_key": "LOC_GAMESUMMARY_CATEGORY_RELIGION",
+  "sort": "200",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_EXTRA",
+  "kind": "category",
+  "name": "CATEGORY_EXTRA",
+  "name_key": "LOC_GAMESUMMARY_CATEGORY_EXTRA",
+  "sort": "300",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:category:CATEGORY_HIDDEN",
+  "kind": "category",
+  "name": "CATEGORY_HIDDEN",
+  "name_key": null,
+  "sort": "100",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "game-script",
+    "note": "StatisticCategories row of HallofFame.xml"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:CivilizationName",
+  "kind": "push-field",
+  "name": "CivilizationName",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:CivilizationType",
+  "kind": "push-field",
+  "name": "CivilizationType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:DefeatType",
+  "kind": "push-field",
+  "name": "DefeatType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:DifficultyType",
+  "kind": "push-field",
+  "name": "DifficultyType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:GameId",
+  "kind": "push-field",
+  "name": "GameId",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:GameMode",
+  "kind": "push-field",
+  "name": "GameMode",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:GameSpeedType",
+  "kind": "push-field",
+  "name": "GameSpeedType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:IsHuman",
+  "kind": "push-field",
+  "name": "IsHuman",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:IsLocal",
+  "kind": "push-field",
+  "name": "IsLocal",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:IsMajor",
+  "kind": "push-field",
+  "name": "IsMajor",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:LastPlayed",
+  "kind": "push-field",
+  "name": "LastPlayed",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:LeaderName",
+  "kind": "push-field",
+  "name": "LeaderName",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:LeaderType",
+  "kind": "push-field",
+  "name": "LeaderType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:MapSizeType",
+  "kind": "push-field",
+  "name": "MapSizeType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:PlayerId",
+  "kind": "push-field",
+  "name": "PlayerId",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:PlayerObjectId",
+  "kind": "push-field",
+  "name": "PlayerObjectId",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:Players",
+  "kind": "push-field",
+  "name": "Players",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:Ruleset",
+  "kind": "push-field",
+  "name": "Ruleset",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:Score",
+  "kind": "push-field",
+  "name": "Score",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:StartEraType",
+  "kind": "push-field",
+  "name": "StartEraType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:StartTurn",
+  "kind": "push-field",
+  "name": "StartTurn",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:TeamId",
+  "kind": "push-field",
+  "name": "TeamId",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:TurnCount",
+  "kind": "push-field",
+  "name": "TurnCount",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:VictorTeamId",
+  "kind": "push-field",
+  "name": "VictorTeamId",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ },
+ {
+  "id": "exegs:push-field:VictoryType",
+  "kind": "push-field",
+  "name": "VictoryType",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name string of PushGameData (0x4c4220)"
+   }
+  ]
+ }
+]

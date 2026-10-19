@@ -1,0 +1,645 @@
+[
+ {
+  "id": "exeload:state:0",
+  "kind": "state",
+  "name": "0",
+  "title": "Start",
+  "detail": "Entry: moves on to state 1 (to state 11, the failure state, when the start fails).",
+  "next": "1",
+  "stage_label": [],
+  "log_markers": [],
+  "timed_steps": [],
+  "timed_blocks": [],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 0 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:state:1",
+  "kind": "state",
+  "name": "1",
+  "title": "Decide: load a save or start new",
+  "detail": "Asks the serializer for the request type (function 0x167ce0): when the result is 2 (inferred: a saved game is to be loaded) the next state is 4, otherwise 2.",
+  "next": "2 or 4",
+  "stage_label": [],
+  "log_markers": [],
+  "timed_steps": [],
+  "timed_blocks": [],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 1 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:state:2",
+  "kind": "state",
+  "name": "2",
+  "title": "Configure Content",
+  "detail": "Configure Content: the game content is configured and the asset load restarted; then state 3 (11 on failure).",
+  "next": "3",
+  "stage_label": [
+   "Configure Content"
+  ],
+  "log_markers": [
+   "CONFIGURE_CONTENT"
+  ],
+  "timed_steps": [
+   "Restarting asset load"
+  ],
+  "timed_blocks": [
+   "CONFIGURE_CONTENT"
+  ],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 2 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:state:3",
+  "kind": "state",
+  "name": "3",
+  "title": "Set gameplay logging",
+  "detail": "Reads the gameplay logging options (listed below), then goes to 6 (new game) or 7 (unserialize a game state): the value is (x != 0) + 6 for a pointer x read in this state (inferred: whether a saved game stream was loaded).",
+  "next": "6 or 7",
+  "stage_label": [],
+  "log_markers": [],
+  "timed_steps": [],
+  "timed_blocks": [],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "inferred",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 3 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:state:4",
+  "kind": "state",
+  "name": "4",
+  "title": "Load a save file",
+  "detail": "Loads the save file, then state 5 (11 on failure).",
+  "next": "5",
+  "stage_label": [
+   "Loading a save"
+  ],
+  "log_markers": [
+   "GAMECORE_LOAD_SAVEFILE"
+  ],
+  "timed_steps": [],
+  "timed_blocks": [
+   "GAMECORE_LOAD_SAVEFILE"
+  ],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 4 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:state:5",
+  "kind": "state",
+  "name": "5",
+  "title": "Save load pending (apply mod state)",
+  "detail": "Save load pending: when done the mod state is applied (`ApplyModdingState`) and the sequence continues with Configure Content (state 2); 11 on failure.",
+  "next": "2",
+  "stage_label": [],
+  "log_markers": [
+   "GAMECORE_LOAD_SAVEFILE_PENDING"
+  ],
+  "timed_steps": [
+   "ApplyModdingState"
+  ],
+  "timed_blocks": [],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 5 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:state:6",
+  "kind": "state",
+  "name": "6",
+  "title": "New game",
+  "detail": "Starts a new game (`InitializeNewGame`), records the `StartupGameTimings` numbers, goes to state 8; 11 on failure.",
+  "next": "8",
+  "stage_label": [],
+  "log_markers": [
+   "GAMECORE_NEW_GAME"
+  ],
+  "timed_steps": [
+   "Block on asset load",
+   "InitializeNewGame"
+  ],
+  "timed_blocks": [],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 6 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:state:7",
+  "kind": "state",
+  "name": "7",
+  "title": "Unserialize game state",
+  "detail": "Unserializes the game state, initialises the cache, runs post-initialisation and records the timings; the successor state was not read out.",
+  "next": "(not read)",
+  "stage_label": [
+   "Unserializing Game State"
+  ],
+  "log_markers": [
+   "GAMECORE_UNSERIALIZE_GAMESTATE"
+  ],
+  "timed_steps": [
+   "Unserialize",
+   "InitializeCache",
+   "PostGameInitialization",
+   "PostInitialize"
+  ],
+  "timed_blocks": [],
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-disassembly",
+    "note": "case 7 of the state switch in LoadGameViewState::LaunchNextStage (0x84870), decompiled; transition conditions are partly inferred"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:GameHistoryLogLevel",
+  "kind": "logging-option",
+  "name": "GameHistoryLogLevel",
+  "title": "HISTORY_LOGGING_ID",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `HISTORY_LOGGING_ID`.",
+  "option_id": "exeopt:Gameplay.GameHistoryLogLevel",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:GameHistorySequentialLogLevel",
+  "kind": "logging-option",
+  "name": "GameHistorySequentialLogLevel",
+  "title": "HISTORY_LOGGING_SEQUENTIAL_ID",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `HISTORY_LOGGING_SEQUENTIAL_ID`.",
+  "option_id": "exeopt:Gameplay.GameHistorySequentialLogLevel",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:AI_MasterLogging",
+  "kind": "logging-option",
+  "name": "AI_MasterLogging",
+  "title": "AI_MASTER_LOGGING",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `AI_MASTER_LOGGING`.",
+  "option_id": "exeopt:Gameplay.AI_MasterLogging",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:AICityBuildPlotLog",
+  "kind": "logging-option",
+  "name": "AICityBuildPlotLog",
+  "title": "CITY_PLOT_ANALYSIS_LOG_ID",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `CITY_PLOT_ANALYSIS_LOG_ID`.",
+  "option_id": "exeopt:Gameplay.AICityBuildPlotLog",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:GameEraMomentsLog",
+  "kind": "logging-option",
+  "name": "GameEraMomentsLog",
+  "title": "GAME_ERA_MOMENTS_LOG_ID",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `GAME_ERA_MOMENTS_LOG_ID`.",
+  "option_id": "exeopt:Gameplay.GameEraMomentsLog",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:AISettlementEvaluationLog",
+  "kind": "logging-option",
+  "name": "AISettlementEvaluationLog",
+  "title": "PLAYER_SETTLEMENT_ANALYSIS_LOG_ID",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `PLAYER_SETTLEMENT_ANALYSIS_LOG_ID`.",
+  "option_id": "exeopt:Gameplay.AISettlementEvaluationLog",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:AiDiplomaticActionLog",
+  "kind": "logging-option",
+  "name": "AiDiplomaticActionLog",
+  "title": "DIPLOMATIC_ACTION_LOG_ID",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `DIPLOMATIC_ACTION_LOG_ID`.",
+  "option_id": "exeopt:Gameplay.AiDiplomaticActionLog",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:AIOperationEvalLog",
+  "kind": "logging-option",
+  "name": "AIOperationEvalLog",
+  "title": "AI_OPERATION_EVAL",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `AI_OPERATION_EVAL`.",
+  "option_id": "exeopt:Gameplay.AIOperationEvalLog",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:ProfileEnabled",
+  "kind": "logging-option",
+  "name": "ProfileEnabled",
+  "title": "CACHE_PERF_LOGGING",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt), passed on as log id `CACHE_PERF_LOGGING`.",
+  "option_id": "exeopt:Gameplay.ProfileEnabled",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:logging-option:GameEffectsLogLevel",
+  "kind": "logging-option",
+  "name": "GameEffectsLogLevel",
+  "title": "",
+  "detail": "Option read in state 3 (section Gameplay of UserOptions.txt).",
+  "option_id": "exeopt:Gameplay.GameEffectsLogLevel",
+  "function": "LoadGameViewState::LaunchNextStage",
+  "function_rva": "0x84870",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "option name and log id string read in state 3 of LaunchNextStage"
+   }
+  ]
+ },
+ {
+  "id": "exeload:unserialize-step:LoadHeader",
+  "kind": "unserialize-step",
+  "name": "LoadHeader",
+  "title": "step 1",
+  "detail": "Logged as \"LoadHeader - Complete\" by UnserializeGameState when the step is done (order of the messages in the code).",
+  "function": "GameCore::Serializer::Manager::UnserializeGameState",
+  "function_rva": "0x16e340",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "completion messages of UnserializeGameState (0x16e340)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:unserialize-step:AttachToSession",
+  "kind": "unserialize-step",
+  "name": "AttachToSession",
+  "title": "step 2",
+  "detail": "Logged as \"AttachToSession - Complete\" by UnserializeGameState when the step is done (order of the messages in the code).",
+  "function": "GameCore::Serializer::Manager::UnserializeGameState",
+  "function_rva": "0x16e340",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "completion messages of UnserializeGameState (0x16e340)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:unserialize-step:LoadGameCoreState",
+  "kind": "unserialize-step",
+  "name": "LoadGameCoreState",
+  "title": "step 3",
+  "detail": "Logged as \"LoadGameCoreState - Complete\" by UnserializeGameState when the step is done (order of the messages in the code).",
+  "function": "GameCore::Serializer::Manager::UnserializeGameState",
+  "function_rva": "0x16e340",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "completion messages of UnserializeGameState (0x16e340)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:unserialize-step:LoadAudioState",
+  "kind": "unserialize-step",
+  "name": "LoadAudioState",
+  "title": "step 4",
+  "detail": "Logged as \"LoadAudioState - Complete\" by UnserializeGameState when the step is done (order of the messages in the code).",
+  "function": "GameCore::Serializer::Manager::UnserializeGameState",
+  "function_rva": "0x16e340",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "completion messages of UnserializeGameState (0x16e340)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:unserialize-step:LoadUIState",
+  "kind": "unserialize-step",
+  "name": "LoadUIState",
+  "title": "step 5",
+  "detail": "Logged as \"LoadUIState - Complete\" by UnserializeGameState when the step is done (order of the messages in the code).",
+  "function": "GameCore::Serializer::Manager::UnserializeGameState",
+  "function_rva": "0x16e340",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "completion messages of UnserializeGameState (0x16e340)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:unserialize-step:LoadRecorderState",
+  "kind": "unserialize-step",
+  "name": "LoadRecorderState",
+  "title": "step 6",
+  "detail": "Logged as \"LoadRecorderState - Complete\" by UnserializeGameState when the step is done (order of the messages in the code).",
+  "function": "GameCore::Serializer::Manager::UnserializeGameState",
+  "function_rva": "0x16e340",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "completion messages of UnserializeGameState (0x16e340)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:save-location-key:AccountReference",
+  "kind": "save-location-key",
+  "name": "AccountReference",
+  "title": "",
+  "detail": "Field name written for a save location by GetSaveLocation (a table handed to the UI scripts).",
+  "function": "GameCore::Serializer::Manager::GetSaveLocation",
+  "function_rva": "0x168310",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name pushed by GetSaveLocation (0x168310), decompiled"
+   }
+  ]
+ },
+ {
+  "id": "exeload:save-location-key:IsDirectory",
+  "kind": "save-location-key",
+  "name": "IsDirectory",
+  "title": "",
+  "detail": "Field name written for a save location by GetSaveLocation (a table handed to the UI scripts).",
+  "function": "GameCore::Serializer::Manager::GetSaveLocation",
+  "function_rva": "0x168310",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name pushed by GetSaveLocation (0x168310), decompiled"
+   }
+  ]
+ },
+ {
+  "id": "exeload:save-location-key:IsAutosave",
+  "kind": "save-location-key",
+  "name": "IsAutosave",
+  "title": "",
+  "detail": "Field name written for a save location by GetSaveLocation (a table handed to the UI scripts).",
+  "function": "GameCore::Serializer::Manager::GetSaveLocation",
+  "function_rva": "0x168310",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name pushed by GetSaveLocation (0x168310), decompiled"
+   }
+  ]
+ },
+ {
+  "id": "exeload:save-location-key:IsQuicksave",
+  "kind": "save-location-key",
+  "name": "IsQuicksave",
+  "title": "",
+  "detail": "Field name written for a save location by GetSaveLocation (a table handed to the UI scripts).",
+  "function": "GameCore::Serializer::Manager::GetSaveLocation",
+  "function_rva": "0x168310",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name pushed by GetSaveLocation (0x168310), decompiled"
+   }
+  ]
+ },
+ {
+  "id": "exeload:save-location-key:IsPrevious",
+  "kind": "save-location-key",
+  "name": "IsPrevious",
+  "title": "",
+  "detail": "Field name written for a save location by GetSaveLocation (a table handed to the UI scripts).",
+  "function": "GameCore::Serializer::Manager::GetSaveLocation",
+  "function_rva": "0x168310",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "field name pushed by GetSaveLocation (0x168310), decompiled"
+   }
+  ]
+ },
+ {
+  "id": "exeload:metadata-key:MetaDataVersion",
+  "kind": "metadata-key",
+  "name": "MetaDataVersion",
+  "title": "",
+  "detail": "Version of the save metadata layout (written by SaveMetaData).",
+  "function": "GameCore::Serializer::Manager::SaveMetaData",
+  "function_rva": "0x16d500",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "key of the MetaData table of a save, written in SaveMetaData (0x16d500) / read in ApplyModdingState (0x1639b0)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:metadata-key:AppVersion",
+  "kind": "metadata-key",
+  "name": "AppVersion",
+  "title": "",
+  "detail": "Game version, written as \"%d.%d.%d.%d (%d)\" from the application version fields.",
+  "function": "GameCore::Serializer::Manager::SaveMetaData",
+  "function_rva": "0x16d500",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "key of the MetaData table of a save, written in SaveMetaData (0x16d500) / read in ApplyModdingState (0x1639b0)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:metadata-key:DisplayName",
+  "kind": "metadata-key",
+  "name": "DisplayName",
+  "title": "",
+  "detail": "Display name of the save.",
+  "function": "GameCore::Serializer::Manager::SaveMetaData",
+  "function_rva": "0x16d500",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "key of the MetaData table of a save, written in SaveMetaData (0x16d500) / read in ApplyModdingState (0x1639b0)"
+   }
+  ]
+ },
+ {
+  "id": "exeload:metadata-key:IsMod",
+  "kind": "metadata-key",
+  "name": "IsMod",
+  "title": "",
+  "detail": "Read back by ApplyModdingState (`SELECT Value from MetaData where Name = 'IsMod'`): whether the game was started with mods.",
+  "function": "GameCore::Serializer::Manager::ApplyModdingState",
+  "function_rva": "0x1639b0",
+  "availability": "exe",
+  "status": "verified",
+  "evidence": [
+   {
+    "kind": "exe-string",
+    "note": "key of the MetaData table of a save, written in SaveMetaData (0x16d500) / read in ApplyModdingState (0x1639b0)"
+   }
+  ]
+ }
+]

@@ -1,0 +1,1681 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>UI</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine Lua tables</a> › UI</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>UI</h1>
+<p>Static table with 236 methods. <em>registered by exe interface GameCore::App::UI::Lua::IManager; game scripts call 175 of 236 methods.</em> Registering function <code>0x19fc80</code>.</p>
+<p>Methods are called with a dot (<code>UI.Method(...)</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+<th>In game scripts</th>
+<th>Example</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="_ui.addnumbertopath"></a><code>UI.AddNumberToPath(arg1: integer, arg2: integer)</code></td>
+<td>—</td>
+<td>4 calls, 1 files</td>
+<td><code>UI.AddNumberToPath( 1, endPlotId)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.addtemporaryplotvisibility"></a><code>UI.AddTemporaryPlotVisibility(arg1: string, arg2, arg3, …)</code></td>
+<td>—</td>
+<td>3 calls, 3 files</td>
+<td><code>UI.AddTemporaryPlotVisibility("RockBand", aPlots, RevealedState.VISIBLE)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.addworldviewtext"></a><code>UI.AddWorldViewText(arg1, szText: string, arg3: integer, arg4: integer, arg5: number, …)</code></td>
+<td>—</td>
+<td>8 calls, 3 files</td>
+<td><code>UI.AddWorldViewText(EventSubTypes.PLOT, message, unit:GetX(), unit:GetY(), 0)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.applyfilequerycivimage"></a><code>UI.ApplyFileQueryCivImage(arg1, arg2, arg3, …) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if (not UI.ApplyFileQueryCivImage( g_LastFileQueryRequestID, fileInfo.Id, Controls.CivIcon)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.applyfilequeryleaderimage"></a><code>UI.ApplyFileQueryLeaderImage(arg1, arg2, arg3, …) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if (not UI.ApplyFileQueryLeaderImage( g_LastFileQueryRequestID, fileInfo.Id, Controls.LeaderIcon)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.applyfilequerypreviewimage"></a><code>UI.ApplyFileQueryPreviewImage(arg1, arg2, arg3, …) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.arecloudsavesenabled"></a><code>UI.AreCloudSavesEnabled([arg1: string]) -&gt; boolean, number</code></td>
+<td>boolean, number</td>
+<td>4 calls, 2 files</td>
+<td><code>local cloudEnabled = UI.AreCloudSavesEnabled()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.areplayercolorsconflicting"></a><code>UI.ArePlayerColorsConflicting(arg1: table, arg2) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>if( myTeam and v and UI.ArePlayerColorsConflicting( v, myTeam )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.assertmsg"></a><code>UI.AssertMsg(arg1: boolean, arg2: string, …)</code></td>
+<td>—</td>
+<td>13 calls, 6 files</td>
+<td><code>UI.AssertMsg(false, "Attempting to truncate a NIL control")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.calculateedgesplinesegments"></a><code>UI.CalculateEdgeSplineSegments(arg1, arg2: integer, arg3: integer, arg4: integer, arg5: integer) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>1 calls, 1 files</td>
+<td><code>local pSegments = UI.CalculateEdgeSplineSegments(pRiver.Edges, 5, 10, 3, fLength)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.canendturn"></a><code>UI.CanEndTurn() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>if not UI.CanEndTurn()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.canhavemsaaquality"></a><code>UI.CanHaveMSAAQuality(arg1, arg2: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>local bValid = UI.CanHaveMSAAQuality(v[2][1], v[2][2])</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.canshowmodal"></a><code>UI.CanShowModal() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.canshowpopup"></a><code>UI.CanShowPopup(arg1: integer) -&gt; boolean, boolean</code></td>
+<td>boolean, boolean</td>
+<td>9 calls, 4 files</td>
+<td><code>if UI.CanShowPopup(PopupPriority.Low)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.canstartplayeroperation"></a><code>UI.CanStartPlayerOperation(iActivePlayer: integer, arg2: integer, tParameters, bIsExclusionTest: boolean, …) -&gt; boolean, boolean</code></td>
+<td>boolean, boolean</td>
+<td>5 calls, 1 files</td>
+<td><code>local bShowRansom = UI.CanStartPlayerOperation(iActivePlayer, PlayerOperations.RANSOM_CLAN, tParameters, true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.checkusersetup"></a><code>UI.CheckUserSetup()</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.CheckUserSetup()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.clearallcontrols"></a><code>UI.ClearAllControls()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.clearcontrol"></a><code>UI.ClearControl([arg1: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.cleartemporaryplotvisibility"></a><code>UI.ClearTemporaryPlotVisibility(arg1: string, …)</code></td>
+<td>—</td>
+<td>3 calls, 3 files</td>
+<td><code>UI.ClearTemporaryPlotVisibility("RockBand")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.closeallfilelistqueries"></a><code>UI.CloseAllFileListQueries()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.CloseAllFileListQueries()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.closefilelistquery"></a><code>UI.CloseFileListQuery(arg1: integer)</code></td>
+<td>—</td>
+<td>4 calls, 3 files</td>
+<td><code>UI.CloseFileListQuery(g_LastFileQueryRequestID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.darkenlightencolor"></a><code>UI.DarkenLightenColor(arg1, arg2: number, arg3: number) -&gt; number</code></td>
+<td>number</td>
+<td>30 calls, 15 files</td>
+<td><code>return UI.DarkenLightenColor(hexColor, amt, alpha)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.dataerror"></a><code>UI.DataError(arg1: string, [arg2], [arg3], …)</code></td>
+<td>—</td>
+<td>387 calls, 108 files</td>
+<td><code>UI.DataError("No production queue in city!")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.debugcommand"></a><code>UI.DebugCommand([arg1: string]) -&gt; boolean, boolean</code></td>
+<td>boolean, boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deletesavedgame"></a><code>UI.DeleteSavedGame(arg1)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.DeleteSavedGame( kSelectedFile )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectall"></a><code>UI.DeselectAll()</code></td>
+<td>—</td>
+<td>8 calls, 2 files</td>
+<td><code>UI.DeselectAll()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectallcities"></a><code>UI.DeselectAllCities()</code></td>
+<td>—</td>
+<td>13 calls, 9 files</td>
+<td><code>UI.DeselectAllCities()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectalldistricts"></a><code>UI.DeselectAllDistricts()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectallunits"></a><code>UI.DeselectAllUnits()</code></td>
+<td>—</td>
+<td>13 calls, 7 files</td>
+<td><code>UI.DeselectAllUnits()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectcity"></a><code>UI.DeselectCity(arg1)</code></td>
+<td>—</td>
+<td>3 calls, 1 files</td>
+<td><code>UI.DeselectCity( pCity )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectcityid"></a><code>UI.DeselectCityID(arg1: integer, arg2: integer)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.DeselectCityID(ownerPlayerID, cityID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectdistrict"></a><code>UI.DeselectDistrict()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectdistrictid"></a><code>UI.DeselectDistrictID([arg1: integer], [arg2: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectunit"></a><code>UI.DeselectUnit(arg1)</code></td>
+<td>—</td>
+<td>6 calls, 4 files</td>
+<td><code>UI.DeselectUnit(kUnit)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.deselectunitid"></a><code>UI.DeselectUnitID([arg1: integer], [arg2: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.disabletimeofdayoverride"></a><code>UI.DisableTimeOfDayOverride(arg1)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.DisableTimeOfDayOverride(TIME_OVERRIDE_TRANSITION_TIME)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.dragmap"></a><code>UI.DragMap(arg1: number, arg2: number, arg3: number, arg4: number, arg5: number, arg6: integer)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.DragMap( x, y, m_dragStartWorldX, m_dragStartWorldY, m_dragStartFocusWorldX, m_dragStartFocusWorldY )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.enabletimeofdayoverride"></a><code>UI.EnableTimeOfDayOverride(arg1: integer, arg2)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.EnableTimeOfDayOverride(0, TIME_OVERRIDE_TRANSITION_TIME)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.enqueuenotificationsound"></a><code>UI.EnqueueNotificationSound(arg1: string)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.EnqueueNotificationSound( soundName )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.fillplaylistwithallcivs"></a><code>UI.FillPlaylistWithAllCivs()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.FillPlaylistWithAllCivs()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.focusmap"></a><code>UI.FocusMap(arg1: number, arg2: integer)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.FocusMap( wx, wy )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getarxdevicetype"></a><code>UI.GetARXDeviceType()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getambienceclipdistance"></a><code>UI.GetAmbienceClipDistance() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getambienttimeofday"></a><code>UI.GetAmbientTimeOfDay() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getambienttimeofdayspeed"></a><code>UI.GetAmbientTimeOfDaySpeed() -&gt; number</code></td>
+<td>number</td>
+<td>2 calls, 2 files</td>
+<td><code>OldTODSpeed = UI.GetAmbientTimeOfDaySpeed()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getappversion"></a><code>UI.GetAppVersion(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>5 calls, 3 files</td>
+<td><code>local currentVersion = UI.GetAppVersion()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getaspyrappversion"></a><code>UI.GetAspyrAppVersion()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>Controls.VersionLabel:SetText( UI.GetAspyrAppVersion()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcivilizationsoundswitchvalue"></a><code>UI.GetCivilizationSoundSwitchValue([arg1: integer]) -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcivilizationsoundswitchvaluebyleader"></a><code>UI.GetCivilizationSoundSwitchValueByLeader(arg1: integer) -&gt; number</code></td>
+<td>number</td>
+<td>5 calls, 2 files</td>
+<td><code>if (UI.GetCivilizationSoundSwitchValueByLeader(m_lastLeaderPlayedMusicFor)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcolorchannels"></a><code>UI.GetColorChannels(arg1: integer) -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>18 calls, 5 files</td>
+<td><code>local c1 = {UI.GetColorChannels(color1)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcolorvalue"></a><code>UI.GetColorValue(arg1: string, [arg2: number], [arg3: number], [arg4: number]) -&gt; number</code></td>
+<td>number</td>
+<td>199 calls, 49 files</td>
+<td><code>return UI.GetColorValue(red, green, blue, alpha)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcolorvaluefromhexliteral"></a><code>UI.GetColorValueFromHexLiteral(arg1: number) -&gt; number</code></td>
+<td>number</td>
+<td>199 calls, 42 files</td>
+<td><code>METER_HP_OK                = UI.GetColorValueFromHexLiteral(0xFF2DFFF8)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcolors"></a><code>UI.GetColors() -&gt; table, table</code></td>
+<td>table, table</td>
+<td>4 calls, 2 files</td>
+<td><code>local colors = UI.GetColors()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcursornearestplotedge"></a><code>UI.GetCursorNearestPlotEdge() -&gt; number</code></td>
+<td>number</td>
+<td>8 calls, 1 files</td>
+<td><code>local edge = UI.GetCursorNearestPlotEdge()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcursorplotcoord"></a><code>UI.GetCursorPlotCoord() -&gt; number, number</code></td>
+<td>number, number</td>
+<td>3 calls, 1 files</td>
+<td><code>local plotX:number, plotY:number = UI.GetCursorPlotCoord()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getcursorplotid"></a><code>UI.GetCursorPlotID() -&gt; number</code></td>
+<td>number</td>
+<td>79 calls, 8 files</td>
+<td><code>local plotId = UI.GetCursorPlotID()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getdefaultcloudsavelocation"></a><code>UI.GetDefaultCloudSaveLocation() -&gt; number</code></td>
+<td>number</td>
+<td>4 calls, 2 files</td>
+<td><code>saveLocation = UI.GetDefaultCloudSaveLocation()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getelapsedtime"></a><code>UI.GetElapsedTime()</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>m_lastMouseMoveTime = UI.GetElapsedTime()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.geterasoundswitchvalue"></a><code>UI.GetEraSoundSwitchValue(arg1: integer) -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SetSoundSwitchValue("Era_DawnOfMan", UI.GetEraSoundSwitchValue(dawnOfManEraHash)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getgameparameters"></a><code>UI.GetGameParameters(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>21 calls, 5 files</td>
+<td><code>UI.GetGameParameters()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getheadselectedcity"></a><code>UI.GetHeadSelectedCity(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>53 calls, 18 files</td>
+<td><code>local pCity = UI.GetHeadSelectedCity()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getheadselecteddistrict"></a><code>UI.GetHeadSelectedDistrict(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>6 calls, 2 files</td>
+<td><code>pAttacker = UI.GetHeadSelectedDistrict()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getheadselectedunit"></a><code>UI.GetHeadSelectedUnit(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>129 calls, 25 files</td>
+<td><code>if UI.GetHeadSelectedUnit()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getinterfacemode"></a><code>UI.GetInterfaceMode()</code></td>
+<td>—</td>
+<td>97 calls, 32 files</td>
+<td><code>if UI.GetInterfaceMode()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getinterfacemodeparameter"></a><code>UI.GetInterfaceModeParameter(arg1, …) -&gt; boolean, number</code></td>
+<td>boolean, number</td>
+<td>47 calls, 9 files</td>
+<td><code>local eWMD = UI.GetInterfaceModeParameter(UnitOperationTypes.PARAM_WMD_TYPE)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getlastsavename"></a><code>UI.GetLastSaveName(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>1 calls, 1 files</td>
+<td><code>defaultFileName = UI.GetLastSaveName()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getlinecontrol"></a><code>UI.GetLineControl([arg1: integer]) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getlockedworldrect"></a><code>UI.GetLockedWorldRect()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getlookattimescale"></a><code>UI.GetLookAtTimeScale() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getmanualsaveusagesize"></a><code>UI.GetManualSaveUsageSize()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getmaplookatworldtarget"></a><code>UI.GetMapLookAtWorldTarget() -&gt; number, number</code></td>
+<td>number, number</td>
+<td>3 calls, 2 files</td>
+<td><code>wx, wy = UI.GetMapLookAtWorldTarget()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getmapzoom"></a><code>UI.GetMapZoom() -&gt; number</code></td>
+<td>number</td>
+<td>4 calls, 2 files</td>
+<td><code>local oldZoom = UI.GetMapZoom()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getmaxmsaacount"></a><code>UI.GetMaxMSAACount()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>local nMaxMSAACount = UI.GetMaxMSAACount()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getminimapworldrect"></a><code>UI.GetMinimapWorldRect() -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>3 calls, 2 files</td>
+<td><code>local mapMinX, mapMinY, mapMaxX, mapMaxY = UI.GetMinimapWorldRect()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getnetworkversion"></a><code>UI.GetNetworkVersion(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>2 calls, 1 files</td>
+<td><code>local localGameVersion :string = UI.GetNetworkVersion()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getnormalerasoundswitchvalue"></a><code>UI.GetNormalEraSoundSwitchValue(arg1: integer) -&gt; number</code></td>
+<td>number</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.SetSoundSwitchValue("Game_Location", UI.GetNormalEraSoundSwitchValue(ms_OtherID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getnormalizedscreenposfromplotcoord"></a><code>UI.GetNormalizedScreenPosFromPlotCoord([arg1: integer], [arg2: integer]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getpathlevels"></a><code>UI.GetPathLevels(arg1: integer, arg2: string, …) -&gt; table, string, string, table</code></td>
+<td>table, string, string, table</td>
+<td>4 calls, 1 files</td>
+<td><code>g_CurrentDirectorySegments = UI.GetPathLevels(SaveLocations.LOCAL_STORAGE, g_CurrentDirectoryPath)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getplayercolorvalues"></a><code>UI.GetPlayerColorValues(arg1: string, [arg2: integer]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>18 calls, 7 files</td>
+<td><code>backColor, frontColor = UI.GetPlayerColorValues(colorLeader, 0)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getplayercolors"></a><code>UI.GetPlayerColors(arg1: integer) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>81 calls, 39 files</td>
+<td><code>m_primaryColor, m_secondaryColor  = UI.GetPlayerColors( playerID )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getplotcoordfromnormalizedscreenpos"></a><code>UI.GetPlotCoordFromNormalizedScreenPos(arg1: integer, arg2: integer) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>3 calls, 2 files</td>
+<td><code>local x:number,y:number = UI.GetPlotCoordFromNormalizedScreenPos(normalizedX, normalizedY)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getplotcoordfromworld"></a><code>UI.GetPlotCoordFromWorld(arg1: integer, arg2: integer, [arg3]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>9 calls, 6 files</td>
+<td><code>x, y = UI.GetPlotCoordFromWorld(wx, wy)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getpushdata"></a><code>UI.GetPushData(arg1: string, arg2: number, arg3: integer, arg4) -&gt; table</code></td>
+<td>table</td>
+<td>4 calls, 1 files</td>
+<td><code>MotDData = UI.GetPushData("MotD", 0, PushDataSearchOptions.IsOpen, ms_MotDIndex)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getregioncenter"></a><code>UI.GetRegionCenter(arg1, …) -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>5 calls, 3 files</td>
+<td><code>local x, y = UI.GetRegionCenter(pGroup)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getregionclusterpositions"></a><code>UI.GetRegionClusterPositions(arg1, arg2: integer, arg3: integer, …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>2 calls, 1 files</td>
+<td><code>local pPositions = UI.GetRegionClusterPositions( pGroup, 60, 8 )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getsavegamemetadata"></a><code>UI.GetSaveGameMetaData(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>1 calls, 1 files</td>
+<td><code>local metaData = UI.GetSaveGameMetaData()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getsavegamemodificationtimeraw"></a><code>UI.GetSaveGameModificationTimeRaw(arg1, …)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>v.LastModified = UI.GetSaveGameModificationTimeRaw(v)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getsavelocationpath"></a><code>UI.GetSaveLocationPath(arg1: integer, arg2: integer, arg3: integer, arg4: boolean, …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>1 calls, 1 files</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.gettextcontrol"></a><code>UI.GetTextControl([arg1: integer]) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getvolumes"></a><code>UI.GetVolumes(arg1: integer, …) -&gt; table, string, string, table</code></td>
+<td>table, string, string, table</td>
+<td>1 calls, 1 files</td>
+<td><code>g_VolumeList = UI.GetVolumes(SaveLocations.LOCAL_STORAGE)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getworldfromnormalizedscreenpos"></a><code>UI.GetWorldFromNormalizedScreenPos(arg1: integer, arg2: integer) -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>2 calls, 2 files</td>
+<td><code>worldX, worldY, worldZ = UI.GetWorldFromNormalizedScreenPos(normalizedX, normalizedY)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getworldfromnormalizedscreenpos_nowrap"></a><code>UI.GetWorldFromNormalizedScreenPos_NoWrap(arg1: integer, arg2: integer) -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>2 calls, 1 files</td>
+<td><code>m_dragStartWorldX, m_dragStartWorldY            = UI.GetWorldFromNormalizedScreenPos_NoWrap( dragStartX, dragStartY )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getworldrenderview"></a><code>UI.GetWorldRenderView() -&gt; number</code></td>
+<td>number</td>
+<td>14 calls, 6 files</td>
+<td><code>if UI.GetWorldRenderView()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.getworldz"></a><code>UI.GetWorldZ()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.gridtohex"></a><code>UI.GridToHex([arg1: integer], [arg2: integer]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.gridtoworld"></a><code>UI.GridToWorld(arg1, [arg2], …) -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>29 calls, 18 files</td>
+<td><code>local worldX, worldY = UI.GridToWorld( plotIndex )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hasarx"></a><code>UI.HasARX()</code></td>
+<td>—</td>
+<td>11 calls, 6 files</td>
+<td><code>if UI.HasARX()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hasfeature"></a><code>UI.HasFeature(arg1: string) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>18 calls, 10 files</td>
+<td><code>if(UI.HasFeature("Chat")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hasoutdateddriver"></a><code>UI.HasOutdatedDriver()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if(UI.HasOutdatedDriver()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hassentturncomplete"></a><code>UI.HasSentTurnComplete() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>and not UI.HasSentTurnComplete()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hasunknowndevice"></a><code>UI.HasUnknownDevice()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if(UI.HasUnknownDevice()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hasunsupporteddevice"></a><code>UI.HasUnsupportedDevice()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hextogrid"></a><code>UI.HexToGrid([arg1: integer], [arg2: integer]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hextoworld"></a><code>UI.HexToWorld([arg1: integer], [arg2: integer]) -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.highlightplots"></a><code>UI.HighlightPlots(highlight, on: boolean, arg3: table, …)</code></td>
+<td>—</td>
+<td>6 calls, 2 files</td>
+<td><code>UI.HighlightPlots(highlight, on, { plotID } )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.hotreloadsounds"></a><code>UI.HotReloadSounds()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.is2kcloudavailable"></a><code>UI.Is2KCloudAvailable() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>if UI.Is2KCloudAvailable()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isarxdisplayportrait"></a><code>UI.IsARXDisplayPortrait()</code></td>
+<td>—</td>
+<td>11 calls, 6 files</td>
+<td><code>m_bIsPortrait = UI.IsARXDisplayPortrait()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isambienttimeofdayanimating"></a><code>UI.IsAmbientTimeOfDayAnimating() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>OldAmbientTOD = UI.IsAmbientTimeOfDayAnimating()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isanyinterfaceingroupvisible"></a><code>UI.IsAnyInterfaceInGroupVisible(…) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isanymodalinterfacevisible"></a><code>UI.IsAnyModalInterfaceVisible() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isanypopupinterfacevisible"></a><code>UI.IsAnyPopupInterfaceVisible() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isatmaxsavecount"></a><code>UI.IsAtMaxSaveCount(arg1) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if (UI.IsAtMaxSaveCount(gameFile)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.iscityidselected"></a><code>UI.IsCityIDSelected(arg1: integer, arg2: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>if UI.IsCityIDSelected(ownerPlayerID, cityID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.iscityselected"></a><code>UI.IsCitySelected() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isdistrictidselected"></a><code>UI.IsDistrictIDSelected([arg1: integer], [arg2: integer]) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isdistrictselected"></a><code>UI.IsDistrictSelected() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isfilelistquerycomplete"></a><code>UI.IsFileListQueryComplete(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>if (not UI.IsFileListQueryComplete(g_LastFileQueryRequestID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isfinalrelease"></a><code>UI.IsFinalRelease()</code></td>
+<td>—</td>
+<td>10 calls, 6 files</td>
+<td><code>if (not UI.IsFinalRelease()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isfixedtiltmodeon"></a><code>UI.IsFixedTiltModeOn()</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>if UI.IsFixedTiltModeOn()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isfullscreenmapenabled"></a><code>UI.IsFullscreenMapEnabled() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>if (uiMsg == MouseEvents.MouseMove or uiMsg == MouseEvents.PointerUpdate) and UI.IsFullscreenMapEnabled()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isgamecorebusy"></a><code>UI.IsGameCoreBusy() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>8 calls, 4 files</td>
+<td><code>if (UI.IsGameCoreBusy()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isinfrontend"></a><code>UI.IsInFrontEnd()</code></td>
+<td>—</td>
+<td>9 calls, 3 files</td>
+<td><code>if (UI.IsInFrontEnd()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isingame"></a><code>UI.IsInGame()</code></td>
+<td>—</td>
+<td>13 calls, 5 files</td>
+<td><code>if UI.IsInGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isinmarketingmode"></a><code>UI.IsInMarketingMode()</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>if UI.IsInMarketingMode()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isinterfacetypevisibile"></a><code>UI.IsInterfaceTypeVisibile(…) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isleaderanimated"></a><code>UI.IsLeaderAnimated([arg1: string]) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.ismovementpathon"></a><code>UI.IsMovementPathOn() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if not UI.IsMovementPathOn()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isplayersleaderanimated"></a><code>UI.IsPlayersLeaderAnimated(arg1) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if UI.IsPlayersLeaderAnimated(ms_OtherPlayerID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isprocessingmessages"></a><code>UI.IsProcessingMessages() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 1 files</td>
+<td><code>if UI.IsProcessingMessages()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isresyncloadinprogress"></a><code>UI.IsResyncLoadInProgress() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>m_isResyncLoad        = UI.IsResyncLoadInProgress()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isturntimerelapsed"></a><code>UI.IsTurnTimerElapsed(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>and not UI.IsTurnTimerElapsed(Game.GetLocalPlayer())</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isunitidselected"></a><code>UI.IsUnitIDSelected([arg1: integer], [arg2: integer]) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isunitselected"></a><code>UI.IsUnitSelected(arg1) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if UI.IsUnitSelected(pUnit)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isvendoramd"></a><code>UI.IsVendorAMD()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>if UI.IsVendorAMD()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isvendornvidia"></a><code>UI.IsVendorNVIDIA()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>elseif UI.IsVendorNVIDIA()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.isworldrenderviewavailable"></a><code>UI.IsWorldRenderViewAvailable([arg1: integer]) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.leaderqualityallowsmotionblur"></a><code>UI.LeaderQualityAllowsMotionBlur(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if UI.LeaderQualityAllowsMotionBlur(eLeaderQuality)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.leaderqualityrequiresrestart"></a><code>UI.LeaderQualityRequiresRestart(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if (UI.LeaderQualityRequiresRestart(option)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lineplotplot"></a><code>UI.LinePlotPlot([arg1: integer], [arg2: integer]) -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lineplotunit"></a><code>UI.LinePlotUnit([arg1: integer], [arg2: number]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lineunitunit"></a><code>UI.LineUnitUnit([arg1: number], [arg2: number]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lineartosrgb"></a><code>UI.LinearToSRGB(arg1: number, arg2: number, arg3: number, arg4: number) -&gt; number</code></td>
+<td>number</td>
+<td>2 calls, 1 files</td>
+<td><code>return UI.LinearToSRGB(r, g, b, a)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.loadsoundbankgroup"></a><code>UI.LoadSoundBankGroup(arg1: integer)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.LoadSoundBankGroup(5)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lookat"></a><code>UI.LookAt([arg1], …)</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lookatplot"></a><code>UI.LookAtPlot(arg1: number, [arg2: integer], [arg3: number], [arg4: number], [arg5: boolean])</code></td>
+<td>—</td>
+<td>95 calls, 29 files</td>
+<td><code>UI.LookAtPlot(plot)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lookatplotscreenposition"></a><code>UI.LookAtPlotScreenPosition(arg1, arg2: integer, arg3: number, arg4: number)</code></td>
+<td>—</td>
+<td>15 calls, 7 files</td>
+<td><code>UI.LookAtPlotScreenPosition( locX, locY, screenXOff, 0.5 )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.lookatposition"></a><code>UI.LookAtPosition(arg1: number, arg2: integer, [arg3: boolean])</code></td>
+<td>—</td>
+<td>6 calls, 3 files</td>
+<td><code>UI.LookAtPosition( wx, wy )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.makesavegamemetadata"></a><code>UI.MakeSaveGameMetaData(arg1, …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>1 calls, 1 files</td>
+<td><code>g_CurrentGameMetaData = UI.MakeSaveGameMetaData(g_FileType)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.mapsearch_logbegin"></a><code>UI.MapSearch_LogBegin(arg1, arg2)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.MapSearch_LogBegin(m_Search.Whitelist, m_Search.Blacklist)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.mapsearch_logend"></a><code>UI.MapSearch_LogEnd(arg1: string) -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.MapSearch_LogEnd("Complete with " .. tostring(#m_ResultPlots) .. " results")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.onnaturalwonderrevealed"></a><code>UI.OnNaturalWonderRevealed(arg1: integer, arg2)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.OnNaturalWonderRevealed(kData.plotx, kData.ploty)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.panmap"></a><code>UI.PanMap(arg1: number, arg2: integer)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.PanMap( panX, panY )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.partitionpath"></a><code>UI.PartitionPath(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.partitionregions"></a><code>UI.PartitionRegions(arg1, …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>2 calls, 2 files</td>
+<td><code>local pGroups = UI.PartitionRegions( pPlots )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.pausemodcivmusic"></a><code>UI.PauseModCivMusic()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.PauseModCivMusic()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.playleaderanimation"></a><code>UI.PlayLeaderAnimation(arg1: string, [arg2: string], …)</code></td>
+<td>—</td>
+<td>4 calls, 1 files</td>
+<td><code>UI.PlayLeaderAnimation(ms_LeaderAnimationQueue.Sequence[1])</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.playleadersceneeffect"></a><code>UI.PlayLeaderSceneEffect(arg1)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.PlayLeaderSceneEffect( ms_BackgroundEffectQueue[1] )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.playmodcivleadermusic"></a><code>UI.PlayModCivLeaderMusic(arg1: integer)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.PlayModCivLeaderMusic(ms_OtherID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.playsound"></a><code>UI.PlaySound(arg1: string)</code></td>
+<td>—</td>
+<td>1241 calls, 140 files</td>
+<td><code>UI.PlaySound("Stop_ADVISOR_LINE_FTUE_36")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.queryglobalparameterfloat"></a><code>UI.QueryGlobalParameterFloat([arg1]) -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.queryglobalparameterint"></a><code>UI.QueryGlobalParameterInt(arg1: string) -&gt; number</code></td>
+<td>number</td>
+<td>3 calls, 2 files</td>
+<td><code>if UI.QueryGlobalParameterInt("DISABLE_ESPIONAGE_HOTKEY")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.querysavegamelist"></a><code>UI.QuerySaveGameList(arg1: integer, arg2: integer, arg3: integer, [arg4], [arg5]) -&gt; number</code></td>
+<td>number</td>
+<td>4 calls, 3 files</td>
+<td><code>g_LastFileQueryRequestID = UI.QuerySaveGameList( saveLocation, gameType, options )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.rebuildcolordb"></a><code>UI.RebuildColorDB()</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.RebuildColorDB()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.rebuildselectionlist"></a><code>UI.RebuildSelectionList(arg1: integer, [arg2])</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.RebuildSelectionList(pNewSelectedUnit)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.referencecurrentevent"></a><code>UI.ReferenceCurrentEvent() -&gt; number</code></td>
+<td>number</td>
+<td>7 calls, 6 files</td>
+<td><code>m_eventID = UI.ReferenceCurrentEvent()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.referenceeventid"></a><code>UI.ReferenceEventID(arg1: integer)</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.refreshcolorset"></a><code>UI.RefreshColorSet()</code></td>
+<td>—</td>
+<td>3 calls, 3 files</td>
+<td><code>UI.RefreshColorSet()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.releaseeventid"></a><code>UI.ReleaseEventID(arg1: integer)</code></td>
+<td>—</td>
+<td>11 calls, 6 files</td>
+<td><code>UI.ReleaseEventID(ms_eventID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.releasepauseevent"></a><code>UI.ReleasePauseEvent()</code></td>
+<td>—</td>
+<td>4 calls, 1 files</td>
+<td><code>UI.ReleasePauseEvent()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.removetemporaryplotvisibility"></a><code>UI.RemoveTemporaryPlotVisibility(…)</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.requestaction"></a><code>UI.RequestAction(arg1, [arg2: table], …)</code></td>
+<td>—</td>
+<td>9 calls, 4 files</td>
+<td><code>UI.RequestAction(ActionTypes.ACTION_RETIRE)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.requestplayeroperation"></a><code>UI.RequestPlayerOperation(arg1: integer, arg2: integer, arg3: table, …) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>70 calls, 27 files</td>
+<td><code>UI.RequestPlayerOperation(Game.GetLocalPlayer(), PlayerOperations.RESEARCH, tParameters)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.restoremapzoom"></a><code>UI.RestoreMapZoom()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.RestoreMapZoom()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.resumemodcivmusic"></a><code>UI.ResumeModCivMusic()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.ResumeModCivMusic()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.srgbtolinear"></a><code>UI.SRGBToLinear(arg1) -&gt; number, number, number</code></td>
+<td>number, number, number</td>
+<td>1 calls, 1 files</td>
+<td><code>local r, g, b, a = UI.SRGBToLinear(abgr)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.sanitizetext"></a><code>UI.SanitizeText(arg1: string, …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.screenshot"></a><code>UI.Screenshot([arg1])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectcity"></a><code>UI.SelectCity(arg1, [arg2: boolean])</code></td>
+<td>—</td>
+<td>34 calls, 10 files</td>
+<td><code>UI.SelectCity(pCity)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectcityid"></a><code>UI.SelectCityID([arg1: integer], [arg2: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectclosestreadyunit"></a><code>UI.SelectClosestReadyUnit([arg1]) -&gt; boolean, boolean, boolean</code></td>
+<td>boolean, boolean, boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.SelectClosestReadyUnit()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectdistrict"></a><code>UI.SelectDistrict(arg1)</code></td>
+<td>—</td>
+<td>6 calls, 1 files</td>
+<td><code>UI.SelectDistrict(pDistrict)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectdistrictid"></a><code>UI.SelectDistrictID([arg1: integer], [arg2: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectnextcity"></a><code>UI.SelectNextCity(arg1)</code></td>
+<td>—</td>
+<td>3 calls, 2 files</td>
+<td><code>UI.SelectNextCity(kCity)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectnextreadyunit"></a><code>UI.SelectNextReadyUnit([arg1]) -&gt; boolean, boolean, boolean</code></td>
+<td>boolean, boolean, boolean</td>
+<td>5 calls, 3 files</td>
+<td><code>UI.SelectNextReadyUnit()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectnextunit"></a><code>UI.SelectNextUnit([arg1])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectprevcity"></a><code>UI.SelectPrevCity(arg1)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.SelectPrevCity(kCity)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectprevreadyunit"></a><code>UI.SelectPrevReadyUnit([arg1])</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>UI.SelectPrevReadyUnit()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectprevunit"></a><code>UI.SelectPrevUnit([arg1])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectunit"></a><code>UI.SelectUnit(arg1)</code></td>
+<td>—</td>
+<td>31 calls, 13 files</td>
+<td><code>UI.SelectUnit(unit)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.selectunitid"></a><code>UI.SelectUnitID([arg1: integer], [arg2: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setarxtagcontentbyid"></a><code>UI.SetARXTagContentByID(arg1: string, arg2: string) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>96 calls, 6 files</td>
+<td><code>UI.SetARXTagContentByID("top5", " ")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setarxtagpropertybyid"></a><code>UI.SetARXTagPropertyByID(arg1: string, arg2: string, arg3: string) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setarxtagscontentbyclass"></a><code>UI.SetARXTagsContentByClass(arg1: string, arg2: string) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setarxtagspropertybyclass"></a><code>UI.SetARXTagsPropertyByClass(arg1: string, arg2: string, arg3: string) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>11 calls, 6 files</td>
+<td><code>UI.SetARXTagsPropertyByClass("button", "style.visibility", "visible")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setambienceclipdistance"></a><code>UI.SetAmbienceClipDistance([arg1: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setambienttimeofday"></a><code>UI.SetAmbientTimeOfDay(arg1)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SetAmbientTimeOfDay(fTime)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setambienttimeofdayanimating"></a><code>UI.SetAmbientTimeOfDayAnimating(arg1: boolean)</code></td>
+<td>—</td>
+<td>5 calls, 3 files</td>
+<td><code>UI.SetAmbientTimeOfDayAnimating(option)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setambienttimeofdayspeed"></a><code>UI.SetAmbientTimeOfDaySpeed(arg1: number)</code></td>
+<td>—</td>
+<td>4 calls, 2 files</td>
+<td><code>UI.SetAmbientTimeOfDaySpeed(50)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setcycleadvancetimer"></a><code>UI.SetCycleAdvanceTimer([arg1: number])</code></td>
+<td>—</td>
+<td>6 calls, 3 files</td>
+<td><code>UI.SetCycleAdvanceTimer()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setexitonclose"></a><code>UI.SetExitOnClose(arg1: boolean)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.SetExitOnClose(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setfixedtiltangle"></a><code>UI.SetFixedTiltAngle([arg1: number])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setfixedtiltmode"></a><code>UI.SetFixedTiltMode(arg1: boolean)</code></td>
+<td>—</td>
+<td>13 calls, 5 files</td>
+<td><code>UI.SetFixedTiltMode(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setgamepadcursorplotid"></a><code>UI.SetGamepadCursorPlotID([arg1: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setinterfacemode"></a><code>UI.SetInterfaceMode(arg1, [tParameters], …)</code></td>
+<td>—</td>
+<td>135 calls, 38 files</td>
+<td><code>UI.SetInterfaceMode(InterfaceModeTypes.DEBUG)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setleaderimagecontrol"></a><code>UI.SetLeaderImageControl(arg1, …)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SetLeaderImageControl( Controls.FallbackLeaderImage )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setleaderposition"></a><code>UI.SetLeaderPosition(arg1: integer, [arg2: integer])</code></td>
+<td>—</td>
+<td>5 calls, 1 files</td>
+<td><code>UI.SetLeaderPosition(Controls.LeaderAnchor:GetScreenOffset())</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setleaderscenecontrol"></a><code>UI.SetLeaderSceneControl(arg1, …)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SetLeaderSceneControl(Controls.LeaderScene)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setlookattimescale"></a><code>UI.SetLookAtTimeScale([arg1: number])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setmapzoom"></a><code>UI.SetMapZoom(arg1: number, arg2: number, arg3: integer, [arg4: number], [arg5: number])</code></td>
+<td>—</td>
+<td>23 calls, 2 files</td>
+<td><code>UI.SetMapZoom(0.2, 0.0, 0.0)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setmapzoomcurvemodifier"></a><code>UI.SetMapZoomCurveModifier([arg1: number], [arg2: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setminimapimagecontrol"></a><code>UI.SetMinimapImageControl(arg1, …)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SetMinimapImageControl( Controls.MinimapImage )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setminimapsize"></a><code>UI.SetMinimapSize(arg1: number)</code></td>
+<td>—</td>
+<td>3 calls, 1 files</td>
+<td><code>UI.SetMinimapSize(value)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setpauseeventid"></a><code>UI.SetPauseEventID(arg1: integer)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.SetPauseEventID( eventID )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setpushdataidclosed"></a><code>UI.SetPushDataIDClosed([arg1: string], [arg2])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setpushdataidseen"></a><code>UI.SetPushDataIDSeen([arg1: string], [arg2])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setrestoremapzoom"></a><code>UI.SetRestoreMapZoom(arg1: number)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SetRestoreMapZoom(prevZoom)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setselectedunituiart"></a><code>UI.SetSelectedUnitUIArt(arg1: string)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SetSelectedUnitUIArt("MovementGood_Select")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setsoundstatevalue"></a><code>UI.SetSoundStateValue(arg1: number\|string, arg2: number\|string)</code></td>
+<td>—</td>
+<td>7 calls, 3 files</td>
+<td><code>UI.SetSoundStateValue("Game_Views", "Paused")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setsoundswitchvalue"></a><code>UI.SetSoundSwitchValue(arg1: number\|string, arg2: integer)</code></td>
+<td>—</td>
+<td>6 calls, 2 files</td>
+<td><code>UI.SetSoundSwitchValue("Game_Location", UI.GetNormalEraSoundSwitchValue(ms_OtherID))</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.setworldrenderview"></a><code>UI.SetWorldRenderView(arg1: integer)</code></td>
+<td>—</td>
+<td>11 calls, 6 files</td>
+<td><code>UI.SetWorldRenderView(WorldRenderView.VIEW_3D)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.shouldcivplaymodmusic"></a><code>UI.ShouldCivPlayModMusic(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>if (UI.ShouldCivPlayModMusic(ms_OtherCivilizationID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.showfullscreenmap"></a><code>UI.ShowFullscreenMap(arg1: boolean)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.ShowFullscreenMap( true )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.skipnextautoendturn"></a><code>UI.SkipNextAutoEndTurn([arg1]) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>and   (UserConfiguration.IsAutoEndTurn() and not UI.SkipNextAutoEndTurn()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.skipsong"></a><code>UI.SkipSong()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.SkipSong()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.spinmap"></a><code>UI.SpinMap(arg1: number, arg2: integer)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.SpinMap( 0.0, 0.0 )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.startstopmenumusic"></a><code>UI.StartStopMenuMusic(arg1: boolean)</code></td>
+<td>—</td>
+<td>4 calls, 3 files</td>
+<td><code>UI.StartStopMenuMusic(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.stopingamemusic"></a><code>UI.StopInGameMusic()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.StopInGameMusic()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.stopmodcivleadermusic"></a><code>UI.StopModCivLeaderMusic(arg1: integer)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>UI.StopModCivLeaderMusic(m_curModderMusic)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.textplot"></a><code>UI.TextPlot([arg1: integer], [arg2: string]) -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.togglegrid"></a><code>UI.ToggleGrid(arg1: boolean)</code></td>
+<td>—</td>
+<td>3 calls, 2 files</td>
+<td><code>UI.ToggleGrid(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.togglemovementpath"></a><code>UI.ToggleMovementPath([arg1])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.touchenablechanged"></a><code>UI.TouchEnableChanged()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>UI.TouchEnableChanged()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.truncatepathlevels"></a><code>UI.TruncatePathLevels(arg1: integer, arg2: string, arg3: integer, …)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>g_CurrentDirectoryPath = UI.TruncatePathLevels(SaveLocations.LOCAL_STORAGE, g_CurrentDirectoryPath, toLevel)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.unloadsoundbankgroup"></a><code>UI.UnloadSoundBankGroup(arg1: integer)</code></td>
+<td>—</td>
+<td>3 calls, 2 files</td>
+<td><code>UI.UnloadSoundBankGroup(5)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_ui.worldwrapenabled"></a><code>UI.WorldWrapEnabled()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

@@ -1,0 +1,603 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>GameConfiguration</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine Lua tables</a> › GameConfiguration</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>GameConfiguration</h1>
+<p>Static table with 82 methods. <em>registered by exe interface GameCore::App::Configuration::Lua::IGame; game scripts call 51 of 82 methods.</em> Registering function <code>0x1094a0</code>.</p>
+<p>Methods are called with a dot (<code>GameConfiguration.Method(...)</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+<th>In game scripts</th>
+<th>Example</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="_gameconfiguration.addenabledmods"></a><code>GameConfiguration.AddEnabledMods(arg1, [arg2: boolean], …)</code></td>
+<td>—</td>
+<td>3 calls, 2 files</td>
+<td><code>GameConfiguration.AddEnabledMods( modGUID )</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.clearenabledmods"></a><code>GameConfiguration.ClearEnabledMods()</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>GameConfiguration.ClearEnabledMods()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getaiplayercount"></a><code>GameConfiguration.GetAIPlayerCount() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getaiplayerids"></a><code>GameConfiguration.GetAIPlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>1 calls, 1 files</td>
+<td><code>local aAIIDs = GameConfiguration.GetAIPlayerIDs()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getavailableplayercount"></a><code>GameConfiguration.GetAvailablePlayerCount() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getavailableplayerids"></a><code>GameConfiguration.GetAvailablePlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>1 calls, 1 files</td>
+<td><code>local aAvailableIDs = GameConfiguration.GetAvailablePlayerIDs()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getcalendartype"></a><code>GameConfiguration.GetCalendarType() -&gt; number</code></td>
+<td>number</td>
+<td>4 calls, 4 files</td>
+<td><code>local greatWorkCreationDate:string = Calendar.MakeDateStr(nTurnCreated, GameConfiguration.GetCalendarType()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getcivilizationusageids"></a><code>GameConfiguration.GetCivilizationUsageIDs(…) -&gt; table</code></td>
+<td>table</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getcloudturnplayer"></a><code>GameConfiguration.GetCloudTurnPlayer() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getenablemodsmetastring"></a><code>GameConfiguration.GetEnableModsMetaString(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getenabledgamemodesmetastring"></a><code>GameConfiguration.GetEnabledGameModesMetaString(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>1 calls, 1 files</td>
+<td><code>local enabledModesMetaData : string = GameConfiguration.GetEnabledGameModesMetaString()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getenabledmods"></a><code>GameConfiguration.GetEnabledMods(…) -&gt; table, table, boolean</code></td>
+<td>table, table, boolean</td>
+<td>1 calls, 1 files</td>
+<td><code>local enabledMods = GameConfiguration.GetEnabledMods()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getfirstavailableplayer"></a><code>GameConfiguration.GetFirstAvailablePlayer() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getgamemode"></a><code>GameConfiguration.GetGameMode() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getgamespeedtype"></a><code>GameConfiguration.GetGameSpeedType() -&gt; number</code></td>
+<td>number</td>
+<td>7 calls, 6 files</td>
+<td><code>local eGameSpeed = GameConfiguration.GetGameSpeedType()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getgamestate"></a><code>GameConfiguration.GetGameState() -&gt; number</code></td>
+<td>number</td>
+<td>22 calls, 6 files</td>
+<td><code>if(GameConfiguration.GetGameState()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.gethandicaptype"></a><code>GameConfiguration.GetHandicapType() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.gethiddenplayercount"></a><code>GameConfiguration.GetHiddenPlayerCount() -&gt; number</code></td>
+<td>number</td>
+<td>3 calls, 3 files</td>
+<td><code>local participatingCount = defPlayers + GameConfiguration.GetHiddenPlayerCount()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.gethiddenplayerids"></a><code>GameConfiguration.GetHiddenPlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.gethumanplayercount"></a><code>GameConfiguration.GetHumanPlayerCount() -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>local neededHumanPlayers = humanPlayerCount - GameConfiguration.GetHumanPlayerCount()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.gethumanplayerids"></a><code>GameConfiguration.GetHumanPlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>3 calls, 3 files</td>
+<td><code>local humans = GameConfiguration.GetHumanPlayerIDs()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getinuseplayercount"></a><code>GameConfiguration.GetInUsePlayerCount() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getinuseplayerids"></a><code>GameConfiguration.GetInUsePlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>1 calls, 1 files</td>
+<td><code>local kInUsePlayerIDs : table = GameConfiguration.GetInUsePlayerIDs()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getmaxturns"></a><code>GameConfiguration.GetMaxTurns() -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>local maxTurns :number = GameConfiguration.GetMaxTurns()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getmultiplayerplayerids"></a><code>GameConfiguration.GetMultiplayerPlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>8 calls, 1 files</td>
+<td><code>local player_ids = GameConfiguration.GetMultiplayerPlayerIDs()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getobservercount"></a><code>GameConfiguration.GetObserverCount() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getobserverids"></a><code>GameConfiguration.GetObserverIDs() -&gt; table</code></td>
+<td>table</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getparticipatingplayercount"></a><code>GameConfiguration.GetParticipatingPlayerCount([arg1: boolean]) -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>if(GameConfiguration.GetParticipatingPlayerCount()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getparticipatingplayerids"></a><code>GameConfiguration.GetParticipatingPlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>13 calls, 8 files</td>
+<td><code>local player_ids = GameConfiguration.GetParticipatingPlayerIDs()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getpauseplayer"></a><code>GameConfiguration.GetPausePlayer() -&gt; number</code></td>
+<td>number</td>
+<td>1 calls, 1 files</td>
+<td><code>local pausePlayerID : number = GameConfiguration.GetPausePlayer()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getpossibleparticipatingplayerids"></a><code>GameConfiguration.GetPossibleParticipatingPlayerIDs() -&gt; table</code></td>
+<td>table</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getrequiredmods"></a><code>GameConfiguration.GetRequiredMods([arg1], …) -&gt; table, table, string, string</code></td>
+<td>table, table, string, string</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getruleset"></a><code>GameConfiguration.GetRuleSet(…) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>3 calls, 2 files</td>
+<td><code>local isRuleSet        :boolean = GameConfiguration.GetRuleSet()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getstartera"></a><code>GameConfiguration.GetStartEra() -&gt; number</code></td>
+<td>number</td>
+<td>6 calls, 3 files</td>
+<td><code>if (eraDef.Hash ~= GameConfiguration.GetStartEra()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getstartturn"></a><code>GameConfiguration.GetStartTurn() -&gt; number</code></td>
+<td>number</td>
+<td>31 calls, 16 files</td>
+<td><code>turn = (turn - GameConfiguration.GetStartTurn()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getstartyear"></a><code>GameConfiguration.GetStartYear() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getteamname"></a><code>GameConfiguration.GetTeamName(arg1: number, …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>17 calls, 11 files</td>
+<td><code>newPulldownEntry.teamName = GameConfiguration.GetTeamName(-1)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getteamplayercount"></a><code>GameConfiguration.GetTeamPlayerCount(arg1, [arg2: boolean]) -&gt; number</code></td>
+<td>number</td>
+<td>5 calls, 2 files</td>
+<td><code>or (GameConfiguration.GetTeamPlayerCount(teamID)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getturnlimittype"></a><code>GameConfiguration.GetTurnLimitType() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getturntimertype"></a><code>GameConfiguration.GetTurnTimerType() -&gt; number</code></td>
+<td>number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.getvalue"></a><code>GameConfiguration.GetValue(arg1: number\|string, …) -&gt; 1 value</code></td>
+<td>1 value</td>
+<td>25 calls, 12 files</td>
+<td><code>local ruleset :string = GameConfiguration.GetValue("RULESET")</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.isanymultiplayer"></a><code>GameConfiguration.IsAnyMultiplayer() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>60 calls, 46 files</td>
+<td><code>if GameConfiguration.IsAnyMultiplayer()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.iscrossplayinternetmultiplayer"></a><code>GameConfiguration.IsCrossPlayInternetMultiplayer() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.ishotseat"></a><code>GameConfiguration.IsHotseat() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>102 calls, 56 files</td>
+<td><code>if GameConfiguration.IsHotseat()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.isinternetmultiplayer"></a><code>GameConfiguration.IsInternetMultiplayer() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>3 calls, 3 files</td>
+<td><code>elseif(GameConfiguration.IsInternetMultiplayer()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.iskickvoting"></a><code>GameConfiguration.IsKickVoting() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.islanmultiplayer"></a><code>GameConfiguration.IsLANMultiplayer() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>4 calls, 3 files</td>
+<td><code>elseif GameConfiguration.IsLANMultiplayer()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.ismatchmaking"></a><code>GameConfiguration.IsMatchMaking() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>9 calls, 3 files</td>
+<td><code>if(GameConfiguration.IsMatchMaking()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.isnetworkmultiplayer"></a><code>GameConfiguration.IsNetworkMultiplayer() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>28 calls, 15 files</td>
+<td><code>if(GameConfiguration.IsNetworkMultiplayer()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.ispaused"></a><code>GameConfiguration.IsPaused() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>11 calls, 4 files</td>
+<td><code>if(GameConfiguration.IsPaused()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.isplaybycloud"></a><code>GameConfiguration.IsPlayByCloud() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>34 calls, 13 files</td>
+<td><code>if(GameConfiguration.IsPlayByCloud()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.issavedgame"></a><code>GameConfiguration.IsSavedGame() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>5 calls, 3 files</td>
+<td><code>if (GameConfiguration.IsSavedGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.isworldbuilder"></a><code>GameConfiguration.IsWorldBuilder() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.isworldbuildereditor"></a><code>GameConfiguration.IsWorldBuilderEditor() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>19 calls, 10 files</td>
+<td><code>if GameConfiguration.IsWorldBuilderEditor()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.makehash"></a><code>GameConfiguration.MakeHash([arg1: integer]) -&gt; number, number</code></td>
+<td>number, number</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.playerswantpause"></a><code>GameConfiguration.PlayersWantPause() -&gt; boolean</code></td>
+<td>boolean</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.regenerateseeds"></a><code>GameConfiguration.RegenerateSeeds()</code></td>
+<td>—</td>
+<td>4 calls, 4 files</td>
+<td><code>GameConfiguration.RegenerateSeeds()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.removeplayer"></a><code>GameConfiguration.RemovePlayer(arg1: integer) -&gt; boolean</code></td>
+<td>boolean</td>
+<td>2 calls, 2 files</td>
+<td><code>GameConfiguration.RemovePlayer(voidValue1)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setcalendartype"></a><code>GameConfiguration.SetCalendarType(…)</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setcloudturnplayer"></a><code>GameConfiguration.SetCloudTurnPlayer()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setgamemode"></a><code>GameConfiguration.SetGameMode()</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setgamespeedtype"></a><code>GameConfiguration.SetGameSpeedType(arg1, …)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>GameConfiguration.SetGameSpeedType(gameSpeed)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setgamestate"></a><code>GameConfiguration.SetGameState(…)</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.sethandicaptype"></a><code>GameConfiguration.SetHandicapType(arg1, …)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>GameConfiguration.SetHandicapType(handicap)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setkickvoting"></a><code>GameConfiguration.SetKickVoting(arg1: boolean)</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>GameConfiguration.SetKickVoting(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setmatchmaking"></a><code>GameConfiguration.SetMatchMaking(arg1: boolean)</code></td>
+<td>—</td>
+<td>2 calls, 1 files</td>
+<td><code>GameConfiguration.SetMatchMaking(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setmaxturns"></a><code>GameConfiguration.SetMaxTurns(arg1: integer)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>GameConfiguration.SetMaxTurns(maxTurns)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setparticipatingplayercount"></a><code>GameConfiguration.SetParticipatingPlayerCount(arg1: integer) -&gt; number</code></td>
+<td>number</td>
+<td>4 calls, 4 files</td>
+<td><code>GameConfiguration.SetParticipatingPlayerCount(2)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setruleset"></a><code>GameConfiguration.SetRuleSet(arg1: string)</code></td>
+<td>—</td>
+<td>4 calls, 3 files</td>
+<td><code>GameConfiguration.SetRuleSet(ruleSet)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setstartera"></a><code>GameConfiguration.SetStartEra(arg1, …)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>GameConfiguration.SetStartEra(gameStartEra)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setstartturn"></a><code>GameConfiguration.SetStartTurn([arg1: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setstartyear"></a><code>GameConfiguration.SetStartYear([arg1: integer])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.settodefaultgamename"></a><code>GameConfiguration.SetToDefaultGameName()</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>GameConfiguration.SetToDefaultGameName()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.settodefaults"></a><code>GameConfiguration.SetToDefaults([arg1: integer])</code></td>
+<td>—</td>
+<td>33 calls, 9 files</td>
+<td><code>GameConfiguration.SetToDefaults()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.settopregame"></a><code>GameConfiguration.SetToPreGame([arg1: integer])</code></td>
+<td>—</td>
+<td>1 calls, 1 files</td>
+<td><code>GameConfiguration.SetToPreGame()</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setturnlimittype"></a><code>GameConfiguration.SetTurnLimitType(arg1, …)</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>GameConfiguration.SetTurnLimitType(TurnLimitTypes.CUSTOM)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setturntimertype"></a><code>GameConfiguration.SetTurnTimerType(…)</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setvalue"></a><code>GameConfiguration.SetValue(arg1: number\|string, arg2, …)</code></td>
+<td>—</td>
+<td>16 calls, 7 files</td>
+<td><code>GameConfiguration.SetValue(id, value)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setvaluehash"></a><code>GameConfiguration.SetValueHash([arg1: integer], [arg2])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setworldbuilder"></a><code>GameConfiguration.SetWorldBuilder([arg1])</code></td>
+<td>—</td>
+<td>not called</td>
+<td>—</td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.setworldbuildereditor"></a><code>GameConfiguration.SetWorldBuilderEditor(arg1: boolean)</code></td>
+<td>—</td>
+<td>7 calls, 3 files</td>
+<td><code>GameConfiguration.SetWorldBuilderEditor(true)</code></td>
+<td>inferred</td>
+</tr>
+<tr>
+<td><a id="_gameconfiguration.updateenabledmods"></a><code>GameConfiguration.UpdateEnabledMods()</code></td>
+<td>—</td>
+<td>2 calls, 2 files</td>
+<td><code>GameConfiguration.UpdateEnabledMods()</code></td>
+<td>inferred</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

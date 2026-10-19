@@ -1,0 +1,8 @@
+# Log and error messages of the engine exe
+
+Method: ASCII sentence-like string literals (three or more words) referenced by named functions, classified by the subsystem of the function (`docs_proto/tools/extract_exe_messages.py`).
+Library code (OpenSSL, curl, zlib, the shader language) and strings whose function has no name are left out. Reference page: `docs_proto/docs/exe/messages.md` (1,654 messages, searchable). **Verified**: text and referencing function. **Inferred**: the usual log file per subsystem and the cause of a message (the function name is the hint).
+- Subsystems: Network and multiplayer 616, Modding 269, Application and startup 235, GameCore bridge 164, Firaxis Live 106, World view 75, UI (ForgeUI) 61, Assets and art definitions 55, Database 41, Lua libraries 24, Localization 8.
+- Examples a modder meets: mod loading (`Modding::Framework::Initialize` writes "Mod Loader Service initialized.", "Connected to modding database!", "File Service failed to initialize."), component handlers ("ReplaceUIScript Components require the App-side Modding framework which cannot be found."),
+  database XML (`Database::XMLSerializer::DeleteRow`: "Duplicate column names detected in <Delete>"), asset errors (`AssetObjects::MissingAssetDSGError`: "DSG '%s' is referenced, but does not exist."), Steam subscription problems in `ConfigureContent`.
+- Gotcha found while building the pages: Python-Markdown does not render tables inside `<details>` unless the `md_in_html` extension is on and the tag has `markdown="1"`. The earlier exe pages (console phrases, install paths, SQL statements, low-confidence function rows) had raw pipe text until this was fixed on 2026-10-19.

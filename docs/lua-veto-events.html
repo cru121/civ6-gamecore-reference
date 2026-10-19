@@ -1,0 +1,80 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Veto events in Lua (GameEvents.CanStartOperation and friends)</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Veto events in Lua (GameEvents.CanStartOperation and friends)</p>
+<h1>Veto events in Lua: <code>GameEvents.CanStartOperation</code> and what could be added</h1>
+<p><strong>Availability.</strong> <code>CanStartOperation</code> for <strong>unit operations</strong> works in the unmodified game (<strong>verified</strong>, plain gameplay-script mod, 2026-10-15). The city operation and city command versions below do <strong>not</strong> exist in the game: they are <strong>experimental prototypes</strong> that add a native call (done with a live hook, not yet in any shipped mod) and are listed so a DLL mod can implement them.</p>
+<p>Credit: the hidden event was found and described by <strong>WildW</strong> (Discord, 2024-07-14). Everything marked verified was re-checked in the game library and at run time.</p>
+<h2>The idea</h2>
+<p>Most <code>GameEvents.*</code> are notifications. A few engine call sites instead <em>ask</em> Lua whether something is allowed (<code>CallTestAll</code>): every handler must say yes, and a single <code>false</code> blocks the action. The game's own scripts never use this one, but it works:</p>
+<pre><code class="language-lua">GameEvents.CanStartOperation.Add(function (playerId, unitId, opIndex)
+    local op = GameInfo.UnitOperations[opIndex].OperationType
+    -- return false to forbid it, true to allow it
+    return not (not Players[playerId]:IsHuman() and op == &quot;UNITOPERATION_MOVE_TO&quot;)
+end)
+</code></pre>
+<h2><code>CanStartOperation</code> (unit operations, verified)</h2>
+<ul>
+<li><strong>Where:</strong> <code>Unit::Operations::Manager::CanStart</code>. Order of checks: unit busy, tactical commands allowed, human / automation state, <code>IsOperationDisabled</code>, <strong>this Lua test</strong>, then the operation handler's own <code>CanStart</code>. Veto rule: the result flag starts false; the operation is refused only if <code>CallTestAll</code> ran and the flag is still false, so a game with no handler behaves as before.</li>
+<li><strong>Arguments:</strong> <code>(playerId, unitId, opIndex)</code>. <code>opIndex</code> is the row index in <code>GameInfo.UnitOperations</code> (all indexes seen resolved: 0 <code>AIR_ATTACK</code>, 1 <code>AUTOMATE_EXPLORE</code>, 2 <code>BUILD_IMPROVEMENT</code>, 12 <code>FORTIFY</code>, 26 <code>RANGE_ATTACK</code>, 36 <code>SKIP_TURN</code>, ...).</li>
+<li><strong>Tested:</strong> a gameplay-script mod (no DLL) blocked <code>UNITOPERATION_MOVE_TO</code> for non-human players on turns 5-6 of a new game: 101 checks vetoed, none after turn 6, the AI moved again from turn 7. 3,329 calls over 13 turns.</li>
+<li><strong>It is polled constantly.</strong> The same check serves the UI ("can this button be pressed"), the AI and real requests, and was seen from up to nine threads. Keep handlers cheap and free of side effects.</li>
+<li><strong>Pitfalls (verified):</strong></li>
+<li><code>Player:IsAI()</code> is <strong>nil in gameplay scripts</strong> (it exists only in the UI-side player cache). Use <code>not Players[id]:IsHuman()</code>; that also includes city-states and barbarians (<code>IsMajor()</code>, <code>IsBarbarian()</code> exist).</li>
+<li>A handler that throws does <strong>not</strong> block the operation: it fails open and the error is logged every call.</li>
+<li><strong>The event object</strong> has <code>Add</code>, <code>Remove</code>, <code>RemoveAll</code>, <code>Call</code>, <code>Count</code>, <code>TestAll</code>, <code>TestAny</code>, <code>Accumulate</code>, <code>AccumulateINT</code> (all functions; <code>TestAll(...)</code> and <code>TestAny(...)</code> poll the registered handlers from Lua and returned <code>true</code> with our allowing handler).</li>
+<li><strong>Unknown event names are created on first access:</strong> <code>GameEvents.SomethingNew</code> returned a table with <code>Add</code> although nothing defines it. So a native hook only needs to call a dispatcher with a new name to give modders a new event.</li>
+</ul>
+<h2>The only test-style events in the game (verified)</h2>
+<p>Callers of the Lua dispatchers in the shipped library (installed build): <code>CallTestAll</code> has <strong>one</strong> caller (<code>CanStartOperation</code>); <code>CallTestAny</code> has one (the autoplay end-of-turn check); <code>CallProcessor</code> has four (World Congress resolution checks and two AI hooks); <code>SendLuaEvent</code> two (autoplay, new game); <code>CallHook</code> about 37 (the ordinary notification events). There are no other hidden veto events. Dispatch details and thread/lock behaviour: see the findings page on Lua event dispatch.</p>
+<h2>Not in the game: city operations and city commands (experimental)</h2>
+<p><code>City::Operations::Manager::CanStart</code> and <code>City::Commands::Manager::CanStart</code> have <strong>no</strong> Lua call. A live hook that calls the game's own <code>CallTestAll</code> after the original returns true reproduces the unit behaviour:</p>
+<table>
+<thead>
+<tr>
+<th>Event (prototype)</th>
+<th>Hooked function</th>
+<th>Arguments</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GameEvents.CanStartCityOperation</code></td>
+<td><code>City::Operations::Manager::CanStart</code></td>
+<td><code>(playerId, cityId, opType)</code></td>
+<td>A Lua handler vetoed 63 of 63 city <strong>Build</strong> checks and the production list came up empty. <code>BUILD</code> is the only registered city operation (op <code>0</code>).</td>
+</tr>
+<tr>
+<td><code>GameEvents.CanStartCityCommand</code></td>
+<td><code>City::Commands::Manager::CanStart</code></td>
+<td><code>(playerId, cityId, commandType)</code></td>
+<td>Command <strong>0 = Purchase</strong>: vetoing it removed both the gold and faith purchase buttons (39 of 39 checks). <strong>1 = Range Attack</strong> (only seen for city-states with Walls).</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Status:</strong> the mechanism and the two numbers above are verified in the game; the other command numbers are <strong>inferred</strong> (enum order: 2 <code>SET_FOCUS</code>, 3 <code>DESTROY</code>, 4 <code>MANAGE</code>, 5 <code>WMD_STRIKE</code>, 6 <code>SWAP_TILE_OWNER</code>, 7 <code>NAME_CITY</code>) and denying 2, 3 or 4 changed nothing visible, so do not rely on them yet. There is no <code>GameInfo</code> table for city operations or commands; the numbers are code-side ordinals, not database rows.</li>
+<li>The AI goes through the same checks and the veto applied to it (a city-state's checks were all refused when vetoed).</li>
+<li><strong>Granularity:</strong> the purchase item (which unit or building) and the build sub-kind (train unit, construct building, zone district, advance project) are <strong>not</strong> among the arguments; a DLL implementation could pass them.</li>
+<li>Rough costs: each passing check now costs one Lua call; AI city checks are sparse, UI checks happen while a city panel is open.</li>
+</ul>
+<h2>For modders</h2>
+<ul>
+<li>Block or allow specific unit operations per player, per civ or by game state with <code>GameEvents.CanStartOperation</code>; check <code>IsHuman()</code> rather than <code>IsAI()</code>.</li>
+<li>A DLL mod (for example the Community Extension) can add the city versions by adding one <code>CallTestAll</code> call to each <code>CanStart</code> and choosing the event names and arguments; the addresses and the argument handling are in the analysis notes.</li>
+<li>Because unknown event names are created on demand, any other native check could become a veto event the same way.</li>
+</ul>
+<h2>Not yet verified</h2>
+<ul>
+<li>A real-mod test of the city events (only the live-hook prototype was run).</li>
+<li>The meaning of city command numbers 2-7.</li>
+<li>Dispatch cost under load, and the behaviour when two mods register opposite answers (<code>TestAll</code> semantics say one <code>false</code> wins; not exercised).</li>
+</ul></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>

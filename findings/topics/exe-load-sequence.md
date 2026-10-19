@@ -1,0 +1,10 @@
+# Game start, save and load sequence
+
+Source: Ghidra decompile of `LoadGameViewState::LaunchNextStage` (0x84870, a 17-case switch on the state at `this+0x238`), `GameCore::Serializer::Manager::UnserializeGameState` (0x16e340), `GetSaveLocation` (0x168310), `SaveMetaData` (0x16d500), `ApplyModdingState` (0x1639b0). Reference: `docs_proto/docs/exe/loading.md`, data `docs_proto/data/exe_loading.json`.
+
+- New game: states `0 -> 1 -> 2 (CONFIGURE_CONTENT) -> 3 (set gameplay logging) -> 6 (GAMECORE_NEW_GAME: Block on asset load, InitializeNewGame) -> 8`. Load: `0 -> 1 -> 4 (GAMECORE_LOAD_SAVEFILE) -> 5 (..._PENDING: ApplyModdingState) -> 2 -> 3 -> 7 (GAMECORE_UNSERIALIZE_GAMESTATE: Unserialize, InitializeCache, PostGameInitialization, PostInitialize)`. 11 is the failure state. State 1 sends the flow to 4 when function 0x167ce0 returns 2; state 3 picks 6 or 7 by `(x != 0) + 6` (x unidentified pointer; inferred 'a save stream was loaded'). State 8 and the successor of 7 were not analysed.
+- Log: `LoadGameViewState.log` (`<NAME> Begin`, `<NAME> took N seconds`, `,<substep> took N seconds`); timings stored under `Timings` / `StartupGameTimings` (`Session`, `InitializeNewGame`, `PostLoad`).
+- State 3 applies 10 Gameplay options (UserOptions.txt): `GameHistoryLogLevel` (HISTORY_LOGGING_ID), `GameHistorySequentialLogLevel`, `AI_MasterLogging`, `AICityBuildPlotLog`, `GameEraMomentsLog`, `AISettlementEvaluationLog`, `AiDiplomaticActionLog`, `AIOperationEvalLog`, `ProfileEnabled` (CACHE_PERF_LOGGING), `GameEffectsLogLevel`.
+- UnserializeGameState steps in order: LoadHeader, AttachToSession, LoadGameCoreState, LoadAudioState, LoadUIState, LoadRecorderState.
+- Save: `MetaData` table rows `MetaDataVersion`, `AppVersion` (`%d.%d.%d.%d (%d)`), `DisplayName`; `IsMod` read by ApplyModdingState (also reads `Players`, `ModDependencies`, `StartPositions`, `MapAttributes` Ruleset). Save location fields: `AccountReference`, `IsDirectory`, `IsAutosave`, `IsQuicksave`, `IsPrevious`.
+- Limits: `MakeMetaData` (0x169d60) contains no key strings (the other metadata rows, if any, are written elsewhere); the reasons for transitions are inferred.

@@ -1,0 +1,2044 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Input actions (hotkeys)</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Input actions (hotkeys)</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Input actions (hotkeys)</h1>
+<p>Hotkeys are <strong>data</strong>: the actions, their categories and contexts and the default key or button for each live in the Configuration database (tables <code>InputActions</code>, <code>InputCategories</code>, <code>InputContexts</code>, <code>InputActionDefaultGestures</code>, <code>InputKeyData</code>), filled by <code>InputConfiguration.xml</code> and by the <code>Config</code> XML of expansions and scenarios. The exe loads them with <code>CivTech::Input::Manager::ReloadInputActions</code> (<code>0x96c950</code>), which joins the tables with this query (<strong>Verified</strong>, string in the exe): <code>SELECT ActionId, InputActions.Name AS 'Name', Description, InputCategories.Name AS 'Category', InputContexts.Value AS 'Context', LayoutType FROM InputActions INNER JOIN InputCategories ... INNER JOIN InputContexts ... ORDER BY InputActions.ActionId</code>, and the default gestures with <code>SELECT "Index", GestureType, GestureData FROM InputActionDefaultGestures WHERE ActionId = ?</code>. Scripts look an action up with <code>Input.GetActionId("&lt;ActionId&gt;")</code> (68 calls in the shipped scripts; see the <a href="../exeapi/Input.html"><code>Input</code></a> table). This page lists what the installed game defines (76 actions, 7 categories, 16 contexts, 191 key records) and which action names the exe also registers in code. A new hotkey needs an <code>InputActions</code> row (action id, text keys, category, context, layout type) and a default gesture row; the localisation keys (<code>LOC_OPTIONS_HOTKEY_...</code>) are text keys, not text.</p>
+<p><strong>Layouts and gestures.</strong> Actions are for the <code>PC</code> layout (59, gesture type <code>KBMouse</code>) or the <code>Console</code> layout (17, gesture type <code>Controller</code>). Context values are the numbers in the contexts table below; the query returns the <strong>value</strong>, so scripts and code compare numbers.</p>
+<p><strong>Code-registered actions.</strong> <code>App::InputAction::Manager::SetupActions</code> (<code>0x3b7f0</code>) names 18 actions in code: <code>CameraPan</code>, <code>FocusNext</code>, <code>FocusPrev</code>, <code>InGameMenu</code>, <code>LeftClickCursor</code>, <code>MenuDown</code>, <code>MenuLeft</code>, <code>MenuRight</code>, <code>MenuUp</code>, <code>MoveCursor</code>, <code>NavigateMap</code>, <code>NextAction</code>, <code>Notifications</code>, <code>Select</code>, <code>SelectCenterPlot</code>, <code>ToggleTooltips</code>, <code>ZoomIn</code>, <code>ZoomOut</code>. 16 of them are rows of the table; not in the table (cursor actions that code probably handles by itself, inferred from the names): <code>LeftClickCursor</code>, <code>MoveCursor</code>. </p>
+<p><strong>Script references without a row.</strong> The shipped scripts ask for <code>Accept</code>, <code>AcceptAlt</code>, <code>AutomationTogglePause</code>, <code>StartGame</code>, <code>StartGameAlt</code>, <code>TutorialContinue</code>, <code>TutorialContinueAlt</code>, <code>TutorialShowMore</code>; none of them has an <code>InputActions</code> row (the tutorial and popup rows are commented out in <code>InputConfiguration.xml</code>), so for those <code>Input.GetActionId</code> has nothing to return.</p>
+<h2>Categories</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Text key</th>
+<th>Visible</th>
+<th>Sort</th>
+<th>Actions</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="category-ui"></a><code>UI</code></td>
+<td><code>LOC_OPTIONS_HOTKEY_CATEGORY_UI</code></td>
+<td>1</td>
+<td>0</td>
+<td>15</td>
+<td>base game</td>
+</tr>
+<tr>
+<td><a id="category-unit"></a><code>UNIT</code></td>
+<td><code>LOC_OPTIONS_HOTKEY_CATEGORY_UNIT</code></td>
+<td>1</td>
+<td>0</td>
+<td>11</td>
+<td>base game</td>
+</tr>
+<tr>
+<td><a id="category-global"></a><code>GLOBAL</code></td>
+<td><code>LOC_OPTIONS_HOTKEY_CATEGORY_GLOBAL</code></td>
+<td>1</td>
+<td>0</td>
+<td>34</td>
+<td>base game</td>
+</tr>
+<tr>
+<td><a id="category-online"></a><code>ONLINE</code></td>
+<td><code>LOC_OPTIONS_HOTKEY_CATEGORY_ONLINE</code></td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>base game</td>
+</tr>
+<tr>
+<td><a id="category-lenses"></a><code>LENSES</code></td>
+<td><code>LOC_OPTIONS_HOTKEY_CATEGORY_LENSES</code></td>
+<td>1</td>
+<td>0</td>
+<td>11</td>
+<td>base game</td>
+</tr>
+<tr>
+<td><a id="category-ui_xp1"></a><code>UI_XP1</code></td>
+<td><code>LOC_OPTIONS_HOTKEY_CATEGORY_UI_XP1</code></td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>Expansion1, Expansion2</td>
+</tr>
+<tr>
+<td><a id="category-ui_xp2"></a><code>UI_XP2</code></td>
+<td><code>LOC_OPTIONS_HOTKEY_CATEGORY_UI_XP2</code></td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Expansion2</td>
+</tr>
+</tbody>
+</table>
+<h2>Contexts</h2>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Value</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="context-default"></a><code>Default</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-universal"></a><code>Universal</code></td>
+<td>0</td>
+<td>21</td>
+</tr>
+<tr>
+<td><a id="context-startupgame"></a><code>StartupGame</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-shell"></a><code>Shell</code></td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-loading"></a><code>Loading</code></td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-ready"></a><code>Ready</code></td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-world"></a><code>World</code></td>
+<td>16</td>
+<td>53</td>
+</tr>
+<tr>
+<td><a id="context-diplomacy"></a><code>Diplomacy</code></td>
+<td>32</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-gameoptions"></a><code>GameOptions</code></td>
+<td>64</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-endgame"></a><code>EndGame</code></td>
+<td>128</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-popup"></a><code>Popup</code></td>
+<td>256</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-worldorpopup"></a><code>WorldOrPopup</code></td>
+<td>272</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="context-reveal"></a><code>Reveal</code></td>
+<td>512</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-fullscreenmap"></a><code>FullscreenMap</code></td>
+<td>1024</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="context-worldorfullscreenmap"></a><code>WorldOrFullScreenMap</code></td>
+<td>1040</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a id="context-tutorial"></a><code>Tutorial</code></td>
+<td>4096</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2>Actions (76)</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Category</th>
+<th>Context</th>
+<th>Layout</th>
+<th>Default gesture</th>
+<th>Defined in</th>
+<th>Script uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="action-back"></a><code>Back</code></td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_B</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-camerapan"></a><code>CameraPan</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_RTHUMB_AXIS</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-camerapandown"></a><code>CameraPanDown</code></td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_DOWN</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-camerapanleft"></a><code>CameraPanLeft</code></td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_LEFT</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-camerapanright"></a><code>CameraPanRight</code></td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_RIGHT</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-camerapanup"></a><code>CameraPanUp</code></td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_UP</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-capitalcity"></a><code>CapitalCity</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_BACKSLASH</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-endturn"></a><code>EndTurn</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_RETURN</code></td>
+<td>base game</td>
+<td>2 in 2 files</td>
+</tr>
+<tr>
+<td><a id="action-focusnext"></a><code>FocusNext</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_RSHOULDER</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-focusprev"></a><code>FocusPrev</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_LSHOULDER</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-ingamemenu"></a><code>InGameMenu</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_START</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-menudown"></a><code>MenuDown</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_DPAD_DOWN</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-menuleft"></a><code>MenuLeft</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_DPAD_LEFT</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-menuright"></a><code>MenuRight</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_DPAD_RIGHT</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-menuup"></a><code>MenuUp</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_DPAD_UP</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-navigatemap"></a><code>NavigateMap</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_LTHUMB_AXIS</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-nextaction"></a><code>NextAction</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_X</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-nextcity"></a><code>NextCity</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_RBRACKET</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-nextunit"></a><code>NextUnit</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_PERIOD</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-notifications"></a><code>Notifications</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_Y</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-pausemenu"></a><code>PauseMenu</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_HOME</code></td>
+<td>base game</td>
+<td>3 in 2 files</td>
+</tr>
+<tr>
+<td><a id="action-prevcity"></a><code>PrevCity</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_LBRACKET</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-prevunit"></a><code>PrevUnit</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_COMMA</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-quickload"></a><code>QuickLoad</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F6</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-quicksave"></a><code>QuickSave</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F5</code></td>
+<td>base game</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-select"></a><code>Select</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_A</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-selectcenterplot"></a><code>SelectCenterPlot</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_RTHUMB_PRESS</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-toggle2dview"></a><code>Toggle2DView</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_PLUS</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglegrid"></a><code>ToggleGrid</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_G</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggleresources"></a><code>ToggleResources</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_Q</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggletooltips"></a><code>ToggleTooltips</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_BACK</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-toggleyield"></a><code>ToggleYield</code></td>
+<td>GLOBAL</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_Y</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-zoomin"></a><code>ZoomIn</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_RTRIGGER</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-zoomout"></a><code>ZoomOut</code> (exe)</td>
+<td>GLOBAL</td>
+<td>Universal</td>
+<td>Console</td>
+<td>Controller: <code>LOC_OPTIONS_PAD_LTRIGGER</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-lensappeal"></a><code>LensAppeal</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_3</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lenscontinent"></a><code>LensContinent</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_2</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lensempire"></a><code>LensEmpire</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_9</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lensgovernment"></a><code>LensGovernment</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_5</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lensloyalty"></a><code>LensLoyalty</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_8</code>, KBMouse: <code>LOC_OPTIONS_KEY_8</code></td>
+<td>Expansion1, Expansion2</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lensplague"></a><code>LensPlague</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_INSERT</code></td>
+<td>BlackDeathScenario</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lenspolitical"></a><code>LensPolitical</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_6</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lenspower"></a><code>LensPower</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_0</code></td>
+<td>Expansion2</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lensreligion"></a><code>LensReligion</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_1</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lenssettler"></a><code>LensSettler</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_4</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-lenstourism"></a><code>LensTourism</code></td>
+<td>LENSES</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_7</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-onlinepause"></a><code>OnlinePause</code></td>
+<td>ONLINE</td>
+<td>WorldOrPopup</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_P</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-civilopediaback"></a><code>CivilopediaBack</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_CONTROL+LOC_OPTIONS_KEY_COMMA</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-civilopediaforward"></a><code>CivilopediaForward</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_CONTROL+LOC_OPTIONS_KEY_PERIOD</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-opencivilopedia"></a><code>OpenCivilopedia</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F9</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-openmapsearch"></a><code>OpenMapSearch</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_CONTROL+LOC_OPTIONS_KEY_F</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglecitystates"></a><code>ToggleCityStates</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F2</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglecivicstree"></a><code>ToggleCivicsTree</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_C</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggleespionage"></a><code>ToggleEspionage</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F3</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglefsmap"></a><code>ToggleFSMap</code></td>
+<td>UI</td>
+<td>WorldOrFullScreenMap</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_END</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglegovernment"></a><code>ToggleGovernment</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F7</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglegreatpeople"></a><code>ToggleGreatPeople</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_O</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglegreatworks"></a><code>ToggleGreatWorks</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_W</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglerankings"></a><code>ToggleRankings</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F1</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglereligion"></a><code>ToggleReligion</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_L</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggletechtree"></a><code>ToggleTechTree</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_T</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggletraderoutes"></a><code>ToggleTradeRoutes</code></td>
+<td>UI</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F4</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggleeraprogress"></a><code>ToggleEraProgress</code></td>
+<td>UI_XP1</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_NP_DIVIDE</code>, KBMouse: <code>LOC_OPTIONS_KEY_NP_DIVIDE</code></td>
+<td>Expansion1, Expansion2</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-togglegovernors"></a><code>ToggleGovernors</code></td>
+<td>UI_XP1</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F10</code>, KBMouse: <code>LOC_OPTIONS_KEY_F10</code></td>
+<td>Expansion1, Expansion2</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggletimeline"></a><code>ToggleTimeline</code></td>
+<td>UI_XP1</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F11</code>, KBMouse: <code>LOC_OPTIONS_KEY_F11</code></td>
+<td>Expansion1, Expansion2</td>
+<td>2 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-toggleworldclimate"></a><code>ToggleWorldClimate</code></td>
+<td>UI_XP2</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_PAGEDOWN</code></td>
+<td>Expansion2</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-alert"></a><code>Alert</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_V</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-attack"></a><code>Attack</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_A</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-autoexplore"></a><code>AutoExplore</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_E</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-deleteunit"></a><code>DeleteUnit</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_DELETE</code></td>
+<td>base game</td>
+<td>1 in 1 files</td>
+</tr>
+<tr>
+<td><a id="action-fortify"></a><code>Fortify</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_F</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-fortifyuntilheal"></a><code>FortifyUntilHeal</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_H</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-foundcity"></a><code>FoundCity</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_B</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-moveto"></a><code>MoveTo</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_M</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-rangedattack"></a><code>RangedAttack</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_R</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-skipturn"></a><code>SkipTurn</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_SPACE</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a id="action-sleep"></a><code>Sleep</code></td>
+<td>UNIT</td>
+<td>World</td>
+<td>PC</td>
+<td>KBMouse: <code>LOC_OPTIONS_KEY_Z</code></td>
+<td>base game</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2>Key records (191)</h2>
+<p><code>InputKeyData</code> maps a key id to the text key shown in the options screen and the icon name. Types: Controller (55), KBMouse (136).</p>
+<details>
+<summary>191 key records</summary>
+<table>
+<thead>
+<tr>
+<th>Key id</th>
+<th>Type</th>
+<th>Text key</th>
+<th>Icon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="key-pad_a"></a><code>PAD_A</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_A</code></td>
+<td><code>ICON_PAD_A</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_b"></a><code>PAD_B</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_B</code></td>
+<td><code>ICON_PAD_B</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_back"></a><code>PAD_BACK</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_BACK</code></td>
+<td><code>ICON_PAD_BACK</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_dpad_down"></a><code>PAD_DPAD_DOWN</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_DPAD_DOWN</code></td>
+<td><code>ICON_PAD_DPAD_DOWN</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_dpad_left"></a><code>PAD_DPAD_LEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_DPAD_LEFT</code></td>
+<td><code>ICON_PAD_DPAD_LEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_dpad_right"></a><code>PAD_DPAD_RIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_DPAD_RIGHT</code></td>
+<td><code>ICON_PAD_DPAD_RIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_dpad_up"></a><code>PAD_DPAD_UP</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_DPAD_UP</code></td>
+<td><code>ICON_PAD_DPAD_UP</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_gyro_move"></a><code>PAD_GYRO_MOVE</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_GYRO_MOVE</code></td>
+<td><code>ICON_PAD_GYRO_MOVE</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_gyro_pitch"></a><code>PAD_GYRO_PITCH</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_GYRO_PITCH</code></td>
+<td><code>ICON_PAD_GYRO_PITCH</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_gyro_roll"></a><code>PAD_GYRO_ROLL</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_GYRO_ROLL</code></td>
+<td><code>ICON_PAD_GYRO_ROLL</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_gyro_yaw"></a><code>PAD_GYRO_YAW</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_GYRO_YAW</code></td>
+<td><code>ICON_PAD_GYRO_YAW</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_left_grip"></a><code>PAD_LEFT_GRIP</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LEFT_GRIP</code></td>
+<td><code>ICON_PAD_LEFT_GRIP</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_left_touchpad_click"></a><code>PAD_LEFT_TOUCHPAD_CLICK</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LEFT_TOUCHPAD_CLICK</code></td>
+<td><code>ICON_PAD_LEFT_TOUCHPAD_CLICK</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_left_touchpad_swipe"></a><code>PAD_LEFT_TOUCHPAD_SWIPE</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LEFT_TOUCHPAD_SWIPE</code></td>
+<td><code>ICON_PAD_LEFT_TOUCHPAD_SWIPE</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_left_touchpad_touch"></a><code>PAD_LEFT_TOUCHPAD_TOUCH</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LEFT_TOUCHPAD_TOUCH</code></td>
+<td><code>ICON_PAD_LEFT_TOUCHPAD_TOUCH</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lshoulder"></a><code>PAD_LSHOULDER</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LSHOULDER</code></td>
+<td><code>ICON_PAD_LSHOULDER</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_axis"></a><code>PAD_LTHUMB_AXIS</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_AXIS</code></td>
+<td><code>ICON_PAD_LTHUMB_AXIS</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_down"></a><code>PAD_LTHUMB_DOWN</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_DOWN</code></td>
+<td><code>ICON_PAD_LTHUMB_DOWN</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_downleft"></a><code>PAD_LTHUMB_DOWNLEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_DOWNLEFT</code></td>
+<td><code>ICON_PAD_LTHUMB_DOWNLEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_downright"></a><code>PAD_LTHUMB_DOWNRIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_DOWNRIGHT</code></td>
+<td><code>ICON_PAD_LTHUMB_DOWNRIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_left"></a><code>PAD_LTHUMB_LEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_LEFT</code></td>
+<td><code>ICON_PAD_LTHUMB_LEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_press"></a><code>PAD_LTHUMB_PRESS</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_PRESS</code></td>
+<td><code>ICON_PAD_LTHUMB_PRESS</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_right"></a><code>PAD_LTHUMB_RIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_RIGHT</code></td>
+<td><code>ICON_PAD_LTHUMB_RIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_up"></a><code>PAD_LTHUMB_UP</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_UP</code></td>
+<td><code>ICON_PAD_LTHUMB_UP</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_upleft"></a><code>PAD_LTHUMB_UPLEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_UPLEFT</code></td>
+<td><code>ICON_PAD_LTHUMB_UPLEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_lthumb_upright"></a><code>PAD_LTHUMB_UPRIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTHUMB_UPRIGHT</code></td>
+<td><code>ICON_PAD_LTHUMB_UPRIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_ltrigger"></a><code>PAD_LTRIGGER</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTRIGGER</code></td>
+<td><code>ICON_PAD_LTRIGGER</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_ltrigger_click"></a><code>PAD_LTRIGGER_CLICK</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_LTRIGGER_CLICK</code></td>
+<td><code>ICON_PAD_LTRIGGER_CLICK</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_middle_touchpad_click"></a><code>PAD_MIDDLE_TOUCHPAD_CLICK</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_MIDDLE_TOUCHPAD_CLICK</code></td>
+<td><code>ICON_PAD_MIDDLE_TOUCHPAD_CLICK</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_middle_touchpad_swipe"></a><code>PAD_MIDDLE_TOUCHPAD_SWIPE</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_MIDDLE_TOUCHPAD_SWIPE</code></td>
+<td><code>ICON_PAD_MIDDLE_TOUCHPAD_SWIPE</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_middle_touchpad_touch"></a><code>PAD_MIDDLE_TOUCHPAD_TOUCH</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_MIDDLE_TOUCHPAD_TOUCH</code></td>
+<td><code>ICON_PAD_MIDDLE_TOUCHPAD_TOUCH</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_dpad_down"></a><code>PAD_RIGHT_DPAD_DOWN</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RIGHT_DPAD_DOWN</code></td>
+<td><code>ICON_PAD_RIGHT_DPAD_DOWN</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_dpad_left"></a><code>PAD_RIGHT_DPAD_LEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RIGHT_DPAD_LEFT</code></td>
+<td><code>ICON_PAD_RIGHT_DPAD_LEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_dpad_right"></a><code>PAD_RIGHT_DPAD_RIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RIGHT_DPAD_RIGHT</code></td>
+<td><code>ICON_PAD_RIGHT_DPAD_RIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_dpad_up"></a><code>PAD_RIGHT_DPAD_UP</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_RIGHT_PAD_DPAD_UP</code></td>
+<td><code>ICON_PAD_RIGHT_DPAD_UP</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_grip"></a><code>PAD_RIGHT_GRIP</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RIGHT_GRIP</code></td>
+<td><code>ICON_PAD_RIGHT_GRIP</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_touchpad_click"></a><code>PAD_RIGHT_TOUCHPAD_CLICK</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RIGHT_TOUCHPAD_CLICK</code></td>
+<td><code>ICON_PAD_RIGHT_TOUCHPAD_CLICK</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_touchpad_swipe"></a><code>PAD_RIGHT_TOUCHPAD_SWIPE</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RIGHT_TOUCHPAD_SWIPE</code></td>
+<td><code>ICON_PAD_RIGHT_TOUCHPAD_SWIPE</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_right_touchpad_touch"></a><code>PAD_RIGHT_TOUCHPAD_TOUCH</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RIGHT_TOUCHPAD_TOUCH</code></td>
+<td><code>ICON_PAD_RIGHT_TOUCHPAD_TOUCH</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rshoulder"></a><code>PAD_RSHOULDER</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RSHOULDER</code></td>
+<td><code>ICON_PAD_RSHOULDER</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_axis"></a><code>PAD_RTHUMB_AXIS</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_AXIS</code></td>
+<td><code>ICON_PAD_RTHUMB_AXIS</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_down"></a><code>PAD_RTHUMB_DOWN</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_DOWN</code></td>
+<td><code>ICON_PAD_RTHUMB_DOWN</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_downleft"></a><code>PAD_RTHUMB_DOWNLEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_DOWNLEFT</code></td>
+<td><code>ICON_PAD_RTHUMB_DOWNLEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_downright"></a><code>PAD_RTHUMB_DOWNRIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_DOWNRIGHT</code></td>
+<td><code>ICON_PAD_RTHUMB_DOWNRIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_left"></a><code>PAD_RTHUMB_LEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_LEFT</code></td>
+<td><code>ICON_PAD_RTHUMB_LEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_press"></a><code>PAD_RTHUMB_PRESS</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_PRESS</code></td>
+<td><code>ICON_PAD_RTHUMB_PRESS</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_right"></a><code>PAD_RTHUMB_RIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_RIGHT</code></td>
+<td><code>ICON_PAD_RTHUMB_RIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_up"></a><code>PAD_RTHUMB_UP</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_UP</code></td>
+<td><code>ICON_PAD_RTHUMB_UP</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_upleft"></a><code>PAD_RTHUMB_UPLEFT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_UPLEFT</code></td>
+<td><code>ICON_PAD_RTHUMB_UPLEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rthumb_upright"></a><code>PAD_RTHUMB_UPRIGHT</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTHUMB_UPRIGHT</code></td>
+<td><code>ICON_PAD_RTHUMB_UPRIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rtrigger"></a><code>PAD_RTRIGGER</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTRIGGER</code></td>
+<td><code>ICON_PAD_RTRIGGER</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_rtrigger_click"></a><code>PAD_RTRIGGER_CLICK</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_RTRIGGER_CLICK</code></td>
+<td><code>ICON_PAD_RTRIGGER</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_start"></a><code>PAD_START</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_START</code></td>
+<td><code>ICON_PAD_START</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_x"></a><code>PAD_X</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_X</code></td>
+<td><code>ICON_PAD_X</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_y"></a><code>PAD_Y</code></td>
+<td>Controller</td>
+<td><code>LOC_OPTIONS_PAD_Y</code></td>
+<td><code>ICON_PAD_Y</code></td>
+</tr>
+<tr>
+<td><a id="key-key_0"></a><code>KEY_0</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_0</code></td>
+<td><code>ICON_KEY_0</code></td>
+</tr>
+<tr>
+<td><a id="key-key_1"></a><code>KEY_1</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_1</code></td>
+<td><code>ICON_KEY_1</code></td>
+</tr>
+<tr>
+<td><a id="key-key_2"></a><code>KEY_2</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_2</code></td>
+<td><code>ICON_KEY_2</code></td>
+</tr>
+<tr>
+<td><a id="key-key_3"></a><code>KEY_3</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_3</code></td>
+<td><code>ICON_KEY_3</code></td>
+</tr>
+<tr>
+<td><a id="key-key_4"></a><code>KEY_4</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_4</code></td>
+<td><code>ICON_KEY_4</code></td>
+</tr>
+<tr>
+<td><a id="key-key_5"></a><code>KEY_5</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_5</code></td>
+<td><code>ICON_KEY_5</code></td>
+</tr>
+<tr>
+<td><a id="key-key_6"></a><code>KEY_6</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_6</code></td>
+<td><code>ICON_KEY_6</code></td>
+</tr>
+<tr>
+<td><a id="key-key_7"></a><code>KEY_7</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_7</code></td>
+<td><code>ICON_KEY_7</code></td>
+</tr>
+<tr>
+<td><a id="key-key_8"></a><code>KEY_8</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_8</code></td>
+<td><code>ICON_KEY_8</code></td>
+</tr>
+<tr>
+<td><a id="key-key_9"></a><code>KEY_9</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_9</code></td>
+<td><code>ICON_KEY_9</code></td>
+</tr>
+<tr>
+<td><a id="key-key_a"></a><code>KEY_A</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_A</code></td>
+<td><code>ICON_KEY_A</code></td>
+</tr>
+<tr>
+<td><a id="key-key_alt"></a><code>KEY_ALT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_ALT</code></td>
+<td><code>ICON_KEY_ALT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_apps"></a><code>KEY_APPS</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_APPS</code></td>
+<td><code>ICON_KEY_APPS</code></td>
+</tr>
+<tr>
+<td><a id="key-key_b"></a><code>KEY_B</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_B</code></td>
+<td><code>ICON_KEY_B</code></td>
+</tr>
+<tr>
+<td><a id="key-key_backslash"></a><code>KEY_BACKSLASH</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_BACKSLASH</code></td>
+<td><code>ICON_KEY_BACKSLASH</code></td>
+</tr>
+<tr>
+<td><a id="key-key_backspace"></a><code>KEY_BACKSPACE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_BACKSPACE</code></td>
+<td><code>ICON_KEY_BACKSPACE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_c"></a><code>KEY_C</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_C</code></td>
+<td><code>ICON_KEY_C</code></td>
+</tr>
+<tr>
+<td><a id="key-key_cancel"></a><code>KEY_CANCEL</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_CANCEL</code></td>
+<td><code>ICON_KEY_CANCEL</code></td>
+</tr>
+<tr>
+<td><a id="key-key_capslock"></a><code>KEY_CAPSLOCK</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_CAPSLOCK</code></td>
+<td><code>ICON_KEY_CAPSLOCK</code></td>
+</tr>
+<tr>
+<td><a id="key-key_comma"></a><code>KEY_COMMA</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_COMMA</code></td>
+<td><code>ICON_KEY_COMMA</code></td>
+</tr>
+<tr>
+<td><a id="key-key_control"></a><code>KEY_CONTROL</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_CONTROL</code></td>
+<td><code>ICON_KEY_CONTROL</code></td>
+</tr>
+<tr>
+<td><a id="key-key_d"></a><code>KEY_D</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_D</code></td>
+<td><code>ICON_KEY_D</code></td>
+</tr>
+<tr>
+<td><a id="key-key_danomite"></a><code>KEY_DANOMITE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_DANOMITE</code></td>
+<td><code>ICON_KEY_DANOMITE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_delete"></a><code>KEY_DELETE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_DELETE</code></td>
+<td><code>ICON_KEY_DELETE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_down"></a><code>KEY_DOWN</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_DOWN</code></td>
+<td><code>ICON_KEY_DOWN</code></td>
+</tr>
+<tr>
+<td><a id="key-key_e"></a><code>KEY_E</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_E</code></td>
+<td><code>ICON_KEY_E</code></td>
+</tr>
+<tr>
+<td><a id="key-key_end"></a><code>KEY_END</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_END</code></td>
+<td><code>ICON_KEY_END</code></td>
+</tr>
+<tr>
+<td><a id="key-key_escape"></a><code>KEY_ESCAPE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_ESCAPE</code></td>
+<td><code>ICON_KEY_ESCAPE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f"></a><code>KEY_F</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F</code></td>
+<td><code>ICON_KEY_F</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f1"></a><code>KEY_F1</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F1</code></td>
+<td><code>ICON_KEY_F1</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f10"></a><code>KEY_F10</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F10</code></td>
+<td><code>ICON_KEY_F10</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f11"></a><code>KEY_F11</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F11</code></td>
+<td><code>ICON_KEY_F11</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f12"></a><code>KEY_F12</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F12</code></td>
+<td><code>ICON_KEY_F12</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f13"></a><code>KEY_F13</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F13</code></td>
+<td><code>ICON_KEY_F13</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f14"></a><code>KEY_F14</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F14</code></td>
+<td><code>ICON_KEY_F14</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f15"></a><code>KEY_F15</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F15</code></td>
+<td><code>ICON_KEY_F15</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f16"></a><code>KEY_F16</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F16</code></td>
+<td><code>ICON_KEY_F16</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f17"></a><code>KEY_F17</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F17</code></td>
+<td><code>ICON_KEY_F17</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f18"></a><code>KEY_F18</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F18</code></td>
+<td><code>ICON_KEY_F18</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f19"></a><code>KEY_F19</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F19</code></td>
+<td><code>ICON_KEY_F19</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f2"></a><code>KEY_F2</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F2</code></td>
+<td><code>ICON_KEY_F2</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f20"></a><code>KEY_F20</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F20</code></td>
+<td><code>ICON_KEY_F20</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f21"></a><code>KEY_F21</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F21</code></td>
+<td><code>ICON_KEY_F21</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f22"></a><code>KEY_F22</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F22</code></td>
+<td><code>ICON_KEY_F22</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f23"></a><code>KEY_F23</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F23</code></td>
+<td><code>ICON_KEY_F23</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f24"></a><code>KEY_F24</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F24</code></td>
+<td><code>ICON_KEY_F24</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f3"></a><code>KEY_F3</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F3</code></td>
+<td><code>ICON_KEY_F3</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f4"></a><code>KEY_F4</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F4</code></td>
+<td><code>ICON_KEY_F4</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f5"></a><code>KEY_F5</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F5</code></td>
+<td><code>ICON_KEY_F5</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f6"></a><code>KEY_F6</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F6</code></td>
+<td><code>ICON_KEY_F6</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f7"></a><code>KEY_F7</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F7</code></td>
+<td><code>ICON_KEY_F7</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f8"></a><code>KEY_F8</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F8</code></td>
+<td><code>ICON_KEY_F8</code></td>
+</tr>
+<tr>
+<td><a id="key-key_f9"></a><code>KEY_F9</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_F9</code></td>
+<td><code>ICON_KEY_F9</code></td>
+</tr>
+<tr>
+<td><a id="key-key_g"></a><code>KEY_G</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_G</code></td>
+<td><code>ICON_KEY_G</code></td>
+</tr>
+<tr>
+<td><a id="key-key_h"></a><code>KEY_H</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_H</code></td>
+<td><code>ICON_KEY_H</code></td>
+</tr>
+<tr>
+<td><a id="key-key_home"></a><code>KEY_HOME</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_HOME</code></td>
+<td><code>ICON_KEY_HOME</code></td>
+</tr>
+<tr>
+<td><a id="key-key_i"></a><code>KEY_I</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_I</code></td>
+<td><code>ICON_KEY_I</code></td>
+</tr>
+<tr>
+<td><a id="key-key_ignore"></a><code>KEY_IGNORE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_IGNORE</code></td>
+<td><code>ICON_KEY_IGNORE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_insert"></a><code>KEY_INSERT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_INSERT</code></td>
+<td><code>ICON_KEY_INSERT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_j"></a><code>KEY_J</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_J</code></td>
+<td><code>ICON_KEY_J</code></td>
+</tr>
+<tr>
+<td><a id="key-key_k"></a><code>KEY_K</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_K</code></td>
+<td><code>ICON_KEY_K</code></td>
+</tr>
+<tr>
+<td><a id="key-key_l"></a><code>KEY_L</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_L</code></td>
+<td><code>ICON_KEY_L</code></td>
+</tr>
+<tr>
+<td><a id="key-key_lalt"></a><code>KEY_LALT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_LALT</code></td>
+<td><code>ICON_KEY_LALT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_lbracket"></a><code>KEY_LBRACKET</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_LBRACKET</code></td>
+<td><code>ICON_KEY_LBRACKET</code></td>
+</tr>
+<tr>
+<td><a id="key-key_lcontrol"></a><code>KEY_LCONTROL</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_LCONTROL</code></td>
+<td><code>ICON_KEY_LCONTROL</code></td>
+</tr>
+<tr>
+<td><a id="key-key_left"></a><code>KEY_LEFT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_LEFT</code></td>
+<td><code>ICON_KEY_LEFT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_lshift"></a><code>KEY_LSHIFT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_LSHIFT</code></td>
+<td><code>ICON_KEY_LSHIFT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_lwin"></a><code>KEY_LWIN</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_LWIN</code></td>
+<td><code>ICON_KEY_LWIN</code></td>
+</tr>
+<tr>
+<td><a id="key-key_m"></a><code>KEY_M</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_M</code></td>
+<td><code>ICON_KEY_M</code></td>
+</tr>
+<tr>
+<td><a id="key-key_media_next_track"></a><code>KEY_MEDIA_NEXT_TRACK</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_MEDIA_NEXT_TRACK</code></td>
+<td><code>ICON_KEY_MEDIA_NEXT_TRACK</code></td>
+</tr>
+<tr>
+<td><a id="key-key_media_play_pause"></a><code>KEY_MEDIA_PLAY_PAUSE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_MEDIA_PLAY_PAUSE</code></td>
+<td><code>ICON_KEY_MEDIA_PLAY_PAUSE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_media_prev_track"></a><code>KEY_MEDIA_PREV_TRACK</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_MEDIA_PREV_TRACK</code></td>
+<td><code>ICON_KEY_MEDIA_PREV_TRACK</code></td>
+</tr>
+<tr>
+<td><a id="key-key_media_stop"></a><code>KEY_MEDIA_STOP</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_MEDIA_STOP</code></td>
+<td><code>ICON_KEY_MEDIA_STOP</code></td>
+</tr>
+<tr>
+<td><a id="key-key_minus"></a><code>KEY_MINUS</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_MINUS</code></td>
+<td><code>ICON_KEY_MINUS</code></td>
+</tr>
+<tr>
+<td><a id="key-key_n"></a><code>KEY_N</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_N</code></td>
+<td><code>ICON_KEY_N</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_0"></a><code>KEY_NP_0</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_0</code></td>
+<td><code>ICON_KEY_NP_0</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_1"></a><code>KEY_NP_1</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_1</code></td>
+<td><code>ICON_KEY_NP_1</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_2"></a><code>KEY_NP_2</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_2</code></td>
+<td><code>ICON_KEY_NP_2</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_3"></a><code>KEY_NP_3</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_3</code></td>
+<td><code>ICON_KEY_NP_3</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_4"></a><code>KEY_NP_4</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_4</code></td>
+<td><code>ICON_KEY_NP_4</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_5"></a><code>KEY_NP_5</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_5</code></td>
+<td><code>ICON_KEY_NP_5</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_6"></a><code>KEY_NP_6</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_6</code></td>
+<td><code>ICON_KEY_NP_6</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_7"></a><code>KEY_NP_7</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_7</code></td>
+<td><code>ICON_KEY_NP_7</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_8"></a><code>KEY_NP_8</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_8</code></td>
+<td><code>ICON_KEY_NP_8</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_9"></a><code>KEY_NP_9</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_9</code></td>
+<td><code>ICON_KEY_NP_9</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_center"></a><code>KEY_NP_CENTER</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_CENTER</code></td>
+<td><code>ICON_KEY_NP_CENTER</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_decimal"></a><code>KEY_NP_DECIMAL</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_DECIMAL</code></td>
+<td><code>ICON_KEY_NP_DECIMAL</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_divide"></a><code>KEY_NP_DIVIDE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_DIVIDE</code></td>
+<td><code>ICON_KEY_NP_DIVIDE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_minus"></a><code>KEY_NP_MINUS</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_MINUS</code></td>
+<td><code>ICON_KEY_NP_MINUS</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_multiply"></a><code>KEY_NP_MULTIPLY</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_MULTIPLY</code></td>
+<td><code>ICON_KEY_NP_MULTIPLY</code></td>
+</tr>
+<tr>
+<td><a id="key-key_np_plus"></a><code>KEY_NP_PLUS</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NP_PLUS</code></td>
+<td><code>ICON_KEY_NP_PLUS</code></td>
+</tr>
+<tr>
+<td><a id="key-key_numlock"></a><code>KEY_NUMLOCK</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_NUMLOCK</code></td>
+<td><code>ICON_KEY_NUMLOCK</code></td>
+</tr>
+<tr>
+<td><a id="key-key_o"></a><code>KEY_O</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_O</code></td>
+<td><code>ICON_KEY_O</code></td>
+</tr>
+<tr>
+<td><a id="key-key_p"></a><code>KEY_P</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_P</code></td>
+<td><code>ICON_KEY_P</code></td>
+</tr>
+<tr>
+<td><a id="key-key_pagedown"></a><code>KEY_PAGEDOWN</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_PAGEDOWN</code></td>
+<td><code>ICON_KEY_PAGEDOWN</code></td>
+</tr>
+<tr>
+<td><a id="key-key_pageup"></a><code>KEY_PAGEUP</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_PAGEUP</code></td>
+<td><code>ICON_KEY_PAGEUP</code></td>
+</tr>
+<tr>
+<td><a id="key-key_pause"></a><code>KEY_PAUSE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_PAUSE</code></td>
+<td><code>ICON_KEY_PAUSE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_period"></a><code>KEY_PERIOD</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_PERIOD</code></td>
+<td><code>ICON_KEY_PERIOD</code></td>
+</tr>
+<tr>
+<td><a id="key-key_plus"></a><code>KEY_PLUS</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_PLUS</code></td>
+<td><code>ICON_KEY_PLUS</code></td>
+</tr>
+<tr>
+<td><a id="key-key_printscreen"></a><code>KEY_PRINTSCREEN</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_PRINTSCREEN</code></td>
+<td><code>ICON_KEY_PRINTSCREEN</code></td>
+</tr>
+<tr>
+<td><a id="key-key_q"></a><code>KEY_Q</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_Q</code></td>
+<td><code>ICON_KEY_Q</code></td>
+</tr>
+<tr>
+<td><a id="key-key_quote"></a><code>KEY_QUOTE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_QUOTE</code></td>
+<td><code>ICON_KEY_QUOTE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_r"></a><code>KEY_R</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_R</code></td>
+<td><code>ICON_KEY_R</code></td>
+</tr>
+<tr>
+<td><a id="key-key_ralt"></a><code>KEY_RALT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_RALT</code></td>
+<td><code>ICON_KEY_RALT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_rbracket"></a><code>KEY_RBRACKET</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_RBRACKET</code></td>
+<td><code>ICON_KEY_RBRACKET</code></td>
+</tr>
+<tr>
+<td><a id="key-key_rcontrol"></a><code>KEY_RCONTROL</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_RCONTROL</code></td>
+<td><code>ICON_KEY_RCONTROL</code></td>
+</tr>
+<tr>
+<td><a id="key-key_return"></a><code>KEY_RETURN</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_RETURN</code></td>
+<td><code>ICON_KEY_RETURN</code></td>
+</tr>
+<tr>
+<td><a id="key-key_right"></a><code>KEY_RIGHT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_RIGHT</code></td>
+<td><code>ICON_KEY_RIGHT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_rshift"></a><code>KEY_RSHIFT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_RSHIFT</code></td>
+<td><code>ICON_KEY_RSHIFT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_rwin"></a><code>KEY_RWIN</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_RWIN</code></td>
+<td><code>ICON_KEY_RWIN</code></td>
+</tr>
+<tr>
+<td><a id="key-key_s"></a><code>KEY_S</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_S</code></td>
+<td><code>ICON_KEY_S</code></td>
+</tr>
+<tr>
+<td><a id="key-key_scrolllock"></a><code>KEY_SCROLLLOCK</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_SCROLLLOCK</code></td>
+<td><code>ICON_KEY_SCROLLLOCK</code></td>
+</tr>
+<tr>
+<td><a id="key-key_semicolon"></a><code>KEY_SEMICOLON</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_SEMICOLON</code></td>
+<td><code>ICON_KEY_SEMICOLON</code></td>
+</tr>
+<tr>
+<td><a id="key-key_shift"></a><code>KEY_SHIFT</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_SHIFT</code></td>
+<td><code>ICON_KEY_SHIFT</code></td>
+</tr>
+<tr>
+<td><a id="key-key_slash"></a><code>KEY_SLASH</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_SLASH</code></td>
+<td><code>ICON_KEY_SLASH</code></td>
+</tr>
+<tr>
+<td><a id="key-key_space"></a><code>KEY_SPACE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_SPACE</code></td>
+<td><code>ICON_KEY_SPACE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_t"></a><code>KEY_T</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_T</code></td>
+<td><code>ICON_KEY_T</code></td>
+</tr>
+<tr>
+<td><a id="key-key_tab"></a><code>KEY_TAB</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_TAB</code></td>
+<td><code>ICON_KEY_TAB</code></td>
+</tr>
+<tr>
+<td><a id="key-key_tilde"></a><code>KEY_TILDE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_TILDE</code></td>
+<td><code>ICON_KEY_TILDE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_u"></a><code>KEY_U</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_U</code></td>
+<td><code>ICON_KEY_U</code></td>
+</tr>
+<tr>
+<td><a id="key-key_underscore"></a><code>KEY_UNDERSCORE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_UNDERSCORE</code></td>
+<td><code>ICON_KEY_UNDERSCORE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_up"></a><code>KEY_UP</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_UP</code></td>
+<td><code>ICON_KEY_UP</code></td>
+</tr>
+<tr>
+<td><a id="key-key_v"></a><code>KEY_V</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_V</code></td>
+<td><code>ICON_KEY_V</code></td>
+</tr>
+<tr>
+<td><a id="key-key_volume_down"></a><code>KEY_VOLUME_DOWN</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_VOLUME_DOWN</code></td>
+<td><code>ICON_KEY_VOLUME_DOWN</code></td>
+</tr>
+<tr>
+<td><a id="key-key_volume_mute"></a><code>KEY_VOLUME_MUTE</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_VOLUME_MUTE</code></td>
+<td><code>ICON_KEY_VOLUME_MUTE</code></td>
+</tr>
+<tr>
+<td><a id="key-key_volume_up"></a><code>KEY_VOLUME_UP</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_VOLUME_UP</code></td>
+<td><code>ICON_KEY_VOLUME_UP</code></td>
+</tr>
+<tr>
+<td><a id="key-key_w"></a><code>KEY_W</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_W</code></td>
+<td><code>ICON_KEY_W</code></td>
+</tr>
+<tr>
+<td><a id="key-key_x"></a><code>KEY_X</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_X</code></td>
+<td><code>ICON_KEY_X</code></td>
+</tr>
+<tr>
+<td><a id="key-key_y"></a><code>KEY_Y</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_Y</code></td>
+<td><code>ICON_KEY_Y</code></td>
+</tr>
+<tr>
+<td><a id="key-key_z"></a><code>KEY_Z</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_KEY_Z</code></td>
+<td><code>ICON_KEY_Z</code></td>
+</tr>
+<tr>
+<td><a id="key-mouse_l"></a><code>MOUSE_L</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_MOUSE_L</code></td>
+<td><code>ICON_MOUSE_L</code></td>
+</tr>
+<tr>
+<td><a id="key-mouse_m"></a><code>MOUSE_M</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_MOUSE_M</code></td>
+<td><code>ICON_MOUSE_M</code></td>
+</tr>
+<tr>
+<td><a id="key-mouse_r"></a><code>MOUSE_R</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_MOUSE_R</code></td>
+<td><code>ICON_MOUSE_R</code></td>
+</tr>
+<tr>
+<td><a id="key-mouse_x1"></a><code>MOUSE_X1</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_MOUSE_X1</code></td>
+<td><code>ICON_MOUSE_X1</code></td>
+</tr>
+<tr>
+<td><a id="key-mouse_x2"></a><code>MOUSE_X2</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_MOUSE_X2</code></td>
+<td><code>ICON_MOUSE_X2</code></td>
+</tr>
+<tr>
+<td><a id="key-pad_tooltip_refresh"></a><code>PAD_TOOLTIP_REFRESH</code></td>
+<td>KBMouse</td>
+<td><code>LOC_OPTIONS_PAD_TOOLTIP_REFRESH</code></td>
+<td><code>ICON_PAD_TOOLTIP_REFRESH</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

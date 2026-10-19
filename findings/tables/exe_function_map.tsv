@@ -1,0 +1,46 @@
+name	linux_va	windows_rva	confidence	basis
+WorldView_StartupGame	33287f0	551980	high	unique strings (FEATURE_MARSH, Flat, Hill ... ) in both
+WorldView_Startup	3327460	5510e0	medium	callee TerrainSystem::Startup, size, '<Null Job Name>' string
+WorldView_ShutdownGame	332ded0	550e00	medium	callees DynGeoManager::Shutdown / DynamicSystem::ShutdownGame / BlockerDatabase::ShutdownGame; size 729 both
+WorldView_Update	332e800	5569d0	high	string 'WorldView_Update' + per-system job names
+WorldView_PostLoadUpdate	332ef80	54d280	high	string 'WorldView_PostLoadUpdate'
+WorldView_UpdateGraphicsOptions	3332170	557380	high	string 'WorldView_UpdateGraphicsOptions'
+WorldView_ConfigureAssets	3327ff0	54c530	high	art-def list strings (Terrain, Water, Clutter, Landmarks ...)
+WorldView_Render	332f100	54d420	high	strings 'WorldView_Render', 'Terrain Context Render', 'TerrainContext_Update'
+WorldView_DirectDebugConsole (handler body)	3323cd0	540670	high	console help strings; verified last session
+WorldView::TerrainContext::Startup	3794a10	60aa80	high	string anchor
+WorldView::TerrainContext::RebakeCache	37993d0	609be0	high	'terrain rebake' console string -> call target; semantics verified by disassembly of both
+WorldView::TerrainContext::RebuildTerrainEdits	3799490	609ca0	high	'terrain rebuild' console string -> call target
+WorldView global context object	-	2305e20	high	static object passed (lea rcx) to TerrainContext methods; referenced by 13 WorldView entry points
+Terrain::Cell::Manager::GetNumCells	3cb2756	c5ff20	high	called by RebakeCache in both
+Terrain::Cell::Manager::GetCellStateData	3cb2774	c5ff00	high	called by RebakeCache in both
+WorldView game-event unsubscribe-all (list of 122 events)	332e1b0	54a820	medium	same call count (122) and size (1488 vs 1484); handler order matches
+WorldView game-event subscribe-all	-	54b070	low	largest lea-to-code function next to 54a820 (not verified)
+GameViewState::SubscribeToEvents	2fb9bb0	-	-	unmapped
+GameCore::LoadDLL	31dd330	f8510	high	string DllCreateGameContext / DllDestroyGameContext in both
+GameCore::GetContext (reads s_pActiveContext)	31dd790	-	-	Windows not located
+AppModdingFramework::InitializeGameCore	3381690	24b150	high	strings ProfileEnabled+ProfileDepth; vtable offsets +0x60,+0x28,+0x1e8 identical
+GameCore::EngineUtility ctor	32b3b90	1c9240	high	called from InitializeGameCore on both; stores vtable 0xfc79d0
+GameCore::EngineUtility vtable (46 slots)	53a6c80	fc79d0	high	ctor; see EngineUtility_vtable_windows.tsv (overload pairs may be reversed on MSVC)
+Civ6App::UpdateFrame	2f97470	76c00	high	string Civ6App_UpdateFrame, source-file strings
+GameCoreThread ctor (thread name Game Core)	31d1150	f4650	high	string Game Core
+GameCoreController::GetLock	31d2440	f4be0	high	stalled on GC lock strings + size
+GameCoreController::OnConsoleMessage	31d2df0	f56b0	high	console strings
+GameCoreController::OnLoadComplete	31d3480	f5b10	medium	order+size alignment
+GameCoreController::HasLock	31d2a40	f5220	medium	order+size alignment
+GameCoreController::SendRetire	31d2aa0	f5250	medium	order+size alignment
+GameCoreController::SetSentTurnComplete	31d2b70	f53f0	medium	order+size alignment
+GameCoreController::HasReceivedTurnComplete	31d2bb0	f5470	medium	order+size alignment
+GameCoreController::InTurnSynchronizationBarrier	31d2cb0	f54c0	medium	order+size alignment
+GameCoreController::UpdateTurnSynchronizationBarrier	31d2ce0	f5520	medium	order+size alignment
+GameCoreController::RecordGameCoreMessages	31d2d10	f55c0	medium	order+size alignment
+GameCoreController::OnGameCoreEventQueueFlushed	31d2da0	f5660	medium	order+size alignment
+GameCoreController::UpdateCache(ComponentID,bool)	31d4c40	f5eb0	medium	order+size alignment
+GameCoreController::SendProcessingComplete	31d4c90	f5f00	medium	order+size alignment
+GameCoreController::Shutdown	31d4d80	f5f70	medium	order+size alignment
+GameCoreController::SubscribeToMessages	31d1550	f46c0	medium	order+size alignment
+GameCoreController::UnsubscribeFromMessages	31d1760	f47f0	low	order+size alignment (size 272 vs 401)
+GameCoreController::GetLocalPlayer	31d1d60	f4990	medium	order+size alignment; callee of InitializeGameCore on both
+GameCoreThread::JoinOnPassComplete	31d4ee0	f6090	medium	order+size alignment
+GameCoreThread::Resume	31d4f50	f60d0	medium	order+size alignment
+GameCore::EditGame	31d4dd0	f5fc0	medium	order+size alignment

@@ -1,0 +1,1614 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Audio vocabulary</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Audio vocabulary</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Audio vocabulary</h1>
+<p>The names the engine executable passes to its audio system (Wwise): sound events, state and switch values, volume parameters, music playlists and the files that list sound banks. They are string literals referenced by the audio functions (209 names in 39 functions). Where a name is an event, a bank loaded by a mod needs an event with the same name for the game to play it; this page lists what the exe asks for, not what the game's own banks contain. <strong>Verified</strong>: the name and the function. <strong>Inferred</strong>: the explanations, from the function names.</p>
+<p>See also the <a href="options.html">volume options</a> and <a href="../exeapi/UI.html"><code>UI.PlaySound</code></a>, which takes an event name directly from Lua.</p>
+<h2>Functions</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Names</th>
+<th>Meaning (inferred)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#strategicaudio__startupstrategygame">StrategicAudio::StartupStrategyGame</a></td>
+<td>63</td>
+<td>Names the strategic audio system registers at game start: unit, city and district sounds (<code>_2D</code> suffix: sounds without a world position).</td>
+</tr>
+<tr>
+<td><a href="#audiominer__artdefinitions__configurefromartdefs">AudioMiner::ArtDefinitions::ConfigureFromArtDefs</a></td>
+<td>22</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onunitcommandstarted">StrategicAudio::OnUnitCommandStarted</a></td>
+<td>22</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#ambientaudio__startup">AmbientAudio::Startup</a></td>
+<td>19</td>
+<td>Music playlists, music state names and the era and view state groups of the ambient audio system.</td>
+</tr>
+<tr>
+<td><a href="#audiominer__recalculateterrainvisibility">AudioMiner::RecalculateTerrainVisibility</a></td>
+<td>14</td>
+<td>Ambience categories the audio miner derives from what is visible on the map (terrain, features, improvements).</td>
+</tr>
+<tr>
+<td><a href="#civ6audio__publishsettingstelemetry">Civ6Audio::PublishSettingsTelemetry</a></td>
+<td>9</td>
+<td>Names of the audio settings reported in the telemetry options event.</td>
+</tr>
+<tr>
+<td><a href="#civ6audio__registeroptions">Civ6Audio::RegisterOptions</a></td>
+<td>6</td>
+<td>The audio options (<code>SoundOpts.txt</code>): one volume per Wwise bus, registered here.</td>
+</tr>
+<tr>
+<td><a href="#appluaoptionslibrary__lsetaudiooption">AppLuaOptionsLibrary::lSetAudioOption</a></td>
+<td>5</td>
+<td><code>Options.SetAudioOption</code> accepts these bus names.</td>
+</tr>
+<tr>
+<td><a href="#audio__readsoundbankxml">Audio::ReadSoundBankXML</a></td>
+<td>4</td>
+<td>Element names of a sound bank description file (<code>SoundBanks</code>, <code>SoundBank</code>, <code>IncludedEvents</code>, <code>Event</code>).</td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__oncombat">StrategicAudio::OnCombat</a></td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#ambientaudio__startupstrategygame">AmbientAudio::StartupStrategyGame</a></td>
+<td>3</td>
+<td>Per-civilization music override and playlist randomisation used when a game starts.</td>
+</tr>
+<tr>
+<td><a href="#audio__readsoundbankini">Audio::ReadSoundBankINI</a></td>
+<td>3</td>
+<td>Section names of <code>Banks.ini</code>: <code>Global</code> banks are loaded always, <code>InGame</code> banks while a game runs.</td>
+</tr>
+<tr>
+<td><a href="#applualocalelibrary__lgetaudiolanguages">AppLuaLocaleLibrary::lGetAudioLanguages</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#audiominer__onimprovementaddedtomap">AudioMiner::OnImprovementAddedToMap</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#audiominer__onunitaddedtomap">AudioMiner::OnUnitAddedToMap</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#audiominer__startupstrategygame">AudioMiner::StartupStrategyGame</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onimprovementaddedtomap">StrategicAudio::OnImprovementAddedToMap</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onunitembarkedstatechanged">StrategicAudio::OnUnitEmbarkedStateChanged</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onunitoperationstarted">StrategicAudio::OnUnitOperationStarted</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__shutdownstrategygame">StrategicAudio::ShutdownStrategyGame</a></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#ambientaudio__onlocalplayerturnbegin">AmbientAudio::OnLocalPlayerTurnBegin</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#ambientaudio__onplayerdestroyed">AmbientAudio::OnPlayerDestroyed</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#ambientaudio__startstopmenumusic">AmbientAudio::StartStopMenuMusic</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#audiominer__onfeatureaddedtomap">AudioMiner::OnFeatureAddedToMap</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#audiominer__onunitsimpositionchanged">AudioMiner::OnUnitSimPositionChanged</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#civ6audio__appactivated">Civ6Audio::AppActivated</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#fgxmodelframework__timelineset__trigger__triggerdata__sounddata__gettypeinfo">FGXModelFramework::TimelineSet::Trigger::TriggerData::SoundData::GetTypeInfo</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onbarbarianclanbribed">StrategicAudio::OnBarbarianClanBribed</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onbarbarianclandispersed">StrategicAudio::OnBarbarianClanDispersed</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onbarbarianclanhired">StrategicAudio::OnBarbarianClanHired</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onbarbarianclanincited">StrategicAudio::OnBarbarianClanIncited</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onbarbarianclanraided">StrategicAudio::OnBarbarianClanRaided</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onbarbarianclanransomed">StrategicAudio::OnBarbarianClanRansomed</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onposttourismbomb">StrategicAudio::OnPostTourismBomb</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onunitairlifted">StrategicAudio::OnUnitAirlifted</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onunitjumped">StrategicAudio::OnUnitJumped</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onunitkilledincombat">StrategicAudio::OnUnitKilledInCombat</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#strategicaudio__onunitselected">StrategicAudio::OnUnitSelected</a></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#uiaudio__startup">UIAudio::Startup</a></td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="strategicaudio__startupstrategygame"></a>StrategicAudio::StartupStrategyGame</h2>
+<p>Names the strategic audio system registers at game start: unit, city and district sounds (<code>_2D</code> suffix: sounds without a world position).</p>
+<details>
+<summary>63 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-ancient_era"></a><code>ANCIENT_ERA</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-barbarian_unit_revealed"></a><code>BARBARIAN_UNIT_REVEALED</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-builder_buildimprovement_water_2d"></a><code>BUILDER_BUILDIMPROVEMENT_WATER_2D</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-break_formation"></a><code>Break_Formation</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-build_city"></a><code>Build_City</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-build_improvement_2d"></a><code>Build_Improvement_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-builder_buildimprovement_water"></a><code>Builder_BuildImprovement_Water</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-builder_buildimprovement_water_2d"></a><code>Builder_BuildImprovement_Water_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-city_attack_2d"></a><code>CITY_ATTACK_2D</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-civilization"></a><code>CIVILIZATION</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-claimgreatperson"></a><code>ClaimGreatPerson</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-create_army"></a><code>Create_Army</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-create_corps"></a><code>Create_Corps</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-create_formation"></a><code>Create_Formation</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-flagellant_2d_purge"></a><code>Flagellant_2D_Purge</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-game_location"></a><code>GAME_LOCATION</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-game_views"></a><code>GAME_VIEWS</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-gdr_2d_jump"></a><code>GDR_2D_Jump</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-great_person_activate"></a><code>Great_Person_Activate</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-normal_view"></a><code>NORMAL_VIEW</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_discover_barbarians"></a><code>Notification_Discover_Barbarians</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_discover_natural_wonder"></a><code>Notification_Discover_Natural_Wonder</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_discover_ruins"></a><code>Notification_Discover_Ruins</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_discover_ruins_royale"></a><code>Notification_Discover_Ruins_Royale</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_new_policy"></a><code>Notification_New_Policy</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_new_production"></a><code>Notification_New_Production</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_new_tech"></a><code>Notification_New_Tech</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_other_civ_build_wonder"></a><code>Notification_Other_Civ_Build_Wonder</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_player_build_wonder"></a><code>Notification_Player_Build_Wonder</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_unit_death"></a><code>Notification_Unit_Death</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-notification_war_declared"></a><code>Notification_War_Declared</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-nuke_attack_2d"></a><code>Nuke_Attack_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-nuke_attack_smaller_2d"></a><code>Nuke_Attack_Smaller_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-opponent_civ_unit_revealed"></a><code>Opponent_Civ_Unit_Revealed</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-plaguedoctor_2d_minister"></a><code>PlagueDoctor_2D_Minister</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-plaguedoctor_2d_pacify"></a><code>PlagueDoctor_2D_Pacify</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-play_combat_snippets"></a><code>Play_Combat_Snippets</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-play_leader_music"></a><code>Play_Leader_Music</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-play_rockband"></a><code>Play_RockBand</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-player_unit_captured"></a><code>Player_Unit_Captured</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-repair_improvement_2d"></a><code>Repair_Improvement_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-rockband_cleveland"></a><code>RockBand_Cleveland</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-rockband_success"></a><code>RockBand_Success</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-scholar_2d_study"></a><code>Scholar_2D_Study</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-trigger_barbarian_raid_at_borders"></a><code>TRIGGER_BARBARIAN_RAID_AT_BORDERS</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-trigger_barbarian_spotted_player"></a><code>TRIGGER_BARBARIAN_SPOTTED_PLAYER</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-ui_lens_off"></a><code>UI_Lens_Off</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-ui_lens_on"></a><code>UI_Lens_On</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_death_2d"></a><code>UNIT_DEATH_2D</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_pillage_2d"></a><code>UNIT_PILLAGE_2D</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_pillage_3d"></a><code>UNIT_PILLAGE_3D</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_promotion_available"></a><code>UNIT_PROMOTION_AVAILABLE</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_attack_2d"></a><code>Unit_Attack_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_combat_lose_2d"></a><code>Unit_Combat_Lose_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_combat_lose_3d"></a><code>Unit_Combat_Lose_3D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_combat_win_2d"></a><code>Unit_Combat_Win_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_combat_win_3d"></a><code>Unit_Combat_Win_3D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_disembark_2d"></a><code>Unit_Disembark_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_embark_2d"></a><code>Unit_Embark_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_fortify"></a><code>Unit_Fortify</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_move_2d"></a><code>Unit_Move_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_promoted"></a><code>Unit_Promoted</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__startupstrategygame-unit_selected"></a><code>Unit_Selected</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audiominer__artdefinitions__configurefromartdefs"></a>AudioMiner::ArtDefinitions::ConfigureFromArtDefs</h2>
+<details>
+<summary>22 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-ambplay"></a><code>AmbPlay</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-ambstop"></a><code>AmbStop</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-audio"></a><code>Audio</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-civilization"></a><code>Civilization</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-civilizations"></a><code>Civilizations</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-dawnname"></a><code>DawnName</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-district"></a><code>District</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-districts"></a><code>Districts</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-feature"></a><code>Feature</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-features"></a><code>Features</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-goodyhut"></a><code>GoodyHut</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-goodyhuts"></a><code>GoodyHuts</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-improvement"></a><code>Improvement</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-improvements"></a><code>Improvements</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-leaders"></a><code>Leaders</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-resource"></a><code>Resource</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-resources"></a><code>Resources</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-subtype"></a><code>SubType</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-terrain"></a><code>Terrain</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-terrains"></a><code>Terrains</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-units"></a><code>Units</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__artdefinitions__configurefromartdefs-xrefname"></a><code>XrefName</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onunitcommandstarted"></a>StrategicAudio::OnUnitCommandStarted</h2>
+<details>
+<summary>22 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-anansi_tricks_2d"></a><code>Anansi_Tricks_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-arthur_accolades_2d"></a><code>Arthur_Accolades_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-beowulf_challenge_2d"></a><code>Beowulf_Challenge_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-hercules_labor_2d"></a><code>Hercules_Labor_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-hercules_rage_2d"></a><code>Hercules_Rage_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-himiko_rule_2d"></a><code>Himiko_Rule_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-hippolyta_command_2d"></a><code>Hippolyta_Command_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-maui_invention_2d"></a><code>Maui_Invention_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_bring_her_home_2d"></a><code>Pirates_Bring_Her_Home_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_bury_treasure_2d"></a><code>Pirates_Bury_Treasure_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_capture_boat_2d"></a><code>Pirates_Capture_Boat_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_careening_2d"></a><code>Pirates_Careening_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_chain_shot_2d"></a><code>Pirates_Chain_Shot_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_shore_party_disembark_2d"></a><code>Pirates_Shore_Party_Disembark_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_shore_party_embark_2d"></a><code>Pirates_Shore_Party_Embark_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_tack_into_wind_2d"></a><code>Pirates_Tack_Into_Wind_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_visit_tavern_2d"></a><code>Pirates_Visit_Tavern_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-pirates_walk_the_plank_2d"></a><code>Pirates_Walk_The_Plank_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-scoutdogpet_2d"></a><code>ScoutDogPet_2D</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-sinbad_fortunes_2d"></a><code>Sinbad_Fortunes_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-zombie_releasecontrol"></a><code>Zombie_ReleaseControl</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitcommandstarted-zombie_releasecontrol_2d"></a><code>Zombie_ReleaseControl_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="ambientaudio__startup"></a>AmbientAudio::Startup</h2>
+<p>Music playlists, music state names and the era and view state groups of the ambient audio system.</p>
+<details>
+<summary>19 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ambientaudio__startup-ancient_era"></a><code>ANCIENT_ERA</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-civilization"></a><code>CIVILIZATION</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-end_music_snippet"></a><code>End_Music_Snippet</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-envirobedobject"></a><code>EnviroBedObject</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-game_location"></a><code>GAME_LOCATION</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-game_views"></a><code>GAME_VIEWS</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-game_music_playlist"></a><code>Game_Music_Playlist</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-game_start_music"></a><code>Game_Start_Music</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-industrial_era"></a><code>INDUSTRIAL_ERA</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-medieval_era"></a><code>MEDIEVAL_ERA</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-modern_era"></a><code>MODERN_ERA</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-normal_view"></a><code>NORMAL_VIEW</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-play_map_ambience"></a><code>Play_Map_Ambience</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-play_map_ambience_royale"></a><code>Play_Map_Ambience_Royale</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-play_menu_music"></a><code>Play_Menu_Music</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-play_silence"></a><code>Play_Silence</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-stop_ingame_music"></a><code>Stop_Ingame_Music</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-stop_map_ambience"></a><code>Stop_Map_Ambience</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startup-stop_silence"></a><code>Stop_Silence</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audiominer__recalculateterrainvisibility"></a>AudioMiner::RecalculateTerrainVisibility</h2>
+<p>Ambience categories the audio miner derives from what is visible on the map (terrain, features, improvements).</p>
+<details>
+<summary>14 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-auto_"></a><code>AUTO_</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-audiominer_recalcterrainvisibility"></a><code>AudioMiner_RecalcTerrainVisibility</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-barbariancamp"></a><code>BarbarianCamp</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-coast"></a><code>Coast</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-desert"></a><code>Desert</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-fishingboat"></a><code>FishingBoat</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-game_location"></a><code>GAME_LOCATION</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-golfcourse"></a><code>GolfCourse</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-goodyhut"></a><code>GoodyHut</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-hockeyrink"></a><code>HockeyRink</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-nileriver"></a><code>NileRiver</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-nubianpyramid"></a><code>NubianPyramid</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-ocean"></a><code>Ocean</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__recalculateterrainvisibility-tundra"></a><code>Tundra</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="civ6audio__publishsettingstelemetry"></a>Civ6Audio::PublishSettingsTelemetry</h2>
+<p>Names of the audio settings reported in the telemetry options event.</p>
+<details open="open">
+<summary>9 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-ambiencevolume"></a><code>AmbienceVolume</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-audiooptions"></a><code>AudioOptions</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-mastervolume"></a><code>MasterVolume</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-musicvolume"></a><code>MusicVolume</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-muteonfocusloss"></a><code>MuteOnFocusLoss</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-options"></a><code>Options</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-sfxvolume"></a><code>SFXVolume</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-session"></a><code>Session</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="civ6audio__publishsettingstelemetry-speechvolume"></a><code>SpeechVolume</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="civ6audio__registeroptions"></a>Civ6Audio::RegisterOptions</h2>
+<p>The audio options (<code>SoundOpts.txt</code>): one volume per Wwise bus, registered here.</p>
+<details open="open">
+<summary>6 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="civ6audio__registeroptions-ambience_bus_volume"></a><code>AMBIENCE_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="civ6audio__registeroptions-gamemaster_bus_volume"></a><code>GAMEMASTER_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="civ6audio__registeroptions-master_music_bus_volume"></a><code>MASTER_MUSIC_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="civ6audio__registeroptions-master_sfx_bus_volume"></a><code>MASTER_SFX_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="civ6audio__registeroptions-master_speech_bus_volume"></a><code>MASTER_SPEECH_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="civ6audio__registeroptions-sound"></a><code>Sound</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="appluaoptionslibrary__lsetaudiooption"></a>AppLuaOptionsLibrary::lSetAudioOption</h2>
+<p><code>Options.SetAudioOption</code> accepts these bus names.</p>
+<details open="open">
+<summary>5 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="appluaoptionslibrary__lsetaudiooption-ambience_bus_volume"></a><code>AMBIENCE_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="appluaoptionslibrary__lsetaudiooption-gamemaster_bus_volume"></a><code>GAMEMASTER_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="appluaoptionslibrary__lsetaudiooption-master_music_bus_volume"></a><code>MASTER_MUSIC_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="appluaoptionslibrary__lsetaudiooption-master_sfx_bus_volume"></a><code>MASTER_SFX_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="appluaoptionslibrary__lsetaudiooption-master_speech_bus_volume"></a><code>MASTER_SPEECH_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audio__readsoundbankxml"></a>Audio::ReadSoundBankXML</h2>
+<p>Element names of a sound bank description file (<code>SoundBanks</code>, <code>SoundBank</code>, <code>IncludedEvents</code>, <code>Event</code>).</p>
+<details open="open">
+<summary>4 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audio__readsoundbankxml-event"></a><code>Event</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audio__readsoundbankxml-includedevents"></a><code>IncludedEvents</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audio__readsoundbankxml-soundbank"></a><code>SoundBank</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audio__readsoundbankxml-soundbanks"></a><code>SoundBanks</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__oncombat"></a>StrategicAudio::OnCombat</h2>
+<details open="open">
+<summary>4 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__oncombat-nuke_attack_2d_"></a><code>Nuke_Attack_2D_</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__oncombat-nuke_attack_smaller_2d_"></a><code>Nuke_Attack_Smaller_2D_</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__oncombat-unit_attack_2d_"></a><code>Unit_Attack_2D_</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__oncombat-wmd_thermonuclear_device"></a><code>WMD_THERMONUCLEAR_DEVICE</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="ambientaudio__startupstrategygame"></a>AmbientAudio::StartupStrategyGame</h2>
+<p>Per-civilization music override and playlist randomisation used when a game starts.</p>
+<details open="open">
+<summary>3 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ambientaudio__startupstrategygame-civilizationtype"></a><code>CivilizationType</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startupstrategygame-musicoverride"></a><code>MusicOverride</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="ambientaudio__startupstrategygame-playlist_randomize_all_eras"></a><code>PLAYLIST_RANDOMIZE_ALL_ERAS</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audio__readsoundbankini"></a>Audio::ReadSoundBankINI</h2>
+<p>Section names of <code>Banks.ini</code>: <code>Global</code> banks are loaded always, <code>InGame</code> banks while a game runs.</p>
+<details open="open">
+<summary>3 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audio__readsoundbankini-global"></a><code>Global</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audio__readsoundbankini-ingame"></a><code>InGame</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audio__readsoundbankini-invalidsection"></a><code>InvalidSection</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="applualocalelibrary__lgetaudiolanguages"></a>AppLuaLocaleLibrary::lGetAudioLanguages</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="applualocalelibrary__lgetaudiolanguages-audiolanguage"></a><code>AudioLanguage</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="applualocalelibrary__lgetaudiolanguages-locale"></a><code>Locale</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audiominer__onimprovementaddedtomap"></a>AudioMiner::OnImprovementAddedToMap</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audiominer__onimprovementaddedtomap-coast"></a><code>Coast</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__onimprovementaddedtomap-ocean"></a><code>Ocean</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audiominer__onunitaddedtomap"></a>AudioMiner::OnUnitAddedToMap</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audiominer__onunitaddedtomap-unit_combat_lose_2d_"></a><code>Unit_Combat_Lose_2D_</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="audiominer__onunitaddedtomap-unit_death_2d_"></a><code>Unit_Death_2D_</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audiominer__startupstrategygame"></a>AudioMiner::StartupStrategyGame</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audiominer__startupstrategygame-ruleset_scenario_civ_royale"></a><code>RULESET_SCENARIO_CIV_ROYALE</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="audiominer__startupstrategygame-ruleset_scenario_pirates"></a><code>RULESET_SCENARIO_PIRATES</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onimprovementaddedtomap"></a>StrategicAudio::OnImprovementAddedToMap</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onimprovementaddedtomap-improvement_feitoria"></a><code>IMPROVEMENT_FEITORIA</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onimprovementaddedtomap-improvement_industry"></a><code>IMPROVEMENT_INDUSTRY</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onunitembarkedstatechanged"></a>StrategicAudio::OnUnitEmbarkedStateChanged</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onunitembarkedstatechanged-unit_disembark_2d_"></a><code>Unit_Disembark_2D_</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitembarkedstatechanged-unit_embark_2d_"></a><code>Unit_Embark_2D_</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onunitoperationstarted"></a>StrategicAudio::OnUnitOperationStarted</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onunitoperationstarted-coast"></a><code>Coast</code></td>
+<td>other name</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__onunitoperationstarted-ocean"></a><code>Ocean</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__shutdownstrategygame"></a>StrategicAudio::ShutdownStrategyGame</h2>
+<details open="open">
+<summary>2 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__shutdownstrategygame-stop_advisor_speech_all"></a><code>STOP_ADVISOR_SPEECH_ALL</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+<tr>
+<td><a id="strategicaudio__shutdownstrategygame-stop_all_units"></a><code>Stop_All_Units</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="ambientaudio__onlocalplayerturnbegin"></a>AmbientAudio::OnLocalPlayerTurnBegin</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ambientaudio__onlocalplayerturnbegin-safezonephase"></a><code>SafeZonePhase</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="ambientaudio__onplayerdestroyed"></a>AmbientAudio::OnPlayerDestroyed</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ambientaudio__onplayerdestroyed-notification_player_eliminated"></a><code>Notification_Player_Eliminated</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="ambientaudio__startstopmenumusic"></a>AmbientAudio::StartStopMenuMusic</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="ambientaudio__startstopmenumusic-stop_main_menu_music"></a><code>Stop_Main_Menu_Music</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audiominer__onfeatureaddedtomap"></a>AudioMiner::OnFeatureAddedToMap</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audiominer__onfeatureaddedtomap-auto_"></a><code>AUTO_</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="audiominer__onunitsimpositionchanged"></a>AudioMiner::OnUnitSimPositionChanged</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="audiominer__onunitsimpositionchanged-stop_unit_move_2d_"></a><code>Stop_Unit_Move_2D_</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="civ6audio__appactivated"></a>Civ6Audio::AppActivated</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="civ6audio__appactivated-gamemaster_bus_volume"></a><code>GAMEMASTER_BUS_VOLUME</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="fgxmodelframework__timelineset__trigger__triggerdata__sounddata__gettypeinfo"></a>FGXModelFramework::TimelineSet::Trigger::TriggerData::SoundData::GetTypeInfo</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="fgxmodelframework__timelineset__trigger__triggerdata__sounddata__gettypeinfo-fxnamehash"></a><code>FXNameHash</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onbarbarianclanbribed"></a>StrategicAudio::OnBarbarianClanBribed</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onbarbarianclanbribed-barbarianclan_bribe_2d"></a><code>BarbarianClan_Bribe_2D</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onbarbarianclandispersed"></a>StrategicAudio::OnBarbarianClanDispersed</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onbarbarianclandispersed-barbarianclan_disperse_2d"></a><code>BarbarianClan_Disperse_2D</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onbarbarianclanhired"></a>StrategicAudio::OnBarbarianClanHired</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onbarbarianclanhired-barbarianclan_hire_2d"></a><code>BarbarianClan_Hire_2D</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onbarbarianclanincited"></a>StrategicAudio::OnBarbarianClanIncited</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onbarbarianclanincited-barbarianclan_incite_2d"></a><code>BarbarianClan_Incite_2D</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onbarbarianclanraided"></a>StrategicAudio::OnBarbarianClanRaided</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onbarbarianclanraided-barbarianclan_raid_2d"></a><code>BarbarianClan_Raid_2D</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onbarbarianclanransomed"></a>StrategicAudio::OnBarbarianClanRansomed</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onbarbarianclanransomed-barbarianclan_ransom_2d"></a><code>BarbarianClan_Ransom_2D</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onposttourismbomb"></a>StrategicAudio::OnPostTourismBomb</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onposttourismbomb-loc_city_name_cleveland"></a><code>LOC_CITY_NAME_CLEVELAND</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onunitairlifted"></a>StrategicAudio::OnUnitAirlifted</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onunitairlifted-unit_airlift"></a><code>Unit_Airlift</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onunitjumped"></a>StrategicAudio::OnUnitJumped</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onunitjumped-unit_giant_death_robot"></a><code>UNIT_GIANT_DEATH_ROBOT</code></td>
+<td>UPPER_CASE (state, switch, parameter or enum value)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onunitkilledincombat"></a>StrategicAudio::OnUnitKilledInCombat</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onunitkilledincombat-pirates_sink_enemy_2d"></a><code>Pirates_Sink_Enemy_2D</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="strategicaudio__onunitselected"></a>StrategicAudio::OnUnitSelected</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="strategicaudio__onunitselected-unit_selected_"></a><code>Unit_Selected_</code></td>
+<td>other name</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2><a id="uiaudio__startup"></a>UIAudio::Startup</h2>
+<details open="open">
+<summary>1 names</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="uiaudio__startup-play_ui_click"></a><code>Play_UI_Click</code></td>
+<td>Event-style name (words joined by underscores)</td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

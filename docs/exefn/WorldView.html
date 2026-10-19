@@ -1,0 +1,2881 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>WorldView</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › WorldView</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>WorldView</h1>
+<p>The 3D map renderer: terrain, landmarks, units, clutter, water, cameras.</p>
+<p>2409 functions in this category, 337 with a Windows address (271 high or medium confidence or exported, 66 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WorldView::DynamicSystem::System::System()</code></td>
+<td><code>0xb100</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3339dc0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 40 (AddNumberToPathData)</code></td>
+<td><code>0x53f460</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 40</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 281 (BarbarianClanHired_EventData)</code></td>
+<td><code>0x53f5c0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 281 BARBARIAN_CLAN_HIRED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 280 (BarbarianClanRaided_EventData)</code></td>
+<td><code>0x53f640</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 280 BARBARIAN_CLAN_RAIDED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 283 (BarbarianClanRansomed_EventData)</code></td>
+<td><code>0x53f680</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 283 BARBARIAN_CLAN_RANSOMED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 279 (BarbarianClanDispersed_EventData)</code></td>
+<td><code>0x53f6c0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 279 BARBARIAN_CLAN_DISPERSED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 282 (BarbarianClanBribed_EventData)</code></td>
+<td><code>0x53f700</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 282 BARBARIAN_CLAN_BRIBED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 18 (Events)</code></td>
+<td><code>0x53f740</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 18 TEAM_VICTORY</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 165 (BuildingAddedToMap_EventData)</code></td>
+<td><code>0x53f7c0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 165 BUILDING_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 169 (BuildingBuildProgress_EventData)</code></td>
+<td><code>0x53fa10</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 169 BUILDING_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 166 (Building_EventData)</code></td>
+<td><code>0x53fbd0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 166 BUILDING_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 171 (BuildingEffect_EventData)</code></td>
+<td><code>0x53fc20</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 171 BUILDING_EFFECT_ADDED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 170 (BuildingPillaged_EventData)</code></td>
+<td><code>0x53fc40</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 170 BUILDING_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 168 (Building_IDData)</code></td>
+<td><code>0x53fd00</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 168 BUILDING_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 167 (BuildingVisibilityChanged_EventData)</code></td>
+<td><code>0x53fe40</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 167 BUILDING_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 50 (CameraAnimationID)</code></td>
+<td><code>0x53ffa0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 50 UNIT_SACRIFICED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 87 (CityAddedToMap_EventData)</code></td>
+<td><code>0x53ffd0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 87 CITY_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 102 (CityPopulationChanged_EventData)</code></td>
+<td><code>0x540010</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 102 CITY_POPULATION_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 100 (CityProjectCompleted_EventData)</code></td>
+<td><code>0x540040</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 100 CITY_PRODUCTION_COMPLETED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 90 (City_EventData)</code></td>
+<td><code>0x5400d0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 90 CITY_PROPERTY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 93 (City_EventData)</code></td>
+<td><code>0x540250</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 93 CITY_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 107 (CityAndPosition_EventData)</code></td>
+<td><code>0x5403e0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 107 CITY_TILE_OWNERSHIP_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 65 (CombatVisData)</code></td>
+<td><code>0x540450</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 65 UNIT_ABILITY_GAINED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 66 (CombatVisData)</code></td>
+<td><code>0x540520</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 66 UNIT_ABILITY_LOST</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 16 (CombatVisibiltyChangedData)</code></td>
+<td><code>0x5405f0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 16 PLAYER_TURN_DEACTIVATED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 23 (DisableColorKeyData)</code></td>
+<td><code>0x544690</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 23 UNIT_MOVED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 156 (DistrictAddedToMap_EventData)</code></td>
+<td><code>0x5446a0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 156 DISTRICT_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 162 (DistrictBuildingRestore_EventData)</code></td>
+<td><code>0x544840</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 162 DISTRICT_BUILDING_RESTORE</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 157 (DistrictChanged_EventData)</code></td>
+<td><code>0x544bd0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 157 DISTRICT_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 159 (DistrictDamageChanged_EventData)</code></td>
+<td><code>0x544ca0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 159 DISTRICT_DAMAGE_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 160 (District_EventData)</code></td>
+<td><code>0x544cf0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 160 DISTRICT_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 315 (Drought_EventData)</code></td>
+<td><code>0x544de0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 315 DROUGHT_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 22 (EnableColorKeyData)</code></td>
+<td><code>0x544e40</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 22 UNIT_TELEPORTED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 19 (Events)</code></td>
+<td><code>0x544e60</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 19 PLAYER_RESTORED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 116 (FeatureAddedToMap_EventData)</code></td>
+<td><code>0x544eb0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 116 FEATURE_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 119 (Plot_EventData)</code></td>
+<td><code>0x544fa0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 119 FEATURE_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 118 (FeatureVisibilityChanged_EventData)</code></td>
+<td><code>0x545020</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 118 FEATURE_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 144 (Improvement_EventData)</code></td>
+<td><code>0x545120</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 144 IMPROVEMENT_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 143 (Improvement_EventData)</code></td>
+<td><code>0x545310</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 143 IMPROVEMENT_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 146 (ImprovementRemovedFromMap_EventData)</code></td>
+<td><code>0x5455f0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 146 IMPROVEMENT_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 145 (ImprovementVisibilityChanged_EventData)</code></td>
+<td><code>0x545710</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 145 IMPROVEMENT_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 26 (LensAdjacentBonusDistictData)</code></td>
+<td><code>0x5458e0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 26 UNIT_MOVEMENT_POINTS_CLEARED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 25 (LensBonusDistictData)</code></td>
+<td><code>0x5458f0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 25 UNIT_MOVEMENT_POINTS_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 28 (LensClearData)</code></td>
+<td><code>0x545900</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 28 UNIT_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 31 (LensFocusHexData)</code></td>
+<td><code>0x545b80</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 31 UNIT_KILLED_BY_FALLOUT</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 30 (LensToggleData)</code></td>
+<td><code>0x545bf0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 30 UNIT_KILLED_IN_COMBAT</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 29 (LensToggleData)</code></td>
+<td><code>0x545c80</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 29 UNIT_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 32 (LensFocusHexData)</code></td>
+<td><code>0x545d10</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 32 UNIT_KILLED_LIFESPAN_EXPIRED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 43 (GenericData)</code></td>
+<td><code>0x545d80</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 43 UNIT_FORTIFICATION_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 42 (LensUpdateGrowthHexData)</code></td>
+<td><code>0x545d90</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 42 UNIT_FORM_ARMY</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 274 (Player_EventData)</code></td>
+<td><code>0x545da0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 274 LOCAL_PLAYER_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 244 (NationalParkAdded_EventData)</code></td>
+<td><code>0x545e80</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 244 NATIONAL_PARK_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 245 (NationalParkRemoved_EventData)</code></td>
+<td><code>0x545f20</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 245 NationalParkRemoved</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 246 (NationalParkVisibilityChanged_EventData)</code></td>
+<td><code>0x545fb0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 246 NATIONAL_PARK_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 41 (NaturalWonderRevealData)</code></td>
+<td><code>0x5460f0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 41 UNIT_FORM_CORPS</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 45 (StartCameraAnimationAtHexData)</code></td>
+<td><code>0x5461e0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 45 UNIT_PROMOTED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 46 (StartCameraAnimationAtPosData)</code></td>
+<td><code>0x546290</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 46 UNIT_CHARGES_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 192 (CivicCompleted_EventData)</code></td>
+<td><code>0x546440</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 192 CIVIC_COMPLETED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 265 (PlayerEraChanged_EventData)</code></td>
+<td><code>0x546470</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 265 PLAYER_ERA_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 188 (ResearchCompleted_EventData)</code></td>
+<td><code>0x5464e0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 188 RESEARCH_COMPLETED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 183 (PlotAppealChanged_EventData)</code></td>
+<td><code>0x546510</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 183 APPEAL_CHANGED_NEAR</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 180 (PlotOwnershipChanged_EventData)</code></td>
+<td><code>0x546550</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 180 PLOT_OWNERSHIP_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 184 (Plot_EventData)</code></td>
+<td><code>0x5465b0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 184 PLOT_PROPERTY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 181 (PlotVisibilityChanged_EventData)</code></td>
+<td><code>0x546620</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 181 PLOT_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 287 (Plot_EventData)</code></td>
+<td><code>0x546830</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 287 PLOT_YIELD_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 139 (ResourceChanged_EventData)</code></td>
+<td><code>0x5468a0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 139 RESOURCE_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 138 (ResourceAddedToMap_EventData)</code></td>
+<td><code>0x5468d0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 138 RESOURCE_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 141 (Plot_EventData)</code></td>
+<td><code>0x546950</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 141 RESOURCE_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 140 (ResourceVisibilityChanged_EventData)</code></td>
+<td><code>0x5469d0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 140 RESOURCE_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 20 (Events)</code></td>
+<td><code>0x546ad0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 20 PLAYER_INTRODUCED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 153 (Route_EventData)</code></td>
+<td><code>0x546af0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 153 ROUTE_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 152 (Route_EventData)</code></td>
+<td><code>0x546b70</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 152 ROUTE_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 155 (Plot_EventData)</code></td>
+<td><code>0x546bf0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 155 ROUTE_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 154 (RouteVisibilityChanged_EventData)</code></td>
+<td><code>0x546c30</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 154 ROUTE_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 48 (Events)</code></td>
+<td><code>0x546d40</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 48 UNIT_AIRLIFTED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 47 (CameraAnimationID)</code></td>
+<td><code>0x546d50</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 47 UNIT_UPGRADED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 312 (Storm_EventData)</code></td>
+<td><code>0x546df0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 312 STORM_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 314 (StormChanged_EventData)</code></td>
+<td><code>0x546ea0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 314 STORM_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 313 (Storm_EventData)</code></td>
+<td><code>0x546f80</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 313 STORM_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 151 (TerrainStateChanged_EventData)</code></td>
+<td><code>0x547000</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 151 TERRAIN_STATE_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 65 (UnitAbilityGained_EventData)</code></td>
+<td><code>0x547210</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 65 UNIT_ABILITY_GAINED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 66 (UnitAbilityLost_EventData)</code></td>
+<td><code>0x5472d0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 66 UNIT_ABILITY_LOST</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 73 (UnitActivate_EventData)</code></td>
+<td><code>0x547390</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 73 UNIT_ACTIVATE</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 28 (UnitAddedToMap_EventData)</code></td>
+<td><code>0x547570</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 28 UNIT_ADDED_TO_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 61 (UnitAreaHeal_EventData)</code></td>
+<td><code>0x547860</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 61 UNIT_AREA_HEAL</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 60 (UnitAreaDamage_EventData)</code></td>
+<td><code>0x547910</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 60 UNIT_AREA_DAMAGE</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 46 (UnitChargesChanged_EventData)</code></td>
+<td><code>0x5479a0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 46 UNIT_CHARGES_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 59 (UnitRestoreMovement_EventData)</code></td>
+<td><code>0x5479e0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 59 UNIT_RESTORE_UNIT_MOVES</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 33 (UnitDamageChanged_EventData)</code></td>
+<td><code>0x547a70</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 33 UNIT_DAMAGE_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 55 (UnitDestroyDevelopment_EventData)</code></td>
+<td><code>0x547ac0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 55 UNIT_DESTROY_DEVELOPMENT</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 38 (Unit_Formation_EventData)</code></td>
+<td><code>0x547c80</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 38 UNIT_ENTER_FORMATION</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 39 (Unit_Formation_EventData)</code></td>
+<td><code>0x547cd0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 39 UNIT_EXIT_FORMATION / UNIT_FORMATION_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 56 (UnitForceLevyMilitary_EventData)</code></td>
+<td><code>0x547d20</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 56 UNIT_FORCE_LEVY_MILITARY</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 42 (Unit_EventData)</code></td>
+<td><code>0x547ee0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 42 UNIT_FORM_ARMY</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 41 (Unit_EventData)</code></td>
+<td><code>0x547f60</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 41 UNIT_FORM_CORPS</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 57 (UnitGrantEnvoy_EventData)</code></td>
+<td><code>0x547fe0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 57 UNIT_GRANT_ENVOY</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 77 (UnitGreatPerson_EventData)</code></td>
+<td><code>0x548070</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 77 UNIT_GREATPERSON_ACTIVATED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 51 (UnitHeroActivated_EventData)</code></td>
+<td><code>0x5481a0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 51 UNIT_HERO_ACTIVATED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 54 (UnitKillWeakerUnit_EventData)</code></td>
+<td><code>0x548350</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 54 UNIT_KILL_WEAKER_UNIT</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 58 (UnitNavalGoldRaid_EventData)</code></td>
+<td><code>0x5483e0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 58 UNIT_NAVAL_GOLD_RAID</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 49 (UnitAirlifted_EventData)</code></td>
+<td><code>0x5485c0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 49 UNIT_PARADROPPED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 17 (StartUnitCinematicData)</code></td>
+<td><code>0x5487b0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 17 PLAYER_TURN_COMPLETE_IGNORED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 45 (UnitPromoted_EventData)</code></td>
+<td><code>0x548a40</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 45 UNIT_PROMOTED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 29 (Unit_EventData)</code></td>
+<td><code>0x548ae0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 29 UNIT_REMOVED_FROM_MAP</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 53 (UnitResourceInspire_EventData)</code></td>
+<td><code>0x548b10</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 53 UNIT_RESOURCE_INSPIRE</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 50 (UnitSacrificed_EventData)</code></td>
+<td><code>0x548c30</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 50 UNIT_SACRIFICED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 1 (UnitSelectionChangedData)</code></td>
+<td><code>0x548ce0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 1</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 15 (UnitSimImprovementChangedData)</code></td>
+<td><code>0x548d00</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 15 PLAYER_TURN_ACTIVATED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 12 (UnitSimPositionChangedData)</code></td>
+<td><code>0x548d30</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 12 REMOTE_PLAYER_TURN_END</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 18 (StopUnitCinematicData)</code></td>
+<td><code>0x548d80</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 18 TEAM_VICTORY</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 36 (UnitVisibilityChanged_EventData)</code></td>
+<td><code>0x548fa0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 36 UNIT_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 36 (LensUpdateData)</code></td>
+<td><code>0x548fe0</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 36 UNIT_VISIBILITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 35 (LensUpdateData)</code></td>
+<td><code>0x549230</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 35 UNIT_ACTIVITY_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 37 (LensSelectedPositionData)</code></td>
+<td><code>0x549270</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 37 UNIT_CAPTURED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 200 (FalloutChanged_EventData)</code></td>
+<td><code>0x549440</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 200 WMD_FALLOUT_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView handler for event 174 (Building_EventData)</code></td>
+<td><code>0x549470</code></td>
+<td>medium</td>
+<td>registration order and size match with the Linux build</td>
+<td>handles GameCore event 174 BUILDING_CHANGED</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WorldView_ConfigureAssets(ArtDefManager&amp;)</code></td>
+<td><code>0x54c530</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3327ff0</code></td>
+<td>976</td>
+</tr>
+<tr>
+<td><code>WorldView_PostLoadUpdate(unsigned int, float)</code></td>
+<td><code>0x54d280</code></td>
+<td>high</td>
+<td>curated (string 'WorldView_PostLoadUpdate')</td>
+<td></td>
+<td><code>0x332ef80</code></td>
+<td>384</td>
+</tr>
+<tr>
+<td><code>WorldView_Render(unsigned int, RenderGlobals::FrameInfo const&amp;, RenderGlobals::WorldInfo const&amp;, FullScreenEffects::BloomMipChain&amp;)</code></td>
+<td><code>0x54d420</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x332f100</code></td>
+<td>11568</td>
+</tr>
+<tr>
+<td><code>WorldView_ShutdownGame()</code></td>
+<td><code>0x550e00</code></td>
+<td>medium</td>
+<td>curated (callees DynGeoManager::Shutdown / DynamicSystem::S…</td>
+<td></td>
+<td><code>0x332ded0</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>WorldView_Startup(unsigned int, RenderGlobals::GraphicsOptions const&amp;, RenderGlobals::SharedSystems const&amp;)</code></td>
+<td><code>0x5510e0</code></td>
+<td>medium</td>
+<td>curated (callee TerrainSystem::Startup, size, '&lt;Null Job Na…</td>
+<td></td>
+<td><code>0x3327460</code></td>
+<td>2480</td>
+</tr>
+<tr>
+<td><code>WorldView_StartupGame(RenderGlobals::GameInfo const&amp;, bool)</code></td>
+<td><code>0x551980</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33287f0</code></td>
+<td>18112</td>
+</tr>
+<tr>
+<td><code>WorldView_Update(unsigned int, RenderGlobals::FrameInfo&amp;, bool)</code></td>
+<td><code>0x5569d0</code></td>
+<td>high</td>
+<td>curated (string 'WorldView_Update' + per-system job names)</td>
+<td></td>
+<td><code>0x332e800</code></td>
+<td>1008</td>
+</tr>
+<tr>
+<td><code>WorldView_UpdateGraphicsOptions(RenderGlobals::GraphicsOptions const&amp;, RenderGlobals::GraphicsOptions const&amp;, RenderGlobals::WorldInfo const*, ArtDef…</code></td>
+<td><code>0x557380</code></td>
+<td>high</td>
+<td>curated (string 'WorldView_UpdateGraphicsOptions')</td>
+<td></td>
+<td><code>0x3332170</code></td>
+<td>880</td>
+</tr>
+<tr>
+<td><code>WorldView::DebugVis::wvdv_console(Events::EventTemplate&lt;15u, UIE_DebugConsoleInput, Events::LinearEventDispatcher, UIEventContainer, Events::NullEven…</code></td>
+<td><code>0x5596c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336a3a0</code></td>
+<td>1504</td>
+</tr>
+<tr>
+<td><code>WorldView::DebugVis::wvdv_draw(unsigned int, RenderGlobals::FrameInfo const&amp;, RenderGlobals::WorldInfo const&amp;, Culler&amp;)</code></td>
+<td><code>0x559d20</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x336a9d0</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>WorldView::DebugVis::wvdv_printusage()</code></td>
+<td><code>0x559e40</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336a2d0</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>WorldView::XRefArtDefTranslator::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x559fa0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336eba0</code></td>
+<td>1904</td>
+</tr>
+<tr>
+<td><code>WorldView::_error::TreeString&lt;false&gt;::TreeString(char const*, unsigned long, ...)</code></td>
+<td><code>0x55a9d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x337c0a0</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>WorldView::_error::TagString::TagString(char const*, char const*, ...)</code></td>
+<td><code>0x55ac30</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x337c2a0</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkInfoLoader&lt;4294967295u&gt;::AddEntryToSet(WorldView::SelectorEntrySet&lt;WorldView::Translate::LandmarkInfo&gt;*, AssetObjects::ArtDefEleme…</code></td>
+<td><code>0x55b7f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3375ea0</code></td>
+<td>368</td>
+</tr>
+<tr>
+<td><code>WorldView::ImprovementLoader::AddEntryToSet(WorldView::SelectorEntrySet&lt;WorldView::Translate::ImprovementInfo&gt;*, AssetObjects::ArtDefElement const&amp;, …</code></td>
+<td><code>0x55bb10</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3377790</code></td>
+<td>384</td>
+</tr>
+<tr>
+<td><code>WorldView::InfoSelector&lt;GameCore::ImprovementTypes, WorldView::ImprovementLoader&gt;::Enumerate(GameCore::Interfaces::IDefinitions1*, AssetObjects::ArtD…</code></td>
+<td><code>0x55d8e0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3373520</code></td>
+<td>1232</td>
+</tr>
+<tr>
+<td><code>WorldView::AppealMap::Enumerate(AssetObjects::ArtDefCollection const*)</code></td>
+<td><code>0x55f560</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3373f20</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>WorldView::BuildingInfoMap::Enumerate(GameCore::Interfaces::IDefinitions1*, AssetObjects::ArtDefCollection const*)</code></td>
+<td><code>0x55f700</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3373b30</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>WorldView::DistrictInfoMap::Enumerate(GameCore::Interfaces::IDefinitions1*, AssetObjects::ArtDefCollection const*)</code></td>
+<td><code>0x55f7e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3373d50</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>WorldView::TermMap::Enumerate(AssetObjects::ArtDefCollection const*)</code></td>
+<td><code>0x55f8c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x33715b0</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>WorldView::AppealMap::Find(int) const</code></td>
+<td><code>0x560fc0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x337bfb0</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>WorldView::Translate::GetBuildingName(unsigned int)</code></td>
+<td><code>0x561180</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336cef0</code></td>
+<td>48</td>
+</tr>
+<tr>
+<td><code>WorldView::Translate::GetCivName(unsigned int)</code></td>
+<td><code>0x5611e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336cf80</code></td>
+<td>48</td>
+</tr>
+<tr>
+<td><code>WorldView::Translate::GetDistrictName(unsigned int)</code></td>
+<td><code>0x561260</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336cf20</code></td>
+<td>48</td>
+</tr>
+<tr>
+<td><code>WorldView::Translate::GetEraName(unsigned int)</code></td>
+<td><code>0x5612c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336cf50</code></td>
+<td>48</td>
+</tr>
+<tr>
+<td><code>WorldView::AppealMap::GetRangeName(unsigned int) const</code></td>
+<td><code>0x561700</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x337c420</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>WorldView::Translate::GetResourceName(unsigned int)</code></td>
+<td><code>0x5617a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x336cfb0</code></td>
+<td>48</td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateTask::AsyncUpdateTask(WorldView::AsyncUpdate::_INTERNAL*)</code></td>
+<td><code>0x5645c0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36fd0e0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateManager::Update(unsigned int, float)</code></td>
+<td><code>0x564840</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x36fd1e0</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>WorldView::BlockerDatabase::ShutdownGame()</code></td>
+<td><code>0x566c40</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x36fd4f0</code></td>
+<td>816</td>
+</tr>
+<tr>
+<td><code>WorldView::CameraAnimationSystem::Startup()</code></td>
+<td><code>0x56b110</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3703950</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::CloudShadows::Context::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x56b490</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3704530</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>WorldView::CloudShadows::Context::SubmitOpacityShadow(unsigned int, unsigned short, unsigned short, RenderGlobals::FrameInfo const&amp;, RenderGlobals::W…</code></td>
+<td><code>0x56b960</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37041a0</code></td>
+<td>912</td>
+</tr>
+<tr>
+<td><code>WorldView::ClutterLayerManager::LogStats()</code></td>
+<td><code>0x56c4c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3705a50</code></td>
+<td>448</td>
+</tr>
+<tr>
+<td><code>WorldView::ClutterSystem::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x56e670</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3709e10</code></td>
+<td>3936</td>
+</tr>
+<tr>
+<td><code>WorldView::ClutterSystem::Context::StartupGame(RenderGlobals::WorldInfo const&amp;, Terrain::Sampler*, FOW::FOWSampler const*, Featureline::Interface, De…</code></td>
+<td><code>0x574280</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3708c40</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>WorldView::ClutterSystem::Context::Update(float)</code></td>
+<td><code>0x574430</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37093b0</code></td>
+<td>1008</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicSystem::System::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x57b5e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3718b60</code></td>
+<td>1216</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicSystem::BufferManager::CreateBuffer(unsigned int, unsigned int, void const*)</code></td>
+<td><code>0x57bca0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3714080</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicSystem::DynGeoManager::Shutdown()</code></td>
+<td><code>0x57ec30</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3717e40</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicSystem::Context::ShutdownGame(unsigned int)</code></td>
+<td><code>0x57edf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3718240</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicSystem::Context::StartupGame(Decal::IDecalSetList&lt;Decal::IDecalSet&lt;Terrain::DecalInstance&gt; &gt;*, Decal::IDecalSetList&lt;Decal::IDecalSe…</code></td>
+<td><code>0x57f250</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37181a0</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicSystem::Context::Update(unsigned int, float)</code></td>
+<td><code>0x57f530</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3718450</code></td>
+<td>656</td>
+</tr>
+<tr>
+<td><code>WorldView::Farm::Context::AsyncUpdate_PostRoutes(unsigned int)</code></td>
+<td><code>0x58a1f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3728510</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>WorldView::Farm::Context::AsyncUpdate_PreRoutes(unsigned int)</code></td>
+<td><code>0x58a4c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3728420</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>WorldView::Farm::System::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x58a610</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3728e90</code></td>
+<td>3200</td>
+</tr>
+<tr>
+<td><code>WorldView::Farm::Context::StartupGame(RenderGlobals::WorldInfo const&amp;, Terrain::Sampler*, Terrain::UpdateGrid const*, FOW::FOWSampler*, WorldView::La…</code></td>
+<td><code>0x590ed0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3728030</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::Context()</code></td>
+<td><code>0x5a25a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x373b5d0</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::Create(unsigned int, FGXVector2, unsigned int)</code></td>
+<td><code>0x5a3310</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x373c780</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::Create(unsigned int, FGXVector3, unsigned int)</code></td>
+<td><code>0x5a33a0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x373c4b0</code></td>
+<td>544</td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::StartupGame(RenderGlobals::WorldInfo const&amp;, Terrain::Sampler*, Decal::IDecalSetList&lt;Decal::IDecalSet&lt;Terrain::Dec…</code></td>
+<td><code>0x5a53e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x373b870</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>WorldView::_error::TreeString&lt;true&gt;::TreeString(char const*, char const*, unsigned long, ...)</code></td>
+<td><code>0x5b63e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3752f20</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>WorldView::_error::TreeString&lt;false&gt;::TreeString(char const*, char const*, unsigned long, ...)</code></td>
+<td><code>0x5b65f0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37539a0</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Loading::ConfigureDistrict(AssetObjects::IArtDefCollectionProvider const&amp;, AssetObjects::ArtDefElement const&amp;, WorldView::Landm…</code></td>
+<td><code>0x5b6a50</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x374fcd0</code></td>
+<td>5760</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Loading::ConfigureGenerator(AssetObjects::IArtDefCollectionProvider const&amp;, AssetObjects::ArtDefElement const&amp;)</code></td>
+<td><code>0x5b80f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x374e3c0</code></td>
+<td>3456</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Loading::ConfigureLandmark(AssetObjects::IArtDefCollectionProvider const&amp;, AssetObjects::ArtDefElement const&amp;, WorldView::Landm…</code></td>
+<td><code>0x5b90d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3751460</code></td>
+<td>1216</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Loading::ConfigureMaterialOverrides(AssetObjects::IArtDefCollectionProvider const&amp;, AssetObjects::ArtDefCollection const*)</code></td>
+<td><code>0x5b95b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x374e0e0</code></td>
+<td>736</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::ADRList::UnpackCivGroup(AssetObjects::ArtDefElement const*)</code></td>
+<td><code>0x5bba80</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x374db00</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::ADRList::UnpackEraGroup(AssetObjects::ArtDefCollection const*, AssetObjects::ArtDefElement const*)</code></td>
+<td><code>0x5bbd50</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x374dd80</code></td>
+<td>784</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Feature_Set(TFGXInt2&lt;int&gt;, GameCore::FeatureTypes, bool)</code></td>
+<td><code>0x5bc8a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3757ea0</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Feature_Visibility(TFGXInt2&lt;int&gt;, RenderGlobals::FOWState, float, float)</code></td>
+<td><code>0x5bc990</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758020</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Improvement_Added(TFGXInt2&lt;int&gt;, GameCore::ImprovementTypes, GameCore::PlayerTypes, GameCore::EraTypes, GameCore::Civiliz…</code></td>
+<td><code>0x5bcc20</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37583a0</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Improvement_Changed(TFGXInt2&lt;int&gt;, GameCore::PlayerTypes, GameCore::EraTypes, GameCore::CivilizationTypes, WorldView::LM_…</code></td>
+<td><code>0x5bcdc0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758730</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Improvement_Removed(TFGXInt2&lt;int&gt;)</code></td>
+<td><code>0x5bcf40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758500</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Improvement_Visibility(TFGXInt2&lt;int&gt;, RenderGlobals::FOWState, float, float)</code></td>
+<td><code>0x5bd050</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37585d0</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Override_Added(TFGXInt2&lt;int&gt;, unsigned int, GameCore::PlayerTypes, GameCore::EraTypes, GameCore::CivilizationTypes, World…</code></td>
+<td><code>0x5bd1d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758850</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Override_Removed(TFGXInt2&lt;int&gt;)</code></td>
+<td><code>0x5bd3a0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758990</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Override_Visibility(TFGXInt2&lt;int&gt;, RenderGlobals::FOWState, float, float)</code></td>
+<td><code>0x5bd4b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758a40</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Plot_StateChanged(TFGXInt2&lt;int&gt;)</code></td>
+<td><code>0x5bd6f0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3757e20</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Resource_Set(TFGXInt2&lt;int&gt;, GameCore::ResourceTypes)</code></td>
+<td><code>0x5bd780</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758180</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Resource_Visibility(TFGXInt2&lt;int&gt;, RenderGlobals::FOWState, float, float)</code></td>
+<td><code>0x5bd860</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3758240</code></td>
+<td>352</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::StartupGame(RenderGlobals::WorldInfo const&amp;, WorldView::LandmarkContext*, WorldView::FenceSystem*, WorldView::ClutterLaye…</code></td>
+<td><code>0x5bdbe0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3757610</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::ArtDef_District::AssertMissing(Types::ArrayWrapper&lt;unsigned int const&gt;, unsigned int, unsigned int, unsigned int) const</code></td>
+<td><code>0x5c6460</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3760c70</code></td>
+<td>624</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::LandmarkArtDefManager::Configure(AssetObjects::IArtDefCollectionProvider const&amp;, CityLibrary const&amp;)</code></td>
+<td><code>0x5c6cd0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3765600</code></td>
+<td>1664</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::LandmarkArtDefManager::FindGenerator(unsigned int) const</code></td>
+<td><code>0x5cbd80</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x37655c0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Sim_Building::RebuildVis(unsigned int, float, WorldView::Landmarks::SimContext const&amp;)</code></td>
+<td><code>0x5d4f60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3760300</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::Sim_Landmark::RebuildVis(unsigned int, WorldView::Landmarks::SimContext const&amp;)</code></td>
+<td><code>0x5d5500</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x375f3f0</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::ArtDef_District::ResolveBuilding(unsigned int) const</code></td>
+<td><code>0x5d8290</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3763a30</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::LandmarkArtDefManager::ResolveDistrict(unsigned int) const</code></td>
+<td><code>0x5d84e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3765520</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::LandmarkArtDefManager::ResolveLandmark(unsigned int) const</code></td>
+<td><code>0x5d8640</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3765480</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::ArtDef_Building::print_error(unsigned int, unsigned int, unsigned int) const</code></td>
+<td><code>0x5dcda0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3764d80</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::ArtDef_Landmark::print_error(unsigned int, unsigned int, unsigned int) const</code></td>
+<td><code>0x5dcea0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3764cf0</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::ArtDef_Generator::resolve_for(unsigned int, unsigned int, unsigned char) const</code></td>
+<td><code>0x5de160</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3764e20</code></td>
+<td>416</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Building_Create(unsigned long, TFGXInt2&lt;int&gt;, unsigned int, WorldView::LM_VIS::StateHash)</code></td>
+<td><code>0x5df8e0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x37720e0</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Building_SetVisibility(unsigned long, TFGXInt2&lt;int&gt;, unsigned int, RenderGlobals::FOWState, float, float)</code></td>
+<td><code>0x5dfde0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3772360</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Debug_ClearVisualizationAt(TFGXInt2&lt;int&gt;)</code></td>
+<td><code>0x5e02b0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3770510</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Debug_GetNameOfTileBaseAt(TFGXInt2&lt;int&gt;) const</code></td>
+<td><code>0x5e06e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3770c70</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Debug_SpoofBuilding(TFGXInt2&lt;int&gt;, unsigned int, unsigned int, unsigned int, WorldView::LM_VIS::StateHash, WorldView::Lan…</code></td>
+<td><code>0x5e09d0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37708d0</code></td>
+<td>704</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Debug_SpoofCity(TFGXInt2&lt;int&gt;, unsigned int, unsigned int, unsigned int)</code></td>
+<td><code>0x5e0da0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37705a0</code></td>
+<td>384</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Debug_SpoofDistrictBase(TFGXInt2&lt;int&gt;, unsigned int, unsigned int, unsigned int, unsigned int, WorldView::LM_VIS::StateHa…</code></td>
+<td><code>0x5e1070</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3770720</code></td>
+<td>432</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::District_ExistsInPlot(unsigned long, TFGXInt2&lt;int&gt;) const</code></td>
+<td><code>0x5e1990</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3772090</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Prop_Changed(TFGXInt2&lt;int&gt;)</code></td>
+<td><code>0x5e3400</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x37714f0</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::StartupGame(RenderGlobals::WorldInfo const&amp;, ModelVisSystem::Context*, FOWMeshVisSystem::Context*, Terrain::Sampler const…</code></td>
+<td><code>0x5e3870</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x376e010</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>WorldView::Routes::RouteArtDefManager::Configure(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x5ee8f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x377f640</code></td>
+<td>1264</td>
+</tr>
+<tr>
+<td><code>WorldView::RouteContext::Route_ResetAllVisibility(unsigned int)</code></td>
+<td><code>0x5fe660</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x378c070</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>WorldView::RouteContext::Route_SetVisibility(unsigned int, TFGXInt2&lt;int&gt;, RenderGlobals::FOWState, float, float)</code></td>
+<td><code>0x5fe760</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x378bfc0</code></td>
+<td>176</td>
+</tr>
+<tr>
+<td><code>WorldView::RouteSystem::Startup(fastdelegate::FastDelegate2&lt;BLP::BigDataEntry*, BLP::IOResult, void&gt;, fastdelegate::FastDelegate1&lt;BLP::BigDataEntry*,…</code></td>
+<td><code>0x5fe8d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x378b620</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>WorldView::RouteContext::StartupGame(RenderGlobals::WorldInfo const&amp;, TFGXInt2&lt;int&gt; const&amp;, WorldView::FeatureGrid const*, Terrain::Sampler const*, F…</code></td>
+<td><code>0x5fe950</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x378b730</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>WorldView::ScriptedArtSystem::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x5ff360</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x378d980</code></td>
+<td>912</td>
+</tr>
+<tr>
+<td><code>WorldView::ScriptedArtSystem::LoadVisGroupOptions(WorldView::ScriptedArtSystem::VisualizationGroup*, AssetObjects::ArtDefCollection const*)</code></td>
+<td><code>0x5ff980</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x378d720</code></td>
+<td>576</td>
+</tr>
+<tr>
+<td><code>WorldView::StormSystem::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x6030f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3793110</code></td>
+<td>848</td>
+</tr>
+<tr>
+<td><code>WorldView::HeightEdit::TerrainEditAsyncJob::TerrainEditAsyncJob()</code></td>
+<td><code>0x607030</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x379d300</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::RebakeCache(bool)</code></td>
+<td><code>0x609be0</code></td>
+<td>high</td>
+<td>curated ('terrain rebake' console string -&gt; call target; se…</td>
+<td></td>
+<td><code>0x37993d0</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::RebuildTerrainEdits()</code></td>
+<td><code>0x609ca0</code></td>
+<td>high</td>
+<td>curated ('terrain rebuild' console string -&gt; call target)</td>
+<td></td>
+<td><code>0x3799490</code></td>
+<td>128</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::Render(unsigned int)</code></td>
+<td><code>0x609cf0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3798ca0</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::SetDebugRenderMode(unsigned char)</code></td>
+<td><code>0x60a570</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3799510</code></td>
+<td>592</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::Startup(WorldView::TerrainContextDescription&amp;, WorldView::TerrainContextDescriptionExt const&amp;, WorldView::TerrainContextOu…</code></td>
+<td><code>0x60aa80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3794a10</code></td>
+<td>9312</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainTileCallback::Init(WorldView::TerrainTileCallback::InitializationParams const&amp;, Terrain::Cell::Init::BlockInitializer*, Terrain::Sa…</code></td>
+<td><code>0x612d70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37a2990</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainTileCallback::Release(Synthesis::Allocator, Synthesis::LogHelper*)</code></td>
+<td><code>0x6133d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37a2e60</code></td>
+<td>832</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicGeometryManager::AddIB(unsigned int)</code></td>
+<td><code>0x613fb0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37a5010</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>WorldView::DynamicGeometryManager::AddVB(unsigned int)</code></td>
+<td><code>0x614120</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37a4f30</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>WorldView::HeightEdit::TerrainEditAsyncJob::Initialize(WorldView::HeightEdit::TerrainEditAsyncJob::Desc const&amp;, Terrain::Sampler*, Decal::VBList cons…</code></td>
+<td><code>0x616220</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37a5870</code></td>
+<td>1120</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Default::Generator::GenerateStructures(WorldView::TerrainStyle::Default::Generator::StructureDesc const&amp;, Synthesis::Allocat…</code></td>
+<td><code>0x61b0c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37b1b50</code></td>
+<td>8480</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::DuneDesertHillsDesc::LoadFromArtDef(WorldView::TerrainStyle::BigDataLoadRequests*, AssetObjects::ArtDefElement const*…</code></td>
+<td><code>0x61f570</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37b0390</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::IceShelfDesc::LoadFromArtDef(WorldView::TerrainStyle::BigDataLoadRequests*, AssetObjects::ArtDefElement const*, fastd…</code></td>
+<td><code>0x61f630</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37b04f0</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::RidgelineMountainDesc::LoadFromArtDef(WorldView::TerrainStyle::BigDataLoadRequests*, AssetObjects::ArtDefElement cons…</code></td>
+<td><code>0x61f700</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37adc50</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardCoastlineDesc::LoadFromArtDef(WorldView::TerrainStyle::BigDataLoadRequests*, AssetObjects::ArtDefElement cons…</code></td>
+<td><code>0x61fa70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ae8d0</code></td>
+<td>2272</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardFlatDesc::LoadFromArtDef(WorldView::TerrainStyle::BigDataLoadRequests*, AssetObjects::ArtDefElement const*, f…</code></td>
+<td><code>0x620310</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ac810</code></td>
+<td>1296</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardHillsDesc::LoadFromArtDef(WorldView::TerrainStyle::Layer::StandardFlatDesc const&amp;, WorldView::TerrainStyle::B…</code></td>
+<td><code>0x6207d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ad670</code></td>
+<td>816</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardRiverDesc::LoadFromArtDef(WorldView::TerrainStyle::BigDataLoadRequests*, AssetObjects::ArtDefElement const*, …</code></td>
+<td><code>0x620ad0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37af530</code></td>
+<td>2096</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardCoastlineDesc::LoadGenerated()</code></td>
+<td><code>0x621f80</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x37ae780</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Default::Desc::LoadTerrainTextureCallback(BLP::BigDataEntry*, BLP::IOResult)</code></td>
+<td><code>0x6240e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37b0c80</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Default::Desc::ReloadFromArtDef_Internal(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x624260</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37b0dd0</code></td>
+<td>1968</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Default::Generator::SetupMapPasses(WorldView::TerrainStyle::Default::Generator::MapPassesDesc const&amp;, Synthesis::Allocator, …</code></td>
+<td><code>0x625e00</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37b3d70</code></td>
+<td>6176</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainSystem::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x6275c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ba480</code></td>
+<td>320</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainSystem::Startup(bool, unsigned int)</code></td>
+<td><code>0x627940</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ba1e0</code></td>
+<td>208</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainView::Startup(WorldView::TerrainViewDescription const&amp;, WorldView::TerrainContext const*)</code></td>
+<td><code>0x628ba0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ba640</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>WorldView::TilebaseSystem::ShutdownGame()</code></td>
+<td><code>0x62b850</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x37bc7d0</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>WorldView::TilebaseSystem::StartupGame(RenderGlobals::WorldInfo const&amp;, WorldView::BlockerDatabase*, ModelVisSystem::Context*, FOWMeshVisSystem::Cont…</code></td>
+<td><code>0x62b890</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37bc740</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitFormation::System::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x62c540</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37bf750</code></td>
+<td>1008</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitMovement::System::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x62d9a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37c0eb0</code></td>
+<td>784</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x6310c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37cc860</code></td>
+<td>7504</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::Context::CreateUnit(unsigned int, unsigned long, TFGXInt2&lt;int&gt;, unsigned int, unsigned int, unsigned int, unsigned int, unsign…</code></td>
+<td><code>0x633770</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37c3d50</code></td>
+<td>928</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::FindAttachments(Types::Vector&lt;WorldView::UnitSystem::UnitAttachmentDesc const*, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;&amp;, char c…</code></td>
+<td><code>0x634860</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37c44a0</code></td>
+<td>1424</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::GetRandomAttachment(Types::Vector&lt;WorldView::UnitSystem::ResolvedAssetAttachment, Types::LinearAlloc::Default&lt;1u, 0u&gt; &gt;&amp;, Worl…</code></td>
+<td><code>0x635a40</code></td>
+<td>medium</td>
+<td>rare-constant anchor</td>
+<td></td>
+<td><code>0x37c4ea0</code></td>
+<td>944</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::Context::GetUnitStateType(unsigned long)</code></td>
+<td><code>0x636dd0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37c8a80</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::Context::SetAllUnitVisibility(unsigned int, bool)</code></td>
+<td><code>0x63c890</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x37c6980</code></td>
+<td>336</td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::Context::SetUnitStateType(unsigned int, unsigned long, GameCore::UnitStateTypes)</code></td>
+<td><code>0x63e4b0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37c8870</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::RiverUpdateAsyncJob::RiverUpdateAsyncJob()</code></td>
+<td><code>0x643980</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37d92f0</code></td>
+<td>144</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::BuildCommandStreams(unsigned int, RenderGlobals::BackBufferInfo const&amp;, WorldView::WaterFrameInfo const&amp;)</code></td>
+<td><code>0x644390</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37dbba0</code></td>
+<td>2288</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::BuildDepthCommandStream(unsigned int, RenderGlobals::BackBufferInfo const&amp;, WorldView::WaterFrameInfo const&amp;)</code></td>
+<td><code>0x644c00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ddfd0</code></td>
+<td>672</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::BuildOverlayCommandStream(unsigned int, WorldView::WaterFrameInfo const&amp;)</code></td>
+<td><code>0x644e60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37dd390</code></td>
+<td>1808</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::BuildReflectionMaskCommandStream(unsigned short, unsigned short, unsigned short, WorldView::WaterFrameInfo const&amp;)</code></td>
+<td><code>0x6453e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37ddaf0</code></td>
+<td>1232</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::BuildTextureArrays(Types::ArrayWrapper&lt;WaterLibraryEntry const*&gt;)</code></td>
+<td><code>0x645920</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37de290</code></td>
+<td>2384</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::ConfigureFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0x646c90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37d9610</code></td>
+<td>928</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::CreateIndexBuffer(unsigned int)</code></td>
+<td><code>0x647130</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37d9420</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::CreateWater(WorldView::WaterSystem::Description const&amp;, unsigned int)</code></td>
+<td><code>0x6472e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37d9a30</code></td>
+<td>976</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::InitWaterMaskResources()</code></td>
+<td><code>0x648b70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37debe0</code></td>
+<td>400</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::RenderMaskTexture(FGXRect, unsigned int)</code></td>
+<td><code>0x6494e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37dc5d0</code></td>
+<td>1360</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::SetHexVisibility(TFGXInt2&lt;int&gt;, bool, float, float)</code></td>
+<td><code>0x64a800</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37dab10</code></td>
+<td>304</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::SetWaterType(TFGXInt2&lt;int&gt;, unsigned int)</code></td>
+<td><code>0x64a960</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37db1f0</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::UpdateVisibility(TFGXInt2&lt;int&gt;)</code></td>
+<td><code>0x64bd20</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x37dac40</code></td>
+<td>608</td>
+</tr>
+<tr>
+<td><code>WorldView::WonderMovieSystem::Context::SetWonderCombatVisibility(unsigned int, unsigned long, TFGXInt2&lt;int&gt;, bool)</code></td>
+<td><code>0x64e650</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x37e53d0</code></td>
+<td>96</td>
+</tr>
+<tr>
+<td><code>WorldView::WonderMovieSystem::Context::StartupGame(RenderGlobals::WorldInfo const&amp;, Terrain::Sampler*, WorldView::BlockerDatabase*, WorldView::Featur…</code></td>
+<td><code>0x64e8b0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x37e46d0</code></td>
+<td>288</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (66, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WorldView_GetGenericObjectContext()</code></td>
+<td><code>0x54cd00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x33325e0</code></td>
+</tr>
+<tr>
+<td><code>WorldView_GetLandmarkContext()</code></td>
+<td><code>0x54cd10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x33325f0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TimeOfDayManager::IsAmbientTODAnimating() const</code></td>
+<td><code>0x54cf40</code></td>
+<td>call-graph propagation</td>
+<td><code>0x333d430</code></td>
+</tr>
+<tr>
+<td><code>WorldView_SetAmbientTimeOfDaySpeed(float)</code></td>
+<td><code>0x550a50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3331fd0</code></td>
+</tr>
+<tr>
+<td><code>WorldView_SetTimeOfDay(float)</code></td>
+<td><code>0x550a70</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3331f80</code></td>
+</tr>
+<tr>
+<td><code>WorldView::Translate::DoesFeatResImprvDependOnThisTerm(CategoryMask, unsigned int)</code></td>
+<td><code>0x55ca80</code></td>
+<td>call-graph propagation</td>
+<td><code>0x336d810</code></td>
+</tr>
+<tr>
+<td><code>WorldView::EnumThesaurus&lt;GameCore::BuildingTypes&gt;::GetAstHash(unsigned int) const</code></td>
+<td><code>0x5613d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x337bc90</code></td>
+</tr>
+<tr>
+<td><code>WorldView::EnumThesaurus&lt;GameCore::CivilizationTypes&gt;::GetAstHash(unsigned int) const</code></td>
+<td><code>0x561410</code></td>
+<td>call-graph propagation</td>
+<td><code>0x337bdd0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateTask::Execute(unsigned int)</code></td>
+<td><code>0x564630</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36fd140</code></td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateManager::IsUpdating()</code></td>
+<td><code>0x5646c0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x36fd1c0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateManager::NeedsAsyncUpdate()</code></td>
+<td><code>0x5646d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x36fd2e0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateManager::ShutdownGame()</code></td>
+<td><code>0x5647c0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x36fd0b0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateTask::Lock()</code></td>
+<td><code>0x564ae0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36fd360</code></td>
+</tr>
+<tr>
+<td><code>WorldView::AsyncUpdateTask::~AsyncUpdateTask()</code></td>
+<td><code>0x5659f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36fd370</code></td>
+</tr>
+<tr>
+<td><code>WorldView::BlockerDatabase::Startup()</code></td>
+<td><code>0x565b90</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36fd390</code></td>
+</tr>
+<tr>
+<td><code>WorldView::BlockerDatabase::Shutdown()</code></td>
+<td><code>0x565bc0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36fd3d0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::BlockerDatabase::CallObjectGeometryDeleters(WorldView::BlockerDatabase::Object*)</code></td>
+<td><code>0x5669c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x36fd4a0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::CameraAnimationSystem::IsCurrentAnimationNameHash(unsigned int)</code></td>
+<td><code>0x56ae60</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3703ae0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::CameraAnimationSystem::IsCurrentAnimationNamed(char const*)</code></td>
+<td><code>0x56ae80</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3703ab0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::CameraAnimationSystem::PlayCameraAnimation(BLP::LibraryAssetEntry*, bool)</code></td>
+<td><code>0x56aeb0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3703c90</code></td>
+</tr>
+<tr>
+<td><code>WorldView::CameraAnimationSystem::PlayCameraAnimation(char const*, bool)</code></td>
+<td><code>0x56aff0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3703dc0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::CloudShadows::Layer::Release()</code></td>
+<td><code>0x56b380</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3704090</code></td>
+</tr>
+<tr>
+<td><code>WorldView::Farm::System::Shutdown()</code></td>
+<td><code>0x58a5d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3728e60</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::DestroyAll(unsigned int)</code></td>
+<td><code>0x5a27c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373b810</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::Destroy(unsigned int, unsigned long)</code></td>
+<td><code>0x5a3c30</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373c7f0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::Find(unsigned long)</code></td>
+<td><code>0x5a3ec0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373c9e0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::FindObjectIDFor(void*) const</code></td>
+<td><code>0x5a4100</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373ca80</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::GetAssetName(int) const</code></td>
+<td><code>0x5a4160</code></td>
+<td>call-graph propagation</td>
+<td><code>0x373c280</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::FindSimFor(void*) const</code></td>
+<td><code>0x5a4190</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373caf0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::SetPosition(unsigned long, FGXVector3 const&amp;)</code></td>
+<td><code>0x5a4430</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373cb40</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::SetScale(unsigned long, float)</code></td>
+<td><code>0x5a47e0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373ce80</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::SetAnimation(unsigned long, char const*, char const*)</code></td>
+<td><code>0x5a4880</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x373cf00</code></td>
+</tr>
+<tr>
+<td><code>WorldView::GenericObject::Context::SetSequenceLock(unsigned long, unsigned int, unsigned int)</code></td>
+<td><code>0x5a5190</code></td>
+<td>call-graph propagation</td>
+<td><code>0x373cfc0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Add_Civic(GameCore::PlayerTypes, GameCore::CivicTypes)</code></td>
+<td><code>0x5bc6a0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3757da0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::Add_Tech(GameCore::PlayerTypes, GameCore::TechTypes)</code></td>
+<td><code>0x5bc6d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3757d80</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::AdjBuff_Update(TFGXInt2&lt;int&gt; const&amp;)</code></td>
+<td><code>0x5bc700</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3757dc0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkManager::CityProp_Changed(TFGXInt2&lt;int&gt;)</code></td>
+<td><code>0x5bc830</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3757e70</code></td>
+</tr>
+<tr>
+<td><code>WorldView::Landmarks::MetadataCache::ShutdownGame()</code></td>
+<td><code>0x5c0100</code></td>
+<td>call-graph propagation</td>
+<td><code>0x375a020</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::District_SetAppeal(unsigned long, TFGXInt2&lt;int&gt;, unsigned int)</code></td>
+<td><code>0x5e17f0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3771c40</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Building_SetState(unsigned long, TFGXInt2&lt;int&gt;, unsigned int, WorldView::LM_VIS::…</code></td>
+<td><code>0x5e1c60</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3772490</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Building_Destroy(unsigned long, TFGXInt2&lt;int&gt;, unsigned int)</code></td>
+<td><code>0x5e1d40</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3772540</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::Player_EraChange(unsigned int, unsigned int)</code></td>
+<td><code>0x5e1e40</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3772a60</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::GetFlagMask() const</code></td>
+<td><code>0x5e2340</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3773200</code></td>
+</tr>
+<tr>
+<td><code>WorldView::LandmarkContext::SetFlagMask(unsigned int)</code></td>
+<td><code>0x5e3740</code></td>
+<td>call-graph propagation</td>
+<td><code>0x37731f0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::RouteContext::NeedsUpdate()</code></td>
+<td><code>0x5fe100</code></td>
+<td>call-graph propagation</td>
+<td><code>0x378be00</code></td>
+</tr>
+<tr>
+<td><code>WorldView::ScriptedArtSystem::StartupGame(WorldView::TilebaseSystem*, WorldView::ClutterLayerManager*, WorldV…</code></td>
+<td><code>0x6005f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x378d4a0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::ScriptTracker::PlotOwner_Changed(TFGXInt2&lt;int&gt;, int)</code></td>
+<td><code>0x601bf0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x378fdc0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::StormSystem::Initialize(WorldView::TilebaseSystem*, WorldView::FeatureGrid*)</code></td>
+<td><code>0x603be0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3791f10</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::IsHighQuality() const</code></td>
+<td><code>0x6095d0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x37978a0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::IsUpdatingTerrainHeight()</code></td>
+<td><code>0x6095e0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3799820</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainContext::ProcessUpdates(WorldView::UpdateContext const*, WorldView::UpdateCellData*, unsign…</code></td>
+<td><code>0x6096d0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x3797930</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::DesertMountainDesc::LoadFromArtDef_Append(WorldView::TerrainStyle::BigDataLoa…</code></td>
+<td><code>0x6215a0</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x37ae1e0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::MaterialSet::LoadMaterialBigData(Terrain::MaterialDesc*, unsigned int, unsign…</code></td>
+<td><code>0x623df0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x37b0bd0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Default::Desc::ReCreateGeneralTerrainStyleData(WorldView::GeneralTerrainStyleData*, …</code></td>
+<td><code>0x624230</code></td>
+<td>call-graph propagation</td>
+<td><code>0x37b15a0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainSystem::DependsOnGameCore()</code></td>
+<td><code>0x6277c0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x37ba630</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainView::Update(RenderGlobals::FrameInfo const&amp;)</code></td>
+<td><code>0x627920</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x37ba8f0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainView::GetRenderPassMask(bool, bool, bool, bool, bool) const</code></td>
+<td><code>0x627a00</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x37ba900</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainView::SubmitReflectionMask(unsigned short, unsigned char, unsigned int, unsigned short cons…</code></td>
+<td><code>0x629200</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x37bc2e0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::TilebaseSystem::OnLocalPlayerChanged()</code></td>
+<td><code>0x62af20</code></td>
+<td>call-graph propagation</td>
+<td><code>0x37bdb70</code></td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::Context::CreateUnitVisForSim(unsigned int, WorldView::UnitSystem::Context::UnitSim*)</code></td>
+<td><code>0x633cb0</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x37c6ad0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::FindVariations(Types::Vector&lt;WorldView::UnitSystem::UnitMemberVariationDesc const*, Ty…</code></td>
+<td><code>0x6351d0</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x37c4a90</code></td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::Context::OnBeginWonderReveal()</code></td>
+<td><code>0x638200</code></td>
+<td>call-graph propagation</td>
+<td><code>0x37c8e50</code></td>
+</tr>
+<tr>
+<td><code>WorldView::UnitSystem::Context::OnEndWonderReveal()</code></td>
+<td><code>0x638c40</code></td>
+<td>call-graph propagation</td>
+<td><code>0x37c8e60</code></td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::GetWaterType(TFGXInt2&lt;int&gt; const*, unsigned int*, bool*)</code></td>
+<td><code>0x643b40</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x37db380</code></td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::ToWorldSpace(TFGXInt2&lt;int&gt; const&amp;) const</code></td>
+<td><code>0x643be0</code></td>
+<td>interval alignment (~65% precise)</td>
+<td><code>0x37db4f0</code></td>
+</tr>
+<tr>
+<td><code>WorldView::WaterSystem::Context::IsAsyncUpdateActive() const</code></td>
+<td><code>0x648ef0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x37db1d0</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

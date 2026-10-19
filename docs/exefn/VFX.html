@@ -1,0 +1,1363 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>VFX</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine functions</a> › VFX</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>VFX</h1>
+<p>The visual effects system.</p>
+<p>1292 functions in this category, 155 with a Windows address (129 high or medium confidence or exported, 26 low). The rest are in the <a href="all.html">full search</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>Confidence</th>
+<th>How mapped</th>
+<th>Notes</th>
+<th>Linux address</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FireFX::Runtime::Civ6RenderList::~Civ6RenderList()</code></td>
+<td><code>0xa555d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3922b30</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::System::GetDefaultVisSystemArgs()</code></td>
+<td><code>0xa592d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3916b50</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::LogMeshFX()</code></td>
+<td><code>0xa5a8a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x391be90</code></td>
+<td>560</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::ErrorHandler::OnError(FireFX::SourceLocation const&amp;, char const*) const</code></td>
+<td><code>0xa5aab0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x39258e0</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::ErrorHandler::OnWarning(FireFX::SourceLocation const&amp;, char const*) const</code></td>
+<td><code>0xa5ad60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3925660</code></td>
+<td>640</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::Render(unsigned int, VisualEffectSystem::FrameInfo const&amp;, VisualEffectSystem::ExternalTextures const&amp;, bool)</code></td>
+<td><code>0xa5d680</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3919ad0</code></td>
+<td>2496</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::ShutdownFireFXSystem(bool, unsigned int)</code></td>
+<td><code>0xa5f2a0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3918510</code></td>
+<td>272</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::ShutdownGame(bool)</code></td>
+<td><code>0xa5f3f0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x39182b0</code></td>
+<td>160</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::SubmitBlended()</code></td>
+<td><code>0xa5fd60</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x391b880</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::SubmitBlended_Over()</code></td>
+<td><code>0xa5fdd0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x391b920</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>FireFXAnalyticLight::GetTypeName()</code></td>
+<td><code>0xaeec70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d310</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>FireFXAnalyticLightSet::GetTypeName()</code></td>
+<td><code>0xaeeca0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d150</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>FireFXMaterialSet::GetTypeName()</code></td>
+<td><code>0xaeecd0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d960</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>FireFXPackage::GetTypeName()</code></td>
+<td><code>0xaeed00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386cd10</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>FireFXPointLight::GetTypeName()</code></td>
+<td><code>0xaeed60</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d500</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>FireFXSpotLight::GetTypeName()</code></td>
+<td><code>0xaeed90</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d710</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>FireFXAnalyticLight::GetTypeInfo()</code></td>
+<td><code>0xaf2160</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d330</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>FireFXAnalyticLightSet::GetTypeInfo()</code></td>
+<td><code>0xaf2480</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d170</code></td>
+<td>416</td>
+</tr>
+<tr>
+<td><code>FireFXMaterial::GetTypeInfo()</code></td>
+<td><code>0xaf2780</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386db40</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td><code>FireFXMaterialSet::GetTypeInfo()</code></td>
+<td><code>0xaf2b10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d980</code></td>
+<td>416</td>
+</tr>
+<tr>
+<td><code>FireFXPackage::GetTypeInfo()</code></td>
+<td><code>0xaf2e10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386cd30</code></td>
+<td>416</td>
+</tr>
+<tr>
+<td><code>FireFXPackageEntry::GetTypeInfo()</code></td>
+<td><code>0xaf30f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386cf40</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>FireFXPointLight::GetTypeInfo()</code></td>
+<td><code>0xaf34a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d520</code></td>
+<td>496</td>
+</tr>
+<tr>
+<td><code>FireFXSpotLight::GetTypeInfo()</code></td>
+<td><code>0xaf3800</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386d730</code></td>
+<td>560</td>
+</tr>
+<tr>
+<td><code>FireFXTextureSlot::GetTypeInfo()</code></td>
+<td><code>0xaf3bf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x386dd60</code></td>
+<td>496</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Consumer::ConfigureWeaponVFXFromArtDefs(AssetObjects::IArtDefCollectionProvider const&amp;)</code></td>
+<td><code>0xaff560</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x394c430</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Consumer::ConfigureMultiVFXFromArtDefs(Types::Vector&lt;VisualEffectSystem::Consumer::MultiAsset, Types::LinearAlloc::Default&lt;0u, 0u…</code></td>
+<td><code>0xaff690</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x394c730</code></td>
+<td>688</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::Civ6EmitterTemplateSetConstructor::Construct(FireFX::Runtime::EmitterTemplateSet*, Types::ArrayWrapper&lt;FireFX::CompiledEmitter const…</code></td>
+<td><code>0xb01b10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x392f330</code></td>
+<td>7008</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::MinFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1c840</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437eae4</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::LengthFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1c8a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437f268</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::MaxFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1c8f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437eb6a</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::PowFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1c970</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ebac</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::DistanceFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1c9d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437f346</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::NormalizeFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1cb40</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437f4b4</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetTerrainHeightFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1cca0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ee10</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetTerrainHeightFunction::Call(FireFX::IR::Generator&amp;, FireFX::IR::RegSet*, unsigned long, FireFX::SourceLocation const&amp;) const</code></td>
+<td><code>0xf1ccf0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ee6a</code></td>
+<td>122</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetTerrainGradientFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1cd80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437eeec</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetTerrainGradientFunction::Call(FireFX::IR::Generator&amp;, FireFX::IR::RegSet*, unsigned long, FireFX::SourceLocation const&amp;) const</code></td>
+<td><code>0xf1cdd0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ef46</code></td>
+<td>154</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetFOWFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1ce90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437efe8</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::SRandFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1cfa0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437f642</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::RandomFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d050</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437f5da</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetDeltaTimeFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d1f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e550</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetUniqueIDFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d2a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e624</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetIndexFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d350</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e662</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetInstanceIDFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d400</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e6a0</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetRootPositionFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d4b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e6de</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetRootScaleFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d560</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e71c</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::GetRootRotationFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d610</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e75a</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::IsOrphanFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d6c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e798</code></td>
+<td>62</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::HashFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d7d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e7dc</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::SinFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d820</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e84a</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::CosFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d870</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e88c</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::FracFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d8c0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e8ce</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::SqrtFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d910</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e910</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::AbsFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d960</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e952</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::FloorFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1d9b0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e994</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::CeilFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1da00</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437e9d6</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::MixFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1daa0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ebf6</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::LogFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1daf0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ea18</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ExpFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1db70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ea5a</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::RoundFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1dbc0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437ea9c</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::DotFunction::WriteDocumentation(fastdelegate::FastDelegate1&lt;char const*, void&gt;) const</code></td>
+<td><code>0xf1dc80</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437f0e4</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::FunctionSet::FindFunction(char const*, unsigned long, FireFX::AST::DATA_TYPE const*)</code></td>
+<td><code>0xf1dec0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x437e29a</code></td>
+<td>154</td>
+</tr>
+<tr>
+<td><code>FireFX::ValidateEmitterDeclarations(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf1ee60</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437f9e9</code></td>
+<td>366</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ErrorManager::ReportError(FireFX::SourceLocation, char const*, ...)</code></td>
+<td><code>0xf203c0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x4381e5e</code></td>
+<td>244</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ErrorManager::ReportWarning(FireFX::SourceLocation, char const*, ...)</code></td>
+<td><code>0xf20450</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x438247c</code></td>
+<td>240</td>
+</tr>
+<tr>
+<td><code>FireFX::Compiler::Compile(FireFX::Compiler::CompiledEffectPackage*, char const*, char*, FireFX::IErrorListener*, CPreprocessor::IncludeHandler*, Fire…</code></td>
+<td><code>0xf207e0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x4380428</code></td>
+<td>6431</td>
+</tr>
+<tr>
+<td><code>FireFX::ValidateEmitterDependencies(Types::ArrayWrapper&lt;FireFX::AST::Emitter*&gt;, FireFX::AST::ErrorManager&amp;)</code></td>
+<td><code>0xf20c30</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437fe12</code></td>
+<td>1346</td>
+</tr>
+<tr>
+<td><code>FireFX::ValidateModuleParameters(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf21640</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x437fb57</code></td>
+<td>460</td>
+</tr>
+<tr>
+<td><code>FireFX::ValidateStatements(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf21730</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x437fd23</code></td>
+<td>239</td>
+</tr>
+<tr>
+<td><code>FireFX::IR::GenerateVM(FireFX::ProgramAssembler&amp;, FireFX::IR::Program&amp;)</code></td>
+<td><code>0xf22a50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x43870b8</code></td>
+<td>1920</td>
+</tr>
+<tr>
+<td><code>FireFX::IR::Generator::Rand(FireFX::SourceLocation const&amp;)</code></td>
+<td><code>0xf23d50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x43854a4</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>FireFX::IR::Generator::SRand(FireFX::IR::RegSet)</code></td>
+<td><code>0xf246e0</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x4385584</code></td>
+<td>246</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::IdentifierSet::NewIdentifier(FireFX::AST::IDENTIFIER_TYPE, FireFX::AST::DATA_TYPE, char const*, FireFX::AST::LiteralValue*, Types::Chunk…</code></td>
+<td><code>0xf2c2c0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x438e530</code></td>
+<td>232</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::Identifier::SetName(char const*)</code></td>
+<td><code>0xf2c420</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x438e648</code></td>
+<td>94</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::AssignmentStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2d280</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438f7ea</code></td>
+<td>214</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::DeclarationStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2d3a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438f8c0</code></td>
+<td>232</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::DrawStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2d4d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438fe28</code></td>
+<td>114</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::EmitStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2d560</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438fa56</code></td>
+<td>978</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ExportBlockStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2d820</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438f9a8</code></td>
+<td>174</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ExportStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2d900</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438ff0c</code></td>
+<td>370</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::KillStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2dab0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x439007e</code></td>
+<td>134</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::LightStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2db70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438fe9a</code></td>
+<td>114</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ReturnStatement::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf2dc10</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x4390110</code></td>
+<td>198</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::UserFunctionDefinition::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf32c90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x4390f58</code></td>
+<td>588</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::Swizzle::IsValid(char const*, FireFX::AST::DATA_TYPE)</code></td>
+<td><code>0xf33000</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x4390d0c</code></td>
+<td>270</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::BinaryExpressionValue::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf33c20</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x43915b4</code></td>
+<td>192</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::BooleanValue::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf33d00</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x43917cc</code></td>
+<td>112</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::CallValue::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf33d90</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x4391682</code></td>
+<td>86</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::SwizzleValue::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf33e70</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x43916d8</code></td>
+<td>172</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::TernarySelectValue::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf33f50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x439183c</code></td>
+<td>140</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::UnaryExpressionValue::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf34010</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x439155a</code></td>
+<td>90</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::LValueIdentifier::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf34280</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438e9aa</code></td>
+<td>76</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::LValueWriteMask::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf342f0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x438ea3a</code></td>
+<td>116</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::FunctionCall::Validate(FireFX::AST::ValidationContext&amp;)</code></td>
+<td><code>0xf349a0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x439478c</code></td>
+<td>418</td>
+</tr>
+<tr>
+<td><code>FireFX::AST::Export&amp; Types::ChunkedVector&lt;FireFX::AST::Export, 256&gt;::push_back&lt;Types::ChunkedAllocator&lt;Platform::StaticHeapAllocator&lt;58, 0&gt;, 1024, 16…</code></td>
+<td><code>0xf34b50</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x43946ac</code></td>
+<td>224</td>
+</tr>
+<tr>
+<td><code>FireFX::ByteCodeBlob::GetTypeInfo()</code></td>
+<td><code>0xf3ffd0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d42334</code></td>
+<td>504</td>
+</tr>
+<tr>
+<td><code>FireFX::CompiledConstantBlock::GetTypeInfo()</code></td>
+<td><code>0xf402d0</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d4193c</code></td>
+<td>444</td>
+</tr>
+<tr>
+<td><code>FireFX::CompiledElementDesc::GetTypeInfo()</code></td>
+<td><code>0xf40590</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d41724</code></td>
+<td>504</td>
+</tr>
+<tr>
+<td><code>FireFX::CompiledEmitter::GetTypeInfo()</code></td>
+<td><code>0xf40890</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d4109c</code></td>
+<td>1104</td>
+</tr>
+<tr>
+<td><code>FireFX::CompiledEmitterProperty::GetTypeInfo()</code></td>
+<td><code>0xf40e40</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d41b18</code></td>
+<td>528</td>
+</tr>
+<tr>
+<td><code>FireFX::CompiledSourceLocation::GetTypeInfo()</code></td>
+<td><code>0xf41710</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d4150c</code></td>
+<td>504</td>
+</tr>
+<tr>
+<td><code>FireFX::EffectPackage::GetTypeInfo()</code></td>
+<td><code>0xf41a10</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d40e48</code></td>
+<td>564</td>
+</tr>
+<tr>
+<td><code>FireFX::EffectPackageVersion::GetTypeInfo()</code></td>
+<td><code>0xf41d50</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d42130</code></td>
+<td>484</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::BufferManager::Migrate(unsigned short, unsigned int)</code></td>
+<td><code>0xf44f00</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d30ea6</code></td>
+<td>288</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::AddInstance(FireFX::Runtime::InstanceDesc*, Types::ArrayWrapper&lt;unsigned int&gt;)</code></td>
+<td><code>0xf45b10</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d3324a</code></td>
+<td>74</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::CanNewParticlesNewInstanceFitAfterResize(unsigned int, FireFX::Runtime::BufferManager const*) const</code></td>
+<td><code>0xf45c70</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d328ee</code></td>
+<td>130</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::CanAppendParticlesAfterResize(unsigned int, FireFX::Runtime::BufferManager const*) const</code></td>
+<td><code>0xf45fc0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d3298c</code></td>
+<td>102</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceManager::ConstructInstanceTreeForClass(FireFX::Runtime::EmitterTable*, FireFX::Runtime::EmitterDesc*, unsigned long)</code></td>
+<td><code>0xf46450</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d34ad2</code></td>
+<td>546</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceManager::CreateRootParticles(FireFX::Runtime::EmitterTable*, FireFX::Runtime::BufferManager*, unsigned int, unsigned int, un…</code></td>
+<td><code>0xf467f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d34cf4</code></td>
+<td>365</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceManager::FindOrCreateValidInstanceSet(FireFX::Runtime::BufferManager*, FireFX::Runtime::EmitterDesc*, unsigned int)</code></td>
+<td><code>0xf469f0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d34580</code></td>
+<td>238</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceManager::ProcessEmitAndExternalExport(FireFX::Runtime::EmitterTable*, FireFX::Runtime::BufferManager*, FireFX::Runtime::Inst…</code></td>
+<td><code>0xf47470</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d3466e</code></td>
+<td>1124</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::ResizeToFit(unsigned int, FireFX::Runtime::BufferManager*)</code></td>
+<td><code>0xf485a0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d32b54</code></td>
+<td>552</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::RenderBuffer::Startup(FireFX::Runtime::RenderingCallbacks&amp;, unsigned int, unsigned short, unsigned int)</code></td>
+<td><code>0xf49270</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d39ef8</code></td>
+<td>338</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::System::SimJobSet::AddInstanceSet(FireFX::Runtime::InstanceSet*, FireFX::Runtime::SIM_SYSTEM_CONSTANT::Desc, float*, FireFX::Runtime…</code></td>
+<td><code>0xf4af10</code></td>
+<td>medium</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d3bfac</code></td>
+<td>300</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::System::FrameUpdate_PreRender(float)</code></td>
+<td><code>0xf4b810</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3d3c0e6</code></td>
+<td>1598</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::System::SimJob::Initialize(Types::ArrayWrapper&lt;FireFX::Runtime::System::SimData&gt;, FireFX::Runtime::SIM_SYSTEM_CONSTANT::Desc, float*…</code></td>
+<td><code>0xf4c3d0</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d3b998</code></td>
+<td>1082</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::System::LogGlobalImports()</code></td>
+<td><code>0xf4c620</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d3cbda</code></td>
+<td>366</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::System::LogLiveEmitters()</code></td>
+<td><code>0xf4c7d0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d3cd48</code></td>
+<td>1224</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::System::Shutdown()</code></td>
+<td><code>0xf4df60</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d3a9ce</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LoadInteger(FireFX::Runtime::PropertyOutput&amp;, FireFX::IErrorListener*, BLP::BLPPtr&lt;FireFX::CompiledEmitterProperty&gt;, unsigned int, i…</code></td>
+<td><code>0xf4ec70</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d391d1</code></td>
+<td>412</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LoadNumber(FireFX::Runtime::PropertyOutput&amp;, FireFX::IErrorListener*, BLP::BLPPtr&lt;FireFX::CompiledEmitterProperty&gt;, unsigned int, fl…</code></td>
+<td><code>0xf4ee50</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d38fac</code></td>
+<td>317</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LoadProperties(FireFX::Runtime::EmitterPropertyContext, Types::ArrayWrapper&lt;FireFX::Runtime::PropertyDesc const&gt;, Types::ArrayWrappe…</code></td>
+<td><code>0xf4f020</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d39425</code></td>
+<td>1109</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LoadSet(FireFX::Runtime::PropertyOutput&amp;, FireFX::IErrorListener*, BLP::BLPPtr&lt;FireFX::CompiledEmitterProperty&gt;, Types::ArrayWrapper…</code></td>
+<td><code>0xf4f4e0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d38e2c</code></td>
+<td>384</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LoadStringA(FireFX::Runtime::PropertyOutput&amp;, FireFX::IErrorListener*, BLP::BLPPtr&lt;FireFX::CompiledEmitterProperty&gt;, unsigned int)</code></td>
+<td><code>0xf4f680</code></td>
+<td>medium</td>
+<td>call-graph propagation</td>
+<td></td>
+<td><code>0x3d3936d</code></td>
+<td>184</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::BuildExportsLayoutAndPatchTable(FireFX::EmitterPatchTableDesc, Types::ArrayWrapper&lt;FireFX::Runtime::ExportGroupDesc const&gt;, FireFX::…</code></td>
+<td><code>0xf50e90</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d36e9f</code></td>
+<td>2611</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LayoutBuilder::BuildRemainingRuntimeConstantLayout(FireFX::CompiledEmitter const&amp;, FireFX::IErrorListener*, unsigned int, FireFX::Ru…</code></td>
+<td><code>0xf51750</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d359e4</code></td>
+<td>1944</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LayoutBuilder::BuildSimLayout(FireFX::CompiledEmitter const&amp;, FireFX::Runtime::LayoutBuilder::SimLayoutDesc&amp;, FireFX::Runtime::Impor…</code></td>
+<td><code>0xf521f0</code></td>
+<td>high</td>
+<td>string anchor</td>
+<td></td>
+<td><code>0x3d37e38</code></td>
+<td>1166</td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::LayoutBuilder::BuildSpawnLayout(FireFX::CompiledEmitter const&amp;, FireFX::Runtime::LayoutBuilder::SpawnLayoutDesc&amp;, FireFX::Runtime::I…</code></td>
+<td><code>0xf52710</code></td>
+<td>medium</td>
+<td>score-based neighbour propagation (~96% on hold-out)</td>
+<td></td>
+<td><code>0x3d378d2</code></td>
+<td>1382</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Low confidence (26, unreliable)</summary>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Windows RVA</th>
+<th>How mapped</th>
+<th>Linux address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FireFX::Runtime::ImportSet::Clear()</code></td>
+<td><code>0x7eca70</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d31a3e</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::StringTable::Clear()</code></td>
+<td><code>0x7ed270</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d3a28e</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::GetActiveParticleCount() const</code></td>
+<td><code>0x8f90a0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d32640</code></td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Handle::Handle(void const*, unsigned int, unsigned int, unsigned int)</code></td>
+<td><code>0xa553f0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x39161a0</code></td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::DestroyHandle(unsigned int, VisualEffectSystem::Handle)</code></td>
+<td><code>0xa58b00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3918c80</code></td>
+</tr>
+<tr>
+<td><code>VisualEffectSystem::Context::PrepareUpdate()</code></td>
+<td><code>0xa5b840</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3918e80</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ExportBlockStatement const** Types::HashTable_Base&lt;FireFX::AST::ExportBlockStatement const*&gt;::Se…</code></td>
+<td><code>0xb00a70</code></td>
+<td>call-graph propagation</td>
+<td><code>0x438f3a4</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::IsScalarOrVector(FireFX::AST::DATA_TYPE)</code></td>
+<td><code>0xf21940</code></td>
+<td>call-graph propagation</td>
+<td><code>0x438dc94</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ValidationContext::ValidationContext(FireFX::AST::ValidationContext&amp;, FireFX::AST::ExportSet&amp;)</code></td>
+<td><code>0xf21960</code></td>
+<td>call-graph propagation</td>
+<td><code>0x437f8a6</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::IdentifierSet::FindIdentifier(char const*) const</code></td>
+<td><code>0xf2c1b0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x438e476</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::Module::AddExportBlock(FireFX::AST::ExportBlockStatement const*)</code></td>
+<td><code>0xf2e300</code></td>
+<td>call-graph propagation</td>
+<td><code>0x438ebec</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::Module::FindExportBlock(char const*) const</code></td>
+<td><code>0xf2e3a0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x438ec18</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::FunctionCall::GetReturnType() const</code></td>
+<td><code>0xf34980</code></td>
+<td>call-graph propagation</td>
+<td><code>0x439496a</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ExportSet::AddExport(FireFX::AST::ExportStatement*, Types::ChunkedAllocator&lt;Platform::StaticHeap…</code></td>
+<td><code>0xf34ca0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x439467a</code></td>
+</tr>
+<tr>
+<td><code>FireFX::AST::ExportSet::FindExportByName(char const*)</code></td>
+<td><code>0xf34ce0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x43945fe</code></td>
+</tr>
+<tr>
+<td><code>FireFX::SourceLocation::SourceLocation(FireFX::CompiledSourceLocation const*)</code></td>
+<td><code>0xf38d10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d40de4</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::BufferManager::AddSlices(unsigned short)</code></td>
+<td><code>0xf44990</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x3d30d1a</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::BufferManager::AllocateSlice(unsigned int)</code></td>
+<td><code>0xf44d00</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d30c7c</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::BufferManager::FindClosestSliceSize(unsigned int) const</code></td>
+<td><code>0xf44e10</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d30c22</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::BufferManager::GetConstData(unsigned short) const</code></td>
+<td><code>0xf44e50</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d3103e</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::BufferManager::ReleaseSlice(unsigned short)</code></td>
+<td><code>0xf450c0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d30fea</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::AppendParticleToInstance(FireFX::Runtime::InstanceDesc*, unsigned int, unsigned…</code></td>
+<td><code>0xf45ea0</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d33384</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::ChangeCallback_OnInstanceCreated(void (*)(FireFX::Runtime::EmitterChangedData&amp;), FireFX::Run…</code></td>
+<td><code>0xf46130</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d323c8</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::GetSimVaryingLayout() const</code></td>
+<td><code>0xf46e80</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d33afc</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::InstanceSet::Reset(FireFX::Runtime::EmitterDesc*, FireFX::Runtime::BufferManager*)</code></td>
+<td><code>0xf48350</code></td>
+<td>score-based neighbour propagation (~90% on hold-o…</td>
+<td><code>0x3d3269c</code></td>
+</tr>
+<tr>
+<td><code>FireFX::Runtime::RenderBuffer::Shutdown()</code></td>
+<td><code>0xf49220</code></td>
+<td>call-graph propagation</td>
+<td><code>0x3d3a04a</code></td>
+</tr>
+</tbody>
+</table>
+</details></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

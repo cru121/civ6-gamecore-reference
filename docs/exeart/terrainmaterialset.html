@@ -1,0 +1,1091 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>TerrainMaterialSet artdef</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">ArtDef vocabulary</a> › TerrainMaterialSet artdef</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>TerrainMaterialSet artdef</h1>
+<p>Artdef type <code>TerrainMaterialSet</code>: 11 shipped files (<code>TerrainStyle.artdef</code>), 127 parameter names, 20 collection names. Back to the <a href="index.html">overview</a>.</p>
+<h2>Reading functions (inferred assignment)</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Exe address</th>
+<th>Names it uses</th>
+<th>Names found in this type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WorldView::TerrainStyle::Default::Desc::ReloadFromArtDef_Internal</code></td>
+<td>0x624260</td>
+<td>15</td>
+<td>93%</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::DuneDesertHillsDesc::LoadFromArtDef</code></td>
+<td>0x61f570</td>
+<td>6</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::RidgelineMountainDesc::LoadFromArtDef</code></td>
+<td>0x61f700</td>
+<td>9</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardCoastlineDesc::LoadFromArtDef</code></td>
+<td>0x61fa70</td>
+<td>34</td>
+<td>76%</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardFlatDesc::LoadFromArtDef</code></td>
+<td>0x620310</td>
+<td>17</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardHillsDesc::LoadFromArtDef</code></td>
+<td>0x6207d0</td>
+<td>13</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><code>WorldView::TerrainStyle::Layer::StandardRiverDesc::LoadFromArtDef</code></td>
+<td>0x620ad0</td>
+<td>30</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<h2>Collections</h2>
+<table>
+<thead>
+<tr>
+<th>Collection</th>
+<th>Occurrences</th>
+<th>Read by the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="c-desertmountain"></a><code>DesertMountain</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-dunedeserthills"></a><code>DuneDesertHills</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-layerset_default"></a><code>LayerSet_Default</code></td>
+<td>11</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-materialset"></a><code>MaterialSet</code></td>
+<td>11</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-naturalwonders"></a><code>NaturalWonders</code></td>
+<td>11</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-ridgelinemountain"></a><code>RidgelineMountain</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-standardcoastline"></a><code>StandardCoastline</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-standardflat"></a><code>StandardFlat</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-standardhills"></a><code>StandardHills</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-standardiceshelf"></a><code>StandardIceShelf</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-standardocean"></a><code>StandardOcean</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-standardriver"></a><code>StandardRiver</code></td>
+<td>11</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="c-clutterset"></a><code>ClutterSet</code></td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-mountainpieces"></a><code>MountainPieces</code></td>
+<td>5</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-floodclutter"></a><code>FloodClutter</code></td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-floodrapids"></a><code>FloodRapids</code></td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-riverclutter"></a><code>RiverClutter</code></td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-riversources"></a><code>RiverSources</code></td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-style"></a><code>Style</code></td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="c-stripes"></a><code>Stripes</code></td>
+<td>2</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2>Parameters (127)</h2>
+<details>
+<summary>127 parameter names</summary>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value class</th>
+<th>Files</th>
+<th>Occurrences</th>
+<th>Read by the exe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="p-terrainelement"></a><code>TerrainElement</code></td>
+<td>BLPEntry</td>
+<td>10</td>
+<td>82</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-material"></a><code>Material</code></td>
+<td>BLPEntry</td>
+<td>6</td>
+<td>59</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-terrainasset"></a><code>TerrainAsset</code></td>
+<td>BLPEntry</td>
+<td>10</td>
+<td>59</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-watertype"></a><code>WaterType</code></td>
+<td>BLPEntry</td>
+<td>10</td>
+<td>59</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-blockinghex1"></a><code>BlockingHex1</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-blockinghex2"></a><code>BlockingHex2</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-blockinghex3"></a><code>BlockingHex3</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-blockinghex4"></a><code>BlockingHex4</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-blockinghex5"></a><code>BlockingHex5</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-blockinghex6"></a><code>BlockingHex6</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-disablerotations"></a><code>DisableRotations</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-forceterraintype"></a><code>ForceTerrainType</code></td>
+<td>String</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-modelheightfromlocalhex"></a><code>ModelHeightFromLocalHex</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-removecliffs"></a><code>RemoveCliffs</code></td>
+<td>Bool</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-scriptedart"></a><code>ScriptedArt</code></td>
+<td>ArtDefReference</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-terraintype1"></a><code>TerrainType1</code></td>
+<td>String</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-terraintype2"></a><code>TerrainType2</code></td>
+<td>String</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-terraintype3"></a><code>TerrainType3</code></td>
+<td>String</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-terraintype4"></a><code>TerrainType4</code></td>
+<td>String</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-terraintype5"></a><code>TerrainType5</code></td>
+<td>String</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-terraintype6"></a><code>TerrainType6</code></td>
+<td>String</td>
+<td>10</td>
+<td>50</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-height"></a><code>Height</code></td>
+<td>Float</td>
+<td>3</td>
+<td>17</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-clutterset"></a><code>ClutterSet</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>15</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-offsetmax"></a><code>OffsetMax</code></td>
+<td>Float</td>
+<td>2</td>
+<td>12</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-offsetmin"></a><code>OffsetMin</code></td>
+<td>Float</td>
+<td>2</td>
+<td>12</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-feature"></a><code>Feature</code></td>
+<td>ArtDefReference</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heightoffsetconcave"></a><code>HeightOffsetConcave</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heightoffsetconvex"></a><code>HeightOffsetConvex</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heightoffsetneutral"></a><code>HeightOffsetNeutral</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heightroughnessconcave"></a><code>HeightRoughnessConcave</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heightroughnessconvex"></a><code>HeightRoughnessConvex</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-heightroughnessneutral"></a><code>HeightRoughnessNeutral</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-iscliff"></a><code>IsCliff</code></td>
+<td>Bool</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-positionoffsetconcave"></a><code>PositionOffsetConcave</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-positionoffsetconvex"></a><code>PositionOffsetConvex</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-positionoffsetneutral"></a><code>PositionOffsetNeutral</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-positionroughnessconcave"></a><code>PositionRoughnessConcave</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-positionroughnessconvex"></a><code>PositionRoughnessConvex</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-positionroughnessneutral"></a><code>PositionRoughnessNeutral</code></td>
+<td>Float</td>
+<td>3</td>
+<td>9</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-terraintype"></a><code>TerrainType</code></td>
+<td>String</td>
+<td>3</td>
+<td>9</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-width"></a><code>Width</code></td>
+<td>Float</td>
+<td>2</td>
+<td>8</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-deserthillsmtl"></a><code>DesertHillsMtl</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>6</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-mountainbasemtl"></a><code>MountainBaseMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>5</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-mountainheight"></a><code>MountainHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>5</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-mountainwidth"></a><code>MountainWidth</code></td>
+<td>Float</td>
+<td>3</td>
+<td>5</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-grasslandhillmtl"></a><code>GrasslandHillMtl</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-grasslandhillshigh"></a><code>GrasslandHillsHigh</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-highdesertheight"></a><code>HighDesertHeight</code></td>
+<td>Float</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-highgrassheight"></a><code>HighGrassHeight</code></td>
+<td>Float</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-highplainsheight"></a><code>HighPlainsHeight</code></td>
+<td>Float</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-highsnowheight"></a><code>HighSnowHeight</code></td>
+<td>Float</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-hightundraheight"></a><code>HighTundraHeight</code></td>
+<td>Float</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-hillelement"></a><code>HillElement</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-plainshillshigh"></a><code>PlainsHillsHigh</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-plainshillsmtl"></a><code>PlainsHillsMtl</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-snowhillsmtl"></a><code>SnowHillsMtl</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tundrahillsmtl"></a><code>TundraHillsMtl</code></td>
+<td>BLPEntry</td>
+<td>4</td>
+<td>4</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-adjacencypadding"></a><code>AdjacencyPadding</code></td>
+<td>Int</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-banknoise"></a><code>BankNoise</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-coastlinewidth"></a><code>CoastlineWidth</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-curvesmoothing"></a><code>CurveSmoothing</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-density"></a><code>Density</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-desertelement"></a><code>DesertElement</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-deserthighmtl"></a><code>DesertHighMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-desertmtl"></a><code>DesertMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-floodplainsmtl"></a><code>FloodplainsMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-grassmarshmtl"></a><code>GrassMarshMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-grasslandelement"></a><code>GrasslandElement</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-grasslandhighmtl"></a><code>GrasslandHighMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-grasslandmtl"></a><code>GrasslandMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-highmtlcutoff"></a><code>HighMtlCutoff</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-hillmtnsmoothing"></a><code>HillMtnSmoothing</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-icemtl"></a><code>IceMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-iceshelfheight"></a><code>IceShelfHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a id="p-lowmtlcutoff"></a><code>LowMtlCutoff</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-mountaintophighmtl"></a><code>MountainTopHighMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-mountaintoplowmtl"></a><code>MountainTopLowMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-plainselement"></a><code>PlainsElement</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-plainshighmtl"></a><code>PlainsHighMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-plainsmtl"></a><code>PlainsMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riverbasinheight"></a><code>RiverBasinHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riverbasinheightvariation"></a><code>RiverBasinHeightVariation</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riverbasinwidth"></a><code>RiverBasinWidth</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riverbasinwidthvariation"></a><code>RiverBasinWidthVariation</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riverchannelheight"></a><code>RiverChannelHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riverchannelwidth"></a><code>RiverChannelWidth</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-rivermouthpadding"></a><code>RiverMouthPadding</code></td>
+<td>Int</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-rivermtl"></a><code>RiverMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riversourcepadding"></a><code>RiverSourcePadding</code></td>
+<td>Int</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-roughness"></a><code>Roughness</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-shallowshighheight"></a><code>ShallowsHighHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-shallowslowheight"></a><code>ShallowsLowHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-shallowsmtl"></a><code>ShallowsMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-snowelement"></a><code>SnowElement</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-snowhighheight"></a><code>SnowHighHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-snowhighmtl"></a><code>SnowHighMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-snowlowheight"></a><code>SnowLowHeight</code></td>
+<td>Float</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-snowmtl"></a><code>SnowMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tundrablendmtl"></a><code>TundraBlendMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tundraelement"></a><code>TundraElement</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tundrahighmtl"></a><code>TundraHighMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-tundramtl"></a><code>TundraMtl</code></td>
+<td>BLPEntry</td>
+<td>3</td>
+<td>3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-coastlinelayer"></a><code>CoastlineLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-deserthillslayer"></a><code>DesertHillsLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-desertmountainlayer"></a><code>DesertMountainLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-duneangle"></a><code>DuneAngle</code></td>
+<td>Float</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-dunebase"></a><code>DuneBase</code></td>
+<td>Float</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-duneheight"></a><code>DuneHeight</code></td>
+<td>Float</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-dunenoise"></a><code>DuneNoise</code></td>
+<td>Float</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-dunewidth"></a><code>DuneWidth</code></td>
+<td>Float</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-flatlayer"></a><code>FlatLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-hillslayer"></a><code>HillsLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-icelayer"></a><code>IceLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-maxdistance"></a><code>MaxDistance</code></td>
+<td>Float</td>
+<td>1</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-mindistance"></a><code>MinDistance</code></td>
+<td>Float</td>
+<td>1</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-mountainlayer"></a><code>MountainLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-oceanheight"></a><code>OceanHeight</code></td>
+<td>Float</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-oceanlayer"></a><code>OceanLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-oceanmtl"></a><code>OceanMtl</code></td>
+<td>BLPEntry</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-riverlayer"></a><code>RiverLayer</code></td>
+<td>ArtDefReference</td>
+<td>2</td>
+<td>2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-floodclutter"></a><code>FloodClutter</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-floodrapids"></a><code>FloodRapids</code></td>
+<td>ArtDefReference</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-maxangle"></a><code>MaxAngle</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-minangle"></a><code>MinAngle</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-offsetrange"></a><code>OffsetRange</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-probabilityleft"></a><code>ProbabilityLeft</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="p-probabilityright"></a><code>ProbabilityRight</code></td>
+<td>Float</td>
+<td>1</td>
+<td>1</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>Names the exe uses that no shipped file contains (9)</h2>
+<p>Strings of the assigned functions that are not collection or parameter names in any shipped file of this type: optional or unused parameters, enum-like values, file names or messages. Not every entry is an artdef name.</p>
+<p><code>Beach</code>, <code>BeachMtl</code>, <code>Cliff</code>, <code>CliffDover</code>, <code>CliffMtl</code>, <code>Count</code>, <code>Plants</code>, <code>SnowBeach</code>, <code>TerrainMaterialSet</code></p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

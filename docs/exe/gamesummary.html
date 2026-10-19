@@ -1,0 +1,909 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Game summary and statistics data model</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Game summary and statistics data model</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Game summary and statistics data model</h1>
+<p>The game summary (the Hall of Fame screens, the end-of-game graphs and reports, the per-leader and per-victory progress) is driven by data. Two parts: <strong>configuration tables</strong> in the game's Configuration database, created by <code>Configuration/Data/Schema/HallofFame.sql</code> and filled by <code>HallofFame.xml</code> (what statistics, graphs, reports and aggregates exist), and <strong>recorded tables</strong> in <code>HallofFame.sqlite</code>, where the exe stores every finished or running game (<code>Application::GameSummary</code> writes them, the Lua table <code>HallofFame</code> and the summary library read them; see the <a href="../exeapi/HallofFame.html"><code>HallofFame</code></a> page and the <a href="../exedb/statements.html">database statements</a>). <strong>Verified</strong>: table and column names, shipped row counts, SQL statements (read from the files and the exe). <strong>Inferred</strong>: what a table is for beyond its name.</p>
+<p><strong>What the shipped data defines</strong> (28 statistics in 8 categories, 38 graphs, 5 reports with 21 columns, 83 aggregate rules: <code>Sum</code> 46, <code>Max</code> 8, <code>First</code> 4, <code>MaxSum</code> 9, <code>Count</code> 2, <code>Last</code> 14 over the scopes <code>MajorPlayers</code> 23, <code>Games</code> 23, <code>Rulesets</code> 23, <code>MajorCityObjects</code> 11, <code>ReligionObjects</code> 3). A modder adds a statistic by adding rows: a <code>DataPointAggregateUpdates</code> rule that sums, maximises or counts a recorded data point, a <code>Statistics</code> row (name key, category, icon) and, for a report, a <code>ReportColumns</code> row. The recorded data point values are rows of <code>ObjectDataPointValues</code> / <code>GameDataPointValues</code>; the game transfer of the exe (<code>Application::GameSummary::BeginGameTransfer</code>) creates the game, its players and objects, datasets and data point values (<code>CreateGame</code>, <code>CreateObject</code>, <code>CreateGameDataset</code>, <code>CreateObjectDataset</code>, <code>UpdateAggregateDataPoints</code>).</p>
+<h2>Configuration tables (17)</h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Columns</th>
+<th>Shipped rows</th>
+<th>Exe operations</th>
+<th>Functions that use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="table-statisticcategories"></a><code>StatisticCategories</code></td>
+<td><code>Category</code>, <code>Name</code>, <code>IsHidden</code>, <code>SortOrder</code></td>
+<td>8</td>
+<td>SELECT 1</td>
+<td><code>lGetStatisticsCategories</code></td>
+</tr>
+<tr>
+<td><a id="table-statisticcategoryrulesetoverrides"></a><code>StatisticCategoryRulesetOverrides</code></td>
+<td><code>RulesetType</code>, <code>Category</code>, <code>Name</code>, <code>IsHidden</code>, <code>SortOrder</code></td>
+<td>0</td>
+<td>SELECT 1</td>
+<td><code>lGetStatisticsCategories</code></td>
+</tr>
+<tr>
+<td><a id="table-statistics"></a><code>Statistics</code></td>
+<td><code>DataPoint</code>, <code>Name</code>, <code>Icon</code>, <code>ValueIconDefault</code>, <code>ValueIconOverride</code>, <code>Annotation</code>, <code>Direction</code>, <code>Category</code>, <code>Importance</code>, <code>Visible</code></td>
+<td>28</td>
+<td>SELECT 1</td>
+<td><code>lGetStatistics</code></td>
+</tr>
+<tr>
+<td><a id="table-statisticrulesetoverrides"></a><code>StatisticRulesetOverrides</code></td>
+<td><code>RulesetType</code>, <code>DataPoint</code>, <code>Name</code>, <code>Icon</code>, <code>ValueIconDefault</code>, <code>ValueIconOverride</code>, <code>Annotation</code>, <code>Direction</code>, <code>Category</code>, <code>Importance</code>, <code>Visible</code></td>
+<td>0</td>
+<td>SELECT 1</td>
+<td><code>lGetStatistics</code></td>
+</tr>
+<tr>
+<td><a id="table-highlights"></a><code>Highlights</code></td>
+<td><code>DataPoint</code>, <code>Name</code>, <code>Caption</code>, <code>Icon</code>, <code>MinValue</code>, <code>MaxValue</code>, <code>Importance</code></td>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="table-datapointaggregatescopequeries"></a><code>DataPointAggregateScopeQueries</code></td>
+<td><code>Query</code>, <code>SQL</code></td>
+<td>11</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="table-datapointaggregatescopes"></a><code>DataPointAggregateScopes</code></td>
+<td><code>Scope</code>, <code>Query</code>, <code>ExtraData</code>, <code>SortIndex</code></td>
+<td>8</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="table-datapointaggregatequeries"></a><code>DataPointAggregateQueries</code></td>
+<td><code>Query</code>, <code>SQL</code></td>
+<td>16</td>
+<td>SELECT 1</td>
+<td><code>UpdateAggregateDataPoints</code></td>
+</tr>
+<tr>
+<td><a id="table-datapointaggregateupdates"></a><code>DataPointAggregateUpdates</code></td>
+<td><code>AggregateDataPoint</code>, <code>Scope</code>, <code>Operation</code>, <code>Query</code>, <code>DataPoint</code>, <code>ExtraData</code>, <code>SortIndex</code></td>
+<td>83</td>
+<td>SELECT 2</td>
+<td><code>DeleteAggregateDataPoints</code>, <code>UpdateAggregateDataPoints</code></td>
+</tr>
+<tr>
+<td><a id="table-graphqueries"></a><code>GraphQueries</code></td>
+<td><code>Query</code>, <code>SQL</code></td>
+<td>6</td>
+<td>SELECT 2</td>
+<td><code>lGetGraphs</code></td>
+</tr>
+<tr>
+<td><a id="table-graphs"></a><code>Graphs</code></td>
+<td><code>Graph</code>, <code>Scope</code>, <code>Name</code>, <code>Description</code>, <code>Direction</code>, <code>XLabel</code>, <code>YLabel</code>, <code>XUnit</code>, <code>YUnit</code>, <code>Query</code>, <code>DataSet</code>, <code>ExtraData</code>, <code>UxHint</code>, <code>Importance</code>, <code>Visible</code></td>
+<td>38</td>
+<td>SELECT 2</td>
+<td><code>lGetGraphs</code></td>
+</tr>
+<tr>
+<td><a id="table-graphrulesetoverrides"></a><code>GraphRulesetOverrides</code></td>
+<td><code>RulesetType</code>, <code>Graph</code>, <code>Scope</code>, <code>Name</code>, <code>Description</code>, <code>Direction</code>, <code>XLabel</code>, <code>YLabel</code>, <code>XUnit</code>, <code>YUnit</code>, <code>Query</code>, <code>DataSet</code>, <code>ExtraData</code>, <code>UxHint</code>, <code>Importance</code>, <code>Visible</code></td>
+<td>0</td>
+<td>SELECT 1</td>
+<td><code>lGetGraphs</code></td>
+</tr>
+<tr>
+<td><a id="table-reportqueries"></a><code>ReportQueries</code></td>
+<td><code>Query</code>, <code>SQL</code></td>
+<td>5</td>
+<td>SELECT 2</td>
+<td><code>lGetReports</code></td>
+</tr>
+<tr>
+<td><a id="table-reports"></a><code>Reports</code></td>
+<td><code>Report</code>, <code>Scope</code>, <code>Name</code>, <code>Description</code>, <code>InitialColumnName</code>, <code>InitialColumnDescription</code>, <code>InitialColumnUxHint</code>, <code>InitialColumnValueIconDefault</code>, <code>InitialColumnValueIconOverride</code>, <code>ShowEmptyRows</code>, <code>Query</code>, <code>ExtraData</code>, <code>Importance</code>, <code>Visible</code></td>
+<td>5</td>
+<td>SELECT 2</td>
+<td><code>lGetReports</code></td>
+</tr>
+<tr>
+<td><a id="table-reportrulesetoverrides"></a><code>ReportRulesetOverrides</code></td>
+<td><code>RulesetType</code>, <code>Report</code>, <code>Scope</code>, <code>Name</code>, <code>Description</code>, <code>InitialColumnName</code>, <code>InitialColumnDescription</code>, <code>InitialColumnUxHint</code>, <code>InitialColumnValueIconDefault</code>, <code>InitialColumnValueIconOverride</code>, <code>ShowEmptyRows</code>, <code>Query</code>, <code>ExtraData</code>, <code>Importance</code>, <code>Visible</code></td>
+<td>0</td>
+<td>SELECT 1</td>
+<td><code>lGetReports</code></td>
+</tr>
+<tr>
+<td><a id="table-reportcolumns"></a><code>ReportColumns</code></td>
+<td><code>Report</code>, <code>Name</code>, <code>Description</code>, <code>SortOrder</code>, <code>DataPoint</code>, <code>UxHint</code>, <code>Minor</code>, <code>AlwaysShow</code>, <code>EmptyValue</code>, <code>DefaultValue</code>, <code>ValueIconDefault</code>, <code>ValueIconOverride</code>, <code>Visible</code></td>
+<td>21</td>
+<td>SELECT 2</td>
+<td><code>lGetReports</code></td>
+</tr>
+<tr>
+<td><a id="table-reportcolumnrulesetoverrides"></a><code>ReportColumnRulesetOverrides</code></td>
+<td><code>RulesetType</code>, <code>Report</code>, <code>Name</code>, <code>Description</code>, <code>SortOrder</code>, <code>DataPoint</code>, <code>UxHint</code>, <code>Minor</code>, <code>AlwaysShow</code>, <code>EmptyValue</code>, <code>DefaultValue</code>, <code>ValueIconDefault</code>, <code>ValueIconOverride</code>, <code>Visible</code></td>
+<td>0</td>
+<td>SELECT 1</td>
+<td><code>lGetReports</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Recorded and queried tables (15)</h2>
+<p>Tables the exe writes or reads that are not part of the configuration schema. Columns are the ones named in statements that mention the table, so a statement that joins several tables can list a column under more than one of them. "summary database" tables live in <code>HallofFame.sqlite</code>; "game" tables belong to the game databases (queried for names and icons).</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Database</th>
+<th>Columns named in statements</th>
+<th>Exe operations</th>
+<th>Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="table-games"></a><code>Games</code></td>
+<td>summary database</td>
+<td><code>GameMode</code>, <code>GameSpeedType</code>, <code>LastPlayed</code>, <code>LeaderType</code>, <code>Map</code>, <code>MapSizeType</code>, <code>Ruleset</code>, <code>StartEraType</code>, <code>StartTurn</code>, <code>TurnCount</code>, <code>VictorTeamId</code>, <code>VictoryType</code></td>
+<td>DELETE 1, INSERT 1, SELECT 3</td>
+<td><code>0xb4bd0</code>, <code>0xb5e10</code>, <code>lGetVictoryProgress</code></td>
+</tr>
+<tr>
+<td><a id="table-gameobjects"></a><code>GameObjects</code></td>
+<td>summary database</td>
+<td><code>ExtraData</code>, <code>GameId</code>, <code>Icon</code>, <code>LeaderName</code>, <code>LeaderType</code>, <code>Name</code>, <code>PlayerObjectId</code>, <code>PlotIndex</code>, <code>Type</code>, <code>VictoryType</code></td>
+<td>INSERT 1, SELECT 6</td>
+<td><code>0xb4800</code>, <code>0xb4bd0</code>, <code>0xb55b0</code></td>
+</tr>
+<tr>
+<td><a id="table-gameplayers"></a><code>GamePlayers</code></td>
+<td>summary database</td>
+<td><code>CivilizationName</code>, <code>CivilizationType</code>, <code>DifficultyType</code>, <code>IsAI</code>, <code>IsLocal</code>, <code>IsMajor</code>, <code>LeaderName</code>, <code>LeaderType</code>, <code>PlayerId</code>, <code>PlayerObjectId</code>, <code>Score</code>, <code>TeamId</code>, <code>VictoryType</code></td>
+<td>INSERT 1, SELECT 6</td>
+<td><code>0xb4800</code>, <code>0xb4bd0</code>, <code>0xb55b0</code></td>
+</tr>
+<tr>
+<td><a id="table-objectdatapointvalues"></a><code>ObjectDataPointValues</code></td>
+<td>summary database</td>
+<td><code>DataPoint</code>, <code>ObjectId</code>, <code>ValueNumeric</code>, <code>ValueObjectId</code>, <code>ValueString</code>, <code>ValueType</code></td>
+<td>INSERT 1, SELECT 1</td>
+<td><code>BeginGameTransfer</code>, <code>UpdateAggregateDataPoints</code></td>
+</tr>
+<tr>
+<td><a id="table-gamedatapointvalues"></a><code>GameDataPointValues</code></td>
+<td>summary database</td>
+<td><code>DataPoint</code>, <code>GameId</code>, <code>ValueNumeric</code>, <code>ValueObjectId</code>, <code>ValueString</code>, <code>ValueType</code></td>
+<td>INSERT 1, SELECT 1</td>
+<td><code>BeginGameTransfer</code>, <code>UpdateAggregateDataPoints</code></td>
+</tr>
+<tr>
+<td><a id="table-datasets"></a><code>DataSets</code></td>
+<td>summary database</td>
+<td><code>DataSet</code>, <code>GameId</code>, <code>ObjectId</code>, <code>Type</code></td>
+<td>INSERT 2</td>
+<td><code>BeginGameTransfer</code></td>
+</tr>
+<tr>
+<td><a id="table-datasetvalues"></a><code>DataSetValues</code></td>
+<td>summary database</td>
+<td><code>DataSetId</code>, <code>X</code>, <code>Y</code></td>
+<td>INSERT 1, SELECT 2</td>
+<td><code>lGetGraphs</code>, <code>BeginGameTransfer</code></td>
+</tr>
+<tr>
+<td><a id="table-challengegames"></a><code>ChallengeGames</code></td>
+<td>summary database</td>
+<td><code>ChallengeId</code>, <code>GameId</code>, <code>LeaderName</code>, <code>LeaderType</code>, <code>PlayerObjectId</code>, <code>VictoryType</code></td>
+<td>INSERT 1, SELECT 6</td>
+<td><code>0xb4800</code>, <code>0xb4bd0</code>, <code>0xb55b0</code></td>
+</tr>
+<tr>
+<td><a id="table-rulesetdatapointvalues"></a><code>RulesetDataPointValues</code></td>
+<td>summary database</td>
+<td>—</td>
+<td>DELETE 1</td>
+<td><code>DeleteAggregateDataPoints</code></td>
+</tr>
+<tr>
+<td><a id="table-rulesets"></a><code>Rulesets</code></td>
+<td>game</td>
+<td><code>Description</code>, <code>IsScenario</code>, <code>Name</code>, <code>RulesetType</code>, <code>SortIndex</code></td>
+<td>SELECT 1</td>
+<td><code>lGetAvailableRulesets</code></td>
+</tr>
+<tr>
+<td><a id="table-rulesetdomainoverrides"></a><code>RulesetDomainOverrides</code></td>
+<td>game</td>
+<td><code>Domain</code></td>
+<td>SELECT 1</td>
+<td><code>lGetLeaderProgress</code>, <code>lGetRulesetPlayableLeaders</code></td>
+</tr>
+<tr>
+<td><a id="table-players"></a><code>Players</code></td>
+<td>game</td>
+<td><code>CivilizationIcon</code>, <code>CivilizationName</code>, <code>CivilizationType</code>, <code>LeaderIcon</code>, <code>LeaderName</code>, <code>LeaderType</code></td>
+<td>SELECT 1</td>
+<td><code>lGetLeaderProgress</code>, <code>lGetRulesetPlayableLeaders</code></td>
+</tr>
+<tr>
+<td><a id="table-rulesetunsupportedvalues"></a><code>RulesetUnSupportedValues</code></td>
+<td>game</td>
+<td><code>CivilizationIcon</code>, <code>CivilizationName</code>, <code>CivilizationType</code>, <code>LeaderIcon</code>, <code>LeaderName</code>, <code>LeaderType</code></td>
+<td>SELECT 1</td>
+<td><code>lGetLeaderProgress</code>, <code>lGetRulesetPlayableLeaders</code></td>
+</tr>
+<tr>
+<td><a id="table-victories"></a><code>Victories</code></td>
+<td>game</td>
+<td><code>Icon</code>, <code>Name</code>, <code>VictoryType</code></td>
+<td>SELECT 1</td>
+<td><code>lGetVictoryProgress</code></td>
+</tr>
+<tr>
+<td><a id="table-rulesettypes"></a><code>RulesetTypes</code></td>
+<td>game</td>
+<td><code>Icon</code>, <code>Kind</code>, <code>Name</code>, <code>Type</code></td>
+<td>SELECT 1</td>
+<td><code>lGetRulesetTypes</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Statistic categories</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Text key</th>
+<th>Sort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="category-category_general"></a><code>CATEGORY_GENERAL</code></td>
+<td><code>LOC_GAMESUMMARY_CATEGORY_GENERAL</code></td>
+<td>100</td>
+</tr>
+<tr>
+<td><a id="category-category_diplomacy"></a><code>CATEGORY_DIPLOMACY</code></td>
+<td><code>LOC_GAMESUMMARY_CATEGORY_DIPLOMACY</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td><a id="category-category_discovery"></a><code>CATEGORY_DISCOVERY</code></td>
+<td><code>LOC_GAMESUMMARY_CATEGORY_DISCOVERY</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td><a id="category-category_combat"></a><code>CATEGORY_COMBAT</code></td>
+<td><code>LOC_GAMESUMMARY_CATEGORY_COMBAT</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td><a id="category-category_prosperity"></a><code>CATEGORY_PROSPERITY</code></td>
+<td><code>LOC_GAMESUMMARY_CATEGORY_PROSPERITY</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td><a id="category-category_religion"></a><code>CATEGORY_RELIGION</code></td>
+<td><code>LOC_GAMESUMMARY_CATEGORY_RELIGION</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td><a id="category-category_extra"></a><code>CATEGORY_EXTRA</code></td>
+<td><code>LOC_GAMESUMMARY_CATEGORY_EXTRA</code></td>
+<td>300</td>
+</tr>
+<tr>
+<td><a id="category-category_hidden"></a><code>CATEGORY_HIDDEN</code></td>
+<td><code>None</code></td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<h2>Data points (48)</h2>
+<p>Names of the recorded values and the statistics built from them: <code>Statistic</code> = has a <code>Statistics</code> row (with a category); aggregates are the <code>DataPointAggregateUpdates</code> rules that produce the value (operation of a data point over a scope).</p>
+<details>
+<summary>48 data points</summary>
+<table>
+<thead>
+<tr>
+<th>Data point</th>
+<th>Statistic category</th>
+<th>Aggregates</th>
+<th>Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="datapoint-barbariancampscleared"></a><code>BarbarianCampsCleared</code></td>
+<td>CATEGORY_DISCOVERY</td>
+<td>First of BarbarianCampsCleared over MajorPlayers; Sum of BarbarianCampsCleared over Games; Sum of BarbarianCampsCleared over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-barbarianskilled"></a><code>BarbariansKilled</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>First of BarbariansKilled over MajorPlayers; Sum of BarbariansKilled over Games; Sum of BarbariansKilled over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-beliefs"></a><code>Beliefs</code></td>
+<td></td>
+<td>Last of Beliefs over ReligionObjects</td>
+<td><code>Religions</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-buildingsconstructed"></a><code>BuildingsConstructed</code></td>
+<td></td>
+<td>Last of BuildingsConstructed over MajorCityObjects</td>
+<td><code>PlayerCityStatus</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-cities"></a><code>Cities</code></td>
+<td></td>
+<td>Last of Cities over ReligionObjects</td>
+<td><code>Religions</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-citiesconquered"></a><code>CitiesConquered</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>Sum of CitiesConquered over MajorPlayers; Sum of CitiesConquered over Games; Sum of CitiesConquered over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-citiesfounded"></a><code>CitiesFounded</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>Sum of CitiesFounded over MajorPlayers; Sum of CitiesFounded over Games; Sum of CitiesFounded over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-citieslost"></a><code>CitiesLost</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>Sum of CitiesLost over MajorPlayers; Sum of CitiesLost over Games; Sum of CitiesLost over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-citywithhighestpopulation"></a><code>CityWithHighestPopulation</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>Max of Population over MajorPlayers; Max of Population over Games; MaxSum of Population over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-civicsacquired"></a><code>CivicsAcquired</code></td>
+<td>CATEGORY_DISCOVERY</td>
+<td>First of CivicsAcquired over MajorPlayers</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-civicsboosted"></a><code>CivicsBoosted</code></td>
+<td>CATEGORY_DISCOVERY</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-combats"></a><code>Combats</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Sum of Combats over MajorPlayers; Sum of Combats over Games; Sum of Combats over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-culture"></a><code>Culture</code></td>
+<td></td>
+<td>Last of Culture over MajorCityObjects</td>
+<td><code>PlayerCityYields</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-currentgovernment"></a><code>CurrentGovernment</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-districtsconstructed"></a><code>DistrictsConstructed</code></td>
+<td></td>
+<td>Last of DistrictsConstructed over MajorCityObjects</td>
+<td><code>PlayerCityStatus</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-faith"></a><code>Faith</code></td>
+<td></td>
+<td>Last of Faith over MajorCityObjects</td>
+<td><code>PlayerCityYields</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-favoritegovernment"></a><code>FavoriteGovernment</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>Max of GovernmentInUseByType over MajorPlayers; MaxSum of GovernmentInUseByType over Games; MaxSum of GovernmentInUseByType over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-favoriteunit"></a><code>FavoriteUnit</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Max of UnitsTrainedByType over MajorPlayers; MaxSum of UnitsTrainedByType over Games; MaxSum of UnitsTrainedByType over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-followers"></a><code>Followers</code></td>
+<td></td>
+<td>Last of Followers over ReligionObjects</td>
+<td><code>Religions</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-food"></a><code>Food</code></td>
+<td></td>
+<td>Last of Food over MajorCityObjects</td>
+<td><code>PlayerCityYields</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-founder"></a><code>Founder</code></td>
+<td></td>
+<td>—</td>
+<td><code>Religions</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-gold"></a><code>Gold</code></td>
+<td></td>
+<td>Last of Gold over MajorCityObjects</td>
+<td><code>PlayerCityYields</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-goodyhutspopped"></a><code>GoodyHutsPopped</code></td>
+<td>CATEGORY_DISCOVERY</td>
+<td>Sum of GoodyHutsPopped over MajorPlayers; Sum of GoodyHutsPopped over Games; Sum of GoodyHutsPopped over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-governmentinusebytype"></a><code>GovernmentInUseByType</code></td>
+<td></td>
+<td>—</td>
+<td><code>PlayerGovernments</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-greatpeopleearned"></a><code>GreatPeopleEarned</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>Sum of GreatPeopleEarned over MajorPlayers; Sum of GreatPeopleEarned over Games; Sum of GreatPeopleEarned over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-holycity"></a><code>HolyCity</code></td>
+<td></td>
+<td>—</td>
+<td><code>Religions</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-mostfollowedreligion"></a><code>MostFollowedReligion</code></td>
+<td>CATEGORY_RELIGION</td>
+<td>Max of Followers over Games; Max of Followers over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-naturalwondersdiscovered"></a><code>NaturalWondersDiscovered</code></td>
+<td>CATEGORY_DISCOVERY</td>
+<td>Sum of NaturalWondersDiscovered over MajorPlayers; Sum of NaturalWondersDiscovered over Games; Sum of NaturalWondersDiscovered over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-nukeslaunched"></a><code>NukesLaunched</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Sum of NukesLaunched over MajorPlayers; Sum of NukesLaunched over Games; Sum of NukesLaunched over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-population"></a><code>Population</code></td>
+<td></td>
+<td>Last of Population over MajorCityObjects</td>
+<td><code>PlayerCityStatus</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-production"></a><code>Production</code></td>
+<td></td>
+<td>Last of Production over MajorCityObjects</td>
+<td><code>PlayerCityYields</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-religionsfounded"></a><code>ReligionsFounded</code></td>
+<td>CATEGORY_RELIGION</td>
+<td>Count of Followers over Games; Count of Followers over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-science"></a><code>Science</code></td>
+<td></td>
+<td>Last of Science over MajorCityObjects</td>
+<td><code>PlayerCityYields</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-strongestunit"></a><code>StrongestUnit</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Max of UnitsKilledByType over MajorPlayers; MaxSum of UnitsKilledByType over Games; MaxSum of UnitsKilledByType over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-techsacquired"></a><code>TechsAcquired</code></td>
+<td>CATEGORY_DISCOVERY</td>
+<td>First of TechsAcquired over MajorPlayers</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-techsboosted"></a><code>TechsBoosted</code></td>
+<td>CATEGORY_DISCOVERY</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-tourism"></a><code>Tourism</code></td>
+<td></td>
+<td>Last of Tourism over MajorCityObjects</td>
+<td><code>PlayerCityStatus</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-turnfounded"></a><code>TurnFounded</code></td>
+<td></td>
+<td>—</td>
+<td><code>Religions</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-unitskilled"></a><code>UnitsKilled</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Sum of UnitsKilledByType over MajorPlayers; Sum of UnitsKilledByType over Games; Sum of UnitsKilledByType over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-unitskilledbytype"></a><code>UnitsKilledByType</code></td>
+<td></td>
+<td>—</td>
+<td><code>PlayerUnits</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-unitslost"></a><code>UnitsLost</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Sum of UnitsLostByType over MajorPlayers; Sum of UnitsLostByType over Games; Sum of UnitsLostByType over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-unitslostbytype"></a><code>UnitsLostByType</code></td>
+<td></td>
+<td>—</td>
+<td><code>PlayerUnits</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-unitstrained"></a><code>UnitsTrained</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Sum of UnitsTrainedByType over MajorPlayers; Sum of UnitsTrainedByType over Games; Sum of UnitsTrainedByType over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-unitstrainedbytype"></a><code>UnitsTrainedByType</code></td>
+<td></td>
+<td>—</td>
+<td><code>PlayerUnits</code></td>
+</tr>
+<tr>
+<td><a id="datapoint-warsdeclared"></a><code>WarsDeclared</code></td>
+<td>CATEGORY_DIPLOMACY</td>
+<td>Sum of WarsDeclared over MajorPlayers; Sum of WarsDeclared over Games; Sum of WarsDeclared over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-warsreceived"></a><code>WarsReceived</code></td>
+<td>CATEGORY_DIPLOMACY</td>
+<td>Sum of WarsReceived over MajorPlayers; Sum of WarsReceived over Games; Sum of WarsReceived over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-weakestunit"></a><code>WeakestUnit</code></td>
+<td>CATEGORY_COMBAT</td>
+<td>Max of UnitsLostByType over MajorPlayers; MaxSum of UnitsLostByType over Games; MaxSum of UnitsLostByType over Rulesets</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="datapoint-wondersconstructed"></a><code>WondersConstructed</code></td>
+<td>CATEGORY_PROSPERITY</td>
+<td>Sum of WondersConstructed over MajorPlayers; Sum of WondersConstructed over Games; Sum of WondersConstructed over Rulesets (+1)</td>
+<td><code>PlayerCityStatus</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>Graphs (38)</h2>
+<details>
+<summary>38 graphs</summary>
+<table>
+<thead>
+<tr>
+<th>Graph</th>
+<th>Scope</th>
+<th>Query</th>
+<th>Text key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="graph-religiousbeliefs"></a><code>ReligiousBeliefs</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_RELIGION_BELIEFS</code></td>
+</tr>
+<tr>
+<td><a id="graph-religiouscities"></a><code>ReligiousCities</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_RELIGION_CITIES</code></td>
+</tr>
+<tr>
+<td><a id="graph-religiousfollowers"></a><code>ReligiousFollowers</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_RELIGION_FOLLOWERS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playergold"></a><code>PlayerGold</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_GOLD</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerculture"></a><code>PlayerCulture</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_CULTURE</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerfaith"></a><code>PlayerFaith</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_FAITH</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerscience"></a><code>PlayerScience</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_SCIENCE</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerscore"></a><code>PlayerScore</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_SCORE</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerbuildingsconstructed"></a><code>PlayerBuildingsConstructed</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_BUILDINGS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerdistrictsconstructed"></a><code>PlayerDistrictsConstructed</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_DISTRICTS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playercitiesconquered"></a><code>PlayerCitiesConquered</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_CITIES_CAPTURED</code></td>
+</tr>
+<tr>
+<td><a id="graph-playercitiesfounded"></a><code>PlayerCitiesFounded</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_CITIES_FOUNDED</code></td>
+</tr>
+<tr>
+<td><a id="graph-playercitieslost"></a><code>PlayerCitiesLost</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_CITIES_LOST</code></td>
+</tr>
+<tr>
+<td><a id="graph-playergreatpeopleearned"></a><code>PlayerGreatPeopleEarned</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_GREAT_PEOPLE</code></td>
+</tr>
+<tr>
+<td><a id="graph-playercombats"></a><code>PlayerCombats</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_COMBATS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerunitskilled"></a><code>PlayerUnitsKilled</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_UNITS_KILLED</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerunitslost"></a><code>PlayerUnitsLost</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_UNITS_LOST</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerwarsreceived"></a><code>PlayerWarsReceived</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_WARS_RECEIVED</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerwarsdeclared"></a><code>PlayerWarsDeclared</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_WARS_DECLARED</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerwondersconstructed"></a><code>PlayerWondersConstructed</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_WONDERS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playertechsacquired"></a><code>PlayerTechsAcquired</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_TECHS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playercivicsacquired"></a><code>PlayerCivicsAcquired</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_CIVICS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerbarbarianskilled"></a><code>PlayerBarbariansKilled</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_BARBARIAN_KILLS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playerbarbariancampscleared"></a><code>PlayerBarbarianCampsCleared</code></td>
+<td>Game</td>
+<td><code>GameDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_BARBARIAN_CAMPS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playernukeslaunched"></a><code>PlayerNukesLaunched</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_NUKES</code></td>
+</tr>
+<tr>
+<td><a id="graph-playergoodyhutspopped"></a><code>PlayerGoodyHutsPopped</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_GOODY_HUTS</code></td>
+</tr>
+<tr>
+<td><a id="graph-playernaturalwondersdiscovered"></a><code>PlayerNaturalWondersDiscovered</code></td>
+<td>Game</td>
+<td><code>GameDeltaDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_PLAYER_NATURAL_WONDERS</code></td>
+</tr>
+<tr>
+<td><a id="graph-cityproduction"></a><code>CityProduction</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_PRODUCTION</code></td>
+</tr>
+<tr>
+<td><a id="graph-cityculture"></a><code>CityCulture</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_CULTURE</code></td>
+</tr>
+<tr>
+<td><a id="graph-cityfaith"></a><code>CityFaith</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_FAITH</code></td>
+</tr>
+<tr>
+<td><a id="graph-citygold"></a><code>CityGold</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_GOLD</code></td>
+</tr>
+<tr>
+<td><a id="graph-cityfood"></a><code>CityFood</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_FOOD</code></td>
+</tr>
+<tr>
+<td><a id="graph-cityscience"></a><code>CityScience</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_SCIENCE</code></td>
+</tr>
+<tr>
+<td><a id="graph-citytourism"></a><code>CityTourism</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_TOURISM</code></td>
+</tr>
+<tr>
+<td><a id="graph-citypopulation"></a><code>CityPopulation</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_POPULATION</code></td>
+</tr>
+<tr>
+<td><a id="graph-citybuildings"></a><code>CityBuildings</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_BUILDINGS</code></td>
+</tr>
+<tr>
+<td><a id="graph-citydistricts"></a><code>CityDistricts</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_DISTRICTS</code></td>
+</tr>
+<tr>
+<td><a id="graph-citywonders"></a><code>CityWonders</code></td>
+<td>Player</td>
+<td><code>PlayerDataSetsByType</code></td>
+<td><code>LOC_HOF_GRAPH_CITY_WONDERS</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>Reports (5)</h2>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+<th>Scope</th>
+<th>Columns (data point)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="report-playerunits"></a><code>PlayerUnits</code></td>
+<td>Player</td>
+<td><code>UnitsTrainedByType</code>, <code>UnitsKilledByType</code>, <code>UnitsLostByType</code></td>
+</tr>
+<tr>
+<td><a id="report-playergovernments"></a><code>PlayerGovernments</code></td>
+<td>Player</td>
+<td><code>GovernmentInUseByType</code></td>
+</tr>
+<tr>
+<td><a id="report-playercityyields"></a><code>PlayerCityYields</code></td>
+<td>Player</td>
+<td><code>Production</code>, <code>Food</code>, <code>Gold</code>, <code>Faith</code>, <code>Science</code>, <code>Culture</code></td>
+</tr>
+<tr>
+<td><a id="report-playercitystatus"></a><code>PlayerCityStatus</code></td>
+<td>Player</td>
+<td><code>Population</code>, <code>Tourism</code>, <code>BuildingsConstructed</code>, <code>DistrictsConstructed</code>, <code>WondersConstructed</code></td>
+</tr>
+<tr>
+<td><a id="report-religions"></a><code>Religions</code></td>
+<td>Game</td>
+<td><code>Founder</code>, <code>HolyCity</code>, <code>TurnFounded</code>, <code>Followers</code>, <code>Cities</code>, <code>Beliefs</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Game fields handed to the scripts (<code>PushGameData</code>)</h2>
+<p><code>PushGameData</code> (<code>0x4c4220</code>) builds the table of one recorded game that the Lua functions <code>GetGames</code> / <code>GetGameData</code> return. Field names: <code>CivilizationName</code>, <code>CivilizationType</code>, <code>DefeatType</code>, <code>DifficultyType</code>, <code>GameId</code>, <code>GameMode</code>, <code>GameSpeedType</code>, <code>IsHuman</code>, <code>IsLocal</code>, <code>IsMajor</code>, <code>LastPlayed</code>, <code>LeaderName</code>, <code>LeaderType</code>, <code>MapSizeType</code>, <code>PlayerId</code>, <code>PlayerObjectId</code>, <code>Players</code>, <code>Ruleset</code>, <code>Score</code>, <code>StartEraType</code>, <code>StartTurn</code>, <code>TeamId</code>, <code>TurnCount</code>, <code>VictorTeamId</code>, <code>VictoryType</code>.</p></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

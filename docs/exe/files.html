@@ -1,0 +1,1439 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Files and paths</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Files and paths</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Files, folders and paths in the engine executable</h1>
+<p>Every file name, folder and path that the code of <code>CivilizationVI.exe</code> refers to as a literal string, with the function that uses it. This tells you <strong>what the engine reads and writes</strong>: which log files it creates, which option and data files it loads, where it looks for mods and maps, and which database files it opens. It does not show names the engine builds at run time (for example <code>%s.log</code>), and files that GameCore (the rules library) writes are not here, such as the <code>AI_*.csv</code> and <code>Game_*.csv</code> logs.</p>
+<p>Paths starting with <code>../../../</code> are relative to the game's binary folder; <code>Base/</code> is the base game folder and <code>DLC/</code> holds the expansions. <strong>All entries are verified string literals</strong>; what each file is for is inferred from the name and the function that uses it.</p>
+<h2>Log files the exe writes</h2>
+<p>45 log names appear in the exe; 23 of them are also present in a normal <code>Logs</code> folder of an installed game (the rest are written only in special modes, or in builds and settings that enable them, for example when a logging option in the <a href="options.html">option files</a> is on). The <code>Logs</code> folder is <code>AppData/Local/Firaxis Games/Sid Meier's Civilization VI/Logs</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Log file</th>
+<th>Written by</th>
+<th>In a normal Logs folder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_log__graphics_resources.log"></a><code>/Graphics_Resources.log</code></td>
+<td><code>Civ6App::OnDebugConsoleInput</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_achievements.log"></a><code>Achievements.log</code></td>
+<td><code>GameCore::Achievements::Achievements</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_achievements_steam.log"></a><code>Achievements_Steam.log</code></td>
+<td><code>SteamAchievements::IncrementStatandUnlockAchievement</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_artdef.log"></a><code>ArtDef.log</code></td>
+<td><code>0x1cdd00</code>; <code>0x1ce390</code> (+25 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_assetcloudtuner.log"></a><code>AssetCloudTuner.log</code></td>
+<td><code>AssetCloud::HotLoader::~HotLoader</code>; <code>AssetCloud::HotLoader::OnArtDef</code> (+3 more)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_autoarchive.csv"></a><code>AutoArchive.csv</code></td>
+<td><code>FAutoArchive::editVariable</code>; <code>FAutoArchive::findMismatchedVariables</code> (+1 more)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_automation.log"></a><code>Automation.log</code></td>
+<td><code>App::Automation::Manager::GetLogFile</code>; <code>App::Automation::Manager::ShutdownLogging</code> (+1 more)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_blockerlog.log"></a><code>BlockerLog.log</code></td>
+<td><code>WorldView::BlockerDatabase::ShutdownGame</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_clutter.log"></a><code>Clutter.log</code></td>
+<td><code>WorldView::ClutterLayerManager::LogStats</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_consoleinterfacedebug.log"></a><code>ConsoleInterfaceDebug.log</code></td>
+<td><code>0x4b530</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_cultureborderslog.txt"></a><code>CultureBordersLog.txt</code></td>
+<td><code>OverlaySystem::BuildCultureBordersAsyncJob::Execute</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_dataerrors.log"></a><code>DataErrors.log</code></td>
+<td><code>0x49000</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_database.log"></a><code>Database.log</code></td>
+<td><code>Application::Data::DatabaseLogger::DatabaseLogger</code>; <code>0x702d00</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_dyngeolog.log"></a><code>DynGeoLog.log</code></td>
+<td><code>WorldView::DynamicSystem::DynGeoManager::Shutdown</code>; <code>WorldView::DynamicSystem::Context::ShutdownGame</code> (+1 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_eos.log"></a><code>EOS.log</code></td>
+<td><code>App::EOS::LogEOSMessage</code>; <code>App::EOS::SetupService</code> (+14 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_engine.log"></a><code>Engine.log</code></td>
+<td><code>Civ6App::UpdateFrame</code>; <code>0x702d00</code> (+3 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_filesystem.log"></a><code>FileSystem.log</code></td>
+<td><code>File::Watcher::FolderChangeNotify</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_firefx.csv"></a><code>FireFX.csv</code></td>
+<td><code>FireFX::Runtime::InstanceManager::ProcessEmitAndExternalExport</code>; <code>FireFX::Runtime::System::LogGlobalImports</code> (+1 more)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_gamecoreappconfig.log"></a><code>GameCoreAppConfig.log</code></td>
+<td><code>GameCore::App::Configuration::ChangedConfigurationSignalHandler::Changed</code>; <code>0x100b50</code> (+1 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_game__02d_gamecoreprofile.csv"></a><code>Game_%02d_GameCoreProfile.csv</code></td>
+<td><code>GameCore::App::Profile::Manager::LogTurnEnd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_loadgameviewstate.log"></a><code>LoadGameViewState.log</code></td>
+<td><code>LoadGameViewState::Begin</code>; <code>LoadGameViewState::End</code> (+4 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_localization.log"></a><code>Localization.log</code></td>
+<td><code>LocalizationLogger::LocalizationLogger</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_lua.log"></a><code>Lua.log</code></td>
+<td><code>0x972590</code>; <code>0x972640</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_mapsearch.log"></a><code>MapSearch.log</code></td>
+<td><code>GameCore::App::UI::Lua::IManager::lMapSearch_LogBegin</code>; <code>GameCore::App::UI::Lua::IManager::lMapSearch_LogEnd</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_modding.log"></a><code>Modding.log</code></td>
+<td><code>0x258990</code>; <code>0x702d00</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_modelvistypes__u.csv"></a><code>ModelVisTypes_%u.csv</code></td>
+<td><code>ModelVisSystem::Context::LogVisTypesForFrame</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_norenderframe.log"></a><code>NoRenderFrame.log</code></td>
+<td><code>Civ6App::UpdateFrame</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_profile.csv"></a><code>Profile.csv</code></td>
+<td><code>GameViewState::Begin</code>; <code>GameViewState::End</code> (+4 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_profile.log"></a><code>Profile.log</code></td>
+<td><code>GameCore::App::Profile::Manager::CheckProfileSave</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_renderer.log"></a><code>Renderer.log</code></td>
+<td><code>AppHost::Host::ChangeResolution</code>; <code>0x6fd850</code> (+100 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_serialization.log"></a><code>Serialization.log</code></td>
+<td><code>GameCore::Serializer::Manager::DoGameStateSaveRequest</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_startup.log"></a><code>Startup.log</code></td>
+<td><code>Civ6App::DoGraphicsDeviceSelection</code>; <code>Civ6App::FinalShutdown</code> (+13 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_synthesislog.log"></a><code>SynthesisLog.log</code></td>
+<td><code>0x608ea0</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_uiwarnings.csv"></a><code>UIWarnings.csv</code></td>
+<td><code>0x86a590</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_userinterface.log"></a><code>UserInterface.log</code></td>
+<td><code>ForgeUI::ExtractValue</code>; <code>ForgeUI::ContextBase::Initialize</code> (+15 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_vfx.csv"></a><code>VFX.csv</code></td>
+<td><code>Particle::System::LogLiveEmitters</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_vfxmesh.csv"></a><code>VFXMesh.csv</code></td>
+<td><code>VisualEffectSystem::Context::LogMeshFX</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_vfxsystem.log"></a><code>VFXSystem.log</code></td>
+<td><code>0xa557d0</code>; <code>VisualEffectSystem::ErrorHandler::OnError</code> (+1 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_vismanager.log"></a><code>VisManager.log</code></td>
+<td><code>VisManager&lt;FOWMeshVisSystem::Context::FOWVis, FOWMeshVisSystem::Context::FOWVisJob&gt;::DispatchDeletesOnly</code>; <code>VisManager&lt;FOWMeshVisSystem::Context::FOWVis, FOWMeshVisSystem::Context::FOWVisJob&gt;::UpdateMessageJob::DoMessage</code> (+6 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_ctphttp.log"></a><code>ctpHttp.log</code></td>
+<td><code>0xb9aba0</code>; <code>0xbcf750</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_ctplog.log"></a><code>ctpLog.log</code></td>
+<td><code>0xbc34d0</code>; <code>0xbca700</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_net_connection_debug.log"></a><code>net_connection_debug.log</code></td>
+<td><code>Civ6AppSteamCallback::OnSteamRichPresenceJoinRequested</code>; <code>GameCore::Serializer::Manager::CheckRequest</code> (+190 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_net_message_debug.log"></a><code>net_message_debug.log</code></td>
+<td><code>GameViewState::ShutdownGame</code>; <code>LoadGameViewState::Tick</code> (+126 more)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a id="exefile_log_net_transport_debug.log"></a><code>net_transport_debug.log</code></td>
+<td><code>Network::EOS::TransportThread::FlushOutputQueue</code>; <code>Network::EOS::TransportThread::Run</code> (+5 more)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a id="exefile_log_webhooks.log"></a><code>webhooks.log</code></td>
+<td><code>Network::Manager::TriggerCloudTurnWebHook</code>; <code>Network::Manager::TriggerCloudTurnWebhooks</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Files found in a normal <code>Logs</code> folder that <strong>no string in the exe names</strong>: <code>AI_ChokePoint.csv</code>, <code>AI_Diplomacy.csv</code>, <code>AI_Governors.csv</code>, <code>AI_GovtPolicies.csv</code>, <code>AI_Knowledge.csv</code>, <code>AI_Military.csv</code>, <code>AI_Operation_Eval.csv</code>, <code>AI_Planning.csv</code>, <code>AI_Religious.csv</code>, <code>AI_Research.csv</code>, <code>AI_UnitEfficiency.csv</code>, <code>AI_Victories.csv</code>, <code>AStar_APP.log</code>, <code>AStar_GC.log</code>, <code>DiplomacySummary.csv</code>, <code>FiraxisLive.log</code>, <code>ForgeUI_BLPTextureLoader.log</code>, <code>GameCore.log</code>, <code>Game_Boosts.csv</code>, <code>Game_Emergencies.csv</code>, <code>Game_GreatPeople.csv</code>, <code>Game_HeroesManager_HeroStats.csv</code>, <code>Game_HeroesManager_PlayerStats.csv</code>, <code>Game_PlayerScores.csv</code>, <code>Player_Stats.csv</code>, <code>Player_Stats_2.csv</code>, <code>RandCalls.csv</code>, <code>UnitOperations.log</code>, <code>World_Congress.csv</code>. They are written by GameCore (the AI and game statistics csv files, <code>GameCore.log</code>, <code>UnitOperations.log</code>, <code>AStar_*.log</code>), or their names are built from parts at run time (<code>FiraxisLive.log</code>, <code>ForgeUI_BLPTextureLoader.log</code>).</p>
+<h2>Option, user and runtime files</h2>
+<p>Files in the user data folder or next to the game that the exe loads or creates. The four <code>*Options.txt</code> files are described in <a href="options.html">the option files reference</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_user_or_runtime_file_appoptions.txt"></a><code>AppOptions.txt</code></td>
+<td><code>Civ6App::ApplyGraphicsOptionsChanges</code>; <code>Civ6App::DoGraphicsDeviceSelection</code> (+6 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_banks.ini"></a><code>Banks.ini</code></td>
+<td><code>0x2600d0</code>; <code>0xa2b7b0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_currentpackage.zip"></a><code>CurrentPackage.zip</code></td>
+<td><code>0xa7cb0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_eosoptions.txt"></a><code>EOSOptions.txt</code></td>
+<td><code>Civ6App::ProcessEOSOptionSet</code></td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_graphicsoptions.txt"></a><code>GraphicsOptions.txt</code></td>
+<td><code>Civ6App::ProcessGraphicsOptionSet</code></td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_init.bnk"></a><code>Init.bnk</code></td>
+<td><code>Audio::ReadSoundBankXML</code>; <code>0xa2b7b0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_inputsettings.json"></a><code>InputSettings.json</code></td>
+<td><code>Civ6App::SetupInput</code></td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_soundopts.txt"></a><code>SoundOpts.txt</code></td>
+<td><code>0x6d870</code>; <code>0x77cd0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_usercontext.bin"></a><code>UserContext.bin</code></td>
+<td><code>0x418f0</code>; <code>0x41a40</code> (+2 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_user_or_runtime_file_useroptions.txt"></a><code>UserOptions.txt</code></td>
+<td><code>0x6dd10</code>; <code>Civ6App::SetupUI</code> (+1 more)</td>
+</tr>
+</tbody>
+</table>
+<h2>Folders and sub-folders</h2>
+<p>Folder names the code uses: the user data sub-folders (<code>Logs</code>, <code>Dumps</code>, <code>Saves</code>, <code>Temp</code>), the save sub-folders (<code>auto</code>, <code>quick</code>, <code>Hotseat</code>, <code>Multi</code>, <code>Single</code>, <code>WorldBuilder</code>), the content roots (<code>Base</code>, <code>DLC</code>) and UI context names.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_folder_artdefs"></a><code>ArtDefs</code></td>
+<td><code>0x1d43d0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_autoconfig"></a><code>AutoConfig</code></td>
+<td><code>0x173c00</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_autosave"></a><code>AutoSave</code></td>
+<td><code>0x1742b0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_base"></a><code>Base</code></td>
+<td><code>0x1d38a0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_challenges"></a><code>Challenges</code></td>
+<td><code>0xb35a0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_dlc"></a><code>DLC</code></td>
+<td><code>AppModdingFramework::GetDLLPathFromConfig</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_dumps"></a><code>Dumps</code></td>
+<td><code>Civ6App::OverrideAppOptions</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_frontend"></a><code>FrontEnd</code></td>
+<td><code>MainMenuState::LoadUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_hotseat"></a><code>Hotseat</code></td>
+<td><code>0x175ac0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_ingame"></a><code>InGame</code></td>
+<td><code>Civ6App::SetupUI</code>; <code>Audio::ReadSoundBankINI</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_folder_loadscreen"></a><code>LoadScreen</code></td>
+<td><code>LoadGameViewState::LoadUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_logs"></a><code>Logs</code></td>
+<td><code>Civ6App::OverrideAppOptions</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_multi"></a><code>Multi</code></td>
+<td><code>0x175ac0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_profile"></a><code>Profile</code></td>
+<td><code>GameCore::App::Profile::Manager::CheckProfileSave</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_saves"></a><code>Saves</code></td>
+<td><code>GameCore::App::Profile::Manager::CheckProfileSave</code>; <code>0x173740</code> (+2 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_folder_single"></a><code>Single</code></td>
+<td><code>0x175ac0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_subtitles_"></a><code>Subtitles/</code></td>
+<td><code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_temp"></a><code>Temp</code></td>
+<td><code>0x176280</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_worldbuilder"></a><code>WorldBuilder</code></td>
+<td><code>AppModdingFramework::AppModdingFramework</code>; <code>GameModeInUseCriterion::Check</code> (+2 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_folder__challenges_"></a><code>\Challenges\</code></td>
+<td><code>0xa6af0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder__challenges_rootpackage.zip"></a><code>\Challenges\RootPackage.zip</code></td>
+<td><code>0xa6c00</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder__civtechlogs"></a><code>\CivTechLogs</code></td>
+<td><code>AppHost::RunApp</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder__firaxis_games_sid_meier_s_civilization_vi"></a><code>\Firaxis Games\Sid Meier's Civilization VI</code></td>
+<td><code>0x64110</code>; <code>0x69860</code> (+4 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_folder_auto"></a><code>auto</code></td>
+<td><code>0x175ac0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_auto_prev"></a><code>auto/prev</code></td>
+<td><code>0x175ac0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_c__windows_fonts_"></a><code>c:/windows/fonts/</code></td>
+<td><code>ForgeUI::TextControl::Initialize</code></td>
+</tr>
+<tr>
+<td><a id="exefile_folder_quick"></a><code>quick</code></td>
+<td><code>0x175ac0</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Database files</h2>
+<p>The databases the exe opens or creates: gameplay, configuration, localization and modding databases in the install, <code>Mods.sqlite</code> and <code>HallofFame.sqlite</code> in the user folder, and the debug dumps under <code>Cache/</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_database_configuration.sqlite"></a><code>../../../Base/Assets/Database/Configuration.sqlite</code></td>
+<td><code>0xbce80</code>; <code>Application::Data::ConfigurationDatabase::RollBack</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_database_gameplay.sqlite"></a><code>../../../Base/Assets/Database/Gameplay.sqlite</code></td>
+<td><code>0xbfcc0</code>; <code>Application::Data::GameplayDatabase::RollBack</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_database_modding.sql"></a><code>../../../Base/Assets/Database/Modding.sql</code></td>
+<td><code>0xc1fe0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_database_modding.sqlite"></a><code>../../../Base/Assets/Database/Modding.sqlite</code></td>
+<td><code>0xc1fe0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_text_localization.sqlite"></a><code>../../../Base/Assets/Text/Localization.sqlite</code></td>
+<td><code>0xc1ab0</code>; <code>Application::Data::LocalizationDatabase::RollBack</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_text_localizationdatabase_data.sql"></a><code>../../../Base/Assets/Text/LocalizationDatabase_Data.sql</code></td>
+<td><code>Application::Data::LocalizationDatabase::Bootstrap</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_text_localizationdatabase_postprocessing.sql"></a><code>../../../Base/Assets/Text/LocalizationDatabase_PostProcessing.sql</code></td>
+<td><code>Application::Data::LocalizationDatabase::Bootstrap</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.._.._.._base_assets_text_localizationdatabase_schema.sql"></a><code>../../../Base/Assets/Text/LocalizationDatabase_Schema.sql</code></td>
+<td><code>Application::Data::LocalizationDatabase::Bootstrap</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_.sql"></a><code>.sql</code></td>
+<td><code>0xbd1f0</code>; <code>GameCore::Color::Manager::PopulateDatabase</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_database__cache_debugconfiguration.sqlite"></a><code>/Cache/DebugConfiguration.sqlite</code></td>
+<td><code>Application::Data::ConfigurationDatabase::DebugDump</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database__cache_debuggameplay.sqlite"></a><code>/Cache/DebugGameplay.sqlite</code></td>
+<td><code>Application::Data::GameplayDatabase::DebugDump</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database__cache_debuglocalization.sqlite"></a><code>/Cache/DebugLocalization.sqlite</code></td>
+<td><code>Application::Data::LocalizationDatabase::DebugDump</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database__halloffame.sqlite"></a><code>/HallofFame.sqlite</code></td>
+<td><code>Application::Data::GameSummaryDatabase::Initialize</code>; <code>0xc0f00</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database__mods.sqlite"></a><code>/Mods.sqlite</code></td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_database_colormanager.sql"></a><code>Database/ColorManager.sql</code></td>
+<td><code>GameCore::Color::Manager::GenerateDatabase</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_database_iconmanager.sql"></a><code>Database/IconManager.sql</code></td>
+<td><code>0x4fed70</code></td>
+</tr>
+<tr>
+<td><a id="exefile_database_worldbuildertemp.db"></a><code>WorldBuilderTemp.db</code></td>
+<td><code>GameCore::Serializer::Manager::ApplyModdingState</code>; <code>0x16d870</code> (+1 more)</td>
+</tr>
+</tbody>
+</table>
+<h2>File masks and extensions</h2>
+<p>Patterns used when the exe scans folders for content; the first four are how mods, maps and scenarios are discovered.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_file_mask__.civ6map"></a><code>*.civ6map</code></td>
+<td><code>Modding::ModDiscoveryService::DiscoverMods</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.csv"></a><code>*.csv</code></td>
+<td><code>0x702d00</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.dep"></a><code>*.dep</code></td>
+<td><code>0x1d38a0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.flcache"></a><code>*.flCache</code></td>
+<td><code>0xb57e00</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.log"></a><code>*.log</code></td>
+<td><code>0x702d00</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.lua"></a><code>*.lua</code></td>
+<td><code>0x4d4db0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.modfragment"></a><code>*.modfragment</code></td>
+<td><code>Modding::XmlModLoader::Load</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.modinfo"></a><code>*.modinfo</code></td>
+<td><code>Modding::ModDiscoveryService::DiscoverMods</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.png"></a><code>*.png</code></td>
+<td><code>0x52f90</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.sql"></a><code>*.sql</code></td>
+<td><code>Application::Data::LocalizationDatabase::Bootstrap</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask__.xml"></a><code>*.xml</code></td>
+<td><code>0x69140</code>; <code>0x69270</code> (+4 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.civ6cfg"></a><code>.Civ6Cfg</code></td>
+<td><code>0x173670</code>; <code>0x173740</code> (+3 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.civ6map"></a><code>.Civ6Map</code></td>
+<td><code>0xadf70</code>; <code>0x173670</code> (+3 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.civ6save"></a><code>.Civ6Save</code></td>
+<td><code>0x173670</code>; <code>0x173740</code> (+3 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.xml"></a><code>.XML</code></td>
+<td><code>ForgeUI::ContextBase::LoadXML_File</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.civ6map"></a><code>.civ6map</code></td>
+<td><code>ModdingMapSettingHandler::ApplySettings</code>; <code>ModdingWorldBuilderSettingHandler::ApplySettings</code> (+2 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.csv"></a><code>.csv</code></td>
+<td><code>BenchmarkSystem::Stop</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.fpk"></a><code>.fpk</code></td>
+<td><code>File::CatalogInstance::DoAddFile</code>; <code>0x7eb600</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.lua"></a><code>.lua</code></td>
+<td><code>0x4f2650</code>; <code>ForgeUI::LuaContext::Initialize</code></td>
+</tr>
+<tr>
+<td><a id="exefile_file_mask_.modinfo"></a><code>.modinfo</code></td>
+<td><code>Modding::ModLoaderService::LoadMod</code>; <code>0xb46320</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Install layout paths</h2>
+<p>Paths inside the game folders, grouped by their first folders. They show where the engine expects its data: databases under <code>Base/Assets/Database</code>, text under <code>Base/Assets/Text</code>, UI definitions under <code>Base/Assets/UI</code>, and per-platform folders for every platform the engine has ever targeted (the exe lists them, including some that never shipped).</p>
+<details>
+<summary>(game root and root files) (10)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._"></a><code>../../../</code></td>
+<td><code>Civ6App::InitialInit</code>; <code>Civ6App::GUIInit</code> (+2 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._logo_2kfiraxis.bk2"></a><code>../../../LOGO_2KFiraxis.bk2</code></td>
+<td><code>IntroState::LoadFMVBanks</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._civ6_cinematic.bk2"></a><code>../../../civ6_cinematic.bk2</code></td>
+<td><code>IntroState::NextState</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._logos.bk2"></a><code>../../../logos.bk2</code></td>
+<td><code>IntroState::LoadFMVBanks</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path__appoptions.txt"></a><code>/AppOptions.txt</code></td>
+<td><code>0x4d2b30</code>; <code>0x4d2fb0</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_install_path__gameinfo.xml"></a><code>/GameInfo.xml</code></td>
+<td><code>0xa1c30</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path__graphicsoptions.txt"></a><code>/GraphicsOptions.txt</code></td>
+<td><code>0x4d2b30</code>; <code>0x4d2fb0</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_install_path__keymap.txt"></a><code>/Keymap.txt</code></td>
+<td><code>0x4d2b30</code>; <code>0x4d2fb0</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_install_path__soundopts.txt"></a><code>/SoundOpts.txt</code></td>
+<td><code>0x4d2b30</code>; <code>0x4d2fb0</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_install_path__useroptions.txt"></a><code>/UserOptions.txt</code></td>
+<td><code>0x4d2b30</code>; <code>0x4d2fb0</code> (+2 more)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Assets (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._assets_ui_subtitles_"></a><code>../../../Assets/UI/Subtitles/</code></td>
+<td><code>Movie::OpenClip</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Base (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base"></a><code>../../../Base</code></td>
+<td><code>0x2fb80</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Base/ArtDefs (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_artdefs"></a><code>../../../Base/ArtDefs</code></td>
+<td><code>0x2e9d0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Base/Assets (31)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets"></a><code>../../../Base/Assets</code></td>
+<td><code>0x2e9d0</code>; <code>Civ6App::SetupUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_arx_"></a><code>../../../Base/Assets/ARX/</code></td>
+<td><code>0x52d30</code>; <code>0x53180</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_configuration_data_"></a><code>../../../Base/Assets/Configuration/Data/</code></td>
+<td><code>0xbce80</code>; <code>Application::Data::ConfigurationDatabase::RollBack</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_gameplay_data_"></a><code>../../../Base/Assets/Gameplay/Data/</code></td>
+<td><code>0xbfcc0</code>; <code>Application::Data::GameplayDatabase::RollBack</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_gameplay_ui_text_"></a><code>../../../Base/Assets/Gameplay/UI/Text/</code></td>
+<td><code>Application::Data::LocalizationDatabase::Bootstrap</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_halloffame_"></a><code>../../../Base/Assets/HallofFame/</code></td>
+<td><code>Application::Data::GameSummaryDatabase::Initialize</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_maps_"></a><code>../../../Base/Assets/Maps/</code></td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_mods_"></a><code>../../../Base/Assets/Mods/</code></td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_scenarios_"></a><code>../../../Base/Assets/Scenarios/</code></td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_text_"></a><code>../../../Base/Assets/Text/</code></td>
+<td><code>Application::Data::LocalizationDatabase::Bootstrap</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_text_startuperrormessages.xml"></a><code>../../../Base/Assets/Text/StartupErrorMessages.xml</code></td>
+<td><code>Civ6App::SetupErrorHandling</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_text_icudt56l.dat"></a><code>../../../Base/Assets/Text/icudt56l.dat</code></td>
+<td><code>Civ6App::SetupLocalization</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_accessibility_playerdeuteranopiacolors.xml"></a><code>../../../Base/Assets/UI/Accessibility/PlayerDeuteranopiaColors.xml</code></td>
+<td><code>GameCore::Color::Manager::PopulateDatabase</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_accessibility_playerprotanopiacolors.xml"></a><code>../../../Base/Assets/UI/Accessibility/PlayerProtanopiaColors.xml</code></td>
+<td><code>GameCore::Color::Manager::PopulateDatabase</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_accessibility_playertritanopiacolors.xml"></a><code>../../../Base/Assets/UI/Accessibility/PlayerTritanopiaColors.xml</code></td>
+<td><code>GameCore::Color::Manager::PopulateDatabase</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_civ6_benchmarkcontext"></a><code>../../../Base/Assets/UI/Civ6_BenchmarkContext</code></td>
+<td><code>0x54440</code>; <code>BenchmarkSystem::Start</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_civ6_coloratlas.xml"></a><code>../../../Base/Assets/UI/Civ6_ColorAtlas.xml</code></td>
+<td><code>0x502a0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_civ6_styles.xml"></a><code>../../../Base/Assets/UI/Civ6_Styles.xml</code></td>
+<td><code>0x502a0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_civ6_tutorialoverlay.xml"></a><code>../../../Base/Assets/UI/Civ6_TutorialOverlay.xml</code></td>
+<td><code>0x502a0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_colors"></a><code>../../../Base/Assets/UI/Colors</code></td>
+<td><code>0x69140</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_controllericonaliases.xml"></a><code>../../../Base/Assets/UI/ControllerIconAliases.xml</code></td>
+<td><code>0x3b9c0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_debug_civ6_debugcontext"></a><code>../../../Base/Assets/UI/Debug/Civ6_DebugContext</code></td>
+<td><code>0x4cff0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_frontend_initscreen"></a><code>../../../Base/Assets/UI/FrontEnd/InitScreen</code></td>
+<td><code>0x818e0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_frontend_startupscreen"></a><code>../../../Base/Assets/UI/FrontEnd/StartupScreen</code></td>
+<td><code>IntroState::LoadEULAUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_icons"></a><code>../../../Base/Assets/UI/Icons</code></td>
+<td><code>0x69270</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_subtitlecontext"></a><code>../../../Base/Assets/UI/SubtitleContext</code></td>
+<td><code>IntroState::LoadSubtitleUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_ui_text_"></a><code>../../../Base/Assets/UI/Text/</code></td>
+<td><code>Application::Data::LocalizationDatabase::Bootstrap</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_assets_worldbuilder_data_"></a><code>../../../Base/Assets/WorldBuilder/Data/</code></td>
+<td><code>AppModdingFramework::GetPathList</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_base_assets_automation_saves"></a><code>Base/Assets/Automation/Saves</code></td>
+<td><code>0x175790</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_base_assets_benchmark_saves"></a><code>Base/Assets/Benchmark/Saves</code></td>
+<td><code>0x175790</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_base_assets_demo_saves"></a><code>Base/Assets/Demo/Saves</code></td>
+<td><code>0x175790</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Base/Platforms (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._base_platforms_windows_arx"></a><code>../../../Base/Platforms/Windows/ARX</code></td>
+<td><code>0x2e9d0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>DLC/ (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._dlc_"></a><code>../../../DLC/</code></td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>DLC/Expansion1 (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._dlc_expansion1_platforms_windows_movies_expansion1intro.bk2"></a><code>../../../DLC/Expansion1/Platforms/Windows/Movies/Expansion1Intro.bk2</code></td>
+<td><code>IntroState::NextState</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>DLC/Expansion2 (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._dlc_expansion2_platforms_windows_movies_xp2_opening.bk2"></a><code>../../../DLC/Expansion2/Platforms/Windows/Movies/XP2_Opening.bk2</code></td>
+<td><code>IntroState::NextState</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>DLC/WeGame (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._dlc_wegame_"></a><code>../../../DLC/WeGame/</code></td>
+<td><code>AppModdingFramework::AppModdingFramework</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>UI (3)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_.._.._.._ui_debug_debugviewer"></a><code>../../../UI/Debug/DebugViewer</code></td>
+<td><code>AppUIDebugViewer::Startup</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_.._.._.._ui_subtitles_"></a><code>../../../UI/Subtitles/</code></td>
+<td><code>Movie::OpenClip</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_ui_art_controls_metertest.dds"></a><code>UI/Art/Controls/MeterTest.dds</code></td>
+<td><code>ForgeUI::MeterControl::BuildCoreFromXML</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>App (3)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_app_firaxislive_configuration"></a><code>App/FiraxisLive/Configuration</code></td>
+<td><code>AppFiraxisLiveClient::DoDataPushNotify</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_app_firaxislive_marketingmessage"></a><code>App/FiraxisLive/MarketingMessage</code></td>
+<td><code>AppFiraxisLiveClient::DoDataPushNotify</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_app_firaxislive_onlinetelemetryconfiguration.xml"></a><code>App/FiraxisLive/OnlineTelemetryConfiguration.xml</code></td>
+<td><code>AppFiraxisLiveClient::OnOnlineConfigUpdated</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>ForgeUI_Assets (7)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_forgeui_assets_coloratlas.xml"></a><code>ForgeUI_Assets/ColorAtlas.xml</code></td>
+<td><code>ForgeUI::ForgeUI_UIManager::InitializeStyles</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_forgeui_assets_controlart_buttons_checkmark.dds"></a><code>ForgeUI_Assets/ControlArt/Buttons/CheckMark.dds</code></td>
+<td><code>0x90a220</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_forgeui_assets_corestyles.xml"></a><code>ForgeUI_Assets/CoreStyles.xml</code></td>
+<td><code>ForgeUI::ForgeUI_UIManager::InitializeStyles</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_forgeui_assets_debugcontext"></a><code>ForgeUI_Assets/DebugContext</code></td>
+<td><code>0x8e3120</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_forgeui_assets_fonts_"></a><code>ForgeUI_Assets/Fonts/</code></td>
+<td><code>ForgeUI::TextControl::Initialize</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_forgeui_assets_numberpadcontext"></a><code>ForgeUI_Assets/NumberPadContext</code></td>
+<td><code>ForgeUI::ForgeUI_UIManager::BuildNumpadControl</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_forgeui_assets_tooltips"></a><code>ForgeUI_Assets/ToolTips</code></td>
+<td><code>0x8e5980</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>GameConfig (2)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_gameconfig_gameconfig.xml"></a><code>GameConfig/GameConfig.xml</code></td>
+<td><code>0xadf70</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_gameconfig_gameinfo.xml"></a><code>GameConfig/GameInfo.xml</code></td>
+<td><code>0xadf70</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/Durange (2)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_durange_assets_ui"></a><code>Platforms/Durange/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_durange_phone_assets_ui"></a><code>Platforms/Durange/Phone/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/Linux (1)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_linux_blps"></a><code>Platforms/Linux/BLPs</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/MacOS (3)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_macos_assets_ui"></a><code>Platforms/MacOS/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_macos_blps"></a><code>Platforms/MacOS/BLPs</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_macos_desktop_assets_ui"></a><code>Platforms/MacOS/Desktop/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/Orbis (2)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_orbis_assets_ui"></a><code>Platforms/Orbis/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_orbis_phone_assets_ui"></a><code>Platforms/Orbis/Phone/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/Stadia (6)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_stadia_assets_ui"></a><code>Platforms/Stadia/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_stadia_audio"></a><code>Platforms/Stadia/Audio</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_stadia_blps"></a><code>Platforms/Stadia/BLPs</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_stadia_desktop_assets_ui"></a><code>Platforms/Stadia/Desktop/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_stadia_phone_assets_ui"></a><code>Platforms/Stadia/Phone/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_stadia_tablet_assets_ui"></a><code>Platforms/Stadia/Tablet/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/Switch (5)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_switch_assets_ui"></a><code>Platforms/Switch/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_switch_audio"></a><code>Platforms/Switch/Audio</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_switch_blps"></a><code>Platforms/Switch/BLPs</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_switch_movies"></a><code>Platforms/Switch/Movies</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_switch_phone_assets_ui"></a><code>Platforms/Switch/Phone/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/Windows (3)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_windows_audio"></a><code>Platforms/Windows/Audio</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_windows_blps"></a><code>Platforms/Windows/BLPs</code></td>
+<td><code>0x2ebc0</code>; <code>0x1d43d0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_windows_movies"></a><code>Platforms/Windows/Movies</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>Platforms/iOS (6)</summary>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_install_path_platforms_ios_assets_ui"></a><code>Platforms/iOS/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_ios_audio"></a><code>Platforms/iOS/Audio</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_ios_blps"></a><code>Platforms/iOS/BLPs</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_ios_movies"></a><code>Platforms/iOS/Movies</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_ios_phone_assets_ui"></a><code>Platforms/iOS/Phone/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_install_path_platforms_ios_tablet_assets_ui"></a><code>Platforms/iOS/Tablet/Assets/UI</code></td>
+<td><code>0x2ebc0</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>Other files</h2>
+<p>Remaining file names the code mentions: UI art, fonts, cursors, telemetry configuration, benchmark saves, and similar.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_other_file__s.bs"></a><code>%s.bs</code></td>
+<td><code>0xdc4f80</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file__s_reflect.txt"></a><code>%s_reflect.txt</code></td>
+<td><code>FSL::HLSL_Precompile</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file__u.bnk"></a><code>%u.bnk</code></td>
+<td><code>0x762900</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_.txt"></a><code>.txt</code></td>
+<td><code>Audio::LoadSoundBank</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_.xml"></a><code>.xml</code></td>
+<td><code>0xbd1f0</code>; <code>ForgeUI::ContextBase::LoadXML_File</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_aibenchmark.civ6save"></a><code>AIBenchmark.Civ6Save</code></td>
+<td><code>BenchmarkSystem::ParseArguments</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_airbomb.ani"></a><code>Airbomb.ani</code></td>
+<td><code>Civ6App::SetupUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_brightness.txt"></a><code>Brightness.txt</code></td>
+<td><code>Particle::System::LoadShaderPackageInstanceView</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_cisl__s__s.txt"></a><code>CISL_%s_%s.txt</code></td>
+<td><code>void GeneratePackages&lt;FSL::ShaderPackage&gt;</code>; <code>0xdec9f0</code> (+1 more)</td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_challenges_custommap.civ6map"></a><code>Challenges/CustomMap.Civ6Map</code></td>
+<td><code>GameCore::App::Telemetry::Listener::OnPostLoadBegin</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_challenges_custommap.civ6map"></a><code>Challenges\CustomMap.Civ6Map</code></td>
+<td><code>GameCore::App::Telemetry::Listener::OnPostLoadBegin</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_civ6_fontstyles_efigs.xml"></a><code>Civ6_FontStyles_EFIGS.xml</code></td>
+<td><code>AppUIManager::GetStyleSheetAndDefaultFont</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_continents.lua"></a><code>Continents.lua</code></td>
+<td><code>GameCore::App::Configuration::Game::SetToDefaultValues</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_currentpackage.bin"></a><code>CurrentPackage.bin</code></td>
+<td><code>0xa7cb0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_custommap.civ6map"></a><code>CustomMap.Civ6Map</code></td>
+<td><code>0xa2c60</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_fakevolume.txt"></a><code>FakeVolume.txt</code></td>
+<td><code>Particle::System::LoadShaderPackageInstanceView</code>; <code>0xc23670</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_glow.txt"></a><code>Glow.txt</code></td>
+<td><code>Particle::System::LoadShaderPackageInstanceView</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_graphicsbenchmark.civ6save"></a><code>GraphicsBenchmark.Civ6Save</code></td>
+<td><code>BenchmarkSystem::ParseArguments</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_hlsl_readable__s.txt"></a><code>HLSL_Readable_%s.txt</code></td>
+<td><code>FSL::HLSL_Precompile</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_helveticaneue.ttf"></a><code>HelveticaNeue.ttf</code></td>
+<td><code>AppUIManager::GetStyleSheetAndDefaultFont</code>; <code>Civ6App::SetupUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_images_badge.png"></a><code>Images/Badge.png</code></td>
+<td><code>0xafbb0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_mask.txt"></a><code>Mask.txt</code></td>
+<td><code>Particle::System::LoadShaderPackageInstanceView</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_metal__s__s_metal.txt"></a><code>Metal_%s_%s_metal.txt</code></td>
+<td><code>void GeneratePackages&lt;FSL::ShaderPackage&gt;</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_minionpro-semibold.otf"></a><code>MinionPro-Semibold.otf</code></td>
+<td><code>0x236a70</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_move.ani"></a><code>Move.ani</code></td>
+<td><code>Civ6App::SetupUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_production.txt"></a><code>PRODUCTION.txt</code></td>
+<td><code>0xa7cb0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_pangaea.lua"></a><code>Pangaea.lua</code></td>
+<td><code>GameCore::App::Configuration::Game::SetToDefaultValues</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_pointer.ani"></a><code>Pointer.ani</code></td>
+<td><code>Civ6App::SetupUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_staging.txt"></a><code>STAGING.txt</code></td>
+<td><code>0xa7cb0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_shaderautogen_windows_dx11_finalrelease.bs"></a><code>ShaderAutoGen_Windows_DX11_FinalRelease.bs</code></td>
+<td><code>0xdc11b0</code>; <code>0xdc3f10</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_waiting.ani"></a><code>Waiting.ani</code></td>
+<td><code>Civ6App::SetupUI</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_xp2benchmark.civ6save"></a><code>XP2Benchmark.Civ6Save</code></td>
+<td><code>BenchmarkSystem::ParseArguments</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_carousel_listing.json"></a><code>carousel_listing.json</code></td>
+<td><code>0xaded0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_challenge_info.json"></a><code>challenge_info.json</code></td>
+<td><code>0xadf70</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_challenge_sandbox.json"></a><code>challenge_sandbox.json</code></td>
+<td><code>0xa6530</code>; <code>0xa7300</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_clickout_info.json"></a><code>clickout_info.json</code></td>
+<td><code>0xae730</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_etc_ctpconfig.json"></a><code>etc/ctpConfig.json</code></td>
+<td><code>0xbc9ee0</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_hall_of_fame_info.json"></a><code>hall_of_fame_info.json</code></td>
+<td><code>0xb0450</code>; <code>0xb0690</code></td>
+</tr>
+<tr>
+<td><a id="exefile_other_file_header.json"></a><code>header.json</code></td>
+<td><code>AppHost::BugSubmissionPackager::SubmitBug</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Asset ownership check</h2>
+<p>One function (<code>App::Ownership::Local::Startup</code>) lists a set of hash-named asset files under <code>Base/Assets</code> and tests whether they exist, which is how the exe decides which content packages are present.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exefile_asset_ownership_check_.._.._.._base_assets_civ6__16_hex_digits_.xml"></a><code>../../../Base/Assets/Civ6_&lt;16 hex digits&gt;.xml</code></td>
+<td><code>0x43e90</code></td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

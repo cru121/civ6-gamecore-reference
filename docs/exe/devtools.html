@@ -1,0 +1,447 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Developer tools and crash reports</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › Developer tools and crash reports</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>Developer tools and crash reports</h1>
+<p>The exe contains the remote tools Firaxis used to develop the game and the code that writes crash reports. They are off in a normal game; the tuner needs the <code>EnableTuner</code> option of the <a href="options.html">Debug section</a>. This page lists the <strong>command words</strong> the tuner listeners accept, the asset hot-load commands, the automation hooks, the elements of the bug submission header and the exception names the crash handler prints. <strong>Verified</strong>: the command words (read from the exe), the dispatch order, handler addresses and strings. <strong>Inferred</strong>: what each command does (from the handler names and reply strings). Nothing here was tried against a running tuner.</p>
+<h2>FireTuner (AppTuner2) commands</h2>
+<p>The listener <code>Tuner::AppTuner2::Listener::ProcessInput</code> (<code>0x4f5bf0</code>) receives text messages with an 8-byte header followed by <code>COMMAND:arguments</code>. The <strong>application commands</strong> are compared first. Any other message is read as <code>&lt;state index&gt;:COMMAND:arguments</code>: the number picks one of the registered Lua states (the main state and threads, <code>AddLuaState</code>) and the command is one of the <strong>Lua state commands</strong>. <code>HOTLOAD</code> takes a kind as its first argument (<code>ARTDEF</code>, <code>UI</code>, anything else is a blueprint reload).</p>
+<h3>Application commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Handler</th>
+<th>Address</th>
+<th>Strings of the handler</th>
+<th>Meaning (inferred)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="tuner-command-lsq"></a><code>LSQ</code></td>
+<td><code>0x4f6d10</code></td>
+<td>0x4f6d10</td>
+<td>—</td>
+<td>handler not named; the command word suggests a query for the list of Lua states (guess)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-app"></a><code>APP</code></td>
+<td><code>0x4f13c0</code></td>
+<td>0x4f13c0</td>
+<td>—</td>
+<td>handler is <code>RegisterTree</code> in the function map (low confidence): registers the value tree of the tuner and then sends application information (guess)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-close"></a><code>CLOSE</code></td>
+<td><code>0x4efee0</code></td>
+<td>0x4efee0</td>
+<td>—</td>
+<td>close the tuner connection</td>
+</tr>
+<tr>
+<td><a id="tuner-command-tree"></a><code>TREE</code></td>
+<td><code>HandleTreeRequest</code></td>
+<td>0x4f4e00</td>
+<td><code>D%s = %s</code></td>
+<td>request a tree of values (reply lines <code>D&lt;name&gt; = &lt;value&gt;</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-strackers"></a><code>STRACKERS</code></td>
+<td><code>HandleStatTrackersListRequest</code></td>
+<td>0x4f43c0</td>
+<td><code>TrackerList</code></td>
+<td>list the statistic trackers (reply <code>TrackerList</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-start_tracker"></a><code>START_TRACKER</code></td>
+<td><code>0x4f4380</code></td>
+<td>0x4f4380</td>
+<td>—</td>
+<td>start a statistic tracker (name; handler not named)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-stop_tracker"></a><code>STOP_TRACKER</code></td>
+<td><code>0x4f4420</code></td>
+<td>0x4f4420</td>
+<td>—</td>
+<td>stop a statistic tracker (name; handler not named)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-load"></a><code>LOAD</code></td>
+<td><code>0x4f2650</code></td>
+<td>0x4f2650</td>
+<td>—</td>
+<td>handler not named; the word suggests a load request (guess)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-hotload"></a><code>HOTLOAD</code></td>
+<td><code>ProcessInput (kind dispatch)</code></td>
+<td>0x4f5bf0</td>
+<td>—</td>
+<td>reload assets while the game runs: <code>HOTLOAD:ARTDEF:&lt;name&gt;</code>, <code>HOTLOAD:UI:&lt;name&gt;</code> or <code>HOTLOAD:&lt;other&gt;:&lt;name&gt;</code> (blueprint reload)</td>
+</tr>
+</tbody>
+</table>
+<h3>Lua state commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Handler</th>
+<th>Address</th>
+<th>Strings of the handler</th>
+<th>Meaning (inferred)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="tuner-command-cmd"></a><code>CMD</code></td>
+<td><code>RunConsoleCommand</code></td>
+<td>0x4f6b70</td>
+<td><code>ERR:Invalid Lua State</code></td>
+<td>run a console command in the Lua state (<code>RunConsoleCommand</code>; error <code>ERR:Invalid Lua State</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-help"></a><code>HELP</code></td>
+<td><code>HandleHelpRequest</code></td>
+<td>0x4f1ee0</td>
+<td><code>BaseType</code>, <code>ExposedMembers</code>, <code>__index</code></td>
+<td>help for an object or table: <code>BaseType</code>, <code>ExposedMembers</code>, <code>__index</code> lookups</td>
+</tr>
+<tr>
+<td><a id="tuner-command-helpt"></a><code>HELPT</code></td>
+<td><code>0x4f5070</code></td>
+<td>0x4f5070</td>
+<td><code>Function</code>, <code>String</code>, <code>Table</code></td>
+<td>help for a table / array (<code>HandleArrayHelpRequest</code>, reply <code>%s (%s)</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-val"></a><code>VAL</code></td>
+<td><code>HandleSetValueRequest</code></td>
+<td>0x4f3dc0</td>
+<td><code>ERR:No Query Found</code>, <code>ERR:SET:</code>, <code>ERR:SET:Bad lua state</code>, <code>string</code></td>
+<td>set a value (<code>ERR:SET:</code>, <code>ERR:SET:Bad lua state</code>, <code>ERR:No Query Found</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-qry"></a><code>QRY</code></td>
+<td><code>HandleQueryRequest</code></td>
+<td>0x4f3890</td>
+<td><code>Attempt to call a Lua::Function with an invalid function</code>, <code>ERR:Bad lua state</code></td>
+<td>run a query function (<code>ERR:Bad lua state</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-killqry"></a><code>KILLQRY</code></td>
+<td><code>0x4f1750</code></td>
+<td>0x4f1750</td>
+<td>—</td>
+<td>cancel a running query</td>
+</tr>
+<tr>
+<td><a id="tuner-command-table"></a><code>TABLE</code></td>
+<td><code>HandleTableInfoRequest</code></td>
+<td>0x4f4960</td>
+<td><code>* Metatable *</code>, <code>Attempt to call a Lua::Function with an invalid function</code>, <code>function(k) return "* " .. tostring(k) .. " *"; end</code></td>
+<td>list the contents of a Lua table (marks the metatable as <code>* Metatable *</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-custom_table"></a><code>CUSTOM_TABLE</code></td>
+<td><code>HandleCustomTableRequest</code></td>
+<td>0x4f1d10</td>
+<td><code>Populate Table Error</code></td>
+<td>populate a custom table (<code>Populate Table Error</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-custom_table_sel"></a><code>CUSTOM_TABLE_SEL</code></td>
+<td><code>HandleCustomTableSelectionRequest</code></td>
+<td>0x4f2cd0</td>
+<td><code>OnSelection Error</code>, <code>StateName</code></td>
+<td>selection in a custom table (<code>OnSelection Error</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-list"></a><code>LIST</code></td>
+<td><code>HandlePopulateListRequest</code></td>
+<td>0x4f2f10</td>
+<td><code>Attempt to call a Lua::Function with an invalid function</code>, <code>Populate List Error</code>, <code>Populate List Success</code>, <code>Populate List Success;Selected=%d</code></td>
+<td>populate a list (<code>Populate List Success</code>, <code>Populate List Success;Selected=%d</code>, <code>Populate List Error</code>)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-listsel"></a><code>LISTSEL</code></td>
+<td><code>HandleCustomTableSelectionRequest</code></td>
+<td>0x4f2cd0</td>
+<td><code>OnSelection Error</code>, <code>StateName</code></td>
+<td>selection in a list (same handler as the custom table selection)</td>
+</tr>
+<tr>
+<td><a id="tuner-command-mlist"></a><code>MLIST</code></td>
+<td><code>HandlePopulateMultiselectListRequest</code></td>
+<td>0x4f32f0</td>
+<td><code>Attempt to call a Lua::Function with an invalid function</code>, <code>Populate List Error</code>, <code>Populate List Success</code>, <code>Selected</code></td>
+<td>populate a multiselect list (<code>Populate List Success</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2>Asset hot loading (AssetCloud)</h2>
+<p>A second listener, <code>AssetCloud::Listener::ProcessInput</code> (<code>0x4ef4f0</code>), accepts <code>CLOSE</code> and <code>HOTLOAD</code> and logs to <code>AssetCloudTuner.log</code>. The hot loader keeps a queue of <code>ARTDEF:</code> and <code>DEPENDENCY:</code> entries and a temporary workspace folder that it removes when it closes.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="assetcloud-command-close"></a><code>CLOSE</code></td>
+<td>close the asset cloud connection (log: "Received close request.")</td>
+</tr>
+<tr>
+<td><a id="assetcloud-command-hotload"></a><code>HOTLOAD</code></td>
+<td>hot load a file (log: "Received Hotload request: '%s'." then "HotLoad complete."); queue entries are <code>ARTDEF:</code> and <code>DEPENDENCY:</code> (log: "Adding ArtDef/BLP '%s' to the hot load queue")</td>
+</tr>
+</tbody>
+</table>
+<h2>Automation hooks</h2>
+<p>The automation manager (switches <code>-autoscript</code>, <code>-autoparams</code>, <code>-autojson</code> on the <a href="command-line.html">command line</a>; Lua table <a href="../exeapi/Automation.html"><code>Automation</code></a>) raises these events and uses these tags in output file names:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="automation-automationappinitcomplete"></a><code>AutomationAppInitComplete</code></td>
+<td>raised when the app finished initialising (Automation::Manager::OnAppInitComplete)</td>
+</tr>
+<tr>
+<td><a id="automation-automationmainmenustarted"></a><code>AutomationMainMenuStarted</code></td>
+<td>raised when the main menu started</td>
+</tr>
+<tr>
+<td><a id="automation-automationpostgameinitialization"></a><code>AutomationPostGameInitialization</code></td>
+<td>raised after game initialisation (Automation::Manager::PostGameInitialization)</td>
+</tr>
+<tr>
+<td><a id="automation-__automation_"></a><code>$(Automation)</code></td>
+<td>file name tag replaced by the automation folder in output file names</td>
+</tr>
+<tr>
+<td><a id="automation-__id_"></a><code>$(ID)</code></td>
+<td>file name tag replaced by the run id</td>
+</tr>
+<tr>
+<td><a id="automation-automation__04d__02d__02d___02d__02d__02d"></a><code>Automation_%04d_%02d_%02d__%02d_%02d_%02d</code></td>
+<td>default automation output name pattern (date and time)</td>
+</tr>
+</tbody>
+</table>
+<h2>Bug submission header</h2>
+<p><code>AppHost::BugSubmissionPackager::GenerateHeaderInSubmissionFolder</code> (<code>0x705e70</code>) writes a header document into the submission folder (a folder with the log, the dump and attachments). Elements in the order they are written (the grouping under a parent is inferred from the order of repeated names):</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Element</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a id="bug-header-guid"></a><code>GUID</code></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a id="bug-header-application"></a><code>Application</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a id="bug-header-submissiontype"></a><code>SubmissionType</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a id="bug-header-host"></a><code>Host</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a id="bug-header-time"></a><code>Time</code></td>
+<td>formatted %04d-%02d-%02d %02d:%02d:%02d</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a id="bug-header-file"></a><code>File</code></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a id="bug-header-line"></a><code>Line</code></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a id="bug-header-message"></a><code>Message</code></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a id="bug-header-callstack"></a><code>Callstack</code></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a id="bug-header-catalog"></a><code>Catalog</code></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a id="bug-header-log"></a><code>Log</code></td>
+<td>child File, MD5</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a id="bug-header-dump"></a><code>Dump</code></td>
+<td>child File, MD5</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a id="bug-header-attachments"></a><code>Attachments</code></td>
+<td>child File, MD5</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a id="bug-header-exception"></a><code>Exception</code></td>
+<td>children Message, StackTrace, ModuleInfo</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a id="bug-header-moduleinfo"></a><code>ModuleInfo</code></td>
+<td>attributes file, baseAddr, size, guid1, guid2, guid3, guid4, age, pdbPath</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a id="bug-header-version"></a><code>Version</code></td>
+<td>children Major, Minor, Rev, Build, Changelist</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a id="bug-header-session"></a><code>Session</code></td>
+<td>children Hash, Time</td>
+</tr>
+</tbody>
+</table>
+<p>Collection is switched by the <code>EnableBugCollection</code> option and the <code>-NoAssertCollection</code> switch (see the <a href="options.html">options</a> and <a href="command-line.html">command line</a> pages).</p>
+<h2>Exception names</h2>
+<p><code>FDebugHelperNS::GetExceptionDescription</code> (<code>0x986d20</code>) turns a Windows exception code into the text of the crash dialog (<code>Unhandled Exception / Code: &lt;name&gt;</code>, <code>Error reading|writing address 0x...</code>, followed by <code>Call Stack</code>). Code values are the documented Windows constants.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="exception-exception_access_violation"></a><code>EXCEPTION_ACCESS_VIOLATION</code></td>
+<td>0xC0000005</td>
+</tr>
+<tr>
+<td><a id="exception-exception_array_bounds_exceeded"></a><code>EXCEPTION_ARRAY_BOUNDS_EXCEEDED</code></td>
+<td>0xC000008C</td>
+</tr>
+<tr>
+<td><a id="exception-exception_breakpoint"></a><code>EXCEPTION_BREAKPOINT</code></td>
+<td>0x80000003</td>
+</tr>
+<tr>
+<td><a id="exception-exception_datatype_misalignment"></a><code>EXCEPTION_DATATYPE_MISALIGNMENT</code></td>
+<td>0x80000002</td>
+</tr>
+<tr>
+<td><a id="exception-exception_flt_denormal_operand"></a><code>EXCEPTION_FLT_DENORMAL_OPERAND</code></td>
+<td>0xC000008D</td>
+</tr>
+<tr>
+<td><a id="exception-exception_flt_divide_by_zero"></a><code>EXCEPTION_FLT_DIVIDE_BY_ZERO</code></td>
+<td>0xC000008E</td>
+</tr>
+<tr>
+<td><a id="exception-exception_flt_inexact_result"></a><code>EXCEPTION_FLT_INEXACT_RESULT</code></td>
+<td>0xC000008F</td>
+</tr>
+<tr>
+<td><a id="exception-exception_flt_invalid_operation"></a><code>EXCEPTION_FLT_INVALID_OPERATION</code></td>
+<td>0xC0000090</td>
+</tr>
+<tr>
+<td><a id="exception-exception_flt_overflow"></a><code>EXCEPTION_FLT_OVERFLOW</code></td>
+<td>0xC0000091</td>
+</tr>
+<tr>
+<td><a id="exception-exception_flt_stack_check"></a><code>EXCEPTION_FLT_STACK_CHECK</code></td>
+<td>0xC0000092</td>
+</tr>
+<tr>
+<td><a id="exception-exception_flt_underflow"></a><code>EXCEPTION_FLT_UNDERFLOW</code></td>
+<td>0xC0000093</td>
+</tr>
+<tr>
+<td><a id="exception-exception_guard_page"></a><code>EXCEPTION_GUARD_PAGE</code></td>
+<td>0x80000001</td>
+</tr>
+<tr>
+<td><a id="exception-exception_illegal_instruction"></a><code>EXCEPTION_ILLEGAL_INSTRUCTION</code></td>
+<td>0xC000001D</td>
+</tr>
+<tr>
+<td><a id="exception-exception_int_divide_by_zero"></a><code>EXCEPTION_INT_DIVIDE_BY_ZERO</code></td>
+<td>0xC0000094</td>
+</tr>
+<tr>
+<td><a id="exception-exception_int_overflow"></a><code>EXCEPTION_INT_OVERFLOW</code></td>
+<td>0xC0000095</td>
+</tr>
+<tr>
+<td><a id="exception-exception_invalid_disposition"></a><code>EXCEPTION_INVALID_DISPOSITION</code></td>
+<td>0xC0000026</td>
+</tr>
+<tr>
+<td><a id="exception-exception_invalid_handle"></a><code>EXCEPTION_INVALID_HANDLE</code></td>
+<td>0xC0000008</td>
+</tr>
+<tr>
+<td><a id="exception-exception_in_page_error"></a><code>EXCEPTION_IN_PAGE_ERROR</code></td>
+<td>0xC0000006</td>
+</tr>
+<tr>
+<td><a id="exception-exception_noncontinuable_exception"></a><code>EXCEPTION_NONCONTINUABLE_EXCEPTION</code></td>
+<td>0xC0000025</td>
+</tr>
+<tr>
+<td><a id="exception-exception_priv_instruction"></a><code>EXCEPTION_PRIV_INSTRUCTION</code></td>
+<td>0xC0000096</td>
+</tr>
+<tr>
+<td><a id="exception-exception_single_step"></a><code>EXCEPTION_SINGLE_STEP</code></td>
+<td>0x80000004</td>
+</tr>
+<tr>
+<td><a id="exception-exception_stack_overflow"></a><code>EXCEPTION_STACK_OVERFLOW</code></td>
+<td>0xC00000FD</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>

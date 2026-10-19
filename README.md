@@ -14,6 +14,7 @@ I made it because the engine knows far more than the Lua API shows, and the exis
 - **Native functions** that have no Lua route today, and a **Dev CE (experimental)** section describing engine functions that [Dev CE](https://github.com/cru121/civ6-dev-ce), an experimental fork of the Community Extension, adds to Lua (997 methods on 43 objects, with test status per method). Dev CE has a release zip with the DLL and the source (v0.2.0-experimental), it is single-player only and has known unsafe functions; read its README first.
 - **Game text (bring your own)**: each modifier effect has a "where the game uses it" page. Build a strings file from your own copy of the game and the pages show the in-game wording, in your language, and search finds entries by it. Nothing is uploaded and no game text is published.
 - **World Builder from Lua**: all 99 World Builder methods grouped by manager, with call forms, return values and undo behaviour.
+- **Engine executable** (`exe/`, `exeapi/`, `exeevents/`, `exefn/`, `exedb/`, `execlass/`, `exeart/`, `exetypes/`): a reference for the game program itself (`CivilizationVI.exe`, DX11 build of July 2024, analysed together with the matching Linux build): option files and command-line switches, the debug console, the Lua tables the exe hosts (1,737 methods with signatures), engine events and their data fields, Lua enum tables, input actions, the game load sequence, the gameplay XML data format, ArtDef and blueprint vocabularies, reflected data types, multiplayer, developer-tool and crash-report vocabulary, and a searchable index of about 50,000 function names with Windows addresses (every row carries a confidence; `low` rows are unreliable). Names and addresses only, no code.
 - **findings/**: per-function analysis notes and topic pages (great works, events, the identifier hash, build differences).
 
 Every entry is labelled by how you can use it: available in the vanilla game, needs the Community Extension, or engine internals.
@@ -44,6 +45,8 @@ findings/    function-level notes and tables
 Built on the work of Sukrit Tan (Civilization VI Modding Wiki), ChimpanG and WildW (Modding Companion 2.0), and Wild-W and contributors (Civilization VI Community Extension). See the site's home page for the full list. Names and layouts are recovered from debug symbols shipped with an older build, following the method in the Community Extension contributor's guide, and cross-checked against the Linux port's DWARF data.
 
 ## Disclaimer
+The engine executable section comes from static analysis of the game program for modding and interoperability research; the names in it are the game's own identifiers and nothing in it was tested against online services.
+
 Unofficial fan research. Not affiliated with or endorsed by Firaxis Games, 2K or Take-Two. This repository contains no game binaries, assets or scripts, only notes, addresses and short call-site snippets. Intended for modding and understanding the game; do not use it to cheat in multiplayer or circumvent protection.
 
 ## License

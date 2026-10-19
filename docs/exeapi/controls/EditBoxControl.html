@@ -1,0 +1,190 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>EditBoxControl</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../../index.html">Home</a><a href="../../conventions.html">How to read</a><a href="../../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../../lua/index.html">Lua API</a><a href="../../operations/index.html">Operations</a><a href="../../enums/index.html">Enums</a><a href="../../effects/index.html">Modifier effects</a><a href="../../requirements/index.html">Requirements</a><a href="../../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../../ce/index.html">CE Lua API</a><a href="../../layouts/index.html">Class layouts</a><a href="../../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../../exe/index.html">Overview</a><a href="../../exe/options.html">Option files</a><a href="../../exe/command-line.html">Command line</a><a href="../../exe/console.html">Debug console</a><a href="../../exe/files.html">Files and paths</a><a href="../../exe/modinfo.html">.modinfo vocabulary</a><a href="../../exe/messages.html">Log messages</a><a href="../../exe/uixml.html">UI XML vocabulary</a><a href="../../exe/telemetry.html">Telemetry</a><a href="../../exe/imports.html">Imports</a><a href="../../exe/audio.html">Audio names</a><a href="../../exe/event-data.html">Event data fields</a><a href="../../exe/lua-enums.html">Lua enum tables</a><a href="../../exe/network.html">Multiplayer vocabulary</a><a href="../../exe/lenses.html">Lenses</a><a href="../../exe/loading.html">Load sequence</a><a href="../../exe/input.html">Input actions</a><a href="../../exe/devtools.html">Developer tools</a><a href="../../exe/gamesummary.html">Game summary</a><a href="../../execlass/index.html">Classes</a><a href="../../exeart/index.html">ArtDef vocabulary</a><a href="../../exetypes/index.html">Reflected types</a><a href="../../exedb/index.html">Database access</a><a href="../../exeapi/index.html">Engine Lua tables</a><a href="../../exeevents/index.html">Engine events</a><a href="../../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../../native/index.html">Native functions</a><a href="../../native/all.html">All functions (search)</a></nav><main><p><a href="../../index.html">Home</a> › <a href="../index.html">Engine Lua tables</a> › <a href="index.html">ForgeUI control types</a> › EditBoxControl</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>EditBoxControl</h1>
+<p>ForgeUI control type (ForgeUI::EditBoxControl). 27 methods, called on an instance with a colon: <code>Controls.SomeName:Method(...)</code>.</p>
+<p>C++ base classes (from the exe RTTI, see <a href="../../execlass/ForgeUI.html">engine classes</a>): <code>ForgeUI::ControlBase</code>. Whether the Lua type also exposes the base class methods was not checked; the methods below are those registered on this type itself.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>C++ signature printed by the exe</th>
+<th>Lua signature</th>
+<th>Owner basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="_editboxcontrol.clearstring"></a><code>ClearString</code></td>
+<td><code>void ClearString( void )</code></td>
+<td><code>EditBoxControl:ClearString()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.dropfocus"></a><code>DropFocus</code></td>
+<td><code>void DropFocus( void )</code></td>
+<td><code>EditBoxControl:DropFocus()</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.getbuttonicontext"></a><code>GetButtonIconText</code></td>
+<td><code>const char* GetButtonIconText( void )</code></td>
+<td><code>EditBoxControl:GetButtonIconText() -&gt; string</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.getmaxcharacters"></a><code>GetMaxCharacters</code></td>
+<td><code>uint GetMaxCharacters( void ) const</code></td>
+<td><code>EditBoxControl:GetMaxCharacters() -&gt; integer</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.getnumberinput"></a><code>GetNumberInput</code></td>
+<td><code>bool GetNumberInput( void ) const</code></td>
+<td><code>EditBoxControl:GetNumberInput() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.gettext"></a><code>GetText</code></td>
+<td>—</td>
+<td><code>EditBoxControl:GetText()</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.gettextcontrol"></a><code>GetTextControl</code></td>
+<td><code>TextControl* GetTextControl( void )</code></td>
+<td><code>EditBoxControl:GetTextControl() -&gt; TextControl</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.getvoid1"></a><code>GetVoid1</code></td>
+<td><code>int GetVoid1( void ) const</code></td>
+<td><code>EditBoxControl:GetVoid1() -&gt; integer</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.getvoid2"></a><code>GetVoid2</code></td>
+<td><code>int GetVoid2( void ) const</code></td>
+<td><code>EditBoxControl:GetVoid2() -&gt; integer</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.hasfocus"></a><code>HasFocus</code></td>
+<td><code>bool HasFocus( void ) const</code></td>
+<td><code>EditBoxControl:HasFocus() -&gt; boolean</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.localizeandsettext"></a><code>LocalizeAndSetText</code></td>
+<td>—</td>
+<td><code>EditBoxControl:LocalizeAndSetText()</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.registercallback"></a><code>RegisterCallback</code></td>
+<td><code>void RegisterCallback( function )</code></td>
+<td><code>EditBoxControl:RegisterCallback(arg1: function)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.registercharcallback"></a><code>RegisterCharCallback</code></td>
+<td><code>void RegisterCharCallback( function )</code></td>
+<td><code>EditBoxControl:RegisterCharCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.registercommitcallback"></a><code>RegisterCommitCallback</code></td>
+<td><code>void RegisterCommitCallback( function )</code></td>
+<td><code>EditBoxControl:RegisterCommitCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.registerhasfocuscallback"></a><code>RegisterHasFocusCallback</code></td>
+<td><code>void RegisterHasFocusCallback( function )</code></td>
+<td><code>EditBoxControl:RegisterHasFocusCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.registerlostfocuscallback"></a><code>RegisterLostFocusCallback</code></td>
+<td><code>void RegisterLostFocusCallback( function )</code></td>
+<td><code>EditBoxControl:RegisterLostFocusCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.registerstringchangedcallback"></a><code>RegisterStringChangedCallback</code></td>
+<td><code>void RegisterStringChangedCallback( function )</code></td>
+<td><code>EditBoxControl:RegisterStringChangedCallback(arg1: function)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setbuttonicontext"></a><code>SetButtonIconText</code></td>
+<td><code>void SetButtonIconText( const char* )</code></td>
+<td><code>EditBoxControl:SetButtonIconText(arg1: string)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setenablespacereplacement"></a><code>SetEnableSpaceReplacement</code></td>
+<td><code>void SetEnableSpaceReplacement( bool )</code></td>
+<td><code>EditBoxControl:SetEnableSpaceReplacement(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setfocusstop"></a><code>SetFocusStop</code></td>
+<td><code>void SetFocusStop( int )</code></td>
+<td><code>EditBoxControl:SetFocusStop(arg1: integer)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setmaxcharacters"></a><code>SetMaxCharacters</code></td>
+<td><code>void SetMaxCharacters( uint )</code></td>
+<td><code>EditBoxControl:SetMaxCharacters(arg1: integer)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setnumberinput"></a><code>SetNumberInput</code></td>
+<td><code>void SetNumberInput( bool )</code></td>
+<td><code>EditBoxControl:SetNumberInput(arg1: boolean)</code></td>
+<td>unique method name</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.settext"></a><code>SetText</code></td>
+<td><code>void SetText( const char* )</code></td>
+<td><code>EditBoxControl:SetText(arg1: string)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setvoid1"></a><code>SetVoid1</code></td>
+<td><code>void SetVoid1( int )</code></td>
+<td><code>EditBoxControl:SetVoid1(arg1: integer)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setvoid2"></a><code>SetVoid2</code></td>
+<td><code>void SetVoid2( int )</code></td>
+<td><code>EditBoxControl:SetVoid2(arg1: integer)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.setvoids"></a><code>SetVoids</code></td>
+<td><code>void SetVoids( int, int )</code></td>
+<td><code>EditBoxControl:SetVoids(arg1: integer, arg2: integer)</code></td>
+<td>neighbouring methods in the code</td>
+</tr>
+<tr>
+<td><a id="_editboxcontrol.takefocus"></a><code>TakeFocus</code></td>
+<td><code>void TakeFocus( void )</code></td>
+<td><code>EditBoxControl:TakeFocus()</code></td>
+<td>unique method name</td>
+</tr>
+</tbody>
+</table></main><script>const ROOT="../../";</script><script src="../../search.js"></script><script src="../../strings.js"></script>

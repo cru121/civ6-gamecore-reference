@@ -1,0 +1,19 @@
+# Names for exe Lua registration groups that the game-script match could not name (or named with a local variable).
+# key: register function RVA (hex, no 0x) of the group in CivilizationVI.exe (see findings/tables/exe_lua_methods_windows.tsv)
+# kind: static = called as Table.Method(...); object = methods of an object value, called as obj:Method(...)
+# basis: why the name is believed; status is always inferred for these hand-written labels.
+groups:
+  "10f4b0": {name: "PlayerConfiguration", kind: object, basis: "game scripts call these methods on pPlayerConfig / playerConfig variables obtained from PlayerConfigurations[playerID]; the exe registers a type called PlayerConfigurations"}
+  "10e4b0": {name: "MapPinConfiguration", kind: object, basis: "game scripts call these on map pin configuration variables; the exe registers a MapPinConfiguration type"}
+  "503bb0": {name: "Friends (Steam)", kind: object, basis: "game scripts call these on pFriends; Steam overlay methods (ActivateGameOverlay...)"}
+  "2694a0": {name: "Friends (second platform)", kind: object, basis: "same method style as the Steam Friends object, with different overlay methods (ActivateOverlayToUserGeneratedContent)"}
+  "db7bb0": {name: "Variant container", kind: object, basis: "generic GetValue/SetValue/Add/Get/Remove/GetCount/GetAt object, used on parameter and data variables in game scripts"}
+  "db7e90": {name: "Variant container (read only)", kind: object, basis: "smaller variant of the generic container, used on pParameters in game scripts"}
+  "1cb320": {name: "DirtyComponentsManager", kind: object, basis: "game scripts call these on m_DirtyComponents; the exe interface is GameCore::Utility::Lua::IDirtyComponentsManager"}
+  "4dcb20": {name: "UnitSystem", kind: static, basis: "exe interface GameCore::App::UI::Lua::IUnitSystem; no call sites found in the game scripts"}
+  "29de60": {name: "Achievements", kind: static, basis: "exe library of achievement getters (AppLuaAchievementsLibrary); no call sites found in the game scripts"}
+  "4d4ae0": {name: "Path", kind: static, basis: "exe library of path helpers (GetDirectoryName, GetExtension, NormalizePath, ...); no call sites found in the game scripts"}
+  "973790": {name: "Global functions", kind: static, basis: "functions the exe adds to the global Lua environment (print, clamp, fill, count, where, GetLuaMemoryUsage ...)"}
+  "975110": {name: "Global functions (include)", kind: static, basis: "include() and RefreshIncludeFileList registered as globals"}
+  "906600": {name: "Userdata metatable A", kind: object, basis: "__tostring / __eq / __index only"}
+  "92e330": {name: "Userdata metatable B", kind: object, basis: "__tostring / __eq / __index only"}
