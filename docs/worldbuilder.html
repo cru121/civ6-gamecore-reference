@@ -22,7 +22,7 @@ WorldBuilder.CityManager():SetPlotOwner(x, y, false)           -- clear
 WorldBuilder.CityManager():SetPlotOwner(x, y, city)            -- assign
 </code></pre>
 <h2>The undo model</h2>
-<p>Probably: WorldBuilder::Manager owns a Command::Manager (at +0x1f0) holding eastl lists of shared_ptr<Command::Instance>. Lua StartUndoBlock/EndUndoBlock call Command::Manager::StartBlock/EndBlock, which probably create and close a BlockCommand (it has Add/Undo/Redo/CanUndo/CanRedo/GetName/GetType) so that commands passed to Manager::Add inside the block are grouped as one undo step. Edit code uses Command::Manager::Do<CommandX,...> templates (CommandSetTerrain, SetFeature, SetResource, SetImprovement, SetRoute, EditRiver, EditCliff, SetRevealed, SetStartPos), which probably construct a command, add it and run its Redo. Undo/Redo take commands from the list and call their Undo/Redo; classes include Create/Remove/Initialize/Uninitialize (+ building/district variants with Apply) and property setters (Civic, Era, Faith, Gold, Tech, Leader, PlotOwner). Lua only sees CanUndo/CanRedo and boolean results of Undo/Redo.</p>
+<p>Probably: WorldBuilder::Manager owns a Command::Manager (at +0x1f0) holding eastl lists of shared_ptr&lt;Command::Instance&gt;. Lua StartUndoBlock/EndUndoBlock call Command::Manager::StartBlock/EndBlock, which probably create and close a BlockCommand (it has Add/Undo/Redo/CanUndo/CanRedo/GetName/GetType) so that commands passed to Manager::Add inside the block are grouped as one undo step. Edit code uses Command::Manager::Do&lt;CommandX,...&gt; templates (CommandSetTerrain, SetFeature, SetResource, SetImprovement, SetRoute, EditRiver, EditCliff, SetRevealed, SetStartPos), which probably construct a command, add it and run its Redo. Undo/Redo take commands from the list and call their Undo/Redo; classes include Create/Remove/Initialize/Uninitialize (+ building/district variants with Apply) and property setters (Civic, Era, Faith, Gold, Tech, Leader, PlotOwner). Lua only sees CanUndo/CanRedo and boolean results of Undo/Redo.</p>
 <p><em>Inferred.</em> Manager-level setters (SetID, SetMod, SetWBAdvancedMode, visibility preview) are plain setters, not commands. Behaviour of EndBlock without StartBlock, nested blocks, and Undo while a block is open was not read; keep Start/End balanced. Class details are inferred from names only.</p>
 <p>Methods marked <strong>undo: yes</strong> below construct a command (so they appear in the editor's undo history and are reversible with <code>WorldBuilder.Undo()</code>); <strong>no</strong> means the call edits state directly or only reads. Whether a missing command means "not undoable" is itself inferred from the call data.</p>
 <h2>Things to know before you rely on it</h2>
@@ -502,7 +502,7 @@ WorldBuilder.CityManager():SetPlotOwner(x, y, city)            -- assign
 <td>2 numbers (width, height); defaults 64 and 48 when the file/attributes cannot be read</td>
 <td>no</td>
 <td>high</td>
-<td>Reads width and height attributes of the root <map> element of the Tiled XML file set as map import filename. Always returns two numbers; failure is silent and yields the 64x48 defaults, so verify the file yourself.</td>
+<td>Reads width and height attributes of the root &lt;map&gt; element of the Tiled XML file set as map import filename. Always returns two numbers; failure is silent and yields the 64x48 defaults, so verify the file yourself.</td>
 </tr>
 <tr>
 <td><a id="getfeatureplacementplotlist"></a><a href="lua/WorldBuilderMapManager.html#getfeatureplacementplotlist">GetFeaturePlacementPlotList</a></td>
@@ -542,7 +542,7 @@ WorldBuilder.CityManager():SetPlotOwner(x, y, city)            -- assign
 <td>nothing</td>
 <td>no (probably)</td>
 <td>medium</td>
-<td>Loads the Tiled (.tmx XML) map file named by the map import filename and places terrain/feature/resource/improvement/continent/district/building layers onto the map's plots. Fails silently (map filled/reset, no error) if the file or <map> root is bad. Visible calls use Context::Globals::EditMap directly, not WorldBuilder commands, so it is probably not undoable. Rewrites the whole map.</td>
+<td>Loads the Tiled (.tmx XML) map file named by the map import filename and places terrain/feature/resource/improvement/continent/district/building layers onto the map's plots. Fails silently (map filled/reset, no error) if the file or &lt;map&gt; root is bad. Visible calls use Context::Globals::EditMap directly, not WorldBuilder commands, so it is probably not undoable. Rewrites the whole map.</td>
 </tr>
 <tr>
 <td><a id="setallrevealed"></a><a href="lua/WorldBuilderMapManager.html#setallrevealed">SetAllRevealed</a></td>
@@ -566,7 +566,7 @@ WorldBuilder.CityManager():SetPlotOwner(x, y, city)            -- assign
 <td>1 boolean (result of SetContinent)</td>
 <td>yes (probably)</td>
 <td>medium</td>
-<td>Sets a plot's continent via WorldBuilder::Map::Manager::SetContinent. False when args missing/plot unparsable. Recorded via Do<CommandSetTerrain> (probably terrain unchanged, continent set).</td>
+<td>Sets a plot's continent via WorldBuilder::Map::Manager::SetContinent. False when args missing/plot unparsable. Recorded via Do&lt;CommandSetTerrain&gt; (probably terrain unchanged, continent set).</td>
 </tr>
 <tr>
 <td><a id="setfeaturetype"></a><a href="lua/WorldBuilderMapManager.html#setfeaturetype">SetFeatureType</a></td>

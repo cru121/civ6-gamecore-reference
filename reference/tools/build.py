@@ -313,7 +313,19 @@ def rva(b, which):
     return '`%s`' % v if v else '—'
 
 pages = {}          # path -> (title, markdown)
-def add(path, title, text): pages[path] = (title, text)
+_HTML_OK = re.compile(r'<(?!/?(?:a|details|summary|div|b|i|em|strong|br|span|sup|sub|table|tr|td|th|thead|tbody|code|pre|p|ul|li|ol|h[1-6]|img|script|input|select|option|button|label|small|kbd|mark|hr|svg)\b|!--|https?:|/?[A-Za-z]+@)')
+_CODE_SPLIT = re.compile(r'(```.*?```|`[^`\n]*`)', re.S)
+
+
+def protect_html(text):
+    """Escape '<' that would start an unknown HTML tag (a message such as 'command: x <mode> <style>' would otherwise swallow the rest of a table); code spans and the tags the generators write are kept."""
+    parts = _CODE_SPLIT.split(text)
+    for i in range(0, len(parts), 2):
+        parts[i] = _HTML_OK.sub('&lt;', parts[i])
+    return ''.join(parts)
+
+
+def add(path, title, text): pages[path] = (title, protect_html(text))
 
 def notes_md(cur, path):
     out = []
