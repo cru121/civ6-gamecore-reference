@@ -19,12 +19,13 @@ Columns (tab separated, `#` lines are comments): `old_rva  new_rva  category  si
 | resolved | 5,336 | an initial ambiguity settled by further evidence (neighbouring functions, order) |
 | callgraph-callee | 2,224 | inferred from the call sites of functions that are already mapped (the callee) |
 | callgraph-caller | 3,013 | inferred the same way, the caller (candidates filtered by agreement with mapped callees) |
+| vtable-derived | 3,538 | read from the same slot of the same class in the current build's own vtable (the old function sits in a vtable slot; see the "Virtual function tables" topic of the reference) |
 | datashift-verified / -probable / fuzzy-best | 15 / 12 / 1 | functions whose code is identical apart from moved data addresses, or the best fuzzy match |
-| ambiguous | 5,141 | **several candidate addresses** (a comma separated list, cut at six entries with `...`); cannot be told apart from the bytes |
-| unmatchable | 5,362 | no counterpart found; together only 42 KB (compiler-generated initialisers and stubs) |
-| none | 29 | no counterpart found |
+| ambiguous | 3,595 | **several candidate addresses** (a comma separated list, cut at six entries with `...`); cannot be told apart from the bytes |
+| unmatchable | 3,387 | no counterpart found; together only 42 KB (compiler-generated initialisers and stubs) |
+| none | 12 | no counterpart found |
 
-That is 43,803 functions, 38,412 of them (87.7%) with an address and nearly all of the code bytes. The ambiguous group is mostly tiny functions (median 71 bytes): the MSVC linker
+That is 43,803 functions, 40,404 of them (92.2%) with an address and nearly all of the code bytes. The ambiguous group is mostly tiny functions (median 71 bytes): the MSVC linker
 folds functions with identical code into one copy (identical code folding, `/OPT:ICF`), templates instantiated for same-layout types compile to the same bytes, and compiler-generated
 initialisers look alike. In such a case one address honestly has several names.
 

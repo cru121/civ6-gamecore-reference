@@ -1017,6 +1017,7 @@ Rows with ★ have a detailed entry in the [native functions](index.md) section.
 # ---------------------------------------------------------------- layouts
 REL_TEXT = {'same': 'same on Windows', 'minus8': 'Windows = Linux − 8', 'differs': 'differs on Windows'}
 lay_ids = {l['id'][7:] for l in layouts}
+VTABLES = load('vtables.json') if os.path.exists(B('data', 'vtables.json')) else {}
 LAY_NOTE = ('Offsets are from the **Linux build** (debug info). Where a Windows offset was checked against Windows code it is shown in the *Windows* column '
             'with its relation to the Linux offset. For classes built from tracked variables the Windows offset is usually the Linux offset minus 8, '
             'but this is only stated where it was checked; plain classes are usually identical; classes holding STL containers can differ.')
@@ -1094,6 +1095,15 @@ for ns, ls in sorted(by_ns.items()):
             L.append('| `0x%x` | %s%s | %s |%s%s' % (m['offset'], m['name'], bits, type_md(m['type'], p), w, use_md(m) if has_use else ''))
         if has_win:
             L.append('\nThe Windows column is filled in only for members that were checked against Windows code. For the rest, use the Linux offset with the rule above.')
+        vt = VTABLES.get(l['cpp'])
+        if vt and vt['slots']:
+            L.append('\n## Virtual functions\n')
+            L.append('Slot order of the class\'s own vtable (inferred, see [Virtual function tables](%s)). A virtual call `call [vptr+offset]` uses the byte offset. Owner is shown when the entry is inherited or overridden elsewhere.\n' % os.path.relpath('vtables.md', os.path.dirname(p)).replace('\\', '/'))
+            L.append('| Slot | Offset | Method | Address in current build |')
+            L.append('|---|---|---|---|')
+            for s in vt['slots']:
+                own = '' if s['owner'] == l['cpp'] else ' *(%s)*' % s['owner'].replace('GameCore::', '')
+                L.append('| %d | `0x%x` | %s%s | %s |' % (s['slot'], s['offset'], s['method'].replace('~', '\\~'), own, ('`%s`' % s['new_rva']) if s['new_rva'] else ''))
         add(p, l['id'][7:], '\n'.join(L))
 
 # ---------------------------------------------------------------- globals

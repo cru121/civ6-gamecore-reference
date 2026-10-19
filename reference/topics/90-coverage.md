@@ -30,7 +30,7 @@ Generated from the data files at build time. "Verified" means seen directly in c
 
 | Part | Total | How complete | How sure |
 |---|---|---|---|
-| Function inventory | 43803 functions | 33271 (76%) mapped to the current build; 21782 (50%) have a Linux signature | mapping method is described in the analysis notes (not yet part of this site) |
+| Function inventory | 43803 functions | 36809 (84%) mapped to the current build; 21782 (50%) have a Linux signature | mapping method is described in the analysis notes (not yet part of this site) |
 | Native function entries | 367 | 17 analysed in detail (106 notes), 17 wrapped by the Community Extension | analysed notes labelled verified / inferred |
 | Hand-written notes (all entity types) | 47 | a small curated set | 22 verified, 25 inferred |
 

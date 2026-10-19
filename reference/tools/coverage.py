@@ -26,7 +26,7 @@ am = [a for v in arg.values() for a in v]
 returning = sum(1 for s in sig if s['return_count'])
 detailed = sum(1 for s in sig if s.get('return_details'))
 inref = sum(1 for x in m if x['in_community_reference'])
-notes = [n for f in glob.glob(os.path.join(BASE, 'curated', '**', '*.yaml'), recursive=True) if '_windows' not in f for n in (yaml.safe_load(open(f, encoding='utf8')).get('notes') or [])]
+notes = [n for f in glob.glob(os.path.join(BASE, 'curated', '**', '*.yaml'), recursive=True) if '_windows' not in f for n in (yaml.safe_load(open(f, encoding='utf8')).get('notes') or []) if isinstance(n, dict)]
 opc = collections.Counter(o['status'] for o in ops)
 pp = sum(len(o['parameters']) for o in ops)
 pe = sum(1 for o in ops for p in o['parameters'] if p.get('game_examples'))
