@@ -30,10 +30,10 @@ debug.sethook(coroutine_object, hook, "l")                               -- hook
 (Debug Adapter Protocol over stdio or TCP for editors; conditions, hit conditions, log messages, scopes Locals / Upvalues, hover and repl evaluate). The adapter was only tested with a scripted client, not with an editor.
 
 **What a stop is:** the thread that runs the Lua state blocks inside the VM loop and answers requests itself (Lua is not thread-safe). For gameplay scripts that is the game thread, so the game freezes; it resumes after 120 s without a
-request, when the client disconnects, or on `continue`. One stop at a time; a second state that hits a breakpoint meanwhile simply continues. `debug.c_breakpoint()` (the retail function does nothing) stops at that call when a client is connected.
+request, when the client disconnects, or on `continue`. One stop at a time; a second state that hits a breakpoint meanwhile simply continues. `debug.c_breakpoint()` stops at that call when a client is connected. Dev CE **replaces** the retail function in every Lua state, whether or not the debugger is switched on: the retail one (closure at HavokScript RVA 0x72f0, bytes `nop; int3; xor eax,eax; ret`) executes an `int3`, which breaks into an attached native debugger and ends the game without one; Dev CE's version does nothing when no client is connected and no longer breaks into a native debugger.
 
 **Breakpoints** match by file name or trailing path of the chunk's source (case-insensitive, `/` equals `\`). They apply to every Lua state, also to coroutines created later: each state installs its own hook the first time it runs a
-Lua instruction while breakpoints exist, and a hook the VM filters by line only reaches the debugger on breakpoint lines. **Evaluate / conditions:** this game's Lua has **no `setfenv`**, so an expression is compiled as
+Lua instruction while breakpoints exist, and a hook the VM filters by line only reaches the debugger on breakpoint lines. **Evaluate / conditions:** this game's Lua has **no global `setfenv`** (the retail debug library's function table lists `debug.setfenv` / `debug.getfenv`; not tested), so an expression is compiled as
 `local a, b, ... = ...; return <expr>` with the frame's locals and upvalues passed in; globals are the real globals (assignments persist), assignments to frame variables only change the copy.
 **Cost** (measured, 3 real end turns): an end turn runs about 1-1.5 million Lua instructions; with the debugger attached and breakpoints set the overhead was roughly 20-40 ms on a turn of about 4 s.
 
@@ -50,6 +50,6 @@ Commands: `status`, `break` (`file`, `line`, optional `cond`, `hit`, `log`), `cl
   the Windows x64 unwinder takes it for an epilogue and an `error()` unwinding through the frame dies with `STATUS_BAD_STACK`.
 * **lua_State** (Windows): callinfo base `+0x18`, current entry `+0x28` (24-byte entries), pc `+0x30`, hook pc `+0x38`, hooked frame index `+0x40`, top `+0x48`, base `+0x50`, hook function `+0xc8`, mask `+0xd0` (1 call, 2 return, 4 line, 8 count), count `+0xd4`, counter `+0xd8`.
   `lua_Debug`: event `int` at 0, `currentline` at 0x28, `short_src` at 0x40 (512 bytes). Setting `+0x38` / `+0x40` around a hook makes `getinfo` report the hooked line (the pc lookup is HavokScript +0x28180).
-* **Traps found:** `lua_tothread` and `lua_topointer` crash on a thread value (a thread on the stack is a 16-byte slot: type tag 8, then the `lua_State*`); `setfenv` does not exist; `lua_close` / state lifetimes are not observable, so the debugger never
+* **Traps found:** `lua_tothread` and `lua_topointer` crash on a thread value (a thread on the stack is a 16-byte slot: type tag 8, then the `lua_State*`); the global `setfenv` does not exist (`debug.setfenv` is listed in the retail debug library table, untested); `lua_close` / state lifetimes are not observable, so the debugger never
   writes into a state from another thread.
 * Source: `LuaHooks.cpp`, `LuaDebugger.cpp` in the [Dev CE repository](https://github.com/cru121/civ6-dev-ce); plans and measurements in `dev-ce/DESIGN_LUA_HOOKS.md` and `dev-ce/DESIGN_LUA_DEBUGGER.md`.
