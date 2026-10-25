@@ -1,0 +1,43 @@
+---
+title: Terrain view - the 3D map follows TerrainBuilder.SetTerrainType (Dev CE)
+order: 67
+---
+# Terrain view: the 3D map follows `TerrainBuilder.SetTerrainType` (Dev CE)
+
+**Availability: experimental, needs the Dev CE GameCore mod (0.6.0 or newer), Windows DX11, Steam builds 15038592 and 15296837 (fixed addresses, the exe is checked at startup). Everything below is *verified* in the game on 15038592 unless it says *inferred* or *not tested*.**
+
+In the retail game a script can change a tile with `TerrainBuilder.SetTerrainType(plot, terrain)`. The game data, yields, tooltips and rules follow at once, but the 3D map keeps drawing the old terrain until the game is loaded again, because the map is built once, into immutable GPU buffers, when the world is created. Dev CE patches those buffers when a tile changes, so the map follows within about a second, without save and load. Release: [Dev CE 0.6.0-experimental](https://github.com/cru121/civ6-dev-ce/releases/tag/v0.6.0-experimental), user documentation `dev-ce/TERRAIN_VIEW.md` in that repository.
+
+## What follows and what does not
+| change | 3D map |
+|---|---|
+| flat land to hills (grass, plains, desert, tundra, snow) | a hill grows (a smooth dome of 1300 height units on the ground), the ground texture changes, units and trees stand on it |
+| hills to flat | with the UI-only mod `FlattenHillsView` (the engine's own `LM_HEX_FLATTEN` heightmap edit through `AssetPreview`) |
+| flat to flat, hills to hills of another kind | the ground texture changes |
+| features, resources, improvements of a changed tile | removed and placed again, so they stand on the new ground (also the pillaged state; natural wonders are skipped) |
+| mountains, coast, ocean, lakes | **not supported**: they change the shape of the map in ways this patch does not model; a save and load is still needed |
+
+It is a view only: nothing is written into saves. The patch is switched on by two empty files next to the DLL (`TerrainView.patch`, `TerrainView.objects`); without them the DLL does not touch the terrain.
+
+## How the map is stored (verified from the live buffers and the render thread)
+* The terrain is drawn from **render cells** of 256 x 256 texels (22 x 11 cells on a Small map, 53 x 26 on a Huge one). A plot is 128 texels wide; plot centre = (128 px + 64 if py is odd, 96 py + 220). A cell record is 944 bytes; the cell manager is `*(exe + 0x2305e20 + 8) + 0x5a0`, the record getter is exe `0xc5fee0` and setting bit 1 of the state byte (`GetCellStateData`, exe `0xc5ff00`) makes the game bake the cell again (about 2 s).
+* A cell has an **ID mesh** (materials; 8-byte vertices: x, y as int16, two weights, two material ids; triangles grouped in 32 material slots, table at record +0x18c, vertex buffer handle +0x398, index buffer handle +0x38c) and a **base mesh** (heights; 8-byte vertices: x, y as int16, u16 height, two normal bytes; vertex handle +0xd8, first vertex +0xd4, count +0xd0, index handle +0xcc, index start +0xc8, triangle count +0xc4; indices relative to the first vertex). Cell world position: X = cx 256 + x, Y = cy 256 + y + floor(x / 2).
+* All buffers are IMMUTABLE D3D11 buffers in 1 MiB pools. A patch creates new buffers (`CreateVB` exe `0x948cb0`, `CreateIB` exe `0x944fe0`), swaps the handles in the record and sets the dirty bit. The original data can be read back from the GPU on demand (one staging buffer, `CopySubresourceRegion` on the render thread inside the immediate context's draw call): a whole Huge map in about 50 ms, the 13 cells of one plot in about 2 ms; byte-identical to a full read.
+* The terrain setter is `Terrain::Builder::_SetTerrainType(builder, plot, type)` (GameCore installed RVA `0x5dd0f0`; both public overloads and the Lua call end there). The units' and trees' ground height comes from `Terrain::Sampler::GetWorldHeight` (exe `0xab58c0`), which the patch detours to add the dome.
+
+## Five things that make a patched map crack, show blue holes or not rise (all verified)
+1. **A second base mesh section.** Many cells (coastal ones in practice) carry a second section at record +0x174 (triangles), +0x178 (index start), +0x17c (index handle), +0x180 (vertex count), +0x184 (first vertex), +0x188 (vertex handle): the first section's fields plus 0xb0. **The game draws the second section instead of the first** (setting its triangle count to 0 makes the cell vanish) and rewrites it whenever it bakes the cell, also after a patch sets the dirty bit. A patcher has to patch it too and look at it again after the bake.
+2. **The base mesh is adaptive.** Flat ground is a few huge triangles (median edge 80 texels, longest 314, around one plot), so lifting the existing vertices makes spikes or nothing. The patch splits every edge longer than 8 texels inside the dome zone at its midpoint (all triangles sharing an edge split it together, so the mesh stays watertight), with a new vertex and index buffer per cell and section.
+3. **Heights are signed.** The u16 height of an ocean vertex is a negative int16 (land about 12000-20000, ocean about 40000-50000 = -25000..-16000). New vertices must be averaged as int16; averaging the u16 values put a vertex at 32250 between land (15500) and ocean (-16000), a 15000-unit spike.
+4. **The chunk table.** The base mesh is split in four quadrant chunks with bounding boxes and ranges: header boxes at +0x14 and +0x2c, chunk k at +0x44 + 0x20 k (box: min xyz, max xyz as floats), start (triangles, cumulative) at +0x5c + 0x20 k, count at +0x60 + 0x20 k; the four counts add up to +0xc4; the second section has the same layout 0xb0 later. A rebuilt index buffer must keep the triangles grouped by chunk, rewrite the (start, count) pairs and raise the boxes' maximum z (about 0.0045 per height unit; box x = world X / 6.4): stale ranges drew only part of each chunk, which showed as large straight-edged polygons through which the water plane is seen, even with zero dome height. The game reads the counts live every frame.
+5. **Edges that touch the ocean must not be split.** Splitting land-to-ocean edges drew a dark trench with a staircase edge along the shore of a raised plot, with the dome height at 0 and with live heights identical to the original within 1 unit. The game must treat ocean and land vertices differently when it shades the shoreline (the reason is not known); leaving those edges alone keeps the generated shoreline.
+
+Also found: the base meshes of neighbouring cells **overlap** (aprons: local y from -128 to beyond 256), so about two layers cover a point and the real ownership boundaries zigzag; a plot centre can lie inside the nominal area of one cell and be covered only by the mesh of its neighbour; and a hill looks off-centre where the original ground slopes, because the dome is added to the slope.
+
+## Features, resources, improvements (verified)
+The builders only work on the game thread. A hook on the per-tick function `Game::Autoplay::Manager::Update` (GameCore installed RVA `0x42780`) drains a job queue. Builders (installed RVAs): `Terrain::Builder::SetFeatureType` `0x5dbfb0` (the feature parameter is one 64-bit value {type, direction}, direction -1), `Resource::Builder::SetResourceType` `0x5d2b20`, `Improvement::Builder::SetImprovementType` overload 3 `0x25d430`, `SetImprovementPillaged` `0x25cfa0`, `IsNaturalWonder` `0x60280`. Plot fields: +0x3c feature, +0x40 resource, +0x42 resource count, +0x44 improvement, +0x46 owner (char), +0x4d bit 0 pillaged. The engine's terrain setter does not re-validate the feature on the tile; scripts have to remove or replace one that is no longer allowed (floodplains on a tile that became hills, for example).
+
+## Limits and what was tested
+* **Tested:** GPU read-back identical to a full read on Small and Huge maps; domes on about 40 plots (coastal, river, inland, a peninsula) and rings around a settler, with no seams, cracks or holes (checked by eye from all angles and by scanning the live meshes for uncovered points); exact revert (every record field returns to the original when the data is changed back); save and load; Better Restart into a Huge game; the feature's startup self-tests; all earlier Dev CE release checks on the release DLL.
+* **Not tested:** other game builds, multiplayer, mods that replace terrain art or shaders, pillaged improvements, desert / tundra / snow hills beyond a few tiles. The terrain-to-material table assumes the vanilla order of terrain types (mods that add terrain types are not handled).
+* A tile is patched relative to the terrain it had when it was first seen; a tile that was hills when the world was built and is flattened by a script needs `FlattenHillsView`.
