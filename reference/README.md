@@ -121,3 +121,6 @@ Entities `exedev:<kind>:<name>` (68: 21 FireTuner commands, 2 AssetCloud command
 
 ## Game summary data model (exe/gamesummary.md)
 Entities `exegs:<kind>:<name>` (156: 17 configuration tables, 15 recorded or queried tables, 48 data points, 38 graphs, 5 reports, 8 categories, 25 `PushGameData` fields) from `tools/extract_exe_gamesummary.py` (reads `Configuration/Data/Schema/HallofFame.sql` and `HallofFame.xml` of the game in place, the exe SQL statements in `data/exe_sql.json`, the `PushGameData` strings); page by `tools/exe_gamesummary_section.py`. Backup `tools/build.py.bak_before_exegs`.
+
+## DirectX 12 executable (exe/dx12.md)
+A hand-written page (no entities, no data file) by `tools/exe_dx12_section.py`: how far the exe sections apply to `CivilizationVI_DX12.exe`, what differs (renderer, buffers, structure sizes) and a table of translated addresses read from `findings/tables/exe_dx12_key_addresses.tsv`. The numbers come from `findings/topics/exe-dx12-build.md` (scripts `tools/exe/dx12_*.py`); nothing to rebuild in the extractor chain. Backup `tools/build.py.bak_before_exedx12`.

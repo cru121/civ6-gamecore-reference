@@ -1,0 +1,21 @@
+item	what	dx11_rva	dx12_rva	evidence
+1	TerrainContext global	0x2305e20	0x233d4a0	13 matched functions, 57 aligned references
+1	GetRecord ((y*w+x)*0x3b0 + *(this+8))	0xc5fee0	0xc6e8d0	exact
+1	GetCellStateData (dirty-bit data, *(this+0x18))	0xc5ff00	0xc6e8f0	exact
+1	GetDimensions	0xc5ff20	0xc6e910	exact
+1	cell mesh creator (CreateVB usage 0, formats 0x15 and 0x24)	0xc62200	0xc70bf0	exact
+2	CreateVB wrapper (handle + creation call)	0x948cb0	0x944ee0	call-aligned
+2	CreateIB wrapper	0x944fe0	0x943e90	call-aligned
+2	VB creation function (fills handle records)	0x948d40	0x96cd40	read in both
+2	IB creation function	0x945070	0x96a4e0	read in both
+3	handle allocator (pool object)	0x940770	0x940be0	read in both
+3	VB pool object	0x2b91200	0xf2b50c0	3 aligned references
+3	IB pool object	0x2b0a740	0x6c72040	3 aligned references
+3	DX11 ID3D11Buffer* table (VB), handle*8	0x2b99740	-	read in 0x948d40
+3	DX12 VB records: 0x28-byte (GPU VAs, heap, stride, size, format) / 0x70-byte (allocations)	-	0xf2bd4c0 / 0xf30d600	read in 0x96cd40
+3	DX12 IB records: 0x28-byte / 0x70-byte	-	0x6c7a440 / 0x6cca580	read in 0x96a4e0
+3	Release (refcount down, deferred free)	0x956600	0x94d670	exact
+3	buffer sub-allocator (usage 0..4 -> pools, staging copy)	-	0x968a20	read
+4	Terrain::Sampler::GetWorldHeight	0xab58c0	0xac3930	exact
+7	PE timestamp / SizeOfImage	0x667c6fc6 / 0x3704000	0x667c7363 / 0xfe55000	PE headers
+8	CivilizationVI_DX12.exe sha256 / size	-	c2c3d40b86260a541d8a4d38cb70d50d3406ae1de374afc382d1e42bc1342f1e	21391464 bytes

@@ -1,0 +1,174 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>The DirectX 12 executable</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="../index.html">Home</a><a href="../conventions.html">How to read</a><a href="../hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="../lua/index.html">Lua API</a><a href="../operations/index.html">Operations</a><a href="../enums/index.html">Enums</a><a href="../effects/index.html">Modifier effects</a><a href="../requirements/index.html">Requirements</a><a href="../collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="../ce/index.html">CE Lua API</a><a href="../layouts/index.html">Class layouts</a><a href="../globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="../exe/index.html">Overview</a><a href="../exe/options.html">Option files</a><a href="../exe/command-line.html">Command line</a><a href="../exe/console.html">Debug console</a><a href="../exe/files.html">Files and paths</a><a href="../exe/modinfo.html">.modinfo vocabulary</a><a href="../exe/messages.html">Log messages</a><a href="../exe/uixml.html">UI XML vocabulary</a><a href="../exe/telemetry.html">Telemetry</a><a href="../exe/imports.html">Imports</a><a href="../exe/audio.html">Audio names</a><a href="../exe/event-data.html">Event data fields</a><a href="../exe/lua-enums.html">Lua enum tables</a><a href="../exe/network.html">Multiplayer vocabulary</a><a href="../exe/lenses.html">Lenses</a><a href="../exe/loading.html">Load sequence</a><a href="../exe/input.html">Input actions</a><a href="../exe/devtools.html">Developer tools</a><a href="../exe/gamesummary.html">Game summary</a><a href="../exe/dx12.html">DX12 exe</a><a href="../execlass/index.html">Classes</a><a href="../exeart/index.html">ArtDef vocabulary</a><a href="../exetypes/index.html">Reflected types</a><a href="../exedb/index.html">Database access</a><a href="../exeapi/index.html">Engine Lua tables</a><a href="../exeevents/index.html">Engine events</a><a href="../exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="../devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="../native/index.html">Native functions</a><a href="../native/all.html">All functions (search)</a></nav><main><p><a href="../index.html">Home</a> › <a href="index.html">Engine executable</a> › The DirectX 12 executable</p>
+<div class="zone zone-exe"><b>Engine executable.</b> Settings and tools of the game program (CivilizationVI.exe), usable without a mod. Mostly undocumented debug and configuration functionality; descriptions come from analysis of the executable and have not all been tried in the running game.</div>
+
+<h1>The DirectX 12 executable</h1>
+<p>The game folder holds two engine executables, <code>CivilizationVI.exe</code> (DirectX 11) and <code>CivilizationVI_DX12.exe</code> (DirectX 12), both in <code>Base/Binaries/Win64Steam</code>. Everything else in the <a href="index.html">engine executable section</a> was read from the DX11 exe. This page says how far it also applies to the DX12 exe. <strong>Verified</strong> = read from the two files (headers, import tables, function bytes, strings, decompiled code). <strong>Inferred</strong> = a reading of those facts that was not tested in the running game.</p>
+<h2>Summary</h2>
+<ul>
+<li>The two exes are the same build with a different renderer: same build date (28 Jul 2024), same image base <code>0x140000000</code>, same section layout; <code>.text</code> is 0.4% larger in the DX12 exe (0xf94e2c vs 0xfa3fcc bytes). The import table swaps <code>d3d11.dll</code> for <code>d3d12.dll</code> and has 4 more imports (890 vs 894).</li>
+<li>98.4% of the 54,524 functions of the DX11 exe have a counterpart in the DX12 exe (53,663 of 54,817 functions there), found by comparing function bytes with address-dependent operands masked, then following call sites. 861 DX11 functions and 1,154 DX12 functions have no counterpart.</li>
+<li><strong>Everything that comes from strings and data tables applies to both exes</strong>: the Lua enum tables, multiplayer vocabulary, ArtDefs, XML formats, lenses, input actions, developer tools, SQL statements, telemetry rules and audio names. The string literals of the two exes differ only in renderer and driver text (692 only in DX11, 780 only in DX12, all graphics related), plus four console command words.</li>
+<li>The address-based parts (the <a href="../exefn/index.html">function index</a>, RVAs on the other pages) are for the DX11 exe. For the DX12 exe translate an address through the function match (below).</li>
+</ul>
+<h2>What differs</h2>
+<p><strong>The renderer</strong> is a different implementation behind the same interface. The DX12-only functions are mostly in one region (RVA <code>0x93f000</code> to <code>0x971000</code>): device and adapter enumeration (a "Tier 2 Resource Binding" requirement check), <code>Renderer::Present</code>, PSO creation and compilation, root signature serialisation, descriptor heaps ("Generic Descriptor Heap", "Per Frame Descriptor Heap"), command list and queue startup (compute and copy queues), a residency manager, a transient resource pool, GPU memory budget messages, mip generation, readback, swap chain handling and a breadcrumb buffer for GPU crash markers. The corresponding DX11 code (constant-buffer rebase, static buffer allocation, surface sets, Intel driver version checks) has no counterpart. Of the 1,154 DX12-only functions 377 are tiny thunks, about 310 are renderer code by their strings or neighbours, and 185 sit next to functions of other known groups (mostly ForgeUI, Platform and library code). Source paths in the strings are under <code>CivTech\Libs\Graphics</code> and <code>CivTech\Libs\Platform</code>; the log file is <code>Renderer.log</code> in both builds.</p>
+<p><strong>Console.</strong> The DX12 console help has four more command words: <code>rendermode</code>, <code>objectvrs</code>, <code>imagevrs</code> and <code>multires</code>. <strong>Inferred</strong>: the names suggest variable rate shading; the commands were not run. The strings <code>Compute Shading Rate Fill</code> and <code>Using RS1.1</code> appear only in the DX12 exe.</p>
+<p><strong>Larger structures, same logic.</strong> Some game-side functions that are otherwise unchanged read members at shifted offsets in the DX12 build: the application object (members after <code>+0x5400</code> move by <code>+0x20</code>), <code>RenderGlobals::GraphicsOptions</code> (fields from <code>+0x48</code> move by <code>+0x18</code>; <code>ReflectionsEnabled</code> reads <code>+0x78</code> instead of <code>+0x60</code>) and <code>Graphics::StartupParams</code> (one more byte and a 4-byte field). <strong>Inferred</strong>: these are new renderer options; the reason was not examined. The water and terrain command builders (<code>WaterSystem::Context::BuildCommandStreams</code>, <code>BuildOverlayCommandStream</code>, <code>BuildReflectionMaskCommandStream</code>, <code>TerrainView::SubmitReflectionMask</code>) read two flag bytes of a view descriptor and set bit <code>0x200</code> in the command word; the rest of these functions is unchanged.</p>
+<p><strong>Not different.</strong> The 63 functions of the DX11 function map that found no counterpart are mostly not real differences: 21 are mapped addresses that are not function starts, three differ only in a vtable pointer or address, and the rest are the rewritten renderer core (<code>Renderer::Startup</code>, <code>Render</code>, <code>SetScreenMode</code>, the shader create and reload functions) or functions the linker probably merged. The 6,443 other mapped functions (99%) carry across.</p>
+<h2>Vertex and index buffers</h2>
+<p>Both exes create a buffer through the same two wrappers (<code>CreateVB</code>, <code>CreateIB</code>): allocate a 16-bit handle from a pool object (handles below 0x2000), then call a creation function with the same seven parameters (usage, format, element count, data and flags). What the handle means differs.</p>
+<ul>
+<li><strong>DX11</strong> (<strong>Verified</strong>, decompiled): the creation function fills a 0x30-byte record, calls <code>ID3D11Device::CreateBuffer</code> and stores the <code>ID3D11Buffer*</code> in a table indexed by the handle. Usage 0 is static and needs initial data, usage 2 is dynamic. The stride comes from a table indexed by the format code.</li>
+<li><strong>DX12</strong> (<strong>Verified</strong>, decompiled): a handle indexes two records, a 0x28-byte one with the buffer's GPU virtual addresses (two entries, one per GPU node), the backing heap object, stride, size and format, and a 0x70-byte one with the current and previous allocation. There is no separate <code>ID3D12Resource</code> per buffer: buffers are sub-allocations of large heaps, and the stored address is the heap resource's GPU address plus the offset. The data goes through a sub-allocator with five pools chosen by the usage code. Allocations under 4 MB come out of 4 MB blocks, larger ones get their own resource.</li>
+<li>usage 0 and 1: heap type DEFAULT (GPU only), one resource per GPU node, initial state <code>0xac3</code>; the data is copied through a staging buffer;</li>
+<li>usage 2 (three times the requested size): heap type UPLOAD, persistently mapped, data written directly;</li>
+<li>the staging buffers themselves are in an UPLOAD pool; usages 3 and 4 were not followed.</li>
+<li>Calling the creation function again with an existing handle replaces the allocation and the stored GPU addresses and releases the old one; the handle stays. <strong>Inferred</strong>: whether the draw code reads the stored addresses on every use was not examined. The DX11 build has no such path (a new buffer object is stored).</li>
+<li>The terrain cell meshes (<code>Terrain_Cell_VB</code>, <code>Terrain_Cell_Material_VB</code>, <code>Terrain_Cell_IB</code>) are created with usage 0 and the format codes <code>0x15</code> and <code>0x24</code> in both exes, so in DX12 they are GPU-only buffers. The cell record is 0x3b0 (944) bytes in both exes (<code>(y * width + x) * 0x3b0 + *(this + 8)</code>), and all 102 matched functions that use its key offsets use the same offsets in both builds.</li>
+</ul>
+<h2>Finding things in the DX12 exe</h2>
+<p>Image base and RVA convention are the same as for the DX11 exe (all addresses on this site are RVAs, address minus <code>0x140000000</code>). Known objects:</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>DX11 RVA</th>
+<th>DX12 RVA</th>
+<th>How found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TerrainContext global</td>
+<td>0x2305e20</td>
+<td>0x233d4a0</td>
+<td>13 matched functions, 57 aligned references</td>
+</tr>
+<tr>
+<td>GetRecord ((y*w+x)*0x3b0 + *(this+8))</td>
+<td>0xc5fee0</td>
+<td>0xc6e8d0</td>
+<td>exact</td>
+</tr>
+<tr>
+<td>GetCellStateData (dirty-bit data, *(this+0x18))</td>
+<td>0xc5ff00</td>
+<td>0xc6e8f0</td>
+<td>exact</td>
+</tr>
+<tr>
+<td>GetDimensions</td>
+<td>0xc5ff20</td>
+<td>0xc6e910</td>
+<td>exact</td>
+</tr>
+<tr>
+<td>cell mesh creator (CreateVB usage 0, formats 0x15 and 0x24)</td>
+<td>0xc62200</td>
+<td>0xc70bf0</td>
+<td>exact</td>
+</tr>
+<tr>
+<td>CreateVB wrapper (handle + creation call)</td>
+<td>0x948cb0</td>
+<td>0x944ee0</td>
+<td>call-aligned</td>
+</tr>
+<tr>
+<td>CreateIB wrapper</td>
+<td>0x944fe0</td>
+<td>0x943e90</td>
+<td>call-aligned</td>
+</tr>
+<tr>
+<td>VB creation function (fills handle records)</td>
+<td>0x948d40</td>
+<td>0x96cd40</td>
+<td>read in both</td>
+</tr>
+<tr>
+<td>IB creation function</td>
+<td>0x945070</td>
+<td>0x96a4e0</td>
+<td>read in both</td>
+</tr>
+<tr>
+<td>handle allocator (pool object)</td>
+<td>0x940770</td>
+<td>0x940be0</td>
+<td>read in both</td>
+</tr>
+<tr>
+<td>VB pool object</td>
+<td>0x2b91200</td>
+<td>0xf2b50c0</td>
+<td>3 aligned references</td>
+</tr>
+<tr>
+<td>IB pool object</td>
+<td>0x2b0a740</td>
+<td>0x6c72040</td>
+<td>3 aligned references</td>
+</tr>
+<tr>
+<td>DX11 ID3D11Buffer* table (VB), handle*8</td>
+<td>0x2b99740</td>
+<td>-</td>
+<td>read in 0x948d40</td>
+</tr>
+<tr>
+<td>DX12 VB records: 0x28-byte (GPU VAs, heap, stride, size, format) / 0x70-byte (allocations)</td>
+<td>-</td>
+<td>0xf2bd4c0 / 0xf30d600</td>
+<td>read in 0x96cd40</td>
+</tr>
+<tr>
+<td>DX12 IB records: 0x28-byte / 0x70-byte</td>
+<td>-</td>
+<td>0x6c7a440 / 0x6cca580</td>
+<td>read in 0x96a4e0</td>
+</tr>
+<tr>
+<td>Release (refcount down, deferred free)</td>
+<td>0x956600</td>
+<td>0x94d670</td>
+<td>exact</td>
+</tr>
+<tr>
+<td>buffer sub-allocator (usage 0..4 -&gt; pools, staging copy)</td>
+<td>-</td>
+<td>0x968a20</td>
+<td>read</td>
+</tr>
+<tr>
+<td>Terrain::Sampler::GetWorldHeight</td>
+<td>0xab58c0</td>
+<td>0xac3930</td>
+<td>exact</td>
+</tr>
+<tr>
+<td>PE timestamp / SizeOfImage</td>
+<td>0x667c6fc6 / 0x3704000</td>
+<td>0x667c7363 / 0xfe55000</td>
+<td>PE headers</td>
+</tr>
+</tbody>
+</table>
+<p>"exact" means the function bytes are identical in both exes apart from address-dependent operands; "call-aligned" means the match follows the call sites of an exact match (medium confidence).</p>
+<p>The full match for every function (DX11 RVA, DX12 RVA, method) is <code>findings/data/exe_dx12_match.tsv</code> in the repository. Methods: <code>exact</code> (high confidence), <code>exact-dup</code> (identical copies such as thunks, paired by order: the code is the same but the name can land on a different copy), <code>prop</code> (call-aligned) and <code>fuzzy</code> (shared byte patterns), the last two medium confidence. Not every match was checked: a few call-aligned matches are known to be out of order.</p>
+<h2>Limits</h2>
+<ul>
+<li>Nothing here was run: the console commands, the buffer behaviour and the claim that cell meshes cannot be written from the CPU are read from code.</li>
+<li>Whether a changed terrain cell is re-built by the game in DX12 (the dirty-bit path) was not tested; the functions involved match the DX11 ones.</li>
+<li>The renderer internals beyond buffer creation (PSOs, descriptor heaps, command lists) were classified by strings and neighbours only, not read.</li>
+</ul></main><script>const ROOT="../";</script><script src="../search.js"></script><script src="../strings.js"></script>
