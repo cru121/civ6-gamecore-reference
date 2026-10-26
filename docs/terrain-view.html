@@ -10,8 +10,8 @@ code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px
 @media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
 code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="exe/dx12.html">DX12 exe</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › Terrain view - the 3D map follows TerrainBuilder.SetTerrainType (Dev CE)</p>
 <h1>Terrain view: the 3D map follows <code>TerrainBuilder.SetTerrainType</code> (Dev CE)</h1>
-<p><strong>Availability: experimental, needs the Dev CE GameCore mod (0.6.0 or newer), Windows DX11, Steam builds 15038592 and 15296837 (fixed addresses, the exe is checked at startup). Everything below is <em>verified</em> in the game on 15038592 unless it says <em>inferred</em> or <em>not tested</em>.</strong></p>
-<p>In the retail game a script can change a tile with <code>TerrainBuilder.SetTerrainType(plot, terrain)</code>. The game data, yields, tooltips and rules follow at once, but the 3D map keeps drawing the old terrain until the game is loaded again, because the map is built once, into immutable GPU buffers, when the world is created. Dev CE patches those buffers when a tile changes, so the map follows within about a second, without save and load. Release: <a href="https://github.com/cru121/civ6-dev-ce/releases/tag/v0.6.0-experimental">Dev CE 0.6.0-experimental</a>, user documentation <code>dev-ce/TERRAIN_VIEW.md</code> in that repository.</p>
+<p><strong>Availability: experimental, needs the Dev CE GameCore mod (0.6.0 or newer; the DX12 exe from 0.7.0), Windows, the DX11 exe (<code>CivilizationVI.exe</code>) or the DX12 exe (<code>CivilizationVI_DX12.exe</code>), Steam builds 15038592 and 15296837 (fixed addresses, one table per exe, the exe is checked at startup). Everything below is <em>verified</em> in the game on 15038592 unless it says <em>inferred</em> or <em>not tested</em>.</strong></p>
+<p>In the retail game a script can change a tile with <code>TerrainBuilder.SetTerrainType(plot, terrain)</code>. The game data, yields, tooltips and rules follow at once, but the 3D map keeps drawing the old terrain until the game is loaded again, because the map is built once, into immutable GPU buffers, when the world is created. Dev CE patches those buffers when a tile changes, so the map follows within about a second, without save and load. Release: <a href="https://github.com/cru121/civ6-dev-ce/releases/tag/v0.7.0-experimental">Dev CE 0.7.0-experimental</a> (0.6.0 had the first version, DX11 only), user documentation <code>dev-ce/TERRAIN_VIEW.md</code> in that repository.</p>
 <h2>What follows and what does not</h2>
 <table>
 <thead>
@@ -48,9 +48,84 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <ul>
 <li>The terrain is drawn from <strong>render cells</strong> of 256 x 256 texels (22 x 11 cells on a Small map, 53 x 26 on a Huge one). A plot is 128 texels wide; plot centre = (128 px + 64 if py is odd, 96 py + 220). A cell record is 944 bytes; the cell manager is <code>*(exe + 0x2305e20 + 8) + 0x5a0</code>, the record getter is exe <code>0xc5fee0</code> and setting bit 1 of the state byte (<code>GetCellStateData</code>, exe <code>0xc5ff00</code>) makes the game bake the cell again (about 2 s).</li>
 <li>A cell has an <strong>ID mesh</strong> (materials; 8-byte vertices: x, y as int16, two weights, two material ids; triangles grouped in 32 material slots, table at record +0x18c, vertex buffer handle +0x398, index buffer handle +0x38c) and a <strong>base mesh</strong> (heights; 8-byte vertices: x, y as int16, u16 height, two normal bytes; vertex handle +0xd8, first vertex +0xd4, count +0xd0, index handle +0xcc, index start +0xc8, triangle count +0xc4; indices relative to the first vertex). Cell world position: X = cx 256 + x, Y = cy 256 + y + floor(x / 2).</li>
-<li>All buffers are IMMUTABLE D3D11 buffers in 1 MiB pools. A patch creates new buffers (<code>CreateVB</code> exe <code>0x948cb0</code>, <code>CreateIB</code> exe <code>0x944fe0</code>), swaps the handles in the record and sets the dirty bit. The original data can be read back from the GPU on demand (one staging buffer, <code>CopySubresourceRegion</code> on the render thread inside the immediate context's draw call): a whole Huge map in about 50 ms, the 13 cells of one plot in about 2 ms; byte-identical to a full read.</li>
+<li>On DX11 all terrain buffers are IMMUTABLE D3D11 buffers (usage 0), one per handle (<code>Terrain_Cell_VB</code>, <code>Terrain_Cell_Material_VB</code>, <code>Terrain_Cell_IB</code>, 1 MiB each, 131072 vertices). A patch creates new buffers (<code>CreateVB</code> / <code>CreateIB</code>), swaps the handles in the record and sets the dirty bit. On DX12 the cell VBs are DEFAULT-heap (GPU only) allocations that a handle names through per-handle records (<a href="exe/dx12.html">DX12 executable page</a>); creating a new buffer and swapping the handle in the record works the same way, and the draw code picks the new buffer up on the next frame.</li>
+<li><strong>The original data comes from copies kept at buffer creation (verified).</strong> A hook on <code>CreateVB</code> / <code>CreateIB</code> (7 parameters: usage, format code, element count, data, flags, thread, debug name; handle returned as a 16-bit value) copies the bytes of every buffer whose name starts with <code>Terrain_Cell</code> (vertices are 8 bytes, indices 2 bytes; about 17 MiB on a Small map). Baseline reads are served from these copies: identical to a full GPU read in all 242 cells of a Small and all 703 cells of a Standard map on DX11, and the size of every kept copy equals the exe's own size record for its handle on DX12 (46 of 46 buffers). Nothing is hooked in the graphics runtime, and no GPU read is needed.</li>
+<li><strong>GPU fallback (DX11 only).</strong> If a buffer has no kept copy, the data can be read back from the GPU on demand (one staging buffer, <code>CopySubresourceRegion</code> on the render thread inside a hook on the immediate context's draw calls: a whole Huge map in about 50 ms, the 13 cells of one plot in about 2 ms). On one reporter's system the inline hook on the context's <code>DrawIndexedInstanced</code> / <code>DrawInstanced</code> could not be enabled (probably another program patching the same functions), so no tile ever changed on the map; that is why the kept copies are now the primary source. DX12 has no per-handle buffer object, so a missing copy there means the change is not applied.</li>
 <li>The terrain setter is <code>Terrain::Builder::_SetTerrainType(builder, plot, type)</code> (GameCore installed RVA <code>0x5dd0f0</code>; both public overloads and the Lua call end there). The units' and trees' ground height comes from <code>Terrain::Sampler::GetWorldHeight</code> (exe <code>0xab58c0</code>), which the patch detours to add the dome.</li>
 </ul>
+<h2>Exe addresses (RVA) used by the patch</h2>
+<p>Both exes of the Steam build 15038592 (PE timestamps <code>0x667c6fc6</code> DX11, <code>0x667c7363</code> DX12; image sizes <code>0x3704000</code> and <code>0xfe55000</code>). Verified in the game: every entry is used by the working patch.</p>
+<table>
+<thead>
+<tr>
+<th>what</th>
+<th>DX11</th>
+<th>DX12</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TerrainContext</code> global (<code>*(this + 8)</code> = impl, impl + <code>0x5a0</code> = cell manager, impl + <code>0x180</code> = sampler)</td>
+<td><code>0x2305e20</code></td>
+<td><code>0x233d4a0</code></td>
+</tr>
+<tr>
+<td><code>Cell::Manager::GetRecord(mgr, x \| y &lt;&lt; 32)</code></td>
+<td><code>0xc5fee0</code></td>
+<td><code>0xc6e8d0</code></td>
+</tr>
+<tr>
+<td><code>Cell::Manager::GetDimensions(mgr, int[2])</code></td>
+<td><code>0xc5ff20</code></td>
+<td><code>0xc6e910</code></td>
+</tr>
+<tr>
+<td><code>GetCellStateData</code> (state byte, bit 1 = bake again)</td>
+<td><code>0xc5ff00</code></td>
+<td><code>0xc6e8f0</code></td>
+</tr>
+<tr>
+<td><code>CreateVB</code> / <code>CreateIB</code></td>
+<td><code>0x948cb0</code> / <code>0x944fe0</code></td>
+<td><code>0x944ee0</code> / <code>0x943e90</code></td>
+</tr>
+<tr>
+<td><code>Release</code> of a handle</td>
+<td><code>0x956600</code></td>
+<td><code>0x94d670</code></td>
+</tr>
+<tr>
+<td>resource lists passed to <code>Release</code> (VB / IB)</td>
+<td><code>0x2b91200</code> / <code>0x2b0a740</code></td>
+<td><code>0xf2b50c0</code> / <code>0x6c72040</code></td>
+</tr>
+<tr>
+<td><code>Terrain::Sampler::GetWorldHeight</code></td>
+<td><code>0xab58c0</code></td>
+<td><code>0xac3930</code></td>
+</tr>
+<tr>
+<td>the sampler's grid constants (1/16 and 0.0541248582)</td>
+<td><code>0xffa404</code> / <code>0x10732ec</code></td>
+<td><code>0x1009824</code> / <code>0x108406c</code></td>
+</tr>
+<tr>
+<td>height-edit buffer creators (<code>Terrain_CellEdit_VB</code> / <code>_IB</code>)</td>
+<td><code>0x614120</code> / <code>0x613fb0</code></td>
+<td><code>0x615320</code> / <code>0x6151b0</code></td>
+</tr>
+<tr>
+<td>handle to buffer: DX11 tables of <code>ID3D11Buffer*</code> (VB / IB)</td>
+<td><code>0x2b99740</code> / <code>0x2b12c80</code></td>
+<td></td>
+</tr>
+<tr>
+<td>handle to buffer: DX12 0x28-byte records (VB / IB), byte size at <code>+0x1c</code></td>
+<td></td>
+<td><code>0xf2bd4c0</code> / <code>0x6c7a440</code></td>
+</tr>
+</tbody>
+</table>
 <h2>Five things that make a patched map crack, show blue holes or not rise (all verified)</h2>
 <ol>
 <li><strong>A second base mesh section.</strong> Many cells (coastal ones in practice) carry a second section at record +0x174 (triangles), +0x178 (index start), +0x17c (index handle), +0x180 (vertex count), +0x184 (first vertex), +0x188 (vertex handle): the first section's fields plus 0xb0. <strong>The game draws the second section instead of the first</strong> (setting its triangle count to 0 makes the cell vanish) and rewrites it whenever it bakes the cell, also after a patch sets the dirty bit. A patcher has to patch it too and look at it again after the bake.</li>
@@ -59,12 +134,16 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <li><strong>The chunk table.</strong> The base mesh is split in four quadrant chunks with bounding boxes and ranges: header boxes at +0x14 and +0x2c, chunk k at +0x44 + 0x20 k (box: min xyz, max xyz as floats), start (triangles, cumulative) at +0x5c + 0x20 k, count at +0x60 + 0x20 k; the four counts add up to +0xc4; the second section has the same layout 0xb0 later. A rebuilt index buffer must keep the triangles grouped by chunk, rewrite the (start, count) pairs and raise the boxes' maximum z (about 0.0045 per height unit; box x = world X / 6.4): stale ranges drew only part of each chunk, which showed as large straight-edged polygons through which the water plane is seen, even with zero dome height. The game reads the counts live every frame.</li>
 <li><strong>Edges that touch the ocean must not be split.</strong> Splitting land-to-ocean edges drew a dark trench with a staircase edge along the shore of a raised plot, with the dome height at 0 and with live heights identical to the original within 1 unit. The game must treat ocean and land vertices differently when it shades the shoreline (the reason is not known); leaving those edges alone keeps the generated shoreline.</li>
 </ol>
+<h2>The second base mesh section is filled at run time (verified, one part inferred)</h2>
+<p>The second section of a cell (record <code>+0x174</code>..<code>+0x188</code>, see finding 1) does not live in a <code>Terrain_Cell_*</code> buffer but in <code>Terrain_CellEdit_VB</code> (65536 vertices) and <code>Terrain_CellEdit_IB</code> (262144 indices), which the height-edit code (<code>WorldView_TerrainContext_HeightEdit.cpp</code>) creates <strong>empty</strong>, so a hook on <code>CreateVB</code> never sees their contents. The code keeps a CPU mirror of each: a 0x80000-byte block per buffer, in a vector of 0x38-byte entries <code>{elements u32 at +0, mirror pointer at +8, handle u16 at +0x10}</code> (a vector <code>{begin, capacity, count}</code> at the first parameter of the creator on the VB side and at that parameter + <code>0x18</code> on the IB side; the creator is only hooked to learn where the vector is). The mirror equals the GPU buffer byte for byte on DX11 (0 of 524288 bytes differ for the vertex and the index buffer, with 120576 and 209565 non-zero bytes on the GPU, at start and after patches).
+<strong>The mirror is newer than the GPU.</strong> A terrain change makes the game bake the affected cells again, and the second sections of those cells (and of their neighbours) are rewritten, sometimes at another range of the buffer, so the record's fields change. Reading the live mirror for the baseline at that moment returned the new data: a patch of the same cell gave 7079 instead of 2917 vertices and a corrupted tile that stayed after undo (inferred from the behaviour; the order of mirror write and GPU upload was not measured). Reading the GPU instead, or a snapshot of the mirrors taken before the first terrain change of the world, gave 2917. A snapshot alone is not enough either: when the game has baked a cell again, its second section sits at a range the snapshot never saw, so the snapshot is used only while the record still has the fields it had when it was taken (they are saved with it), and the live mirror otherwise. Each cell's second section is read once, when its record fields are captured.</p>
 <p>Also found: the base meshes of neighbouring cells <strong>overlap</strong> (aprons: local y from -128 to beyond 256), so about two layers cover a point and the real ownership boundaries zigzag; a plot centre can lie inside the nominal area of one cell and be covered only by the mesh of its neighbour; and a hill looks off-centre where the original ground slopes, because the dome is added to the slope.</p>
 <h2>Features, resources, improvements (verified)</h2>
 <p>The builders only work on the game thread. A hook on the per-tick function <code>Game::Autoplay::Manager::Update</code> (GameCore installed RVA <code>0x42780</code>) drains a job queue. Builders (installed RVAs): <code>Terrain::Builder::SetFeatureType</code> <code>0x5dbfb0</code> (the feature parameter is one 64-bit value {type, direction}, direction -1), <code>Resource::Builder::SetResourceType</code> <code>0x5d2b20</code>, <code>Improvement::Builder::SetImprovementType</code> overload 3 <code>0x25d430</code>, <code>SetImprovementPillaged</code> <code>0x25cfa0</code>, <code>IsNaturalWonder</code> <code>0x60280</code>. Plot fields: +0x3c feature, +0x40 resource, +0x42 resource count, +0x44 improvement, +0x46 owner (char), +0x4d bit 0 pillaged. The engine's terrain setter does not re-validate the feature on the tile; scripts have to remove or replace one that is no longer allowed (floodplains on a tile that became hills, for example).</p>
 <h2>Limits and what was tested</h2>
 <ul>
-<li><strong>Tested:</strong> GPU read-back identical to a full read on Small and Huge maps; domes on about 40 plots (coastal, river, inland, a peninsula) and rings around a settler, with no seams, cracks or holes (checked by eye from all angles and by scanning the live meshes for uncovered points); exact revert (every record field returns to the original when the data is changed back); save and load; Better Restart into a Huge game; the feature's startup self-tests; all earlier Dev CE release checks on the release DLL.</li>
-<li><strong>Not tested:</strong> other game builds, multiplayer, mods that replace terrain art or shaders, pillaged improvements, desert / tundra / snow hills beyond a few tiles. The terrain-to-material table assumes the vanilla order of terrain types (mods that add terrain types are not handled).</li>
+<li><strong>Tested on DX11:</strong> GPU read-back identical to a full read on Small and Huge maps; domes on about 40 plots (coastal, river, inland, a peninsula) and rings around a settler, with no seams, cracks or holes (checked by eye from all angles and by scanning the live meshes for uncovered points); exact revert (every record field returns to the original when the data is changed back); save and load; Better Restart into a Huge game; the feature's startup self-tests; all earlier Dev CE release checks on the release DLL.</li>
+<li><strong>Tested on DX12 (0.7.0, a Standard map):</strong> the start-up self-tests (kept copies against the exe's size records, patch, revert, dome), a coastal flat tile to plains hills and back, a ring and a field of hills including coastal tiles, flat to desert and snow, plains hills to tundra hills, a load of a save made after raising hills; no failed read, no crash. A hairline seam, a few pixels wide, was seen once along a coast at an extreme zoom and a sharp camera angle (not investigated).</li>
+<li><strong>Not tested:</strong> on DX12 a Huge map, Better Restart, loading the same save again after patching, tile objects beyond the re-placement after a terrain change; other game builds, multiplayer, mods that replace terrain art or shaders, pillaged improvements, desert / tundra / snow hills beyond a few tiles. The terrain-to-material table assumes the vanilla order of terrain types (mods that add terrain types are not handled).</li>
 <li>A tile is patched relative to the terrain it had when it was first seen; a tile that was hills when the world was built and is flattened by a script needs <code>FlattenHillsView</code>.</li>
 </ul></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>
