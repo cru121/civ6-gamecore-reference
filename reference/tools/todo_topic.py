@@ -22,11 +22,11 @@ for r in rows:
 GROUPS = [
     ('AI behavior tree nodes', [('AI', 'BehaviorTree')],
      'The building blocks of the computer players\' decision trees: one class per node type (`UseGreatPersonNode`, `SpyChooseMissionNode`, `BarbarianSpawnRateNode`, ...) plus the tree and factory plumbing.',
-     'Only mentioned in passing. No per-node entries.',
+     'Covered by the topic [AI behavior trees](ai-behavior-trees.md): the data-driven tree format, a reference of all 72 node types with parameters and classes, the two Lua nodes, and an in-game test of a mod-added tree. What each node reads from the blackboard is still open.',
      'Node names are the part of AI behaviour a modder can see; what each node reads, decides and calls is undocumented. Each class has a small, regular set of functions, so the method that worked for modifier effects (type name, subject, engine calls) should work here too. Whether the trees and their node parameters can be authored from game data is still to be confirmed.'),
     ('AI control contracts and operations', [('AI', 'Control'), ('AI', 'Operation')],
      'How AI subsystems hand work to each other: contracts such as `CivicResearchContract`, `DiplomaticActionContract`, `UnitRequestContract`, and the AI operation, operation team and operation definition classes.',
-     'Not covered. (Player and unit operations are covered under Operations and commands; these AI-side classes are separate.)',
+     'Partly covered by the topic [AI control contracts and operations](ai-contracts-and-operations.md): the classes, the operation tables, script-supplied targets, and an in-game test. The contract life cycle is still open. (Player and unit operations are covered under Operations and commands.)',
      'Small groups with descriptive names. They explain how the AI turns a goal into a request, which is useful to anyone changing AI behaviour.'),
     ('Gossip types', [('Game', 'Gossip')],
      'One class per gossip event (`Denounced`, `CityFounded`, `ReligionFounded`, `SpyCaptured`, ...) and the manager that collects them.',

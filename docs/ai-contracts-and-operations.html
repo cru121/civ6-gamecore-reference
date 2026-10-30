@@ -1,0 +1,128 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI control contracts and operations</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="exe/dx12.html">DX12 exe</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › AI control contracts and operations</p>
+<h1>AI control contracts and operations</h1>
+<p>Gap addressed: "AI control contracts and operations" in the reference TODO (17 classes: contracts plus operation/team/definition classes). Companion to <a href="ai-behavior-trees.html">AI behavior trees</a>: trees decide, contracts and operations carry out.</p>
+<h2>Verified (static from Linux symbols and decompile; in-game test pending, see end)</h2>
+<ul>
+<li><strong>Classes</strong> (<code>GameCore::AI::</code>, names and sizes from DWARF):</li>
+<li><code>Control::Contract</code> base (109 functions) with five subtypes, each with <code>Initialize / Execute / Update / Validate / Read / Write</code>: <code>UnitRequestContract</code> (29 functions, ~10.7 KB, also <code>UnitCreated/BuildingCreated/DistrictCreated</code>), <code>TechResearchContract</code>, <code>CivicResearchContract</code>, <code>PurchasePlotContract</code>, <code>DiplomaticActionContract</code>. Plumbing: <code>Control::Factory</code> (<code>CreateContract</code>, <code>DestroyContract</code>), <code>Control::Handle</code>, <code>Control::Instance</code>, <code>Control::Manager</code> (33 functions: <code>DoTurn</code>, <code>CreateController</code>, <code>OnUnitCreated</code>, ...), <code>Control::UnitEvaluator</code> (<code>IsDoneRecruiting</code>).</li>
+<li><code>Operation::Operation</code> (102 functions), <code>OperationTeam</code> (61), <code>OperationDef</code>, <code>TeamDefinition</code>, <code>TeamRequirement</code>, <code>OperationTarget</code>, <code>OperationEvaluator</code> (24: <code>GetNextPotentialTarget</code>, <code>GetOdds</code>, <code>Value</code>, <code>GetRally</code>), <code>OperationConditionFunctions</code>, <code>OperationsListReader</code>.</li>
+<li><strong>Link to trees</strong> (from <a href="ai-behavior-trees.html">AI behavior trees</a>): tree nodes carry a <code>Contract ID</code> (<code>Build Unit</code>, <code>Add Goal Tech</code>, <code>Recruit Units</code>, <code>Cancel Contract</code>, ...). A tree asks for something by creating a contract; the Control side fulfils it. Operations run a tree each: <code>AiOperationDefs.BehaviorTree</code>.</li>
+<li><strong>Operation data</strong> (live DB, 16 defs in the base game): <code>AiOperationDefs</code> (target type, enemy type, behavior tree, priority, distances, <code>MinOddsOfSuccess</code>, <code>SelfStart</code>, <code>MustBeAtWar</code>, <code>MustHaveNukes</code>, <code>OperationType</code>, <code>TargetLuaScript</code>, <code>ActiveEmergency</code>), <code>AiTeams</code>, <code>AiOperationTeams</code> (team -&gt; operation, min/max units, strength advantages, <code>SafeRallyPoint</code>, <code>Condition</code>), <code>OpTeamRequirements</code> (team, AI unit type, min/max number/percentage), <code>AiOperationTypes</code> (7 values), <code>AiOperationLimits</code> (empty in base), <code>AiOperationLists</code> + <code>AllowedOperations</code> (which operations a leader list may run; <code>Default_List</code> has 12).</li>
+<li><strong>Script-supplied targets.</strong> An operation with <code>TargetType = TARGET_SCRIPT_SUPPLIED</code> gets its target from Lua: <code>OperationEvaluator::GetNextPotentialTarget</code> (old RVA 0x4e3e80) calls <code>Lua::Utility::CallProcessor</code> with the operation's <code>TargetLuaScript</code> string, i.e. <code>GameEvents.&lt;TargetLuaScript&gt;</code>. It reads <code>PlotX</code> and <code>PlotY</code> from the result table (hashes 0x1d5666bb / 0x6a51562d = ~crc32 of the names, verified) and also touches <code>Extra</code> (0x7301dd9e). Only one target is offered per evaluation (it returns false on the second call). The Civ Royale DLC uses this (<code>CivRoyale_GetSafeZone</code>, <code>DLC/CivRoyaleScenario/Data/CivRoyaleScenario_AI.xml</code>), and its Lua handler writes <code>targetInfo.PlotX/PlotY</code>.</li>
+<li><strong>Team conditions.</strong> <code>AiOperationTeams.Condition</code> is a name hashed and looked up in a table of C++ functions (<code>OperationConditionFunctions::MeetsCondition</code>, old RVA 0x4dcd10); an unknown name is false. The base game registers only <code>IsCoastalTarget</code> (the functions list has <code>Initialize/IsCoastalTarget/Uninitialize</code>), so conditions are not extensible from data.</li>
+<li><strong>Observation logs</strong> (<code>Logs/</code>): <code>AI_Operation.csv</code> (turn, player, operation, notes, team status), <code>AI_Operation_Eval.csv</code> (turn, player, enemy, operation, value: the score each candidate operation gets), <code>AI_Planning.csv</code>, <code>AI_Behavior_Trees.csv</code>.</li>
+</ul>
+<h2>Inferred (not tested)</h2>
+<ul>
+<li>Contracts are created by tree nodes and by the Control manager and run per turn by <code>Control::Manager::DoTurn</code>; the contract lifetime (create, estimate/present value, execute, fail/cancel) matches the <code>Contract</code> method names but is not traced.</li>
+<li>An operation added through the five tables plus a <code>Default_List</code> entry becomes available to every default AI; whether it is actually started depends on its evaluation value and available units.</li>
+</ul>
+<h2>For modders</h2>
+<ul>
+<li>A new operation needs: an <code>AiOperationDefs</code> row (use <code>BehaviorTree</code> of an existing tree), an <code>AiTeams</code> row, an <code>AiOperationTeams</code> row, <code>OpTeamRequirements</code> rows, and an <code>AllowedOperations</code> row in the list a leader uses (<code>Default_List</code>).</li>
+<li>To control where it goes, set <code>TargetType = TARGET_SCRIPT_SUPPLIED</code> and <code>TargetLuaScript = &lt;Name&gt;</code>; register <code>GameEvents.&lt;Name&gt;.Add(fn)</code>; <code>fn(targetInfo)</code> sets <code>targetInfo.PlotX</code>, <code>targetInfo.PlotY</code>.</li>
+</ul>
+<h2>First in-game result (2026-10-30, mod BTOpTest, turn 1)</h2>
+<ul>
+<li>Verified in game: the mod's operation reaches the AI. On turn 1 the evaluator called <code>GameEvents.BTTest_GetTarget</code> once (empty argument table; handler returned the map centre 37,23) and <code>AI_Operation_Eval.csv</code> lists "BTTest Operation" with value 0.0 for player 0.</li>
+<li>Turn 12 result: the target script was called 166 times (about 14 per turn, one per AI player per turn, from <code>GetNextPotentialTarget</code>; always the same answer 37,23). <code>AI_Operation_Eval.csv</code> shows value 0.0 for every player every turn. Because <code>SelfStart</code> is true, <code>AI_Operation.csv</code> shows "BTTest Operation: Started" followed in the same turn by "Operation complete" for each of the 14 AI players, every turn (154 start/complete pairs). No team lines, no "running TARGET" line (compare "Settle New City running, TARGET 19:8"). The human player 0 is evaluated but not started.</li>
+<li>Why it completes at once (static, from decompile, plus the tree log): <code>Operation::IsFinished</code> (old RVA 0x4db9c0) has cases for four target types only: <code>TARGET_BARBARIAN_CAMP</code> (finished when the camp is no longer known), <code>TARGET_ENEMY_COMBAT_DISTRICT</code> / <code>TARGET_ENEMY_PASSIVE_DISTRICT</code> (finished when the target plot is no longer a known enemy district), <code>TARGET_MY_CITY</code> and <code>TARGET_SETTLE_LOCATION</code> (never finished). Every other type, including <code>TARGET_SCRIPT_SUPPLIED</code>, falls through to <code>return true</code>. <code>IsTargetValid</code> (0x4dbcd0), on the other hand, accepts <code>TARGET_SCRIPT_SUPPLIED</code>. The tree nodes that call <code>IsFinished</code> are <code>OperationAttackUnits</code>, <code>OperationAttackTarget</code> ("Operation Attack"), <code>OperationAttackCityNode</code>, <code>OperationPillageCityNode</code>, <code>OperationSiegeCityNode</code>, <code>OperationAirstrikeCityNode</code>, <code>CanAlphaStrikeCityNode</code> and <code>IsCityThreatenedNode</code>. <code>OperationAttackUnits::Update</code> (0x56d880) returns state 1 immediately when the operation is finished. The reused tree "Simple Operation Attack" contains "Operation Attack Units" (nodes 2, 9, 16, 20) and "Operation Attack" (21), and <code>AI_Behavior_Trees.csv</code> shows its first run as "Operation Attack Units: SUCCESS" with the root Concurrent ending in FAILURE (Decode Trigger: Value 0), after which the operation is logged complete. Verdict: the tree finishes at once because it asks <code>IsFinished</code>, which is always true for a script-supplied target. Whether a team never formed as well was not checked.</li>
+<li>Consequence for modders: a script-supplied-target operation must use a tree without the <code>IsFinished</code> nodes (Civ Royale's tree mostly uses <code>Operation Move</code>, <code>Operation Defend Units</code>, <code>Operation Change Target</code>, <code>Recruit Units</code>, plus its own Lua condition), or use another target type.</li>
+<li>So a mod-added operation is created and run by the engine every turn and its Lua target hook fires; making it do something needs a team of units and a tree that keeps running.</li>
+</ul>
+<h2>Run 2 (2026-10-30, own tree "BTTest Op Tree" without IsFinished nodes, turn 12)</h2>
+<ul>
+<li>The operation now does real work for all 14 AIs each turn (<code>AI_Operation.csv</code> 154 starts): "Recruiting minimums: UNIT_WARRIOR", then "Operation Recruit: Recruited 1, Contract for: UNIT_..." (a <code>UnitRequestContract</code> created by the <code>Recruit Units</code> node; the node logs "Recruited: 1 ... Ready: YES"). 25 times "No recruits to reach minimum".</li>
+<li>The Lua target is used: <code>Operation Move</code> logs "Moving to rally position 37: 23" (the script's PlotX/PlotY), and <code>AI_Operation.csv</code> shows "BTTest Operation running, TARGET 37:23" 4 times. So a script-supplied target becomes the operation's target/rally point.</li>
+<li>The operation still ends most turns: <code>Operation Move</code> returned FAILURE 146 times (root Concurrent FAILURE, then "Operation complete") and RUNNING only 12 times. Why the move fails was not examined (untested guesses: the map-centre plot is water or unreachable, or the team is not formed yet).</li>
+<li>Verified: with a tree free of <code>IsFinished</code> nodes the operation goes through recruit, contract and move; the earlier immediate completion was caused by the reused tree, as decompiled.</li>
+</ul>
+<h2>Open / next</h2>
+<ul>
+<li>Why <code>Operation Move</code> fails (plot type/reachability of the script target, team readiness); pick a land target near the capital and see whether the operation stays running and a team forms.</li>
+<li>Contract classes: lifecycle and which tree nodes create which contract type.</li>
+</ul>
+<h2>Reproducing the test (mod sources)</h2>
+<p>The operation test as a plain mod (<code>UpdateDatabase</code> for the XML, <code>AddGameplayScripts</code> for the Lua). Look for <code>BTOPTEST:</code> lines in <code>Lua.log</code> and for "BTTest Operation" in <code>AI_Operation.csv</code>, <code>AI_Operation_Eval.csv</code> and <code>AI_Behavior_Trees.csv</code>. While enabled, every AI recruits a unit and sends it towards the map centre each turn.</p>
+<p><strong>BTOpTest.xml</strong></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;GameInfo&gt;
+  &lt;BehaviorTrees&gt;
+    &lt;Row TreeName=&quot;BTTest Op Tree&quot;/&gt;
+  &lt;/BehaviorTrees&gt;
+  &lt;BehaviorTreeNodes&gt;
+    &lt;Row NodeType=&quot;Concurrent&quot; NodeId=&quot;0&quot; TreeName=&quot;BTTest Op Tree&quot; JumpTo=&quot;4&quot;/&gt;
+    &lt;Row NodeType=&quot;Recruit Units&quot; NodeId=&quot;1&quot; TreeName=&quot;BTTest Op Tree&quot;/&gt;
+    &lt;Row NodeType=&quot;LUA Script Condition&quot; NodeId=&quot;2&quot; TreeName=&quot;BTTest Op Tree&quot;/&gt;
+    &lt;Row NodeType=&quot;Operation Move&quot; NodeId=&quot;3&quot; TreeName=&quot;BTTest Op Tree&quot;/&gt;
+  &lt;/BehaviorTreeNodes&gt;
+  &lt;TreeData&gt;
+    &lt;Row DefnId=&quot;1&quot; NodeId=&quot;0&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;false&quot;/&gt;
+    &lt;Row DefnId=&quot;0&quot; NodeId=&quot;1&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;true&quot;/&gt;
+    &lt;Row DefnId=&quot;2&quot; NodeId=&quot;1&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;-1&quot;/&gt;
+    &lt;Row DefnId=&quot;3&quot; NodeId=&quot;1&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;false&quot;/&gt;
+    &lt;Row DefnId=&quot;6&quot; NodeId=&quot;1&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;true&quot;/&gt;
+    &lt;Row DefnId=&quot;0&quot; NodeId=&quot;2&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;BTTest_OpTreeCond&quot;/&gt;
+    &lt;Row DefnId=&quot;1&quot; NodeId=&quot;3&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;4&quot;/&gt;
+    &lt;Row DefnId=&quot;3&quot; NodeId=&quot;3&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;6&quot;/&gt;
+    &lt;Row DefnId=&quot;4&quot; NodeId=&quot;3&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;UNITAI_COMBAT&quot;/&gt;
+    &lt;Row DefnId=&quot;5&quot; NodeId=&quot;3&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;true&quot;/&gt;
+    &lt;Row DefnId=&quot;6&quot; NodeId=&quot;3&quot; TreeName=&quot;BTTest Op Tree&quot; DefaultData=&quot;false&quot;/&gt;
+  &lt;/TreeData&gt;
+  &lt;AiOperationDefs&gt;
+    &lt;Row OperationName=&quot;BTTest Operation&quot; TargetType=&quot;TARGET_SCRIPT_SUPPLIED&quot; EnemyType=&quot;NONE&quot; BehaviorTree=&quot;BTTest Op Tree&quot; Priority=&quot;3&quot; SelfStart=&quot;true&quot; MaxTargetDistInRegion=&quot;-1&quot; MaxTargetDistInArea=&quot;-1&quot; TargetLuaScript=&quot;BTTest_GetTarget&quot;/&gt;
+  &lt;/AiOperationDefs&gt;
+  &lt;AiTeams&gt;
+    &lt;Row TeamName=&quot;BTTest Team&quot;/&gt;
+  &lt;/AiTeams&gt;
+  &lt;AiOperationTeams&gt;
+    &lt;Row TeamName=&quot;BTTest Team&quot; OperationName=&quot;BTTest Operation&quot; InitialStrengthAdvantage=&quot;0&quot; OngoingStrengthAdvantage=&quot;0&quot;/&gt;
+  &lt;/AiOperationTeams&gt;
+  &lt;OpTeamRequirements&gt;
+    &lt;Row TeamName=&quot;BTTest Team&quot; AiType=&quot;UNITAI_COMBAT&quot; MinNumber=&quot;1&quot;/&gt;
+  &lt;/OpTeamRequirements&gt;
+  &lt;AllowedOperations&gt;
+    &lt;Row ListType=&quot;Default_List&quot; OperationDef=&quot;BTTest Operation&quot;/&gt;
+  &lt;/AllowedOperations&gt;
+&lt;/GameInfo&gt;
+</code></pre>
+<p><strong>Scripts/BTOpTest.lua</strong></p>
+<pre><code class="language-lua">-- BT Operation Test: proves an operation's TargetLuaScript is called as GameEvents.&lt;name&gt; and its PlotX/PlotY become the target
+print(&quot;BTOPTEST: script loaded&quot;);
+local calls = 0;
+
+function BTTest_GetTarget(targetInfo)
+    calls = calls + 1;
+    local keys = {};
+    if type(targetInfo) == &quot;table&quot; then
+        for k, v in pairs(targetInfo) do table.insert(keys, tostring(k) .. &quot;=&quot; .. tostring(v)); end
+    end
+    local w, h = Map.GetGridSize();
+    local x, y = math.floor(w / 2), math.floor(h / 2);
+    print(&quot;BTOPTEST: target script called #&quot; .. calls .. &quot; fields={&quot; .. table.concat(keys, &quot;,&quot;) .. &quot;} turn=&quot; .. tostring(Game.GetCurrentGameTurn()) .. &quot; returning &quot; .. x .. &quot;,&quot; .. y);
+    if type(targetInfo) == &quot;table&quot; then targetInfo.PlotX = x; targetInfo.PlotY = y; targetInfo.Extra = 1; end
+    return true;
+end
+
+local treeCalls = 0;
+function BTTest_OpTreeCond(targetInfo)
+    treeCalls = treeCalls + 1;
+    if treeCalls &lt;= 40 then print(&quot;BTOPTEST: op tree condition #&quot; .. treeCalls .. &quot; turn=&quot; .. tostring(Game.GetCurrentGameTurn())); end
+    if type(targetInfo) == &quot;table&quot; then targetInfo.Extra = 1; end
+    return true;
+end
+
+GameEvents.BTTest_GetTarget.Add(BTTest_GetTarget);
+GameEvents.BTTest_OpTreeCond.Add(BTTest_OpTreeCond);
+print(&quot;BTOPTEST: handler registered&quot;);
+</code></pre></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>

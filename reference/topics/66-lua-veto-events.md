@@ -4,7 +4,7 @@ order: 66
 ---
 # Veto events in Lua: `GameEvents.CanStartOperation` and what could be added
 
-**Availability.** `CanStartOperation` for **unit operations** works in the unmodified game (**verified**, plain gameplay-script mod, 2026-10-15). The city operation and city command versions below do **not** exist in the game: they are **experimental prototypes** that add a native call (done with a live hook, not yet in any shipped mod) and are listed so a DLL mod can implement them.
+**Availability.** `CanStartOperation` for **unit operations** works in the unmodified game (**verified**, plain gameplay-script mod, 2026-10-15). The city operation and city command versions below do **not** exist in the game: they are added by a native hook. The hooks work (**verified**, 2026-10-28, with a development build of Dev CE) but are **not in any released Dev CE yet**, so treat them as experimental.
 
 Credit: the hidden event was found and described by **WildW** (Discord, 2024-07-14). Everything marked verified was re-checked in the game library and at run time.
 
@@ -33,15 +33,15 @@ end)
 ## The only test-style events in the game (verified)
 Callers of the Lua dispatchers in the shipped library (installed build): `CallTestAll` has **one** caller (`CanStartOperation`); `CallTestAny` has one (the autoplay end-of-turn check); `CallProcessor` has four (World Congress resolution checks and two AI hooks); `SendLuaEvent` two (autoplay, new game); `CallHook` about 37 (the ordinary notification events). There are no other hidden veto events. Dispatch details and thread/lock behaviour: see the findings page on Lua event dispatch.
 
-## Not in the game: city operations and city commands (experimental)
-`City::Operations::Manager::CanStart` and `City::Commands::Manager::CanStart` have **no** Lua call. A live hook that calls the game's own `CallTestAll` after the original returns true reproduces the unit behaviour:
+## Not in the game: city operations and city commands (experimental, Dev CE development build)
+`City::Operations::Manager::CanStart` and `City::Commands::Manager::CanStart` have **no** Lua call. A native hook (a live Frida hook first, then a Dev CE build) that calls the game's own `CallTestAll` after the original returns true reproduces the unit behaviour:
 
 | Event (prototype) | Hooked function | Arguments | Result |
 |---|---|---|---|
 | `GameEvents.CanStartCityOperation` | `City::Operations::Manager::CanStart` | `(playerId, cityId, opType)` | A Lua handler vetoed 63 of 63 city **Build** checks and the production list came up empty. `BUILD` is the only registered city operation (op `0`). |
 | `GameEvents.CanStartCityCommand` | `City::Commands::Manager::CanStart` | `(playerId, cityId, commandType)` | Command **0 = Purchase**: vetoing it removed both the gold and faith purchase buttons (39 of 39 checks). **1 = Range Attack** (only seen for city-states with Walls). |
 
-* **Status:** the mechanism and the two numbers above are verified in the game; the other command numbers are **inferred** (enum order: 2 `SET_FOCUS`, 3 `DESTROY`, 4 `MANAGE`, 5 `WMD_STRIKE`, 6 `SWAP_TILE_OWNER`, 7 `NAME_CITY`) and denying 2, 3 or 4 changed nothing visible, so do not rely on them yet. There is no `GameInfo` table for city operations or commands; the numbers are code-side ordinals, not database rows.
+* **Status:** the mechanism and the two numbers above are verified in the game, both with the live hook and with the Dev CE build (a plain gameplay mod vetoed purchase, the city Build operation and AI unit moves in one run, 0 handler errors); the other command numbers are **inferred** (enum order: 2 `SET_FOCUS`, 3 `DESTROY`, 4 `MANAGE`, 5 `WMD_STRIKE`, 6 `SWAP_TILE_OWNER`, 7 `NAME_CITY`) and denying 2, 3 or 4 changed nothing visible, so do not rely on them yet. There is no `GameInfo` table for city operations or commands; the numbers are code-side ordinals, not database rows.
 * The AI goes through the same checks and the veto applied to it (a city-state's checks were all refused when vetoed).
 * **Granularity:** the purchase item (which unit or building) and the build sub-kind (train unit, construct building, zone district, advance project) are **not** among the arguments; a DLL implementation could pass them.
 * Rough costs: each passing check now costs one Lua call; AI city checks are sparse, UI checks happen while a city panel is open.
@@ -52,6 +52,6 @@ Callers of the Lua dispatchers in the shipped library (installed build): `CallTe
 * Because unknown event names are created on demand, any other native check could become a veto event the same way.
 
 ## Not yet verified
-* A real-mod test of the city events (only the live-hook prototype was run).
+* A released Dev CE version with the city events (the development build passed; not published).
 * The meaning of city command numbers 2-7.
 * Dispatch cost under load, and the behaviour when two mods register opposite answers (`TestAll` semantics say one `false` wins; not exercised).
