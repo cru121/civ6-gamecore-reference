@@ -1,0 +1,765 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI behavior trees</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="exe/dx12.html">DX12 exe</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › AI behavior trees</p>
+<h1>AI behavior trees: the data-driven node graph and its Lua nodes</h1>
+<p>Gap addressed: "AI behavior tree nodes" in the reference TODO (87 <code>GameCore::AI::BehaviorTree::*</code> classes, node semantics unknown, unclear whether trees are authorable from data).</p>
+<h2>Verified (read from files and static code, plus the in-game tests described below)</h2>
+<ul>
+<li>The trees are game data. <code>Base/Assets/Gameplay/Data/BehaviorTrees.xml</code> (194 KB) has seven sections: <code>ShapeDefinitions</code> (5), <code>NodeDefinitions</code> (72), <code>NodeDataDefinitions</code>, <code>DataTypes</code> (12), <code>BehaviorTrees</code> (29 trees), <code>BehaviorTreeNodes</code> (583 rows: tree, node id, <code>NodeType</code>, <code>JumpTo</code>), <code>TreeData</code> (per-node parameter values: <code>DefnId</code>, <code>Tag</code>, <code>DefaultData</code>).
+  Schema tables: <code>BehaviorTrees</code>, <code>BehaviorTreeNodes</code>, <code>Beliefs</code>, <code>TriggeredBehaviorTrees(TriggerType, TreeName, OperationName, AIEvent, Priority)</code>.</li>
+<li>Engine side (Linux DWARF names): <code>Factory::RegisterComponent(id, CreateFunc)</code>, <code>Factory::CreateBehaviorTree</code>, <code>Factory::FactoryNodeDefinition(IDatabaseQuery1*)</code>, <code>Factory::InitializeData</code>, <code>Factory::CopyBehaviorTree</code>. The Factory is a game component (vtable slots Initialize/Uninitialize/Reset + component interface).</li>
+<li>Node classes have no vtables. Each node is a static function set (<code>Update</code>, sometimes <code>Execute</code>/<code>Initialize</code>) registered by name; 75 classes have an <code>Update</code>. Only helper classes have vtables: <code>Factory</code>, <code>NearestCityJob</code>, <code>BarbarianRecruiter</code> and the <code>*Evaluator</code> family (<code>FindUnits</code>, <code>OpRecruit</code>, <code>NavalEscort</code>, <code>SpyAtCity</code>), which are in <code>vtable_slots.tsv</code>.</li>
+<li><code>NODE_SHAPE</code>: parent (3 types: Concurrent, Priority, Sequence), leaf/action (38), decision (23, never return running, may output data), decorator (7, exactly one child), subtree (1, "Run Behavior Tree"). The <code>NODE_TYPE</code> enum in DWARF is only Aspyr dummy values with no names; the names come from the XML.</li>
+<li><code>LuaScriptNode::Update</code> returns the numeric state 1 when the Lua call produced a positive number or true, 3 otherwise, and 4 when its node data is missing (names of the <code>ACTION_STATE</code> values not checked; 1 = success, 3 = failure is a guess).</li>
+<li>The full node list is in the <a href="#node-reference">Node reference</a> below and as <code>findings/tables/behavior_tree_nodes.tsv</code> in the repository (node id, type, shape, class, Linux <code>Update</code> address, use count, trees using it, parameters, XML description).</li>
+</ul>
+<h2>The two Lua nodes</h2>
+<ul>
+<li><strong>LUA Script Condition</strong> (node 70, decision, one parameter "Script Function": string). <code>LuaScriptNode::Update</code> (old RVA 0x554dd0) calls <code>Lua::Utility::CallProcessor(scriptSystem, name, args, resultMap)</code>. That is the <code>GameEvents.&lt;name&gt;</code> processor mechanism (see lua-event-dispatch.md), so the "function name" is a GameEvents event and the handler is registered with <code>GameEvents.&lt;name&gt;.Add(fn)</code>. The handler gets a table (<code>targetInfo</code>) and writes the result into it: the node reads the field <code>Extra</code> (hash 0x7301dd9e = ~crc32("Extra"), verified), and a number/boolean greater than 0 gives success; call failed, field missing, 0 or wrong type gives failure. The Civ Royale DLC does exactly this: <code>CivRoyale_SmallSafeZone(targetInfo)</code> sets <code>targetInfo.Extra = 1/0</code> (DLC/CivRoyaleScenario/Scripts/CivRoyaleScenario_StartScript.lua:781, registered at :1608). Only the Civ Royale tree uses the node (<code>CivRoyale_SmallSafeZone</code>).</li>
+<li><strong>Use Scripted Command</strong> (node 72, action). <code>UseScriptedCommand::Execute</code> (old RVA 0x577990) loops over a per-player list of script command names (player +0x670 -&gt; +0x4a0, 16-byte entries). For each of the AI control's own units it builds a <code>Unit::Commands::ExecuteScript</code> request with that name, asks the command manager whether it can start (vtable +0x48), and starts it (vtable +0x58). So the AI can run <code>UnitCommandTypes.EXECUTE_SCRIPT</code> commands on its units.</li>
+<li>Related Lua API (lua_api.txt): <code>AiMilitary:StartScriptedOperation</code>, <code>AddUnitToScriptedOperation</code>, <code>SetScriptedOperationReady</code>, <code>SetScriptedTargetAndRally</code>.</li>
+</ul>
+<h2>Inferred (not tested)</h2>
+<ul>
+<li>Node name -&gt; class mapping is by name (some by hand: e.g. "Build Unit" -&gt; <code>BuildFromCityNode</code>, "Find Unit Targets" -&gt; <code>FindTargetsNode</code>, "Operation Air Assault" -&gt; <code>OperationAirstrikeCityNode</code>). Five classes have no XML node (<code>GatherBuildingsNode</code> and the four evaluators); the evaluators are probably helpers chosen by other nodes, <code>GatherBuildingsNode</code> unknown.</li>
+<li>Where the player's script command list is filled is not traced yet.</li>
+</ul>
+<h2>For modders</h2>
+<ul>
+<li>Edit or add rows in <code>BehaviorTrees</code>, <code>BehaviorTreeNodes</code>, <code>TreeData</code> (via the XML/SQL tables) to change what the AI does; the node vocabulary is fixed (72 types), only their combination and parameters are data.</li>
+<li>A new tree reaches the AI through <code>TriggeredBehaviorTrees</code> (AI event -&gt; tree) plus an <code>AiFavoredItems</code> entry in <code>DefaultTriggeredTrees</code> (and <code>MinorCivTriggeredTrees</code>) that arms it, or through operations (<code>AiOperationDefs.BehaviorTree</code>) that reference tree names. Only one trigger is active per AI event, so to take over an event, delete the base entry from the list (verified for <code>AI_EVENT_GAIN_TECH</code>).</li>
+<li><code>LUA Script Condition</code> is the hook for custom logic: register <code>GameEvents.&lt;Name&gt;.Add(fn)</code>, put <code>&lt;Name&gt;</code> in the node's "Script Function" TreeData, and have <code>fn(targetInfo)</code> set <code>targetInfo.Extra = 1</code> for success (0 for failure).</li>
+</ul>
+<h2>First in-game test (2026-10-30, mod BTTreeTest, run 1)</h2>
+<ul>
+<li>Verified in game: a mod's <code>BehaviorTrees</code>/<code>BehaviorTreeNodes</code>/<code>TreeData</code>/<code>TriggeredBehaviorTrees</code> rows reach the live gameplay DB (checked in Cache/DebugGameplay.sqlite), the mod's Lua script loaded and registered its <code>GameEvents</code> handler.</li>
+<li>Verified in game: a <code>TriggeredBehaviorTrees</code> row alone does NOT arm a trigger. With <code>AI_EVENT_GAIN_TECH</code> firing for 3 AIs, only the base <code>Upgrade Units</code> tree ran; the mod's tree never did (0 rows in <code>Logs/AI_Behavior_Trees.csv</code>, no handler call). The base game arms triggers through the AI lists: <code>AiFavoredItems(ListType="DefaultTriggeredTrees" / "MinorCivTriggeredTrees", Item="&lt;TriggerType&gt;")</code>. Engine side: <code>Lists::Handler&lt;TriggeredTreeInfo&gt;::ExecuteLeaderQuery/ExecuteAgendaQuery</code>, <code>Manager::OnAiEvent</code>.</li>
+<li>Run 2 (list entry added, new game): still no run. <code>Manager::OnAiEvent</code> (old RVA 0x563110) indexes a per-player array (this+0x338, 0x18-byte entries: tree name, operation name, priority) by AI event index, so there is ONE trigger slot per event. A second trigger on <code>AI_EVENT_GAIN_TECH</code> loses to the base <code>Upgrade Units</code> (which of the two wins, first row or priority, is not determined). If the entry has no operation name it copies the tree (<code>Factory::CopyBehaviorTree</code>) and adds it to the AI control; with an operation name it starts that military operation instead.</li>
+<li>Run 3 (base <code>TRIGGER_TECH_UPGRADE</code> removed from both lists, so the mod's trigger is the only one for the event): <strong>works</strong>. On turn 10, players 6, 8 and 11 ran "BTTest Tree" (<code>AI_Behavior_Trees.csv</code>: Sequence SUCCESS, LUA Script Condition SUCCESS) and <code>GameEvents.BTTest_Condition</code> was called 3 times (<code>Lua.log</code>). The handler's argument was an empty table (<code>fields={}</code>), and setting <code>targetInfo.Extra = 1</code> made the node return SUCCESS. So a mod-added tree, its trigger, and a Lua condition node all work end to end; the node's "Script Function" is a <code>GameEvents</code> name.</li>
+<li>Still open: which trigger wins when two share an event (first row or priority), and whether a failing handler (Extra = 0) shows FAILURE in the log.</li>
+<li><code>Logs/AI_Behavior_Trees.csv</code> (columns: Game Turn, Player, System, Tree, Node, Result, Data) logs every node of every tree run; it is the main observation tool for tree tests.</li>
+</ul>
+<h2>Open</h2>
+<ul>
+<li>Per-node semantics beyond the XML description (what each reads from the blackboard).</li>
+<li>The 17 AI control contract/operation classes are separate and not covered here.</li>
+</ul>
+<h2>Node reference</h2>
+<p>The 72 node types of <code>BehaviorTrees.xml</code> (base game, build 15038592). Class names are matched by name to the <code>GameCore::AI::BehaviorTree</code> classes (inferred, see above). Parameter flags: R required, G one of a required group, U user-settable, O output.</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Node</th>
+<th>Shape</th>
+<th>Class</th>
+<th>Used</th>
+<th>Parameters</th>
+<th>What the game's XML says</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Concurrent</td>
+<td>Selector</td>
+<td><code>ConcurrentNode</code></td>
+<td>72</td>
+<td>Max Failures:int[U]; Exit on Success:bool[U]</td>
+<td>Logical And node. Runs all children until it reaches a FAILURE (can allow multiple failures if desired.)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Priority</td>
+<td>Selector</td>
+<td><code>PriorityNode</code></td>
+<td>37</td>
+<td>-</td>
+<td>Logical Or node. Runs all children until it reaches a SUCCESS or RUNNING</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sequence</td>
+<td>Selector</td>
+<td><code>SequenceNode</code></td>
+<td>46</td>
+<td>Looping:bool[U]</td>
+<td>Special logical And node. Stops on FAILURE, but also stops on RUNNING. Resumes next turn on RUNNING node.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Add Goal Tech</td>
+<td>Action</td>
+<td><code>AddGoalTechNode</code></td>
+<td>14</td>
+<td>Desired Units:UnitTypesList[R]; Desired Buildings:BuildingTypesList[R]; Desired Improvements:ImprovementList[R]; Goal Plot to work:Map Point[R]; Desired Techs:TechTypeList[R]; Add Techs For All:bool[U]; Desired Civics:CivicsList[R]; Contract ID:ID List[O]; Tech Value:int</td>
+<td>Given a list of units, buildings, or techs, asks Research AI to work on them</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Build Unit</td>
+<td>Action</td>
+<td><code>BuildFromCityNode</code></td>
+<td>18</td>
+<td>Desired Units:UnitTypesList[R]; Desired Buildings:BuildingTypesList[R]; Required City(-1 for any city):int[U]; Release Unit When Built:bool[U]; Contract ID:int[O]; Build Priority:int[U]; Desired Districts:DistrictList[R]; Desired Location:Map Point; Unit Value:int</td>
+<td>Given a list of units and/or buildings and a city, builds 'best' unit at the city when queue is availble.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Find Available Unit</td>
+<td>Decision</td>
+<td><code>FindAvailableUnitNode</code></td>
+<td>12</td>
+<td>Desired Units:UnitTypesList[R]; Desired Location:Map Point; Found Unit:ID List[O]; Upgradeable Units:bool[RU]; Unit Type:string[RU]</td>
+<td>Given a list of units, finds first unit of matching type that can get to location</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Notify Owner</td>
+<td>Action</td>
+<td><code>NotifyOwnerNode</code></td>
+<td>3</td>
+<td>Data Payload:int</td>
+<td>Sends notice back to the owning player or any other listener, with an optional integral payload.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Barbarian Spawn Change</td>
+<td>Action</td>
+<td><code>BarbarianSpawnRateNode</code></td>
+<td>6</td>
+<td>Tribe:int; Spawn Rate:int[U]; Raiding Party:bool[U]</td>
+<td>Change the spawn rate of a barbarian tribe to prepare for raid/invasion.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Run Behavior Tree</td>
+<td>Sub-tree</td>
+<td><code>RunBehaviorTreeNode</code></td>
+<td>0</td>
+<td>Behavior Tree:string[U]; Behavior Tree Parent Tag:string</td>
+<td>DEPRECATED - DO NOT USE. Runs a behavior tree defined elsewhere. You can change data for that sub-tree, but not its structure.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Operation Move</td>
+<td>Action</td>
+<td><code>OperationMoveNode</code></td>
+<td>37</td>
+<td>Move To (enum):int[U]; Range to goal:int[U]; Validate new units:bool[U]; Unit distance:int[U]; Leader Tag:string[U]; AlwaysRunning:bool[U]; Can Explore:bool[U]</td>
+<td>Moves operation to the rally point.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Decode Trigger</td>
+<td>Decision</td>
+<td><code>DecodeTriggerNode</code></td>
+<td>22</td>
+<td>Trigger Units:UnitTypesList[RO]; Trigger Buildings:BuildingTypesList[RO]; Trigger Improvements:ImprovementList[RO]; Trigger District:DistrictList[RO]; Trigger City:int[RO]; Trigger Location:Map Point[RO]; Trigger Tech:TechTypeList[RO]; Trigger Civic:CivicsList[RO]; Trigger Value:int[O]</td>
+<td>For temporary trees only. Take the trigger you want to meet and extract information for use elsewhere.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Choose City</td>
+<td>Decision</td>
+<td><code>ChooseCityForBuildingNode</code></td>
+<td>1</td>
+<td>Building List:BuildingTypesList; City ID:int[O]; Needed District:DistrictList[O]; District Location:Map Point[O]; Building Location:Map Point[O]</td>
+<td>Given a list of buildings, pick the best city to make a building. Output city and needed improvement.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Build Improvement</td>
+<td>Action</td>
+<td><code>BuildImprovementNode</code></td>
+<td>2</td>
+<td>Worker List:ID List; Goal Plot:Map Point; Improvements:ImprovementList; Release when done:bool[U]; Builder Plot:Map Point</td>
+<td>Given a worker, location, and improvement, build the improvement.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Move Unit</td>
+<td>Action</td>
+<td><code>MoveUnitNode</code></td>
+<td>12</td>
+<td>Unit ID List:ID List; Location:Map Point; Release when done:bool[U]; Allow Danger:bool[U]; To Range:int[U]</td>
+<td>Given a unit ID and a location, give the unit a move order. Report RUNNING until it reaches destination.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Operation Attack</td>
+<td>Action</td>
+<td><code>OperationAttackTarget</code></td>
+<td>1</td>
+<td>-</td>
+<td>As part of an operation, attack the target.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Not</td>
+<td>Decorator</td>
+<td><code>NotNode</code></td>
+<td>5</td>
+<td>-</td>
+<td>Decorator that turns SUCCESS and RUNNING to FAILURE and vice versa. Does not reverse ERROR.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Purchase Plot</td>
+<td>Action</td>
+<td><code>PurchasePlotNode</code></td>
+<td>4</td>
+<td>Required City:int; Plot:Map Point; Contract:int[O]</td>
+<td>Purchase a plot for a city.</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Recruit Units</td>
+<td>Decision</td>
+<td><code>RecruitUnitsNode</code></td>
+<td>26</td>
+<td>Already in progress:bool[U]; Contract ID:int; Recruit Range:int[U]; Allow creation:bool[U]; Recruit Value:int; Time Limit:int[U]; Allow Stealing:bool[U]; Allow Levying:bool[U]</td>
+<td>Recruit units for a defined operation. OPERATION USE ONLY.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Operation Attack Units</td>
+<td>Action</td>
+<td><code>OperationAttackUnits</code></td>
+<td>36</td>
+<td>Attack Nearby Units:bool[U]; Attack Along March:bool[U]; Allow Unequal Attacks:bool[U]; Always Running:bool[U]; Attack Near Target:bool[U]</td>
+<td>As part of an operation, attack enemy units during a move.</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Choose Improvement</td>
+<td>Decision</td>
+<td><code>ChooseImprovementNode</code></td>
+<td>1</td>
+<td>Input Improvements:ImprovementList; Builder List:UnitTypesList[O]; Location:Map Point[O]; Output Improvement:ImprovementList[O]</td>
+<td>Given a list of improvement types, chooses a specific improvement to build, preferably around a city</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Barbarian Raid Check</td>
+<td>Decision</td>
+<td><code>BarbarianRaidingScoreNode</code></td>
+<td>1</td>
+<td>Tribe Number:int; Score:int[U]; Signal At Start:bool[U]</td>
+<td>Check the score of a barbarian raid</td>
+</tr>
+<tr>
+<td>21</td>
+<td>In Difficulty Range</td>
+<td>Decorator</td>
+<td><code>DifficultyDecorator</code></td>
+<td>1</td>
+<td>Low Difficulty:string[RU]; High Difficulty:string[RU]; Apply to opponent:bool[U]; Fail if Outside:bool[U]</td>
+<td>Decorator that runs if owner's difficulty is within range. Optionally target difficulty, optionally fail if outside.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Settle</td>
+<td>Action</td>
+<td><code>SettleActionNode</code></td>
+<td>2</td>
+<td>Settler Unit:ID List</td>
+<td>Tells a unit to perform the settle action. FAILS if no unit is able to do so.</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Check Plot</td>
+<td>Decision</td>
+<td><code>CheckPlotNode</code></td>
+<td>6</td>
+<td>Plot To Check:Map Point; Building Districts:DistrictList[R]; Building Wonders:BuildingTypesList[R]; Building Improvements:ImprovementList[R]; Resource Harvesting:bool[O]; Builder List:UnitTypesList[O]; Plot To Move:Map Point[O]</td>
+<td>Checks if you can build the requested building or district on that location. Outputs an offending resource or feature if it fails</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Clear Plot</td>
+<td>Action</td>
+<td><code>ClearPlotNode</code></td>
+<td>4</td>
+<td>Builder List:ID List; Release on Complete:bool[U]; Plot To Clear:Map Point; Resource Harvesting:bool</td>
+<td>Orders a unit to clear the current tile. FAILS if no unit is able to do so.</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Barbarian Recruit</td>
+<td>Decision</td>
+<td><code>BarbarianRecruitNode</code></td>
+<td>2</td>
+<td>Tribe:int; Num Melee:int[RU]; Num Ranged:int[RU]; Num Siege:int[RU]; Num Support:int[RU]; Raiding Party:bool[U]</td>
+<td>Recruit members from a tribe for a raid or invasion.</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Interval</td>
+<td>Decorator</td>
+<td><code>IntervalDecorator</code></td>
+<td>0</td>
+<td>Turns to Run:int[U]</td>
+<td>Lets a child run for n turns before rechecking it</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Operation Defend Units</td>
+<td>Action</td>
+<td><code>OperationProtectUnits</code></td>
+<td>15</td>
+<td>AutoProtect Percentage:int[U]; Protect Outside Range:int[U]</td>
+<td>As part of an operation, protect your units that might otherwise be destroyed.</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Turn Limiter</td>
+<td>Decorator</td>
+<td><code>TurnLimitDecorator</code></td>
+<td>12</td>
+<td>Turns to Run:int[U]; Fail at Limit:bool[U]; Limit Is Min:bool[U]</td>
+<td>Only lets a child node run for a limited number of turns before failing.</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Operation Change Target</td>
+<td>Action</td>
+<td><code>OperationChangeTarget</code></td>
+<td>20</td>
+<td>Backup Amount:float[U]; Failure Amount:float[U]; Fail on Invalid Team:bool[U]; Required Tag:string[U]; Always Swap:bool[U]</td>
+<td>As part of an operation, if you can't take the current target, find a new one or give up.</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Contract Manager Decorator</td>
+<td>Decorator</td>
+<td><code>ContractManagerDecorator</code></td>
+<td>43</td>
+<td>Contract:int[R]; Multi-Contracts:ID List[R]; Turn Limit:int[U]; Block While Running:bool[U]; Turns Remaining:int[U]</td>
+<td>Manages a contract, can limit turns until it is run.</td>
+</tr>
+<tr>
+<td>31</td>
+<td>Operation Attack City</td>
+<td>Action</td>
+<td><code>OperationAttackCityNode</code></td>
+<td>9</td>
+<td>Unused:int[U]</td>
+<td>As part of an operation, attack a city</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Make Formation</td>
+<td>Action</td>
+<td><code>MakeFormationNode</code></td>
+<td>10</td>
+<td>Destroy Formations:bool[U]; Combat Unit:string[RU]; Civilian Unit:string[RU]; Support Unit:string[RU]; Naval Unit:string[RU]</td>
+<td>Create (or destroy) a formation of units</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Protect Unit</td>
+<td>Action</td>
+<td><code>ProtectUnitNode</code></td>
+<td>8</td>
+<td>Unit List:ID List; Damage Percentage:float[U]</td>
+<td>Keep a non-operation unit safe if its health is below specified fraction</td>
+</tr>
+<tr>
+<td>34</td>
+<td>City Attack</td>
+<td>Action</td>
+<td><code>CityAttackUnitsNode</code></td>
+<td>1</td>
+<td>Preferred Type:string[U]</td>
+<td>Cities attack enemy units within range, with preferences as described (none required)</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Reserve Plot</td>
+<td>Decision</td>
+<td><code>ReservePlotNode</code></td>
+<td>6</td>
+<td>Plot to reserve:Map Point; City:int; Value:int; Tag:string[U]</td>
+<td>Reserve a city plot so that other trees will leave it alone</td>
+</tr>
+<tr>
+<td>36</td>
+<td>Operation Pillage</td>
+<td>Action</td>
+<td><code>OperationPillageCityNode</code></td>
+<td>13</td>
+<td>Pillage Districts:bool[U]; Pillage Improvements:bool[U]; Get Goody Huts:bool[U]</td>
+<td>Pillage nearby improvements and districts</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Operation Siege City</td>
+<td>Action</td>
+<td><code>OperationSiegeCityNode</code></td>
+<td>7</td>
+<td>Unused:int</td>
+<td>Pillage nearby improvements and districts</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Garrison City</td>
+<td>Action</td>
+<td><code>OperationGarrisonCityNode</code></td>
+<td>1</td>
+<td>Unused:int</td>
+<td>As part of an operation, garrison a unit in a friendly city</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Is City Threatened</td>
+<td>Decision</td>
+<td><code>IsCityThreatenedNode</code></td>
+<td>2</td>
+<td>Unused:int</td>
+<td>Tell if city that is operation target is still threatened</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Is At War</td>
+<td>Decision</td>
+<td><code>IsAtWarNode</code></td>
+<td>5</td>
+<td>Minimum Number:int[U]; Include Barbarian:bool[U]; With Operation Target:bool[U]; Skip For Minors:bool[U]</td>
+<td>Tell if player is at war</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Find Unit Targets</td>
+<td>Decision</td>
+<td><code>FindTargetsNode</code></td>
+<td>2</td>
+<td>Nearest Owned City:bool[U]; Needed District:DistrictList; Needs Buildings:BuildingTypesList; Contract Value:int</td>
+<td>Find places for all owned units to go</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Upgrade Units</td>
+<td>Action</td>
+<td><code>UpgradeUnitsNode</code></td>
+<td>2</td>
+<td>Can Delete:bool</td>
+<td>Upgrade any upgradeable units</td>
+</tr>
+<tr>
+<td>43</td>
+<td>Has Great Person</td>
+<td>Decision</td>
+<td><code>HasGreatPersonNode</code></td>
+<td>1</td>
+<td>Great Person Type:string[U]</td>
+<td>Succeeds if the tree has a great person of the appropriate type</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Use Great Person</td>
+<td>Action</td>
+<td><code>UseGreatPersonNode</code></td>
+<td>1</td>
+<td>Unused:string</td>
+<td>Uses the great person ability, including founding a religion</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Cancel Contract</td>
+<td>Decision</td>
+<td><code>CancelContractNode</code></td>
+<td>4</td>
+<td>Contract:int</td>
+<td>Cancel a tagged contract</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Lock Units</td>
+<td>Decision</td>
+<td><code>LockUnitsNode</code></td>
+<td>6</td>
+<td>Lock Units:bool[U]; Signal Readiness:bool[U]</td>
+<td>Allow / disallow units to be recruited off the team</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Operation Diplomacy</td>
+<td>Action</td>
+<td><code>OperationDiplomacy</code></td>
+<td>4</td>
+<td>Desires Denouncement:bool[RU]; Had Denounced:bool[RU]; Desires War:bool[RU]; Is At War:bool[RU]; Present Value:int; Contract:int</td>
+<td>Diplomatic actions and tests</td>
+</tr>
+<tr>
+<td>48</td>
+<td>SPY: Choose Mission</td>
+<td>Decision</td>
+<td><code>SpyChooseMissionNode</code></td>
+<td>1</td>
+<td>Operation:int; Minimum Odds:int[U]</td>
+<td>Choose a spy mission for the spy's current city</td>
+</tr>
+<tr>
+<td>49</td>
+<td>SPY: Do Operation</td>
+<td>Action</td>
+<td><code>SpyDoOperationNode</code></td>
+<td>1</td>
+<td>Operation:int; Allow Gain Sources:bool[U]; Minimum Odds:int[U]</td>
+<td>Execute the spy's current mission</td>
+</tr>
+<tr>
+<td>50</td>
+<td>SPY: Travel</td>
+<td>Action</td>
+<td><code>SpyMoveToCityNode</code></td>
+<td>2</td>
+<td>Destination:Map Point[R]; Go Home:bool[RU]</td>
+<td>Move the spy to the chosen city (or home)</td>
+</tr>
+<tr>
+<td>51</td>
+<td>ARCHAEOLOGY: Dig</td>
+<td>Action</td>
+<td><code>ArcheologistDigNode</code></td>
+<td>1</td>
+<td>Relic Plot:Map Point</td>
+<td>Have an archaeologist dig at the specified location</td>
+</tr>
+<tr>
+<td>52</td>
+<td>ARCHAEOLOGY: Donate</td>
+<td>Action</td>
+<td><code>ArchaeologistDonateNode</code></td>
+<td>1</td>
+<td>-</td>
+<td>An archaeologist moves to his home and donates any carried artifact to his museum</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Operation Naval Escort</td>
+<td>Action</td>
+<td><code>OperationNavalEscort</code></td>
+<td>2</td>
+<td>Move Point enum:int[U]</td>
+<td>Recruit naval escorts to an operation and ferry units across the waters</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Has Player Ability</td>
+<td>Decorator</td>
+<td><code>HasPlayerAbilityDecorator</code></td>
+<td>2</td>
+<td>Fail if none:bool[U]; Builders make wonders:bool[RU]; Builders make districts:bool[RU]</td>
+<td>Decorator that checks for player ability before handing control to child</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Build Production</td>
+<td>Action</td>
+<td><code>BuildProductionNode</code></td>
+<td>2</td>
+<td>Location:Map Point; Release When Done:bool</td>
+<td>Use a builder charge to accelerate a wonder or district (if allowed)</td>
+</tr>
+<tr>
+<td>56</td>
+<td>Has Inquisition</td>
+<td>Decision</td>
+<td><code>HasInquisitionNode</code></td>
+<td>1</td>
+<td>Unused:int</td>
+<td>Returns true if the specified player has launched an inquisition</td>
+</tr>
+<tr>
+<td>57</td>
+<td>Launch Inquisition</td>
+<td>Action</td>
+<td><code>LaunchInquisitionNode</code></td>
+<td>1</td>
+<td>Apostle:ID List</td>
+<td>Launches an inquisition using an attached unit, if possible</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Will use nukes</td>
+<td>Decision</td>
+<td><code>WillUseNukesNode</code></td>
+<td>1</td>
+<td>-</td>
+<td>Checks if the AI is willing to use nukes against his opponent (Gandhi always will)</td>
+</tr>
+<tr>
+<td>59</td>
+<td>Operation Launch nuke</td>
+<td>Action</td>
+<td><code>LaunchNukesNode</code></td>
+<td>3</td>
+<td>Target Units:bool[U]</td>
+<td>Launch nuke at target</td>
+</tr>
+<tr>
+<td>60</td>
+<td>Operation Is Ready</td>
+<td>Decision</td>
+<td><code>OperationIsReadyNode</code></td>
+<td>5</td>
+<td>Unused:int</td>
+<td>Checks if the associated operation is ready</td>
+</tr>
+<tr>
+<td>61</td>
+<td>Build Military Improvement</td>
+<td>Action</td>
+<td><code>BuildMilitaryImprovementNode</code></td>
+<td>2</td>
+<td>Defensive Improvement:bool[U]; Specific Improvement:string[U]</td>
+<td>Build an improvement outside your own territory (usually in an operation)</td>
+</tr>
+<tr>
+<td>62</td>
+<td>Operation Air Assault</td>
+<td>Action</td>
+<td><code>OperationAirstrikeCityNode</code></td>
+<td>2</td>
+<td>Improvement Priority (1-3):int[U]; Combat District Priority (1-3):int[U]; Passive District Priority (1-3):int[U]; Bomber Unit Type:string[U]; Present Value:int</td>
+<td>Launcher bombers against target city</td>
+</tr>
+<tr>
+<td>63</td>
+<td>Naval Choose Target</td>
+<td>Decorator</td>
+<td><code>NavalChooseTargetDecorator</code></td>
+<td>1</td>
+<td>Target Domain:string[U]; Fail for no target:bool[U]</td>
+<td>Choose a naval superiority target. If none available, don't run child.</td>
+</tr>
+<tr>
+<td>64</td>
+<td>Naval Patrol</td>
+<td>Action</td>
+<td><code>NavalPatrolNode</code></td>
+<td>1</td>
+<td>-</td>
+<td>Choose a naval patrol target and move accordingly.</td>
+</tr>
+<tr>
+<td>65</td>
+<td>Naval Pillage</td>
+<td>Action</td>
+<td><code>NavalPillageNode</code></td>
+<td>1</td>
+<td>Unused:string[U]</td>
+<td>Opportunistically attack districts and land units (naval raiding to come).</td>
+</tr>
+<tr>
+<td>66</td>
+<td>Has Valid Target</td>
+<td>Decision</td>
+<td><code>HasValidTargetNode</code></td>
+<td>1</td>
+<td>-</td>
+<td>Checks that unit assigned target remains valid. Removes units with invalid targets from tree.</td>
+</tr>
+<tr>
+<td>67</td>
+<td>Can Alpha City</td>
+<td>Decision</td>
+<td><code>CanAlphaStrikeCityNode</code></td>
+<td>5</td>
+<td>-</td>
+<td>For shortcutting a city attack. Check if you can do 50%+ garrison damage or defense units are worth ignoring.</td>
+</tr>
+<tr>
+<td>69</td>
+<td>Is Near Fallout</td>
+<td>Decision</td>
+<td><code>IsNearFalloutNode</code></td>
+<td>1</td>
+<td>Range:int[U]</td>
+<td>Returns true if any unit is within range of fallout and puts all such members in the Endangered list (if there is an operation)</td>
+</tr>
+<tr>
+<td>70</td>
+<td>LUA Script Condition</td>
+<td>Decision</td>
+<td><code>LuaScriptNode</code></td>
+<td>1</td>
+<td>Script Function:string[U]</td>
+<td>Run a lua script function that returns a boolean value. Only the player is passed in to the script</td>
+</tr>
+<tr>
+<td>71</td>
+<td>Operation Military Formation</td>
+<td>Action</td>
+<td><code>OperationMakeFormation</code></td>
+<td>0</td>
+<td>Unused:string[U]</td>
+<td>Within an operation, attempt to combine units into corps and armies</td>
+</tr>
+<tr>
+<td>72</td>
+<td>Use Scripted Command</td>
+<td>Action</td>
+<td><code>UseScriptedCommand</code></td>
+<td>2</td>
+<td>Unused:string[U]</td>
+<td>If they have an available scripted command, try to use it</td>
+</tr>
+</tbody>
+</table>
+<h2>Reproducing the test (mod sources)</h2>
+<p>The first test as a plain mod. Add two <code>InGameActions</code> to a <code>.modinfo</code>: <code>UpdateDatabase</code> for the XML and <code>AddGameplayScripts</code> for the Lua. Look for <code>BTTEST:</code> lines in <code>Lua.log</code> and for "BTTest Tree" in <code>AI_Behavior_Trees.csv</code>. It also removes the base game's <code>TRIGGER_TECH_UPGRADE</code> entries (the AIs stop upgrading units on tech while it is enabled), because only one trigger per event is active.</p>
+<p><strong>BTTreeTest.xml</strong></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;GameInfo&gt;
+  &lt;BehaviorTrees&gt;
+    &lt;Row TreeName=&quot;BTTest Tree&quot;/&gt;
+  &lt;/BehaviorTrees&gt;
+  &lt;BehaviorTreeNodes&gt;
+    &lt;Row NodeType=&quot;Sequence&quot; NodeId=&quot;0&quot; TreeName=&quot;BTTest Tree&quot; JumpTo=&quot;2&quot;/&gt;
+    &lt;Row NodeType=&quot;LUA Script Condition&quot; NodeId=&quot;1&quot; TreeName=&quot;BTTest Tree&quot;/&gt;
+  &lt;/BehaviorTreeNodes&gt;
+  &lt;TreeData&gt;
+    &lt;Row DefnId=&quot;0&quot; NodeId=&quot;1&quot; TreeName=&quot;BTTest Tree&quot; DefaultData=&quot;BTTest_Condition&quot;/&gt;
+  &lt;/TreeData&gt;
+  &lt;TriggeredBehaviorTrees&gt;
+    &lt;Row TriggerType=&quot;TRIGGER_BTTEST_TECH&quot; TreeName=&quot;BTTest Tree&quot; AIEvent=&quot;AI_EVENT_GAIN_TECH&quot; Priority=&quot;3&quot;/&gt;
+  &lt;/TriggeredBehaviorTrees&gt;
+  &lt;AiFavoredItems&gt;
+    &lt;!-- one tree per AI event: drop the base trigger for AI_EVENT_GAIN_TECH so ours is the only one (test only) --&gt;
+    &lt;Delete ListType=&quot;DefaultTriggeredTrees&quot; Item=&quot;TRIGGER_TECH_UPGRADE&quot;/&gt;
+    &lt;Delete ListType=&quot;MinorCivTriggeredTrees&quot; Item=&quot;TRIGGER_TECH_UPGRADE&quot;/&gt;
+    &lt;Row ListType=&quot;DefaultTriggeredTrees&quot; Item=&quot;TRIGGER_BTTEST_TECH&quot;/&gt;
+    &lt;Row ListType=&quot;MinorCivTriggeredTrees&quot; Item=&quot;TRIGGER_BTTEST_TECH&quot;/&gt;
+  &lt;/AiFavoredItems&gt;
+&lt;/GameInfo&gt;
+</code></pre>
+<p><strong>Scripts/BTTreeTest.lua</strong></p>
+<pre><code class="language-lua">-- BT Tree Test: proves a mod-added behavior tree runs and its LUA Script Condition node calls GameEvents.BTTest_Condition
+print(&quot;BTTEST: script loaded&quot;);
+local callCount = 0;
+
+function BTTest_Condition(targetInfo)
+    callCount = callCount + 1;
+    local keys = {};
+    if type(targetInfo) == &quot;table&quot; then
+        for k, v in pairs(targetInfo) do table.insert(keys, tostring(k) .. &quot;=&quot; .. tostring(v)); end
+    end
+    print(&quot;BTTEST: condition called #&quot; .. callCount .. &quot; arg type=&quot; .. type(targetInfo) .. &quot; fields={&quot; .. table.concat(keys, &quot;,&quot;) .. &quot;} turn=&quot; .. tostring(Game.GetCurrentGameTurn()));
+    if type(targetInfo) == &quot;table&quot; then targetInfo.Extra = 1; end
+    return true;
+end
+
+GameEvents.BTTest_Condition.Add(BTTest_Condition);
+print(&quot;BTTEST: handler registered&quot;);
+</code></pre></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>

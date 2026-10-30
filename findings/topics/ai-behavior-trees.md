@@ -1,0 +1,38 @@
+# AI behavior trees: data-driven node graph and the two Lua nodes
+
+Gap addressed: "AI behavior tree nodes" in the reference TODO (87 `GameCore::AI::BehaviorTree::*` classes, node semantics unknown, unclear whether trees are authorable from data).
+
+## Verified (read from files and static code; nothing run in game)
+* The trees are game data. `Base/Assets/Gameplay/Data/BehaviorTrees.xml` (194 KB) has seven sections: `ShapeDefinitions` (5), `NodeDefinitions` (72), `NodeDataDefinitions`, `DataTypes` (12), `BehaviorTrees` (29 trees), `BehaviorTreeNodes` (583 rows: tree, node id, `NodeType`, `JumpTo`), `TreeData` (per-node parameter values: `DefnId`, `Tag`, `DefaultData`).
+  Schema tables: `BehaviorTrees`, `BehaviorTreeNodes`, `Beliefs`, `TriggeredBehaviorTrees(TriggerType, TreeName, OperationName, AIEvent, Priority)`.
+* Engine side (Linux DWARF names): `Factory::RegisterComponent(id, CreateFunc)`, `Factory::CreateBehaviorTree`, `Factory::FactoryNodeDefinition(IDatabaseQuery1*)`, `Factory::InitializeData`, `Factory::CopyBehaviorTree`. The Factory is a game component (vtable slots Initialize/Uninitialize/Reset + component interface).
+* Node classes have no vtables. Each node is a static function set (`Update`, sometimes `Execute`/`Initialize`) registered by name; 75 classes have an `Update`. Only helper classes have vtables: `Factory`, `NearestCityJob`, `BarbarianRecruiter` and the `*Evaluator` family (`FindUnits`, `OpRecruit`, `NavalEscort`, `SpyAtCity`), which are in `vtable_slots.tsv`.
+* `NODE_SHAPE`: parent (3 types: Concurrent, Priority, Sequence), leaf/action (38), decision (23, never return running, may output data), decorator (7, exactly one child), subtree (1, "Run Behavior Tree"). The `NODE_TYPE` enum in DWARF is only Aspyr dummy values with no names; the names come from the XML.
+* `LuaScriptNode::Update` returns the numeric state 1 when the Lua call produced a positive number or true, 3 otherwise, and 4 when its node data is missing (names of the `ACTION_STATE` values not checked; 1 = success, 3 = failure is a guess).
+* Table `findings/tables/behavior_tree_nodes.tsv` (built by `tools/bt_nodes.py`): per node id, type, shape, class, Linux `Update` address, use count, trees using it, parameters (`name:type[flags]`; R required, G required-group, U user data, O output) and the XML description.
+
+## The two Lua nodes
+* **LUA Script Condition** (node 70, decision, one parameter "Script Function": string). `LuaScriptNode::Update` (old RVA 0x554dd0) calls `Lua::Utility::CallProcessor(scriptSystem, name, args, resultMap)`. That is the `GameEvents.<name>` processor mechanism (see lua-event-dispatch.md), so the "function name" is a GameEvents event and the handler is registered with `GameEvents.<name>.Add(fn)`. The handler gets a table (`targetInfo`) and writes the result into it: the node reads the field `Extra` (hash 0x7301dd9e = ~crc32("Extra"), verified), and a number/boolean greater than 0 gives success; call failed, field missing, 0 or wrong type gives failure. The Civ Royale DLC does exactly this: `CivRoyale_SmallSafeZone(targetInfo)` sets `targetInfo.Extra = 1/0` (DLC/CivRoyaleScenario/Scripts/CivRoyaleScenario_StartScript.lua:781, registered at :1608). Only the Civ Royale tree uses the node (`CivRoyale_SmallSafeZone`).
+* **Use Scripted Command** (node 72, action). `UseScriptedCommand::Execute` (old RVA 0x577990) loops over a per-player list of script command names (player +0x670 -> +0x4a0, 16-byte entries). For each of the AI control's own units it builds a `Unit::Commands::ExecuteScript` request with that name, asks the command manager whether it can start (vtable +0x48), and starts it (vtable +0x58). So the AI can run `UnitCommandTypes.EXECUTE_SCRIPT` commands on its units.
+* Related Lua API (lua_api.txt): `AiMilitary:StartScriptedOperation`, `AddUnitToScriptedOperation`, `SetScriptedOperationReady`, `SetScriptedTargetAndRally`.
+
+## Inferred (not tested)
+* Node name -> class mapping is by name (some by hand: e.g. "Build Unit" -> `BuildFromCityNode`, "Find Unit Targets" -> `FindTargetsNode`, "Operation Air Assault" -> `OperationAirstrikeCityNode`). Five classes have no XML node (`GatherBuildingsNode` and the four evaluators); the evaluators are probably helpers chosen by other nodes, `GatherBuildingsNode` unknown.
+* Where the player's script command list is filled is not traced yet.
+
+## For modders
+* Edit or add rows in `BehaviorTrees`, `BehaviorTreeNodes`, `TreeData` (via the XML/SQL tables) to change what the AI does; the node vocabulary is fixed (72 types), only their combination and parameters are data.
+* A new tree reaches the AI through `TriggeredBehaviorTrees` (AI event -> tree) plus an `AiFavoredItems` entry in `DefaultTriggeredTrees` (and `MinorCivTriggeredTrees`) that arms it, or through operations (`AiOperationDefs.BehaviorTree`) that reference tree names. Only one trigger is active per AI event, so to take over an event, delete the base entry from the list (verified for `AI_EVENT_GAIN_TECH`).
+* `LUA Script Condition` is the hook for custom logic: register `GameEvents.<Name>.Add(fn)`, put `<Name>` in the node's "Script Function" TreeData, and have `fn(targetInfo)` set `targetInfo.Extra = 1` for success (0 for failure).
+
+## First in-game test (2026-10-30, mod BTTreeTest, run 1)
+* Verified in game: a mod's `BehaviorTrees`/`BehaviorTreeNodes`/`TreeData`/`TriggeredBehaviorTrees` rows reach the live gameplay DB (checked in Cache/DebugGameplay.sqlite), the mod's Lua script loaded and registered its `GameEvents` handler.
+* Verified in game: a `TriggeredBehaviorTrees` row alone does NOT arm a trigger. With `AI_EVENT_GAIN_TECH` firing for 3 AIs, only the base `Upgrade Units` tree ran; the mod's tree never did (0 rows in `Logs/AI_Behavior_Trees.csv`, no handler call). The base game arms triggers through the AI lists: `AiFavoredItems(ListType="DefaultTriggeredTrees" / "MinorCivTriggeredTrees", Item="<TriggerType>")`. Engine side: `Lists::Handler<TriggeredTreeInfo>::ExecuteLeaderQuery/ExecuteAgendaQuery`, `Manager::OnAiEvent`.
+* Run 2 (list entry added, new game): still no run. `Manager::OnAiEvent` (old RVA 0x563110) indexes a per-player array (this+0x338, 0x18-byte entries: tree name, operation name, priority) by AI event index, so there is ONE trigger slot per event. A second trigger on `AI_EVENT_GAIN_TECH` loses to the base `Upgrade Units` (which of the two wins, first row or priority, is not determined). If the entry has no operation name it copies the tree (`Factory::CopyBehaviorTree`) and adds it to the AI control; with an operation name it starts that military operation instead.
+* Run 3 (base `TRIGGER_TECH_UPGRADE` removed from both lists, so the mod's trigger is the only one for the event): **works**. On turn 10, players 6, 8 and 11 ran "BTTest Tree" (`AI_Behavior_Trees.csv`: Sequence SUCCESS, LUA Script Condition SUCCESS) and `GameEvents.BTTest_Condition` was called 3 times (`Lua.log`). The handler's argument was an empty table (`fields={}`), and setting `targetInfo.Extra = 1` made the node return SUCCESS. So a mod-added tree, its trigger, and a Lua condition node all work end to end; the node's "Script Function" is a `GameEvents` name.
+* Still open: which trigger wins when two share an event (first row or priority), and whether a failing handler (Extra = 0) shows FAILURE in the log.
+* `Logs/AI_Behavior_Trees.csv` (columns: Game Turn, Player, System, Tree, Node, Result, Data) logs every node of every tree run; it is the main observation tool for tree tests.
+
+## Open
+* Per-node semantics beyond the XML description (what each reads from the blackboard).
+* The 17 AI control contract/operation classes are separate and not covered here.

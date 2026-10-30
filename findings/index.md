@@ -8,6 +8,8 @@ One file per analyzed function in `functions/`; longer explanations in `topics/`
 - [Linux debug info: struct layout cross-check](topics/linux-debug-symbols.md)
 - [Event ids, hash constants, config keys, typed globals](topics/events-hashes-and-data-symbols.md)
 - [Operations and commands: hash -> handler map](topics/operations-and-handlers.md)
+- [AI behavior trees: data-driven node graph, Lua nodes](topics/ai-behavior-trees.md) (static plus in-game tests; table: tables/behavior_tree_nodes.tsv)
+- [AI control contracts and operations: classes, tables, script-supplied targets](topics/ai-contracts-and-operations.md) (static plus in-game tests)
 - [Lua API coverage vs community reference](topics/lua-api-coverage.md)
 - [Comparison with the Community Extension wiki](topics/ce-wiki-comparison.md)
 - [Build differences: what changed in the current build](topics/build-differences.md)
