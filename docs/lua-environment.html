@@ -1,0 +1,63 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>The Lua environment after the 2026-11-06 patch (io, os, loadstring)</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="exe/dx12.html">DX12 exe</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › The Lua environment after the 2026-11-06 patch (io, os, loadstring)</p>
+<h1>The Lua environment after the 2026-11-06 patch (<code>io</code>, <code>os</code>, <code>loadstring</code>)</h1>
+<p><strong>Availability: Steam build 26407122 and newer. Status: <em>inferred</em> from a static comparison of the old and new binaries; the individual behaviours below were not each tested in the game (the game and Dev CE do start and run normally on the new build).</strong></p>
+<p>Steam build 26407122 (2026-11-06) is a "targeted update to improve security protections". Gameplay data, saves and the GameCore code are unchanged (the GameCore DLL differs from the old one only in its PE timestamp and embedded build-path strings). The security changes are in the Lua virtual machine and in the engine code that sets it up. Gameplay and UI scripts of normal mods are not affected; a mod that depended on Lua file access, process access or precompiled Lua is.</p>
+<h2>What the game's Lua no longer has</h2>
+<table>
+<thead>
+<tr>
+<th>script-visible item</th>
+<th>before</th>
+<th>after</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>io</code> library (<code>io.open</code>, <code>io.lines</code>, <code>io.popen</code>, <code>io.tmpfile</code>, <code>io.read</code>, <code>io.write</code>, <code>io.stdout</code> ...)</td>
+<td>present in the VM but not opened by the game; a native mod could open it by calling the VM's <code>luaopen_io</code> (Dev CE's <code>GetIO()</code> did that)</td>
+<td>the library's code is removed from the VM: <code>luaopen_io</code> still exists but builds an empty table, so <code>io.open</code> is <code>nil</code>; the exe also sets the <code>io</code> global to <code>nil</code></td>
+</tr>
+<tr>
+<td><code>os.execute</code>, <code>os.getenv</code>, <code>os.remove</code>, <code>os.rename</code>, <code>os.setlocale</code>, <code>os.sleep</code>, <code>os.exit</code></td>
+<td><code>os.execute</code>, <code>os.getenv</code> etc. existed in the VM's <code>os</code> table</td>
+<td>removed from the VM's <code>os</code> table; the exe also sets each to <code>nil</code> at start</td>
+</tr>
+<tr>
+<td><code>os.clock</code>, <code>os.date</code>, <code>os.time</code>, <code>os.difftime</code>, <code>os.rawclock</code>, <code>os.clockpersecond</code>, <code>os.tmpname</code></td>
+<td>present</td>
+<td>unchanged</td>
+</tr>
+<tr>
+<td><code>loadstring</code></td>
+<td>compiles text or precompiled bytecode</td>
+<td>replaced by a native function (<code>lSafeLoadString</code>) that <strong>rejects precompiled bytecode</strong> (a chunk whose first byte is <code>0x1B</code>) and returns <code>nil, "invalid"</code>; ordinary source text loads as before</td>
+</tr>
+<tr>
+<td>the other libraries (<code>base</code>, <code>string</code>, <code>table</code>, <code>math</code>, <code>coroutine</code>, <code>debug</code>, <code>package</code>)</td>
+<td></td>
+<td>unchanged: no other removed registration, no added string or export was found in the VM</td>
+</tr>
+</tbody>
+</table>
+<h2>Why it matters for modders</h2>
+<ul>
+<li>A mod cannot read or write files from Lua any more (it could not before either, because the game never opened <code>io</code>; only native GameCore mods such as Dev CE could add it). A native mod can still do its own file access in C++, but that works around a protection the publisher added on purpose, so Dev CE does not ship it (the code is kept, switched off, in the source).</li>
+<li>Mods that ship precompiled Lua (<code>luac</code> output) and load it through <code>loadstring</code> stop working. Text Lua is unaffected.</li>
+<li>Code that tests for these functions (<code>if io then ...</code>, <code>os.getenv</code>) sees <code>nil</code> where it saw a table or function.</li>
+</ul>
+<h2>Where this was found</h2>
+<ul>
+<li>VM: <code>HavokScript_FinalRelease.dll</code> shrank by about 15 KB (1,892 to 1,843 functions): 50 functions are gone (the <code>io</code> library and the removed <code>os</code> functions), two are rewritten (<code>luaopen_io</code> and the <code>os</code> table builder), about 1,700 are byte-identical and about 70 differ only in displacement bytes. Exports are unchanged (728).</li>
+<li>Engine: the exe functions that build the script environment were split into seven; the new ones set <code>io</code>, <code>loadstring</code>, <code>os.exit</code>, <code>os.execute</code>, <code>os.getenv</code>, <code>os.remove</code>, <code>os.rename</code>, <code>os.setlocale</code> and <code>os.sleep</code> to <code>nil</code> and register the safe <code>loadstring</code>.</li>
+<li>Everything else in the two exes is the same code, relocated: function addresses moved individually, so exe addresses of the older builds do not apply.</li>
+</ul></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>
