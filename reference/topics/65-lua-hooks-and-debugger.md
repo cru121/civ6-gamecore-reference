@@ -4,7 +4,7 @@ order: 65
 ---
 # Lua hooks and a Lua debugger (Dev CE)
 
-**Availability: experimental, needs the Dev CE GameCore mod (0.3.0 or newer), Steam builds 15038592 and 15296837.** The retail game ships no usable Lua debugger: the Havok network debugger is compiled out of
+**Availability: experimental, needs the Dev CE GameCore mod (0.3.0 or newer), Steam builds 15038592 and 15296837 (and 26407122 from Dev CE 0.8.1; 0.8.0 and older refuse that build). The Lua VM was changed in 26407122 (see [the Lua environment page](lua-environment.md)); the debugger hooks themselves were not re-tested there.** The retail game ships no usable Lua debugger: the Havok network debugger is compiled out of
 `HavokScript_FinalRelease.dll`, `debug.sethook` / `debug.gethook` are missing from mod states, and the VM would ignore the hook even if `lua_sethook` stored one. Dev CE adds working hooks and, on top of them, a debugger
 that speaks a small JSON protocol over a loopback socket plus an adapter for the Debug Adapter Protocol. This page is the user view and the facts behind it (everything below is **verified** in the game unless marked).
 
