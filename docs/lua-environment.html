@@ -45,10 +45,39 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 <tr>
 <td>the other libraries (<code>base</code>, <code>string</code>, <code>table</code>, <code>math</code>, <code>coroutine</code>, <code>debug</code>, <code>package</code>)</td>
 <td></td>
-<td>unchanged: no other removed registration, no added string or export was found in the VM</td>
+<td>unchanged in build 26407122: no other removed registration, no added string or export was found in the VM (<code>package</code> and bytecode loading were changed later, in build 26595377, see below)</td>
 </tr>
 </tbody>
 </table>
+<h2>Build 26595377 (2026-11-19): <code>package.loadlib</code> and bytecode loading removed from the VM</h2>
+<p>The next update hardened the Lua VM further. Status: <em>verified</em> by a static comparison of <code>HavokScript_FinalRelease.dll</code> with the 15296837 copy (no 26407122 copy was kept to compare against, so that this is new in 26595377 and not in 26407122 is inferred from the earlier comparison); the behaviour in a running game was not tested beyond the game starting normally. The modder WildW reported the <code>package.loadlib</code> part independently.</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>Build 26595377</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>package.loadlib</code></td>
+<td>loads a DLL and returns a function from it</td>
+<td>gone: the VM no longer contains <code>loadlib</code>, <code>LoadLibraryA</code> or <code>GetProcAddress</code></td>
+</tr>
+<tr>
+<td>C-module searchers of <code>require</code> (<code>package.cpath</code>)</td>
+<td><code>require</code> could load a native module</td>
+<td>gone; <code>package.path</code>, <code>package.preload</code>, <code>package.loaded</code> and <code>require</code> of Lua files remain</td>
+</tr>
+<tr>
+<td>loading precompiled bytecode</td>
+<td>the exe-side <code>loadstring</code> rejected it, the VM could still load it</td>
+<td>the VM's bytecode loader is removed and replaced by a stub that says "Attempting to load bytecode is not supported."; text chunks still load</td>
+</tr>
+</tbody>
+</table>
+<p>For modders: a Lua mod that loaded a DLL through <code>package.loadlib</code> (or <code>require</code> of a native module) no longer works on this build, and precompiled Lua is refused by the VM itself. A native GameCore replacement DLL (the Community Extension, Dev CE) does not go through the Lua VM to load, so it is not affected.</p>
 <h2>Why it matters for modders</h2>
 <ul>
 <li>A mod cannot read or write files from Lua any more (it could not before either, because the game never opened <code>io</code>; only native GameCore mods such as Dev CE could add it). A native mod can still do its own file access in C++, but that works around a protection the publisher added on purpose, so Dev CE does not ship it (the code is kept, switched off, in the source).</li>
