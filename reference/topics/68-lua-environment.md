@@ -15,7 +15,19 @@ Steam build 26407122 (2026-11-06) is a "targeted update to improve security prot
 | `os.execute`, `os.getenv`, `os.remove`, `os.rename`, `os.setlocale`, `os.sleep`, `os.exit` | `os.execute`, `os.getenv` etc. existed in the VM's `os` table | removed from the VM's `os` table; the exe also sets each to `nil` at start |
 | `os.clock`, `os.date`, `os.time`, `os.difftime`, `os.rawclock`, `os.clockpersecond`, `os.tmpname` | present | unchanged |
 | `loadstring` | compiles text or precompiled bytecode | replaced by a native function (`lSafeLoadString`) that **rejects precompiled bytecode** (a chunk whose first byte is `0x1B`) and returns `nil, "invalid"`; ordinary source text loads as before |
-| the other libraries (`base`, `string`, `table`, `math`, `coroutine`, `debug`, `package`) | | unchanged: no other removed registration, no added string or export was found in the VM |
+| the other libraries (`base`, `string`, `table`, `math`, `coroutine`, `debug`, `package`) | | unchanged in build 26407122: no other removed registration, no added string or export was found in the VM (`package` and bytecode loading were changed later, in build 26595377, see below) |
+
+## Build 26595377 (2026-11-19): `package.loadlib` and bytecode loading removed from the VM
+
+The next update hardened the Lua VM further. Status: *verified* by a static comparison of `HavokScript_FinalRelease.dll` with the 15296837 copy (no 26407122 copy was kept to compare against, so that this is new in 26595377 and not in 26407122 is inferred from the earlier comparison); the behaviour in a running game was not tested beyond the game starting normally. The modder WildW reported the `package.loadlib` part independently.
+
+| What | Before | Build 26595377 |
+|---|---|---|
+| `package.loadlib` | loads a DLL and returns a function from it | gone: the VM no longer contains `loadlib`, `LoadLibraryA` or `GetProcAddress` |
+| C-module searchers of `require` (`package.cpath`) | `require` could load a native module | gone; `package.path`, `package.preload`, `package.loaded` and `require` of Lua files remain |
+| loading precompiled bytecode | the exe-side `loadstring` rejected it, the VM could still load it | the VM's bytecode loader is removed and replaced by a stub that says "Attempting to load bytecode is not supported."; text chunks still load |
+
+For modders: a Lua mod that loaded a DLL through `package.loadlib` (or `require` of a native module) no longer works on this build, and precompiled Lua is refused by the VM itself. A native GameCore replacement DLL (the Community Extension, Dev CE) does not go through the Lua VM to load, so it is not affected.
 
 ## Why it matters for modders
 - A mod cannot read or write files from Lua any more (it could not before either, because the game never opened `io`; only native GameCore mods such as Dev CE could add it). A native mod can still do its own file access in C++, but that works around a protection the publisher added on purpose, so Dev CE does not ship it (the code is kept, switched off, in the source).
