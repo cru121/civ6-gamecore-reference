@@ -20,6 +20,7 @@ One file per analyzed function in `functions/`; longer explanations in `topics/`
 - [How great works are traded (deal items, validation, enact)](topics/great-work-trading.md) (from the code)
 - [Reading great work records from UI Lua: what is safe](topics/ui-great-work-records.md) (crash observed)
 - [Leads not yet analyzed](leads.md)
+- [Patch 2026-11-19 (build 26595377)](topics/patch_26595377_relink.md) - same GameCore code, relocated: old->new address maps are in ../data/ (`*_26595377.tsv`); Lua VM lost `package.loadlib` and bytecode loading
 
 ## Functions
 
