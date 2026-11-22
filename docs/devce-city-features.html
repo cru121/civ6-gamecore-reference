@@ -1,0 +1,135 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>City features - workable radius, city-centre specialists, district citizens, food to production (Dev CE)</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="exe/dx12.html">DX12 exe</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › City features - workable radius, city-centre specialists, district citizens, food to production (Dev CE)</p>
+<h1>City features in Dev CE: workable radius, city-centre specialists, district citizens, food to production</h1>
+<p><strong>Availability.</strong> These four features need the <strong>Dev CE GameCore mod 0.9.0-experimental or newer</strong> (Steam build 26595377, single player). They were written by <strong>slothoth</strong> in his branches and merged and ported to Dev CE by <strong>cru121</strong>. Loading Dev CE alone changes nothing: each feature is inert until a mod switches it on.</p>
+<ul>
+<li>City radius, district citizens and food to production need a <strong>game capability</strong> in the database when the game starts (<code>CAPABILITY_DEVCE_CITY_RADIUS</code>, <code>CAPABILITY_DEVCE_DISTRICT_CITIZENS</code>, <code>CAPABILITY_DEVCE_FOOD_PRODUCTION</code>) and then a <strong>property</strong> to do anything per city or district.</li>
+<li>City-centre specialists need no capability: the switch is the GlobalParameter <code>DEVCE_CITY_CENTER_SPECIALISTS</code> = 1 plus rows in the <code>DevCE_Specialists</code> tables.</li>
+<li>A capability is a <code>Types</code> row of <code>KIND_CAPABILITY</code> plus a <code>GameCapabilities</code> row. Use <code>INSERT OR IGNORE</code> so several mods can add it. The answer is read once per game and kept, so a game started without the capability never gets the feature (the save keeps its mods).</li>
+<li>All four set properties with the game's own <code>EFFECT_ADJUST_CITY_PROPERTY</code> / <code>EFFECT_ADJUST_DISTRICT_PROPERTY</code> (arguments <code>Key</code>, <code>Amount</code>). The game has no modifier type for them, so the mod adds a <code>DynamicModifiers</code> row (as in the examples).</li>
+</ul>
+<h2>1. City workable radius (extra rings)</h2>
+<p><strong>What it does.</strong> A city normally works, buys and swaps tiles within 3 of the centre (37 plots). With the capability, a city with the property <code>DEVCE_CITY_EXTRA_RINGS</code> uses radius 3 + that value, <strong>capped at 5</strong> (negative values count as 0). Properties add up, so a civ trait with +1 and a wonder with +1 give radius 5, while other cities building the wonder get 4. Culture border growth prefers tiles inside the radius.</p>
+<p><strong>Switch on.</strong> Capability <code>CAPABILITY_DEVCE_CITY_RADIUS</code>, then raise the property with <code>EFFECT_ADJUST_CITY_PROPERTY</code> (from DevCE_CityRadiusTest):</p>
+<pre><code class="language-sql">INSERT OR IGNORE INTO Types (Type, Kind) VALUES ('CAPABILITY_DEVCE_CITY_RADIUS', 'KIND_CAPABILITY');
+INSERT OR IGNORE INTO GameCapabilities (GameCapability) VALUES ('CAPABILITY_DEVCE_CITY_RADIUS');
+INSERT INTO DynamicModifiers (ModifierType, CollectionType, EffectType) VALUES
+  ('MODIFIER_DEVCE_RADIUS_TEST_PLAYER_CITIES_ADJUST_PROPERTY', 'COLLECTION_PLAYER_CITIES', 'EFFECT_ADJUST_CITY_PROPERTY');
+-- Modifier arguments: Key = DEVCE_CITY_EXTRA_RINGS, Amount = 1
+INSERT INTO TraitModifiers (TraitType, ModifierId) VALUES ('TRAIT_LEADER_MAJOR_CIV', 'DEVCE_TEST_RADIUS_TRAIT');
+INSERT INTO BuildingModifiers (BuildingType, ModifierId) VALUES ('BUILDING_PYRAMIDS', 'DEVCE_TEST_RADIUS_WONDER');
+</code></pre>
+<p><strong>Engine facts the code relies on.</strong>
+* Every city's per-tile arrays (citizens, AI plot data) are sized from the plot count when the city is founded. With the capability the count is 91 (radius 5) for <strong>every</strong> city of the game, which is why it is a capability and not a per-city switch.
+* <code>CityHexspace::ComputePlotsFromRadius(2)</code> (always called as R(2) + 18 by every "plots in radius 3" loop) returns 73, so 91 plots.
+* <code>CityHexspace::Get/EditPlotFromCityIndex</code> return null beyond the city's radius; ring 5 (indices 61..90) is computed by Dev CE, because the game's tables stop at ring 4 (61 entries). The ring order is the game's; Dev CE rebuilds it and compares it with the game's tables at start-up (a mismatch switches the feature off).
+* <code>CityHexspace::GetCityIndexFromPlot</code>: ring 5 added to the core function; the per-city overloads give -1 beyond the city's radius.
+* <code>City::Citizens::RemoveAllCitizenWorkers</code>: before it runs, locked workers beyond the radius are let go (the game reallocates every turn, so a smaller radius takes effect at the next turn). This hook is shared with city-centre specialists (<code>CitizenWorkersHook.cpp</code>; MinHook allows one hook per function).
+* Three jumps are redirected to small stubs: <code>City::Gold::GetPlotPurchaseCost</code> (the "distance &gt; CITY_MAX_BUY_PLOT_RANGE" test), <code>City::Culture::CanSwapPlotFromCity</code> ("distance &gt; 3"), <code>City::Culture::GetBuyablePlotList</code> ("distance &lt;= 3"). Each now allows distances up to the city's radius.
+* City properties are read from the city's <code>VariantMap</code> at offset 0x1a0 (vtable +0x60 = get by key hash); only number values count.
+* The code checks the bytes of every function and patch site first; any mismatch logs "city radius not available" and nothing is installed.</p>
+<p><strong>Limits and pitfalls (from the code).</strong> District and wonder placement stay at radius 3 (<code>CanHaveDistrict</code> / <code>CanHaveWonder</code> have their own distance check). The cap is 5. Without the capability at game start the radius stays 3 even if the property is set.</p>
+<h2>2. Specialists worked in the city centre</h2>
+<p><strong>What it does.</strong> An alternate citizen mode. Each city has slots per specialist type, and a citizen in a slot gives that type's yields. The game's own auto-assign fills the slots together with tiles (growth, city focus, governors, AI). Mode 0 (default) leaves the game's normal specialists untouched; every hook does nothing in mode 0.</p>
+<p><strong>Switch on.</strong> <code>UPDATE GlobalParameters SET Value = 1 WHERE Name = 'DEVCE_CITY_CENTER_SPECIALISTS'</code> (the row is added with value 0 by DevCE_CitySpecialists). It is read when the database loads (hook on <code>GlobalParameters::Initialize</code>), so change it only between games. Tables, created by the DevCE_CitySpecialists mod (needs the mod's SQL for the tables to exist):</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DevCE_Specialists</code></td>
+<td><code>SpecialistType</code> (key), <code>Name</code> (LOC key, UI), <code>Icon</code> (UI), <code>Color</code> (UI: a colour name or "R,G,B"), <code>SortIndex</code></td>
+</tr>
+<tr>
+<td><code>DevCE_Specialist_Yields</code></td>
+<td><code>SpecialistType</code>, <code>YieldType</code>, <code>YieldChange</code></td>
+</tr>
+<tr>
+<td><code>DevCE_Specialist_GreatPersonPoints</code></td>
+<td><code>SpecialistType</code>, <code>GreatPersonClassType</code>, <code>PointsPerTurn</code></td>
+</tr>
+</tbody>
+</table>
+<p>Types are read ordered by <code>SortIndex, rowid</code>. City properties (<code>&lt;Type&gt;</code> = the <code>SpecialistType</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DEVCE_SPECIALIST_SLOTS_&lt;Type&gt;</code></td>
+<td>slots; set by modifiers, read only by Dev CE</td>
+</tr>
+<tr>
+<td><code>DEVCE_SPECIALISTS_&lt;Type&gt;</code></td>
+<td>working specialists (locked and auto); written by Dev CE in a reallocation, read only for mods</td>
+</tr>
+<tr>
+<td><code>DEVCE_SPECIALISTS_LOCKED_&lt;Type&gt;</code></td>
+<td>the player's lock request, applied at the next reallocation (a raw write alone changes nothing)</td>
+</tr>
+<tr>
+<td><code>DEVCE_SPECIALIST_YIELD_&lt;Type&gt;_&lt;YieldType&gt;</code></td>
+<td>extra yield per specialist of that type, on top of the table; base yields only</td>
+</tr>
+</tbody>
+</table>
+<p>Example (DevCE_CitySpecialistsTest): five types (Scientist, Engineer, Merchant, Artist, Priest), 2 Scientist and 2 Engineer slots and 1 of each other type per city of every major civ (a <code>TraitModifiers</code> row on <code>TRAIT_LEADER_MAJOR_CIV</code> per slot modifier), yields such as <code>('SPECIALIST_SCIENTIST', 'YIELD_SCIENCE', 2)</code>, and great person points per specialist.</p>
+<p><strong>Gameplay Lua.</strong> <code>CitySpecialists.SetLocked(playerId, cityId, specialistType, count)</code> sets the lock request and reallocates the city at once; it returns the working count, or -1 (mode off, unknown type or city). <code>CitySpecialists.IsEnabled()</code> returns a boolean. UI scripts read the city properties and send <code>UI.RequestPlayerOperation(player, PlayerOperations.EXECUTE_SCRIPT, { OnStart = "DevCE_SetSpecialistLock", CityID, SpecialistType, Count })</code> to a gameplay script that calls <code>SetLocked</code>; DevCE_CitySpecialists ships that script and a UI panel.</p>
+<p><strong>Engine facts the code relies on.</strong>
+* <code>RemoveAllCitizenWorkers</code>: before it, room is computed from locked tiles; after it, the working count restarts from the locked request (trimmed to slots and to population minus locked tiles), taken from the free citizens.
+* <code>TryAssignAllWorkers</code>: a jump at 0x110f9a replaces the call to the knapsack (<code>bounded_knapsack&lt;SimpleScoring&gt;</code>) with Dev CE code that adds one candidate per open slot and applies the chosen specialists. Before it, free citizens are capped (growth skips <code>RemoveAll</code>); after it, open slots are filled when the game had no tile candidates.
+* <code>City::GetYieldFromTiles</code>: after it, adds specialists times their yields.
+* <code>AdjustCityProperty::Apply/Remove</code>: when a slot key falls below the working count, the city is reallocated at once; slots gained are filled at the next reallocation.
+* <code>GreatPeoplePoints::CalculatePointsPerTurn</code> (patched at 0x2e23f1, resuming at 0x2e23f8: these are the constants the code installs the patch with; a comment in the header still says 0x2e2a81, which the code does not use): adds the city's specialist points before the city's percent modifier, like <code>District_CitizenGreatPersonPoints</code>. The class index is the row position in <code>GreatPersonClasses</code> by rowid.
+* After a citizen change Dev CE sends the same report event the game's <code>ManageCitizen</code> sends, so the UI redraws.</p>
+<p><strong>Limits (from the code).</strong> At most 32 specialist types, 8 yield rows and 16 great person point rows per type, 6 base yields (<code>YIELD_FOOD</code> to <code>YIELD_FAITH</code>); names must fit the internal buffer. If <code>DevCE_Specialists</code> is missing or empty the mode stays off (logged in <code>DevBridge.log</code>).</p>
+<h2>3. District citizen slots and yields</h2>
+<p><strong>What it does.</strong> Two reserved <strong>district</strong> properties change how many citizens a district tile takes and what each gives:
+* <code>DEVCE_CITIZEN_SLOTS</code>: the district tile takes that many more citizens (total never below 0).
+* <code>DEVCE_CITIZEN_&lt;YieldType&gt;</code>, for example <code>DEVCE_CITIZEN_YIELD_SCIENCE</code>: each citizen working the district gives that much more of the yield. The six base yields are covered (<code>YIELD_FOOD</code>, <code>PRODUCTION</code>, <code>GOLD</code>, <code>SCIENCE</code>, <code>CULTURE</code>, <code>FAITH</code>).</p>
+<p><strong>Switch on.</strong> Capability <code>CAPABILITY_DEVCE_DISTRICT_CITIZENS</code>, then set the properties with <code>EFFECT_ADJUST_DISTRICT_PROPERTY</code> (from DevCE_DistrictCitizensTest, which makes a Campus take 1 more citizen, +1 Science and +1 Gold each, via policy <code>POLICY_GOD_KING</code> and, for testing, <code>TRAIT_LEADER_MAJOR_CIV</code>):</p>
+<pre><code class="language-sql">INSERT INTO DynamicModifiers(ModifierType, CollectionType, EffectType) VALUES
+  ('MODIFIER_DEVCE_TEST_PLAYER_DISTRICTS_ADJUST_PROPERTY', 'COLLECTION_PLAYER_DISTRICTS', 'EFFECT_ADJUST_DISTRICT_PROPERTY');
+-- Modifier arguments: Key = DEVCE_CITIZEN_SLOTS, Amount = 1; Key = DEVCE_CITIZEN_YIELD_SCIENCE, Amount = 1
+</code></pre>
+<p><strong>Engine facts the code relies on.</strong>
+* <code>Rules::Yields::GetYield</code>, district branch: the value is <code>District_CitizenYieldChanges</code> + the property (then <code>Building_CitizenYieldChanges</code>). One jump at 0x37e6c4, after the <code>District_CitizenYieldChanges</code> loop.
+* <code>City::Citizens::GetPlotWorkerCapacity</code>: <code>Districts.CitizenSlots</code> + the property (then the buildings' <code>CitizenSlots</code>). One jump at 0x110238.
+* District properties live at district offset 0x378 (<code>m_kProperties</code>), read by the same number test as city properties; the properties are saved with the district.
+* Yield indices are not fixed: they are filled when the database loads, so the index to key table is built on first use, once the six names give six different indices.
+* Both readers are bytes-checked first; a mismatch switches both off.</p>
+<p><strong>Pitfalls.</strong> In the test mod's own comment, a Campus has no <code>CitizenSlots</code> of its own, so before a Library it normally takes no citizens; the slot property is what lets it take one. <code>GetYield</code> is a hot path, so the capability test comes first.</p>
+<h2>4. Food to production</h2>
+<p><strong>What it does.</strong> While a city whose property <code>DEVCE_FOOD_TO_PRODUCTION</code> is &gt;= 1 produces a <strong>unit</strong>, its excess food (food yield minus what the citizens eat) is added to production instead of growth:
+* production gets the excess food, added to the base before the modifiers, so city percent and percent-toward-units bonuses apply;
+* food is lowered to exactly what the citizens eat (no growth, no starvation).</p>
+<p>Both show as their own tooltip lines, <code>LOC_DEVCE_PRODUCTION_FROM_FOOD</code> and <code>LOC_DEVCE_FOOD_TO_PRODUCTION</code>; the mod must supply the text (the test mod's <code>Text.sql</code> has English strings). Buildings and districts are not affected.</p>
+<p><strong>Switch on.</strong> Capability <code>CAPABILITY_DEVCE_FOOD_PRODUCTION</code>, then <code>EFFECT_ADJUST_CITY_PROPERTY</code> with <code>Key</code> = <code>DEVCE_FOOD_TO_PRODUCTION</code>, <code>Amount</code> = 1. The test mod gives it to every major civ (<code>TRAIT_LEADER_MAJOR_CIV</code>) and also through <code>POLICY_DISCIPLINE</code>.</p>
+<p><strong>Engine facts the code relies on.</strong>
+* <code>City::Instance::CalculateYield(yield, production kind, track)</code> computes every city yield; the kind is the current item's, so the build step, <code>GetYield</code> (UI, AI, growth) and the tooltips all pass through it. It is hooked for food and production when the kind is "unit" (<code>GetCurrentProductionKind</code> = 0x15d11e18).
+* The turn runs the build step before growth. <code>BuildQueue::DoTurnActivate</code> records whether this turn's food went into a unit; <code>Growth::DoCityGrowth</code> / <code>AddGrowth</code> then add growth from the unconverted food unless it did (using <code>GetOverallGrowthModifier</code>). This also makes growth independent of the city yield cache.
+* The food reduction searches for the smallest base whose modified value reaches the citizens' consumption (<code>Rules::Economic::GetFoodConsumption</code>), fixed-point (FixedPoint&lt;8&gt;) arithmetic.</p>
+<h2>Tested</h2>
+<p>Lightly tested in game by cru121; no detailed results are recorded, and none of the behaviour above is claimed as verified here. The test mods set up:
+* <strong>DevCE_CityRadiusTest:</strong> the capability; +1 ring for every major civ (radius 4); the Pyramids give +1 more to all the owner's cities (radius 5); Pyramids cost 1 production, need no tech and may be placed on grass, plains, desert hills and tundra tiles; the human gets 5000 gold on turn 1 to buy tiles. Needs a new game.
+* <strong>DevCE_CitySpecialistsTest</strong> (with DevCE_CitySpecialists): mode on, five types, slots and yields as in section 2, plus Urban Planning (+2 Scientist slots) and Discipline (+3 Science per Scientist) as removable/extra modifiers.
+* <strong>DevCE_DistrictCitizensTest:</strong> Campus +1 slot, +1 Science, +1 Gold per citizen; Campus costs 1 and needs no tech.
+* <strong>DevCE_FoodProductionTest:</strong> <code>DEVCE_FOOD_TO_PRODUCTION</code> = 1 in all major civ cities, plus the two tooltip strings.</p>
+<p><em>Key addresses (RVAs, build 26595377):</em> ComputePlotsFromRadius 0x447d0, EditPlotFromCityIndex 0x44980, RemoveAllCitizenWorkers 0x110760, TryAssignAllWorkers 0x110ba0, knapsack patch 0x110f9a, GetYieldFromTiles 0x133780, GetYield patch 0x37e6c4, GetPlotWorkerCapacity patch 0x110238, CalculateYield 0x12ff20, BuildQueue::DoTurnActivate 0xfc690, DoCityGrowth 0x123460.</p></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>

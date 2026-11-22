@@ -1,0 +1,229 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI district scores - CE_AI* policy API (Dev CE, by henno)</title><style>body{font:16px/1.55 system-ui,sans-serif;margin:0;color:#1d2330;background:#fff}
+nav{position:fixed;top:0;bottom:0;left:0;width:210px;padding:16px;background:rgba(127,127,127,.08);overflow:auto;box-sizing:border-box}
+main{margin-left:210px;padding:16px 28px}main>p,main>ul,main>ol,main>blockquote,main>h1,main>h2,main>h3,main>pre,main>.zone{max-width:90ch}
+@media(max-width:700px){nav{position:static;width:auto}main{margin:0;padding:16px}}
+table{border-collapse:collapse;margin:1em 0;font-size:14px;width:100%}td,th{border:1px solid #ccd;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eef;position:sticky;top:0}tbody tr:nth-child(even) td{background:rgba(127,127,127,.06)}td code{white-space:normal;overflow-wrap:anywhere}td{overflow-wrap:anywhere}@media(max-width:900px){table{display:block;overflow-x:auto}}
+code,pre{background:#f3f4f8;color:#1d2330;border-radius:4px}code{padding:1px 4px}pre{padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+#q{width:100%;box-sizing:border-box;padding:8px;margin:6px 0;font-size:15px}nav a{display:block}nav.searching>*:not(b):not(#q):not(#res){display:none}#res:empty{display:none}#res{border:1px solid #9aa4bd;border-radius:6px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:4px;max-height:78vh;overflow-y:auto}#res .cnt{font-size:12px;color:#667;padding:2px 6px 4px}#res a{display:block;font-size:14px;padding:5px 7px;border-radius:4px;color:inherit;text-decoration:none;border-bottom:1px solid rgba(127,127,127,.15)}#res a small{display:block;font-size:11px;opacity:.7}#res a:hover,#res a.sel{background:#dbe6ff}#res mark{background:#ffe27a;color:inherit;padding:0}.gt{font-size:12px;margin:6px 0;padding:6px;border:1px dashed #9aa4bd;border-radius:6px}.gt a{display:block;font-size:12px}.gt .gt-t{font-weight:bold}.gt select{width:100%;margin:3px 0}.loc code{font-size:11px;opacity:.65;word-break:break-all}.loc-ok{background:rgba(42,157,74,.13);border-radius:3px;padding:0 3px}.locname.loc-ok{font-weight:bold}details summary{cursor:pointer}
+.zone{border-left:5px solid;padding:8px 12px;margin:10px 0 16px;border-radius:4px}.zone-vanilla{border-color:#2a9d4a;background:rgba(42,157,74,.13)}.zone-ce{border-color:#d9922b;background:rgba(217,146,43,.15)}.zone-engine{border-color:#8a8f99;background:rgba(138,143,153,.18)}.zone-devce{border-color:#8b5cf6;background:rgba(139,92,246,.14)}.zone-exe{border-color:#2f7fd1;background:rgba(47,127,209,.13)}
+.grp{font-size:12px;font-weight:600;margin:14px 0 4px;padding-left:6px;border-left:4px solid #888;text-transform:uppercase;letter-spacing:.03em}.g-vanilla{border-color:#2a9d4a}.g-ce{border-color:#d9922b}.g-engine{border-color:#8a8f99}.g-devce{border-color:#8b5cf6}.g-exe{border-color:#2f7fd1}
+@media(prefers-color-scheme:dark){body{background:#14171d;color:#dde2ec}a{color:#8ab4ff}th{background:#222833}td,th{border-color:#333b4b}
+code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{background:#1d222c;color:#dde2ec;border:1px solid #333b4b}#res{background:#1b2130;border-color:#4a5880}#res a:hover,#res a.sel{background:#2c3a5e}#res mark{background:#7a6512;color:#fff}#res .cnt{color:#9aa4bd}}</style><nav><b>GameCore reference</b><input id=q placeholder="Search methods, functions...  ( / )" type=search><div id=res></div><div class="grp ">Start</div><a href="index.html">Home</a><a href="conventions.html">How to read</a><a href="hash-function.html">Identifier hash</a><div class="grp g-vanilla">Available now</div><a href="lua/index.html">Lua API</a><a href="operations/index.html">Operations</a><a href="enums/index.html">Enums</a><a href="effects/index.html">Modifier effects</a><a href="requirements/index.html">Requirements</a><a href="collections/index.html">Collections</a><div class="grp g-ce">Needs the Community Extension</div><a href="ce/index.html">CE Lua API</a><a href="layouts/index.html">Class layouts</a><a href="globals/index.html">Globals</a><div class="grp g-exe">Engine executable</div><a href="exe/index.html">Overview</a><a href="exe/options.html">Option files</a><a href="exe/command-line.html">Command line</a><a href="exe/console.html">Debug console</a><a href="exe/files.html">Files and paths</a><a href="exe/modinfo.html">.modinfo vocabulary</a><a href="exe/messages.html">Log messages</a><a href="exe/uixml.html">UI XML vocabulary</a><a href="exe/telemetry.html">Telemetry</a><a href="exe/imports.html">Imports</a><a href="exe/audio.html">Audio names</a><a href="exe/event-data.html">Event data fields</a><a href="exe/lua-enums.html">Lua enum tables</a><a href="exe/network.html">Multiplayer vocabulary</a><a href="exe/lenses.html">Lenses</a><a href="exe/loading.html">Load sequence</a><a href="exe/input.html">Input actions</a><a href="exe/devtools.html">Developer tools</a><a href="exe/gamesummary.html">Game summary</a><a href="exe/dx12.html">DX12 exe</a><a href="execlass/index.html">Classes</a><a href="exeart/index.html">ArtDef vocabulary</a><a href="exetypes/index.html">Reflected types</a><a href="exedb/index.html">Database access</a><a href="exeapi/index.html">Engine Lua tables</a><a href="exeevents/index.html">Engine events</a><a href="exefn/index.html">Engine functions</a><div class="grp g-devce">Experimental</div><a href="devce/index.html">Dev CE Lua API</a><div class="grp g-engine">Engine internals</div><a href="native/index.html">Native functions</a><a href="native/all.html">All functions (search)</a></nav><main><p><a href="index.html">Home</a> › AI district scores - CE_AI* policy API (Dev CE, by henno)</p>
+<h1>AI district scores: the <code>CE_AI*</code> policy API in Dev CE</h1>
+<p><strong>Availability.</strong> Needs the <strong>Dev CE</strong> GameCore mod <strong>0.9.0-experimental or newer</strong> (Steam build <strong>26595377</strong>, Windows, Gathering Storm), single player. The work is <strong>henno's</strong> (hennogous, repository <code>hennogous/CivilizationVI_CommunityExtension</code>, branch <code>csc-dev</code>, used by his Civ Supply Chains mod). It was grafted into Dev CE by cru121 and released in 0.9.0-experimental. It is <strong>inert until a mod publishes a policy</strong>: no shipped mod uses it yet. Nothing on this page was run in game by this reference (see "Tested").</p>
+<h2>What the engine does (as far as the code shows)</h2>
+<p>The AI keeps, per city, a matrix of district values per candidate plot. The module hooks six native functions around that machinery (names are the module's own labels):
+* <strong>District NetValue</strong>: the per-plot value of one district. Early policy entries add a delta to its result, but only for the caller whose return address is the plot-analysis row code.
+* <strong>CalculateDistrictValues</strong>: aggregates the per-plot values after building forecasts. Late and final entries are written here.
+* <strong>GetBestDistrict</strong>, <strong>District PresentValueOf</strong>: read-only observers (winner and plot-specific value), used for the trace journal (inferred from the code and comments).
+* <strong>District Location</strong> and <strong>Quarter Request Value</strong>: used by managed types (below) to place and re-price new-district requests (inferred from the code and comments).
+The engine keeps legality, reservations and production competition. CE only changes numbers in cells the engine already considers eligible (owned, district-eligible, unreserved), and re-checks the publication generation after the original routine returns. Hooks never call Lua. How the stock AI weighs the numbers is not described by the module (it only states that "Civ owns legal locations, reservations and production competition").</p>
+<h2>The Lua API</h2>
+<p>All are globals on the gameplay Lua state. Mutating calls return 1 on success, 0 on rejection (from the graft docs). Values are <strong>Q8 utility</strong>: 256 Q8 = 1 utility, not yields. Plot index is y*width+x.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Arguments</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CE_AIDistrictScoresBegin</code></td>
+<td>version, width, height, districtCount</td>
+<td>Disable the old policy, open empty staging. Version must exceed the published one</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresAllow</code></td>
+<td>player</td>
+<td>Admit one AI player (0-63)</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresEntry</code></td>
+<td>player, city, district, plot, deltaQ8</td>
+<td>Early additive adjustment (NetValue hook)</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresLateEntry</code></td>
+<td>player, city, district, plot, expectedBeforeQ8, expectedFinalQ8, deltaQ8</td>
+<td>Additive adjustment after aggregation, guarded by the expected scores</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresFinalEntry</code></td>
+<td>player, city, district, plot, valueQ8</td>
+<td>Replace the whole eligible cell with a complete value (-4096..4096 utility)</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresManagedType</code></td>
+<td>player, district, defaultQ8</td>
+<td>Declare that this type's new-district valuation is fully managed; default -4096..0 utility</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresCommit</code></td>
+<td>none</td>
+<td>Publish the staged table atomically</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresDisable</code></td>
+<td>none</td>
+<td>Retire policy and staging, advance generation</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresStatus</code></td>
+<td>none</td>
+<td>JSON: readiness, counters, first 64 samples, trace metadata</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresReceipt</code></td>
+<td>version, player, city, district, plot</td>
+<td>Read one key's outcome</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresManagedReceipt</code></td>
+<td>version, player, district</td>
+<td>Counters for one managed type</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictScoresTraceCount</code> / <code>TraceRead</code></td>
+<td>none / offset, limit, expectedGeneration</td>
+<td>Page through the native journal (capacity 16384)</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictDeclineStage</code> / <code>Status</code> / <code>Receipt</code></td>
+<td>player, city, district, plot / none / version, player, city, district, plot</td>
+<td>Withhold one exact cell from a fresh joint district comparison (capacity 4096)</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictRepairStage</code> / <code>Status</code></td>
+<td>player, city, district, plot / none</td>
+<td>Offer one existing footprint for repair admission (up to 256)</td>
+</tr>
+<tr>
+<td><code>CE_AISupplierExclusionStage</code> / <code>Status</code></td>
+<td>player, city, plot / none</td>
+<td>Exclude a site from the stock selector (up to 256)</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictPurchaseCompletionStage</code> / <code>Status</code> / <code>Receipt</code></td>
+<td>player, city, district / none / version, player, city, district</td>
+<td>Numeric scope that acknowledges purchase completion; no purchase or score</td>
+</tr>
+<tr>
+<td><code>CE_AIBuilderProtectionAllow</code> / <code>Bid</code> / <code>Status</code></td>
+<td>player, city, plot, improvement (, deltaQ8) / none</td>
+<td>Keep an improvement eligible at a protected site, optionally with a 0..64 unit bid</td>
+</tr>
+<tr>
+<td><code>CE_AIBuilderHarvestProtectionStage</code> / <code>Status</code>, <code>CE_AISupplierWonderProtectionStage</code> / <code>Status</code></td>
+<td>none</td>
+<td>Opt staged supplier sites into harvest or wonder protection</td>
+</tr>
+<tr>
+<td><code>CE_AIWonderPlacementOffer</code></td>
+<td>player, city, building, plot, deltaQ8</td>
+<td>Site preference for an exact wonder (max 512, positive up to 6144 Q8)</td>
+</tr>
+<tr>
+<td><code>CE_AIBuildingNominationBid</code> / <code>QueueBid</code> / <code>Status</code> / <code>Receipt</code></td>
+<td>player, city, building, deltaQ8 (, queueDeltaQ8)</td>
+<td>Building nomination bids (max 512 utility)</td>
+</tr>
+<tr>
+<td><code>CE_AIMaterialResearchBid</code>, <code>CE_AIMaterialBuilderRequestBid</code>, <code>CE_AIMaterialWorkerFinishOffer</code>, <code>CE_AIMaterialWorkerLoanOffer</code>, <code>CE_AIMaterialDevelopmentStatus</code></td>
+<td>see native README</td>
+<td>Research, builder-request and worker offers (four per AI player)</td>
+</tr>
+<tr>
+<td><code>CE_AIEconomyStatus</code>, <code>CE_AIEvaluationContext</code></td>
+<td>none</td>
+<td>JSON readiness and the AI's horizon and discount</td>
+</tr>
+<tr>
+<td><code>CE_AIYieldStreamValue</code>, <code>CE_AIYieldIntervalValue</code>, <code>CE_AIYieldFixedValue</code>, <code>CE_AIAmenityStreamValue</code>, <code>CE_AIAmenityIntervalValue</code>, <code>CE_AIPseudoYieldIntervalValue</code>, <code>CE_AIGrowthIntervalValue</code></td>
+<td>player, city, ... timing and discount</td>
+<td>Read-only quotes in Q8 utility using the engine's own pricing; nil when unavailable</td>
+</tr>
+<tr>
+<td><code>CE_AIDistrictSiteAdjustment</code></td>
+<td>player, city, district, x, y, ready, horizon, discountQ8</td>
+<td>Read-only: native NetValue minus intrinsic value, as JSON</td>
+</tr>
+<tr>
+<td><code>CE_AIMonotonicSeconds</code></td>
+<td>none</td>
+<td>Read-only fractional seconds, for timing a policy pass</td>
+</tr>
+</tbody>
+</table>
+<p>The registration list is in <code>RegisterLua</code>; argument lists for the less central functions are only summarised here, the exact ones are in the module's <code>native/README.md</code>.</p>
+<h2>How a policy is published and what it can change</h2>
+<ol>
+<li><code>Begin(version, width, height, districtCount)</code> then <code>Allow(player)</code> for each AI, then entries, then <code>Commit()</code>. Staging is atomic: a rejected Allow or entry <strong>poisons</strong> the batch and Commit then fails; start again with Begin.</li>
+<li>Per pair (player, city, district, plot) there can be one entry of any kind (early, late or final). At most 4096 entries. Early/late deltas are -262144..+1048576 Q8 and nonzero. A managed type cannot also have early or late entries.</li>
+<li>Early entries adjust the native NetValue; late entries need expected before/after scores and apply only if the engine's value matches; final entries replace the cell (zero and negative allowed). Native sentinel values (at or below -2559744 Q8) are never revived, and reservations are not created or changed.</li>
+<li>Managed types give a whole district type a conservative default plus sparse complete bids, so cities without a quote still get a value; non-positive managed placements are masked only during selection and restored.</li>
+<li>What it cannot do: it does not build, order, buy or place anything. The native selector still decides; a write is not a selection. The consuming mod owns valuation and excludes original humans (the allowlist does not discover them).</li>
+</ol>
+<h2>Engine facts and offsets the code relies on</h2>
+<p>The module qualifies the exact image before installing anything: SHA-256 of the GameCore image (prefix <code>092abfbb2176f8df</code>, as given in the module's README; the exact file name is not established), PE timestamp, image size 12976128, and byte-prefix fingerprints of every hooked function; the aggregation call site must still be a rel32 CALL to our hook. Any mismatch leaves the API unavailable and the hooks uninstalled. Hook groups use <code>Runtime::InstallHookGroup</code>: all trampolines are created before any hook is enabled, and a failure rolls the group back. The NetValue detour uses an assembly shim (<code>hook_entry.asm</code>) that preserves R12 (the caller's plot-analysis row) and the seven original arguments.</p>
+<table>
+<thead>
+<tr>
+<th>RVA</th>
+<th>Function (module label)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3df7a0</code></td>
+<td>CalculateDistrictValues</td>
+</tr>
+<tr>
+<td><code>3e21fc</code></td>
+<td>aggregation call site inside DoTurnActivate (return address named in the code)</td>
+</tr>
+<tr>
+<td><code>3e4310</code></td>
+<td>GetBestDistrict</td>
+</tr>
+<tr>
+<td><code>3e4e10</code></td>
+<td>District Location</td>
+</tr>
+<tr>
+<td><code>3e7800</code></td>
+<td>District PresentValueOf</td>
+</tr>
+<tr>
+<td><code>3fa5c0</code></td>
+<td>Quarter Request Value (RequestUpdate)</td>
+</tr>
+<tr>
+<td><code>52a420</code></td>
+<td>District NetValue</td>
+</tr>
+<tr>
+<td><code>5bdb00</code></td>
+<td>RegisterScriptData (fingerprint only; CE's own hook)</td>
+</tr>
+</tbody>
+</table>
+<p>Other RVAs (pricing helpers, builder, wonder, repair hooks) are named constants in <code>native/target_identity.h</code>. The native README quotes older XP2 addresses in dated sections (for example <code>52a440</code> for NetValue); the constants above come from the current <code>target_identity.h</code>.</p>
+<h2>Pitfalls and limits</h2>
+<ul>
+<li>Argument conversion can longjmp out of a Lua call; the docs say callers must catch the error and call <code>Disable</code> after any partial or rejected publication.</li>
+<li>Versions must increase within a game context. Width and height 1-256, districtCount 1-4096, player 0-63.</li>
+<li><code>Reset</code> runs at game-context boundaries: the policy is dropped, but hooks stay installed (they are process-owned and the DLL is pinned). Engine caches and requests already in a save are not undone.</li>
+<li>Optional parts (pricing, builder, wonder, repair, ownership) disable independently if their own fingerprint fails; the district scores can stay available.</li>
+<li>Presence of a function does not mean readiness: read <code>Status</code> / <code>CE_AIEconomyStatus</code>. Quotes return nil when unavailable; never treat nil as zero.</li>
+<li>The module's README states its support as Windows, DX11, Gathering Storm, build 26595377; other platforms and builds are outside it, and whether the DX12 exe matters for it is not established here.</li>
+<li>Writes are bounded by a journal and a 4096 change budget; exhausting them fails closed.</li>
+</ul>
+<h2>Tested</h2>
+<ul>
+<li><strong>Inert by default</strong> (code: <code>enabled</code> stays false until a Commit succeeds; hooks fall through to the original).</li>
+<li>Ported to Steam build <strong>26595377</strong> and builds into Dev CE. Whether the module's image check passed on a given install and which of its hooks installed was <strong>not checked by this reference</strong>; look for the module's lines in <code>DevBridge.log</code> and read <code>CE_AIDistrictScoresStatus</code>.</li>
+<li><strong>Its behaviour with a published policy was not tested here.</strong> The native README reports henno's own synthetic checks and in-game smoke runs with his mod; this reference did not reproduce them, and those results say transport works, not that AI placement improves.</li>
+</ul>
+<p><em>Key addresses (named constants in <code>native/target_identity.h</code>): <code>DistrictNetValueRva</code> 0x52a420, <code>CalculateDistrictValuesRva</code> 0x3df7a0, <code>DistrictAggregationCallRva</code> 0x3e21fc, <code>GetBestDistrictRva</code> 0x3e4310, <code>DistrictPresentValueRva</code> 0x3e7800, <code>DistrictLocationRva</code> 0x3e4e10, <code>RequestUpdateRva</code> 0x3fa5c0.</em></p></main><script>const ROOT="";</script><script src="search.js"></script><script src="strings.js"></script>
