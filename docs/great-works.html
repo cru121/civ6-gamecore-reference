@@ -151,12 +151,34 @@ code,pre{background:#222833;color:#e6e9f0}pre code{background:none}input{backgro
 </tr>
 <tr>
 <td><code>Game.GetGreatWorkTypeFromIndex(i)</code></td>
-<td>Not read in detail</td>
-<td>Used by the base UI with real indexes</td>
+<td><strong>No</strong> (only -1 is special-cased: returns -1)</td>
+<td>Read from the shared cache function <code>Cache::Game::Instance::GetGreatWorkTypeFromIndex</code>, which the <code>CityBuildings</code> binder below also calls; the <code>Game</code> binder itself was not read</td>
+</tr>
+<tr>
+<td><code>CityBuildings:GetGreatWorkTypeFromIndex(i)</code></td>
+<td><strong>No</strong></td>
+<td>Same cache function as above</td>
+</tr>
+<tr>
+<td><code>CityBuildings:GetPlayerFromIndex(i)</code></td>
+<td><strong>No</strong> (not even -1)</td>
+<td>Reads the record's player (the creator)</td>
+</tr>
+<tr>
+<td><code>CityBuildings:GetTurnFromIndex(i)</code></td>
+<td><strong>No</strong> (not even -1)</td>
+<td>Reads the record's turn</td>
+</tr>
+<tr>
+<td><code>CityBuildings:GetCreatorNameFromIndex(i)</code></td>
+<td><strong>No</strong></td>
+<td>Reads the type, then looks it up in the definitions and dereferences the result</td>
 </tr>
 </tbody>
 </table>
 <ul>
+<li><strong>Why the unchecked readers crash (code, build 15038592; read from the decompile, reproduced as crash reports by Klear2012 in <a href="https://github.com/cru121/civ6-gamecore-reference/issues/5">issue 5</a>).</strong> The four <code>CityBuildings</code> binders (UI cache state; <code>lGetCreatorNameFromIndex</code>, <code>lGetGreatWorkTypeFromIndex</code>, <code>lGetPlayerFromIndex</code>, <code>lGetTurnFromIndex</code>) only convert argument 2 with <code>lua_tointeger</code> (nil or a non-number becomes <strong>0</strong>) and call a <code>Cache::...</code> function. Those functions take <code>Game::Culture::Get()</code>, read the great work record vector (<code>m_kGreatWorks</code>, data pointer at Culture+0x118) and index it as <code>base + index * 0x18</code> (record: +0 type, +4 player, +8 turn, +0x10 pointer to the creator name) with <strong>no bounds check</strong>. In a game where no work has been created yet the vector is empty and its data pointer is null, so even index 0 reads address 0, +4 or +8 (the four access violations seen at the first load of each function). Past the end of a non-empty list the readers return garbage (<code>GetCreatorNameFromIndex</code> then dereferences a lookup of the garbage type and crashes), and index -1 is far outside the heap for the three that do not special-case it. The crash happens inside the function, so <code>pcall</code> cannot catch it. The register <code>rcx</code> in the dumps is <code>this</code>, which none of the four functions dereferences.</li>
+<li><strong>Safe shapes.</strong> A call is safe exactly when the index is a real record index (<code>0 &lt;= i &lt; number of records</code>). The practical source is the result of <code>CityBuildings:GetGreatWorkInSlot(building, slot)</code> when it is not -1; the stock UI checks for -1 first. <code>GetGreatWorkTypeFromIndex(-1)</code> is safe. With no record-count getter in the UI API, do not call these four in a game that has no great works yet, and never with a guessed index. So the family does not need a permanent block, only an index you got from a slot (or from a <code>Game.GetGreatWorkPlayer(i)</code> that returned a real player).</li>
 <li><strong>Do not loop until the reader returns nil.</strong> That crashed the game (<code>EXCEPTION_ACCESS_VIOLATION</code>) the first time the index passed the last record; <code>pcall</code> does not help because it is a native fault (<strong>verified</strong>). There is no record-count getter in the UI API. Safe pattern: call only <code>Game.GetGreatWorkPlayer(i)</code> and use the other readers when it returns a real player.</li>
 <li>The 14 great-work methods exposed to gameplay Lua are all read-only getters. There is no stock method to add, remove or move a work; <code>TransferCity</code> is the only Lua path that moves one, as a side effect.</li>
 <li>The Great Works launch-bar button appears only after the great-work-created event or when a refresh finds a work in a local city slot. A work that exists only as an unplaced record does not unlock it (<strong>verified</strong>). The screen itself opens whenever <code>LuaEvents.LaunchBar_OpenGreatWorksOverview()</code> is raised, so a mod can open it without the button.</li>
